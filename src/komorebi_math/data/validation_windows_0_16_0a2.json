@@ -1,0 +1,37 @@
+{
+  "identifier": "windows-0.16.0a2-user-qualification",
+  "machine": "AMD64",
+  "numpy": "2.5.2",
+  "optional": {
+    "cuda": "12.6",
+    "cupy-cuda12x": "14.1.1",
+    "cupy_packet_executor_residual": 0.0,
+    "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "jax": "0.11.1",
+    "torch": "2.12.1+cu126",
+    "torch_jvp": [
+      8.0,
+      12.0
+    ]
+  },
+  "package_version": "0.16.0a2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "platform_key": "windows-x86_64",
+  "provenance": "User-supplied PowerShell transcript for the immediately preceding frozen 0.16.0a2 contract.",
+  "python": "3.13.0",
+  "results": {
+    "cumulative_verification": "189/189",
+    "gpu_verification": "4/4",
+    "installed_wheel_passed": true,
+    "passed": true,
+    "pip_check_passed": true,
+    "release_verification": "7/7",
+    "source_failed_files": 0,
+    "source_tests_passed": 1009,
+    "source_tests_skipped": 0,
+    "stable_verification": "6/6"
+  },
+  "schema": "komorebi-math.validation-source",
+  "schema_version": 1,
+  "source_transcript_sha256": "c95d961f01a79aad68ba9c6bdf73f7855687ebf446fe33d22782de4307519270"
+}

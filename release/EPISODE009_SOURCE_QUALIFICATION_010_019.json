@@ -1,0 +1,25 @@
+{
+  "end": 20,
+  "exit_status": 0,
+  "failed_tests": 0,
+  "files": [
+    "tests/test_algorithms_support.py",
+    "tests/test_analytic_appell_zeros.py",
+    "tests/test_analytic_cyclic_reciprocal.py",
+    "tests/test_arithmetic_domains_valuation.py",
+    "tests/test_arithmetic_euler.py",
+    "tests/test_arithmetic_hurwitz_windows.py",
+    "tests/test_arithmetic_mahler_polyphase.py",
+    "tests/test_arithmetic_recurrence.py",
+    "tests/test_artifact_gate_hardening.py",
+    "tests/test_backends.py"
+  ],
+  "passed": true,
+  "passed_tests": 74,
+  "runtime_seconds": 4.04557204246521,
+  "schema": "komorebi-math.episode009-source-batch",
+  "schema_version": 1,
+  "start": 10,
+  "stderr_tail": "",
+  "stdout_tail": "........................................................................ [ 97%]\n..                                                                       [100%]\n74 passed in 1.92s"
+}

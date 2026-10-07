@@ -1,0 +1,65 @@
+[
+  {
+    "t": 1,
+    "kappaG": 1.0,
+    "kappaQp": 1.0,
+    "accepted": true,
+    "residual": 1e-06
+  },
+  {
+    "t": 100.0,
+    "kappaG": 100.0,
+    "kappaQp": 10000.0,
+    "accepted": true,
+    "residual": 1e-06
+  },
+  {
+    "t": 1000.0,
+    "kappaG": 1000.0,
+    "kappaQp": 1000000.0,
+    "accepted": true,
+    "residual": 1.0000000000000002e-06
+  },
+  {
+    "t": 10000.0,
+    "kappaG": 10000.0,
+    "kappaQp": 100000000.0,
+    "accepted": true,
+    "residual": 1e-06
+  },
+  {
+    "t": 30000.0,
+    "kappaG": 30000.0,
+    "kappaQp": 899999999.9999999,
+    "accepted": true,
+    "residual": 1e-06
+  },
+  {
+    "t": 100000.0,
+    "kappaG": 100000.0,
+    "kappaQp": 9999999999.999998,
+    "accepted": true,
+    "residual": 1e-06
+  },
+  {
+    "t": 300000.0,
+    "kappaG": 300000.0,
+    "kappaQp": 90000000000.0,
+    "accepted": false,
+    "error": "root metric must be positive definite and numerically resolved at the graph tolerance"
+  },
+  {
+    "t": 1000000.0,
+    "kappaG": 1000000.0,
+    "kappaQp": 1000000000000.0,
+    "accepted": false,
+    "error": "root metric must be positive definite and numerically resolved at the graph tolerance"
+  },
+  {
+    "t": 100000000.0,
+    "kappaG": 100000000.0,
+    "kappaQp": 9999999999999998.0,
+    "accepted": false,
+    "error": "root metric must be positive definite and numerically resolved at the graph tolerance"
+  }
+]

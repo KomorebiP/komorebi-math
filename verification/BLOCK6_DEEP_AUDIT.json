@@ -1,0 +1,19 @@
+{
+  "failed_checks": 0,
+  "failures": [],
+  "groups": {
+    "euler": 5136,
+    "hurwitz": 793,
+    "mahler": 14189,
+    "polyphase": 1440,
+    "recurrences": 5222,
+    "sequence_catalog": 381,
+    "sequence_models": 4076,
+    "source_integrity": 425,
+    "standard_windows": 378,
+    "valuations": 29569
+  },
+  "passed": true,
+  "passed_checks": 61609,
+  "total_checks": 61609
+}

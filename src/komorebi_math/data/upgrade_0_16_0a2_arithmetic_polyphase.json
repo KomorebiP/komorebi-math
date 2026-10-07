@@ -1,0 +1,51 @@
+{
+  "payload": {
+    "__komorebi_type__": "arithmetic.polyphase_coordinates",
+    "__version__": 1,
+    "data": {
+      "__komorebi_type__": "python.mapping",
+      "__version__": 1,
+      "data": [
+        [
+          "channels",
+          {
+            "__komorebi_type__": "python.tuple",
+            "__version__": 1,
+            "data": [
+              {
+                "__komorebi_type__": "python.tuple",
+                "__version__": 1,
+                "data": [
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "__komorebi_type__": "python.tuple",
+                "__version__": 1,
+                "data": [
+                  2,
+                  4,
+                  6
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "length",
+          6
+        ],
+        [
+          "modulus",
+          2
+        ]
+      ]
+    }
+  },
+  "payload_sha256": "26bd8ed78885636bb22bc8ae5e1db39e515c23204cf12e63efba6c0cf6c25f36",
+  "producer_version": "0.16.0a2",
+  "schema": "komorebi-math.portable",
+  "schema_version": 1
+}

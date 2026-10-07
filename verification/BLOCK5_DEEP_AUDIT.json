@@ -1,0 +1,22 @@
+{
+  "failed_checks": 0,
+  "failures": [],
+  "groups": {
+    "cyclic_coordinates": 2300,
+    "cyclic_sections": 2700,
+    "quantum_channels": 2804,
+    "quantum_circuits": 900,
+    "quantum_constraints_towers": 1200,
+    "quantum_effective": 1700,
+    "quantum_error_correction": 400,
+    "quantum_seeds_symmetry": 848,
+    "quantum_spectral": 2500,
+    "quantum_transport": 1200,
+    "reciprocal_families": 2304,
+    "source_integrity": 215,
+    "zero_diagnostics": 187
+  },
+  "passed": true,
+  "passed_checks": 19258,
+  "total_checks": 19258
+}

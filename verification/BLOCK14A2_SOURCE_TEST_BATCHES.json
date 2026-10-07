@@ -1,0 +1,81 @@
+{
+  "batches": [
+    {
+      "files": 19,
+      "label": "algebra-algorithms-analytic-arithmetic-backends",
+      "passed": 141,
+      "returncode": 0,
+      "seconds": 3.584948,
+      "timed_out": false
+    },
+    {
+      "files": 7,
+      "label": "block10-block11",
+      "passed": 68,
+      "returncode": 0,
+      "seconds": 6.286826,
+      "timed_out": false
+    },
+    {
+      "files": 23,
+      "label": "block12-block13-block14-coordinates",
+      "passed": 163,
+      "returncode": 0,
+      "seconds": 15.551455,
+      "timed_out": false
+    },
+    {
+      "files": 2,
+      "label": "generating-foundation-domains",
+      "passed": 83,
+      "returncode": 0,
+      "seconds": 32.285602,
+      "timed_out": false
+    },
+    {
+      "files": 2,
+      "label": "generating-cartier-production",
+      "passed": 105,
+      "returncode": 0,
+      "seconds": 4.232729,
+      "timed_out": false
+    },
+    {
+      "files": 12,
+      "label": "block4-certificates-deformation-dynamics-export",
+      "passed": 76,
+      "returncode": 0,
+      "seconds": 14.619259,
+      "timed_out": false
+    },
+    {
+      "files": 11,
+      "label": "grammar-graphs-langlands-lifting",
+      "passed": 74,
+      "returncode": 0,
+      "seconds": 2.284682,
+      "timed_out": false
+    },
+    {
+      "files": 11,
+      "label": "nonlinear",
+      "passed": 68,
+      "returncode": 0,
+      "seconds": 6.296742,
+      "timed_out": false
+    },
+    {
+      "files": 16,
+      "label": "operators-packets-quantum-signals-sequences",
+      "passed": 118,
+      "returncode": 0,
+      "seconds": 2.803856,
+      "timed_out": false
+    }
+  ],
+  "expected": 896,
+  "package_version": "0.14.0a2",
+  "passed": true,
+  "schema": "komorebi-math.block14-test-batch-run.v1",
+  "total_passed": 896
+}

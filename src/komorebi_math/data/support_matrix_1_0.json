@@ -1,0 +1,87 @@
+{
+  "base_dependencies": {
+    "numpy": ">=1.26"
+  },
+  "optional_backends": {
+    "cupy": {
+      "distribution": "cupy-cuda12x",
+      "required": false,
+      "validated_version": "14.1.1"
+    },
+    "jax": {
+      "native_windows": "cpu",
+      "required": false,
+      "validated_version": "0.11.1"
+    },
+    "torch": {
+      "cuda": "12.6",
+      "required": false,
+      "validated_version": "2.12.1+cu126"
+    }
+  },
+  "python": {
+    "declared": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "maximum": "3.13",
+    "minimum": "3.11"
+  },
+  "release_line": "1.0.0b1 to 1.0.0rc1",
+  "schema": "komorebi-math.support-matrix",
+  "schema_version": 1,
+  "unqualified_platforms": [
+    "macOS",
+    "Linux ARM64",
+    "Windows ARM64",
+    "native-Windows JAX GPU",
+    "non-NVIDIA GPU runtimes"
+  ],
+  "validated_environments": [
+    {
+      "evidence": "validation_windows_0_16_0a2.json",
+      "identifier": "windows-0.16.0a2-inherited",
+      "numpy": "2.5.2",
+      "optional": {
+        "cuda": "12.6",
+        "cupy-cuda12x": "14.1.1",
+        "cupy_packet_executor_residual": 0.0,
+        "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+        "jax": "0.11.1",
+        "torch": "2.12.1+cu126",
+        "torch_jvp": [
+          8.0,
+          12.0
+        ]
+      },
+      "platform": "Windows x86_64",
+      "python": "3.13.0",
+      "result": "1009 passed; installed gate passed; GPU 4/4",
+      "suite": "frozen predecessor contract, installed wheel, and CUDA qualification"
+    },
+    {
+      "evidence": "validation_linux_1_0_0b4.json",
+      "identifier": "linux-1.0.0b4-publication-gate",
+      "numpy": "2.3.5",
+      "optional": {
+        "packages": {
+          "cupy": null,
+          "cupy-cuda12x": null,
+          "jax": "0.9.0.1",
+          "jaxlib": "0.9.0.1",
+          "llvmlite": "0.47.0",
+          "mpmath": "1.3.0",
+          "numba": "0.65.1",
+          "scipy": "1.17.0",
+          "sympy": "1.14.0",
+          "torch": "2.10.0+cpu"
+        }
+      },
+      "platform": "Linux x86_64",
+      "python": "3.13.5",
+      "result": "1138 passed; strict API, stable, Block 20, and release gates passed",
+      "suite": "current source, API, release-contract, Block 20, and publication qualification"
+    }
+  ]
+}

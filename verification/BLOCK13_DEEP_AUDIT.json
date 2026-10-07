@@ -1,0 +1,29 @@
+{
+  "checks": 383336,
+  "failures": [],
+  "numpy": "2.3.5",
+  "package_version": "0.13.0a1",
+  "passed": true,
+  "python": "3.13.5",
+  "schema": "komorebi-math.block13-deep-audit",
+  "schema_version": 1,
+  "sections": {
+    "analytic_masks": 100,
+    "bell": 1139,
+    "bell_touchard": 787,
+    "cartier": 14416,
+    "coefficient_domains": 3400,
+    "digit_cauchy": 18180,
+    "finite_mask_carries": 38010,
+    "kummer": 5203,
+    "kummer_support": 231510,
+    "mahler_masks": 38949,
+    "normalized_series": 2829,
+    "persistence": 101,
+    "prime_power": 7200,
+    "prime_power_kernel": 3600,
+    "q_kummer": 12312,
+    "signal_bridge": 5600
+  },
+  "seed": 13012026
+}

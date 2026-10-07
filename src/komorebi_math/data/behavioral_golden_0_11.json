@@ -1,0 +1,121 @@
+{
+  "schema": "komorebi-math.behavioral-golden",
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "exact packet snapshot contraction",
+      "kind": "exact_packet_snapshot",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": ["left", "right"]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": ["0", "0"],
+      "coefficients": [
+        {"indices": [0, 0], "value": ["3/2", "0"]},
+        {"indices": [0, 1], "value": ["0", "-2"]},
+        {"indices": [1, 0], "value": ["1/3", "1"]},
+        {"indices": [1, 1], "value": ["0", "5/4"]}
+      ],
+      "directions": [["2", "3"], ["-1", "4"]],
+      "expected": ["-4/1", "-4/1"]
+    },
+    {
+      "name": "third order sparse symmetric contraction",
+      "kind": "sparse_symmetric_contraction",
+      "order": 3,
+      "source_dimension": 3,
+      "target_dimension": 2,
+      "entries": [
+        {"key": [0, 0, 0, 1], "value": "2"},
+        {"key": [1, 0, 1, 2], "value": "-3/2"}
+      ],
+      "directions": [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]],
+      "expected": ["246", "-675/1"]
+    },
+    {
+      "name": "projection cached packet execution",
+      "kind": "packet_execution_plan",
+      "order": 2,
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "tensor_shape": [2, 2, 2],
+      "tensor_entries": [
+        {"indices": [0, 0, 0], "value": 2.0},
+        {"indices": [1, 1, 1], "value": -3.0}
+      ],
+      "source_projectors": [
+        [[1.0, 0.0], [0.0, 0.0]],
+        [[0.0, 0.0], [0.0, 1.0]]
+      ],
+      "target_projectors": [
+        [[1.0, 0.0], [0.0, 0.0]],
+        [[0.0, 0.0], [0.0, 1.0]]
+      ],
+      "source_names": ["x", "y"],
+      "target_names": ["x", "y"],
+      "point": [0.2, -0.4],
+      "directions": [[2.0, 3.0], [-1.0, 4.0]],
+      "expected": {
+        "full_addresses": 8,
+        "active_addresses": 8,
+        "derivative_calls": 4,
+        "reconstructed": [-4.0, -36.0],
+        "direct": [-4.0, -36.0]
+      }
+    },
+    {
+      "name": "packet snapshot codec v1 migration",
+      "kind": "packet_snapshot_v1_migration",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": ["left", "right"]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": ["0", "0"],
+      "coefficients": [
+        {"indices": [0, 0], "value": ["3/2", "0"]},
+        {"indices": [0, 1], "value": ["0", "-2"]},
+        {"indices": [1, 0], "value": ["1/3", "1"]},
+        {"indices": [1, 1], "value": ["0", "5/4"]}
+      ],
+      "directions": [["2", "3"], ["-1", "4"]],
+      "expected": {
+        "provider_name": "behavioral golden provider",
+        "nnz": 4,
+        "evaluation": ["-4/1", "-4/1"],
+        "current_codec_version": 2
+      }
+    },
+    {
+      "name": "streamed exact packet snapshot",
+      "kind": "streamed_packet_snapshot",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": ["left", "right"]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": ["0", "0"],
+      "coefficients": [
+        {"indices": [0, 0], "value": ["3/2", "0"]},
+        {"indices": [0, 1], "value": ["0", "-2"]},
+        {"indices": [1, 0], "value": ["1/3", "1"]},
+        {"indices": [1, 1], "value": ["0", "5/4"]}
+      ],
+      "directions": [["2", "3"], ["-1", "4"]],
+      "chunk_size": 2,
+      "expected": {
+        "chunks": 2,
+        "coefficients": 4,
+        "stream_sha256": "5d8eb3bac04c9e1822131f326c46298b161973a78ee739e2ca9108fd9d7f385e",
+        "evaluation": ["-4/1", "-4/1"]
+      }
+    }
+  ]
+}

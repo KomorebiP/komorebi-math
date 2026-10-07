@@ -1,0 +1,61 @@
+{
+  "assign_discrete_precisions": {
+    "candidate_A_exact_cost": "1",
+    "candidate_B_exact_cost": "18014398509481983/18014398509481984",
+    "certificate_exactness": "exact",
+    "certificate_valid": true,
+    "exact_optimum_should_be_B": true,
+    "reported_cost": 1.0,
+    "selected_names": [
+      "a",
+      "a"
+    ]
+  },
+  "best_basis": {
+    "certificate_exactness": "exact",
+    "certificate_valid": true,
+    "exact_optimum_should_be_split": true,
+    "reported_cost": 1.0,
+    "selected_leaves": [
+      ""
+    ]
+  },
+  "compile_tree_budget": {
+    "certificate_exactness": "exact",
+    "certificate_valid": true,
+    "exact_optimum_should_be_split": true,
+    "reported_cost": 1.0,
+    "selected_leaves": [
+      "a"
+    ]
+  },
+  "compile_tree_lagrangian": {
+    "certificate_exactness": "exact",
+    "certificate_valid": true,
+    "exact_optimum_should_be_split": true,
+    "reported_cost": 1.0,
+    "selected_leaves": [
+      "a"
+    ]
+  },
+  "finite_group": {
+    "certificate_exactness": "exact",
+    "certificate_valid": true,
+    "elements": [
+      0,
+      1
+    ],
+    "message": "valid finite group",
+    "operation": "multiply(a,b)=0",
+    "require_passed": true,
+    "validate": false
+  },
+  "float_witness": {
+    "exact_split_denominator": 18014398509481984,
+    "exact_split_less_than_one": true,
+    "exact_split_numerator": 18014398509481983,
+    "half": "0.5",
+    "lower_half": "0.49999999999999994",
+    "rounded_float_split": 1.0
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "failed_count": 0,
+  "package_version": "1.0.0b4",
+  "passed": true,
+  "passed_count": 30,
+  "results": [
+    {
+      "detail": "",
+      "name": "fibonacci_documented_intermediates",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "pipeline_i4_and_certified_rewrites",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "affine_pullback_and_weighted_pushforward_106_over_5",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "density_omission_212_over_5",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "density_weighted_ftc_rewrite",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "jd_defect_and_constant_counterexample",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "same_label_basis_type_mismatch",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "exact_normal_form_equality_true_false_and_typed",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "matrix_chain_classic_15125",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "matrix_chain_exhaustive_small_chains",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "matrix_chain_exact_execution",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "direct_and_planned_expression_execution",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "tampered_plan_digests",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "tampered_plan_opcode_and_dependencies",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "tampered_plan_costs",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "portable_type_roundtrips",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "portable_all_nodes_and_primitives",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "canonical_serialization_and_alpha_equivalence",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "lexical_shadowing_and_free_bound_identity",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "portable_duplicate_float_bool_fraction_rejections",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "portable_schema_version_field_digest_rejections",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "portable_dangling_binder_and_type_field_rejections",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "binding_exactness_and_invalidity_propagation",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "resource_node_depth_entry_bit_degree_size_guards",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "object_cycle_guard",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "invalid_and_singular_basis_guards",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "literal_labels_cannot_trigger_primitive_rewrites",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "degree_zero_derivative",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "empty_ill_shaped_and_type_mismatch_rejections",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "transport_copy_tamper_isolation",
+      "passed": true
+    }
+  ],
+  "schema": "komorebi-math.block20-adversarial-tests",
+  "schema_version": 1,
+  "total_count": 30
+}

@@ -1,0 +1,55 @@
+{
+  "groups": [
+    {
+      "checks": 576,
+      "failures": [],
+      "name": "deformation_counts",
+      "passed": true
+    },
+    {
+      "checks": 448,
+      "failures": [],
+      "name": "complexes_support",
+      "passed": true
+    },
+    {
+      "checks": 2367,
+      "failures": [],
+      "name": "finite_fields",
+      "passed": true
+    },
+    {
+      "checks": 1297,
+      "failures": [],
+      "name": "tame_packets",
+      "passed": true
+    },
+    {
+      "checks": 2018,
+      "failures": [],
+      "name": "heisenberg_symplectic",
+      "passed": true
+    },
+    {
+      "checks": 780,
+      "failures": [],
+      "name": "finite_image",
+      "passed": true
+    },
+    {
+      "checks": 231,
+      "failures": [],
+      "name": "global_completion",
+      "passed": true
+    },
+    {
+      "checks": 62,
+      "failures": [],
+      "name": "source_integrity",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "total_checks": 7779,
+  "total_failures": 0
+}

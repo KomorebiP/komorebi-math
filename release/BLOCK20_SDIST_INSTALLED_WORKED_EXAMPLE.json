@@ -1,0 +1,116 @@
+{
+  "affine_regression": {
+    "base_integral": "106/5",
+    "pulled_back_coefficients": [
+      "0",
+      "4",
+      "24",
+      "32",
+      "16"
+    ],
+    "weighted_pushforward_integral": "106/5"
+  },
+  "execution_plan": {
+    "chain_dimensions": [
+      4,
+      4,
+      5,
+      5,
+      4
+    ],
+    "chain_left_associative_cost": 260,
+    "chain_optimal_cost": 244,
+    "direct_and_planned_match": true,
+    "instruction_count": 9,
+    "parenthesization": "(C_E3_to_F3 @ (D_E4 @ (C_F4_to_E4 @ J_0_F3)))",
+    "scalar_operation_cost": 264
+  },
+  "input": {
+    "basis_coordinate": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "physical_polynomial": "G_3(x) = x^3 + 2x"
+  },
+  "integration_covector_0_1": [
+    "1",
+    "1/2",
+    "4/3",
+    "5/4"
+  ],
+  "intermediate_vectors": {
+    "D_in_Euler": [
+      "3/2",
+      "7/2",
+      "3/2",
+      "1"
+    ],
+    "Euler3_to_Fibonacci3": [
+      "0",
+      "0",
+      "0",
+      "1"
+    ],
+    "Fibonacci4_to_Euler4": [
+      "5/8",
+      "3/2",
+      "7/4",
+      "1/2",
+      "1/4"
+    ],
+    "J_0_in_Fibonacci": [
+      "-1/2",
+      "0",
+      "1/4",
+      "0",
+      "1/4"
+    ]
+  },
+  "package_version": "1.0.0b4",
+  "pipeline_is_I4": true,
+  "pipeline_normal_form": [
+    [
+      "1",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "1",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "1",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "1"
+    ]
+  ],
+  "portable": {
+    "expression_digest": "161d64ab695774a8293b9450f88654eabe28a1265a623575a84c73d64c7d9138",
+    "roundtrip_equal_normal_form": true
+  },
+  "result": "5/4",
+  "schema": "komorebi-math.block20-worked-example",
+  "schema_version": 1,
+  "simplifier": {
+    "result_node": "IdentityMap",
+    "rules": [
+      "derivative coordinate naturality",
+      "flatten composition and remove identities",
+      "coordinate cocycle",
+      "flatten composition and remove identities",
+      "derivative-antiderivative cancellation"
+    ]
+  }
+}

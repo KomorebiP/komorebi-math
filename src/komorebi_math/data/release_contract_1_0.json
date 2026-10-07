@@ -1,0 +1,85 @@
+{
+  "api": {
+    "beta": {
+      "count": 83,
+      "filename": "public_api_beta_1_0.json",
+      "sha256": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000"
+    },
+    "research": {
+      "count": 1312,
+      "filename": "public_api_1_0.json",
+      "sha256": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357"
+    },
+    "stable": {
+      "count": 131,
+      "filename": "public_api_stable_1_0.json",
+      "sha256": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67"
+    },
+    "stable_aliases": [
+      "komorebi_math.stable",
+      "komorebi_math.v1",
+      "komorebi_math.api.v1"
+    ]
+  },
+  "cli": {
+    "required_verification_suites": [
+      "block15",
+      "stable",
+      "release",
+      "gpu",
+      "block16",
+      "upgrade",
+      "evidence",
+      "documentation",
+      "beta",
+      "block17",
+      "block18",
+      "block19",
+      "block20",
+      "all"
+    ]
+  },
+  "documentation": {
+    "count": 131,
+    "filename": "stable_documentation_1_0.json",
+    "sha256": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299"
+  },
+  "evidence": {
+    "count": 2,
+    "filename": "validation_evidence_1_0.json",
+    "sha256": "7aea0d877dbd1e896567199b9f6a857aa53a0bf40189c6aa17a05827115deaf2"
+  },
+  "package_version": "1.0.0b4",
+  "persistence": {
+    "count": 51,
+    "filename": "portable_codec_contract_1_0.json",
+    "sha256": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05"
+  },
+  "predecessor_version": "1.0.0b3",
+  "release_line": "1.0.0b1 to 1.0.0rc1",
+  "runtime": {
+    "declared_python": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "python_requires": ">=3.11",
+    "required_platforms": [
+      "windows-x86_64",
+      "linux-x86_64"
+    ]
+  },
+  "schema": "komorebi-math.release-contract",
+  "schema_version": 2,
+  "semantics": {
+    "count": 10,
+    "filename": "stable_semantics_1_0.json",
+    "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+  },
+  "stage": "beta",
+  "upgrade": {
+    "count": 7,
+    "filename": "upgrade_contract_1_0.json",
+    "sha256": "d80de9c2b6913df3386a776519fefffb47b2820a57678b53ed19afae87f3e84d"
+  }
+}

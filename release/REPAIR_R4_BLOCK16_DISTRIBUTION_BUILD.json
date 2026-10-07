@@ -1,0 +1,20 @@
+{
+  "artifacts": [
+    {
+      "name": "komorebi_math-1.0.0b4-4b16-py3-none-any.whl",
+      "sha256": "0e5cebd9ce83c1017059139833bed9a7b40e6507ee43d5984734d4bc1ed51533",
+      "size": 1497193
+    },
+    {
+      "name": "komorebi_math-1.0.0b4.tar.gz",
+      "sha256": "336ef160cd3e4c85fa43e22f818b30966de606f77c2d57ed0652f2244c46b7de",
+      "size": 20104648
+    }
+  ],
+  "schema": "komorebi-math.repair-r4-block16-distribution-build",
+  "schema_version": 1,
+  "sdist_byte_reproducible": true,
+  "source_date_epoch": 1787356800,
+  "wheel_build_tag": "4b16",
+  "wheel_byte_reproducible": true
+}

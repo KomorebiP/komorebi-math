@@ -1,0 +1,76 @@
+{
+  "checks": [
+    "0 valuation implementation failures",
+    "0 refinement failures",
+    "0 Mahler certificate failures",
+    "0 structural contract failures"
+  ],
+  "claim_id": "episode015-arithmetic-semantic-probe",
+  "command": "PYTHONPATH=src python verification/episode015_arithmetic_semantic_probe.py",
+  "environment": {
+    "hardware": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "software": [
+      "Python 3.13.5",
+      "NumPy 2.3.5"
+    ]
+  },
+  "mathematics": {
+    "assertion_tested": "Finite exact trials agree with precision-capped visible p-adic valuation and full-range UnitModeMahler certificate semantics.",
+    "bounds": {
+      "degree_upper_exclusive": 13,
+      "mahler_trials": 6000,
+      "maximum_value_upper_exclusive": 13,
+      "precision_range": [
+        1,
+        7
+      ],
+      "primes": [
+        2,
+        3,
+        5,
+        7,
+        11
+      ],
+      "valuation_trials": 6000
+    },
+    "coefficient_domain": "exact integers/Fractions; deterministic NumPy RNG used only to select integer test inputs",
+    "conventions": "v_N=min(v_p,N) for truncated visible valuation; exact p-adic zero remains +infinity in padic_valuation",
+    "inputs": [
+      "src/komorebi_math/arithmetic/domains.py",
+      "src/komorebi_math/generating/domains.py",
+      "src/komorebi_math/arithmetic/mahler.py",
+      "verification/episode015_arithmetic_semantic_probe.py"
+    ],
+    "non_claims": [
+      "Randomized finite trials do not prove the universal theorems.",
+      "The probe does not audit every arithmetic module or every external p-adic convention."
+    ]
+  },
+  "outputs": [
+    {
+      "path": "verification/EPISODE015_ARITHMETIC_SEMANTIC_PROBE.json",
+      "sha256": "472e3825fa538b417ae21efda489ad5d5e5a6e45dedbff65449b2b5fe27e8d4a"
+    }
+  ],
+  "randomness": {
+    "generator": "numpy.random.default_rng",
+    "seed": 20260923,
+    "used": true
+  },
+  "repository": {
+    "commit": "unavailable-archive-checkpoint",
+    "dirty": true
+  },
+  "residual_risks": [
+    "runtime_seconds is a conservative ledger value rather than a bounded-runner measurement",
+    "full source suite not rerun",
+    "floating Mahler reconstruction certificate remains deferred"
+  ],
+  "result": "implementation and finite assertion verified in the stated range",
+  "run": {
+    "exit_status": 0,
+    "runtime_seconds": 1.0,
+    "started_at": "2026-09-23T00:00:00Z"
+  },
+  "schema_version": 1
+}

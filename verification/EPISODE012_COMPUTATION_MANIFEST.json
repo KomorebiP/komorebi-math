@@ -1,0 +1,76 @@
+{
+  "checks": [
+    "two-tap unary orders 2..10 had exact Hankel rank equal to route order",
+    "65 sampled residual signatures were distinct for each unary order 2..10",
+    "120/120 nondegenerate two-symbol route trials had Hankel rank not exceeding phase dimension",
+    "order-2 evaluated route series matched LinearRecurrence((1,2),(1,1))",
+    "degenerate six-phase identity route reduced to Hankel rank one"
+  ],
+  "claim_id": "episode012-hankel-falsification-finite-audit",
+  "command": "PYTHONPATH=src python verification/episode012_hankel_probe.py",
+  "environment": {
+    "hardware": "x86_64 / Linux-6.18.44-x86_64-with-glibc2.41",
+    "software": [
+      "Python 3.13.5",
+      "NumPy 2.3.5"
+    ]
+  },
+  "mathematics": {
+    "assertion_tested": "Finite exact audit that evaluated polyphase route queries have Hankel rank bounded by phase dimension; the two-tap family has full sampled Hankel rank equal to the phase dimension while sampled discrete residual signatures can be much larger; the order-2 route series matches the existing recurrence subsystem.",
+    "bounds": {
+      "random_order_range": [
+        2,
+        6
+      ],
+      "random_prefix_depth": 4,
+      "random_suffix_depth": 4,
+      "random_two_symbol_trials": 120,
+      "sampled_prefix_residuals": 65,
+      "sampled_suffix_window": 65,
+      "seed": 20260923,
+      "unary_orders": [
+        2,
+        10
+      ]
+    },
+    "coefficient_domain": "Exact integers and fractions for route evaluation and Hankel elimination.",
+    "conventions": "Polyphase route kernels E[r,s][q] are evaluated at integer coarse-lag variable z; scalar query is source phase 0 to target phase 0; chronological route words are represented by transposed evaluated route matrices in standard weighted-series order.",
+    "inputs": [
+      "src/komorebi_math/signals/route_packets.py",
+      "src/komorebi_math/arithmetic/recurrence.py",
+      "verification/episode012_hankel_probe.py"
+    ],
+    "non_claims": [
+      "Finite trials do not prove generic full Hankel rank.",
+      "Finite suffix signatures give lower bounds on discrete future-equivalence classes only.",
+      "The minimal-WFA/Hankel-rank theorem is an external classical theorem, not established by this computation.",
+      "The audit does not establish novelty."
+    ]
+  },
+  "outputs": [
+    {
+      "path": "verification/EPISODE012_HANKEL_PROBE.json",
+      "sha256": "edf6786a7f5ca0d0e6e65c199a45a69523e9847f78321c6c1e1a11a60c4dad8a"
+    }
+  ],
+  "randomness": {
+    "generator": "Python random.Random",
+    "seed": 20260923,
+    "used": true
+  },
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "residual_risks": [
+    "The modern literature source was checked, but original Carlyle-Paz/Fliess papers were not independently authenticated in this episode.",
+    "No claim is made that every polyphase route packet is Hankel-minimal for every query."
+  ],
+  "result": "Implementation and finite assertions verified in the stated exact range.",
+  "run": {
+    "exit_status": 0,
+    "runtime_seconds": 3.51,
+    "started_at": "2026-09-23T17:23:00Z"
+  },
+  "schema_version": 1
+}

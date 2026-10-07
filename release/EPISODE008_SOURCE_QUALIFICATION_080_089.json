@@ -1,0 +1,126 @@
+{
+  "duration_seconds": 24.958980321884155,
+  "failed_files": [],
+  "files": 10,
+  "passed": true,
+  "passed_tests": 162,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 1.5275723669997205,
+      "passed": 4,
+      "path": "tests/test_dynamics_feshbach.py",
+      "returncode": 0,
+      "sha256": "e94c8b345c6d79804306474848776f136202817e0c5cc145c6b3ea1c73bf556b",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 0.46s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.517184308999731,
+      "passed": 8,
+      "path": "tests/test_dynamics_fractional_green_feynman_survival.py",
+      "returncode": 0,
+      "sha256": "79fa6bee072420c594d394b6d0cd2c17bcc147f5d2bd823a516398fe2c1f12e0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 0.40s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4547171270000945,
+      "passed": 6,
+      "path": "tests/test_dynamics_semigroups_markov.py",
+      "returncode": 0,
+      "sha256": "63498936d1d7935700fd7ab248bed0d4beaa5c579efa669d8c39a59660dc4a77",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 0.41s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.405251381999733,
+      "passed": 5,
+      "path": "tests/test_export_cli.py",
+      "returncode": 0,
+      "sha256": "cf6fb8067dd4043e749bbeeecf96e1c8839edd4886ea96adc37539cfb282f88e",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 1.31s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 7.239801797000382,
+      "passed": 9,
+      "path": "tests/test_export_files.py",
+      "returncode": 0,
+      "sha256": "10fb2f85f901d55ac9eb5d608da646860e9311cf8c2f20e08035566f22a7400c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".........                                                                [100%]\n9 passed in 5.98s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4697044969998387,
+      "passed": 5,
+      "path": "tests/test_export_renderers.py",
+      "returncode": 0,
+      "sha256": "017d8e014684a5599558ed750836f5dfb11c506c5ac86d5654bdd3fa257863b6",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.38s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3272020389999852,
+      "passed": 5,
+      "path": "tests/test_export_serialization.py",
+      "returncode": 0,
+      "sha256": "5ebb9ff64b8bab5d242da75ea58d677eaf27474a8c53d2c6b4397e47d4135900",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.31s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.5987765080003555,
+      "passed": 58,
+      "path": "tests/test_generating_block13.py",
+      "returncode": 0,
+      "sha256": "a0a6d7c2deaa1444773bcb9ae6ba5fe37fef681ec4ffb6b38aa1070f49e1fee7",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..........................................................               [100%]\n58 passed in 1.52s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.9920943810002427,
+      "passed": 47,
+      "path": "tests/test_generating_cartier_padic.py",
+      "returncode": 0,
+      "sha256": "bff8efd42d1223452fa90872fc9d0e463d9ac8bc2f9f73527156d4281606ebcd",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "...............................................                          [100%]\n47 passed in 1.64s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.422465611000007,
+      "passed": 15,
+      "path": "tests/test_generating_domains.py",
+      "returncode": 0,
+      "sha256": "08ff14f6437298f41ff16c6da0e3ac2a1002be8dd7c9ee92cbe36fd8d832376b",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "...............                                                          [100%]\n15 passed in 1.41s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/komorebi_ep008/Komorebi_Math_R4_Block12_Episode008/komorebi-math",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1790140249.5195696
+}

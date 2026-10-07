@@ -1,0 +1,308 @@
+{
+  "collected_tests": 1667,
+  "failed_tests": 0,
+  "ledgers": [
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_algebra_quotients.py",
+        "tests/test_algorithms_compiler.py",
+        "tests/test_algorithms_complexity_benchmarks.py",
+        "tests/test_algorithms_discovery_gpu.py",
+        "tests/test_algorithms_krylov.py",
+        "tests/test_algorithms_layout_ir.py",
+        "tests/test_algorithms_low_rank.py",
+        "tests/test_algorithms_precision.py",
+        "tests/test_algorithms_scheduling.py",
+        "tests/test_algorithms_structured.py"
+      ],
+      "passed": true,
+      "passed_tests": 80,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_000_009.json",
+      "sha256": "dcf0ed07c00ed033e7bf37fb6bdd7912068a217ec6ec076bca2a3e54bc8731fd"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_algorithms_support.py",
+        "tests/test_analytic_appell_zeros.py",
+        "tests/test_analytic_cyclic_reciprocal.py",
+        "tests/test_arithmetic_domains_valuation.py",
+        "tests/test_arithmetic_euler.py",
+        "tests/test_arithmetic_hurwitz_windows.py",
+        "tests/test_arithmetic_mahler_polyphase.py",
+        "tests/test_arithmetic_recurrence.py",
+        "tests/test_artifact_gate_hardening.py",
+        "tests/test_backends.py"
+      ],
+      "passed": true,
+      "passed_tests": 74,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_010_019.json",
+      "sha256": "5b5255a413447a038e42916fadb9cac8f9dbdc7a39644679583073774675fc99"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_block10_cli.py",
+        "tests/test_block10_compatibility.py",
+        "tests/test_block10_execution_persistence.py",
+        "tests/test_block10_sparse_autodiff.py",
+        "tests/test_block11_cli.py",
+        "tests/test_block11_golden_profiling_beta.py",
+        "tests/test_block11_streaming_migrations.py",
+        "tests/test_block12_cli_api.py",
+        "tests/test_block12_denoise_streaming.py",
+        "tests/test_block12_recursive_fft.py"
+      ],
+      "passed": true,
+      "passed_tests": 118,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_020_029.json",
+      "sha256": "5d40aaed641b5d5a1dbd1c50b2c60f2746d820a0b579216cc74973db642e0d28"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_block12_resampling_adaptive.py",
+        "tests/test_block12_spectral_filtering.py",
+        "tests/test_block12_windows_time_frequency.py",
+        "tests/test_block13_cli_api.py",
+        "tests/test_block14_cli_api.py",
+        "tests/test_block15_persistence.py",
+        "tests/test_block15_polyphase_refinement.py",
+        "tests/test_block15_stable_api.py",
+        "tests/test_block16_analysis_synthesis.py",
+        "tests/test_block16_cli.py"
+      ],
+      "passed": true,
+      "passed_tests": 139,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_030_039.json",
+      "sha256": "3897cd30a128021129be912f80003b6942b3c777c40ed576cec1cebb2c194185"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_block16_companion_crosswalk.py",
+        "tests/test_block16_contracts.py",
+        "tests/test_block16_gpu_qualification.py",
+        "tests/test_block16_package_audit.py",
+        "tests/test_block16_release_contract.py",
+        "tests/test_block16_release_layout.py",
+        "tests/test_block16_release_qualification.py",
+        "tests/test_block16_static_audit.py",
+        "tests/test_block17_cli.py",
+        "tests/test_block17_documentation.py"
+      ],
+      "passed": true,
+      "passed_tests": 46,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_040_049.json",
+      "sha256": "209c69c3908de3deae22ae4d1a6f9ac181792065b549af56a4e8499ab05d605b"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_block17_evidence.py",
+        "tests/test_block17_package_audit.py",
+        "tests/test_block17_release_contract.py",
+        "tests/test_block17_release_layout.py",
+        "tests/test_block17_static_audit.py",
+        "tests/test_block17_upgrade_contract.py",
+        "tests/test_block18_frame_algebra.py",
+        "tests/test_block19_integration.py",
+        "tests/test_block20_expression_calculus.py",
+        "tests/test_block21_publication_gate.py"
+      ],
+      "passed": true,
+      "passed_tests": 119,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_050_059.json",
+      "sha256": "558428db8005195bc3358ce01a7b60a6836595719b3821830f0b4088bf0c50b2"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_block4_hardening.py",
+        "tests/test_certificates_registry.py",
+        "tests/test_coordinates_exact.py",
+        "tests/test_coordinates_general_affine_formal.py",
+        "tests/test_coordinates_general_basis.py",
+        "tests/test_coordinates_general_calculus.py",
+        "tests/test_coordinates_general_classical.py",
+        "tests/test_coordinates_general_combinatorial.py",
+        "tests/test_coordinates_general_families_state.py",
+        "tests/test_coordinates_general_numeric_packet.py"
+      ],
+      "passed": true,
+      "passed_tests": 44,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_060_069.json",
+      "sha256": "2b5bd484ba6ca58451a26f4bb3731eda084a7bd610f620072f482220ac1ae921"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_coordinates_general_persistence.py",
+        "tests/test_coordinates_general_tensor_modular.py",
+        "tests/test_coordinates_normalized_persistence.py",
+        "tests/test_coordinates_operators.py",
+        "tests/test_coordinates_polynomials.py",
+        "tests/test_coordinates_realization.py",
+        "tests/test_coordinates_recurrence.py",
+        "tests/test_deformation_complex_support_companions.py",
+        "tests/test_deformation_forests_visibility_counting.py",
+        "tests/test_dynamics_bayes_martingales.py"
+      ],
+      "passed": true,
+      "passed_tests": 41,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_070_079.json",
+      "sha256": "abf8d4a77630128f3bad99910796d2a2a7926eb1fd23589232b20435be456001"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_dynamics_feshbach.py",
+        "tests/test_dynamics_fractional_green_feynman_survival.py",
+        "tests/test_dynamics_semigroups_markov.py",
+        "tests/test_export_cli.py",
+        "tests/test_export_files.py",
+        "tests/test_export_renderers.py",
+        "tests/test_export_serialization.py",
+        "tests/test_generating_block13.py",
+        "tests/test_generating_cartier_padic.py",
+        "tests/test_generating_domains.py"
+      ],
+      "passed": true,
+      "passed_tests": 162,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_080_089.json",
+      "sha256": "3e3ffa3d6c3422dee597d2a9ca5783a5552ef2cb095a95429538cf1ceee26f9d"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_generating_foundation.py"
+      ],
+      "passed": true,
+      "passed_tests": 68,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_090_090.json",
+      "sha256": "ae85e00e5fd31d66eb40c288d8ff8c20c2937dfc66bd436b9411c458c9597635"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_grammar_realization.py",
+        "tests/test_graphs.py",
+        "tests/test_holonomy.py",
+        "tests/test_langlands_finite_image.py",
+        "tests/test_langlands_local_fields_tame_gauss.py",
+        "tests/test_langlands_local_heisenberg_symplectic.py",
+        "tests/test_langlands_ramification_global_completion.py",
+        "tests/test_lattice_smith.py",
+        "tests/test_lifting.py",
+        "tests/test_linear_defects.py"
+      ],
+      "passed": true,
+      "passed_tests": 70,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_091_100.json",
+      "sha256": "cb14960a5ddd33cd6f764ee8866677052503745c658442685e04f1c33daa0527"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_morphisms.py",
+        "tests/test_nonlinear_coordinates_defects.py",
+        "tests/test_nonlinear_correction_elimination.py",
+        "tests/test_nonlinear_execution.py",
+        "tests/test_nonlinear_filtered.py",
+        "tests/test_nonlinear_graded.py",
+        "tests/test_nonlinear_jets_composition.py",
+        "tests/test_nonlinear_obstruction.py",
+        "tests/test_nonlinear_snapshots_persistence.py",
+        "tests/test_nonlinear_sparse_autodiff.py"
+      ],
+      "passed": true,
+      "passed_tests": 62,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_101_110.json",
+      "sha256": "9f34a59c9b4428452fed2753f6b1d82d58de60237abb365f255b3abe9076f971"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_nonlinear_transport.py",
+        "tests/test_nonlinear_trees.py",
+        "tests/test_operators_transfer.py",
+        "tests/test_optional_backend_probe.py",
+        "tests/test_packets.py",
+        "tests/test_quantum_channels_qec.py",
+        "tests/test_quantum_symmetry_circuits.py",
+        "tests/test_quantum_transport_effective_spectral.py",
+        "tests/test_r4_block10_distortion_cocycle.py",
+        "tests/test_r4_block11_convex_packets.py"
+      ],
+      "passed": true,
+      "passed_tests": 65,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_111_120.json",
+      "sha256": "04905670f3e42da5c36d7950901303c881cd86699cd334daf3e1e0f5c3089c29"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_r4_block12_support_packets.py",
+        "tests/test_r4_block13_provenance_packets.py",
+        "tests/test_r4_block9_frame_metric_packet.py",
+        "tests/test_refinement_towers.py",
+        "tests/test_release_metadata.py",
+        "tests/test_release_repair.py",
+        "tests/test_repair_r3_hardening.py",
+        "tests/test_repair_r4_block1.py",
+        "tests/test_repair_r4_block2.py",
+        "tests/test_repair_r4_block3.py"
+      ],
+      "passed": true,
+      "passed_tests": 446,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_121_130.json",
+      "sha256": "eef6685752e0a733f18a67a9ce27aef0ecd900b70d6f82fb9936d3b54faee225"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_repair_r4_block4.py",
+        "tests/test_repair_r4_block5.py",
+        "tests/test_repair_r4_block6.py",
+        "tests/test_repair_r4_block7.py",
+        "tests/test_repair_r4_block8.py",
+        "tests/test_residue_crt.py",
+        "tests/test_seeds.py",
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py",
+        "tests/test_signals_extended.py"
+      ],
+      "passed": true,
+      "passed_tests": 98,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_131_140.json",
+      "sha256": "e67ba53b6150acd5d9f1a3bafab7f10b508120881ad5be053c11963b730dbdd1"
+    },
+    {
+      "failed_tests": 0,
+      "files": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_signals_recovery.py",
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_unified_extensions_cli.py",
+        "tests/test_weighted_transfer.py"
+      ],
+      "passed": true,
+      "passed_tests": 35,
+      "path": "release/EPISODE009_SOURCE_QUALIFICATION_141_145.json",
+      "sha256": "f98f592f91246deffd19249b8a064eeec7ff795bef3b43d24f009f59c5ee2f3d"
+    }
+  ],
+  "method": "deterministic completed file batches plus bounded per-node qualification for test_generating_foundation.py",
+  "non_counted_events": [
+    "Several oversized batch invocations exceeded the execution window and unfinished subsets were rerun completely.",
+    "The original whole-file test_generating_foundation.py process did not exit within the wrapper window; all 68 nodes were subsequently qualified in completed bounded groups.",
+    "An intermediate publication batch correctly failed against stale Block 12 distributions before Block 13 artifacts were rebuilt; its successful rerun is the counted ledger."
+  ],
+  "passed": true,
+  "passed_tests": 1667,
+  "qualification_boundary": "Source qualification only. Installed-runtime qualification is separate.",
+  "schema": "komorebi-math.episode009-source-qualification",
+  "schema_version": 1,
+  "test_files": 146
+}

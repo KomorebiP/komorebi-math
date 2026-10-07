@@ -1,0 +1,51 @@
+{
+  "duration_seconds": 23.711397409439087,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 3,
+  "jobs": 3,
+  "passed": true,
+  "passed_tests": 23,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 23.706821068999943,
+      "passed": 11,
+      "path": "tests/test_block10_sparse_autodiff.py",
+      "returncode": 0,
+      "sha256": "85864e6b4a47fbd8521238765ae9fe97cc38f17a47e2bc5dcecafe70b012df99",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "...........                                                              [100%]\n11 passed in 21.28s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 3.6730745269996987,
+      "passed": 4,
+      "path": "tests/test_block11_cli.py",
+      "returncode": 0,
+      "sha256": "8c692d9126aec1d007934e8c591fdd82a5bb941bd73fcf301585229916075a59",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 1.21s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 3.9325746330000584,
+      "passed": 8,
+      "path": "tests/test_block11_golden_profiling_beta.py",
+      "returncode": 0,
+      "sha256": "6ed1804bd473f364f9f0dd534f1ab8cc457345d3e92b8db8a1c6a64b1eb47bd0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 1.61s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164411.678558
+}

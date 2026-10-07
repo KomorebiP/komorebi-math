@@ -1,0 +1,40 @@
+{
+  "duration_seconds": 19.860042095184326,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 2,
+  "jobs": 2,
+  "passed": true,
+  "passed_tests": 5,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 11.132704089000072,
+      "passed": 1,
+      "path": "tests/test_block17_package_audit.py",
+      "returncode": 0,
+      "sha256": "c30a331d1798b18d3c74a3ec25261f4cabb5afaff096fe507075e06ad65911f3",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".                                                                        [100%]\n1 passed in 8.88s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 19.851546251999935,
+      "passed": 4,
+      "path": "tests/test_block17_release_contract.py",
+      "returncode": 0,
+      "sha256": "ed23f119d5f5d3256eb4d493f97d5273d29a5866ec7a13588a693682f9cacdca",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 16.21s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164610.3538861
+}

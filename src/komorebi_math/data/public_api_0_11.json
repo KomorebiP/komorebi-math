@@ -1,0 +1,4237 @@
+{
+  "namespaces": [
+    "komorebi_math",
+    "komorebi_math.nonlinear",
+    "komorebi_math.export"
+  ],
+  "package_version": "0.11.0a1",
+  "schema": "komorebi-math.public-api",
+  "schema_version": 1,
+  "stability_level": "pre-beta-additive",
+  "symbols": [
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "API_STABILITY_LEVEL",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.core.algebra",
+      "kind": "class",
+      "name": "AlgebraBasisResult",
+      "namespace": "komorebi_math",
+      "qualname": "AlgebraBasisResult",
+      "signature": "(basis: 'tuple[Any, ...]', dimension: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.symplectic",
+      "kind": "class",
+      "name": "AlternatingForm",
+      "namespace": "komorebi_math",
+      "qualname": "AlternatingForm",
+      "signature": "(matrix: 'Any', prime: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "ApiCompatibilityReport",
+      "namespace": "komorebi_math",
+      "qualname": "ApiCompatibilityReport",
+      "signature": "(reference_digest: 'str', current_digest: 'str', added: 'tuple[tuple[str, str], ...]', removed: 'tuple[tuple[str, str], ...]', kind_changed: 'tuple[tuple[str, str, str, str], ...]', signature_changed: 'tuple[tuple[str, str, str | None, str | None], ...]', strict_signatures: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "Arrow",
+      "namespace": "komorebi_math",
+      "qualname": "Arrow",
+      "signature": "(name: 'str', source: 'str', target: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "AutomaticDifferentiationProvider",
+      "namespace": "komorebi_math",
+      "qualname": "AutomaticDifferentiationProvider",
+      "signature": "(function: 'Callable[[Any], Any]', jvp: 'DirectionalJVP', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, name: 'str' = 'automatic differentiation provider') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.automatic",
+      "kind": "class",
+      "name": "AutomaticSequence",
+      "namespace": "komorebi_math",
+      "qualname": "AutomaticSequence",
+      "signature": "(base: 'int', transitions: 'Iterable[Iterable[int]]', outputs: 'Iterable[Number]', *, initial_state: 'int' = 0, name: 'str' = 'automatic sequence') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.completion.gates",
+      "kind": "class",
+      "name": "AutomorphicCompletionReport",
+      "namespace": "komorebi_math",
+      "qualname": "AutomorphicCompletionReport",
+      "signature": "(gates: 'Mapping[CompletionGate | str, GateStatus]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.plans",
+      "kind": "class",
+      "name": "AutomorphicInductionPlan",
+      "namespace": "komorebi_math",
+      "qualname": "AutomorphicInductionPlan",
+      "signature": "(representation: 'InducedRepresentation[Element]', base_field: 'str', inducing_field: 'str', inducing_character: 'str', cyclic_tower: 'tuple[str, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BEHAVIORAL_GOLDEN_SCHEMA",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BEHAVIORAL_GOLDEN_SCHEMA_VERSION",
+      "namespace": "komorebi_math",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BETA_API_STABILITY_LEVEL",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BETA_PUBLIC_NAMESPACES",
+      "namespace": "komorebi_math",
+      "qualname": "tuple",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.bayes",
+      "kind": "class",
+      "name": "BayesianUpdate",
+      "namespace": "komorebi_math",
+      "qualname": "BayesianUpdate",
+      "signature": "(prior: 'Any', likelihood: 'Any') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "class",
+      "name": "BehavioralGoldenCaseResult",
+      "namespace": "komorebi_math",
+      "qualname": "BehavioralGoldenCaseResult",
+      "signature": "(name: 'str', kind: 'str', observed: 'Any', expected: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "class",
+      "name": "BehavioralGoldenReport",
+      "namespace": "komorebi_math",
+      "qualname": "BehavioralGoldenReport",
+      "signature": "(fixture_path: 'Path', fixture_digest: 'str', results: 'tuple[BehavioralGoldenCaseResult, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.low_rank",
+      "kind": "class",
+      "name": "BlockDiagonalLowRankOperator",
+      "namespace": "komorebi_math",
+      "qualname": "BlockDiagonalLowRankOperator",
+      "signature": "(diagonal: 'BlockDiagonalOperator', correction: 'LowRankOperator') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.structured",
+      "kind": "class",
+      "name": "BlockDiagonalOperator",
+      "namespace": "komorebi_math",
+      "qualname": "BlockDiagonalOperator",
+      "signature": "(blocks: 'tuple[StructuredOperator | Array, ...]', names: 'tuple[str, ...] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "CallableDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "CallableDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', derivatives: 'Mapping[int, DirectionalDerivative]', source_dimension: 'int', target_dimension: 'int', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, name: 'str' = 'declared derivative provider') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Certificate",
+      "namespace": "komorebi_math",
+      "qualname": "Certificate",
+      "signature": "(valid: 'bool', exactness: 'Exactness', residuals: 'dict[str, float]' = <factory>, tolerance: 'float | None' = None, assumptions_checked: 'tuple[str, ...]' = (), assumptions_unchecked: 'tuple[str, ...]' = (), diagnostics: 'dict[str, Any]' = <factory>, theorem_id: 'str | None' = None, message: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.circuits",
+      "kind": "class",
+      "name": "CircuitPacketExpansion",
+      "namespace": "komorebi_math",
+      "qualname": "CircuitPacketExpansion",
+      "signature": "(gates: 'Iterable[Any]', packet_systems: 'Iterable[PacketSystem]', *, tolerance: 'float' = 1e-10, max_paths: 'int' = 1000000) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.structured",
+      "kind": "class",
+      "name": "CirculantOperator",
+      "namespace": "komorebi_math",
+      "qualname": "CirculantOperator",
+      "signature": "(first_column: 'Array') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.provenance",
+      "kind": "class",
+      "name": "ClaimStatus",
+      "namespace": "komorebi_math",
+      "qualname": "ClaimStatus",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.clifford",
+      "kind": "class",
+      "name": "CliffordStep",
+      "namespace": "komorebi_math",
+      "qualname": "CliffordStep",
+      "signature": "(parent_order: 'int', child_order: 'int', parent_degree: 'int', child_degree: 'int', mode: 'CliffordMode | str', attached_descent: 'bool' = False, label: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.clifford",
+      "kind": "class",
+      "name": "CliffordTower",
+      "namespace": "komorebi_math",
+      "qualname": "CliffordTower",
+      "signature": "(steps: 'Iterable[CliffordStep]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.completion.gates",
+      "kind": "class",
+      "name": "CompatiblePropagationReport",
+      "namespace": "komorebi_math",
+      "qualname": "CompatiblePropagationReport",
+      "signature": "(common_spine: 'bool', semisimple: 'bool', one_member_automorphic: 'bool', local_global_compatibility: 'bool') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.compiler",
+      "kind": "class",
+      "name": "CompiledSequence",
+      "namespace": "komorebi_math",
+      "qualname": "CompiledSequence",
+      "signature": "(sequence: 'Sequence', strategy: 'str', certificate: 'Certificate', recurrence: 'LinearRecurrence | None' = None, automatic: 'AutomaticSequence | None' = None, holonomic: 'HolonomicRecurrence | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.completion.gates",
+      "kind": "class",
+      "name": "CompletionGate",
+      "namespace": "komorebi_math",
+      "qualname": "CompletionGate",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "class",
+      "name": "ComposedDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "ComposedDerivativeProvider",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', *, name: 'str | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ComputationResult",
+      "namespace": "komorebi_math",
+      "qualname": "ComputationResult",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ConditionalResult",
+      "namespace": "komorebi_math",
+      "qualname": "ConditionalResult",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyDeviceDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "CupyDeviceDerivativeProvider",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyPacketJetExecutor",
+      "namespace": "komorebi_math",
+      "qualname": "CupyPacketJetExecutor",
+      "signature": "(family: 'PacketJetFamily', plan: 'PacketJetExecutionPlan | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyPacketJetSnapshotExecutor",
+      "namespace": "komorebi_math",
+      "qualname": "CuPySnapshotExecutor",
+      "signature": "(snapshot: 'PacketJetSnapshot', *, dtype: 'Any | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyPolynomialDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "CupyPolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, tolerance: 'float' = 1e-10, name: 'str' = 'CuPy polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyRuntimeStatus",
+      "namespace": "komorebi_math",
+      "qualname": "CuPyRuntimeStatus",
+      "signature": "(installed: 'bool', runtime_available: 'bool', device_count: 'int', runtime_version: 'int | None', error: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPySnapshotExecutor",
+      "namespace": "komorebi_math",
+      "qualname": "CuPySnapshotExecutor",
+      "signature": "(snapshot: 'PacketJetSnapshot', *, dtype: 'Any | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyValidationResult",
+      "namespace": "komorebi_math",
+      "qualname": "CuPyValidationResult",
+      "signature": "(probe_count: 'int', maximum_residual: 'float', runtime: 'CuPyRuntimeStatus', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.zeros",
+      "kind": "class",
+      "name": "CyclicDenominator",
+      "namespace": "komorebi_math",
+      "qualname": "CyclicDenominator",
+      "signature": "(order: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.sections",
+      "kind": "class",
+      "name": "CyclicSectionFamily",
+      "namespace": "komorebi_math",
+      "qualname": "CyclicSectionFamily",
+      "signature": "(order: 'int', family: \"Literal['transfer', 'signed']\" = 'signed', scale: 'complex' = 1.0) -> None"
+    },
+    {
+      "implementation_module": "pathlib._local",
+      "kind": "data",
+      "name": "DEFAULT_BEHAVIORAL_GOLDEN_FIXTURE",
+      "namespace": "komorebi_math",
+      "qualname": "PosixPath",
+      "signature": null
+    },
+    {
+      "implementation_module": "pathlib._local",
+      "kind": "data",
+      "name": "DEFAULT_BETA_API_MANIFEST",
+      "namespace": "komorebi_math",
+      "qualname": "PosixPath",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.precision",
+      "kind": "class",
+      "name": "DTypeChoice",
+      "namespace": "komorebi_math",
+      "qualname": "DTypeChoice",
+      "signature": "(name: 'str', cost: 'float', error_units: 'int', dtype: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.structured",
+      "kind": "class",
+      "name": "DenseOperator",
+      "namespace": "komorebi_math",
+      "qualname": "DenseOperator",
+      "signature": "(matrix: 'Array') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "DirectionalJVP",
+      "namespace": "komorebi_math",
+      "qualname": "DirectionalJVP",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "DocumentMetadata",
+      "namespace": "komorebi_math",
+      "qualname": "DocumentMetadata",
+      "signature": "(title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, keywords: 'tuple[str, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Equation",
+      "namespace": "komorebi_math",
+      "qualname": "Equation",
+      "signature": "(latex: 'str', label: 'str | None' = None, numbered: 'bool' = False, description: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.euclidean",
+      "kind": "class",
+      "name": "EuclideanTransfer",
+      "namespace": "komorebi_math",
+      "qualname": "EuclideanTransfer",
+      "signature": "(hamiltonian: 'Any', lattice_spacing: 'float', *, ground_energy: 'float | None' = None, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.euler",
+      "kind": "class",
+      "name": "EulerLocalCoordinates",
+      "namespace": "komorebi_math",
+      "qualname": "EulerLocalCoordinates",
+      "signature": "(prime: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Exactness",
+      "namespace": "komorebi_math",
+      "qualname": "Exactness",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportBundleResult",
+      "namespace": "komorebi_math",
+      "qualname": "ExportBundleResult",
+      "signature": "(path: 'Path', members: 'tuple[str, ...]', formats: 'tuple[ExportFormat, ...]', manifest_path: 'Path', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportFormat",
+      "namespace": "komorebi_math",
+      "qualname": "ExportFormat",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportOptions",
+      "namespace": "komorebi_math",
+      "qualname": "ExportOptions",
+      "signature": "(title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, overwrite: 'bool' = False, create_parents: 'bool' = True, preserve_types: 'bool' = True, json_indent: 'int' = 2, include_certificate: 'bool' = True, keep_tex: 'bool' = True, html: 'HtmlRenderOptions' = <factory>, latex: 'LatexRenderOptions' = <factory>, compiler: 'LatexCompileOptions' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportResult",
+      "namespace": "komorebi_math",
+      "qualname": "ExportResult",
+      "signature": "(path: 'Path', format: 'ExportFormat', bytes_written: 'int', companion_files: 'tuple[Path, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.registry",
+      "kind": "class",
+      "name": "FeatureSpec",
+      "namespace": "komorebi_math",
+      "qualname": "FeatureSpec",
+      "signature": "(key: 'str', module: 'str', title: 'str', status: 'FeatureStatus', summary: 'str', papers: 'tuple[str, ...]' = (), dependencies: 'tuple[str, ...]' = (), public_objects: 'tuple[str, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.registry",
+      "kind": "class",
+      "name": "FeatureStatus",
+      "namespace": "komorebi_math",
+      "qualname": "FeatureStatus",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.feshbach",
+      "kind": "class",
+      "name": "FeshbachReduction",
+      "namespace": "komorebi_math",
+      "qualname": "FeshbachReduction",
+      "signature": "(matrix: 'Any', retained: 'Iterable[int]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FilteredCorrectionProblem",
+      "namespace": "komorebi_math",
+      "qualname": "FilteredCorrectionProblem",
+      "signature": "(source: 'FilteredVectorSpace', target: 'FilteredVectorSpace', correction_map: 'Any', defect: 'Any', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FilteredVectorSpace",
+      "namespace": "komorebi_math",
+      "qualname": "FilteredVectorSpace",
+      "signature": "(dimension: 'int', levels: 'Mapping[int, Any]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "FiniteAbelianGroup",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteAbelianGroup",
+      "signature": "(labels: 'Sequence[str]', addition: 'Mapping[tuple[str, str], str]', *, zero: 'str', validate: 'bool' = True) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.complexes",
+      "kind": "class",
+      "name": "FiniteCochainComplex",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteCochainComplex",
+      "signature": "(dimensions: 'Mapping[int, int]', differentials: 'Mapping[int, Any]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "FiniteDifferenceDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteDifferenceDerivativeProvider",
+      "signature": "(function: 'Callable[[np.ndarray], Any]', source_dimension: 'int', target_dimension: 'int', step: 'float' = 0.0001, max_order: 'int' = 4, name: 'str' = 'central finite difference provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.finite_fields",
+      "kind": "class",
+      "name": "FiniteField",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteField",
+      "signature": "(prime: 'int', degree: 'int' = 1, modulus: 'tuple[int, ...] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FiniteFilteredCochainComplex",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteFilteredCochainComplex",
+      "signature": "(dimensions: 'Mapping[int, int]', differentials: 'Mapping[int, Any]', filtrations: 'Mapping[int, FilteredVectorSpace]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.groups",
+      "kind": "class",
+      "name": "FiniteGroup",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteGroup",
+      "signature": "(elements: 'Iterable[Element]', multiply: 'Callable[[Element, Element], Element]', identity: 'Element', *, name: 'str' = 'G', validate: 'bool' = True, associativity_limit: 'int' = 128) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.global_.hecke",
+      "kind": "class",
+      "name": "FiniteHeckePackets",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteHeckePackets",
+      "signature": "(projectors: 'Mapping[str, Any]', *, commuting_operators: 'Iterable[Any]' = (), tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.forests",
+      "kind": "class",
+      "name": "FiniteLiftForest",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteLiftForest",
+      "signature": "(levels: 'Mapping[int, Iterable[Node]]', reductions: 'Mapping[int, Callable[[Node], Node] | Mapping[Node, Node]]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "FiniteLiftTree",
+      "namespace": "komorebi_math",
+      "qualname": "FiniteLiftTree",
+      "signature": "(prime: 'int', levels: 'tuple[tuple[LiftTreeNode, ...], ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.tame",
+      "kind": "class",
+      "name": "FrobeniusOrbit",
+      "namespace": "komorebi_math",
+      "qualname": "FrobeniusOrbit",
+      "signature": "(q: 'int', degree: 'int', exponent: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.companions",
+      "kind": "class",
+      "name": "FrobeniusSpine",
+      "namespace": "komorebi_math",
+      "qualname": "FrobeniusSpine",
+      "signature": "(polynomials: 'Mapping[Hashable, tuple[Any, ...]]', local_labels: 'Mapping[Hashable, Any] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.completion.gates",
+      "kind": "class",
+      "name": "GateStatus",
+      "namespace": "komorebi_math",
+      "qualname": "GateStatus",
+      "signature": "(satisfied: 'bool', detail: 'str', external: 'bool' = True) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "GradedPacketOperation",
+      "namespace": "komorebi_math",
+      "qualname": "GradedPacketOperation",
+      "signature": "(group: 'FiniteAbelianGroup', packets: 'PacketSystem', arity: 'int', operation: 'GradedOperationCallable', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float | None' = None, name: 'str' = 'graded packet operation') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.wavelets",
+      "kind": "class",
+      "name": "HaarPacketTree",
+      "namespace": "komorebi_math",
+      "qualname": "HaarPacketTree",
+      "signature": "(signal: 'np.ndarray', depth: 'int', normalized: 'bool', _nodes: 'dict[str, np.ndarray]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.heisenberg",
+      "kind": "class",
+      "name": "HeisenbergModel",
+      "namespace": "komorebi_math",
+      "qualname": "HeisenbergModel",
+      "signature": "(prime: 'int', rank: 'int', *, max_dimension: 'int' = 4096) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "HilbertObstructionProjector",
+      "namespace": "komorebi_math",
+      "qualname": "HilbertObstructionProjector",
+      "signature": "(correction_map: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.holonomic",
+      "kind": "class",
+      "name": "HolonomicRecurrence",
+      "namespace": "komorebi_math",
+      "qualname": "HolonomicRecurrence",
+      "signature": "(polynomials: 'Iterable[Iterable[Rational]]', initial: 'Iterable[Rational]', *, name: 'str' = 'holonomic recurrence') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.hurwitz",
+      "kind": "class",
+      "name": "HurwitzSeries",
+      "namespace": "komorebi_math",
+      "qualname": "HurwitzSeries",
+      "signature": "(coefficients: 'Iterable[Number]', modulus: 'int | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.characters",
+      "kind": "class",
+      "name": "InducedRepresentation",
+      "namespace": "komorebi_math",
+      "qualname": "InducedRepresentation",
+      "signature": "(group: 'FiniteGroup[Element]', character: 'LinearCharacter[Element]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "JaxDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "JaxDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, dtype: 'str | None' = None, name: 'str' = 'JAX derivative provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "KatoTransport",
+      "namespace": "komorebi_math",
+      "qualname": "KatoTransport",
+      "signature": "(system: 'MovingPacketSystem') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "KomorebiDeprecationWarning",
+      "namespace": "komorebi_math",
+      "qualname": "KomorebiDeprecationWarning",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "class",
+      "name": "LatexCompileOptions",
+      "namespace": "komorebi_math",
+      "qualname": "LatexCompileOptions",
+      "signature": "(engine: 'LatexEngine | str' = <LatexEngine.AUTO: 'auto'>, passes: 'int' = 2, timeout: 'float' = 120.0, shell_escape: 'bool' = False, keep_auxiliary: 'bool' = False, jobname: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "class",
+      "name": "LatexEngine",
+      "namespace": "komorebi_math",
+      "qualname": "LatexEngine",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "class",
+      "name": "LatexRenderOptions",
+      "namespace": "komorebi_math",
+      "qualname": "LatexRenderOptions",
+      "signature": "(document_class: 'str' = 'article', class_options: 'tuple[str, ...]' = ('11pt',), packages: 'tuple[str, ...]' = ('amsmath', 'amssymb', 'booktabs', 'longtable', 'array', 'graphicx', 'hyperref', 'geometry', 'microtype'), include_table_of_contents: 'bool' = False, number_sections: 'bool' = True, geometry: 'str' = 'margin=1in') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.lattices",
+      "kind": "class",
+      "name": "LatticePacketData",
+      "namespace": "komorebi_math",
+      "qualname": "LatticePacketData",
+      "signature": "(lattice_basis: 'Any', projectors: 'Any', *, prime: 'int', split_basis: 'Any | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.lindblad",
+      "kind": "class",
+      "name": "LindbladGenerator",
+      "namespace": "komorebi_math",
+      "qualname": "LindbladGenerator",
+      "signature": "(hamiltonian: 'Any', jumps: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.characters",
+      "kind": "class",
+      "name": "LinearCharacter",
+      "namespace": "komorebi_math",
+      "qualname": "LinearCharacter",
+      "signature": "(subgroup: 'FiniteSubgroup[Element]', values: 'Mapping[Element, complex]', tolerance: 'float' = 1e-10) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "LinearLiftProblem",
+      "namespace": "komorebi_math",
+      "qualname": "LinearLiftProblem",
+      "signature": "(matrix: 'Any', rhs: 'Any', point: 'Any', *, prime: 'int', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.obstruction",
+      "kind": "class",
+      "name": "LinearObstructionProblem",
+      "namespace": "komorebi_math",
+      "qualname": "LinearObstructionProblem",
+      "signature": "(correction_map: 'Any', defect: 'Any', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.recurrence",
+      "kind": "class",
+      "name": "LinearRecurrence",
+      "namespace": "komorebi_math",
+      "qualname": "LinearRecurrence",
+      "signature": "(coefficients: 'Iterable[Number]', initial: 'Iterable[Number]', *, name: 'str | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.defects",
+      "kind": "class",
+      "name": "LinearRefinementDefect",
+      "namespace": "komorebi_math",
+      "qualname": "LinearRefinementDefect",
+      "signature": "(coarsen: 'Any', fine_operator: 'Any', coarse_operator: 'Any', backend: 'str | LinearAlgebraBackend | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.low_rank",
+      "kind": "class",
+      "name": "LowRankOperator",
+      "namespace": "komorebi_math",
+      "qualname": "LowRankOperator",
+      "signature": "(left: 'Array', right: 'Array') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "LyapunovSchmidtReduction",
+      "namespace": "komorebi_math",
+      "qualname": "LyapunovSchmidtReduction",
+      "signature": "(provider: 'DerivativeProvider', base_point: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.mahler",
+      "kind": "class",
+      "name": "MahlerSeries",
+      "namespace": "komorebi_math",
+      "qualname": "MahlerSeries",
+      "signature": "(coefficients: 'Iterable[Number]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.markov",
+      "kind": "class",
+      "name": "MarkovLumping",
+      "namespace": "komorebi_math",
+      "qualname": "MarkovLumping",
+      "signature": "(operator: 'Any | FiniteMarkovChain | ContinuousTimeMarkovChain', partition: 'Sequence[int] | Iterable[Iterable[int]]', *, kind: 'MarkovKind | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "MathDocument",
+      "namespace": "komorebi_math",
+      "qualname": "MathDocument",
+      "signature": "(metadata: 'DocumentMetadata' = <factory>, blocks: 'list[DocumentBlock]' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.semigroups",
+      "kind": "class",
+      "name": "MatrixSemigroup",
+      "namespace": "komorebi_math",
+      "qualname": "MatrixSemigroup",
+      "signature": "(generator: 'np.ndarray') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.memory",
+      "kind": "class",
+      "name": "MemoryKernel",
+      "namespace": "komorebi_math",
+      "qualname": "MemoryKernel",
+      "signature": "(output: 'Any', hidden: 'Any', input: 'Any') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.orbits",
+      "kind": "class",
+      "name": "MonomialAction",
+      "namespace": "komorebi_math",
+      "qualname": "MonomialAction",
+      "signature": "(representation: 'InducedRepresentation[Element]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "MovingPacketSystem",
+      "namespace": "komorebi_math",
+      "qualname": "MovingPacketSystem",
+      "signature": "(projectors: 'Callable[[float], Iterable[Any]]', derivatives: 'Callable[[float], Iterable[Any]]', *, tolerance: 'float' = 1e-09, reference_time: 'float' = 0.0) -> 'None'"
+    },
+    {
+      "implementation_module": "collections.abc",
+      "kind": "data",
+      "name": "MultilinearOperation",
+      "namespace": "komorebi_math",
+      "qualname": "Callable",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.coordinates",
+      "kind": "class",
+      "name": "NonlinearPacketMap",
+      "namespace": "komorebi_math",
+      "qualname": "NonlinearPacketMap",
+      "signature": "(function: 'Callable[[Any], Any]', source: 'PacketSystem', target: 'PacketSystem', name: 'str' = 'nonlinear packet map') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.defects",
+      "kind": "class",
+      "name": "NonlinearRefinementDefect",
+      "namespace": "komorebi_math",
+      "qualname": "NonlinearRefinementDefect",
+      "signature": "(fine_map: 'Callable[[Any], Any]', coarse_map: 'Callable[[Any], Any]', coarsen_source: 'Any', coarsen_target: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.elimination",
+      "kind": "class",
+      "name": "NonlinearSchurElimination",
+      "namespace": "komorebi_math",
+      "qualname": "NonlinearSchurElimination",
+      "signature": "(retained_provider: 'DerivativeProvider', hidden_provider: 'DerivativeProvider', retained_dimension: 'int', hidden_dimension: 'int', base_retained: 'Any', base_hidden: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.algebra",
+      "kind": "class",
+      "name": "OperatorAlgebra",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorAlgebra",
+      "signature": "(generators: 'Mapping[str, Any] | Sequence[Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None, include_identity: 'bool' = True) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorGrammar",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorGrammar",
+      "signature": "(vertices: 'Iterable[str]', arrows: 'Mapping[str, tuple[str, str]] | Iterable[Arrow]', relations: 'Iterable[OperatorRelation]' = ()) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.morphisms",
+      "kind": "class",
+      "name": "OperatorMorphism",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorMorphism",
+      "signature": "(source_operators: 'Mapping[str, Any]', target_operators: 'Mapping[str, Any]', linear_map: 'Any', operator_map: 'Mapping[str, str]', backend: 'Any', tolerance: 'float') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.realization",
+      "kind": "class",
+      "name": "OperatorRealization",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorRealization",
+      "signature": "(grammar: 'OperatorGrammar', spaces: 'Mapping[str, int]', operators: 'Mapping[str, Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, validate_relations: 'bool' = True, tolerance: 'float | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorRelation",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorRelation",
+      "signature": "(name: 'str', terms: 'tuple[tuple[Any, OperatorWord], ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorWord",
+      "namespace": "komorebi_math",
+      "qualname": "OperatorWord",
+      "signature": "(arrows: 'tuple[str, ...]', source: 'str', target: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "OrderedRootedTree",
+      "namespace": "komorebi_math",
+      "qualname": "OrderedRootedTree",
+      "signature": "(children: \"tuple['OrderedRootedTree', ...]\" = ()) -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA_VERSION",
+      "namespace": "komorebi_math",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA_VERSION",
+      "namespace": "komorebi_math",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.core.packets",
+      "kind": "class",
+      "name": "PacketCoordinates",
+      "namespace": "komorebi_math",
+      "qualname": "PacketCoordinates",
+      "signature": "(system: \"'PacketSystem'\", values: 'tuple[Any, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.ir",
+      "kind": "class",
+      "name": "PacketIR",
+      "namespace": "komorebi_math",
+      "qualname": "PacketIR",
+      "signature": "(source_layout: 'PacketLayout', target_layout: 'PacketLayout', blocks: 'Mapping[Address, StructuredOperator | Any]', metadata: 'Mapping[str, Any]' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJet",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJet",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', output_index: 'int', input_indices: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetBatchResult",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetBatchResult",
+      "signature": "(evaluations: 'tuple[PacketJetEvaluation, ...]', reconstructed: 'Any', direct: 'Any', derivative_calls: 'int', input_projections: 'int', output_projections: 'int', pruned_blocks: 'int', backend: 'str', returned_to_host: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetComplexityEstimate",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetComplexityEstimate",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', source_packets: 'int', target_packets: 'int', family_addresses: 'int', active_addresses: 'int', pruned_addresses: 'int', input_groups: 'int', naive_derivative_calls: 'int', planned_derivative_calls: 'int', projected_input_vectors: 'int', output_projections: 'int', dense_basis_evaluations: 'int', dense_tensor_elements: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetExecutionPlan",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetExecutionPlan",
+      "signature": "(order: 'int', source_names: 'tuple[str, ...]', target_names: 'tuple[str, ...]', groups: 'tuple[PacketJetInputGroup, ...]', active_addresses: 'tuple[PacketJetAddress, ...]', pruned_addresses: 'tuple[PacketJetAddress, ...]', support_was_supplied: 'bool', support_complete: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetFamily",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetFamily",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', order: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetProfileReport",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetProfileReport",
+      "signature": "(estimate: 'PacketJetComplexityEstimate', stages: 'tuple[RuntimeStageProfile, ...]', environment: 'Mapping[str, Any]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "class",
+      "name": "PacketJetSnapshot",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetSnapshot",
+      "signature": "(address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', coefficients: 'tuple[PacketJetCoefficient, ...]', capture_certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetSnapshotStreamReader",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetSnapshotStreamReader",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamChunkRecord",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetStreamChunkRecord",
+      "signature": "(index: 'int', filename: 'str', basis_start: 'int', basis_stop: 'int', coefficient_start: 'int', coefficient_stop: 'int', payload_sha256: 'str', byte_count: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamManifest",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetStreamManifest",
+      "signature": "(state: 'StreamState', producer_version: 'str', address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', tolerance: 'float', dense_coefficient_count: 'int', capture_mode: 'CaptureMode', source_digest: 'str', metadata_sha256: 'str', chunk_size: 'int', evaluations_completed: 'int', coefficients_completed: 'int', maximum_omitted_basis_norm: 'float', chunks: 'tuple[PacketJetStreamChunkRecord, ...]', capture_certificate: 'Certificate | None', stream_sha256: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamSelection",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetStreamSelection",
+      "signature": "(coefficient_start: 'int', coefficient_stop: 'int', coefficients: 'tuple[PacketJetCoefficient, ...]', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamWriteResult",
+      "namespace": "komorebi_math",
+      "qualname": "PacketJetStreamWriteResult",
+      "signature": "(destination: 'Path', active_path: 'Path', completed: 'bool', resumed: 'bool', chunks_written: 'int', evaluations_written: 'int', coefficients_written: 'int', manifest: 'PacketJetStreamManifest', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.layout",
+      "kind": "class",
+      "name": "PacketLayout",
+      "namespace": "komorebi_math",
+      "qualname": "PacketLayout",
+      "signature": "(sizes: 'tuple[int, ...]', names: 'tuple[str, ...] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.morphisms",
+      "kind": "class",
+      "name": "PacketMorphism",
+      "namespace": "komorebi_math",
+      "qualname": "PacketMorphism",
+      "signature": "(source: 'PacketSystem', target: 'PacketSystem', linear_map: 'Any', packet_map: 'Mapping[str, tuple[str, ...]]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.operators",
+      "kind": "class",
+      "name": "PacketOperator",
+      "namespace": "komorebi_math",
+      "qualname": "PacketOperator",
+      "signature": "(source: 'PacketSystem', target: 'PacketSystem', blocks: 'tuple[tuple[Any, ...], ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "class",
+      "name": "PacketRefinement",
+      "namespace": "komorebi_math",
+      "qualname": "PacketRefinement",
+      "signature": "(coarse: 'PacketSystem', fine: 'PacketSystem', parent_of_fine: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.packets",
+      "kind": "class",
+      "name": "PacketSystem",
+      "namespace": "komorebi_math",
+      "qualname": "PacketSystem",
+      "signature": "(projectors: 'Sequence[Any]', *, names: 'Sequence[str] | None' = None, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None, validate: 'bool | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.global_.patching",
+      "kind": "class",
+      "name": "PatchingSupportReport",
+      "namespace": "komorebi_math",
+      "qualname": "PatchingSupportReport",
+      "signature": "(patched_object_exists: 'bool', patched_full_support: 'bool', finite_level_descent: 'bool', comparison_preserves_support: 'bool', characteristic_zero_fiber_nonzero: 'bool', derived: 'bool' = False) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.filterbanks",
+      "kind": "class",
+      "name": "PeriodicFilterBank",
+      "namespace": "komorebi_math",
+      "qualname": "PeriodicFilterBank",
+      "signature": "(analysis_filters: 'Iterable[Any]', synthesis_filters: 'Iterable[Any]', decimation: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.survival",
+      "kind": "class",
+      "name": "PhaseTypeSurvival",
+      "namespace": "komorebi_math",
+      "qualname": "PhaseTypeSurvival",
+      "signature": "(subgenerator: 'Any', initial: 'Any', *, cause_rates: 'Any | None' = None, tolerance: 'float' = 1e-12, validate: 'bool' = True) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "PolynomialDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "PolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "PolynomialFixedPointProblem",
+      "namespace": "komorebi_math",
+      "qualname": "PolynomialFixedPointProblem",
+      "signature": "(seed: 'Any', operations: 'Mapping[int, MultilinearOperation]', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'polynomial fixed-point problem') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "PolynomialLiftProblem",
+      "namespace": "komorebi_math",
+      "qualname": "PolynomialLiftProblem",
+      "signature": "(function: 'Callable[[tuple[int, ...]], Iterable[int]]', jacobian: 'Callable[[tuple[int, ...]], Any]', point: 'Any', *, prime: 'int', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "class",
+      "name": "PolyphaseSystem",
+      "namespace": "komorebi_math",
+      "qualname": "PolyphaseSystem",
+      "signature": "(order: 'int', axis: 'int' = -1) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableCodec",
+      "namespace": "komorebi_math",
+      "qualname": "PortableCodec",
+      "signature": "(tag: 'str', version: 'int', type_: 'type[Any]', encoder: 'Encoder', decoder: 'Decoder') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableMigration",
+      "namespace": "komorebi_math",
+      "qualname": "PortableMigration",
+      "signature": "(tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.support",
+      "kind": "class",
+      "name": "PresentedModule",
+      "namespace": "komorebi_math",
+      "qualname": "PresentedModule",
+      "signature": "(presentation: 'Any', *, variables: 'Iterable[Any]' = ()) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.envelopes",
+      "kind": "class",
+      "name": "ProjectiveIntertwinerEnvelope",
+      "namespace": "komorebi_math",
+      "qualname": "ProjectiveIntertwinerEnvelope",
+      "signature": "(*, prime: 'int', labels: 'Iterable[Iterable[int]]', operators: 'Iterable[Any]', tolerance: 'float' = 1e-08) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.ramification.towers",
+      "kind": "class",
+      "name": "ProjectiveMultiplicityPacket",
+      "namespace": "komorebi_math",
+      "qualname": "ProjectiveMultiplicityPacket",
+      "signature": "(prime: 'int', quotient_rank: 'int', form: 'AlternatingForm', phase_label: 'str | None' = None, quadratic_refinement: 'QuadraticRefinement | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.provenance",
+      "kind": "class",
+      "name": "ProvenanceRecord",
+      "namespace": "komorebi_math",
+      "qualname": "ProvenanceRecord",
+      "signature": "(identifier: 'str', title: 'str', status: 'ClaimStatus', source: 'str', assumptions: 'tuple[str, ...]' = (), limitations: 'tuple[str, ...]' = (), verification_suite: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiManifest",
+      "namespace": "komorebi_math",
+      "qualname": "PublicApiManifest",
+      "signature": "(package_version: 'str', namespaces: 'tuple[str, ...]', symbols: 'tuple[PublicApiSymbol, ...]', schema: 'str' = 'komorebi-math.public-api', schema_version: 'int' = 1, stability_level: 'str' = 'pre-beta-additive') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiSymbol",
+      "namespace": "komorebi_math",
+      "qualname": "PublicApiSymbol",
+      "signature": "(namespace: 'str', name: 'str', kind: 'str', implementation_module: 'str', qualname: 'str', signature: 'str | None') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.symplectic",
+      "kind": "class",
+      "name": "QuadraticRefinement",
+      "namespace": "komorebi_math",
+      "qualname": "QuadraticRefinement",
+      "signature": "(form: 'AlternatingForm', linear: 'tuple[int, ...]' = (), max_dimension: 'int' = 20) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.channels",
+      "kind": "class",
+      "name": "QuantumChannel",
+      "namespace": "komorebi_math",
+      "qualname": "QuantumChannel",
+      "signature": "(kraus: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.error_correction",
+      "kind": "class",
+      "name": "QuantumCode",
+      "namespace": "komorebi_math",
+      "qualname": "QuantumCode",
+      "signature": "(projector: 'Any', errors: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.effective",
+      "kind": "class",
+      "name": "QuantumFeshbachReduction",
+      "namespace": "komorebi_math",
+      "qualname": "QuantumFeshbachReduction",
+      "signature": "(hamiltonian: 'Any', retained: 'Iterable[int]', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.seeds",
+      "kind": "class",
+      "name": "QuantumSeedSystem",
+      "namespace": "komorebi_math",
+      "qualname": "QuantumSeedSystem",
+      "signature": "(observables: 'Mapping[str, Any] | Sequence[Any]', seeds: 'Sequence[Any]', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.ramification.towers",
+      "kind": "class",
+      "name": "RamificationCliffordTower",
+      "namespace": "komorebi_math",
+      "qualname": "RamificationCliffordTower",
+      "signature": "(stages: 'Iterable[RamificationStage]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.ramification.towers",
+      "kind": "class",
+      "name": "RamificationStage",
+      "namespace": "komorebi_math",
+      "qualname": "RamificationStage",
+      "signature": "(break_number: 'int', parent_order: 'int', child_order: 'int', orbit_size: 'int', multiplicity_dimension: 'int', packet: 'ProjectiveMultiplicityPacket | None' = None, label: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "class",
+      "name": "RefinementTower",
+      "namespace": "komorebi_math",
+      "qualname": "RefinementTower",
+      "signature": "(refinements: 'tuple[PacketRefinement, ...] | list[PacketRefinement]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "RightInverseCorrectionProblem",
+      "namespace": "komorebi_math",
+      "qualname": "RightInverseCorrectionProblem",
+      "signature": "(linear_map: 'Any', right_inverse: 'Any', nonlinear: 'Callable[[np.ndarray], Any]', target: 'Any', *, radius: 'float', lipschitz_bound: 'float', tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeProfileSample",
+      "namespace": "komorebi_math",
+      "qualname": "RuntimeProfileSample",
+      "signature": "(duration_ns: 'int', traced_peak_bytes: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeStageProfile",
+      "namespace": "komorebi_math",
+      "qualname": "RuntimeStageProfile",
+      "signature": "(name: 'str', scope: 'str', warmup: 'int', samples: 'tuple[RuntimeProfileSample, ...]') -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "STAGES",
+      "namespace": "komorebi_math",
+      "qualname": "tuple",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.core.morphisms",
+      "kind": "class",
+      "name": "SeedMorphism",
+      "namespace": "komorebi_math",
+      "qualname": "SeedMorphism",
+      "signature": "(source: 'SeedSystem', target: 'SeedSystem', linear_map: 'Any', operator_map: 'Mapping[str, str]', seed_images: 'Sequence[Any] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "class",
+      "name": "SeedSystem",
+      "namespace": "komorebi_math",
+      "qualname": "SeedSystem",
+      "signature": "(operators: 'Mapping[str, Any] | Sequence[Any]', seeds: 'Sequence[Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.base",
+      "kind": "class",
+      "name": "Sequence",
+      "namespace": "komorebi_math",
+      "qualname": "Sequence",
+      "signature": "(evaluator: 'Callable[[int], Number]', *, name: 'str' = 'sequence', exact: 'bool' = True, metadata: 'dict[str, Any] | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "class",
+      "name": "Settings",
+      "namespace": "komorebi_math",
+      "qualname": "Settings",
+      "signature": "(backend: 'str' = 'numpy', tolerance: 'float' = 1e-10, validate_on_construction: 'bool' = True) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.singular_packets",
+      "kind": "class",
+      "name": "SingularPacket1D",
+      "namespace": "komorebi_math",
+      "qualname": "SingularPacket1D",
+      "signature": "(components: 'Iterable[TruncatedPowerTerm]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.smith",
+      "kind": "class",
+      "name": "SmithCongruenceProblem",
+      "namespace": "komorebi_math",
+      "qualname": "SmithCongruenceProblem",
+      "signature": "(matrix: 'Any', rhs: 'Any', *, prime: 'int', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparsePolynomialDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "SparsePolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, SparseSymmetricTensor | Mapping[tuple[int, ...], Any] | Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'sparse polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseSymmetricTensor",
+      "namespace": "komorebi_math",
+      "qualname": "SparseSymmetricTensor",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', entries: 'tuple[SparseTensorEntry, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseTensorEntry",
+      "namespace": "komorebi_math",
+      "qualname": "SparseTensorEntry",
+      "signature": "(output: 'int', inputs: 'tuple[int, ...]', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.unified",
+      "kind": "class",
+      "name": "StageSpec",
+      "namespace": "komorebi_math",
+      "qualname": "StageSpec",
+      "signature": "(stage: 'UnifiedStage', meaning: 'str', implemented_in_alpha: 'bool', module: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.standard_windows",
+      "kind": "class",
+      "name": "StandardWindow",
+      "namespace": "komorebi_math",
+      "qualname": "StandardWindow",
+      "signature": "(prime: 'int', compression: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "StreamedPacketJetEvaluation",
+      "namespace": "komorebi_math",
+      "qualname": "StreamedPacketJetEvaluation",
+      "signature": "(value: 'np.ndarray', coefficient_start: 'int', coefficient_stop: 'int', total_coefficients: 'int', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.global_.hecke",
+      "kind": "class",
+      "name": "SupportComparison",
+      "namespace": "komorebi_math",
+      "qualname": "SupportComparison",
+      "signature": "(source_components: 'frozenset[str]', target_components: 'frozenset[str]', image_components: 'frozenset[str]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.graphs",
+      "kind": "class",
+      "name": "SupportPreorder",
+      "namespace": "komorebi_math",
+      "qualname": "SupportPreorder",
+      "signature": "(relation: 'Sequence[Sequence[bool | int]]') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "SympyDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "SympyDerivativeProvider",
+      "signature": "(expressions: 'Sequence[Any]', variables: 'Sequence[Any]', *, name: 'str' = 'SymPy derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Table",
+      "namespace": "komorebi_math",
+      "qualname": "Table",
+      "signature": "(headers: 'tuple[str, ...]', rows: 'tuple[tuple[Any, ...], ...]', caption: 'str | None' = None, label: 'str | None' = None, alignment: 'tuple[str, ...] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.tame",
+      "kind": "class",
+      "name": "TameWeilPacket",
+      "namespace": "komorebi_math",
+      "qualname": "TameWeilPacket",
+      "signature": "(orbit: 'FrobeniusOrbit', frobenius_scalar: 'complex' = 1.0) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.scheduling",
+      "kind": "class",
+      "name": "Task",
+      "namespace": "komorebi_math",
+      "qualname": "Task",
+      "signature": "(name: 'str', duration: 'float' = 1.0, dependencies: 'tuple[str, ...]' = (), shape_key: 'Hashable | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "TorchDerivativeProvider",
+      "namespace": "komorebi_math",
+      "qualname": "TorchDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, dtype: 'str' = 'float64', device: 'str | None' = None, name: 'str' = 'PyTorch derivative provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.graphs",
+      "kind": "class",
+      "name": "TransferGraph",
+      "namespace": "komorebi_math",
+      "qualname": "TransferGraph",
+      "signature": "(adjacency: 'Sequence[Sequence[bool | int]]', *, names: 'Sequence[str] | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "TransportEdge",
+      "namespace": "komorebi_math",
+      "qualname": "TransportEdge",
+      "signature": "(source: 'str', target: 'str', matrix: 'Any', name: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "TransportGraph",
+      "namespace": "komorebi_math",
+      "qualname": "TransportGraph",
+      "signature": "(vertices: 'Iterable[str]', edges: 'Iterable[TransportEdge]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.compiler",
+      "kind": "class",
+      "name": "TreeNode",
+      "namespace": "komorebi_math",
+      "qualname": "TreeNode",
+      "signature": "(name: 'str', keep_cost: 'float', keep_error: 'float', split_cost: 'float' = 0.0, children: \"tuple['TreeNode', ...]\" = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.domains",
+      "kind": "class",
+      "name": "TruncatedPadic",
+      "namespace": "komorebi_math",
+      "qualname": "TruncatedPadic",
+      "signature": "(prime: 'int', precision: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.unified",
+      "kind": "class",
+      "name": "UnifiedStage",
+      "namespace": "komorebi_math",
+      "qualname": "UnifiedStage",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.unified",
+      "kind": "class",
+      "name": "UnifiedSystem",
+      "namespace": "komorebi_math",
+      "qualname": "UnifiedSystem",
+      "signature": "(grammar: 'OperatorGrammar | None' = None, realization: 'OperatorRealization | None' = None, seed_system: 'SeedSystem | None' = None, packet_system: 'PacketSystem | None' = None, operators: 'Mapping[str, Any]' = <factory>, refinement_tower: 'RefinementTower | None' = None, metadata: 'dict[str, Any]' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.visibility",
+      "kind": "class",
+      "name": "VisibilityTree",
+      "namespace": "komorebi_math",
+      "qualname": "VisibilityTree",
+      "signature": "(values: 'Iterable[Fraction | int]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.structured",
+      "kind": "class",
+      "name": "WalshHadamardOperator",
+      "namespace": "komorebi_math",
+      "qualname": "WalshHadamardOperator",
+      "signature": "(dimension: 'int', normalized: 'bool' = False, dtype_value: 'Any' = <class 'float'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.weighted",
+      "kind": "class",
+      "name": "WeightedTransferEdge",
+      "namespace": "komorebi_math",
+      "qualname": "WeightedTransferEdge",
+      "signature": "(source: 'int', target: 'int', weight: 'int', operator: 'Any', name: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.weighted",
+      "kind": "class",
+      "name": "WeightedTransferGraph",
+      "namespace": "komorebi_math",
+      "qualname": "WeightedTransferGraph",
+      "signature": "(packet_system: 'PacketSystem', diagonal: 'Any', edges: 'tuple[WeightedTransferEdge, ...] | list[WeightedTransferEdge]', *, backend: 'str | LinearAlgebraBackend | None' = None, prime: 'int | None' = None, validate_weights: 'bool' = True) -> 'None'"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "__version__",
+      "namespace": "komorebi_math",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.mahler",
+      "kind": "function",
+      "name": "affine_mahler_kernel",
+      "namespace": "komorebi_math",
+      "qualname": "affine_mahler_kernel",
+      "signature": "(multiplier: 'int', shift: 'int', source_degree: 'int', target_degree: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "apery_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "apery_sequence",
+      "signature": "() -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.appell",
+      "kind": "function",
+      "name": "appell_polynomial",
+      "namespace": "komorebi_math",
+      "qualname": "appell_polynomial",
+      "signature": "(order: 'int', residue: 'int', parameter: 'Number', degree: 'int', x: 'Number') -> 'Number'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.precision",
+      "kind": "function",
+      "name": "assign_discrete_precisions",
+      "namespace": "komorebi_math",
+      "qualname": "assign_discrete_precisions",
+      "signature": "(options: 'Sequence[Sequence[DTypeChoice]]', budget: 'int') -> 'PrecisionAssignment | None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "autodiff_provider",
+      "namespace": "komorebi_math",
+      "qualname": "autodiff_provider",
+      "signature": "(framework: 'str', function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', *, max_order: 'int' = 4, **options: 'Any') -> 'JaxDerivativeProvider | TorchDerivativeProvider'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "automatic_derivative_provider",
+      "namespace": "komorebi_math",
+      "qualname": "autodiff_provider",
+      "signature": "(framework: 'str', function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', *, max_order: 'int' = 4, **options: 'Any') -> 'JaxDerivativeProvider | TorchDerivativeProvider'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "available_ad_frameworks",
+      "namespace": "komorebi_math",
+      "qualname": "available_ad_frameworks",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "available_autodiff_backends",
+      "namespace": "komorebi_math",
+      "qualname": "available_ad_frameworks",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "available_export_formats",
+      "namespace": "komorebi_math",
+      "qualname": "available_export_formats",
+      "signature": "() -> 'tuple[str, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "function",
+      "name": "available_latex_engines",
+      "namespace": "komorebi_math",
+      "qualname": "available_latex_engines",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.transfer",
+      "kind": "function",
+      "name": "block_from_paths",
+      "namespace": "komorebi_math",
+      "qualname": "block_from_paths",
+      "signature": "(operator: 'PacketOperator', *, source: 'int', target: 'int', length: 'int', tolerance: 'float | None' = None) -> 'ComputationResult[Any]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "function",
+      "name": "build_lift_tree",
+      "namespace": "komorebi_math",
+      "qualname": "build_lift_tree",
+      "signature": "(problem_factory: 'Callable[[tuple[int, ...], int], LinearLiftProblem | PolynomialLiftProblem]', roots: 'Iterable[tuple[int, ...]]', *, prime: 'int', start_depth: 'int', max_depth: 'int', max_nodes: 'int' = 100000) -> 'FiniteLiftTree'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "capture_packet_jet_stream",
+      "namespace": "komorebi_math",
+      "qualname": "capture_packet_jet_stream",
+      "signature": "(jet: 'PacketJet', path: 'str | os.PathLike[str]', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 10000000, chunk_size: 'int' = 1024, evaluation_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "check_beta_api",
+      "namespace": "komorebi_math",
+      "qualname": "check_beta_api",
+      "signature": "(path: 'str | Path | None' = None) -> 'ApiCompatibilityReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "check_public_api",
+      "namespace": "komorebi_math",
+      "qualname": "check_public_api",
+      "signature": "(path: 'str | Path | None' = None, *, strict_signatures: 'bool' = False) -> 'ApiCompatibilityReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "function",
+      "name": "common_refinement",
+      "namespace": "komorebi_math",
+      "qualname": "common_refinement",
+      "signature": "(left: 'PacketSystem', right: 'PacketSystem', *, names: 'tuple[str, ...] | None' = None) -> 'tuple[PacketSystem, PacketRefinement, PacketRefinement]'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "compare_public_api",
+      "namespace": "komorebi_math",
+      "qualname": "compare_public_api",
+      "signature": "(reference: 'PublicApiManifest', current: 'PublicApiManifest | None' = None, *, strict_signatures: 'bool' = False) -> 'ApiCompatibilityReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "function",
+      "name": "compile_latex",
+      "namespace": "komorebi_math",
+      "qualname": "compile_latex",
+      "signature": "(source: 'str | Path', output_dir: 'str | Path', *, options: 'LatexCompileOptions | None' = None, source_name: 'str' = 'document.tex') -> 'LatexCompilation'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "compile_packet_jet_plan",
+      "namespace": "komorebi_math",
+      "qualname": "compile_packet_jet_plan",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, max_addresses: 'int' = 1000000) -> 'PacketJetExecutionPlan'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.compiler",
+      "kind": "function",
+      "name": "compile_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "compile_sequence",
+      "signature": "(sequence: 'Sequence', *, sample_count: 'int' = 24, max_order: 'int | None' = 8) -> 'CompiledSequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.compiler",
+      "kind": "function",
+      "name": "compile_tree_budget",
+      "namespace": "komorebi_math",
+      "qualname": "compile_tree_budget",
+      "signature": "(root: 'TreeNode', budget: 'int', *, error_unit: 'float' = 1.0) -> 'TreePlan | None'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.compiler",
+      "kind": "function",
+      "name": "compile_tree_lagrangian",
+      "namespace": "komorebi_math",
+      "qualname": "compile_tree_lagrangian",
+      "signature": "(root: 'TreeNode', penalty: 'float') -> 'TreePlan'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "function",
+      "name": "conditional_projective_limit_completion",
+      "namespace": "komorebi_math",
+      "qualname": "conditional_projective_limit_completion",
+      "signature": "(verified_prefix_depth: 'int', *, separated: 'bool', complete: 'bool', continuous: 'bool', compatible_infinite_branch: 'bool') -> 'ConditionalResult[ProjectiveLimitRecord]'"
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "configure",
+      "namespace": "komorebi_math",
+      "qualname": "configure",
+      "signature": "(*, backend: 'str | None' = None, tolerance: 'float | None' = None, validate_on_construction: 'bool | None' = None) -> 'Settings'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.krylov",
+      "kind": "function",
+      "name": "conjugate_gradient",
+      "namespace": "komorebi_math",
+      "qualname": "conjugate_gradient",
+      "signature": "(apply: 'Apply', right_hand_side: 'Any', *, precondition: 'Apply | None' = None, initial: 'Any | None' = None, relative_tolerance: 'float' = 1e-10, absolute_tolerance: 'float' = 0.0, max_iterations: 'int | None' = None, curvature_tolerance: 'float' = 1e-14) -> 'ConjugateGradientResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.constraints",
+      "kind": "function",
+      "name": "constraint_closure",
+      "namespace": "komorebi_math",
+      "qualname": "constraint_closure",
+      "signature": "(constraints: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'ConstraintClosureReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "create_beta_api_manifest",
+      "namespace": "komorebi_math",
+      "qualname": "create_beta_api_manifest",
+      "signature": "(*, package_version: 'str' = '0.11.0a1') -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "create_public_api_manifest",
+      "namespace": "komorebi_math",
+      "qualname": "create_public_api_manifest",
+      "signature": "(namespaces: 'Sequence[str]' = ('komorebi_math', 'komorebi_math.nonlinear', 'komorebi_math.export'), *, package_version: 'str' = '0.11.0a1') -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.crt",
+      "kind": "function",
+      "name": "crt_many",
+      "namespace": "komorebi_math",
+      "qualname": "crt_many",
+      "signature": "(residues: 'Iterable[int]', moduli: 'Iterable[int]') -> 'CRTAddress'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.crt",
+      "kind": "function",
+      "name": "crt_pair",
+      "namespace": "komorebi_math",
+      "qualname": "crt_pair",
+      "signature": "(a: 'int', modulus_a: 'int', b: 'int', modulus_b: 'int') -> 'CRTAddress'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "function",
+      "name": "cupy_runtime_status",
+      "namespace": "komorebi_math",
+      "qualname": "cupy_runtime_status",
+      "signature": "() -> 'CuPyRuntimeStatus'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.groups",
+      "kind": "function",
+      "name": "cyclic_group",
+      "namespace": "komorebi_math",
+      "qualname": "cyclic_group",
+      "signature": "(order: 'int') -> 'FiniteGroup[int]'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.cyclic",
+      "kind": "function",
+      "name": "cyclic_project_coefficients",
+      "namespace": "komorebi_math",
+      "qualname": "cyclic_project_coefficients",
+      "signature": "(coefficients: 'Sequence[Any]', order: 'int', residue: 'int') -> 'np.ndarray'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "cyclic_span",
+      "namespace": "komorebi_math",
+      "qualname": "cyclic_span",
+      "signature": "(operators: 'Mapping[str, Any] | Sequence[Any]', seeds: 'Sequence[Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None) -> 'ComputationResult[Any]'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.symmetry",
+      "kind": "function",
+      "name": "cyclic_symmetry_projectors",
+      "namespace": "komorebi_math",
+      "qualname": "cyclic_symmetry_projectors",
+      "signature": "(symmetry: 'Any', order: 'int', *, tolerance: 'float' = 1e-10) -> 'PacketSystem'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.sections",
+      "kind": "function",
+      "name": "denominator",
+      "namespace": "komorebi_math",
+      "qualname": "denominator",
+      "signature": "(order: 'int', z: 'complex') -> 'complex'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "deprecated",
+      "namespace": "komorebi_math",
+      "qualname": "deprecated",
+      "signature": "(*, since: 'str', replacement: 'str | None' = None, remove_in: 'str | None' = None, reason: 'str | None' = None) -> 'Callable[[Callable[P, R]], Callable[P, R]]'"
+    },
+    {
+      "implementation_module": "komorebi_math.provenance",
+      "kind": "function",
+      "name": "describe",
+      "namespace": "komorebi_math",
+      "qualname": "describe",
+      "signature": "(obj: 'Any') -> 'ProvenanceRecord | None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "function",
+      "name": "direct_packet_rotation",
+      "namespace": "komorebi_math",
+      "qualname": "direct_packet_rotation",
+      "signature": "(source: 'Iterable[Any]', target: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'DirectRotationResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.discovery",
+      "kind": "function",
+      "name": "discover_block_diagonal_low_rank",
+      "namespace": "komorebi_math",
+      "qualname": "discover_block_diagonal_low_rank",
+      "signature": "(matrix: 'Any', layout: 'PacketLayout', rank: 'int', *, tolerance: 'float' = 1e-10) -> 'BDLRDiscoveryResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.discovery",
+      "kind": "function",
+      "name": "discover_packet_support",
+      "namespace": "komorebi_math",
+      "qualname": "discover_packet_support",
+      "signature": "(matrix: 'Any', layout: 'PacketLayout', *, absolute_tolerance: 'float' = 0.0, relative_tolerance: 'float' = 1e-12) -> 'SupportDiscoveryResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "divided_square_packets",
+      "namespace": "komorebi_math",
+      "qualname": "divided_square_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', differential: 'LinearOperation', bracket: 'BracketOperation', divided_square: 'LinearOperation', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'DividedSquareResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.report",
+      "kind": "function",
+      "name": "document_from_data",
+      "namespace": "komorebi_math",
+      "qualname": "document_from_data",
+      "signature": "(value: 'Any', *, title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, include_certificate: 'bool' = True) -> 'MathDocument'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "dumps_portable",
+      "namespace": "komorebi_math",
+      "qualname": "dumps_portable",
+      "signature": "(value: 'Any', *, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.global_.dyadic",
+      "kind": "function",
+      "name": "dyadic_sign_diagnostic",
+      "namespace": "komorebi_math",
+      "qualname": "dyadic_sign_diagnostic",
+      "signature": "() -> 'DyadicSignDiagnostic'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "estimate_packet_jet_complexity",
+      "namespace": "komorebi_math",
+      "qualname": "estimate_packet_jet_complexity",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, plan: 'PacketJetExecutionPlan | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetComplexityEstimate'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jet_plan",
+      "namespace": "komorebi_math",
+      "qualname": "execute_packet_jet_plan",
+      "signature": "(plan: 'PacketJetExecutionPlan', family: 'PacketJetFamily', directions: 'Sequence[Any]', *, tolerance: 'float | None' = None) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jets",
+      "namespace": "komorebi_math",
+      "qualname": "execute_packet_jets",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, tolerance: 'float | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_bundle",
+      "namespace": "komorebi_math",
+      "qualname": "export_bundle",
+      "signature": "(value: 'Any', path: 'str | Path', *, base_name: 'str' = 'komorebi_export', formats: 'Sequence[ExportFormat | str]' = (<ExportFormat.JSON: 'json'>, <ExportFormat.MARKDOWN: 'markdown'>, <ExportFormat.LATEX: 'latex'>), options: 'ExportOptions | None' = None) -> 'ExportBundleResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_data",
+      "namespace": "komorebi_math",
+      "qualname": "export_data",
+      "signature": "(value: 'Any', path: 'str | Path', *, format: 'ExportFormat | str | None' = None, options: 'ExportOptions | None' = None) -> 'ExportResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_document",
+      "namespace": "komorebi_math",
+      "qualname": "export_document",
+      "signature": "(document: 'MathDocument', path: 'str | Path', *, format: 'ExportFormat | str | None' = None, options: 'ExportOptions | None' = None) -> 'ExportResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_many",
+      "namespace": "komorebi_math",
+      "qualname": "export_many",
+      "signature": "(value: 'Any', directory: 'str | Path', *, base_name: 'str', formats: 'Sequence[ExportFormat | str]', options: 'ExportOptions | None' = None) -> 'tuple[ExportResult, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "faa_di_bruno",
+      "namespace": "komorebi_math",
+      "qualname": "faa_di_bruno",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', point: 'Any', directions: 'Sequence[Any]', *, direct_provider: 'DerivativeProvider | None' = None, tolerance: 'float' = 1e-09, retain_terms: 'bool' = True) -> 'FaaDiBrunoResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.registry",
+      "kind": "function",
+      "name": "feature",
+      "namespace": "komorebi_math",
+      "qualname": "feature",
+      "signature": "(key: 'str') -> 'FeatureSpec'"
+    },
+    {
+      "implementation_module": "komorebi_math.registry",
+      "kind": "function",
+      "name": "features",
+      "namespace": "komorebi_math",
+      "qualname": "features",
+      "signature": "() -> 'tuple[FeatureSpec, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.recurrence",
+      "kind": "function",
+      "name": "fibonacci_recurrence",
+      "namespace": "komorebi_math",
+      "qualname": "fibonacci_recurrence",
+      "signature": "() -> 'LinearRecurrence'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "fibonacci_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "fibonacci_sequence",
+      "signature": "() -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.deformation.companions",
+      "kind": "function",
+      "name": "finite_frobenius_separator",
+      "namespace": "komorebi_math",
+      "qualname": "finite_frobenius_separator",
+      "signature": "(traces: 'Mapping[Hashable, Sequence[Any]]', *, constituent_count: 'int | None' = None) -> 'FrobeniusSeparationResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.leakage",
+      "kind": "function",
+      "name": "fixed_packet_leakage",
+      "namespace": "komorebi_math",
+      "qualname": "fixed_packet_leakage",
+      "signature": "(hamiltonian: 'Any', projector: 'Any', time: 'float', *, tolerance: 'float' = 1e-10) -> 'LeakageResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.dynamics.fractional",
+      "kind": "function",
+      "name": "fractional_power",
+      "namespace": "komorebi_math",
+      "qualname": "fractional_power",
+      "signature": "(matrix: 'Any', exponent: 'float', *, tolerance: 'float' = 1e-12) -> 'np.ndarray'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "from_serializable",
+      "namespace": "komorebi_math",
+      "qualname": "from_serializable",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 64, _depth: 'int' = 0) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.local.gauss",
+      "kind": "function",
+      "name": "gauss_sum",
+      "namespace": "komorebi_math",
+      "qualname": "gauss_sum",
+      "signature": "(field: 'FiniteField', exponent: 'int', *, additive_frequency: 'int' = 1, tolerance: 'float' = 1e-09) -> 'GaussSumResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "get_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "get_sequence",
+      "signature": "(name: 'str') -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "get_settings",
+      "namespace": "komorebi_math",
+      "qualname": "get_settings",
+      "signature": "() -> 'Settings'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "higher_maurer_cartan_packets",
+      "namespace": "komorebi_math",
+      "qualname": "higher_maurer_cartan_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', operations: 'Mapping[int, GradedOperationCallable]', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'HigherMaurerCartanResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "independent_direct_sum_seed_rank",
+      "namespace": "komorebi_math",
+      "qualname": "independent_direct_sum_seed_rank",
+      "signature": "(seed_ranks: 'Sequence[int]') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "function",
+      "name": "load_behavioral_golden_fixture",
+      "namespace": "komorebi_math",
+      "qualname": "load_behavioral_golden_fixture",
+      "signature": "(path: 'str | Path | None' = None) -> 'tuple[Path, dict[str, Any], str]'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "load_beta_api_manifest",
+      "namespace": "komorebi_math",
+      "qualname": "load_beta_api_manifest",
+      "signature": "(path: 'str | Path | None' = None) -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "load_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math",
+      "qualname": "load_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_coefficients: 'int' = 1000000, verify_chunks: 'bool' = True) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "load_portable",
+      "namespace": "komorebi_math",
+      "qualname": "load_portable",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "load_public_api_manifest",
+      "namespace": "komorebi_math",
+      "qualname": "load_public_api_manifest",
+      "signature": "(path: 'str | Path | None' = None) -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "loads_portable",
+      "namespace": "komorebi_math",
+      "qualname": "loads_portable",
+      "signature": "(text: 'str | bytes', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.langlands.finite_image.mackey",
+      "kind": "function",
+      "name": "mackey_tensor_packets",
+      "namespace": "komorebi_math",
+      "qualname": "mackey_tensor_packets",
+      "signature": "(group: 'FiniteGroup[Element]', left: 'LinearCharacter[Element]', right: 'LinearCharacter[Element]') -> 'MackeyDecomposition[Element]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "majorant_convergence",
+      "namespace": "komorebi_math",
+      "qualname": "majorant_convergence",
+      "signature": "(seed_norm: 'float', operation_norms: 'Mapping[int, float]', radius: 'float', *, tolerance: 'float' = 1e-12) -> 'MajorantConvergence'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.algebra",
+      "kind": "function",
+      "name": "matrix_units",
+      "namespace": "komorebi_math",
+      "qualname": "matrix_units",
+      "signature": "(size: 'int', *, backend: 'str | LinearAlgebraBackend | None' = None) -> 'tuple[Any, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "maurer_cartan_packets",
+      "namespace": "komorebi_math",
+      "qualname": "maurer_cartan_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', differential: 'LinearOperation', bracket: 'BracketOperation', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'MaurerCartanResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "motzkin_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "motzkin_sequence",
+      "signature": "() -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "nonlinear_cupy_available",
+      "namespace": "komorebi_math",
+      "qualname": "nonlinear_cupy_available",
+      "signature": "() -> 'bool'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "open_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math",
+      "qualname": "open_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'PacketJetSnapshotStreamReader'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "packet_faa_di_bruno",
+      "namespace": "komorebi_math",
+      "qualname": "packet_faa_di_bruno",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', point: 'Any', directions: 'Sequence[Any]', source: 'PacketSystem', intermediate: 'PacketSystem', target: 'PacketSystem', *, input_packets: 'Sequence[PacketLabel]', output_packet: 'PacketLabel', inner_support: 'Mapping[int, PacketJetSupport] | None' = None, outer_support: 'Mapping[int, PacketJetSupport] | None' = None, tolerance: 'float | None' = None, retain_terms: 'bool' = True, max_terms: 'int' = 1000000) -> 'FaaDiBrunoResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "packet_jet_benchmark_contract",
+      "namespace": "komorebi_math",
+      "qualname": "packet_jet_benchmark_contract",
+      "signature": "(family: 'PacketJetFamily', *, backend: 'str', timing_scope: 'str' = 'kernel') -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "function",
+      "name": "packet_jet_support",
+      "namespace": "komorebi_math",
+      "qualname": "packet_jet_support",
+      "signature": "(family: 'PacketJetFamily', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSupport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "function",
+      "name": "packet_taylor",
+      "namespace": "komorebi_math",
+      "qualname": "packet_taylor",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', increment: 'Any', source: 'PacketSystem', target: 'PacketSystem', order: 'int', *, tolerance: 'float | None' = None) -> 'PacketTaylorResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "packet_tree_reconstruction",
+      "namespace": "komorebi_math",
+      "qualname": "packet_tree_reconstruction",
+      "signature": "(problem: 'PolynomialFixedPointProblem', tree: 'OrderedRootedTree', packets: 'PacketSystem', *, zero_support: 'Mapping[int, PacketJetSupport] | None' = None, tolerance: 'float | None' = None) -> 'PacketTreeResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.valuation",
+      "kind": "function",
+      "name": "padic_valuation",
+      "namespace": "komorebi_math",
+      "qualname": "padic_valuation",
+      "signature": "(value: 'Rational', prime: 'int') -> 'int | float'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "partition_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "partition_sequence",
+      "signature": "() -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.transfer",
+      "kind": "function",
+      "name": "path_contributions",
+      "namespace": "komorebi_math",
+      "qualname": "path_contributions",
+      "signature": "(operator: 'PacketOperator', *, source: 'int', target: 'int', length: 'int', tolerance: 'float | None' = None) -> 'tuple[TransferPath, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.spectral",
+      "kind": "function",
+      "name": "periodic_laplacian",
+      "namespace": "komorebi_math",
+      "qualname": "periodic_laplacian",
+      "signature": "(shape: 'Sequence[int]', *, spacing: 'float | None' = None) -> 'np.ndarray'"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "polyphase_analyze",
+      "namespace": "komorebi_math",
+      "qualname": "polyphase_analyze",
+      "signature": "(signal: 'Any', order: 'int', *, axis: 'int' = -1, copy: 'bool' = True) -> 'PolyphaseCoordinates'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_codecs",
+      "namespace": "komorebi_math",
+      "qualname": "portable_codecs",
+      "signature": "() -> 'tuple[PortableCodec, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_digest",
+      "namespace": "komorebi_math",
+      "qualname": "portable_digest",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_migrations",
+      "namespace": "komorebi_math",
+      "qualname": "portable_migrations",
+      "signature": "() -> 'tuple[PortableMigration, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.zeros",
+      "kind": "function",
+      "name": "positive_zero_string",
+      "namespace": "komorebi_math",
+      "qualname": "positive_zero_string",
+      "signature": "(order: 'int', count: 'int', *, start: 'int' = 0, tolerance: 'float' = 1e-12, max_iterations: 'int' = 64) -> 'ZeroStringResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_operation",
+      "namespace": "komorebi_math",
+      "qualname": "profile_operation",
+      "signature": "(name: 'str', operation: 'Callable[[], T]', *, repetitions: 'int' = 5, warmup: 'int' = 1, scope: 'str' = 'Python call including allocations and synchronization performed by the callable') -> 'RuntimeStageProfile'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_packet_jet_runtime",
+      "namespace": "komorebi_math",
+      "qualname": "profile_packet_jet_runtime",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, jet: 'PacketJet | None' = None, repetitions: 'int' = 5, warmup: 'int' = 1, max_addresses: 'int' = 1000000, max_snapshot_evaluations: 'int' = 100000, include_stream_write: 'bool' = False, stream_chunk_size: 'int' = 1024) -> 'PacketJetProfileReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "quadratic_catalan_majorant",
+      "namespace": "komorebi_math",
+      "qualname": "quadratic_catalan_majorant",
+      "signature": "(seed_norm: 'float', bilinear_norm: 'float', *, tolerance: 'float' = 1e-12) -> 'MajorantConvergence'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.reciprocal",
+      "kind": "function",
+      "name": "reciprocal_coefficients",
+      "namespace": "komorebi_math",
+      "qualname": "reciprocal_coefficients",
+      "signature": "(order: 'int', parameter: 'Number', degree: 'int') -> 'tuple[Number, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.low_rank",
+      "kind": "function",
+      "name": "recompress_factors",
+      "namespace": "komorebi_math",
+      "qualname": "recompress_factors",
+      "signature": "(left: 'Any', right: 'Any', rank: 'int', *, tolerance: 'float' = 1e-10) -> 'RecompressionResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.recovery",
+      "kind": "function",
+      "name": "recover_separated_jumps",
+      "namespace": "komorebi_math",
+      "qualname": "recover_separated_jumps",
+      "signature": "(samples: 'Sequence[float]', *, spacing: 'float', lipschitz_bound: 'float', noise_bound: 'float', minimum_jump: 'float', threshold: 'float | None' = None, start: 'float' = 0.0, minimum_separation: 'float | None' = None) -> 'JumpRecoveryResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_codec",
+      "namespace": "komorebi_math",
+      "qualname": "register_portable_codec",
+      "signature": "(type_: 'type[T]', *, tag: 'str', version: 'int', encoder: 'Callable[[T], Any]', decoder: 'Callable[[Any], T]', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_migration",
+      "namespace": "komorebi_math",
+      "qualname": "register_portable_migration",
+      "signature": "(*, tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_latex",
+      "namespace": "komorebi_math",
+      "qualname": "render_latex",
+      "signature": "(document: 'MathDocument', *, options: 'LatexRenderOptions | None' = None) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "residue_analyze",
+      "namespace": "komorebi_math",
+      "qualname": "residue_analyze",
+      "signature": "(values: 'Any', modulus: 'int') -> 'ResidueCoordinates'"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "residue_packet_system",
+      "namespace": "komorebi_math",
+      "qualname": "residue_packet_system",
+      "signature": "(length: 'int', modulus: 'int', *, backend: 'str | LinearAlgebraBackend | None' = None, names: 'tuple[str, ...] | None' = None) -> 'PacketSystem'"
+    },
+    {
+      "implementation_module": "komorebi_math.signals.singular_packets",
+      "kind": "function",
+      "name": "retained_packet_reconstruct",
+      "namespace": "komorebi_math",
+      "qualname": "retained_packet_reconstruct",
+      "signature": "(signal: 'Any', packet: 'Any', approximator: 'Callable[[np.ndarray], Any]', *, tolerance: 'float' = 1e-11) -> 'RetainedPacketResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "function",
+      "name": "run_behavioral_golden_fixture",
+      "namespace": "komorebi_math",
+      "qualname": "run_behavioral_golden_fixture",
+      "signature": "(path: 'str | Path | None' = None) -> 'BehavioralGoldenReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "save_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math",
+      "qualname": "save_packet_jet_snapshot_stream",
+      "signature": "(snapshot: 'PacketJetSnapshot', path: 'str | os.PathLike[str]', *, chunk_size: 'int' = 1024, coefficient_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "save_portable",
+      "namespace": "komorebi_math",
+      "qualname": "save_portable",
+      "signature": "(value: 'Any', path: 'str | os.PathLike[str]', *, overwrite: 'bool' = False, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'Path'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "save_public_api_manifest",
+      "namespace": "komorebi_math",
+      "qualname": "save_public_api_manifest",
+      "signature": "(manifest: 'PublicApiManifest', path: 'str | Path', *, overwrite: 'bool' = False) -> 'Path'"
+    },
+    {
+      "implementation_module": "komorebi_math.algorithms.scheduling",
+      "kind": "function",
+      "name": "schedule_unlimited",
+      "namespace": "komorebi_math",
+      "qualname": "schedule_unlimited",
+      "signature": "(tasks: 'Sequence[Task]') -> 'TaskSchedule'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "semisimple_seed_rank",
+      "namespace": "komorebi_math",
+      "qualname": "semisimple_seed_rank",
+      "signature": "(block_dimensions: 'Sequence[int]', multiplicities: 'Sequence[int]') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.report",
+      "kind": "function",
+      "name": "sequence_document",
+      "namespace": "komorebi_math",
+      "qualname": "sequence_document",
+      "signature": "(name: 'str', values: 'Sequence[Any]', *, strategy: 'str | None' = None, modulus: 'int | None' = None, author: 'str | None' = None) -> 'MathDocument'"
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "settings_context",
+      "namespace": "komorebi_math",
+      "qualname": "settings_context",
+      "signature": "(**changes: 'object') -> 'Iterator[Settings]'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "shared_direct_sum_seed_bounds",
+      "namespace": "komorebi_math",
+      "qualname": "shared_direct_sum_seed_bounds",
+      "signature": "(seed_ranks: 'Sequence[int]') -> 'tuple[int, int]'"
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.euler",
+      "kind": "function",
+      "name": "signed_euler_number",
+      "namespace": "komorebi_math",
+      "qualname": "signed_euler_number",
+      "signature": "(index: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.sections",
+      "kind": "function",
+      "name": "signed_section",
+      "namespace": "komorebi_math",
+      "qualname": "signed_section",
+      "signature": "(order: 'int', residue: 'int', z: 'complex', *, tolerance: 'float' = 1e-15, max_terms: 'int' = 512) -> 'complex'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "single_operator_seed_rank",
+      "namespace": "komorebi_math",
+      "qualname": "single_operator_seed_rank",
+      "signature": "(operator: 'Any') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "function",
+      "name": "snapshot_packet_jet",
+      "namespace": "komorebi_math",
+      "qualname": "snapshot_packet_jet",
+      "signature": "(jet: 'PacketJet', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "function",
+      "name": "solve_mod_prime",
+      "namespace": "komorebi_math",
+      "qualname": "solve_mod_prime",
+      "signature": "(matrix: 'Any', rhs: 'Any', prime: 'int') -> 'ModularLinearSolution'"
+    },
+    {
+      "implementation_module": "komorebi_math.quantum.spectral",
+      "kind": "function",
+      "name": "spectral_dimension",
+      "namespace": "komorebi_math",
+      "qualname": "spectral_dimension",
+      "signature": "(operator: 'Any', time: 'float') -> 'float'"
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "function",
+      "name": "tensor_seed_rank_upper_bound",
+      "namespace": "komorebi_math",
+      "qualname": "tensor_seed_rank_upper_bound",
+      "signature": "(left_rank: 'int', right_rank: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.appell",
+      "kind": "function",
+      "name": "theta_polynomial",
+      "namespace": "komorebi_math",
+      "qualname": "theta_polynomial",
+      "signature": "(order: 'int', degree: 'int', parameter: 'Number') -> 'Number'"
+    },
+    {
+      "implementation_module": "komorebi_math.sequences.catalog",
+      "kind": "function",
+      "name": "thue_morse_sequence",
+      "namespace": "komorebi_math",
+      "qualname": "thue_morse_sequence",
+      "signature": "() -> 'Sequence'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "to_serializable",
+      "namespace": "komorebi_math",
+      "qualname": "to_serializable",
+      "signature": "(value: 'Any', *, preserve_types: 'bool' = True, max_depth: 'int' = 64, _depth: 'int' = 0) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.sections",
+      "kind": "function",
+      "name": "transfer_section",
+      "namespace": "komorebi_math",
+      "qualname": "transfer_section",
+      "signature": "(order: 'int', residue: 'int', z: 'complex', *, scale: 'complex' = 1.0, tolerance: 'float' = 1e-15, max_terms: 'int' = 512) -> 'complex'"
+    },
+    {
+      "implementation_module": "komorebi_math.analytic.reciprocal",
+      "kind": "function",
+      "name": "transfer_tangent",
+      "namespace": "komorebi_math",
+      "qualname": "transfer_tangent",
+      "signature": "(order: 'int', z: 'complex') -> 'complex'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "function",
+      "name": "validate_cupy_snapshot",
+      "namespace": "komorebi_math",
+      "qualname": "validate_cupy_snapshot",
+      "signature": "(snapshot: 'PacketJetSnapshot', probes: 'Sequence[Sequence[Any]]', *, tolerance: 'float' = 1e-09) -> 'CuPyValidationResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "function",
+      "name": "verify_finite_filtered_branch",
+      "namespace": "komorebi_math",
+      "qualname": "verify_finite_filtered_branch",
+      "signature": "(source: 'FilteredVectorSpace', target: 'FilteredVectorSpace', map_function: 'Callable[[tuple[int, ...]], Sequence[int]]', approximations: 'Sequence[Sequence[int]]', *, start_depth: 'int' = 0) -> 'FiniteFilteredBranchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "warn_deprecated",
+      "namespace": "komorebi_math",
+      "qualname": "warn_deprecated",
+      "signature": "(name: 'str', *, since: 'str', replacement: 'str | None' = None, remove_in: 'str | None' = None, reason: 'str | None' = None, stacklevel: 'int' = 2) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "CodeBlock",
+      "namespace": "komorebi_math.export",
+      "qualname": "CodeBlock",
+      "signature": "(code: 'str', language: 'str' = 'text', caption: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "DocumentMetadata",
+      "namespace": "komorebi_math.export",
+      "qualname": "DocumentMetadata",
+      "signature": "(title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, keywords: 'tuple[str, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Equation",
+      "namespace": "komorebi_math.export",
+      "qualname": "Equation",
+      "signature": "(latex: 'str', label: 'str | None' = None, numbered: 'bool' = False, description: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportBundleResult",
+      "namespace": "komorebi_math.export",
+      "qualname": "ExportBundleResult",
+      "signature": "(path: 'Path', members: 'tuple[str, ...]', formats: 'tuple[ExportFormat, ...]', manifest_path: 'Path', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportFormat",
+      "namespace": "komorebi_math.export",
+      "qualname": "ExportFormat",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportOptions",
+      "namespace": "komorebi_math.export",
+      "qualname": "ExportOptions",
+      "signature": "(title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, overwrite: 'bool' = False, create_parents: 'bool' = True, preserve_types: 'bool' = True, json_indent: 'int' = 2, include_certificate: 'bool' = True, keep_tex: 'bool' = True, html: 'HtmlRenderOptions' = <factory>, latex: 'LatexRenderOptions' = <factory>, compiler: 'LatexCompileOptions' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "class",
+      "name": "ExportResult",
+      "namespace": "komorebi_math.export",
+      "qualname": "ExportResult",
+      "signature": "(path: 'Path', format: 'ExportFormat', bytes_written: 'int', companion_files: 'tuple[Path, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "class",
+      "name": "Exportable",
+      "namespace": "komorebi_math.export",
+      "qualname": "Exportable",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Figure",
+      "namespace": "komorebi_math.export",
+      "qualname": "Figure",
+      "signature": "(path: 'Path', caption: 'str | None' = None, label: 'str | None' = None, width: 'str' = '0.9\\\\textwidth') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Heading",
+      "namespace": "komorebi_math.export",
+      "qualname": "Heading",
+      "signature": "(text: 'str', level: 'int' = 1, label: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "class",
+      "name": "HtmlRenderOptions",
+      "namespace": "komorebi_math.export",
+      "qualname": "HtmlRenderOptions",
+      "signature": "(include_mathjax: 'bool' = False, title: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "class",
+      "name": "LatexCompilation",
+      "namespace": "komorebi_math.export",
+      "qualname": "LatexCompilation",
+      "signature": "(source_path: 'Path', pdf_path: 'Path | None', log_path: 'Path', engine: 'LatexEngine', commands: 'tuple[tuple[str, ...], ...]', return_codes: 'tuple[int, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "class",
+      "name": "LatexCompileOptions",
+      "namespace": "komorebi_math.export",
+      "qualname": "LatexCompileOptions",
+      "signature": "(engine: 'LatexEngine | str' = <LatexEngine.AUTO: 'auto'>, passes: 'int' = 2, timeout: 'float' = 120.0, shell_escape: 'bool' = False, keep_auxiliary: 'bool' = False, jobname: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "class",
+      "name": "LatexEngine",
+      "namespace": "komorebi_math.export",
+      "qualname": "LatexEngine",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "class",
+      "name": "LatexRenderOptions",
+      "namespace": "komorebi_math.export",
+      "qualname": "LatexRenderOptions",
+      "signature": "(document_class: 'str' = 'article', class_options: 'tuple[str, ...]' = ('11pt',), packages: 'tuple[str, ...]' = ('amsmath', 'amssymb', 'booktabs', 'longtable', 'array', 'graphicx', 'hyperref', 'geometry', 'microtype'), include_table_of_contents: 'bool' = False, number_sections: 'bool' = True, geometry: 'str' = 'margin=1in') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "ListBlock",
+      "namespace": "komorebi_math.export",
+      "qualname": "ListBlock",
+      "signature": "(items: 'tuple[str, ...]', ordered: 'bool' = False) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "MathDocument",
+      "namespace": "komorebi_math.export",
+      "qualname": "MathDocument",
+      "signature": "(metadata: 'DocumentMetadata' = <factory>, blocks: 'list[DocumentBlock]' = <factory>) -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA",
+      "namespace": "komorebi_math.export",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA_VERSION",
+      "namespace": "komorebi_math.export",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Paragraph",
+      "namespace": "komorebi_math.export",
+      "qualname": "Paragraph",
+      "signature": "(text: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableCodec",
+      "namespace": "komorebi_math.export",
+      "qualname": "PortableCodec",
+      "signature": "(tag: 'str', version: 'int', type_: 'type[Any]', encoder: 'Encoder', decoder: 'Decoder') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableMigration",
+      "namespace": "komorebi_math.export",
+      "qualname": "PortableMigration",
+      "signature": "(tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "RawLatex",
+      "namespace": "komorebi_math.export",
+      "qualname": "RawLatex",
+      "signature": "(source: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Table",
+      "namespace": "komorebi_math.export",
+      "qualname": "Table",
+      "signature": "(headers: 'tuple[str, ...]', rows: 'tuple[tuple[Any, ...], ...]', caption: 'str | None' = None, label: 'str | None' = None, alignment: 'tuple[str, ...] | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "available_export_formats",
+      "namespace": "komorebi_math.export",
+      "qualname": "available_export_formats",
+      "signature": "() -> 'tuple[str, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "function",
+      "name": "available_latex_engines",
+      "namespace": "komorebi_math.export",
+      "qualname": "available_latex_engines",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.report",
+      "kind": "function",
+      "name": "certificate_document",
+      "namespace": "komorebi_math.export",
+      "qualname": "certificate_document",
+      "signature": "(certificate: 'Certificate', *, title: 'str' = 'Certificate') -> 'MathDocument'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "function",
+      "name": "compile_latex",
+      "namespace": "komorebi_math.export",
+      "qualname": "compile_latex",
+      "signature": "(source: 'str | Path', output_dir: 'str | Path', *, options: 'LatexCompileOptions | None' = None, source_name: 'str' = 'document.tex') -> 'LatexCompilation'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.report",
+      "kind": "function",
+      "name": "document_from_data",
+      "namespace": "komorebi_math.export",
+      "qualname": "document_from_data",
+      "signature": "(value: 'Any', *, title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, include_certificate: 'bool' = True) -> 'MathDocument'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "dumps_portable",
+      "namespace": "komorebi_math.export",
+      "qualname": "dumps_portable",
+      "signature": "(value: 'Any', *, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "export_adapters",
+      "namespace": "komorebi_math.export",
+      "qualname": "export_adapters",
+      "signature": "() -> 'dict[type[Any], ExportAdapter]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_bundle",
+      "namespace": "komorebi_math.export",
+      "qualname": "export_bundle",
+      "signature": "(value: 'Any', path: 'str | Path', *, base_name: 'str' = 'komorebi_export', formats: 'Sequence[ExportFormat | str]' = (<ExportFormat.JSON: 'json'>, <ExportFormat.MARKDOWN: 'markdown'>, <ExportFormat.LATEX: 'latex'>), options: 'ExportOptions | None' = None) -> 'ExportBundleResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_data",
+      "namespace": "komorebi_math.export",
+      "qualname": "export_data",
+      "signature": "(value: 'Any', path: 'str | Path', *, format: 'ExportFormat | str | None' = None, options: 'ExportOptions | None' = None) -> 'ExportResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_document",
+      "namespace": "komorebi_math.export",
+      "qualname": "export_document",
+      "signature": "(document: 'MathDocument', path: 'str | Path', *, format: 'ExportFormat | str | None' = None, options: 'ExportOptions | None' = None) -> 'ExportResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "export_many",
+      "namespace": "komorebi_math.export",
+      "qualname": "export_many",
+      "signature": "(value: 'Any', directory: 'str | Path', *, base_name: 'str', formats: 'Sequence[ExportFormat | str]', options: 'ExportOptions | None' = None) -> 'tuple[ExportResult, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "from_portable_data",
+      "namespace": "komorebi_math.export",
+      "qualname": "from_portable_data",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "from_serializable",
+      "namespace": "komorebi_math.export",
+      "qualname": "from_serializable",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 64, _depth: 'int' = 0) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.writers",
+      "kind": "function",
+      "name": "infer_export_format",
+      "namespace": "komorebi_math.export",
+      "qualname": "infer_export_format",
+      "signature": "(path: 'str | Path') -> 'ExportFormat'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "latex_escape",
+      "namespace": "komorebi_math.export",
+      "qualname": "latex_escape",
+      "signature": "(value: 'Any') -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "latex_label",
+      "namespace": "komorebi_math.export",
+      "qualname": "latex_label",
+      "signature": "(value: 'str') -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "load_portable",
+      "namespace": "komorebi_math.export",
+      "qualname": "load_portable",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "loads_portable",
+      "namespace": "komorebi_math.export",
+      "qualname": "loads_portable",
+      "signature": "(text: 'str | bytes', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_codecs",
+      "namespace": "komorebi_math.export",
+      "qualname": "portable_codecs",
+      "signature": "() -> 'tuple[PortableCodec, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_digest",
+      "namespace": "komorebi_math.export",
+      "qualname": "portable_digest",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_migrations",
+      "namespace": "komorebi_math.export",
+      "qualname": "portable_migrations",
+      "signature": "() -> 'tuple[PortableMigration, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "register_export_adapter",
+      "namespace": "komorebi_math.export",
+      "qualname": "register_export_adapter",
+      "signature": "(type_: 'type[T]', adapter: 'Callable[[T], Any]', *, replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_codec",
+      "namespace": "komorebi_math.export",
+      "qualname": "register_portable_codec",
+      "signature": "(type_: 'type[T]', *, tag: 'str', version: 'int', encoder: 'Callable[[T], Any]', decoder: 'Callable[[Any], T]', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_migration",
+      "namespace": "komorebi_math.export",
+      "qualname": "register_portable_migration",
+      "signature": "(*, tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_html",
+      "namespace": "komorebi_math.export",
+      "qualname": "render_html",
+      "signature": "(document: 'MathDocument', *, options: 'HtmlRenderOptions | None' = None) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_latex",
+      "namespace": "komorebi_math.export",
+      "qualname": "render_latex",
+      "signature": "(document: 'MathDocument', *, options: 'LatexRenderOptions | None' = None) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_markdown",
+      "namespace": "komorebi_math.export",
+      "qualname": "render_markdown",
+      "signature": "(document: 'MathDocument') -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_text",
+      "namespace": "komorebi_math.export",
+      "qualname": "render_text",
+      "signature": "(document: 'MathDocument') -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.latex",
+      "kind": "function",
+      "name": "resolve_latex_engine",
+      "namespace": "komorebi_math.export",
+      "qualname": "resolve_latex_engine",
+      "signature": "(engine: 'LatexEngine | str' = <LatexEngine.AUTO: 'auto'>) -> 'LatexEngine'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "save_portable",
+      "namespace": "komorebi_math.export",
+      "qualname": "save_portable",
+      "signature": "(value: 'Any', path: 'str | os.PathLike[str]', *, overwrite: 'bool' = False, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'Path'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.report",
+      "kind": "function",
+      "name": "sequence_document",
+      "namespace": "komorebi_math.export",
+      "qualname": "sequence_document",
+      "signature": "(name: 'str', values: 'Sequence[Any]', *, strategy: 'str | None' = None, modulus: 'int | None' = None, author: 'str | None' = None) -> 'MathDocument'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "table_rows",
+      "namespace": "komorebi_math.export",
+      "qualname": "table_rows",
+      "signature": "(value: 'Any') -> 'tuple[tuple[str, ...], tuple[tuple[Any, ...], ...]]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "to_portable_data",
+      "namespace": "komorebi_math.export",
+      "qualname": "to_portable_data",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.serialization",
+      "kind": "function",
+      "name": "to_serializable",
+      "namespace": "komorebi_math.export",
+      "qualname": "to_serializable",
+      "signature": "(value: 'Any', *, preserve_types: 'bool' = True, max_depth: 'int' = 64, _depth: 'int' = 0) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "AutomaticDifferentiationProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "AutomaticDifferentiationProvider",
+      "signature": "(function: 'Callable[[Any], Any]', jvp: 'DirectionalJVP', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, name: 'str' = 'automatic differentiation provider') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "CallableDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CallableDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', derivatives: 'Mapping[int, DirectionalDerivative]', source_dimension: 'int', target_dimension: 'int', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, name: 'str' = 'declared derivative provider') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "class",
+      "name": "ComposedDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ComposedDerivativeProvider",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', *, name: 'str | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyDeviceDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CupyDeviceDerivativeProvider",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyPacketJetExecutor",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CupyPacketJetExecutor",
+      "signature": "(family: 'PacketJetFamily', plan: 'PacketJetExecutionPlan | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyPacketJetSnapshotExecutor",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CuPySnapshotExecutor",
+      "signature": "(snapshot: 'PacketJetSnapshot', *, dtype: 'Any | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "CuPyPolynomialDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CupyPolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, tolerance: 'float' = 1e-10, name: 'str' = 'CuPy polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyRuntimeStatus",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CuPyRuntimeStatus",
+      "signature": "(installed: 'bool', runtime_available: 'bool', device_count: 'int', runtime_version: 'int | None', error: 'str | None' = None) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPySnapshotExecutor",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CuPySnapshotExecutor",
+      "signature": "(snapshot: 'PacketJetSnapshot', *, dtype: 'Any | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "class",
+      "name": "CuPyValidationResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "CuPyValidationResult",
+      "signature": "(probe_count: 'int', maximum_residual: 'float', runtime: 'CuPyRuntimeStatus', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "DepthObstructionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "DepthObstructionResult",
+      "signature": "(depth: 'int', induced_correction_map: 'np.ndarray', defect_coordinates: 'tuple[int, ...]', correction_space: 'ModularLinearSolution', correction_representatives: 'tuple[tuple[int, ...], ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "DerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "DerivativeProvider",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "DirectRotationResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "DirectRotationResult",
+      "signature": "(unitary: 'np.ndarray', minimum_singular_value: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "collections.abc",
+      "kind": "data",
+      "name": "DirectionalDerivative",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "Callable",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "DirectionalJVP",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "DirectionalJVP",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "DividedSquareResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "DividedSquareResult",
+      "signature": "(equations: 'dict[str, Any]', reconstructed: 'Any', direct: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "FEATURE_KEY",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "class",
+      "name": "FaaDiBrunoResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FaaDiBrunoResult",
+      "signature": "(value: 'Any', terms: 'tuple[FaaDiBrunoTerm, ...]', raw_term_count: 'int', evaluated_term_count: 'int', pruned_term_count: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "class",
+      "name": "FaaDiBrunoTerm",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FaaDiBrunoTerm",
+      "signature": "(partition: 'Partition', intermediate_packets: 'tuple[str, ...]', value: 'Any', pruned: 'bool' = False, reason: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FilteredCorrectionProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FilteredCorrectionProblem",
+      "signature": "(source: 'FilteredVectorSpace', target: 'FilteredVectorSpace', correction_map: 'Any', defect: 'Any', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FilteredSpectralSequenceResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FilteredSpectralSequenceResult",
+      "signature": "(pages: 'tuple[SpectralSequencePage, ...]', total_cohomology_dimensions: 'dict[int, int]', limiting_dimensions: 'dict[int, int]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FilteredVectorSpace",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FilteredVectorSpace",
+      "signature": "(dimension: 'int', levels: 'Mapping[int, Any]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "FiniteAbelianGroup",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FiniteAbelianGroup",
+      "signature": "(labels: 'Sequence[str]', addition: 'Mapping[tuple[str, str], str]', *, zero: 'str', validate: 'bool' = True) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "FiniteDifferenceDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FiniteDifferenceDerivativeProvider",
+      "signature": "(function: 'Callable[[np.ndarray], Any]', source_dimension: 'int', target_dimension: 'int', step: 'float' = 0.0001, max_order: 'int' = 4, name: 'str' = 'central finite difference provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FiniteFilteredBranchResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FiniteFilteredBranchResult",
+      "signature": "(approximations: 'tuple[tuple[int, ...], ...]', limit: 'tuple[int, ...]', exact_solution: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "FiniteFilteredCochainComplex",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FiniteFilteredCochainComplex",
+      "signature": "(dimensions: 'Mapping[int, int]', differentials: 'Mapping[int, Any]', filtrations: 'Mapping[int, FilteredVectorSpace]', *, prime: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "FiniteLiftTree",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FiniteLiftTree",
+      "signature": "(prime: 'int', levels: 'tuple[tuple[LiftTreeNode, ...], ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "FundamentalHolonomy",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "FundamentalHolonomy",
+      "signature": "(edge_index: 'int', source: 'str', target: 'str', matrix: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "GradedConvolutionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "GradedConvolutionResult",
+      "signature": "(output_label: 'str', value: 'Any', direct_value: 'Any', terms: 'tuple[GradedConvolutionTerm, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "GradedConvolutionTerm",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "GradedConvolutionTerm",
+      "signature": "(input_labels: 'tuple[str, ...]', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "GradedPacketOperation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "GradedPacketOperation",
+      "signature": "(group: 'FiniteAbelianGroup', packets: 'PacketSystem', arity: 'int', operation: 'GradedOperationCallable', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float | None' = None, name: 'str' = 'graded packet operation') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "GradingCertificate",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "GradingCertificate",
+      "signature": "(arity: 'int', tested_input_labels: 'int', forbidden_residual: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.elimination",
+      "kind": "class",
+      "name": "HiddenSolveResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "HiddenSolveResult",
+      "signature": "(hidden: 'np.ndarray', point: 'np.ndarray', residual: 'float', iterations: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "HigherMaurerCartanResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "HigherMaurerCartanResult",
+      "signature": "(equations: 'dict[str, Any]', reconstructed: 'Any', direct: 'Any', max_order: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "HilbertObstructionProjector",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "HilbertObstructionProjector",
+      "signature": "(correction_map: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "HilbertObstructionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "HilbertObstructionResult",
+      "signature": "(obstruction: 'np.ndarray', obstruction_norm: 'float', vanishes: 'bool', least_norm_correction: 'np.ndarray | None', correction_residual: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "IntertwiningResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "IntertwiningResult",
+      "signature": "(intertwiners: 'Mapping[str, Any]', edge_residuals: 'Mapping[str, float]', cycle_residuals: 'Mapping[str, float]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "JaxDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "JaxDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, dtype: 'str | None' = None, name: 'str' = 'JAX derivative provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "KatoTransport",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "KatoTransport",
+      "signature": "(system: 'MovingPacketSystem') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "LiftStepResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LiftStepResult",
+      "signature": "(prime: 'int', depth: 'int', point: 'tuple[int, ...]', residual: 'tuple[int, ...]', correction_space: 'ModularLinearSolution', children: 'tuple[tuple[int, ...], ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "LiftTreeNode",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LiftTreeNode",
+      "signature": "(value: 'tuple[int, ...]', depth: 'int', parent_index: 'int | None') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "LinearLiftProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LinearLiftProblem",
+      "signature": "(matrix: 'Any', rhs: 'Any', point: 'Any', *, prime: 'int', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.obstruction",
+      "kind": "class",
+      "name": "LinearObstructionProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LinearObstructionProblem",
+      "signature": "(correction_map: 'Any', defect: 'Any', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "LyapunovSchmidtDecomposition",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LyapunovSchmidtDecomposition",
+      "signature": "(linearization: 'np.ndarray', kernel_basis: 'np.ndarray', complement_basis: 'np.ndarray', range_basis: 'np.ndarray', obstruction_basis: 'np.ndarray', rank: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "LyapunovSchmidtPoint",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LyapunovSchmidtPoint",
+      "signature": "(kernel_coordinates: 'np.ndarray', complement_coordinates: 'np.ndarray', point: 'np.ndarray', reduced_obstruction: 'np.ndarray', range_residual: 'float', iterations: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "LyapunovSchmidtReduction",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "LyapunovSchmidtReduction",
+      "signature": "(provider: 'DerivativeProvider', base_point: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "MajorantConvergence",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "MajorantConvergence",
+      "signature": "(seed_norm: 'float', operation_norms: 'dict[int, float]', radius: 'float', image_bound: 'float', contraction: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "class",
+      "name": "MaurerCartanResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "MaurerCartanResult",
+      "signature": "(equations: 'dict[str, Any]', reconstructed: 'Any', direct: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "ModularLinearSolution",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ModularLinearSolution",
+      "signature": "(prime: 'int', solvable: 'bool', particular: 'tuple[int, ...] | None', kernel_basis: 'tuple[tuple[int, ...], ...]', pivot_columns: 'tuple[int, ...]', obstruction_rows: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "MovingPacketSystem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "MovingPacketSystem",
+      "signature": "(projectors: 'Callable[[float], Iterable[Any]]', derivatives: 'Callable[[float], Iterable[Any]]', *, tolerance: 'float' = 1e-09, reference_time: 'float' = 0.0) -> 'None'"
+    },
+    {
+      "implementation_module": "collections.abc",
+      "kind": "data",
+      "name": "MultilinearOperation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "Callable",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.coordinates",
+      "kind": "class",
+      "name": "NonlinearPacketMap",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "NonlinearPacketMap",
+      "signature": "(function: 'Callable[[Any], Any]', source: 'PacketSystem', target: 'PacketSystem', name: 'str' = 'nonlinear packet map') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.defects",
+      "kind": "class",
+      "name": "NonlinearRefinementDefect",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "NonlinearRefinementDefect",
+      "signature": "(fine_map: 'Callable[[Any], Any]', coarse_map: 'Callable[[Any], Any]', coarsen_source: 'Any', coarsen_target: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.elimination",
+      "kind": "class",
+      "name": "NonlinearSchurElimination",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "NonlinearSchurElimination",
+      "signature": "(retained_provider: 'DerivativeProvider', hidden_provider: 'DerivativeProvider', retained_dimension: 'int', hidden_dimension: 'int', base_retained: 'Any', base_hidden: 'Any', *, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.obstruction",
+      "kind": "class",
+      "name": "ObstructionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ObstructionResult",
+      "signature": "(vanishes: 'bool', obstruction_coordinates: 'tuple[Any, ...]', cokernel_dimension: 'int', correction: 'Any | None', kernel_basis: 'tuple[Any, ...]', residual: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.obstruction",
+      "kind": "class",
+      "name": "ObstructionSquare",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ObstructionSquare",
+      "signature": "(source_correction: 'Any', target_correction: 'Any', source_map: 'Any', target_map: 'Any', backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float' = 1e-10) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "OrderedRootedTree",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "OrderedRootedTree",
+      "signature": "(children: \"tuple['OrderedRootedTree', ...]\" = ()) -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA_VERSION",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA_VERSION",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "PacketDerivativeResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketDerivativeResult",
+      "signature": "(time: 'float', step: 'float', maximum_derivative_residual: 'float', tangent_residual: 'float', partition_derivative_residual: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJet",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJet",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', output_index: 'int', input_indices: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetAddress",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetAddress",
+      "signature": "(output: 'str', inputs: 'tuple[str, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetBatchResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetBatchResult",
+      "signature": "(evaluations: 'tuple[PacketJetEvaluation, ...]', reconstructed: 'Any', direct: 'Any', derivative_calls: 'int', input_projections: 'int', output_projections: 'int', pruned_blocks: 'int', backend: 'str', returned_to_host: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "class",
+      "name": "PacketJetCoefficient",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetCoefficient",
+      "signature": "(indices: 'tuple[int, ...]', value: 'tuple[Any, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetComplexityEstimate",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetComplexityEstimate",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', source_packets: 'int', target_packets: 'int', family_addresses: 'int', active_addresses: 'int', pruned_addresses: 'int', input_groups: 'int', naive_derivative_calls: 'int', planned_derivative_calls: 'int', projected_input_vectors: 'int', output_projections: 'int', dense_basis_evaluations: 'int', dense_tensor_elements: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetEvaluation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetEvaluation",
+      "signature": "(address: 'PacketJetAddress', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetExecutionPlan",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetExecutionPlan",
+      "signature": "(order: 'int', source_names: 'tuple[str, ...]', target_names: 'tuple[str, ...]', groups: 'tuple[PacketJetInputGroup, ...]', active_addresses: 'tuple[PacketJetAddress, ...]', pruned_addresses: 'tuple[PacketJetAddress, ...]', support_was_supplied: 'bool', support_complete: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetFamily",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetFamily",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', order: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetInputGroup",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetInputGroup",
+      "signature": "(inputs: 'tuple[int, ...]', outputs: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetProfileReport",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetProfileReport",
+      "signature": "(estimate: 'PacketJetComplexityEstimate', stages: 'tuple[RuntimeStageProfile, ...]', environment: 'Mapping[str, Any]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "class",
+      "name": "PacketJetSnapshot",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetSnapshot",
+      "signature": "(address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', coefficients: 'tuple[PacketJetCoefficient, ...]', capture_certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetSnapshotStreamReader",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetSnapshotStreamReader",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamChunkRecord",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetStreamChunkRecord",
+      "signature": "(index: 'int', filename: 'str', basis_start: 'int', basis_stop: 'int', coefficient_start: 'int', coefficient_stop: 'int', payload_sha256: 'str', byte_count: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamManifest",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetStreamManifest",
+      "signature": "(state: 'StreamState', producer_version: 'str', address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', tolerance: 'float', dense_coefficient_count: 'int', capture_mode: 'CaptureMode', source_digest: 'str', metadata_sha256: 'str', chunk_size: 'int', evaluations_completed: 'int', coefficients_completed: 'int', maximum_omitted_basis_norm: 'float', chunks: 'tuple[PacketJetStreamChunkRecord, ...]', capture_certificate: 'Certificate | None', stream_sha256: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamSelection",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetStreamSelection",
+      "signature": "(coefficient_start: 'int', coefficient_stop: 'int', coefficients: 'tuple[PacketJetCoefficient, ...]', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamWriteResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetStreamWriteResult",
+      "signature": "(destination: 'Path', active_path: 'Path', completed: 'bool', resumed: 'bool', chunks_written: 'int', evaluations_written: 'int', coefficients_written: 'int', manifest: 'PacketJetStreamManifest', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetSupport",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketJetSupport",
+      "signature": "(order: 'int', nonzero: 'tuple[PacketJetAddress, ...]', zero: 'tuple[PacketJetAddress, ...]', untested: 'tuple[PacketJetAddress, ...]', evaluations: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "types",
+      "kind": "data",
+      "name": "PacketLabel",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "UnionType",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketTaylorResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketTaylorResult",
+      "signature": "(approximation: 'Any', observed: 'Any', truncation_residual: 'float', order_certificates: 'tuple[Certificate, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "PacketTreeResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PacketTreeResult",
+      "signature": "(value: 'Any', packet_values: 'tuple[Any, ...]', evaluated_blocks: 'int', pruned_blocks: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "Partition",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "tuple",
+      "signature": "(iterable=(), /)"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "PolynomialDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "PolynomialFixedPointProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PolynomialFixedPointProblem",
+      "signature": "(seed: 'Any', operations: 'Mapping[int, MultilinearOperation]', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'polynomial fixed-point problem') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "class",
+      "name": "PolynomialLiftProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "PolynomialLiftProblem",
+      "signature": "(function: 'Callable[[tuple[int, ...]], Iterable[int]]', jacobian: 'Callable[[tuple[int, ...]], Any]', point: 'Any', *, prime: 'int', depth: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "ProjectiveLimitRecord",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ProjectiveLimitRecord",
+      "signature": "(verified_prefix_depth: 'int', separated: 'bool', complete: 'bool', continuous: 'bool', compatible_infinite_branch: 'bool', conclusion: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "RightInverseCorrectionProblem",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "RightInverseCorrectionProblem",
+      "signature": "(linear_map: 'Any', right_inverse: 'Any', nonlinear: 'Callable[[np.ndarray], Any]', target: 'Any', *, radius: 'float', lipschitz_bound: 'float', tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.correction",
+      "kind": "class",
+      "name": "RightInverseCorrectionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "RightInverseCorrectionResult",
+      "signature": "(solution: 'np.ndarray', iterations: 'int', contraction_factor: 'float', equation_residual: 'float', fixed_point_residual: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeProfileSample",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "RuntimeProfileSample",
+      "signature": "(duration_ns: 'int', traced_peak_bytes: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeStageProfile",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "RuntimeStageProfile",
+      "signature": "(name: 'str', scope: 'str', warmup: 'int', samples: 'tuple[RuntimeProfileSample, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.elimination",
+      "kind": "class",
+      "name": "SchurDerivativeResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SchurDerivativeResult",
+      "signature": "(hidden_jacobian: 'Any', hidden_inverse: 'Any', implicit_derivative: 'Any', reduced_derivative: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.elimination",
+      "kind": "class",
+      "name": "SchurSecondDerivativeResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SchurSecondDerivativeResult",
+      "signature": "(lifted_left: 'Any', lifted_right: 'Any', implicit_second_derivative: 'Any', reduced_second_derivative: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparsePolynomialDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SparsePolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, SparseSymmetricTensor | Mapping[tuple[int, ...], Any] | Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'sparse polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseSymmetricTensor",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SparseSymmetricTensor",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', entries: 'tuple[SparseTensorEntry, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseTensorEntry",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SparseTensorEntry",
+      "signature": "(output: 'int', inputs: 'tuple[int, ...]', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "SpectralSequenceEntry",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SpectralSequenceEntry",
+      "signature": "(page: 'int', filtration_degree: 'int', complementary_degree: 'int', total_degree: 'int', dimension: 'int', outgoing_rank: 'int', incoming_rank: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "class",
+      "name": "SpectralSequencePage",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SpectralSequencePage",
+      "signature": "(page: 'int', entries: 'tuple[SpectralSequenceEntry, ...]', total_dimension: 'int', total_differential_rank: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "StreamedPacketJetEvaluation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "StreamedPacketJetEvaluation",
+      "signature": "(value: 'np.ndarray', coefficient_start: 'int', coefficient_stop: 'int', total_coefficients: 'int', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "SympyDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "SympyDerivativeProvider",
+      "signature": "(expressions: 'Sequence[Any]', variables: 'Sequence[Any]', *, name: 'str' = 'SymPy derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "class",
+      "name": "TorchDerivativeProvider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TorchDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', max_order: 'int' = 4, dtype: 'str' = 'float64', device: 'str | None' = None, name: 'str' = 'PyTorch derivative provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "TransportEdge",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TransportEdge",
+      "signature": "(source: 'str', target: 'str', matrix: 'Any', name: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.holonomy",
+      "kind": "class",
+      "name": "TransportGraph",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TransportGraph",
+      "signature": "(vertices: 'Iterable[str]', edges: 'Iterable[TransportEdge]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float' = 1e-10) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "class",
+      "name": "TransportRefinementResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TransportRefinementResult",
+      "signature": "(coarse_steps: 'int', fine_steps: 'int', coarse: 'np.ndarray', fine: 'np.ndarray', difference: 'float', endpoint_intertwining: 'float', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "TreeExpansionResult",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TreeExpansionResult",
+      "signature": "(value: 'Any', picard_value: 'Any', terms: 'tuple[TreeTerm, ...]', depth: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "class",
+      "name": "TreeTerm",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "TreeTerm",
+      "signature": "(tree: 'OrderedRootedTree', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "autodiff_provider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "autodiff_provider",
+      "signature": "(framework: 'str', function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', *, max_order: 'int' = 4, **options: 'Any') -> 'JaxDerivativeProvider | TorchDerivativeProvider'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "automatic_derivative_provider",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "autodiff_provider",
+      "signature": "(framework: 'str', function: 'Callable[[Any], Any]', source_dimension: 'int', target_dimension: 'int', *, max_order: 'int' = 4, **options: 'Any') -> 'JaxDerivativeProvider | TorchDerivativeProvider'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "available_ad_frameworks",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "available_ad_frameworks",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.autodiff",
+      "kind": "function",
+      "name": "available_autodiff_backends",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "available_ad_frameworks",
+      "signature": "() -> 'dict[str, bool]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "function",
+      "name": "build_lift_tree",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "build_lift_tree",
+      "signature": "(problem_factory: 'Callable[[tuple[int, ...], int], LinearLiftProblem | PolynomialLiftProblem]', roots: 'Iterable[tuple[int, ...]]', *, prime: 'int', start_depth: 'int', max_depth: 'int', max_nodes: 'int' = 100000) -> 'FiniteLiftTree'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "capture_packet_jet_stream",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "capture_packet_jet_stream",
+      "signature": "(jet: 'PacketJet', path: 'str | os.PathLike[str]', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 10000000, chunk_size: 'int' = 1024, evaluation_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "catalan_number",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "catalan_number",
+      "signature": "(index: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "compile_packet_jet_plan",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "compile_packet_jet_plan",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, max_addresses: 'int' = 1000000) -> 'PacketJetExecutionPlan'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "function",
+      "name": "conditional_projective_limit_completion",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "conditional_projective_limit_completion",
+      "signature": "(verified_prefix_depth: 'int', *, separated: 'bool', complete: 'bool', continuous: 'bool', compatible_infinite_branch: 'bool') -> 'ConditionalResult[ProjectiveLimitRecord]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "function",
+      "name": "cupy_runtime_status",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "cupy_runtime_status",
+      "signature": "() -> 'CuPyRuntimeStatus'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.transport",
+      "kind": "function",
+      "name": "direct_packet_rotation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "direct_packet_rotation",
+      "signature": "(source: 'Iterable[Any]', target: 'Iterable[Any]', *, tolerance: 'float' = 1e-10) -> 'DirectRotationResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "divided_square_packets",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "divided_square_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', differential: 'LinearOperation', bracket: 'BracketOperation', divided_square: 'LinearOperation', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'DividedSquareResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "estimate_packet_jet_complexity",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "estimate_packet_jet_complexity",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, plan: 'PacketJetExecutionPlan | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetComplexityEstimate'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jet_plan",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "execute_packet_jet_plan",
+      "signature": "(plan: 'PacketJetExecutionPlan', family: 'PacketJetFamily', directions: 'Sequence[Any]', *, tolerance: 'float | None' = None) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jets",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "execute_packet_jets",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, tolerance: 'float | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "faa_di_bruno",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "faa_di_bruno",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', point: 'Any', directions: 'Sequence[Any]', *, direct_provider: 'DerivativeProvider | None' = None, tolerance: 'float' = 1e-09, retain_terms: 'bool' = True) -> 'FaaDiBrunoResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "higher_maurer_cartan_packets",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "higher_maurer_cartan_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', operations: 'Mapping[int, GradedOperationCallable]', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'HigherMaurerCartanResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "labeled_composition_term_count",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "labeled_composition_term_count",
+      "signature": "(order: 'int', intermediate_packets: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "load_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "load_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_coefficients: 'int' = 1000000, verify_chunks: 'bool' = True) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "majorant_convergence",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "majorant_convergence",
+      "signature": "(seed_norm: 'float', operation_norms: 'Mapping[int, float]', radius: 'float', *, tolerance: 'float' = 1e-12) -> 'MajorantConvergence'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.graded",
+      "kind": "function",
+      "name": "maurer_cartan_packets",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "maurer_cartan_packets",
+      "signature": "(group: 'FiniteAbelianGroup', components: 'Mapping[str, Any]', differential: 'LinearOperation', bracket: 'BracketOperation', *, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10) -> 'MaurerCartanResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "nonlinear_cupy_available",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "nonlinear_cupy_available",
+      "signature": "() -> 'bool'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "open_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "open_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'PacketJetSnapshotStreamReader'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "ordered_rooted_trees",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ordered_rooted_trees",
+      "signature": "(max_height: 'int', arities: 'Sequence[int]', *, max_trees: 'int' = 100000) -> 'tuple[OrderedRootedTree, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "ordered_tree_count",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ordered_tree_count",
+      "signature": "(max_height: 'int', arities: 'Sequence[int]') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "ordered_trees_with_leaves",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "ordered_trees_with_leaves",
+      "signature": "(leaves: 'int', arities: 'Sequence[int]', *, max_trees: 'int' = 100000) -> 'tuple[OrderedRootedTree, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "packet_faa_di_bruno",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "packet_faa_di_bruno",
+      "signature": "(outer: 'DerivativeProvider', inner: 'DerivativeProvider', point: 'Any', directions: 'Sequence[Any]', source: 'PacketSystem', intermediate: 'PacketSystem', target: 'PacketSystem', *, input_packets: 'Sequence[PacketLabel]', output_packet: 'PacketLabel', inner_support: 'Mapping[int, PacketJetSupport] | None' = None, outer_support: 'Mapping[int, PacketJetSupport] | None' = None, tolerance: 'float | None' = None, retain_terms: 'bool' = True, max_terms: 'int' = 1000000) -> 'FaaDiBrunoResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "packet_jet_benchmark_contract",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "packet_jet_benchmark_contract",
+      "signature": "(family: 'PacketJetFamily', *, backend: 'str', timing_scope: 'str' = 'kernel') -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "function",
+      "name": "packet_jet_support",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "packet_jet_support",
+      "signature": "(family: 'PacketJetFamily', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSupport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "function",
+      "name": "packet_taylor",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "packet_taylor",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', increment: 'Any', source: 'PacketSystem', target: 'PacketSystem', order: 'int', *, tolerance: 'float | None' = None) -> 'PacketTaylorResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "packet_tree_reconstruction",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "packet_tree_reconstruction",
+      "signature": "(problem: 'PolynomialFixedPointProblem', tree: 'OrderedRootedTree', packets: 'PacketSystem', *, zero_support: 'Mapping[int, PacketJetSupport] | None' = None, tolerance: 'float | None' = None) -> 'PacketTreeResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_operation",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "profile_operation",
+      "signature": "(name: 'str', operation: 'Callable[[], T]', *, repetitions: 'int' = 5, warmup: 'int' = 1, scope: 'str' = 'Python call including allocations and synchronization performed by the callable') -> 'RuntimeStageProfile'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_packet_jet_runtime",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "profile_packet_jet_runtime",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, jet: 'PacketJet | None' = None, repetitions: 'int' = 5, warmup: 'int' = 1, max_addresses: 'int' = 1000000, max_snapshot_evaluations: 'int' = 100000, include_stream_write: 'bool' = False, stream_chunk_size: 'int' = 1024) -> 'PacketJetProfileReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.trees",
+      "kind": "function",
+      "name": "quadratic_catalan_majorant",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "quadratic_catalan_majorant",
+      "signature": "(seed_norm: 'float', bilinear_norm: 'float', *, tolerance: 'float' = 1e-12) -> 'MajorantConvergence'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear",
+      "kind": "function",
+      "name": "require",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "require",
+      "signature": "() -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "save_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "save_packet_jet_snapshot_stream",
+      "signature": "(snapshot: 'PacketJetSnapshot', path: 'str | os.PathLike[str]', *, chunk_size: 'int' = 1024, coefficient_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "data",
+      "name": "set_partitions",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "set_partitions",
+      "signature": "(order: 'int') -> 'tuple[Partition, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "function",
+      "name": "snapshot_packet_jet",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "snapshot_packet_jet",
+      "signature": "(jet: 'PacketJet', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.lifting",
+      "kind": "function",
+      "name": "solve_mod_prime",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "solve_mod_prime",
+      "signature": "(matrix: 'Any', rhs: 'Any', prime: 'int') -> 'ModularLinearSolution'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear",
+      "kind": "function",
+      "name": "status",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "status",
+      "signature": "() -> komorebi_math.registry.FeatureSpec"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.composition",
+      "kind": "function",
+      "name": "stirling_second",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "stirling_second",
+      "signature": "(order: 'int', blocks: 'int') -> 'int'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.gpu",
+      "kind": "function",
+      "name": "validate_cupy_snapshot",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "validate_cupy_snapshot",
+      "signature": "(snapshot: 'PacketJetSnapshot', probes: 'Sequence[Sequence[Any]]', *, tolerance: 'float' = 1e-09) -> 'CuPyValidationResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.filtered",
+      "kind": "function",
+      "name": "verify_finite_filtered_branch",
+      "namespace": "komorebi_math.nonlinear",
+      "qualname": "verify_finite_filtered_branch",
+      "signature": "(source: 'FilteredVectorSpace', target: 'FilteredVectorSpace', map_function: 'Callable[[tuple[int, ...]], Sequence[int]]', approximations: 'Sequence[Sequence[int]]', *, start_depth: 'int' = 0) -> 'FiniteFilteredBranchResult'"
+    }
+  ]
+}

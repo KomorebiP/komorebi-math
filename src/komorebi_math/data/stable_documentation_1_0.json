@@ -1,0 +1,1186 @@
+{
+  "package_version": "1.0.0b4",
+  "schema": "komorebi-math.stable-documentation",
+  "schema_version": 1,
+  "symbols": [
+    {
+      "implementation_module": "komorebi_math.coordinates.analysis_synthesis",
+      "kind": "class",
+      "name": "AnalysisSynthesisBlocks",
+      "qualname": "AnalysisSynthesisBlocks",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(system: \"'AnalysisSynthesisSystem'\", groups: 'tuple[tuple[int, ...], ...]', blocks: 'tuple[tuple[np.ndarray, ...], ...]', operator: 'np.ndarray') -> None",
+      "summary": "Packet blocks of one operator under a declared analysis--synthesis atlas."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.analysis_synthesis",
+      "kind": "class",
+      "name": "AnalysisSynthesisSystem",
+      "qualname": "AnalysisSynthesisSystem",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(analysis: 'np.ndarray', synthesis: 'np.ndarray', source: 'str' = 'source', coordinates: 'str' = 'coordinates', tolerance: 'float' = 1e-12, theorem: 'str' = 'KM-AS-01') -> None",
+      "summary": "A finite analysis map ``A`` and synthesis map ``S`` with ``S A = I``."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "ApiCompatibilityReport",
+      "qualname": "ApiCompatibilityReport",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(reference_digest: 'str', current_digest: 'str', added: 'tuple[tuple[str, str], ...]', removed: 'tuple[tuple[str, str], ...]', kind_changed: 'tuple[tuple[str, str, str, str], ...]', signature_changed: 'tuple[tuple[str, str, str | None, str | None], ...]', strict_signatures: 'bool', certificate: 'Certificate') -> None",
+      "summary": "Structural differences between a reference and current API manifest."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "class",
+      "name": "ArithmeticPolyphase",
+      "qualname": "ArithmeticPolyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(modulus: 'int', channels: 'tuple[tuple[Number, ...], ...]', length: 'int') -> None",
+      "summary": "Exact residue channels of one finite arithmetic sequence."
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "Arrow",
+      "qualname": "Arrow",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', source: 'str', target: 'str') -> None",
+      "summary": "Arrow(name: 'str', source: 'str', target: 'str')"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "AssumptionError",
+      "qualname": "AssumptionError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised when a required mathematical assumption is not satisfied."
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "BackendUnavailableError",
+      "qualname": "BackendUnavailableError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised when an optional computation backend is not installed."
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Certificate",
+      "qualname": "Certificate",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(valid: 'bool', exactness: 'Exactness', residuals: 'dict[str, float]' = <factory>, tolerance: 'float | None' = None, assumptions_checked: 'tuple[str, ...]' = (), assumptions_unchecked: 'tuple[str, ...]' = (), diagnostics: 'dict[str, Any]' = <factory>, theorem_id: 'str | None' = None, message: 'str' = '') -> None",
+      "summary": "Machine readable validation record."
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ComputationResult",
+      "qualname": "ComputationResult",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None",
+      "summary": "A value paired with its execution certificate."
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ConditionalResult",
+      "qualname": "ConditionalResult",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None",
+      "summary": "A value whose conclusion depends on explicit unchecked assumptions."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.basis",
+      "kind": "class",
+      "name": "CoordinateAtlas",
+      "qualname": "CoordinateAtlas",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str' = 'coordinate atlas') -> None",
+      "summary": "A graph of exact coordinate systems and composable transforms."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.transform",
+      "kind": "class",
+      "name": "CoordinateTransform",
+      "qualname": "CoordinateTransform",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'str', target: 'str', matrix: 'Matrix', theorem: 'str', description: 'str' = '') -> None",
+      "summary": "An exact matrix that maps source coordinates to target coordinates."
+    },
+    {
+      "implementation_module": "pathlib",
+      "kind": "data",
+      "name": "DEFAULT_PORTABLE_CODEC_CONTRACT",
+      "qualname": "Path",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Path to the committed portable-codec compatibility contract."
+    },
+    {
+      "implementation_module": "pathlib",
+      "kind": "data",
+      "name": "DEFAULT_STABLE_SEMANTICS_FIXTURE",
+      "qualname": "Path",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Path to the committed stable-semantics fixture."
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "DimensionError",
+      "qualname": "DimensionError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised when matrix, vector, or packet dimensions do not agree."
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "DocumentMetadata",
+      "qualname": "DocumentMetadata",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(title: 'str' = 'Komorebi Math Export', author: 'str | None' = None, date: 'str | None' = None, abstract: 'str | None' = None, keywords: 'tuple[str, ...]' = ()) -> None",
+      "summary": "Metadata used by Markdown, HTML, and LaTeX document renderers."
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Equation",
+      "qualname": "Equation",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(latex: 'str', label: 'str | None' = None, numbered: 'bool' = False, description: 'str | None' = None) -> None",
+      "summary": "One LaTeX mathematical expression."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.transform",
+      "kind": "class",
+      "name": "ExactCoordinateTransform",
+      "qualname": "CoordinateTransform",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'str', target: 'str', matrix: 'Matrix', theorem: 'str', description: 'str' = '') -> None",
+      "summary": "An exact matrix that maps source coordinates to target coordinates."
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Exactness",
+      "qualname": "Exactness",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*values)",
+      "summary": "Enum where members are also (and must be) strings"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "ExactnessError",
+      "qualname": "ExactnessError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised when an exact operation is requested from an inexact backend."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.basis",
+      "kind": "class",
+      "name": "FiniteBasis",
+      "qualname": "FiniteBasis",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', vectors: 'tuple[Vector, ...]', labels: 'tuple[str, ...]' = (), description: 'str' = '') -> None",
+      "summary": "A linearly independent finite basis inside a rational ambient space."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.formal",
+      "kind": "class",
+      "name": "FormalCoordinateChange",
+      "qualname": "FormalCoordinateChange",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', coefficients: 'Vector', source: 'str' = 'source formal coordinate', target: 'str' = 'target formal coordinate') -> None",
+      "summary": "A finite exact jet ``phi(z)=a_1 z+a_2 z^2+...``."
+    },
+    {
+      "implementation_module": "komorebi_math.generating.series",
+      "kind": "class",
+      "name": "FormalSeries",
+      "qualname": "FormalSeries",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(basis: 'WeightedMonomialBasis', coefficients: 'Iterable[int | Fraction]') -> 'None'",
+      "summary": "A finite exact series ``sum a_n z^n/gamma_n``."
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "KomorebiMathError",
+      "qualname": "KomorebiMathError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Base class for all public package exceptions."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "class",
+      "name": "LatticePolyphaseCoordinates",
+      "qualname": "LatticePolyphaseCoordinates",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(channels: 'dict[tuple[int, ...], np.ndarray]', strides: 'tuple[int, ...]', original_shape: 'tuple[int, ...]') -> None",
+      "summary": "Rectangular lattice residue channels of a finite multidimensional array."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "class",
+      "name": "LatticePolyphaseRefinement",
+      "qualname": "LatticePolyphaseRefinement",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coarse_strides: 'tuple[int, ...]', fine_strides: 'tuple[int, ...]') -> None",
+      "summary": "Componentwise refinement of rectangular lattice polyphase coordinates."
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "MathDocument",
+      "qualname": "MathDocument",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(metadata: 'DocumentMetadata' = <factory>, blocks: 'list[DocumentBlock]' = <factory>) -> None",
+      "summary": "A renderer independent mathematical document."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.numeric",
+      "kind": "class",
+      "name": "NumericCoordinateTransform",
+      "qualname": "NumericCoordinateTransform",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'str', target: 'str', matrix: 'np.ndarray', theorem: 'str' = 'CC.NM1', description: 'str' = '', tolerance: 'float' = 1e-12) -> None",
+      "summary": "A finite numerical matrix between coordinate systems."
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorGrammar",
+      "qualname": "OperatorGrammar",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(vertices: 'Iterable[str]', arrows: 'Mapping[str, tuple[str, str]] | Iterable[Arrow]', relations: 'Iterable[OperatorRelation]' = ()) -> 'None'",
+      "summary": "A finite quiver with optional linear path relations."
+    },
+    {
+      "implementation_module": "komorebi_math.core.realization",
+      "kind": "class",
+      "name": "OperatorRealization",
+      "qualname": "OperatorRealization",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(grammar: 'OperatorGrammar', spaces: 'Mapping[str, int]', operators: 'Mapping[str, Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, validate_relations: 'bool' = True, tolerance: 'float | None' = None) -> 'None'",
+      "summary": "Assign vector space dimensions and matrices to a typed grammar."
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorRelation",
+      "qualname": "OperatorRelation",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', terms: 'tuple[tuple[Any, OperatorWord], ...]') -> None",
+      "summary": "A linear relation among parallel operator words."
+    },
+    {
+      "implementation_module": "komorebi_math.core.grammar",
+      "kind": "class",
+      "name": "OperatorWord",
+      "qualname": "OperatorWord",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(arrows: 'tuple[str, ...]', source: 'str', target: 'str') -> None",
+      "summary": "A typed path written in the order in which arrows act."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_CODEC_CONTRACT_SCHEMA",
+      "qualname": "str",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Schema identifier for portable-codec compatibility contracts."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_CODEC_CONTRACT_SCHEMA_VERSION",
+      "qualname": "int",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Current portable-codec compatibility-contract schema version."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA",
+      "qualname": "str",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Schema identifier for portable persistence envelopes."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA_VERSION",
+      "qualname": "int",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Current portable persistence schema version."
+    },
+    {
+      "implementation_module": "komorebi_math.core.packets",
+      "kind": "class",
+      "name": "PacketCoordinates",
+      "qualname": "PacketCoordinates",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(system: \"'PacketSystem'\", values: 'tuple[Any, ...]') -> None",
+      "summary": "PacketCoordinates(system: \"'PacketSystem'\", values: 'tuple[Any, ...]')"
+    },
+    {
+      "implementation_module": "komorebi_math.core.operators",
+      "kind": "class",
+      "name": "PacketOperator",
+      "qualname": "PacketOperator",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'PacketSystem', target: 'PacketSystem', blocks: 'tuple[tuple[Any, ...], ...]') -> None",
+      "summary": "An operator represented by all target by source packet blocks."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "class",
+      "name": "PacketRefinement",
+      "qualname": "PacketRefinement",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coarse: 'PacketSystem', fine: 'PacketSystem', parent_of_fine: 'tuple[int, ...]') -> None",
+      "summary": "One exact refinement from a coarse packet system to a fine system."
+    },
+    {
+      "implementation_module": "komorebi_math.core.packets",
+      "kind": "class",
+      "name": "PacketSystem",
+      "qualname": "PacketSystem",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(projectors: 'Sequence[Any]', *, names: 'Sequence[str] | None' = None, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None, validate: 'bool | None' = None) -> 'None'",
+      "summary": "A complete finite family of pairwise annihilating idempotents."
+    },
+    {
+      "implementation_module": "komorebi_math.export.model",
+      "kind": "class",
+      "name": "Paragraph",
+      "qualname": "Paragraph",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(text: 'str') -> None",
+      "summary": "One prose paragraph whose text is escaped by each renderer."
+    },
+    {
+      "implementation_module": "types",
+      "kind": "data",
+      "name": "PolyphaseCoordinateRecord",
+      "qualname": "UnionType",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Union of the stable one-dimensional polyphase coordinate record types."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "class",
+      "name": "PolyphaseCoordinates",
+      "qualname": "PolyphaseCoordinates",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(channels: 'tuple[np.ndarray, ...]', order: 'int', axis: 'int', original_shape: 'tuple[int, ...]') -> None",
+      "summary": "Residue channels of a finite array along one axis."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "class",
+      "name": "PolyphaseRefinement",
+      "qualname": "PolyphaseRefinement",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coarse_order: 'int', fine_order: 'int') -> None",
+      "summary": "One canonical refinement between divisible one-dimensional packet orders."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "class",
+      "name": "PolyphaseRefinementTower",
+      "qualname": "PolyphaseRefinementTower",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(orders: 'tuple[int, ...]') -> None",
+      "summary": "A finite chain of compatible polyphase orders."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "class",
+      "name": "PolyphaseSystem",
+      "qualname": "PolyphaseSystem",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(order: 'int', axis: 'int' = -1) -> None",
+      "summary": "Reusable one axis polyphase analysis and synthesis system."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableCodec",
+      "qualname": "PortableCodec",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(tag: 'str', version: 'int', type_: 'type[Any]', encoder: 'Encoder', decoder: 'Decoder') -> None",
+      "summary": "One explicit type codec in the portable persistence registry."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "class",
+      "name": "PortableCodecCompatibilityReport",
+      "qualname": "PortableCodecCompatibilityReport",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(reference_version: 'str', current_version: 'str', added: 'tuple[str, ...]', removed: 'tuple[str, ...]', type_changed: 'tuple[tuple[str, str, str], ...]', version_decreased: 'tuple[tuple[str, int, int], ...]', version_increased: 'tuple[tuple[str, int, int], ...]', missing_migrations: 'tuple[tuple[str, int, int], ...]', certificate: 'Certificate') -> None",
+      "summary": "Comparison of a committed codec contract with the active registry."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "class",
+      "name": "PortableCodecContract",
+      "qualname": "PortableCodecContract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(package_version: 'str', entries: 'tuple[PortableCodecContractEntry, ...]', schema: 'str' = 'komorebi-math.portable-codec-contract', schema_version: 'int' = 1) -> None",
+      "summary": "Deterministic package-owned portable codec inventory."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "class",
+      "name": "PortableCodecContractEntry",
+      "qualname": "PortableCodecContractEntry",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(tag: 'str', version: 'int', implementation_type: 'str') -> None",
+      "summary": "One codec identity frozen by the persistence compatibility contract."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableMigration",
+      "qualname": "PortableMigration",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator') -> None",
+      "summary": "One explicit, adjacent codec-data migration."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiManifest",
+      "qualname": "PublicApiManifest",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(package_version: 'str', namespaces: 'tuple[str, ...]', symbols: 'tuple[PublicApiSymbol, ...]', schema: 'str' = 'komorebi-math.public-api', schema_version: 'int' = 1, stability_level: 'str' = 'pre-beta-additive') -> None",
+      "summary": "A deterministic snapshot of selected ``__all__`` namespaces."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiSymbol",
+      "qualname": "PublicApiSymbol",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(namespace: 'str', name: 'str', kind: 'str', implementation_module: 'str', qualname: 'str', signature: 'str | None') -> None",
+      "summary": "One exported public symbol in a deterministic API manifest."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "class",
+      "name": "RefinementTower",
+      "qualname": "RefinementTower",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(refinements: 'tuple[PacketRefinement, ...] | list[PacketRefinement]') -> 'None'",
+      "summary": "A finite sequence of exact packet refinements."
+    },
+    {
+      "implementation_module": "komorebi_math.core.realization",
+      "kind": "class",
+      "name": "RelationResidual",
+      "qualname": "RelationResidual",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', residual: 'float', satisfied: 'bool') -> None",
+      "summary": "RelationResidual(name: 'str', residual: 'float', satisfied: 'bool')"
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "class",
+      "name": "ResidueCoordinates",
+      "qualname": "ResidueCoordinates",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(modulus: 'int', channels: 'tuple[np.ndarray, ...]', length: 'int') -> None",
+      "summary": "Ordinary polyphase channels for one finite sequence."
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "ResourceLimitError",
+      "qualname": "ResourceLimitError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised before a computation exceeds an explicit resource contract."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "STABLE_API_STABILITY_LEVEL",
+      "qualname": "str",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Stability-policy identifier for the frozen stable namespace."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "STABLE_PUBLIC_NAMESPACES",
+      "qualname": "tuple",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Canonical namespace tuple recorded by the frozen stable manifest."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "STABLE_SEMANTICS_SCHEMA",
+      "qualname": "str",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Schema identifier for stable-semantics fixtures."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "STABLE_SEMANTICS_SCHEMA_VERSION",
+      "qualname": "int",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Current stable-semantics fixture schema version."
+    },
+    {
+      "implementation_module": "komorebi_math.core.seeds",
+      "kind": "class",
+      "name": "SeedSystem",
+      "qualname": "SeedSystem",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(operators: 'Mapping[str, Any] | Sequence[Any]', seeds: 'Sequence[Any]', *, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None) -> 'None'",
+      "summary": "A finite family of operators acting on a finite seed family."
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "class",
+      "name": "Settings",
+      "qualname": "Settings",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(backend: 'str' = 'numpy', tolerance: 'float' = 1e-10, validate_on_construction: 'bool' = True) -> None",
+      "summary": "Settings(backend: 'str' = 'numpy', tolerance: 'float' = 1e-10, validate_on_construction: 'bool' = True)"
+    },
+    {
+      "implementation_module": "komorebi_math.stable_contract",
+      "kind": "class",
+      "name": "StableContractReport",
+      "qualname": "StableContractReport",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(api: 'ApiCompatibilityReport', semantics: 'StableSemanticReport', persistence: 'PortableCodecCompatibilityReport', certificate: 'Certificate') -> None",
+      "summary": "Complete 1.0-candidate compatibility report."
+    },
+    {
+      "implementation_module": "komorebi_math.stable_semantics",
+      "kind": "class",
+      "name": "StableSemanticCaseResult",
+      "qualname": "StableSemanticCaseResult",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', kind: 'str', expected: 'Any', observed: 'Any', passed: 'bool', detail: 'str' = '') -> None",
+      "summary": "Observed and expected canonical values for one semantic law."
+    },
+    {
+      "implementation_module": "komorebi_math.stable_semantics",
+      "kind": "class",
+      "name": "StableSemanticReport",
+      "qualname": "StableSemanticReport",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'Path', fixture_digest: 'str', results: 'tuple[StableSemanticCaseResult, ...]', certificate: 'Certificate') -> None",
+      "summary": "Aggregate result for the committed stable semantic fixture."
+    },
+    {
+      "implementation_module": "komorebi_math.core.graphs",
+      "kind": "class",
+      "name": "TransferGraph",
+      "qualname": "TransferGraph",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(adjacency: 'Sequence[Sequence[bool | int]]', *, names: 'Sequence[str] | None' = None) -> 'None'",
+      "summary": "A finite directed graph with adjacency stored as source by target."
+    },
+    {
+      "implementation_module": "komorebi_math.core.transfer",
+      "kind": "class",
+      "name": "TransferPath",
+      "qualname": "TransferPath",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(vertices: 'tuple[int, ...]', product: 'Any') -> None",
+      "summary": "TransferPath(vertices: 'tuple[int, ...]', product: 'Any')"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "ValidationError",
+      "qualname": "ValidationError",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Raised when a mathematical object fails a declared validation rule."
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "__version__",
+      "qualname": "str",
+      "reference": "docs/STABLE_API.md",
+      "signature": null,
+      "summary": "Installed Komorebi Math package version."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "function",
+      "name": "arithmetic_mixed_radix_address",
+      "qualname": "mixed_radix_address",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(digits: 'Iterable[int]', radices: 'Iterable[int]') -> 'int'",
+      "summary": "Encode nested residue digits in least significant first order."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "function",
+      "name": "arithmetic_mixed_radix_digits",
+      "qualname": "mixed_radix_digits",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(address: 'int', radices: 'Iterable[int]') -> 'tuple[int, ...]'",
+      "summary": "Decode one mixed radix address in least significant first order."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "function",
+      "name": "arithmetic_polyphase_analyze",
+      "qualname": "polyphase_analyze",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(values: 'Iterable[Number]', modulus: 'int') -> 'ArithmeticPolyphase'",
+      "summary": "Split a finite sequence into exact residue channels."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "function",
+      "name": "arithmetic_polyphase_synthesize",
+      "qualname": "polyphase_synthesize",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(channels: 'Iterable[Iterable[Number]]', length: 'int | None' = None) -> 'tuple[Number, ...]'",
+      "summary": "Interleave exact residue channels."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.basis",
+      "kind": "function",
+      "name": "basis_from_matrix",
+      "qualname": "basis_from_matrix",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str', matrix: 'Iterable[Iterable[Scalar]]', *, labels: 'Sequence[str]' = (), description: 'str' = '') -> 'FiniteBasis'",
+      "summary": "Construct a basis from a matrix whose columns are basis vectors."
+    },
+    {
+      "implementation_module": "komorebi_math.core.transfer",
+      "kind": "function",
+      "name": "block_from_paths",
+      "qualname": "block_from_paths",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(operator: 'PacketOperator', *, source: 'int', target: 'int', length: 'int', tolerance: 'float | None' = None) -> 'ComputationResult[Any]'",
+      "summary": "Reconstruct one block of an operator power from packet paths."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "function",
+      "name": "check_portable_codec_contract",
+      "qualname": "check_portable_codec_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'PortableCodecCompatibilityReport'",
+      "summary": "Compare the active registry with the committed codec contract."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "check_stable_api",
+      "qualname": "check_stable_api",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'ApiCompatibilityReport'",
+      "summary": "Check the 1.0-candidate namespace under strict signature compatibility."
+    },
+    {
+      "implementation_module": "komorebi_math.stable_contract",
+      "kind": "function",
+      "name": "check_stable_contract",
+      "qualname": "check_stable_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*, api_manifest: 'str | Path | None' = None, semantic_fixture: 'str | Path | None' = None, persistence_contract: 'str | Path | None' = None) -> 'StableContractReport'",
+      "summary": "Run every compatibility layer required by the frozen 1.0 surface."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "coarsen_lattice_polyphase",
+      "qualname": "coarsen_lattice_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'LatticePolyphaseCoordinates', coarse_strides: 'Iterable[int]', *, copy: 'bool' = True) -> 'LatticePolyphaseCoordinates'",
+      "summary": "Coarsen rectangular lattice coordinates to componentwise coarser strides."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "coarsen_polyphase",
+      "qualname": "coarsen_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinateRecord', coarse_order: 'int', *, copy: 'bool' = True) -> 'PolyphaseCoordinateRecord'",
+      "summary": "Coarsen any supported one-dimensional coordinate record to ``coarse_order``."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.towers",
+      "kind": "function",
+      "name": "common_refinement",
+      "qualname": "common_refinement",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(left: 'PacketSystem', right: 'PacketSystem', *, names: 'tuple[str, ...] | None' = None) -> 'tuple[PacketSystem, PacketRefinement, PacketRefinement]'",
+      "summary": "Construct the common refinement of two commuting packet systems."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "function",
+      "name": "compare_portable_codec_contract",
+      "qualname": "compare_portable_codec_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(reference: 'PortableCodecContract', current: 'PortableCodecContract | None' = None) -> 'PortableCodecCompatibilityReport'",
+      "summary": "Check tag, type, version, and adjacent migration compatibility."
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "configure",
+      "qualname": "configure",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*, backend: 'str | None' = None, tolerance: 'float | None' = None, validate_on_construction: 'bool | None' = None) -> 'Settings'",
+      "summary": "Update and return the runtime settings in the current context."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.polynomials",
+      "kind": "function",
+      "name": "connection_transform",
+      "qualname": "connection_transform",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(source: 'PolynomialFamily', target: 'PolynomialFamily', degree: 'int', *, budget: 'CoordinateBudget' = CoordinateBudget(maximum_matrix_dimension=512, maximum_polynomial_degree=512, maximum_horizon=4096, maximum_exact_entries=1000000)) -> 'CoordinateTransform'",
+      "summary": "Return target coordinates of source basis vectors through one degree."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "function",
+      "name": "create_portable_codec_contract",
+      "qualname": "create_portable_codec_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*, package_version: 'str | None' = None) -> 'PortableCodecContract'",
+      "summary": "Snapshot every package-owned codec in deterministic tag order."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "create_stable_api_manifest",
+      "qualname": "create_stable_api_manifest",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*, package_version: 'str | None' = None) -> 'PublicApiManifest'",
+      "summary": "Build the curated 1.0-candidate namespace manifest."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "dumps_portable",
+      "qualname": "dumps_portable",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'Any', *, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'str'",
+      "summary": "Serialize one value into a complete digest-checked JSON envelope."
+    },
+    {
+      "implementation_module": "komorebi_math.generating.basis",
+      "kind": "function",
+      "name": "factorial_power_basis",
+      "qualname": "factorial_power_basis",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(power: 'int', *, name: 'str | None' = None) -> 'WeightedMonomialBasis'",
+      "summary": "Return ``z^n/(n!)^power`` for a positive integer power."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.formal",
+      "kind": "function",
+      "name": "formal_coordinate_from_iterable",
+      "qualname": "formal_coordinate_from_iterable",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coefficients: 'Iterable[Scalar]', *, name: 'str' = 'custom formal coordinate', source: 'str' = 'source formal coordinate', target: 'str' = 'target formal coordinate') -> 'FormalCoordinateChange'",
+      "summary": "Construct a formal coordinate change from exact coefficients."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.combinatorial",
+      "kind": "function",
+      "name": "forward_difference_transform",
+      "qualname": "forward_difference_transform",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(size: 'int', *, budget: 'CoordinateBudget' = CoordinateBudget(maximum_matrix_dimension=512, maximum_polynomial_degree=512, maximum_horizon=4096, maximum_exact_entries=1000000)) -> 'CoordinateTransform'",
+      "summary": "Map sampled values ``f(0),...,f(N)`` to forward differences at zero."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "from_portable_data",
+      "qualname": "from_portable_data",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'",
+      "summary": "Decode one previously encoded portable payload tree."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.classical",
+      "kind": "function",
+      "name": "get_polynomial_family",
+      "qualname": "get_polynomial_family",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(name: 'str') -> 'PolynomialFamily'",
+      "summary": "Return one built-in graded polynomial family by name or short alias."
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "get_settings",
+      "qualname": "get_settings",
+      "reference": "docs/STABLE_API.md",
+      "signature": "() -> 'Settings'",
+      "summary": "Return the active runtime settings for the current context."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "lattice_polyphase_analyze",
+      "qualname": "lattice_polyphase_analyze",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(signal: 'Any', strides: 'Iterable[int]', *, copy: 'bool' = True) -> 'LatticePolyphaseCoordinates'",
+      "summary": "Split an array into channels indexed by a rectangular lattice quotient."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "lattice_polyphase_coarsen",
+      "qualname": "coarsen_lattice_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'LatticePolyphaseCoordinates', coarse_strides: 'Iterable[int]', *, copy: 'bool' = True) -> 'LatticePolyphaseCoordinates'",
+      "summary": "Coarsen rectangular lattice coordinates to componentwise coarser strides."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "lattice_polyphase_refine",
+      "qualname": "refine_lattice_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'LatticePolyphaseCoordinates', fine_strides: 'Iterable[int]', *, copy: 'bool' = True) -> 'LatticePolyphaseCoordinates'",
+      "summary": "Refine rectangular lattice coordinates to componentwise finer strides."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "lattice_polyphase_synthesize",
+      "qualname": "lattice_polyphase_synthesize",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'LatticePolyphaseCoordinates') -> 'np.ndarray'",
+      "summary": "Reconstruct an array from rectangular lattice packet coordinates."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "load_portable",
+      "qualname": "load_portable",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_depth: 'int' = 128) -> 'Any'",
+      "summary": "Read and validate a portable envelope from disk."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "function",
+      "name": "load_portable_codec_contract",
+      "qualname": "load_portable_codec_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'PortableCodecContract'",
+      "summary": "Load and validate the committed codec compatibility contract."
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "load_stable_api_manifest",
+      "qualname": "load_stable_api_manifest",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'PublicApiManifest'",
+      "summary": "Load and validate the committed 1.0-candidate API manifest."
+    },
+    {
+      "implementation_module": "komorebi_math.stable_semantics",
+      "kind": "function",
+      "name": "load_stable_semantics_fixture",
+      "qualname": "load_stable_semantics_fixture",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'tuple[Path, Mapping[str, Any], str]'",
+      "summary": "Load, validate, and digest one stable semantic fixture."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "loads_portable",
+      "qualname": "loads_portable",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(text: 'str | bytes', *, max_depth: 'int' = 128) -> 'Any'",
+      "summary": "Validate and deserialize one complete portable JSON envelope."
+    },
+    {
+      "implementation_module": "komorebi_math.arithmetic.polyphase",
+      "kind": "function",
+      "name": "mahler_polyphase",
+      "qualname": "mahler_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(series: 'MahlerSeries', modulus: 'int', address: 'int') -> 'MahlerSeries'",
+      "summary": "Return the exact Mahler coordinates of ``series(modulus*x + address)``."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "nested_residue_address",
+      "qualname": "nested_residue_address",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(outer_residue: 'int', outer_modulus: 'int', inner_residue: 'int', inner_modulus: 'int') -> 'int'",
+      "summary": "Return the combined address ``outer_residue + outer_modulus * inner_residue``."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "nested_residue_analysis",
+      "qualname": "nested_residue_analysis",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(values: 'Any', outer_modulus: 'int', inner_modulus: 'int') -> 'ResidueCoordinates'",
+      "summary": "Analyze twice and return the equivalent channels modulo the product."
+    },
+    {
+      "implementation_module": "komorebi_math.generating.basis",
+      "kind": "function",
+      "name": "ordinary_generating_basis",
+      "qualname": "ordinary_basis",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(*, name: 'str' = 'ordinary') -> 'WeightedMonomialBasis'",
+      "summary": "Return the ordinary generating-function basis ``z^n``."
+    },
+    {
+      "implementation_module": "komorebi_math.core.transfer",
+      "kind": "function",
+      "name": "path_contributions",
+      "qualname": "path_contributions",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(operator: 'PacketOperator', *, source: 'int', target: 'int', length: 'int', tolerance: 'float | None' = None) -> 'tuple[TransferPath, ...]'",
+      "summary": "Return every nonzero structural path contribution of fixed length."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "polyphase_coarsen",
+      "qualname": "coarsen_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinateRecord', coarse_order: 'int', *, copy: 'bool' = True) -> 'PolyphaseCoordinateRecord'",
+      "summary": "Coarsen any supported one-dimensional coordinate record to ``coarse_order``."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "polyphase_refine",
+      "qualname": "refine_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinateRecord', fine_order: 'int', *, copy: 'bool' = True) -> 'PolyphaseCoordinateRecord'",
+      "summary": "Refine any supported one-dimensional coordinate record to ``fine_order``."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "polyphase_refinement_certificate",
+      "qualname": "polyphase_refinement_certificate",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinateRecord', fine_order: 'int', *, tolerance: 'float' = 1e-12) -> 'Certificate'",
+      "summary": "Certify refinement and direct-analysis equivalence for one coordinate record."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "polyphase_roundtrip_certificate",
+      "qualname": "polyphase_roundtrip_certificate",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(signal: 'Any', order: 'int', *, axis: 'int' = -1, tolerance: 'float' = 1e-12) -> 'ComputationResult[np.ndarray]'",
+      "summary": "Analyze and reconstruct a finite signal with a numerical certificate."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_codecs",
+      "qualname": "portable_codecs",
+      "reference": "docs/STABLE_API.md",
+      "signature": "() -> 'tuple[PortableCodec, ...]'",
+      "summary": "Return the active codecs ordered by stable tag."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_digest",
+      "qualname": "portable_digest",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'str'",
+      "summary": "Return the canonical SHA256 digest of one encoded payload."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_migrations",
+      "qualname": "portable_migrations",
+      "reference": "docs/STABLE_API.md",
+      "signature": "() -> 'tuple[PortableMigration, ...]'",
+      "summary": "Return registered codec migrations in deterministic order."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "refine_lattice_polyphase",
+      "qualname": "refine_lattice_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'LatticePolyphaseCoordinates', fine_strides: 'Iterable[int]', *, copy: 'bool' = True) -> 'LatticePolyphaseCoordinates'",
+      "summary": "Refine rectangular lattice coordinates to componentwise finer strides."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.polyphase",
+      "kind": "function",
+      "name": "refine_polyphase",
+      "qualname": "refine_polyphase",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinateRecord', fine_order: 'int', *, copy: 'bool' = True) -> 'PolyphaseCoordinateRecord'",
+      "summary": "Refine any supported one-dimensional coordinate record to ``fine_order``."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "refinement_children",
+      "qualname": "refinement_children",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coarse_order: 'int', fine_order: 'int', residue: 'int') -> 'tuple[int, ...]'",
+      "summary": "Return fine residues whose reduction modulo the coarse order is ``residue``."
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_latex",
+      "qualname": "render_latex",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(document: 'MathDocument', *, options: 'LatexRenderOptions | None' = None) -> 'str'",
+      "summary": "Render a complete compilable LaTeX document."
+    },
+    {
+      "implementation_module": "komorebi_math.export.renderers",
+      "kind": "function",
+      "name": "render_markdown",
+      "qualname": "render_markdown",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(document: 'MathDocument') -> 'str'",
+      "summary": "Render a document as Markdown with TeX equations."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "residue_analyze",
+      "qualname": "residue_analyze",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(values: 'Any', modulus: 'int') -> 'ResidueCoordinates'",
+      "summary": "Split a one dimensional sequence into residue channels."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "residue_project",
+      "qualname": "residue_project",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(signal: 'Any', order: 'int', residue: 'int', *, axis: 'int' = -1) -> 'np.ndarray'",
+      "summary": "Return the full shaped signal supported on one residue class."
+    },
+    {
+      "implementation_module": "komorebi_math.refinement.residue",
+      "kind": "function",
+      "name": "residue_synthesize",
+      "qualname": "residue_synthesize",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(channels: 'ResidueCoordinates | tuple[Any, ...]', *, length: 'int | None' = None) -> 'np.ndarray'",
+      "summary": "Reconstruct a sequence from residue channels."
+    },
+    {
+      "implementation_module": "komorebi_math.stable_semantics",
+      "kind": "function",
+      "name": "run_stable_semantics_fixture",
+      "qualname": "run_stable_semantics_fixture",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(path: 'str | Path | None' = None) -> 'StableSemanticReport'",
+      "summary": "Execute every committed 1.0-candidate semantic case."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "save_portable",
+      "qualname": "save_portable",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'Any', path: 'str | os.PathLike[str]', *, overwrite: 'bool' = False, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'Path'",
+      "summary": "Atomically write a portable envelope to disk."
+    },
+    {
+      "implementation_module": "komorebi_math.persistence_contract",
+      "kind": "function",
+      "name": "save_portable_codec_contract",
+      "qualname": "save_portable_codec_contract",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(contract: 'PortableCodecContract', path: 'str | Path', *, overwrite: 'bool' = False) -> 'Path'",
+      "summary": "Write a canonical portable-codec contract."
+    },
+    {
+      "implementation_module": "komorebi_math.config",
+      "kind": "function",
+      "name": "settings_context",
+      "qualname": "settings_context",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(**changes: 'object') -> 'Iterator[Settings]'",
+      "summary": "Temporarily apply runtime setting changes inside a context manager."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "signal_polyphase_analyze",
+      "qualname": "polyphase_analyze",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(signal: 'Any', order: 'int', *, axis: 'int' = -1, copy: 'bool' = True) -> 'PolyphaseCoordinates'",
+      "summary": "Split a finite array into residue channels along ``axis``."
+    },
+    {
+      "implementation_module": "komorebi_math.signals.polyphase",
+      "kind": "function",
+      "name": "signal_polyphase_synthesize",
+      "qualname": "polyphase_synthesize",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(coordinates: 'PolyphaseCoordinates') -> 'np.ndarray'",
+      "summary": "Reconstruct a finite array from polyphase coordinates."
+    },
+    {
+      "implementation_module": "komorebi_math.coordinates.basis",
+      "kind": "function",
+      "name": "standard_basis",
+      "qualname": "standard_basis",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(dimension: 'int', *, name: 'str' = 'standard') -> 'FiniteBasis'",
+      "summary": "Return the standard basis of a rational vector space."
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "to_portable_data",
+      "qualname": "to_portable_data",
+      "reference": "docs/STABLE_API.md",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'",
+      "summary": "Encode one value into the versioned portable payload tree."
+    }
+  ]
+}

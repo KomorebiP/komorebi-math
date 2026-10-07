@@ -1,0 +1,91 @@
+{
+  "adversarial": {
+    "failed": 0,
+    "passed": 30,
+    "total": 30
+  },
+  "artifacts": [
+    {
+      "name": "komorebi_math-1.0.0b4-py3-none-any.whl",
+      "sha256": "87d0356daa755d6e7dd555783f1ab9b0da8526d47ac42ac97264d41dcf7abdf5",
+      "size": 1457054
+    },
+    {
+      "name": "komorebi_math-1.0.0b4.tar.gz",
+      "sha256": "7a549d9a0007e845d5a5d4debc4fa0c66055669a4ff273d8f7550d5a07f40493",
+      "size": 19939865
+    }
+  ],
+  "compatibility": {
+    "beta_symbols": 83,
+    "portable_codecs": 51,
+    "research_added_symbols": 83,
+    "research_baseline_symbols": 1229,
+    "research_current_symbols": 1312,
+    "stable_semantic_cases": 10,
+    "stable_symbols": 131
+  },
+  "distribution": {
+    "audit_checks": 55,
+    "audit_passed": true,
+    "byte_reproducible_rebuild": true,
+    "primary_wheel_install_passed": true,
+    "sdist_rebuilt_wheel_install_passed": true,
+    "validation_checks": 34,
+    "validation_passed": true
+  },
+  "focused_pytest": {
+    "collected": 32,
+    "failed": 0,
+    "passed": 32,
+    "skipped": 0
+  },
+  "full_historical_pytest_census": {
+    "failed": 29,
+    "passed": 1100,
+    "release_gate": false,
+    "skipped": 4,
+    "status": "expected historical checkpoint incompatibilities plus one order-dependent registry-state failure",
+    "the_order_dependent_failure_passes_in_isolation": true
+  },
+  "independent_math": {
+    "failed": 0,
+    "passed": 15,
+    "production_expression_imports": false,
+    "total": 15
+  },
+  "package_version": "1.0.0b4",
+  "platform_nonclaims": {
+    "authenticated_git_tag": false,
+    "cuda_current": false,
+    "dependency_isolated": false,
+    "mkdocs_strict_current": false,
+    "operating_system_attested_in_evidence": false,
+    "windows_current": false
+  },
+  "release_gate_passed": true,
+  "schema": "komorebi-math.block20-validation-summary",
+  "schema_version": 1,
+  "source": {
+    "file_count": 840,
+    "sha256": "ccb99fbf85ddeb395a137f42f0f6c974278d5f98567123701e974c20c93b81bd"
+  },
+  "suites": {
+    "block15": 174,
+    "block19": 24,
+    "block20": 46,
+    "documentation": 1,
+    "expression": 22,
+    "integration": 12,
+    "stable": 6
+  },
+  "worked_example": {
+    "affine_regression": "106/5",
+    "chain_left_associative_cost": 260,
+    "chain_optimal_cost": 244,
+    "direct_and_planned_match": true,
+    "integral": "5/4",
+    "pipeline": "I4",
+    "portable_roundtrip": true
+  }
+}

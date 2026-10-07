@@ -1,0 +1,109 @@
+{
+  "block": 19,
+  "checks": [
+    {
+      "detail": "moments 0..4 match exactly; integral(4-2x+x^2)=18",
+      "error": null,
+      "name": "exact interval moments and polynomial contraction",
+      "passed": true
+    },
+    {
+      "detail": "pushforward, pullback, and |Jacobian| density all give 106/5",
+      "error": null,
+      "name": "exact affine pushforward and change of variables",
+      "passed": true
+    },
+    {
+      "detail": "x -> x^2 coalesces four atoms into weights 7/12 and 5/12",
+      "error": null,
+      "name": "noninjective atomic pushforward coalesces equal images",
+      "passed": true
+    },
+    {
+      "detail": "both iterated orders and the joint moment contraction equal 4",
+      "error": null,
+      "name": "exact Fubini identity in every variable order",
+      "passed": true
+    },
+    {
+      "detail": "integral F' = F(2)-F(-1) = -51/4",
+      "error": null,
+      "name": "fundamental theorem of calculus",
+      "passed": true
+    },
+    {
+      "detail": "integral u v' and [uv]-integral u'v both equal 84/5",
+      "error": null,
+      "name": "integration by parts retains the boundary term",
+      "passed": true
+    },
+    {
+      "detail": "ell D = ev_b-ev_a in four bases; Euler-to-Fibonacci covector transport agrees",
+      "error": null,
+      "name": "coordinate FTC and contragredient covariance",
+      "passed": true
+    },
+    {
+      "detail": "degree=3; quartic 69/8 differs from 33/5 and certification is rejected",
+      "error": null,
+      "name": "exact Simpson degree boundary blocks a quartic claim",
+      "passed": true
+    },
+    {
+      "detail": "all three samples are zero, but the exact integral is 1/840",
+      "error": null,
+      "name": "sampled-zero polynomial defeats three-node inference",
+      "passed": true
+    },
+    {
+      "detail": "negative weights remain a valid functional but cannot become AtomicMeasure",
+      "error": null,
+      "name": "signed quadrature functional is not a positive measure",
+      "passed": true
+    },
+    {
+      "detail": "exact actual error 1/30720 <= exact bound 1/30720",
+      "error": null,
+      "name": "rigorous Simpson bound encloses the actual error",
+      "passed": true
+    },
+    {
+      "detail": "forward integral is 4 and reversed bounds give -4",
+      "error": null,
+      "name": "oriented polynomial integral changes sign without a signed measure",
+      "passed": true
+    },
+    {
+      "detail": "E_joint[XY]=1/2 while product marginals give 1/4",
+      "error": null,
+      "name": "joint atomic law is distinguished from product marginals",
+      "passed": true
+    },
+    {
+      "detail": "tensor certification rejects an unrelated one-dimensional derivative bound",
+      "error": null,
+      "name": "one-dimensional derivative bound cannot certify a tensor rule",
+      "passed": true
+    },
+    {
+      "detail": "weighted directional derivative equals 50 exactly",
+      "error": null,
+      "name": "fixed-weight derivative providers commute with finite integration",
+      "passed": true
+    },
+    {
+      "detail": "analysis/synthesis commutation residual <= 0",
+      "error": null,
+      "name": "analysis and synthesis commute with atomic integration",
+      "passed": true
+    }
+  ],
+  "failed": 0,
+  "package": "komorebi-math",
+  "package_version": "1.0.0b3",
+  "passed": 16,
+  "pytest_required": false,
+  "success": true,
+  "total": 16,
+  "verifier": "verification/block19_math_verifier.py"
+}

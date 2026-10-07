@@ -1,0 +1,675 @@
+{
+  "namespaces": [
+    "komorebi_math.beta"
+  ],
+  "package_version": "0.13.0a1",
+  "schema": "komorebi-math.public-api",
+  "schema_version": 1,
+  "stability_level": "beta-additive-strict-signatures",
+  "symbols": [
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "ApiCompatibilityReport",
+      "namespace": "komorebi_math.beta",
+      "qualname": "ApiCompatibilityReport",
+      "signature": "(reference_digest: 'str', current_digest: 'str', added: 'tuple[tuple[str, str], ...]', removed: 'tuple[tuple[str, str], ...]', kind_changed: 'tuple[tuple[str, str, str, str], ...]', signature_changed: 'tuple[tuple[str, str, str | None, str | None], ...]', strict_signatures: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "AssumptionError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "AssumptionError",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BEHAVIORAL_GOLDEN_SCHEMA",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BEHAVIORAL_GOLDEN_SCHEMA_VERSION",
+      "namespace": "komorebi_math.beta",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "BETA_API_STABILITY_LEVEL",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "BackendUnavailableError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "BackendUnavailableError",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "class",
+      "name": "BehavioralGoldenCaseResult",
+      "namespace": "komorebi_math.beta",
+      "qualname": "BehavioralGoldenCaseResult",
+      "signature": "(name: 'str', kind: 'str', observed: 'Any', expected: 'Any', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "class",
+      "name": "BehavioralGoldenReport",
+      "namespace": "komorebi_math.beta",
+      "qualname": "BehavioralGoldenReport",
+      "signature": "(fixture_path: 'Path', fixture_digest: 'str', results: 'tuple[BehavioralGoldenCaseResult, ...]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "CallableDerivativeProvider",
+      "namespace": "komorebi_math.beta",
+      "qualname": "CallableDerivativeProvider",
+      "signature": "(function: 'Callable[[Any], Any]', derivatives: 'Mapping[int, DirectionalDerivative]', source_dimension: 'int', target_dimension: 'int', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, name: 'str' = 'declared derivative provider') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Certificate",
+      "namespace": "komorebi_math.beta",
+      "qualname": "Certificate",
+      "signature": "(valid: 'bool', exactness: 'Exactness', residuals: 'dict[str, float]' = <factory>, tolerance: 'float | None' = None, assumptions_checked: 'tuple[str, ...]' = (), assumptions_unchecked: 'tuple[str, ...]' = (), diagnostics: 'dict[str, Any]' = <factory>, theorem_id: 'str | None' = None, message: 'str' = '') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ComputationResult",
+      "namespace": "komorebi_math.beta",
+      "qualname": "ComputationResult",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "ConditionalResult",
+      "namespace": "komorebi_math.beta",
+      "qualname": "ConditionalResult",
+      "signature": "(value: 'T', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "DerivativeProvider",
+      "namespace": "komorebi_math.beta",
+      "qualname": "DerivativeProvider",
+      "signature": "(*args, **kwargs)"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "DimensionError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "DimensionError",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.certificates",
+      "kind": "class",
+      "name": "Exactness",
+      "namespace": "komorebi_math.beta",
+      "qualname": "Exactness",
+      "signature": "(*values)"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "ExactnessError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "ExactnessError",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "FiniteDifferenceDerivativeProvider",
+      "namespace": "komorebi_math.beta",
+      "qualname": "FiniteDifferenceDerivativeProvider",
+      "signature": "(function: 'Callable[[np.ndarray], Any]', source_dimension: 'int', target_dimension: 'int', step: 'float' = 0.0001, max_order: 'int' = 4, name: 'str' = 'central finite difference provider', exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "KomorebiMathError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "KomorebiMathError",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_CHUNK_SCHEMA_VERSION",
+      "namespace": "komorebi_math.beta",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PACKET_JET_STREAM_SCHEMA_VERSION",
+      "namespace": "komorebi_math.beta",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "PORTABLE_SCHEMA_VERSION",
+      "namespace": "komorebi_math.beta",
+      "qualname": "int",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJet",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJet",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', output_index: 'int', input_indices: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetAddress",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetAddress",
+      "signature": "(output: 'str', inputs: 'tuple[str, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetBatchResult",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetBatchResult",
+      "signature": "(evaluations: 'tuple[PacketJetEvaluation, ...]', reconstructed: 'Any', direct: 'Any', derivative_calls: 'int', input_projections: 'int', output_projections: 'int', pruned_blocks: 'int', backend: 'str', returned_to_host: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "class",
+      "name": "PacketJetCoefficient",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetCoefficient",
+      "signature": "(indices: 'tuple[int, ...]', value: 'tuple[Any, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetComplexityEstimate",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetComplexityEstimate",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', source_packets: 'int', target_packets: 'int', family_addresses: 'int', active_addresses: 'int', pruned_addresses: 'int', input_groups: 'int', naive_derivative_calls: 'int', planned_derivative_calls: 'int', projected_input_vectors: 'int', output_projections: 'int', dense_basis_evaluations: 'int', dense_tensor_elements: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetEvaluation",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetEvaluation",
+      "signature": "(address: 'PacketJetAddress', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetExecutionPlan",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetExecutionPlan",
+      "signature": "(order: 'int', source_names: 'tuple[str, ...]', target_names: 'tuple[str, ...]', groups: 'tuple[PacketJetInputGroup, ...]', active_addresses: 'tuple[PacketJetAddress, ...]', pruned_addresses: 'tuple[PacketJetAddress, ...]', support_was_supplied: 'bool', support_complete: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetFamily",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetFamily",
+      "signature": "(provider: 'DerivativeProvider', point: 'Any', source: 'PacketSystem', target: 'PacketSystem', order: 'int') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "class",
+      "name": "PacketJetInputGroup",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetInputGroup",
+      "signature": "(inputs: 'tuple[int, ...]', outputs: 'tuple[int, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "PacketJetProfileReport",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetProfileReport",
+      "signature": "(estimate: 'PacketJetComplexityEstimate', stages: 'tuple[RuntimeStageProfile, ...]', environment: 'Mapping[str, Any]', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "class",
+      "name": "PacketJetSnapshot",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetSnapshot",
+      "signature": "(address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', coefficients: 'tuple[PacketJetCoefficient, ...]', capture_certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetSnapshotStreamReader",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetSnapshotStreamReader",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamChunkRecord",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetStreamChunkRecord",
+      "signature": "(index: 'int', filename: 'str', basis_start: 'int', basis_stop: 'int', coefficient_start: 'int', coefficient_stop: 'int', payload_sha256: 'str', byte_count: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamManifest",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetStreamManifest",
+      "signature": "(state: 'StreamState', producer_version: 'str', address: 'PacketJetAddress', source_dimension: 'int', target_dimension: 'int', provider_name: 'str', exactness: 'Exactness', point: 'tuple[Any, ...]', tolerance: 'float', dense_coefficient_count: 'int', capture_mode: 'CaptureMode', source_digest: 'str', metadata_sha256: 'str', chunk_size: 'int', evaluations_completed: 'int', coefficients_completed: 'int', maximum_omitted_basis_norm: 'float', chunks: 'tuple[PacketJetStreamChunkRecord, ...]', capture_certificate: 'Certificate | None', stream_sha256: 'str') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamSelection",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetStreamSelection",
+      "signature": "(coefficient_start: 'int', coefficient_stop: 'int', coefficients: 'tuple[PacketJetCoefficient, ...]', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "PacketJetStreamWriteResult",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetStreamWriteResult",
+      "signature": "(destination: 'Path', active_path: 'Path', completed: 'bool', resumed: 'bool', chunks_written: 'int', evaluations_written: 'int', coefficients_written: 'int', manifest: 'PacketJetStreamManifest', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "class",
+      "name": "PacketJetSupport",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketJetSupport",
+      "signature": "(order: 'int', nonzero: 'tuple[PacketJetAddress, ...]', zero: 'tuple[PacketJetAddress, ...]', untested: 'tuple[PacketJetAddress, ...]', evaluations: 'int', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.core.packets",
+      "kind": "class",
+      "name": "PacketSystem",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PacketSystem",
+      "signature": "(projectors: 'Sequence[Any]', *, names: 'Sequence[str] | None' = None, backend: 'str | LinearAlgebraBackend | None' = None, tolerance: 'float | None' = None, validate: 'bool | None' = None) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.derivatives",
+      "kind": "class",
+      "name": "PolynomialDerivativeProvider",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableCodec",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PortableCodec",
+      "signature": "(tag: 'str', version: 'int', type_: 'type[Any]', encoder: 'Encoder', decoder: 'Decoder') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "class",
+      "name": "PortableMigration",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PortableMigration",
+      "signature": "(tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiManifest",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PublicApiManifest",
+      "signature": "(package_version: 'str', namespaces: 'tuple[str, ...]', symbols: 'tuple[PublicApiSymbol, ...]', schema: 'str' = 'komorebi-math.public-api', schema_version: 'int' = 1, stability_level: 'str' = 'pre-beta-additive') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "class",
+      "name": "PublicApiSymbol",
+      "namespace": "komorebi_math.beta",
+      "qualname": "PublicApiSymbol",
+      "signature": "(namespace: 'str', name: 'str', kind: 'str', implementation_module: 'str', qualname: 'str', signature: 'str | None') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeProfileSample",
+      "namespace": "komorebi_math.beta",
+      "qualname": "RuntimeProfileSample",
+      "signature": "(duration_ns: 'int', traced_peak_bytes: 'int') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "class",
+      "name": "RuntimeStageProfile",
+      "namespace": "komorebi_math.beta",
+      "qualname": "RuntimeStageProfile",
+      "signature": "(name: 'str', scope: 'str', warmup: 'int', samples: 'tuple[RuntimeProfileSample, ...]') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparsePolynomialDerivativeProvider",
+      "namespace": "komorebi_math.beta",
+      "qualname": "SparsePolynomialDerivativeProvider",
+      "signature": "(tensors: 'Mapping[int, SparseSymmetricTensor | Mapping[tuple[int, ...], Any] | Any]', *, source_dimension: 'int | None' = None, target_dimension: 'int | None' = None, exactness: 'Exactness' = <Exactness.NUMERICAL: 'numerical'>, tolerance: 'float' = 1e-10, name: 'str' = 'sparse polynomial derivative provider') -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseSymmetricTensor",
+      "namespace": "komorebi_math.beta",
+      "qualname": "SparseSymmetricTensor",
+      "signature": "(order: 'int', source_dimension: 'int', target_dimension: 'int', entries: 'tuple[SparseTensorEntry, ...]' = ()) -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.sparse",
+      "kind": "class",
+      "name": "SparseTensorEntry",
+      "namespace": "komorebi_math.beta",
+      "qualname": "SparseTensorEntry",
+      "signature": "(output: 'int', inputs: 'tuple[int, ...]', value: 'Any') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "class",
+      "name": "StreamedPacketJetEvaluation",
+      "namespace": "komorebi_math.beta",
+      "qualname": "StreamedPacketJetEvaluation",
+      "signature": "(value: 'np.ndarray', coefficient_start: 'int', coefficient_stop: 'int', total_coefficients: 'int', complete_snapshot: 'bool', certificate: 'Certificate') -> None"
+    },
+    {
+      "implementation_module": "komorebi_math.exceptions",
+      "kind": "class",
+      "name": "ValidationError",
+      "namespace": "komorebi_math.beta",
+      "qualname": "ValidationError",
+      "signature": null
+    },
+    {
+      "implementation_module": "builtins",
+      "kind": "data",
+      "name": "__version__",
+      "namespace": "komorebi_math.beta",
+      "qualname": "str",
+      "signature": null
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "capture_packet_jet_stream",
+      "namespace": "komorebi_math.beta",
+      "qualname": "capture_packet_jet_stream",
+      "signature": "(jet: 'PacketJet', path: 'str | os.PathLike[str]', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 10000000, chunk_size: 'int' = 1024, evaluation_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "check_beta_api",
+      "namespace": "komorebi_math.beta",
+      "qualname": "check_beta_api",
+      "signature": "(path: 'str | Path | None' = None) -> 'ApiCompatibilityReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "compile_packet_jet_plan",
+      "namespace": "komorebi_math.beta",
+      "qualname": "compile_packet_jet_plan",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, max_addresses: 'int' = 1000000) -> 'PacketJetExecutionPlan'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "create_beta_api_manifest",
+      "namespace": "komorebi_math.beta",
+      "qualname": "create_beta_api_manifest",
+      "signature": "(*, package_version: 'str' = '0.13.0a1') -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "dumps_portable",
+      "namespace": "komorebi_math.beta",
+      "qualname": "dumps_portable",
+      "signature": "(value: 'Any', *, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "estimate_packet_jet_complexity",
+      "namespace": "komorebi_math.beta",
+      "qualname": "estimate_packet_jet_complexity",
+      "signature": "(family: 'PacketJetFamily', support: 'PacketJetSupport | None' = None, *, plan: 'PacketJetExecutionPlan | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetComplexityEstimate'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jet_plan",
+      "namespace": "komorebi_math.beta",
+      "qualname": "execute_packet_jet_plan",
+      "signature": "(plan: 'PacketJetExecutionPlan', family: 'PacketJetFamily', directions: 'Sequence[Any]', *, tolerance: 'float | None' = None) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.execution",
+      "kind": "function",
+      "name": "execute_packet_jets",
+      "namespace": "komorebi_math.beta",
+      "qualname": "execute_packet_jets",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, tolerance: 'float | None' = None, max_addresses: 'int' = 1000000) -> 'PacketJetBatchResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "from_portable_data",
+      "namespace": "komorebi_math.beta",
+      "qualname": "from_portable_data",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "function",
+      "name": "load_behavioral_golden_fixture",
+      "namespace": "komorebi_math.beta",
+      "qualname": "load_behavioral_golden_fixture",
+      "signature": "(path: 'str | Path | None' = None) -> 'tuple[Path, dict[str, Any], str]'"
+    },
+    {
+      "implementation_module": "komorebi_math.compatibility",
+      "kind": "function",
+      "name": "load_beta_api_manifest",
+      "namespace": "komorebi_math.beta",
+      "qualname": "load_beta_api_manifest",
+      "signature": "(path: 'str | Path | None' = None) -> 'PublicApiManifest'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "load_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.beta",
+      "qualname": "load_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_coefficients: 'int' = 1000000, verify_chunks: 'bool' = True) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "load_portable",
+      "namespace": "komorebi_math.beta",
+      "qualname": "load_portable",
+      "signature": "(path: 'str | os.PathLike[str]', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "loads_portable",
+      "namespace": "komorebi_math.beta",
+      "qualname": "loads_portable",
+      "signature": "(text: 'str | bytes', *, max_depth: 'int' = 128) -> 'Any'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "open_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.beta",
+      "qualname": "open_packet_jet_snapshot_stream",
+      "signature": "(path: 'str | os.PathLike[str]', *, allow_incomplete: 'bool' = False, verify_chunks: 'bool' = False) -> 'PacketJetSnapshotStreamReader'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.jets",
+      "kind": "function",
+      "name": "packet_jet_support",
+      "namespace": "komorebi_math.beta",
+      "qualname": "packet_jet_support",
+      "signature": "(family: 'PacketJetFamily', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSupport'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_codecs",
+      "namespace": "komorebi_math.beta",
+      "qualname": "portable_codecs",
+      "signature": "() -> 'tuple[PortableCodec, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_digest",
+      "namespace": "komorebi_math.beta",
+      "qualname": "portable_digest",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'str'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "portable_migrations",
+      "namespace": "komorebi_math.beta",
+      "qualname": "portable_migrations",
+      "signature": "() -> 'tuple[PortableMigration, ...]'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_operation",
+      "namespace": "komorebi_math.beta",
+      "qualname": "profile_operation",
+      "signature": "(name: 'str', operation: 'Callable[[], T]', *, repetitions: 'int' = 5, warmup: 'int' = 1, scope: 'str' = 'Python call including allocations and synchronization performed by the callable') -> 'RuntimeStageProfile'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.profiling",
+      "kind": "function",
+      "name": "profile_packet_jet_runtime",
+      "namespace": "komorebi_math.beta",
+      "qualname": "profile_packet_jet_runtime",
+      "signature": "(family: 'PacketJetFamily', directions: 'Sequence[Any]', *, support: 'PacketJetSupport | None' = None, jet: 'PacketJet | None' = None, repetitions: 'int' = 5, warmup: 'int' = 1, max_addresses: 'int' = 1000000, max_snapshot_evaluations: 'int' = 100000, include_stream_write: 'bool' = False, stream_chunk_size: 'int' = 1024) -> 'PacketJetProfileReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_codec",
+      "namespace": "komorebi_math.beta",
+      "qualname": "register_portable_codec",
+      "signature": "(type_: 'type[T]', *, tag: 'str', version: 'int', encoder: 'Callable[[T], Any]', decoder: 'Callable[[Any], T]', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "register_portable_migration",
+      "namespace": "komorebi_math.beta",
+      "qualname": "register_portable_migration",
+      "signature": "(*, tag: 'str', from_version: 'int', to_version: 'int', migrator: 'Migrator', replace: 'bool' = False) -> 'None'"
+    },
+    {
+      "implementation_module": "komorebi_math.golden",
+      "kind": "function",
+      "name": "run_behavioral_golden_fixture",
+      "namespace": "komorebi_math.beta",
+      "qualname": "run_behavioral_golden_fixture",
+      "signature": "(path: 'str | Path | None' = None) -> 'BehavioralGoldenReport'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.streaming",
+      "kind": "function",
+      "name": "save_packet_jet_snapshot_stream",
+      "namespace": "komorebi_math.beta",
+      "qualname": "save_packet_jet_snapshot_stream",
+      "signature": "(snapshot: 'PacketJetSnapshot', path: 'str | os.PathLike[str]', *, chunk_size: 'int' = 1024, coefficient_budget: 'int | None' = None, resume: 'bool' = False, overwrite: 'bool' = False) -> 'PacketJetStreamWriteResult'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "save_portable",
+      "namespace": "komorebi_math.beta",
+      "qualname": "save_portable",
+      "signature": "(value: 'Any', path: 'str | os.PathLike[str]', *, overwrite: 'bool' = False, indent: 'int | None' = 2, max_depth: 'int' = 128) -> 'Path'"
+    },
+    {
+      "implementation_module": "komorebi_math.nonlinear.snapshots",
+      "kind": "function",
+      "name": "snapshot_packet_jet",
+      "namespace": "komorebi_math.beta",
+      "qualname": "snapshot_packet_jet",
+      "signature": "(jet: 'PacketJet', *, tolerance: 'float | None' = None, max_evaluations: 'int' = 100000) -> 'PacketJetSnapshot'"
+    },
+    {
+      "implementation_module": "komorebi_math.export.persistence",
+      "kind": "function",
+      "name": "to_portable_data",
+      "namespace": "komorebi_math.beta",
+      "qualname": "to_portable_data",
+      "signature": "(value: 'Any', *, max_depth: 'int' = 128) -> 'Any'"
+    }
+  ]
+}

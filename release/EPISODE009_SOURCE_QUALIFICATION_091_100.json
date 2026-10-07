@@ -1,0 +1,25 @@
+{
+  "end": 101,
+  "exit_status": 0,
+  "failed_tests": 0,
+  "files": [
+    "tests/test_grammar_realization.py",
+    "tests/test_graphs.py",
+    "tests/test_holonomy.py",
+    "tests/test_langlands_finite_image.py",
+    "tests/test_langlands_local_fields_tame_gauss.py",
+    "tests/test_langlands_local_heisenberg_symplectic.py",
+    "tests/test_langlands_ramification_global_completion.py",
+    "tests/test_lattice_smith.py",
+    "tests/test_lifting.py",
+    "tests/test_linear_defects.py"
+  ],
+  "passed": true,
+  "passed_tests": 70,
+  "runtime_seconds": 2.919081211090088,
+  "schema": "komorebi-math.episode009-source-batch",
+  "schema_version": 1,
+  "start": 91,
+  "stderr_tail": "",
+  "stdout_tail": "......................................................................   [100%]\n70 passed in 0.81s"
+}

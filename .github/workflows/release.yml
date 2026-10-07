@@ -1,0 +1,75 @@
+name: Tagged release artifacts
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  qualify-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel
+      - run: python -m pip install -e ".[dev,exact,scientific,yaml]"
+      - name: Require tag to match repaired release identity
+        run: |
+          python - <<'PY'
+          import os, re
+          from pathlib import Path
+          tag = os.environ["GITHUB_REF_NAME"]
+          text = Path("pyproject.toml").read_text(encoding="utf-8")
+          match = re.search(r'^version\s*=\s*"([^"]+)"$', text, re.MULTILINE)
+          if match is None:
+              raise SystemExit("package version is absent from pyproject.toml")
+          version = match.group(1)
+          import json
+          identity = json.loads(Path("RELEASE_ID.json").read_text(encoding="utf-8"))
+          expected_tag = f"v{identity['release_id']}"
+          if tag != expected_tag:
+              raise SystemExit(f"tag {tag!r} does not match repaired release {expected_tag}")
+          PY
+      - name: Build byte-reproducible distributions
+        run: |
+          python verification/build_block21_distributions.py \
+            --root . \
+            --output-directory release/dist \
+            --report release/TAG_BLOCK21_DISTRIBUTION_BUILD.json
+          mkdir -p dist
+          cp release/dist/*.whl release/dist/*.tar.gz dist/
+      - run: python verification/block21_publication_gate.py --full-tests --installed-artifacts --require-mkdocs --output release/TAG_BLOCK21_PUBLICATION_GATE.json --markdown release/TAG_BLOCK21_PUBLICATION_GATE.md
+        env:
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      - name: Prepare dependencies for clean offline artifact qualification
+        run: python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
+      - run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/TAG_REPAIR_ARTIFACT_GATE.json
+      - run: python -m venv .venv-release
+      - run: .venv-release/bin/python -m pip install dist/*.whl
+      - run: .venv-release/bin/python -m komorebi_math verify stable
+      - run: .venv-release/bin/python -m komorebi_math verify block20
+      - run: .venv-release/bin/python -m komorebi_math release qualify
+      - run: sha256sum dist/*.whl dist/*.tar.gz > dist/SHA256SUMS.txt
+      - name: Build and replay-audit deterministic source handoff
+        run: |
+          python verification/build_block21_handoff.py \
+            --root . \
+            --output-directory dist/handoff \
+            --artifact-directory release/dist \
+            --gate release/TAG_BLOCK21_PUBLICATION_GATE.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: komorebi-math-${{ github.ref_name }}
+          path: |
+            dist/*
+            release/TAG_BLOCK21_PUBLICATION_GATE.json
+            release/TAG_BLOCK21_PUBLICATION_GATE.md
+            release/TAG_BLOCK21_DISTRIBUTION_BUILD.json
+            release/TAG_REPAIR_ARTIFACT_GATE.json
+          if-no-files-found: error

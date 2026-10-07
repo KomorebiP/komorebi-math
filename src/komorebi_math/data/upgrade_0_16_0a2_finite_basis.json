@@ -1,0 +1,135 @@
+{
+  "payload": {
+    "__komorebi_type__": "coordinates.finite_basis",
+    "__version__": 1,
+    "data": {
+      "__komorebi_type__": "python.mapping",
+      "__version__": 1,
+      "data": [
+        [
+          "description",
+          ""
+        ],
+        [
+          "labels",
+          {
+            "__komorebi_type__": "python.tuple",
+            "__version__": 1,
+            "data": [
+              "e0",
+              "e1",
+              "e2"
+            ]
+          }
+        ],
+        [
+          "name",
+          "standard"
+        ],
+        [
+          "vectors",
+          {
+            "__komorebi_type__": "python.tuple",
+            "__version__": 1,
+            "data": [
+              {
+                "__komorebi_type__": "python.tuple",
+                "__version__": 1,
+                "data": [
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 1
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "__komorebi_type__": "python.tuple",
+                "__version__": 1,
+                "data": [
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 1
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "__komorebi_type__": "python.tuple",
+                "__version__": 1,
+                "data": [
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 0
+                    }
+                  },
+                  {
+                    "__komorebi_type__": "python.fraction",
+                    "__version__": 1,
+                    "data": {
+                      "denominator": 1,
+                      "numerator": 1
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "payload_sha256": "907889f17da66aabb956f92eedf25d3f75132429c117d193a3e9ec3e3ce05031",
+  "producer_version": "0.16.0a2",
+  "schema": "komorebi-math.portable",
+  "schema_version": 1
+}

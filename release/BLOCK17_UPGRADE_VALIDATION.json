@@ -1,0 +1,171 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "passed": true,
+      "predecessor": "0.15.0a2",
+      "predecessor_wheel": {
+        "name": "komorebi_math-0.15.0a2-py3-none-any.whl",
+        "sha256": "754ec22a291242fcd871024b36cd5456d15c2ac7dcd47a2e87252b8ff1a1b712",
+        "size": 930146
+      },
+      "steps": {
+        "create_environment": {
+          "command": [
+            "python",
+            "-m",
+            "venv",
+            "--system-site-packages",
+            "/tmp/komorebi-upgrade-0.15.0a2-wk_r26lh/venv"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        "import_predecessor": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.15.0a2-wk_r26lh/venv/bin/python",
+            "-c",
+            "\nimport json\nfrom pathlib import Path\nimport komorebi_math\nexpected = __import__('os').environ['KM_EXPECTED_VERSION']\nassert komorebi_math.__version__ == expected, (komorebi_math.__version__, expected)\nif expected == '1.0.0b1':\n    from komorebi_math.release import check_upgrade_contract\n    from komorebi_math.export.persistence import load_portable\n    report = check_upgrade_contract()\n    report.certificate.require()\n    data = Path(komorebi_math.__file__).resolve().parent / 'data'\n    loaded = []\n    for fixture in report.contract.fixtures:\n        source = data / fixture.filename\n        value = load_portable(source)\n        loaded.append({\n            'name': fixture.name,\n            'type': f'{type(value).__module__}.{type(value).__qualname__}',\n        })\n    assert len(loaded) == len(report.contract.fixtures) == 7\n    print(json.dumps({'version': expected, 'fixtures': loaded, 'upgrade_checks': len(report.checks)}, sort_keys=True))\nelse:\n    print(json.dumps({'version': expected}, sort_keys=True))\n"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"version\": \"0.15.0a2\"}\n"
+        },
+        "import_target_and_records": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.15.0a2-wk_r26lh/venv/bin/python",
+            "-c",
+            "\nimport json\nfrom pathlib import Path\nimport komorebi_math\nexpected = __import__('os').environ['KM_EXPECTED_VERSION']\nassert komorebi_math.__version__ == expected, (komorebi_math.__version__, expected)\nif expected == '1.0.0b1':\n    from komorebi_math.release import check_upgrade_contract\n    from komorebi_math.export.persistence import load_portable\n    report = check_upgrade_contract()\n    report.certificate.require()\n    data = Path(komorebi_math.__file__).resolve().parent / 'data'\n    loaded = []\n    for fixture in report.contract.fixtures:\n        source = data / fixture.filename\n        value = load_portable(source)\n        loaded.append({\n            'name': fixture.name,\n            'type': f'{type(value).__module__}.{type(value).__qualname__}',\n        })\n    assert len(loaded) == len(report.contract.fixtures) == 7\n    print(json.dumps({'version': expected, 'fixtures': loaded, 'upgrade_checks': len(report.checks)}, sort_keys=True))\nelse:\n    print(json.dumps({'version': expected}, sort_keys=True))\n"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"fixtures\": [{\"name\": \"upgrade_0_15_0a2_polyphase_refinement\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinement\"}, {\"name\": \"upgrade_0_15_0a2_polyphase_tower\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinementTower\"}, {\"name\": \"upgrade_0_16_0a2_analysis_synthesis\", \"type\": \"komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem\"}, {\"name\": \"upgrade_0_16_0a2_arithmetic_polyphase\", \"type\": \"komorebi_math.arithmetic.polyphase.ArithmeticPolyphase\"}, {\"name\": \"upgrade_0_16_0a2_finite_basis\", \"type\": \"komorebi_math.coordinates.basis.FiniteBasis\"}, {\"name\": \"upgrade_0_16_0a2_polyphase_refinement\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinement\"}, {\"name\": \"upgrade_0_16_0a2_polyphase_tower\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinementTower\"}], \"upgrade_checks\": 12, \"version\": \"1.0.0b1\"}\n"
+        },
+        "install_predecessor": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.15.0a2-wk_r26lh/venv/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--force-reinstall",
+            "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/predecessors/komorebi_math-0.15.0a2-py3-none-any.whl"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n",
+          "stdout_tail": "Processing ./release/predecessors/komorebi_math-0.15.0a2-py3-none-any.whl\nInstalling collected packages: komorebi-math\nSuccessfully installed komorebi-math-0.15.0a2\n"
+        },
+        "install_target": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.15.0a2-wk_r26lh/venv/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--force-reinstall",
+            "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/dist/komorebi_math-1.0.0b1-py3-none-any.whl"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n",
+          "stdout_tail": "Processing ./release/dist/komorebi_math-1.0.0b1-py3-none-any.whl\nInstalling collected packages: komorebi-math\n  Attempting uninstall: komorebi-math\n    Found existing installation: komorebi-math 0.15.0a2\n    Uninstalling komorebi-math-0.15.0a2:\n      Successfully uninstalled komorebi-math-0.15.0a2\nSuccessfully installed komorebi-math-1.0.0b1\n"
+        }
+      },
+      "target_wheel": {
+        "name": "komorebi_math-1.0.0b1-py3-none-any.whl",
+        "sha256": "f3af8ac92616dbf57950b3468bce09d149368ebb660b0b4850b3a473609e03d8",
+        "size": 1108715
+      }
+    },
+    {
+      "passed": true,
+      "predecessor": "0.16.0a2",
+      "predecessor_wheel": {
+        "name": "komorebi_math-0.16.0a2-py3-none-any.whl",
+        "sha256": "aa62277b355891bfe5cb21611afe1808e06df14275450eeeb73fa02df965c135",
+        "size": 1023606
+      },
+      "steps": {
+        "create_environment": {
+          "command": [
+            "python",
+            "-m",
+            "venv",
+            "--system-site-packages",
+            "/tmp/komorebi-upgrade-0.16.0a2-mza7fi93/venv"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        "import_predecessor": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.16.0a2-mza7fi93/venv/bin/python",
+            "-c",
+            "\nimport json\nfrom pathlib import Path\nimport komorebi_math\nexpected = __import__('os').environ['KM_EXPECTED_VERSION']\nassert komorebi_math.__version__ == expected, (komorebi_math.__version__, expected)\nif expected == '1.0.0b1':\n    from komorebi_math.release import check_upgrade_contract\n    from komorebi_math.export.persistence import load_portable\n    report = check_upgrade_contract()\n    report.certificate.require()\n    data = Path(komorebi_math.__file__).resolve().parent / 'data'\n    loaded = []\n    for fixture in report.contract.fixtures:\n        source = data / fixture.filename\n        value = load_portable(source)\n        loaded.append({\n            'name': fixture.name,\n            'type': f'{type(value).__module__}.{type(value).__qualname__}',\n        })\n    assert len(loaded) == len(report.contract.fixtures) == 7\n    print(json.dumps({'version': expected, 'fixtures': loaded, 'upgrade_checks': len(report.checks)}, sort_keys=True))\nelse:\n    print(json.dumps({'version': expected}, sort_keys=True))\n"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"version\": \"0.16.0a2\"}\n"
+        },
+        "import_target_and_records": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.16.0a2-mza7fi93/venv/bin/python",
+            "-c",
+            "\nimport json\nfrom pathlib import Path\nimport komorebi_math\nexpected = __import__('os').environ['KM_EXPECTED_VERSION']\nassert komorebi_math.__version__ == expected, (komorebi_math.__version__, expected)\nif expected == '1.0.0b1':\n    from komorebi_math.release import check_upgrade_contract\n    from komorebi_math.export.persistence import load_portable\n    report = check_upgrade_contract()\n    report.certificate.require()\n    data = Path(komorebi_math.__file__).resolve().parent / 'data'\n    loaded = []\n    for fixture in report.contract.fixtures:\n        source = data / fixture.filename\n        value = load_portable(source)\n        loaded.append({\n            'name': fixture.name,\n            'type': f'{type(value).__module__}.{type(value).__qualname__}',\n        })\n    assert len(loaded) == len(report.contract.fixtures) == 7\n    print(json.dumps({'version': expected, 'fixtures': loaded, 'upgrade_checks': len(report.checks)}, sort_keys=True))\nelse:\n    print(json.dumps({'version': expected}, sort_keys=True))\n"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "{\"fixtures\": [{\"name\": \"upgrade_0_15_0a2_polyphase_refinement\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinement\"}, {\"name\": \"upgrade_0_15_0a2_polyphase_tower\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinementTower\"}, {\"name\": \"upgrade_0_16_0a2_analysis_synthesis\", \"type\": \"komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem\"}, {\"name\": \"upgrade_0_16_0a2_arithmetic_polyphase\", \"type\": \"komorebi_math.arithmetic.polyphase.ArithmeticPolyphase\"}, {\"name\": \"upgrade_0_16_0a2_finite_basis\", \"type\": \"komorebi_math.coordinates.basis.FiniteBasis\"}, {\"name\": \"upgrade_0_16_0a2_polyphase_refinement\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinement\"}, {\"name\": \"upgrade_0_16_0a2_polyphase_tower\", \"type\": \"komorebi_math.refinement.polyphase.PolyphaseRefinementTower\"}], \"upgrade_checks\": 12, \"version\": \"1.0.0b1\"}\n"
+        },
+        "install_predecessor": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.16.0a2-mza7fi93/venv/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--force-reinstall",
+            "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/predecessors/komorebi_math-0.16.0a2-py3-none-any.whl"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n",
+          "stdout_tail": "Processing ./release/predecessors/komorebi_math-0.16.0a2-py3-none-any.whl\nInstalling collected packages: komorebi-math\nSuccessfully installed komorebi-math-0.16.0a2\n"
+        },
+        "install_target": {
+          "command": [
+            "/tmp/komorebi-upgrade-0.16.0a2-mza7fi93/venv/bin/python",
+            "-m",
+            "pip",
+            "install",
+            "--no-deps",
+            "--force-reinstall",
+            "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/dist/komorebi_math-1.0.0b1-py3-none-any.whl"
+          ],
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "WARNING: The directory '/home/oai/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n",
+          "stdout_tail": "Processing ./release/dist/komorebi_math-1.0.0b1-py3-none-any.whl\nInstalling collected packages: komorebi-math\n  Attempting uninstall: komorebi-math\n    Found existing installation: komorebi-math 0.16.0a2\n    Uninstalling komorebi-math-0.16.0a2:\n      Successfully uninstalled komorebi-math-0.16.0a2\nSuccessfully installed komorebi-math-1.0.0b1\n"
+        }
+      },
+      "target_wheel": {
+        "name": "komorebi_math-1.0.0b1-py3-none-any.whl",
+        "sha256": "f3af8ac92616dbf57950b3468bce09d149368ebb660b0b4850b3a473609e03d8",
+        "size": 1108715
+      }
+    }
+  ],
+  "schema": "komorebi-math.block17-upgrade-validation",
+  "schema_version": 1,
+  "sha256": "12f6e1f29ae50dc79114ebf5e18df4b37af8f44e41ea515d0afa42449a73eb35",
+  "target_version": "1.0.0b1"
+}

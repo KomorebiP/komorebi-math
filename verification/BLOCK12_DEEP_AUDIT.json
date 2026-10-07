@@ -1,0 +1,26 @@
+{
+  "checks": 815779,
+  "counting_convention": "Each scalar Boolean or elementwise numerical comparison counts as one check.",
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5"
+  },
+  "failures": [],
+  "package_version": "0.12.0a1",
+  "passed": true,
+  "schema": "komorebi-math.block12-deep-audit",
+  "sections": {
+    "adaptive": 240,
+    "denoise": 15944,
+    "fft_convolution": 413058,
+    "fir": 93170,
+    "recursive": 142577,
+    "resampling": 27863,
+    "spectral": 8460,
+    "stft": 114190,
+    "streaming_stft": 160,
+    "windows": 117
+  },
+  "seed": 12012026
+}

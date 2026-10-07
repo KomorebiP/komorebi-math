@@ -1,0 +1,60 @@
+{
+  "duration_seconds": 34.46906089782715,
+  "failed_files": [],
+  "files": 4,
+  "passed": true,
+  "passed_tests": 90,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 30.063829052000074,
+      "passed": 68,
+      "path": "tests/test_generating_foundation.py",
+      "returncode": 0,
+      "sha256": "fd7fca313208302af2c54b89bcb700ddee1c1566aed17cf14fac7684a4849a6c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....................................................................     [100%]\n68 passed in 28.75s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.7759999649997553,
+      "passed": 7,
+      "path": "tests/test_grammar_realization.py",
+      "returncode": 0,
+      "sha256": "fff10e756e2a9275ac098b289f9f60fda3af441f57c529d36381805e2d3a34d0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.51s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.2709843600000568,
+      "passed": 7,
+      "path": "tests/test_graphs.py",
+      "returncode": 0,
+      "sha256": "4de3f9a00ec0dab693370a3437ab2ff7fb45b40c2a78d79233c5b8f348ae8132",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.30s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3563733890000549,
+      "passed": 8,
+      "path": "tests/test_holonomy.py",
+      "returncode": 0,
+      "sha256": "3d04261f4a9f7a2f5b694bf9ac9243dfc32bf72968035abd705fc16687d24859",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 0.33s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/komorebi_ep008/Komorebi_Math_R4_Block12_Episode008/komorebi-math",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1790140343.5241857
+}

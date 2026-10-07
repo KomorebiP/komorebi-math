@@ -1,0 +1,70 @@
+{
+  "batches": [
+    {
+      "label": "algebra-algorithms-analytic-arithmetic-a",
+      "passed": 114
+    },
+    {
+      "label": "arithmetic-backends-block10-a",
+      "passed": 39
+    },
+    {
+      "label": "block10-block11",
+      "passed": 56
+    },
+    {
+      "label": "block12",
+      "passed": 103
+    },
+    {
+      "label": "generating-foundation",
+      "passed": 68
+    },
+    {
+      "label": "generating-cartier-padic",
+      "passed": 47
+    },
+    {
+      "label": "generating-domains",
+      "passed": 15
+    },
+    {
+      "label": "generating-production",
+      "passed": 58
+    },
+    {
+      "label": "block13-cli-api",
+      "passed": 5
+    },
+    {
+      "label": "block4-certificates-deformation-dynamics",
+      "passed": 52
+    },
+    {
+      "label": "export",
+      "passed": 24
+    },
+    {
+      "label": "grammar-graphs-langlands-lifting",
+      "passed": 74
+    },
+    {
+      "label": "nonlinear",
+      "passed": 68
+    },
+    {
+      "label": "operators-packets-quantum-signals-sequences",
+      "passed": 118
+    }
+  ],
+  "counting_policy": "Only complete independently passing batches are included in total_passed.",
+  "discarded_attempts": [
+    "One oversized mixed batch was terminated by the command wrapper before completion.",
+    "One aggregate generating batch exceeded the command timeout after partial output."
+  ],
+  "package_version": "0.13.0a1",
+  "passed": true,
+  "schema": "komorebi-math.block13-source-test-batches",
+  "total_collected": 841,
+  "total_passed": 841
+}

@@ -1,0 +1,126 @@
+{
+  "duration_seconds": 33.09549593925476,
+  "failed_files": [],
+  "files": 10,
+  "passed": true,
+  "passed_tests": 119,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 4.165280133000124,
+      "passed": 6,
+      "path": "tests/test_block17_evidence.py",
+      "returncode": 0,
+      "sha256": "ae8103da7ae37d081e1893146b9126a06dcf42ceb4b18fe82a2ca9a2ed28be5c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 3.17s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.458016675000181,
+      "passed": 1,
+      "path": "tests/test_block17_package_audit.py",
+      "returncode": 0,
+      "sha256": "5d50a7ab8af0acb1d62f5c15cf6eeca84f90c63c16a6ab84c5a0b7da39728157",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".                                                                        [100%]\n1 passed in 3.40s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 8.217519374999938,
+      "passed": 4,
+      "path": "tests/test_block17_release_contract.py",
+      "returncode": 0,
+      "sha256": "6262fda0ce39495ab3f677fcc561dad7f25dd8fb350312e32b555bc5f393631f",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 6.94s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 0.9311759479996908,
+      "passed": 2,
+      "path": "tests/test_block17_release_layout.py",
+      "returncode": 0,
+      "sha256": "0715ed6331ebdffc48c70aee4fc962e2a15d7364dc4ad99ff9340e3aec92caf6",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..                                                                       [100%]\n2 passed in 0.02s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 3.3162382169998637,
+      "passed": 1,
+      "path": "tests/test_block17_static_audit.py",
+      "returncode": 0,
+      "sha256": "806cb53fc9acf3f3472ff8af5d0cceb2ce3dcc66bd0a1294f1371c2da493ca45",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".                                                                        [100%]\n1 passed in 2.24s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.358083717000227,
+      "passed": 7,
+      "path": "tests/test_block17_upgrade_contract.py",
+      "returncode": 0,
+      "sha256": "5fa76b52f6bd70a67f760c382eb6a8222a182871ac767af38db894db09a01cf8",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.36s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3243769780001458,
+      "passed": 14,
+      "path": "tests/test_block18_frame_algebra.py",
+      "returncode": 0,
+      "sha256": "7abaf8c01602c7c0288f3453e443971e8f1f16783c4ab5d9f19d31aa3b1ac3d2",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..............                                                           [100%]\n14 passed in 0.35s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4387445739998839,
+      "passed": 47,
+      "path": "tests/test_block19_integration.py",
+      "returncode": 0,
+      "sha256": "144389f3c88dccd3321f80ed1ea1cf3f43243fe3a3d9078158063b5066dce1c8",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "...............................................                          [100%]\n47 passed in 0.40s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.7918277300000227,
+      "passed": 32,
+      "path": "tests/test_block20_expression_calculus.py",
+      "returncode": 0,
+      "sha256": "7678bfa2db0c1e4d0b558dcb826fcde322faafc5ba364cdff0ed60c2d6458245",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "................................                                         [100%]\n32 passed in 0.67s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.09009944599984,
+      "passed": 5,
+      "path": "tests/test_block21_publication_gate.py",
+      "returncode": 0,
+      "sha256": "939940d58936d4329c3e1f90f01e2e4b6da7c4da6b179bc440a1e3c4a9d57d49",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 5.03s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/komorebi_ep008/Komorebi_Math_R4_Block12_Episode008/komorebi-math",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1790140165.7283936
+}

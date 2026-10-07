@@ -1,0 +1,170 @@
+{
+  "certificate": {
+    "assumptions_checked": [
+      "versioned v1 aliases",
+      "strict stable API manifest",
+      "square analysis--synthesis reconstruction",
+      "redundant canonical-dual reconstruction",
+      "analysis--synthesis transfer blocks",
+      "polyphase refinement coherence",
+      "exact arithmetic refinement",
+      "stable portable persistence",
+      "stable construction pipeline",
+      "stable settings context",
+      "aggregate stable compatibility contract",
+      "machine-readable Block 17 release contract",
+      "predecessor upgrade contract",
+      "executed platform evidence",
+      "machine-readable support policy",
+      "supported Python version",
+      "release version identity"
+    ],
+    "assumptions_unchecked": [
+      "hardware-backed CUDA qualification not requested"
+    ],
+    "diagnostics": {
+      "gpu_available": null,
+      "gpu_required": false,
+      "passed": 17,
+      "total": 17,
+      "version": "1.0.0b1"
+    },
+    "exactness": "numerical",
+    "message": "release qualification passed",
+    "residuals": {},
+    "theorem_id": "KM-REL-16",
+    "tolerance": null,
+    "valid": true
+  },
+  "checks": [
+    {
+      "detail": "",
+      "name": "versioned v1 aliases",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "strict stable API manifest",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "square analysis--synthesis reconstruction",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "redundant canonical-dual reconstruction",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "analysis--synthesis transfer blocks",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "polyphase refinement coherence",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "exact arithmetic refinement",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "stable portable persistence",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "stable construction pipeline",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "stable settings context",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "aggregate stable compatibility contract",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "machine-readable Block 17 release contract",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "predecessor upgrade contract",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "executed platform evidence",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "machine-readable support policy",
+      "passed": true
+    },
+    {
+      "detail": "observed 3.13.5",
+      "name": "supported Python version",
+      "passed": true
+    },
+    {
+      "detail": "observed 1.0.0b1; expected 1.0.0b1",
+      "name": "release version identity",
+      "passed": true
+    }
+  ],
+  "gpu": null,
+  "gpu_required": false,
+  "optional_backends": {
+    "jax": {
+      "available": false,
+      "detail": "jax is not installed in the active Python environment",
+      "discovered": false,
+      "framework": "jax",
+      "returncode": null,
+      "version": null
+    },
+    "torch": {
+      "available": false,
+      "detail": "torch is not installed in the active Python environment",
+      "discovered": false,
+      "framework": "torch",
+      "returncode": null,
+      "version": null
+    }
+  },
+  "runtime": {
+    "distributions": {
+      "cupy": null,
+      "cupy-cuda12x": null,
+      "jax": null,
+      "jaxlib": null,
+      "llvmlite": null,
+      "mpmath": null,
+      "numba": null,
+      "scipy": null,
+      "sympy": null,
+      "torch": null
+    },
+    "implementation": "CPython",
+    "machine": "x86_64",
+    "numpy": "2.2.4",
+    "package_version": "1.0.0b1",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "python_executable": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/.venv-block17-final/bin/python"
+  },
+  "schema": "komorebi-math.release-qualification",
+  "schema_version": 1,
+  "version": "1.0.0b1"
+}

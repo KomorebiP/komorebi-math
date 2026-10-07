@@ -1,0 +1,24 @@
+{
+  "checks": 520920,
+  "counting_convention": "Each elementwise NumPy-SciPy comparison counts as one check.",
+  "environment": {
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "scipy": "1.17.0"
+  },
+  "failures": [],
+  "package_version": "0.12.0a1",
+  "passed": true,
+  "schema": "komorebi-math.block12-scipy-reference-audit",
+  "scope": "Convention-matched finite reference comparisons; not a claim of API identity.",
+  "sections": {
+    "fft_convolution": 301084,
+    "fir_design": 252,
+    "recursive": 97924,
+    "resampling": 38354,
+    "spectral": 76502,
+    "windows": 6804
+  },
+  "seed": 12122026
+}

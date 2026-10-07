@@ -1,0 +1,372 @@
+{
+  "count": 52,
+  "package_version": "0.14.0a2",
+  "passed": true,
+  "results": [
+    {
+      "name": "automatic_holonomic.py",
+      "returncode": 0,
+      "seconds": 0.850622,
+      "stderr_tail": "",
+      "stdout_tail": "Thue Morse residue (1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0)\nApery (Fraction(1, 1), Fraction(5, 1), Fraction(73, 1), Fraction(1445, 1), Fraction(33001, 1), Fraction(819005, 1), Fraction(21460825, 1), Fraction(584307365, 1), Fraction(16367912425, 1), Fraction(468690849005, 1))\n"
+    },
+    {
+      "name": "block11_semantic_profile.py",
+      "returncode": 0,
+      "seconds": 1.582497,
+      "stderr_tail": "",
+      "stdout_tail": "nimum_duration_ns\": 1225335,\n      \"name\": \"portable_serialization\",\n      \"repetitions\": 2,\n      \"samples\": [\n        {\n          \"duration_ns\": 1354438,\n          \"traced_peak_bytes\": 15058\n        },\n        {\n          \"duration_ns\": 1225335,\n          \"traced_peak_bytes\": 15058\n        }\n      ],\n      \"scope\": \"canonical portable JSON construction and payload SHA-256\",\n      \"warmup\": 1\n    },\n    {\n      \"maximum_duration_ns\": 14262101,\n      \"maximum_peak_bytes\": 36522,\n      \"median_duration_ns\": 14207266,\n      \"median_peak_bytes\": 36497,\n      \"minimum_duration_ns\": 14152432,\n      \"name\": \"stream_snapshot_write\",\n      \"repetitions\": 2,\n      \"samples\": [\n        {\n          \"duration_ns\": 14152432,\n          \"traced_peak_bytes\": 36472\n        },\n        {\n          \"duration_ns\": 14262101,\n          \"traced_peak_bytes\": 36522\n        }\n      ],\n      \"scope\": \"chunk JSON encoding, per-chunk digesting, fsync, manifest updates, and promotion\",\n      \"warmup\": 1\n    }\n  ]\n}\n"
+    },
+    {
+      "name": "classical_coordinate_families.py",
+      "returncode": 0,
+      "seconds": 0.867145,
+      "stderr_tail": "",
+      "stdout_tail": "Legendre to Chebyshev determinant: 21091995799875/2251799813685248\nChebyshev coordinates: (Fraction(62417, 16384), Fraction(803, 128), Fraction(13583, 2048), Fraction(719, 128), Fraction(24493, 4096), Fraction(609, 128), Fraction(10329, 2048), Fraction(429, 128), Fraction(57915, 16384))\n"
+    },
+    {
+      "name": "coordinate_calculus.py",
+      "returncode": 0,
+      "seconds": 0.878145,
+      "stderr_tail": "",
+      "stdout_tail": "recurrence determinant 1\npolynomial determinant 1\n"
+    },
+    {
+      "name": "custom_generating_functions.py",
+      "returncode": 0,
+      "seconds": 0.938205,
+      "stderr_tail": "",
+      "stdout_tail": "{'registry': ('catalan', 'fibonacci'), 'catalan_8': '1430', 'product': ('2', '3', '-10', '109', '-512', '2000'), 'portable_degree': 12}\n"
+    },
+    {
+      "name": "cyclic_analytic.py",
+      "returncode": 0,
+      "seconds": 0.918514,
+      "stderr_tail": "",
+      "stdout_tail": "cyclic analytic example passed (2.221441469079183, 6.66432440723755, 11.107207345395917, 15.550090283554283)\n"
+    },
+    {
+      "name": "deformation_support.py",
+      "returncode": 0,
+      "seconds": 0.955971,
+      "stderr_tail": "",
+      "stdout_tail": "{'level_sizes': (2, 4, 4), 'stable_core_sizes': (2, 2, 4), 'branch_count': 4, 'intersection_dimension': 1, 'normal_crossing_count_q3_depth2': 21}\n"
+    },
+    {
+      "name": "euclidean_spectral.py",
+      "returncode": 0,
+      "seconds": 1.047322,
+      "stderr_tail": "",
+      "stdout_tail": "Euclidean and spectral example passed\n"
+    },
+    {
+      "name": "euler_to_fibonacci_coordinates.py",
+      "returncode": 0,
+      "seconds": 0.906884,
+      "stderr_tail": "",
+      "stdout_tail": "initial ('1', '0')\ndefects ('-2', '1', '6', '-5', '-66', '61', '1446', '-1385', '-51906', '50521', '2753286', '-2702765', '-202063746', '199360981', '19590873126', '-19391512145')\nreconstructed ('1', '0', '-1', '0', '5', '0', '-61', '0', '1385', '0', '-50521', '0', '2702765', '0', '-199360981', '0', '19391512145', '0')\n"
+    },
+    {
+      "name": "exact_backend.py",
+      "returncode": 0,
+      "seconds": 1.198873,
+      "stderr_tail": "",
+      "stdout_tail": "algebra dimension: 2\n{\n  \"assumptions_checked\": [\n    \"common dimension\",\n    \"idempotence\",\n    \"annihilation\",\n    \"completeness\"\n  ],\n  \"assumptions_unchecked\": [],\n  \"diagnostics\": {\n    \"ambient_dimension\": 2,\n    \"backend\": \"sympy\",\n    \"packet_count\": 2\n  },\n  \"exactness\": \"exact\",\n  \"message\": \"valid packet system\",\n  \"residuals\": {\n    \"annihilation\": 0.0,\n    \"completeness\": 0.0,\n    \"idempotence\": 0.0\n  },\n  \"theorem_id\": \"PSC-I-T20\",\n  \"tolerance\": null,\n  \"valid\": true\n}\nsingle operator seed rank: 2\n"
+    },
+    {
+      "name": "exact_lattice_separation.py",
+      "returncode": 0,
+      "seconds": 1.065096,
+      "stderr_tail": "",
+      "stdout_tail": "projector weights: (2, 2)\ngluing factors: (1, 4)\ncongruence solutions: 64\n"
+    },
+    {
+      "name": "export_reports.py",
+      "returncode": 0,
+      "seconds": 4.195175,
+      "stderr_tail": "",
+      "stdout_tail": ""
+    },
+    {
+      "name": "feshbach_memory.py",
+      "returncode": 0,
+      "seconds": 0.964867,
+      "stderr_tail": "",
+      "stdout_tail": "self energy at z=2+0.3i:\n[[ 0.03960396-0.0039604j   0.00143203-0.00027196j]\n [-0.        +0.j         -0.02918455+0.00257511j]]\nmemory kernel at zero:\n[[ 0.12  0.  ]\n [ 0.   -0.1 ]]\nexact local closure: False\n"
+    },
+    {
+      "name": "filtered_transport.py",
+      "returncode": 0,
+      "seconds": 1.001994,
+      "stderr_tail": "",
+      "stdout_tail": "page 0 dimension 2 rank 0\npage 1 dimension 2 rank 1\npage 2 dimension 0 rank 0\ntransport coarse-fine difference: 4.649628121515814e-15\n"
+    },
+    {
+      "name": "finite_image_clifford.py",
+      "returncode": 0,
+      "seconds": 0.85139,
+      "stderr_tail": "",
+      "stdout_tail": "{'induced_dimension': 2, 'symmetric_packet_dimensions': (2, 2), 'clifford_word': 'EIE', 'clifford_depth': 1, 'unresolved_extension_steps': (0,)}\n"
+    },
+    {
+      "name": "formal_affine_coordinate_changes.py",
+      "returncode": 0,
+      "seconds": 0.831732,
+      "stderr_tail": "",
+      "stdout_tail": "Cartesian point: (Fraction(4, 1), Fraction(2, 1))\nbarycentric point: (Fraction(2, 3), Fraction(3, 2))\nformal pullback: (Fraction(3, 1), Fraction(4, 1), Fraction(3, 1), Fraction(-8, 1), Fraction(26, 1))\n"
+    },
+    {
+      "name": "fractional_survival.py",
+      "returncode": 0,
+      "seconds": 0.992328,
+      "stderr_tail": "",
+      "stdout_tail": "square root spectrum: [1. 2. 3.]\nfractional transfer diagonal: [0.4965853  0.24659696 0.12245643]\nsurvival at t=1: 0.6703200460356394\nmean lifetime: 2.5\n"
+    },
+    {
+      "name": "frobenius_companions.py",
+      "returncode": 0,
+      "seconds": 0.858163,
+      "stderr_tail": "",
+      "stdout_tail": "{'spine_rank': 2, 'separating_places': (2, 3), 'multiplicities': (3, 2), 'selected_carrier': {'rho1': 3, 'rho2': 2}}\n"
+    },
+    {
+      "name": "general_coordinate_atlas.py",
+      "returncode": 0,
+      "seconds": 0.842566,
+      "stderr_tail": "",
+      "stdout_tail": "path: ('standard', 'scaled')\nscaled coordinates: (Fraction(7, 2), Fraction(-1, 1), Fraction(11, 5))\n"
+    },
+    {
+      "name": "holonomy.py",
+      "returncode": 0,
+      "seconds": 0.883551,
+      "stderr_tail": "",
+      "stdout_tail": "fundamental cycles: 1\ngauge invariant gluing: True\nbroken cycle detected: True\n"
+    },
+    {
+      "name": "kato_feshbach.py",
+      "returncode": 0,
+      "seconds": 1.019509,
+      "stderr_tail": "",
+      "stdout_tail": "Kato and Feshbach example passed\n"
+    },
+    {
+      "name": "local_euler_coordinates.py",
+      "returncode": 0,
+      "seconds": 0.834703,
+      "stderr_tail": "",
+      "stdout_tail": "{'prime': 2, 'exact': Fraction(370371188237525, 1), 'truncated': '8804179016755/231', 'modulus': 2048, 'error': '85546940303851520/231'}\n{'prime': 5, 'exact': Fraction(370371188237525, 1), 'truncated': '86777696087933558237525', 'modulus': 15625, 'error': '-86777695717562370000000'}\n"
+    },
+    {
+      "name": "low_rank_recompression.py",
+      "returncode": 0,
+      "seconds": 0.84956,
+      "stderr_tail": "",
+      "stdout_tail": "solve residual 0.0\nproduct rank bound 4\ncompressed rank 2\ncompression spectral error 0.00024475675260188207\n"
+    },
+    {
+      "name": "mahler_cartier_compilers.py",
+      "returncode": 0,
+      "seconds": 0.895864,
+      "stderr_tail": "",
+      "stdout_tail": "{'stern_shift_prefix': (Fraction(1, 1), Fraction(1, 1), Fraction(2, 1), Fraction(1, 1), Fraction(3, 1), Fraction(2, 1), Fraction(3, 1), Fraction(1, 1), Fraction(4, 1), Fraction(3, 1), Fraction(5, 1), Fraction(2, 1), Fraction(5, 1), Fraction(3, 1), Fraction(4, 1), Fraction(1, 1), Fraction(5, 1), Fraction(4, 1), Fraction(7, 1), Fraction(3, 1)), 'cartier_dimension': 2, 'large_index_value_mod_5': 0, 'coboundary': (Fraction(1, 1), Fraction(2, 1))}\n"
+    },
+    {
+      "name": "markov_bayes.py",
+      "returncode": 0,
+      "seconds": 0.859791,
+      "stderr_tail": "",
+      "stdout_tail": "coarse generator:\n[[-0.1  0. ]\n [ 0.1  0. ]]\ncoarse posterior: [0.63157895 0.36842105]\nfixed sufficient: True\n"
+    },
+    {
+      "name": "nonlinear_jets_composition.py",
+      "returncode": 0,
+      "seconds": 0.926989,
+      "stderr_tail": "",
+      "stdout_tail": "second directional derivative: 888\nset-partition terms: 2\nnonzero packet jets: (PacketJetAddress(output='x', inputs=('x', 'x')), PacketJetAddress(output='y', inputs=('y', 'y')))\n"
+    },
+    {
+      "name": "nonlinear_trees_elimination.py",
+      "returncode": 0,
+      "seconds": 0.846838,
+      "stderr_tail": "",
+      "stdout_tail": "finite tree sum: 0.11256641000000002\nPicard tail bound at depth 4: 0.004266666666666668\nimplicit derivative: [[4.-0.j]]\nreduced derivative: [[11.+0.j]]\nreduced obstruction: [0.09]\n"
+    },
+    {
+      "name": "obstruction_lifting.py",
+      "returncode": 0,
+      "seconds": 1.180648,
+      "stderr_tail": "",
+      "stdout_tail": "obstruction coordinates: (1,)\nlift levels: 5\nterminal branches: 2\n"
+    },
+    {
+      "name": "packet_compiler.py",
+      "returncode": 0,
+      "seconds": 0.949126,
+      "stderr_tail": "",
+      "stdout_tail": "Lagrangian leaves ('left', 'right')\nbudget leaves ('left', 'right')\nPareto points [(9.0, 0.0, ('root',)), (7.5, 0.30000000000000004, ('left', 'right')), (5.2, 0.8999999999999999, ('left', 'right_low', 'right_high'))]\n"
+    },
+    {
+      "name": "packet_ir.py",
+      "returncode": 0,
+      "seconds": 0.950786,
+      "stderr_tail": "",
+      "stdout_tail": "support [(0, 0), (1, 0), (1, 1)]\nresult [ 4.  6. 19.]\nstored entries 7\nmodeled flops 14\n"
+    },
+    {
+      "name": "polyphase_filterbank.py",
+      "returncode": 0,
+      "seconds": 0.897985,
+      "stderr_tail": "",
+      "stdout_tail": "polyphase channels: (4, 4, 4, 4)\nfiltered length: 18\npacket tree nodes: 15\n"
+    },
+    {
+      "name": "portable_nonlinear_state.py",
+      "returncode": 0,
+      "seconds": 0.887208,
+      "stderr_tail": "",
+      "stdout_tail": "snapshot address: PacketJetAddress(output='x', inputs=('x', 'x'))\nstored coefficients: 1\nportable digest: dae6206f9b99acfa72649825253fd0b748c1e62236109f0a120872767ad97033\nevaluation: [(-6+0j), 0j]\ntampered payload: rejected\n"
+    },
+    {
+      "name": "precision_schedule.py",
+      "returncode": 0,
+      "seconds": 0.878122,
+      "stderr_tail": "",
+      "stdout_tail": "precision choices ('low64', 'high32')\ntotal cost 4.0\nschedule makespan 5.0\ncritical path ('analyze', 'high', 'synthesize')\n"
+    },
+    {
+      "name": "prime_power_generating.py",
+      "returncode": 0,
+      "seconds": 1.496258,
+      "stderr_tail": "",
+      "stdout_tail": "{'kernel_residue': 81, 'kernel_valuation': 4, 'bell_digit_sum': 5, 'q_binomial_valuation': 1}\n"
+    },
+    {
+      "name": "production_dsp.py",
+      "returncode": 0,
+      "seconds": 0.920614,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"adaptive_final_weights\": [\n    0.7,\n    -0.35,\n    0.15000000000000002\n  ],\n  \"denoising_observed_risk_improved\": true,\n  \"dominant_frequency_hz\": 73.0,\n  \"overlap_add_samples\": 1027,\n  \"recursive_filter_samples\": 1024,\n  \"resampled_samples\": 1280,\n  \"stft_frames\": 33,\n  \"streaming_fir_samples\": 1024,\n  \"streaming_stft_frames\": 29,\n  \"welch_segments\": 7\n}\n"
+    },
+    {
+      "name": "quantum_channel_qec.py",
+      "returncode": 0,
+      "seconds": 0.894502,
+      "stderr_tail": "",
+      "stdout_tail": "quantum channel and error correction example passed\n"
+    },
+    {
+      "name": "quantum_symmetry_circuit.py",
+      "returncode": 0,
+      "seconds": 0.905003,
+      "stderr_tail": "",
+      "stdout_tail": "quantum circuit example passed 0.4999999999999998\n"
+    },
+    {
+      "name": "quickstart.py",
+      "returncode": 0,
+      "seconds": 0.893844,
+      "stderr_tail": "",
+      "stdout_tail": "{'valid': True, 'exactness': 'numerical', 'grammar_vertices': (), 'seed_dimension': 4, 'packet_names': ('even', 'odd'), 'operators': ('shift',), 'refinement_levels': 0, 'metadata': {}}\nhull dimension: 4\nblock norms: ((0.0, 1.4142135623730951), (1.4142135623730951, 0.0))\n"
+    },
+    {
+      "name": "ramification_completion.py",
+      "returncode": 0,
+      "seconds": 0.893686,
+      "stderr_tail": "",
+      "stdout_tail": "{'ramification_breaks': (0, 1), 'ramification_dimensions': (4, 2), 'arf_invariant': 0, 'completion_ready': False, 'unmet_gates': ('realization',)}\n"
+    },
+    {
+      "name": "recurrence_packets.py",
+      "returncode": 0,
+      "seconds": 0.968266,
+      "stderr_tail": "",
+      "stdout_tail": "packet (2, 55, 1597, 46368, 1346269, 39088169, 1134903170, 32951280099, 956722026041, 27777890035288, 806515533049393, 23416728348467685)\nF(1_000_000) mod 1_000_003 3\nperiod mod 32 48\n"
+    },
+    {
+      "name": "recurrence_state_coordinate_atlas.py",
+      "returncode": 0,
+      "seconds": 0.841719,
+      "stderr_tail": "",
+      "stdout_tail": "recurrence bridge: Pell recurrence coordinates of length 16 -> Tribonacci recurrence coordinates of length 16\nobservable state coordinates: (Fraction(-9, 1), Fraction(-15, 1), Fraction(-6, 1))\n"
+    },
+    {
+      "name": "refinement_pipeline.py",
+      "returncode": 0,
+      "seconds": 0.863495,
+      "stderr_tail": "",
+      "stdout_tail": "refinement levels: 2\nCRT address: 29\nminimum transfer weight 0 to 2: 3\n"
+    },
+    {
+      "name": "resumable_packet_jet_stream.py",
+      "returncode": 0,
+      "seconds": 0.940311,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"paused_after\": 2,\n  \"resumed\": true,\n  \"chunks\": 4,\n  \"stored_coefficients\": 4,\n  \"stream_sha256\": \"d635f63647540dd0c21604cf09bd7863ff47dab8e86e46b21482449e61c9f4ba\",\n  \"value\": [\n    53.0\n  ]\n}\n"
+    },
+    {
+      "name": "scalable_nonlinear.py",
+      "returncode": 0,
+      "seconds": 0.893995,
+      "stderr_tail": "",
+      "stdout_tail": "sparse entries: 4\ndense entries: 10\nactive packet blocks: 2\npruned packet blocks: 6\nprovider derivative calls: 2\nreconstructed derivative: (np.complex128(-4+0j), np.complex128(-36+0j))\nsnapshot coefficients: 1\nportable bytes: 6807\nCuPy installed: False\nCuPy runtime available: False\nCUDA devices: 0\n"
+    },
+    {
+      "name": "scalable_nonlinear_runtime.py",
+      "returncode": 0,
+      "seconds": 0.854831,
+      "stderr_tail": "",
+      "stdout_tail": "stored derivative entries: 3\ndense derivative entries: 27\nactive packet blocks: 4\npruned packet blocks: 23\nplanned derivative calls: 4\nnaive derivative calls: 27\nreconstruction: [(-1+0j), (-11.8125+0j), (8+0j)]\n"
+    },
+    {
+      "name": "sequence_compiler.py",
+      "returncode": 0,
+      "seconds": 0.827476,
+      "stderr_tail": "",
+      "stdout_tail": "Fibonacci declared linear recurrence (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)\nThue Morse declared finite automaton (0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1)\nApery declared holonomic recurrence (Fraction(1, 1), Fraction(5, 1), Fraction(73, 1), Fraction(1445, 1), Fraction(33001, 1), Fraction(819005, 1), Fraction(21460825, 1), Fraction(584307365, 1), Fraction(16367912425, 1), Fraction(468690849005, 1), Fraction(13657436403073, 1), Fraction(403676083788125, 1))\n"
+    },
+    {
+      "name": "singular_packet_recovery.py",
+      "returncode": 0,
+      "seconds": 0.853937,
+      "stderr_tail": "",
+      "stdout_tail": "detected cells: (117, 363)\nestimated locations: [0.22949219 0.70996094]\nestimated amplitudes: [ 0.45006308 -0.35012219]\n"
+    },
+    {
+      "name": "spectral_packet_coordinates.py",
+      "returncode": 0,
+      "seconds": 0.835362,
+      "stderr_tail": "",
+      "stdout_tail": "Fourier coordinates: [ 9.89949494+0.00000000e+00j -1.41421356+3.41421356e+00j\n -1.41421356+1.41421356e+00j -1.41421356+5.85786438e-01j\n -1.41421356-1.21233848e-15j -1.41421356-5.85786438e-01j\n -1.41421356-1.41421356e+00j -1.41421356-3.41421356e+00j]\nHaar coordinates: [ 9.89949494 -5.65685425 -2.         -2.         -0.70710678 -0.70710678\n -0.70710678 -0.70710678]\nresidue-lane order: (Fraction(0, 1), Fraction(2, 1), Fraction(4, 1), Fraction(6, 1), Fraction(1, 1), Fraction(3, 1), Fraction(5, 1), Fraction(7, 1))\n"
+    },
+    {
+      "name": "standard_window_mahler.py",
+      "returncode": 0,
+      "seconds": 0.859755,
+      "stderr_tail": "",
+      "stdout_tail": "period 3\nwindow (1, 6, 5, 2, 6, 5, 2, 6, 5, 2, 6, 5, 2)\nrefined (Fraction(21, 1), Fraction(636, 1), Fraction(4113, 1), Fraction(14664, 1), Fraction(38445, 1), Fraction(83556, 1), Fraction(160041, 1), Fraction(279888, 1))\n"
+    },
+    {
+      "name": "structured_krylov.py",
+      "returncode": 0,
+      "seconds": 0.844231,
+      "stderr_tail": "",
+      "stdout_tail": "iterations 4\nresidual 9.930136612989092e-16\n"
+    },
+    {
+      "name": "tame_heisenberg.py",
+      "returncode": 0,
+      "seconds": 0.859377,
+      "stderr_tail": "",
+      "stdout_tail": "{'frobenius_orbit': (1, 2, 4), 'tame_dimension': 3, 'determinant_orientation': (1+0j), 'heisenberg_dimension': 3, 'selector_rank': 1}\n"
+    },
+    {
+      "name": "typed_grammar.py",
+      "returncode": 0,
+      "seconds": 0.831682,
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"assumptions_checked\": [\n    \"operator shapes\",\n    \"typed path composition\",\n    \"declared relations\"\n  ],\n  \"assumptions_unchecked\": [],\n  \"diagnostics\": {\n    \"backend\": \"numpy\",\n    \"relation_count\": 1\n  },\n  \"exactness\": \"numerical\",\n  \"message\": \"all grammar relations are satisfied\",\n  \"residuals\": {\n    \"cubic\": 0.0\n  },\n  \"theorem_id\": \"PSC-I-T01\",\n  \"tolerance\": 1e-10,\n  \"valid\": true\n}\n"
+    }
+  ],
+  "schema": "komorebi-math.block14a2-examples.v1"
+}

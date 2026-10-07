@@ -1,0 +1,40 @@
+{
+  "categories": {
+    "independent Euler Fibonacci polynomial coordinates": {
+      "checks": 496,
+      "failures": 0
+    },
+    "independent Euler Green reconstruction": {
+      "checks": 79,
+      "failures": 0
+    },
+    "independent Euler defect": {
+      "checks": 78,
+      "failures": 0
+    },
+    "independent Fibonacci polynomials": {
+      "checks": 496,
+      "failures": 0
+    },
+    "independent normalized basis scaling": {
+      "checks": 45,
+      "failures": 0
+    },
+    "independent recurrence analysis": {
+      "checks": 81550,
+      "failures": 0
+    },
+    "independent recurrence coordinate change": {
+      "checks": 14880,
+      "failures": 0
+    },
+    "independent recurrence synthesis": {
+      "checks": 97475,
+      "failures": 0
+    }
+  },
+  "package_version": "0.14.0a2",
+  "schema": "komorebi-math.block14-deep-audit",
+  "total_checks": 195099,
+  "total_failures": 0
+}

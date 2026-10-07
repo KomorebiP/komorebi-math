@@ -1,0 +1,1154 @@
+{
+  "best_basis": {
+    "failures": 0,
+    "trials": 600
+  },
+  "finite_group": {
+    "failures": 0,
+    "oracle_invalid": 599,
+    "oracle_valid": 1,
+    "trials": 600
+  },
+  "inventory": {
+    "callsites": [
+      {
+        "function": "compile_tree_lagrangian",
+        "hardcoded_true": true,
+        "line": 127,
+        "path": "src/komorebi_math/algorithms/compiler.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "compile_tree_budget",
+        "hardcoded_true": false,
+        "line": 268,
+        "path": "src/komorebi_math/algorithms/compiler.py",
+        "valid_expression": "int(plan.quantized_error) <= int(budget)"
+      },
+      {
+        "function": "assign_discrete_precisions",
+        "hardcoded_true": false,
+        "line": 203,
+        "path": "src/komorebi_math/algorithms/precision.py",
+        "valid_expression": "error_units <= budget"
+      },
+      {
+        "function": "cyclic_projection_certificate",
+        "hardcoded_true": false,
+        "line": 121,
+        "path": "src/komorebi_math/analytic/cyclic.py",
+        "valid_expression": "residual <= tolerance"
+      },
+      {
+        "function": "reciprocal_semigroup_certificate",
+        "hardcoded_true": false,
+        "line": 150,
+        "path": "src/komorebi_math/analytic/reciprocal.py",
+        "valid_expression": "maximum <= tolerance"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 304,
+        "path": "src/komorebi_math/arithmetic/euler.py",
+        "valid_expression": "valid and inverse_valid and weight_valid"
+      },
+      {
+        "function": "truncate",
+        "hardcoded_true": false,
+        "line": 272,
+        "path": "src/komorebi_math/arithmetic/euler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certify_difference_congruence",
+        "hardcoded_true": false,
+        "line": 81,
+        "path": "src/komorebi_math/arithmetic/local_modes.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "simultaneous_unit_difference",
+        "hardcoded_true": false,
+        "line": 133,
+        "path": "src/komorebi_math/arithmetic/local_modes.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "affine_kernel_composition_certificate",
+        "hardcoded_true": false,
+        "line": 228,
+        "path": "src/komorebi_math/arithmetic/mahler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "prime_power_kernel_certificate",
+        "hardcoded_true": false,
+        "line": 280,
+        "path": "src/komorebi_math/arithmetic/mahler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 358,
+        "path": "src/komorebi_math/arithmetic/mahler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "reconstruction_certificate",
+        "hardcoded_true": false,
+        "line": 161,
+        "path": "src/komorebi_math/arithmetic/mahler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 313,
+        "path": "src/komorebi_math/arithmetic/recurrence.py",
+        "valid_expression": "recurrence_valid and state_valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 384,
+        "path": "src/komorebi_math/arithmetic/recurrence.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "period_mod",
+        "hardcoded_true": false,
+        "line": 257,
+        "path": "src/komorebi_math/arithmetic/recurrence.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 176,
+        "path": "src/komorebi_math/arithmetic/standard_windows.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "compare_public_api",
+        "hardcoded_true": false,
+        "line": 479,
+        "path": "src/komorebi_math/compatibility.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 141,
+        "path": "src/komorebi_math/coordinates/affine.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 224,
+        "path": "src/komorebi_math/coordinates/affine.py",
+        "valid_expression": "recovered == expected_columns"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 205,
+        "path": "src/komorebi_math/coordinates/basis.py",
+        "valid_expression": "rank == self.dimension"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 246,
+        "path": "src/komorebi_math/coordinates/basis.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 91,
+        "path": "src/komorebi_math/coordinates/calculus.py",
+        "valid_expression": "rows == self.target_degree + 1 and columns == self.source_degree + 1"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 229,
+        "path": "src/komorebi_math/coordinates/formal.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 835,
+        "path": "src/komorebi_math/coordinates/frame_algebra.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 996,
+        "path": "src/komorebi_math/coordinates/frame_algebra.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 207,
+        "path": "src/komorebi_math/coordinates/modular.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 178,
+        "path": "src/komorebi_math/coordinates/modular.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 194,
+        "path": "src/komorebi_math/coordinates/modular.py",
+        "valid_expression": "False"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 90,
+        "path": "src/komorebi_math/coordinates/operators.py",
+        "valid_expression": "self.valid and self.reconstructed == self.expected"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 105,
+        "path": "src/komorebi_math/coordinates/realization.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 154,
+        "path": "src/komorebi_math/coordinates/realization.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 189,
+        "path": "src/komorebi_math/coordinates/recurrence.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 271,
+        "path": "src/komorebi_math/coordinates/state_space.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 140,
+        "path": "src/komorebi_math/coordinates/transform.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 138,
+        "path": "src/komorebi_math/core/algebra.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 74,
+        "path": "src/komorebi_math/core/morphisms.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 123,
+        "path": "src/komorebi_math/core/morphisms.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 166,
+        "path": "src/komorebi_math/core/morphisms.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 103,
+        "path": "src/komorebi_math/core/operators.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 112,
+        "path": "src/komorebi_math/core/packets.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "hilbert_certificate",
+        "hardcoded_true": false,
+        "line": 133,
+        "path": "src/komorebi_math/core/packets.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "generation_certificate",
+        "hardcoded_true": false,
+        "line": 147,
+        "path": "src/komorebi_math/core/seeds.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "minimum_standard_basis_seeds",
+        "hardcoded_true": false,
+        "line": 258,
+        "path": "src/komorebi_math/core/seeds.py",
+        "valid_expression": "False"
+      },
+      {
+        "function": "block_from_paths",
+        "hardcoded_true": false,
+        "line": 83,
+        "path": "src/komorebi_math/core/transfer.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "finite_frobenius_separator",
+        "hardcoded_true": false,
+        "line": 230,
+        "path": "src/komorebi_math/deformation/companions.py",
+        "valid_expression": "separating"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 146,
+        "path": "src/komorebi_math/deformation/complexes.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "report",
+        "hardcoded_true": false,
+        "line": 182,
+        "path": "src/komorebi_math/deformation/forests.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "export_data",
+        "hardcoded_true": false,
+        "line": 362,
+        "path": "src/komorebi_math/export/writers.py",
+        "valid_expression": "target.is_file() and target.stat().st_size == size and size > 0"
+      },
+      {
+        "function": "export_bundle",
+        "hardcoded_true": false,
+        "line": 482,
+        "path": "src/komorebi_math/export/writers.py",
+        "valid_expression": "target.is_file() and target.stat().st_size > 0"
+      },
+      {
+        "function": "exact_internal_certificate",
+        "hardcoded_true": true,
+        "line": 228,
+        "path": "src/komorebi_math/expression/certification.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "matrix_chain_plan",
+        "hardcoded_true": true,
+        "line": 212,
+        "path": "src/komorebi_math/expression/planning.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "primitive_certificate",
+        "hardcoded_true": false,
+        "line": 587,
+        "path": "src/komorebi_math/expression/polynomial.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 132,
+        "path": "src/komorebi_math/generating/bell.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 187,
+        "path": "src/komorebi_math/generating/bell.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 380,
+        "path": "src/komorebi_math/generating/bell.py",
+        "valid_expression": "not failures"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 77,
+        "path": "src/komorebi_math/generating/finite_series.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 426,
+        "path": "src/komorebi_math/generating/finite_series.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certify_mahler_functional_equation",
+        "hardcoded_true": false,
+        "line": 178,
+        "path": "src/komorebi_math/generating/masks.py",
+        "valid_expression": "not failures"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 255,
+        "path": "src/komorebi_math/generating/masks.py",
+        "valid_expression": "not failures"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 408,
+        "path": "src/komorebi_math/generating/masks.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 772,
+        "path": "src/komorebi_math/generating/masks.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 907,
+        "path": "src/komorebi_math/generating/masks.py",
+        "valid_expression": "self.valid"
+      },
+      {
+        "function": "_exact_snapshot",
+        "hardcoded_true": true,
+        "line": 104,
+        "path": "src/komorebi_math/golden.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "run_behavioral_golden_fixture",
+        "hardcoded_true": false,
+        "line": 590,
+        "path": "src/komorebi_math/golden.py",
+        "valid_expression": "not failed"
+      },
+      {
+        "function": "coordinate_fundamental_theorem",
+        "hardcoded_true": false,
+        "line": 297,
+        "path": "src/komorebi_math/integration/coordinates.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "coordinate_transport_identity",
+        "hardcoded_true": false,
+        "line": 340,
+        "path": "src/komorebi_math/integration/coordinates.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 202,
+        "path": "src/komorebi_math/integration/coordinates.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "_identity_certificate",
+        "hardcoded_true": false,
+        "line": 59,
+        "path": "src/komorebi_math/integration/identities.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 288,
+        "path": "src/komorebi_math/integration/measures.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 344,
+        "path": "src/komorebi_math/integration/polynomial.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "polynomial_derivative_bound",
+        "hardcoded_true": true,
+        "line": 269,
+        "path": "src/komorebi_math/integration/quadrature.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "_atomic_integral",
+        "hardcoded_true": true,
+        "line": 425,
+        "path": "src/komorebi_math/integration/quadrature.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "_zero_interval_result",
+        "hardcoded_true": true,
+        "line": 558,
+        "path": "src/komorebi_math/integration/quadrature.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "integrate_polynomial_oriented",
+        "hardcoded_true": true,
+        "line": 1195,
+        "path": "src/komorebi_math/integration/quadrature.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 492,
+        "path": "src/komorebi_math/integration/rules.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "apply",
+        "hardcoded_true": true,
+        "line": 243,
+        "path": "src/komorebi_math/integration/rules.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "integrate_polynomial",
+        "hardcoded_true": true,
+        "line": 311,
+        "path": "src/komorebi_math/integration/rules.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certify_polynomial_integral",
+        "hardcoded_true": true,
+        "line": 470,
+        "path": "src/komorebi_math/integration/rules.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "report",
+        "hardcoded_true": true,
+        "line": 121,
+        "path": "src/komorebi_math/langlands/finite_image/clifford.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 217,
+        "path": "src/komorebi_math/langlands/finite_image/groups.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "mackey_tensor_packets",
+        "hardcoded_true": false,
+        "line": 60,
+        "path": "src/komorebi_math/langlands/finite_image/mackey.py",
+        "valid_expression": "total == expected"
+      },
+      {
+        "function": "packet_certificate",
+        "hardcoded_true": false,
+        "line": 157,
+        "path": "src/komorebi_math/langlands/finite_image/orbits.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "dyadic_sign_diagnostic",
+        "hardcoded_true": false,
+        "line": 32,
+        "path": "src/komorebi_math/langlands/global_/dyadic.py",
+        "valid_expression": "square_zero"
+      },
+      {
+        "function": "construct",
+        "hardcoded_true": false,
+        "line": 126,
+        "path": "src/komorebi_math/langlands/global_/hecke.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "construct",
+        "hardcoded_true": false,
+        "line": 50,
+        "path": "src/komorebi_math/langlands/local/bridge.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 92,
+        "path": "src/komorebi_math/langlands/local/symplectic.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "polar_certificate",
+        "hardcoded_true": false,
+        "line": 143,
+        "path": "src/komorebi_math/langlands/local/symplectic.py",
+        "valid_expression": "maximum == 0"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 109,
+        "path": "src/komorebi_math/langlands/local/tame.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "tame_tensor_refinement",
+        "hardcoded_true": false,
+        "line": 212,
+        "path": "src/komorebi_math/langlands/local/tame.py",
+        "valid_expression": "count * depth == n * m"
+      },
+      {
+        "function": "validation_certificate",
+        "hardcoded_true": false,
+        "line": 354,
+        "path": "src/komorebi_math/nonlinear/autodiff.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "faa_di_bruno",
+        "hardcoded_true": false,
+        "line": 209,
+        "path": "src/komorebi_math/nonlinear/composition.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "packet_faa_di_bruno",
+        "hardcoded_true": false,
+        "line": 373,
+        "path": "src/komorebi_math/nonlinear/composition.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 78,
+        "path": "src/komorebi_math/nonlinear/coordinates.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "fixed_point_residual",
+        "hardcoded_true": false,
+        "line": 110,
+        "path": "src/komorebi_math/nonlinear/coordinates.py",
+        "valid_expression": "parents_valid"
+      },
+      {
+        "function": "validation_certificate",
+        "hardcoded_true": false,
+        "line": 230,
+        "path": "src/komorebi_math/nonlinear/derivatives.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "symmetry_certificate",
+        "hardcoded_true": false,
+        "line": 477,
+        "path": "src/komorebi_math/nonlinear/derivatives.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "compile_packet_jet_plan",
+        "hardcoded_true": false,
+        "line": 177,
+        "path": "src/komorebi_math/nonlinear/execution.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "execute_packet_jet_plan",
+        "hardcoded_true": false,
+        "line": 331,
+        "path": "src/komorebi_math/nonlinear/execution.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": true,
+        "line": 286,
+        "path": "src/komorebi_math/nonlinear/filtered.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "verify_finite_filtered_branch",
+        "hardcoded_true": false,
+        "line": 476,
+        "path": "src/komorebi_math/nonlinear/filtered.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "solve",
+        "hardcoded_true": false,
+        "line": 397,
+        "path": "src/komorebi_math/nonlinear/filtered.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "page",
+        "hardcoded_true": false,
+        "line": 767,
+        "path": "src/komorebi_math/nonlinear/filtered.py",
+        "valid_expression": "relation_failures == 0"
+      },
+      {
+        "function": "spectral_sequence",
+        "hardcoded_true": false,
+        "line": 809,
+        "path": "src/komorebi_math/nonlinear/filtered.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 167,
+        "path": "src/komorebi_math/nonlinear/graded.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "grading_certificate",
+        "hardcoded_true": false,
+        "line": 312,
+        "path": "src/komorebi_math/nonlinear/graded.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "packet_convolution",
+        "hardcoded_true": false,
+        "line": 375,
+        "path": "src/komorebi_math/nonlinear/graded.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "gluing_certificate",
+        "hardcoded_true": false,
+        "line": 342,
+        "path": "src/komorebi_math/nonlinear/holonomy.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "intertwine",
+        "hardcoded_true": false,
+        "line": 605,
+        "path": "src/komorebi_math/nonlinear/holonomy.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "symmetry_certificate",
+        "hardcoded_true": false,
+        "line": 182,
+        "path": "src/komorebi_math/nonlinear/jets.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "reconstruction_certificate",
+        "hardcoded_true": false,
+        "line": 302,
+        "path": "src/komorebi_math/nonlinear/jets.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "packet_jet_support",
+        "hardcoded_true": false,
+        "line": 435,
+        "path": "src/komorebi_math/nonlinear/jets.py",
+        "valid_expression": "parents_valid"
+      },
+      {
+        "function": "packet_taylor",
+        "hardcoded_true": false,
+        "line": 525,
+        "path": "src/komorebi_math/nonlinear/jets.py",
+        "valid_expression": "representation_valid"
+      },
+      {
+        "function": "step",
+        "hardcoded_true": false,
+        "line": 214,
+        "path": "src/komorebi_math/nonlinear/lifting.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "_solve_exact",
+        "hardcoded_true": false,
+        "line": 100,
+        "path": "src/komorebi_math/nonlinear/obstruction.py",
+        "valid_expression": "bool(valid and residual == 0.0)"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 183,
+        "path": "src/komorebi_math/nonlinear/obstruction.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "estimate_packet_jet_complexity",
+        "hardcoded_true": false,
+        "line": 214,
+        "path": "src/komorebi_math/nonlinear/profiling.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "snapshot_packet_jet",
+        "hardcoded_true": true,
+        "line": 337,
+        "path": "src/komorebi_math/nonlinear/snapshots.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "comparison_certificate",
+        "hardcoded_true": false,
+        "line": 253,
+        "path": "src/komorebi_math/nonlinear/snapshots.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 318,
+        "path": "src/komorebi_math/nonlinear/sparse.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "storage_certificate",
+        "hardcoded_true": false,
+        "line": 619,
+        "path": "src/komorebi_math/nonlinear/sparse.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "_write_result_certificate",
+        "hardcoded_true": true,
+        "line": 967,
+        "path": "src/komorebi_math/nonlinear/streaming.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "capture_packet_jet_stream",
+        "hardcoded_true": true,
+        "line": 1128,
+        "path": "src/komorebi_math/nonlinear/streaming.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "select",
+        "hardcoded_true": false,
+        "line": 1437,
+        "path": "src/komorebi_math/nonlinear/streaming.py",
+        "valid_expression": "len(coefficients) == upper - lower"
+      },
+      {
+        "function": "evaluate",
+        "hardcoded_true": false,
+        "line": 1508,
+        "path": "src/komorebi_math/nonlinear/streaming.py",
+        "valid_expression": "processed == upper - lower"
+      },
+      {
+        "function": "verify",
+        "hardcoded_true": false,
+        "line": 1584,
+        "path": "src/komorebi_math/nonlinear/streaming.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "packet_tree_reconstruction",
+        "hardcoded_true": false,
+        "line": 808,
+        "path": "src/komorebi_math/nonlinear/trees.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "tree_expansion",
+        "hardcoded_true": false,
+        "line": 659,
+        "path": "src/komorebi_math/nonlinear/trees.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "compare_portable_codec_contract",
+        "hardcoded_true": false,
+        "line": 268,
+        "path": "src/komorebi_math/persistence_contract.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "multilevel_defect",
+        "hardcoded_true": false,
+        "line": 304,
+        "path": "src/komorebi_math/refinement/defects.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "power",
+        "hardcoded_true": false,
+        "line": 95,
+        "path": "src/komorebi_math/refinement/defects.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "polynomial",
+        "hardcoded_true": false,
+        "line": 127,
+        "path": "src/komorebi_math/refinement/defects.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "resolvent",
+        "hardcoded_true": false,
+        "line": 165,
+        "path": "src/komorebi_math/refinement/defects.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "exponential",
+        "hardcoded_true": false,
+        "line": 221,
+        "path": "src/komorebi_math/refinement/defects.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "refinement_weight_monotonicity",
+        "hardcoded_true": false,
+        "line": 274,
+        "path": "src/komorebi_math/refinement/lattices.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 140,
+        "path": "src/komorebi_math/refinement/lattices.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "gluing_weight_certificate",
+        "hardcoded_true": false,
+        "line": 212,
+        "path": "src/komorebi_math/refinement/lattices.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "coherence_certificate",
+        "hardcoded_true": false,
+        "line": 626,
+        "path": "src/komorebi_math/refinement/polyphase.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 857,
+        "path": "src/komorebi_math/refinement/polyphase.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 67,
+        "path": "src/komorebi_math/refinement/smith.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "solve",
+        "hardcoded_true": false,
+        "line": 236,
+        "path": "src/komorebi_math/refinement/smith.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 73,
+        "path": "src/komorebi_math/refinement/towers.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 205,
+        "path": "src/komorebi_math/refinement/towers.py",
+        "valid_expression": "all(certificate.valid for certificate in certificates)"
+      },
+      {
+        "function": "truncated_inverse",
+        "hardcoded_true": false,
+        "line": 304,
+        "path": "src/komorebi_math/refinement/weighted.py",
+        "valid_expression": "bool(valid)"
+      },
+      {
+        "function": "exact_inverse_if_acyclic",
+        "hardcoded_true": false,
+        "line": 350,
+        "path": "src/komorebi_math/refinement/weighted.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "check_release_contract",
+        "hardcoded_true": false,
+        "line": 91,
+        "path": "src/komorebi_math/release/contract.py",
+        "valid_expression": "not failed"
+      },
+      {
+        "function": "check_stable_documentation",
+        "hardcoded_true": false,
+        "line": 296,
+        "path": "src/komorebi_math/release/documentation.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "check_validation_evidence",
+        "hardcoded_true": false,
+        "line": 286,
+        "path": "src/komorebi_math/release/evidence.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "check_beta_readiness",
+        "hardcoded_true": false,
+        "line": 42,
+        "path": "src/komorebi_math/release/readiness.py",
+        "valid_expression": "not failed"
+      },
+      {
+        "function": "check_upgrade_contract",
+        "hardcoded_true": false,
+        "line": 134,
+        "path": "src/komorebi_math/release/upgrade.py",
+        "valid_expression": "not failed"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 159,
+        "path": "src/komorebi_math/sequences/automatic.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "_model_certificate",
+        "hardcoded_true": false,
+        "line": 190,
+        "path": "src/komorebi_math/sequences/compiler.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "compile_sequence",
+        "hardcoded_true": true,
+        "line": 278,
+        "path": "src/komorebi_math/sequences/compiler.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 139,
+        "path": "src/komorebi_math/sequences/holonomic.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "certificate",
+        "hardcoded_true": false,
+        "line": 83,
+        "path": "src/komorebi_math/signals/time_frequency.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "best_basis",
+        "hardcoded_true": true,
+        "line": 304,
+        "path": "src/komorebi_math/signals/wavelets.py",
+        "valid_expression": "True"
+      },
+      {
+        "function": "check_stable_contract",
+        "hardcoded_true": false,
+        "line": 53,
+        "path": "src/komorebi_math/stable_contract.py",
+        "valid_expression": "valid"
+      },
+      {
+        "function": "run_stable_semantics_fixture",
+        "hardcoded_true": false,
+        "line": 415,
+        "path": "src/komorebi_math/stable_semantics.py",
+        "valid_expression": "not failed"
+      },
+      {
+        "function": "validate",
+        "hardcoded_true": false,
+        "line": 126,
+        "path": "src/komorebi_math/unified.py",
+        "valid_expression": "valid"
+      }
+    ],
+    "exact_certificate_callsites": 159,
+    "hardcoded_true_callsites": 24,
+    "source_files": 89
+  },
+  "passed": true,
+  "precision_assignment": {
+    "failures": 0,
+    "trials": 600
+  },
+  "runtime_seconds": 1.5946807079999417,
+  "schema": "komorebi-math.episode018-certificate-consistency-probe",
+  "seed": 20260924,
+  "tree_compilers": {
+    "budget_failures": 0,
+    "lagrangian_failures": 0,
+    "trials": 600
+  },
+  "validation_bypass": {
+    "all_invalid_as_expected": true,
+    "records": {
+      "finite_abelian_group": false,
+      "finite_group": false,
+      "packet_system": false,
+      "phase_type_survival": false
+    }
+  }
+}

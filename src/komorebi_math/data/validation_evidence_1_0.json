@@ -1,0 +1,82 @@
+{
+  "records": [
+    {
+      "identifier": "windows-0.16.0a2-user-qualification",
+      "inherited_via_upgrade_contract": true,
+      "numpy": "2.5.2",
+      "optional": {
+        "cuda": "12.6",
+        "cupy-cuda12x": "14.1.1",
+        "cupy_packet_executor_residual": 0.0,
+        "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+        "jax": "0.11.1",
+        "torch": "2.12.1+cu126",
+        "torch_jvp": [
+          8.0,
+          12.0
+        ]
+      },
+      "package_version": "0.16.0a2",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "platform_key": "windows-x86_64",
+      "python": "3.13.0",
+      "results": {
+        "cumulative_verification": "189/189",
+        "gpu_verification": "4/4",
+        "installed_wheel_passed": true,
+        "passed": true,
+        "pip_check_passed": true,
+        "release_verification": "7/7",
+        "source_failed_files": 0,
+        "source_tests_passed": 1009,
+        "source_tests_skipped": 0,
+        "stable_verification": "6/6"
+      },
+      "source": "validation_windows_0_16_0a2.json",
+      "source_sha256": "b63e25550a9ac849a128515207aa903fbcdd48aabcdb3b0795bd9bed4d2ef9c4"
+    },
+    {
+      "identifier": "linux-1.0.0b4-publication-gate",
+      "inherited_via_upgrade_contract": false,
+      "numpy": "2.3.5",
+      "optional": {
+        "packages": {
+          "cupy": null,
+          "cupy-cuda12x": null,
+          "jax": "0.9.0.1",
+          "jaxlib": "0.9.0.1",
+          "llvmlite": "0.47.0",
+          "mpmath": "1.3.0",
+          "numba": "0.65.1",
+          "scipy": "1.17.0",
+          "sympy": "1.14.0",
+          "torch": "2.10.0+cpu"
+        }
+      },
+      "package_version": "1.0.0b4",
+      "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+      "platform_key": "linux-x86_64",
+      "python": "3.13.5",
+      "results": {
+        "block20_verification": "46/46",
+        "passed": true,
+        "phase": "publication-gate-source-qualification",
+        "release_contract_passed": true,
+        "source_tests_failed": 0,
+        "source_tests_passed": 1138,
+        "source_tests_skipped": 0,
+        "stable_verification": "6/6",
+        "strict_api_passed": true
+      },
+      "source": "validation_linux_1_0_0b4.json",
+      "source_sha256": "121be035a8c2c398ad7bdae32ee8da4e4534b753cff80a3b97fb61654932bf47"
+    }
+  ],
+  "required_platforms": [
+    "windows-x86_64",
+    "linux-x86_64"
+  ],
+  "schema": "komorebi-math.validation-evidence",
+  "schema_version": 1,
+  "target_version": "1.0.0b4"
+}

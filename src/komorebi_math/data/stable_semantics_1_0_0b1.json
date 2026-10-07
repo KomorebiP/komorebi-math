@@ -1,0 +1,391 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "certificate_valid": true,
+        "component_sum_close": true,
+        "operator_certificate_valid": true,
+        "operator_reconstructed": true,
+        "reconstructed": [
+          2.0,
+          -3.0
+        ],
+        "redundant": true
+      },
+      "input": {
+        "analysis": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "groups": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ]
+        ],
+        "operator": [
+          [
+            2,
+            -1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "value": [
+          2,
+          -3
+        ]
+      },
+      "kind": "analysis_synthesis",
+      "name": "general analysis synthesis and transfer blocks"
+    },
+    {
+      "expected": {
+        "certificate_valid": true,
+        "children": [
+          [
+            0,
+            3,
+            6,
+            9
+          ],
+          [
+            1,
+            4,
+            7,
+            10
+          ],
+          [
+            2,
+            5,
+            8,
+            11
+          ]
+        ],
+        "direct_match": true,
+        "reconstructed": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "input": {
+        "coarse": 3,
+        "fine": 12,
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "kind": "signal_polyphase",
+      "name": "signal polyphase refinement and coarsening"
+    },
+    {
+      "expected": {
+        "certificate_valid": true,
+        "coarsened": [
+          "1/2",
+          "2/3",
+          "3/5",
+          "5/7",
+          "7/11",
+          "11/13",
+          "13/17"
+        ],
+        "direct_match": true,
+        "reconstructed": [
+          "1/2",
+          "2/3",
+          "3/5",
+          "5/7",
+          "7/11",
+          "11/13",
+          "13/17"
+        ]
+      },
+      "input": {
+        "coarse": 2,
+        "fine": 6,
+        "values": [
+          "1/2",
+          "2/3",
+          "3/5",
+          "5/7",
+          "7/11",
+          "11/13",
+          "13/17"
+        ]
+      },
+      "kind": "arithmetic_polyphase",
+      "name": "exact arithmetic polyphase refinement"
+    },
+    {
+      "expected": {
+        "addresses": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "certificate_valid": true,
+        "channel_count": 12,
+        "direct_match": true,
+        "roundtrip": true
+      },
+      "input": {
+        "coarse": [
+          1,
+          2
+        ],
+        "fine": [
+          3,
+          4
+        ],
+        "shape": [
+          3,
+          4
+        ]
+      },
+      "kind": "lattice_polyphase",
+      "name": "rectangular lattice polyphase refinement"
+    },
+    {
+      "expected": {
+        "maximum_residual": 0.0,
+        "relation_count": 1,
+        "valid": true
+      },
+      "input": {
+        "diagonal": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "kind": "operator_grammar",
+      "name": "typed operator relation realization"
+    },
+    {
+      "expected": {
+        "certificate_valid": true,
+        "matrix": [
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        "roundtrip": true,
+        "source_coordinates": [
+          "3",
+          "5"
+        ],
+        "target_coordinates": [
+          "-2",
+          "5"
+        ]
+      },
+      "input": {
+        "target_matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "vector": [
+          3,
+          5
+        ]
+      },
+      "kind": "coordinate_basis",
+      "name": "exact finite basis coordinate roundtrip"
+    },
+    {
+      "expected": {
+        "basis": "factorial-power-2",
+        "coefficients": [
+          "2",
+          "3",
+          "-1",
+          "-1",
+          "44",
+          "400"
+        ],
+        "ordinary_coefficients": [
+          "2",
+          "3",
+          "-1/4",
+          "-1/36",
+          "11/144",
+          "1/36"
+        ]
+      },
+      "input": {
+        "degree": 5,
+        "left": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "power": 2,
+        "right": [
+          2,
+          -1,
+          1
+        ]
+      },
+      "kind": "normalized_series",
+      "name": "factorial-power normalized series product"
+    },
+    {
+      "expected": {
+        "latex_has_equation": true,
+        "latex_sha256": "978a672b59f40969c2e54a7dd63473c3bf0cf0f7a185855a63e2dda80c9d29f4",
+        "markdown_has_equation": true,
+        "markdown_sha256": "1aae2629afbef94fe10c0fa8337e1e2f392f79e134dc6034f0f14d573893152d"
+      },
+      "input": {
+        "author": "Komorebi P.",
+        "equation": "P_r^{(M)}=\\sum_s P_{r+Ms}^{(MK)}",
+        "paragraph": "Finite certified computation.",
+        "title": "Stable Contract"
+      },
+      "kind": "document_render",
+      "name": "portable document rendering"
+    },
+    {
+      "expected": {
+        "inside": {
+          "backend": "numpy",
+          "tolerance": 1e-12,
+          "validate_on_construction": false
+        },
+        "restored": true
+      },
+      "input": {
+        "backend": "numpy",
+        "tolerance": 1e-12,
+        "validate_on_construction": false
+      },
+      "kind": "settings_scope",
+      "name": "runtime settings context restoration"
+    },
+    {
+      "expected": {
+        "codec_tag": "refinement.polyphase_tower",
+        "codec_version": 1,
+        "equal": true,
+        "restored_type": "PolyphaseRefinementTower",
+        "schema": "komorebi-math.portable"
+      },
+      "input": {
+        "orders": [
+          2,
+          6,
+          12
+        ]
+      },
+      "kind": "portable_refinement",
+      "name": "portable refinement tower roundtrip"
+    }
+  ],
+  "schema": "komorebi-math.stable-semantics",
+  "schema_version": 1
+}

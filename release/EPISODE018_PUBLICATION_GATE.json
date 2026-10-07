@@ -1,0 +1,173 @@
+{
+  "capability_record": {
+    "capabilities": {
+      "analysis_synthesis": {
+        "coordinate_dimension": 4,
+        "portable_roundtrip": true,
+        "redundant": true,
+        "source_dimension": 2
+      },
+      "euler_fibonacci_coordinates": {
+        "defect_count": 16,
+        "initial": [
+          "1",
+          "0"
+        ],
+        "length": 18,
+        "reconstruction_verified": true
+      },
+      "finite_integration": {
+        "adversarial_false_certificate_blocked": true,
+        "coordinate_families": [
+          "Euler polynomials",
+          "Fibonacci polynomials",
+          "monomials"
+        ],
+        "exact_integral": "106/5"
+      },
+      "polyphase_refinement": {
+        "coarse_order": 4,
+        "fine_order": 12,
+        "roundtrip": true,
+        "signal_length": 29
+      },
+      "stable_contract": {
+        "manifest_digest": "23cd9e47a1663f2d4b3c0fef50f9f7d8c88d4af2f8bbc57e7ba76461e6e69276",
+        "symbol_count": 131
+      },
+      "typed_expression": {
+        "exact_integral": "5/4",
+        "left_associative_cost": 260,
+        "optimal_chain_cost": 244,
+        "pipeline_is_identity": true,
+        "portable_roundtrip": true
+      }
+    },
+    "package_version": "1.0.0b4",
+    "passed": true,
+    "record_sha256": "0e20e32f4ad9004d5248d258813b6acfec7b9e96cc30c001aa6865aba9039fdf",
+    "schema": "komorebi-math.block21-public-capability-tour",
+    "schema_version": 1
+  },
+  "checks": [
+    {
+      "detail": "pyproject, runtime, and citation identify 1.0.0b4",
+      "name": "version and citation identity",
+      "passed": true
+    },
+    {
+      "detail": "16 publication-facing files present",
+      "name": "repository publication layout",
+      "passed": true
+    },
+    {
+      "detail": "all source-tree paths are archive safe",
+      "name": "archive path safety",
+      "passed": true
+    },
+    {
+      "detail": "strict API passed",
+      "name": "strict research API contract",
+      "passed": true
+    },
+    {
+      "detail": "beta API passed",
+      "name": "strict beta API contract",
+      "passed": true
+    },
+    {
+      "detail": "stable API passed",
+      "name": "strict stable API contract",
+      "passed": true
+    },
+    {
+      "detail": "6/6",
+      "name": "stable verification suite",
+      "passed": true
+    },
+    {
+      "detail": "47/47",
+      "name": "Block 20 verification suite",
+      "passed": true
+    },
+    {
+      "detail": "release contract passed",
+      "name": "current beta release contract",
+      "passed": true
+    },
+    {
+      "detail": "upgrade contract passed",
+      "name": "cross-version upgrade contract",
+      "passed": true
+    },
+    {
+      "detail": "beta evidence passed",
+      "name": "executed platform evidence",
+      "passed": true
+    },
+    {
+      "detail": "beta readiness passed",
+      "name": "public beta readiness",
+      "passed": true
+    },
+    {
+      "detail": "capability record 0e20e32f4ad9004d5248d258813b6acfec7b9e96cc30c001aa6865aba9039fdf",
+      "name": "deterministic public capability tour",
+      "passed": true
+    },
+    {
+      "detail": "all local Markdown links resolve",
+      "name": "local documentation links",
+      "passed": true
+    },
+    {
+      "detail": "1.0.0b4-repair-r4-block21: 376 source files match both distributions, wheel RECORD and shell modes pass",
+      "name": "current distribution parity and executable modes",
+      "passed": true
+    },
+    {
+      "detail": "72c4c06b134e2ce1ec11d122473f34ee9098f9b66ff48a46662b217dfdfd0f3e",
+      "name": "source and artifact snapshot unchanged during qualification",
+      "passed": true
+    }
+  ],
+  "environment": {
+    "implementation": "CPython",
+    "machine": "x86_64",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "python_executable": "python",
+    "release_binding": {
+      "artifacts": [
+        {
+          "bytes": 1500409,
+          "name": "komorebi_math-1.0.0b4-4b21-py3-none-any.whl",
+          "sha256": "a7b41efe91524ad1e6e641b0567b571a04247c0b17994c1d019e7d6ac2c4e52d"
+        },
+        {
+          "bytes": 20143355,
+          "name": "komorebi_math-1.0.0b4.tar.gz",
+          "sha256": "969d16b0235dc2e35e16d13a1fca044512d27bed3e7a2d7149613f0ff0b5653b"
+        }
+      ],
+      "release_id": "1.0.0b4-repair-r4-block21",
+      "source_files": 884,
+      "source_sha256": "72c4c06b134e2ce1ec11d122473f34ee9098f9b66ff48a46662b217dfdfd0f3e"
+    }
+  },
+  "full_test_record": null,
+  "generated_at_utc": "2026-09-24T19:43:29Z",
+  "mode": "quick",
+  "package_version": "1.0.0b4",
+  "passed": true,
+  "report_sha256": "b34f4fb1513c30826d92b9c90e1a86c0b48b04667d63c0948ab0008564ad796a",
+  "root": ".",
+  "schema": "komorebi-math.block21-publication-gate",
+  "schema_version": 1,
+  "warnings": [
+    "Installed-artifact behavior was not executed; use --installed-artifacts or release_artifact_gate.py.",
+    "Strict MkDocs build was explicitly skipped.",
+    "The complete source test suite was not requested in this gate invocation."
+  ]
+}

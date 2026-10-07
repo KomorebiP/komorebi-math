@@ -1,0 +1,54 @@
+{
+  "exact_separation_example": {
+    "infinity_bounds": [
+      1.0,
+      1.0
+    ],
+    "john_factor": 1.4142135623730951,
+    "john_quadratic_bounds": [
+      1.4142135623730951,
+      1.4142135623730951
+    ],
+    "quadratic_optimum": 1.4142135623730951
+  },
+  "passed": true,
+  "random_cases": 2000,
+  "random_parallelotope_stress": {
+    "covariance_failures": 0,
+    "john_bound_failures": 0,
+    "max_convex_operator_bound": 0.999939257190019,
+    "max_covariance_relative_error": 6.106226635438361e-15,
+    "max_john_ratio": 1.2091213996298766
+  },
+  "random_quadratic_scan_minimum": 1.4168628032126829,
+  "schema": "komorebi-math.episode007-convex-probe",
+  "schema_version": 1,
+  "seed": 20260922,
+  "unipotent_convex_escape": [
+    {
+      "coordinate_condition_number": 10.0,
+      "operator_bound": 1.1,
+      "scale": 0.1
+    },
+    {
+      "coordinate_condition_number": 100.0,
+      "operator_bound": 1.01,
+      "scale": 0.01
+    },
+    {
+      "coordinate_condition_number": 1000.0,
+      "operator_bound": 1.001,
+      "scale": 0.001
+    },
+    {
+      "coordinate_condition_number": 10000.0,
+      "operator_bound": 1.0001,
+      "scale": 0.0001
+    },
+    {
+      "coordinate_condition_number": 99999.99999999999,
+      "operator_bound": 1.0000099999999998,
+      "scale": 1e-05
+    }
+  ]
+}

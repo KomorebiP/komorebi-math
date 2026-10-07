@@ -1,0 +1,29 @@
+{
+  "payload": {
+    "__komorebi_type__": "refinement.polyphase_tower",
+    "__version__": 1,
+    "data": {
+      "__komorebi_type__": "python.mapping",
+      "__version__": 1,
+      "data": [
+        [
+          "orders",
+          {
+            "__komorebi_type__": "python.tuple",
+            "__version__": 1,
+            "data": [
+              2,
+              6,
+              24
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "payload_sha256": "550eba5392dad840cd70e5a5d58981a956a74f7e27a12b7c45a7d3ec463d1da8",
+  "producer_version": "0.15.0a2",
+  "schema": "komorebi-math.portable",
+  "schema_version": 1
+}
+

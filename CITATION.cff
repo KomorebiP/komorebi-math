@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: Komorebi Math Python Package
+message: Cite the specific mathematical paper associated with the functionality used.
+type: software
+authors:
+  - name: Komorebi P.
+version: 1.0.0b4
+date-released: 2026-08-19
+repository-code: https://github.com/KomorebiP/komorebi-math

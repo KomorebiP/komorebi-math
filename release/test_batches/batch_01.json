@@ -1,0 +1,104 @@
+{
+  "duration_seconds": 21.70746612548828,
+  "failed_files": [],
+  "files": 8,
+  "passed": true,
+  "passed_tests": 66,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 3.1025244190000194,
+      "passed": 8,
+      "path": "tests/test_algebra_quotients.py",
+      "returncode": 0,
+      "sha256": "87e0b1ef1b12ff54d1b29611d144a659bb2676a1ce6991395edc3ba0c7337b11",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 1.01s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.059664428999895,
+      "passed": 9,
+      "path": "tests/test_algorithms_compiler.py",
+      "returncode": 0,
+      "sha256": "67d1d01af3baa1175db0e12037405f24fc122d7ce1da0a52ad11e85f1a181c31",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".........                                                                [100%]\n9 passed in 0.44s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.2488553879998108,
+      "passed": 7,
+      "path": "tests/test_algorithms_complexity_benchmarks.py",
+      "returncode": 0,
+      "sha256": "1a01d224db057a3ed7ed8f2a504bff828a86c46a0bf902fece7ddd15e8c68b85",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.48s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.2495342310003252,
+      "passed": 5,
+      "path": "tests/test_algorithms_discovery_gpu.py",
+      "returncode": 0,
+      "sha256": "ed549b27d30def1913ab25fdd648bae9fc36bdccbb2424b0f7aa786f25d900a0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.47s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.2476815830000305,
+      "passed": 10,
+      "path": "tests/test_algorithms_krylov.py",
+      "returncode": 0,
+      "sha256": "82c15d31ac5df3180ca28e84f68eb207110175969551d35a661d97c3ea1a6885",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..........                                                               [100%]\n10 passed in 0.50s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.1410726469998735,
+      "passed": 12,
+      "path": "tests/test_algorithms_layout_ir.py",
+      "returncode": 0,
+      "sha256": "c7c6c66d8446f6d1fe21b433f80c018fecb6a92829e52440ce06bca9a0dad0be",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "............                                                             [100%]\n12 passed in 0.48s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 5.426291573000071,
+      "passed": 8,
+      "path": "tests/test_algorithms_low_rank.py",
+      "returncode": 0,
+      "sha256": "9d38da540075d8eefb44176c3ab2845725b7d16d15479057353f44f150f2d9bd",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 3.59s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.2277134339997247,
+      "passed": 7,
+      "path": "tests/test_algorithms_precision.py",
+      "returncode": 0,
+      "sha256": "361497947acbab852295aaf10d37c465b8a8202394f48615a1201cd55c702160",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.56s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164258.411918
+}

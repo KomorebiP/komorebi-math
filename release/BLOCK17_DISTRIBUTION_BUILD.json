@@ -1,0 +1,15 @@
+{
+  "package_version": "1.0.0b1",
+  "schema": "komorebi-math.distribution-build",
+  "schema_version": 1,
+  "sdist": {
+    "path": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/dist/komorebi_math-1.0.0b1.tar.gz",
+    "sha256": "53f64485842bf7529b5fade391a6be45b2e5e156fbb64b9dfdab9d16a553de99",
+    "size": 3148504
+  },
+  "wheel": {
+    "path": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1/release/dist/komorebi_math-1.0.0b1-py3-none-any.whl",
+    "sha256": "f3af8ac92616dbf57950b3468bce09d149368ebb660b0b4850b3a473609e03d8",
+    "size": 1108715
+  }
+}

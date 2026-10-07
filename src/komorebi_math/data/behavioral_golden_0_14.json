@@ -1,0 +1,727 @@
+{
+  "schema": "komorebi-math.behavioral-golden",
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "exact packet snapshot contraction",
+      "kind": "exact_packet_snapshot",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": [
+          "left",
+          "right"
+        ]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": [
+        "0",
+        "0"
+      ],
+      "coefficients": [
+        {
+          "indices": [
+            0,
+            0
+          ],
+          "value": [
+            "3/2",
+            "0"
+          ]
+        },
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "value": [
+            "0",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            0
+          ],
+          "value": [
+            "1/3",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            1
+          ],
+          "value": [
+            "0",
+            "5/4"
+          ]
+        }
+      ],
+      "directions": [
+        [
+          "2",
+          "3"
+        ],
+        [
+          "-1",
+          "4"
+        ]
+      ],
+      "expected": [
+        "-4/1",
+        "-4/1"
+      ]
+    },
+    {
+      "name": "third order sparse symmetric contraction",
+      "kind": "sparse_symmetric_contraction",
+      "order": 3,
+      "source_dimension": 3,
+      "target_dimension": 2,
+      "entries": [
+        {
+          "key": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "value": "2"
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            2
+          ],
+          "value": "-3/2"
+        }
+      ],
+      "directions": [
+        [
+          "1",
+          "2",
+          "3"
+        ],
+        [
+          "4",
+          "5",
+          "6"
+        ],
+        [
+          "7",
+          "8",
+          "9"
+        ]
+      ],
+      "expected": [
+        "246",
+        "-675/1"
+      ]
+    },
+    {
+      "name": "projection cached packet execution",
+      "kind": "packet_execution_plan",
+      "order": 2,
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "tensor_shape": [
+        2,
+        2,
+        2
+      ],
+      "tensor_entries": [
+        {
+          "indices": [
+            0,
+            0,
+            0
+          ],
+          "value": 2.0
+        },
+        {
+          "indices": [
+            1,
+            1,
+            1
+          ],
+          "value": -3.0
+        }
+      ],
+      "source_projectors": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      ],
+      "target_projectors": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ]
+      ],
+      "source_names": [
+        "x",
+        "y"
+      ],
+      "target_names": [
+        "x",
+        "y"
+      ],
+      "point": [
+        0.2,
+        -0.4
+      ],
+      "directions": [
+        [
+          2.0,
+          3.0
+        ],
+        [
+          -1.0,
+          4.0
+        ]
+      ],
+      "expected": {
+        "full_addresses": 8,
+        "active_addresses": 8,
+        "derivative_calls": 4,
+        "reconstructed": [
+          -4.0,
+          -36.0
+        ],
+        "direct": [
+          -4.0,
+          -36.0
+        ]
+      }
+    },
+    {
+      "name": "packet snapshot codec v1 migration",
+      "kind": "packet_snapshot_v1_migration",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": [
+          "left",
+          "right"
+        ]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": [
+        "0",
+        "0"
+      ],
+      "coefficients": [
+        {
+          "indices": [
+            0,
+            0
+          ],
+          "value": [
+            "3/2",
+            "0"
+          ]
+        },
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "value": [
+            "0",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            0
+          ],
+          "value": [
+            "1/3",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            1
+          ],
+          "value": [
+            "0",
+            "5/4"
+          ]
+        }
+      ],
+      "directions": [
+        [
+          "2",
+          "3"
+        ],
+        [
+          "-1",
+          "4"
+        ]
+      ],
+      "expected": {
+        "provider_name": "behavioral golden provider",
+        "nnz": 4,
+        "evaluation": [
+          "-4/1",
+          "-4/1"
+        ],
+        "current_codec_version": 2
+      }
+    },
+    {
+      "name": "streamed exact packet snapshot",
+      "kind": "streamed_packet_snapshot",
+      "source_dimension": 2,
+      "target_dimension": 2,
+      "address": {
+        "output": "out",
+        "inputs": [
+          "left",
+          "right"
+        ]
+      },
+      "provider_name": "behavioral golden provider",
+      "point": [
+        "0",
+        "0"
+      ],
+      "coefficients": [
+        {
+          "indices": [
+            0,
+            0
+          ],
+          "value": [
+            "3/2",
+            "0"
+          ]
+        },
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "value": [
+            "0",
+            "-2"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            0
+          ],
+          "value": [
+            "1/3",
+            "1"
+          ]
+        },
+        {
+          "indices": [
+            1,
+            1
+          ],
+          "value": [
+            "0",
+            "5/4"
+          ]
+        }
+      ],
+      "directions": [
+        [
+          "2",
+          "3"
+        ],
+        [
+          "-1",
+          "4"
+        ]
+      ],
+      "chunk_size": 2,
+      "expected": {
+        "chunks": 2,
+        "coefficients": 4,
+        "stream_sha256": "29469c7f2a41fa077893ab10e38359c5be8b65f76911280f8ed9865db492816b",
+        "evaluation": [
+          "-4/1",
+          "-4/1"
+        ]
+      }
+    },
+    {
+      "name": "factorial power normalized product",
+      "kind": "normalized_series_product",
+      "factorial_power": 2,
+      "left": [
+        "1",
+        "2",
+        "3"
+      ],
+      "right": [
+        "4",
+        "-1",
+        "2"
+      ],
+      "expected": [
+        "4/1",
+        "7/1",
+        "6/1",
+        "9/1",
+        "216/1"
+      ]
+    },
+    {
+      "name": "exact residue packet transfer",
+      "kind": "normalized_packet_transfer",
+      "factorial_power": 2,
+      "coefficients": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "modulus": 3,
+      "residue": 1,
+      "target_basis": "ordinary",
+      "expected": {
+        "packet_coefficients": [
+          "1/1",
+          "1/144",
+          "1/3628800"
+        ],
+        "source_basis": "factorial-power-2",
+        "target_basis": "ordinary",
+        "valid": true
+      }
+    },
+    {
+      "name": "finite Mahler carry evaluation",
+      "kind": "finite_mask_evaluation",
+      "mask": [
+        "1",
+        "1",
+        "1"
+      ],
+      "radix": 2,
+      "count": 16,
+      "expected": [
+        "1/1",
+        "1/1",
+        "2/1",
+        "1/1",
+        "3/1",
+        "2/1",
+        "3/1",
+        "1/1",
+        "4/1",
+        "3/1",
+        "5/1",
+        "2/1",
+        "5/1",
+        "3/1",
+        "4/1",
+        "1/1"
+      ]
+    },
+    {
+      "name": "prime power factorial kernel",
+      "kind": "prime_power_kernel",
+      "index": 20,
+      "subindex": 7,
+      "prime": 3,
+      "exponent": 4,
+      "factorial_power": 2,
+      "expected": {
+        "valuation": 2,
+        "unit": 1,
+        "residue": 9,
+        "survives": true
+      }
+    },
+    {
+      "name": "Euler numbers in Fibonacci companion coordinates",
+      "kind": "recurrence_coordinates",
+      "count": 10,
+      "expected": {
+        "initial": [
+          "1/1",
+          "0/1"
+        ],
+        "defects": [
+          "-2/1",
+          "1/1",
+          "6/1",
+          "-5/1",
+          "-66/1",
+          "61/1",
+          "1446/1",
+          "-1385/1"
+        ],
+        "reconstructed": [
+          "1/1",
+          "0/1",
+          "-1/1",
+          "0/1",
+          "5/1",
+          "0/1",
+          "-61/1",
+          "0/1",
+          "1385/1",
+          "0/1"
+        ],
+        "homogeneous": false
+      }
+    },
+    {
+      "name": "Euler to Fibonacci polynomial connection",
+      "kind": "polynomial_connection",
+      "degree": 4,
+      "expected": {
+        "matrix": [
+          [
+            "1/1",
+            "-1/2",
+            "-1/1",
+            "7/4",
+            "2/1"
+          ],
+          [
+            "0/1",
+            "1/1",
+            "-1/1",
+            "-2/1",
+            "5/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "1/1",
+            "-3/2",
+            "-3/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/1",
+            "-2/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "1/1"
+          ]
+        ],
+        "determinant": "1/1",
+        "roundtrip": true
+      }
+    },
+    {
+      "name": "arbitrary finite basis connection",
+      "kind": "arbitrary_basis_connection",
+      "source_matrix": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
+      "target_matrix": [
+        [
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
+      "vector": [
+        "3",
+        "5"
+      ],
+      "expected": {
+        "matrix": [
+          [
+            "1/1",
+            "-1/1"
+          ],
+          [
+            "0/1",
+            "1/1"
+          ]
+        ],
+        "source_coordinates": [
+          "3/1",
+          "5/1"
+        ],
+        "target_coordinates": [
+          "-2/1",
+          "5/1"
+        ],
+        "roundtrip": true
+      }
+    },
+    {
+      "name": "forward difference coordinates of squares",
+      "kind": "combinatorial_coordinate_transform",
+      "transform": "forward-difference",
+      "values": [
+        "0",
+        "1",
+        "4",
+        "9",
+        "16",
+        "25"
+      ],
+      "expected": [
+        "0/1",
+        "1/1",
+        "2/1",
+        "0/1",
+        "0/1",
+        "0/1"
+      ]
+    },
+    {
+      "name": "Legendre to Chebyshev T polynomial connection",
+      "kind": "classical_polynomial_connection",
+      "source": "legendre",
+      "target": "chebyshev-t",
+      "degree": 4,
+      "expected": {
+        "matrix": [
+          [
+            "1/1",
+            "0/1",
+            "1/4",
+            "0/1",
+            "9/64"
+          ],
+          [
+            "0/1",
+            "1/1",
+            "0/1",
+            "3/8",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "3/4",
+            "0/1",
+            "5/16"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "5/8",
+            "0/1"
+          ],
+          [
+            "0/1",
+            "0/1",
+            "0/1",
+            "0/1",
+            "35/64"
+          ]
+        ],
+        "determinant": "525/2048",
+        "roundtrip": true
+      }
+    },
+    {
+      "name": "formal coordinate pullback and inverse",
+      "kind": "formal_coordinate_roundtrip",
+      "coordinate": [
+        "0",
+        "1",
+        "1/2",
+        "1/6"
+      ],
+      "series": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "expected": {
+        "inverse": [
+          "0/1",
+          "1/1",
+          "-1/2",
+          "1/3"
+        ],
+        "pullback": [
+          "1/1",
+          "2/1",
+          "4/1",
+          "22/3"
+        ],
+        "recovered": [
+          "1/1",
+          "2/1",
+          "3/1",
+          "4/1"
+        ],
+        "valid": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "komorebi-math.companion-crosswalk",
+  "schema_version": 1,
+  "package_version": "0.16.0a2",
+  "source_archive": {
+    "name": "Projector_Seed_Calculus_Companion_C_Maximal_Release(1).zip",
+    "sha256": "9d9a36dfb072075333853ee6e91cafdb3bd34b63e4bec7ddb8b4d983e7c1640b",
+    "role": "independent explanatory and finite numerical reference"
+  },
+  "entries": [
+    {
+      "companion_measure": "packet synthesis",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.PacketSystem",
+        "komorebi_math.stable.PacketCoordinates"
+      ],
+      "block16_status": "stable structural coverage"
+    },
+    {
+      "companion_measure": "polyphase synthesis",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.signal_polyphase_analyze",
+        "komorebi_math.stable.signal_polyphase_synthesize"
+      ],
+      "block16_status": "required closed semantic fixture"
+    },
+    {
+      "companion_measure": "2-to-4 refinement",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.PolyphaseRefinement",
+        "komorebi_math.stable.polyphase_refine",
+        "komorebi_math.stable.polyphase_coarsen"
+      ],
+      "block16_status": "required closed semantic fixture"
+    },
+    {
+      "companion_measure": "mixed-radix packet synthesis",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.nested_residue_address",
+        "komorebi_math.stable.nested_residue_analysis"
+      ],
+      "block16_status": "required closed semantic fixture"
+    },
+    {
+      "companion_measure": "dyadic residue tree refinement",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.PolyphaseRefinementTower",
+        "komorebi_math.stable.refinement_children"
+      ],
+      "block16_status": "stable tower and address coverage"
+    },
+    {
+      "companion_measure": "ternary residue tree refinement",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.stable.PolyphaseRefinementTower",
+        "komorebi_math.stable.refinement_children"
+      ],
+      "block16_status": "stable tower and address coverage"
+    },
+    {
+      "companion_measure": "perfect reconstruction matrix residual",
+      "reference_residual": 2.220446049250313e-16,
+      "package_targets": [
+        "komorebi_math.signals.FiniteFilterBank",
+        "komorebi_math.signals.reconstruction_error"
+      ],
+      "block16_status": "research API retained, not promoted during freeze"
+    },
+    {
+      "companion_measure": "CRT packet synthesis",
+      "reference_residual": 0.0,
+      "package_targets": [
+        "komorebi_math.refinement.crt_pair",
+        "komorebi_math.refinement.crt_many"
+      ],
+      "block16_status": "research API retained, not promoted during freeze"
+    }
+  ],
+  "policy": "Companion C results are independent finite references. They do not replace package-native certificates or expand the stable surface automatically."
+}

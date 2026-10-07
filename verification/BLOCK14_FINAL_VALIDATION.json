@@ -1,0 +1,116 @@
+{
+  "api_compatibility": {
+    "beta_differences": 0,
+    "beta_manifest_digest": "5c6fb290b537a5cc8f59cf30cae272c5bf94ae433f9be524fd5c1f3fea29e594",
+    "beta_symbols": 83,
+    "research_differences": 0,
+    "research_manifest_digest": "28e855cfde95f4531d2828450e22777309171926f3e0e6b678fb0a0d2d3d9b8a",
+    "research_symbols": 1011
+  },
+  "behavioral_golden": {
+    "expected": 11,
+    "fixture_digest": "a886abc87bb86c3f3a506cd3fa127a368e58a08425e6e5ca96b9c0bfafa5f726",
+    "passed": 11
+  },
+  "coordinate_verifier": {
+    "full_environment": {
+      "expected": 12,
+      "passed": 12
+    },
+    "numpy_only": {
+      "expected": 12,
+      "passed": 12
+    }
+  },
+  "discarded_attempts": [
+    "One monolithic source run reached the command wrapper limit after passing 58 percent with no observed failure. It is excluded from totals."
+  ],
+  "examples": {
+    "expected": 47,
+    "passed": 47
+  },
+  "independent_coordinate_audits": {
+    "deep_checks": 195099,
+    "failures": 0,
+    "reference_checks": 169783,
+    "total_checks": 364882
+  },
+  "installed_verifier": {
+    "expected": 158,
+    "passed": 158
+  },
+  "installed_wheel_tests": {
+    "batches": 9,
+    "expected": 868,
+    "passed": 868
+  },
+  "numpy_only_environment": {
+    "executable": "/opt/pyvenv/bin/python",
+    "komorebi_path": "/mnt/data/km14-numpy-only/komorebi_math/__init__.py",
+    "komorebi_version": "0.14.0a1",
+    "modules_available": {
+      "cupy": false,
+      "jax": false,
+      "matplotlib": false,
+      "mpmath": false,
+      "numpy": true,
+      "scipy": false,
+      "sympy": false,
+      "torch": false,
+      "yaml": false
+    },
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "schema": "komorebi-math.block14.numpy-only-environment.v1",
+    "sys_path": [
+      "",
+      "/mnt/data/km14-numpy-only",
+      "/usr/lib/python313.zip",
+      "/usr/lib/python3.13",
+      "/usr/lib/python3.13/lib-dynload"
+    ]
+  },
+  "numpy_only_verifier": {
+    "expected": 156,
+    "passed": 156
+  },
+  "package_audit": {
+    "sdist_members": 540,
+    "wheel_files": 264,
+    "wheel_forbidden_payload": 0
+  },
+  "package_version": "0.14.0a1",
+  "passed": true,
+  "release_environment": {
+    "cuda_executed": false,
+    "cupy_available": false,
+    "mkdocs_executed": false,
+    "mypy_executed": false,
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+    "powershell_executed": false,
+    "powershell_reason": "No PowerShell executable was installed in the release environment.",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "ruff_executed": false
+  },
+  "reproducibility": {
+    "rebuilt_wheel_byte_identical": true,
+    "sdist_byte_identical": true,
+    "sdist_tests_passed": true,
+    "wheel_byte_identical": true,
+    "wheel_crc_passed": true
+  },
+  "schema": "komorebi-math.block14-final-validation.v1",
+  "source_tests": {
+    "batches": 9,
+    "collected": 868,
+    "passed": 868
+  },
+  "static_audit": {
+    "coordinate_public_names": 88,
+    "imported_package_modules": 243,
+    "missing_coordinate_annotations": 0,
+    "missing_coordinate_docstrings": 0,
+    "production_python_files": 244,
+    "top_level_public_names": 364
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "komorebi-math.repair-r4-block8-verification-summary",
+  "schema_version": 1,
+  "package_version": "1.0.0b4",
+  "targeted_tests": {
+    "passed": 91,
+    "failed": 0
+  },
+  "dedicated_holonomy_audit": {
+    "passed": true,
+    "checks": 7,
+    "source_coordinate_residual": 1e-12,
+    "transformed_coordinate_residual": 1e-8,
+    "root_gauge_condition_number": 10000.0,
+    "predicted_lower_bound": 1e-16,
+    "predicted_upper_bound": 1e-8
+  },
+  "conditioning_stress": {
+    "cases": 3000,
+    "dimensions": [2, 3, 4],
+    "single_gauge_violations": 0,
+    "composed_envelope_violations": 0
+  },
+  "inherited_predecessor_issue": {
+    "kind": "stale behavioral-golden stream digest",
+    "reproduced_in_untouched_block7": true,
+    "old_expected": "5d8eb3bac04c9e1822131f326c46298b161973a78ee739e2ca9108fd9d7f385e",
+    "current_deterministic": "29469c7f2a41fa077893ab10e38359c5be8b65f76911280f8ed9865db492816b",
+    "repaired": true
+  },
+  "tooling_limits": {
+    "ruff": "not installed",
+    "mypy": "not installed",
+    "full_pytest": "attempted; timed out around 13 percent, so no full-suite pass is claimed"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "komorebi-math.support-matrix",
+  "schema_version": 1,
+  "release_line": "0.16.0a2 to 1.0.0",
+  "python": {
+    "declared": ["3.11", "3.12", "3.13"],
+    "minimum": "3.11",
+    "policy": "Each declared minor must pass the base wheel contract before 1.0. Hardware backends are qualified separately."
+  },
+  "base_dependencies": {
+    "numpy": ">=1.26"
+  },
+  "optional_backends": {
+    "jax": {
+      "minimum": ">=0.4",
+      "availability": "isolated import plus jax.jvp capability",
+      "native_windows_gpu": "not part of the Komorebi Math 1.0 contract"
+    },
+    "torch": {
+      "minimum": ">=2.1",
+      "availability": "isolated import plus torch.func.jvp capability",
+      "cuda": "qualified by the dedicated hardware validation suite"
+    },
+    "cupy": {
+      "installation": "platform-specific and intentionally omitted from base dependencies",
+      "cuda": "qualified by the dedicated hardware validation suite"
+    }
+  },
+  "validated_environments": [
+    {
+      "identifier": "windows-py313-cuda126-rtx3070ti",
+      "evidence": "user-executed complete source suite and direct GPU checks, 2026-08-18",
+      "platform": "Windows 11, x86_64",
+      "python": "3.13.0",
+      "numpy": "2.5.2",
+      "suite": "Run_Block15_Source_Validation.ps1 with all optional AD adapters available",
+      "result": "960 passed in 101.48 seconds",
+      "optional": {
+        "jax": "0.11.1 CPU",
+        "torch": "2.12.1+cu126",
+        "cuda": "12.6",
+        "cupy": "14.1.1 CUDA 12.x",
+        "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+        "gpu_checks": "torch.func.jvp on cuda:0 and Komorebi CuPy PacketIR execution passed"
+      }
+    }
+  ],
+  "unqualified_platforms": [
+    "macOS",
+    "Windows ARM64",
+    "Linux ARM64",
+    "native Windows JAX GPU",
+    "CUDA versions other than those explicitly recorded by a hardware validation report"
+  ]
+}

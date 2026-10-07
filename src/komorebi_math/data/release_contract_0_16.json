@@ -1,0 +1,60 @@
+{
+  "api": {
+    "beta": {
+      "count": 83,
+      "filename": "public_api_beta_0_16.json",
+      "sha256": "1cdb1392340a11e3247f41d4f8c052d1b75da219537c39e565ae86d52648a28d"
+    },
+    "research": {
+      "count": 1179,
+      "filename": "public_api_0_16.json",
+      "sha256": "5ca687a0a036693df6059afc1ab547bf8a3a5357bce1e8dcf58f0ad0b64103f1"
+    },
+    "stable": {
+      "count": 131,
+      "filename": "public_api_stable_0_16.json",
+      "sha256": "34318ed498301a8a7ae663c0fe7a0ea1671852a534ffbf844752482ca431f30c"
+    },
+    "stable_aliases": [
+      "komorebi_math.stable",
+      "komorebi_math.v1",
+      "komorebi_math.api.v1"
+    ]
+  },
+  "cli": {
+    "required_verification_suites": [
+      "block15",
+      "stable",
+      "release",
+      "gpu",
+      "block16",
+      "all"
+    ]
+  },
+  "package_version": "0.16.0a2",
+  "persistence": {
+    "count": 51,
+    "filename": "portable_codec_contract_0_16.json",
+    "sha256": "47414a81311e02a49a6270889069ae70fa6e41ac0c7aebd124d8c8b25458124f"
+  },
+  "release_line": "0.16.0a2 to 1.0.0",
+  "runtime": {
+    "declared_python": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "python_requires": ">=3.11",
+    "required_platforms": [
+      "windows-x86_64",
+      "linux-x86_64"
+    ]
+  },
+  "schema": "komorebi-math.release-contract",
+  "schema_version": 1,
+  "semantics": {
+    "count": 10,
+    "filename": "stable_semantics_0_16.json",
+    "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+  }
+}

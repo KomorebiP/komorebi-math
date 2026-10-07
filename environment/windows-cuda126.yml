@@ -1,0 +1,15 @@
+name: komorebi-full
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+      - numpy==2.5.2
+      - jax==0.11.1
+      - cupy-cuda12x==14.1.1
+      - numba==0.67.0
+      - llvmlite>=0.49,<0.50
+      - pytest==9.1.1
+      # Install PyTorch separately from the official cu126 index:
+      # python -m pip install torch==2.12.1 torchvision==0.27.1 --index-url https://download.pytorch.org/whl/cu126

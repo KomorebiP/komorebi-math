@@ -1,0 +1,32 @@
+# Python bytecode and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Build and documentation output
+build/
+dist/
+site/
+*.egg-info/
+
+# Local environments
+.venv/
+.venv-*/
+venv/
+env/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local release scratch
+release/tmp/
+release/work/
+*.log

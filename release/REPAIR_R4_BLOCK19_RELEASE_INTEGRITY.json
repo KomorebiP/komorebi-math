@@ -1,0 +1,136 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1499094,
+      "name": "komorebi_math-1.0.0b4-4b19-py3-none-any.whl",
+      "sha256": "37272f74ab2e2f051baeff973c131cd7464fc1583deb94dcd2d773023ad6e698"
+    },
+    {
+      "bytes": 20125229,
+      "name": "komorebi_math-1.0.0b4.tar.gz",
+      "sha256": "38e5ec47418f2c1f0290683fbff4ccb3b7be950b72a369390a33fca4d16e270c"
+    }
+  ],
+  "build_configuration": {
+    "passed": true,
+    "pep639_floor": "77.0.3",
+    "requirements": [
+      "setuptools>=77.0.3",
+      "wheel"
+    ]
+  },
+  "failures": [],
+  "package_source_sha256": "67b3f66e5678d8a8616205c50b8b3bc1ed4812824d6909de06c6dcc51520bc9b",
+  "package_version": "1.0.0b4",
+  "passed": true,
+  "release_id": "1.0.0b4-repair-r4-block19",
+  "schema": "komorebi-math.release-integrity",
+  "schema_version": 1,
+  "sdist_metadata": {
+    "dependency_entries": 21,
+    "extras": 10,
+    "identity_fields": [
+      "Name",
+      "Version",
+      "Summary",
+      "Requires-Python",
+      "License-Expression"
+    ],
+    "license_files": [
+      "LICENSE.md"
+    ],
+    "passed": true,
+    "readme_bound": true
+  },
+  "sdist_package_parity": {
+    "artifact_files": 376,
+    "mismatched": [],
+    "missing": [],
+    "passed": true,
+    "source_files": 376,
+    "unexpected": []
+  },
+  "sdist_shell_modes": {
+    "modes": {
+      "build_block16_distributions.sh": "0755",
+      "build_block17_distributions.sh": "0755",
+      "build_block18_distributions.sh": "0755",
+      "build_block18_r4_distributions.sh": "0755",
+      "build_block19_distributions.sh": "0755",
+      "build_block19_r4_distributions.sh": "0755",
+      "build_block20_distributions.sh": "0755",
+      "build_block21_handoff.sh": "0755",
+      "install_and_verify_block16.sh": "0755",
+      "install_and_verify_block17.sh": "0755",
+      "install_and_verify_block18.sh": "0755",
+      "install_and_verify_block19.sh": "0755",
+      "install_and_verify_block20.sh": "0755",
+      "run_block16_batched_validation.sh": "0755",
+      "run_block16_source_validation.sh": "0755",
+      "run_block17_gpu_validation.sh": "0755",
+      "run_block17_source_validation.sh": "0755",
+      "run_block17_upgrade_validation.sh": "0755",
+      "run_block18_source_validation.sh": "0755",
+      "run_block19_source_validation.sh": "0755",
+      "run_block20_source_validation.sh": "0755",
+      "run_block21_publication_gate.sh": "0755",
+      "run_gpu_validation.sh": "0755",
+      "verify_repair.sh": "0755"
+    },
+    "passed": true,
+    "scripts": 24
+  },
+  "sdist_support_parity": {
+    "files": 493,
+    "mismatched": [],
+    "missing": [],
+    "passed": true
+  },
+  "source_shell_modes": {
+    "executed": true,
+    "non_executable": [],
+    "passed": true,
+    "scripts": 24
+  },
+  "wheel_build_tag": "4b19",
+  "wheel_install_contract": {
+    "entry_points": {
+      "console_scripts": {
+        "komorebi": "komorebi_math.cli.main:main"
+      }
+    },
+    "metadata": {
+      "dependency_entries": 21,
+      "extras": 10,
+      "identity_fields": [
+        "Name",
+        "Version",
+        "Summary",
+        "Requires-Python",
+        "License-Expression"
+      ],
+      "license_files": [
+        "LICENSE.md"
+      ],
+      "passed": true,
+      "readme_bound": true
+    },
+    "non_package_members": 6,
+    "passed": true,
+    "wheel_tags": [
+      "py3-none-any"
+    ]
+  },
+  "wheel_package_parity": {
+    "artifact_files": 376,
+    "mismatched": [],
+    "missing": [],
+    "passed": true,
+    "source_files": 376,
+    "unexpected": []
+  },
+  "wheel_record": {
+    "hashed_members": 381,
+    "passed": true
+  }
+}

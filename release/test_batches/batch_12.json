@@ -1,0 +1,62 @@
+{
+  "duration_seconds": 12.289128065109253,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 4,
+  "jobs": 4,
+  "passed": true,
+  "passed_tests": 18,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 9.783065209999677,
+      "passed": 2,
+      "path": "tests/test_block16_static_audit.py",
+      "returncode": 0,
+      "sha256": "2f241070128299d8c1573131d2ed8ca4fbdfe71556527f3ff0ed857aaec70830",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..                                                                       [100%]\n2 passed in 5.27s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 11.968082380999931,
+      "passed": 6,
+      "path": "tests/test_block17_cli.py",
+      "returncode": 0,
+      "sha256": "2062cb633ceeae6b683c3ae08a08a10662c2c1d55b41365ebb8dc21292628741",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 9.19s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.052056141999856,
+      "passed": 4,
+      "path": "tests/test_block17_documentation.py",
+      "returncode": 0,
+      "sha256": "9c776e5b01c149861a748bcb01cc0016aa93a752d6d27f01fd78a5873002a708",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 0.86s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 12.278787314000056,
+      "passed": 6,
+      "path": "tests/test_block17_evidence.py",
+      "returncode": 0,
+      "sha256": "680e29559c7db4fc6de2a1728238efdf4b6adc5f58e3cbb4a7665d722f0ef9fd",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 7.88s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164565.936322
+}

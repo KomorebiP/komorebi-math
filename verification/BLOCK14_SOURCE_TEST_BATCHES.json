@@ -1,0 +1,58 @@
+{
+  "batches": [
+    {
+      "label": "algebra-algorithms-analytic-arithmetic-backends",
+      "passed": 141,
+      "seconds": 4.082898
+    },
+    {
+      "label": "block10-block11",
+      "passed": 68,
+      "seconds": 8.691432
+    },
+    {
+      "label": "block12-block13-block14-coordinates",
+      "passed": 135,
+      "seconds": 14.390396
+    },
+    {
+      "label": "generating-foundation-domains",
+      "passed": 83,
+      "seconds": 31.266461
+    },
+    {
+      "label": "generating-cartier-production",
+      "passed": 105,
+      "seconds": 4.639555
+    },
+    {
+      "label": "block4-certificates-deformation-dynamics-export",
+      "passed": 76,
+      "seconds": 9.070013
+    },
+    {
+      "label": "grammar-graphs-langlands-lifting",
+      "passed": 74,
+      "seconds": 2.626731
+    },
+    {
+      "label": "nonlinear",
+      "passed": 68,
+      "seconds": 6.643695
+    },
+    {
+      "label": "operators-packets-quantum-signals-sequences",
+      "passed": 118,
+      "seconds": 3.049077
+    }
+  ],
+  "counting_policy": "Each batch ran in a fresh pytest process. Only complete zero-exit batches are counted.",
+  "discarded_attempts": [
+    "One monolithic source run reached the command wrapper limit after passing 58 percent with no observed failure. It is excluded from totals."
+  ],
+  "package_version": "0.14.0a1",
+  "passed": true,
+  "schema": "komorebi-math.block14-source-test-batches",
+  "total_collected": 868,
+  "total_passed": 868
+}

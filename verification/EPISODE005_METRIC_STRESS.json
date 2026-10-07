@@ -1,0 +1,63 @@
+{
+  "frame_random": {
+    "cases": 1500,
+    "metric_pullback_failures_gt_1e-8": 0,
+    "max_metric_pullback_relative_error": 2.864790000203933e-11,
+    "max_quotient_seminorm_relative_error": 1.8843976331023893e-13,
+    "max_transition_composition_relative_error": 2.2347641821005223e-13,
+    "euclidean_transition_ratio_min": 0.024206472602166615,
+    "euclidean_transition_ratio_max": 515.5230365969581
+  },
+  "deliberate_reparameterization": [
+    {
+      "t": 1.0,
+      "kappa_G": 1.0,
+      "euclidean_ratio": 1.0,
+      "quotient_seminorm_relative_error": 0.0
+    },
+    {
+      "t": 100.0,
+      "kappa_G": 10000.0,
+      "euclidean_ratio": 42.430178528966856,
+      "quotient_seminorm_relative_error": 3.2986118401554866e-16
+    },
+    {
+      "t": 10000.0,
+      "kappa_G": 100000000.0,
+      "euclidean_ratio": 4242.640724831647,
+      "quotient_seminorm_relative_error": 0.0
+    },
+    {
+      "t": 1000000.0,
+      "kappa_G": 1000000000000.0,
+      "euclidean_ratio": 424264.0687123056,
+      "quotient_seminorm_relative_error": 0.0
+    },
+    {
+      "t": 100000000.0,
+      "kappa_G": 1e+16,
+      "euclidean_ratio": 42426406.87119285,
+      "quotient_seminorm_relative_error": 0.0
+    },
+    {
+      "t": 10000000000.0,
+      "kappa_G": 1e+20,
+      "euclidean_ratio": 4242640687.119285,
+      "quotient_seminorm_relative_error": 0.0
+    },
+    {
+      "t": 1000000000000.0,
+      "kappa_G": 1e+24,
+      "euclidean_ratio": 424264068711.9285,
+      "quotient_seminorm_relative_error": 0.0
+    }
+  ],
+  "holonomy_metric_covariance": {
+    "attempts": 1500,
+    "accepted": 1500,
+    "rejected_metric_resolution": 0,
+    "max_residual_relative_error": 2.2246580820505558e-07,
+    "metric_condition_bound_violations": 0,
+    "max_ratio_kappa_Qprime_over_kappaQ_kappaG2": 0.9999976007500333
+  }
+}

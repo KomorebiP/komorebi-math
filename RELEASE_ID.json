@@ -1,0 +1,14 @@
+{
+  "author": "Komorebi P.",
+  "baseline_archive_sha256": "24cbd13e88dd5ab9aa4cf13e4530ece2a6643a09ce79c160b99b6f2d4562436a",
+  "license_note": "Existing proprietary/private-evaluation terms are preserved. No new public redistribution or reuse permissions are granted.",
+  "package_version": "1.0.0b4",
+  "predecessor_archive_sha256": "6a6d644cba6adc154952229b7f11e346860be266584a46ea53964fc2f1b0d8f8",
+  "release_channel": "development_checkpoint",
+  "release_id": "1.0.0b4-repair-r4-block21",
+  "repair_date": "2026-09-24",
+  "schema": "komorebi-math.release-identity",
+  "schema_version": 1,
+  "scope": "Episode 018 certificate-consistency repair: exact certificates now revalidate finite-group axioms across trust construction paths and finite optimizers compare exact dyadic values underlying supplied Python floats. Coordinate-map validity versus invertibility is clarified. Stable aggregate API remains frozen.",
+  "wheel_build_tag": "4b21"
+}

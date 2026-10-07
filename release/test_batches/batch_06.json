@@ -1,0 +1,62 @@
+{
+  "duration_seconds": 6.62512469291687,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 4,
+  "jobs": 4,
+  "passed": true,
+  "passed_tests": 78,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 6.284005109000191,
+      "passed": 25,
+      "path": "tests/test_block12_recursive_fft.py",
+      "returncode": 0,
+      "sha256": "72990e461008b30b481ad91be1d37469ceef49839ef0806278b43606eab199b5",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".........................                                                [100%]\n25 passed in 1.17s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.643685043000005,
+      "passed": 20,
+      "path": "tests/test_block12_resampling_adaptive.py",
+      "returncode": 0,
+      "sha256": "77c99acac918ceb6524cff3a8acc24be5dc33cb6fdbaff7b3b86ccafb9883600",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....................                                                     [100%]\n20 passed in 1.32s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.608444266000333,
+      "passed": 16,
+      "path": "tests/test_block12_spectral_filtering.py",
+      "returncode": 0,
+      "sha256": "a4be856cc734902db527a3ba8349ef16c1eea4050151ccec4102f89d3c111045",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "................                                                         [100%]\n16 passed in 1.63s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.2306115299998055,
+      "passed": 17,
+      "path": "tests/test_block12_windows_time_frequency.py",
+      "returncode": 0,
+      "sha256": "13bd62fad94e6be6e973aff3148682e78cbc528bea1c0cc8adb0a37ae08a4db0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".................                                                        [100%]\n17 passed in 1.30s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164452.6761823
+}

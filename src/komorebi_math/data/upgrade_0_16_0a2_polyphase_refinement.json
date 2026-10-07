@@ -1,0 +1,24 @@
+{
+  "payload": {
+    "__komorebi_type__": "refinement.polyphase",
+    "__version__": 1,
+    "data": {
+      "__komorebi_type__": "python.mapping",
+      "__version__": 1,
+      "data": [
+        [
+          "coarse_order",
+          4
+        ],
+        [
+          "fine_order",
+          12
+        ]
+      ]
+    }
+  },
+  "payload_sha256": "c6514211346d43b75df36e7d6daaa9a1badb8029c88688e1d862cff5e21c85ae",
+  "producer_version": "0.16.0a2",
+  "schema": "komorebi-math.portable",
+  "schema_version": 1
+}

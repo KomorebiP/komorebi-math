@@ -1,0 +1,25 @@
+{
+  "end": 10,
+  "exit_status": 0,
+  "failed_tests": 0,
+  "files": [
+    "tests/test_algebra_quotients.py",
+    "tests/test_algorithms_compiler.py",
+    "tests/test_algorithms_complexity_benchmarks.py",
+    "tests/test_algorithms_discovery_gpu.py",
+    "tests/test_algorithms_krylov.py",
+    "tests/test_algorithms_layout_ir.py",
+    "tests/test_algorithms_low_rank.py",
+    "tests/test_algorithms_precision.py",
+    "tests/test_algorithms_scheduling.py",
+    "tests/test_algorithms_structured.py"
+  ],
+  "passed": true,
+  "passed_tests": 80,
+  "runtime_seconds": 2.832660675048828,
+  "schema": "komorebi-math.episode009-source-batch",
+  "schema_version": 1,
+  "start": 0,
+  "stderr_tail": "",
+  "stdout_tail": "........................................................................ [ 90%]\n........                                                                 [100%]\n80 passed in 0.73s"
+}

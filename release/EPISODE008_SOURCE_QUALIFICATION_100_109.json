@@ -1,0 +1,126 @@
+{
+  "duration_seconds": 16.177855491638184,
+  "failed_files": [],
+  "files": 10,
+  "passed": true,
+  "passed_tests": 57,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 1.5545638779999535,
+      "passed": 5,
+      "path": "tests/test_linear_defects.py",
+      "returncode": 0,
+      "sha256": "c4726faaf1c1106124ed6d41d3cef10eabc85b28a85bdcaa0c4a9632f1a6b48c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.42s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4141376340003262,
+      "passed": 4,
+      "path": "tests/test_morphisms.py",
+      "returncode": 0,
+      "sha256": "d05bca8a0d24dd3ae561c3fc8b0a780b4448d0377a6f9ed464ed961e80d1b1a9",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 0.33s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4436159099996075,
+      "passed": 6,
+      "path": "tests/test_nonlinear_coordinates_defects.py",
+      "returncode": 0,
+      "sha256": "ade9bc91d6bd8d6218f687c54f1f52f97514d836ae474cdc88ef995c408a024e",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 0.33s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.845918293000068,
+      "passed": 5,
+      "path": "tests/test_nonlinear_correction_elimination.py",
+      "returncode": 0,
+      "sha256": "384937220abf662c7be8ce43fa16b58ab426e924f454d11a93d03d93a2f5c468",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.54s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.390056831000038,
+      "passed": 6,
+      "path": "tests/test_nonlinear_execution.py",
+      "returncode": 0,
+      "sha256": "c063dc8f1bed70580f17cc99bf274cee40aa1d206d259045272b62ca047293b9",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 0.32s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3550274889998946,
+      "passed": 7,
+      "path": "tests/test_nonlinear_filtered.py",
+      "returncode": 0,
+      "sha256": "700ab5332e39b0dc21d23ff8495e3ecb90ac854e8a93d2d9399a026a4530b6be",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.33s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.839130067000042,
+      "passed": 5,
+      "path": "tests/test_nonlinear_graded.py",
+      "returncode": 0,
+      "sha256": "290618d697e7f0c1f5c6e8b91d7507f24f912b3e2e4688fc41db25f9fff541ed",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.52s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 2.1446252850000747,
+      "passed": 8,
+      "path": "tests/test_nonlinear_jets_composition.py",
+      "returncode": 0,
+      "sha256": "0fefc36b7202604ced03bdacf6d60d66ad585afc7e5fe9c915eae17139f8dc68",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 0.72s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.843919270999777,
+      "passed": 6,
+      "path": "tests/test_nonlinear_obstruction.py",
+      "returncode": 0,
+      "sha256": "de347c398420228421865a70869c167f4bda6b09a2fe87510f927540940d761a",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 0.53s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.342773316000148,
+      "passed": 5,
+      "path": "tests/test_nonlinear_snapshots_persistence.py",
+      "returncode": 0,
+      "sha256": "6c8b134121fd08f17f98b5d7879f9ce3a2d7cc6ba764d912c67789d9e8b541d5",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 0.35s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/komorebi_ep008/Komorebi_Math_R4_Block12_Episode008/komorebi-math",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1790140392.5488727
+}

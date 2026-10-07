@@ -1,0 +1,279 @@
+{
+  "degenerate_route": {
+    "hankel_rank": 1,
+    "phase_dimension": 6
+  },
+  "failures": [],
+  "non_claims": [
+    "Random finite trials do not prove generic full Hankel rank.",
+    "Finite suffix signatures give lower bounds on discrete future-equivalence classes only.",
+    "The minimal-WFA/Hankel-rank theorem is an external classical theorem, not established by this computation."
+  ],
+  "numpy": "2.3.5",
+  "passed": true,
+  "python": "3.13.5",
+  "random_two_symbol_route_audit": {
+    "examples": [
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            0,
+            -1,
+            1,
+            1,
+            -1,
+            -2,
+            -2
+          ],
+          [
+            -1,
+            2,
+            2,
+            -2,
+            1,
+            -2,
+            -2,
+            0,
+            -1
+          ]
+        ],
+        "order": 4,
+        "rank": 4,
+        "z": 2
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            -2,
+            -1,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            -1,
+            0
+          ]
+        ],
+        "order": 2,
+        "rank": 2,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            -2,
+            0,
+            -1,
+            -1,
+            1
+          ],
+          [
+            2,
+            -2,
+            1,
+            -1,
+            -1,
+            2
+          ]
+        ],
+        "order": 2,
+        "rank": 2,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            2,
+            1,
+            -1,
+            -2,
+            -1,
+            -2,
+            2,
+            2,
+            1,
+            0
+          ],
+          [
+            -2,
+            2,
+            0,
+            2,
+            0,
+            2,
+            -1,
+            -2,
+            2,
+            1,
+            -2,
+            0
+          ]
+        ],
+        "order": 6,
+        "rank": 6,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            2,
+            2,
+            -2,
+            2,
+            -2,
+            2
+          ],
+          [
+            -2,
+            0,
+            0,
+            -2,
+            1,
+            1
+          ]
+        ],
+        "order": 5,
+        "rank": 5,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            0,
+            -1,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            -2,
+            0,
+            -2
+          ]
+        ],
+        "order": 4,
+        "rank": 4,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            -2,
+            -1,
+            -1,
+            1,
+            -2
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "order": 2,
+        "rank": 2,
+        "z": 3
+      },
+      {
+        "distinct_sampled_residuals": 15,
+        "filters": [
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            -1,
+            -1,
+            0,
+            -2,
+            2
+          ]
+        ],
+        "order": 2,
+        "rank": 2,
+        "z": 3
+      }
+    ],
+    "full_rank_count": 120,
+    "lower_rank_count": 0,
+    "max_sampled_distinct_residuals": 15,
+    "max_sampled_distinct_to_rank_ratio": 7.5,
+    "trials": 120
+  },
+  "route_recurrence_crosswalk": {
+    "initial": [
+      1,
+      1
+    ],
+    "matched": true,
+    "recurrence_coefficients": [
+      1,
+      2
+    ]
+  },
+  "schema": "komorebi-math.episode012-hankel-falsification",
+  "schema_version": 1,
+  "seed": 20260923,
+  "unary_two_tap": [
+    {
+      "hankel_rank": 2,
+      "order": 2,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 3,
+      "order": 3,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 4,
+      "order": 4,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 5,
+      "order": 5,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 6,
+      "order": 6,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 7,
+      "order": 7,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 8,
+      "order": 8,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 9,
+      "order": 9,
+      "sampled_distinct_residuals": 65
+    },
+    {
+      "hankel_rank": 10,
+      "order": 10,
+      "sampled_distinct_residuals": 65
+    }
+  ]
+}

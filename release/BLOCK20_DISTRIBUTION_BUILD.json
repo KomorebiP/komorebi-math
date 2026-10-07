@@ -1,0 +1,30 @@
+{
+  "artifacts": [
+    {
+      "name": "komorebi_math-1.0.0b4-py3-none-any.whl",
+      "sha256": "87d0356daa755d6e7dd555783f1ab9b0da8526d47ac42ac97264d41dcf7abdf5",
+      "size": 1457054
+    },
+    {
+      "name": "komorebi_math-1.0.0b4.tar.gz",
+      "sha256": "7a549d9a0007e845d5a5d4debc4fa0c66055669a4ff273d8f7550d5a07f40493",
+      "size": 19939865
+    }
+  ],
+  "build_toolchain": {
+    "python": "3.12.13",
+    "setuptools": "83.0.0",
+    "wheel": "0.47.0"
+  },
+  "byte_reproducible_rebuild": true,
+  "dist_members": [
+    "komorebi_math-1.0.0b4-py3-none-any.whl",
+    "komorebi_math-1.0.0b4.tar.gz"
+  ],
+  "package_version": "1.0.0b4",
+  "passed": true,
+  "schema": "komorebi-math.block20-distribution-build",
+  "schema_version": 1,
+  "source_date_epoch": 1787270400,
+  "source_digest": "ccb99fbf85ddeb395a137f42f0f6c974278d5f98567123701e974c20c93b81bd"
+}

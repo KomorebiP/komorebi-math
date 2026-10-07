@@ -1,0 +1,69 @@
+{
+  "checks": 15924,
+  "failures": 0,
+  "groups": [
+    {
+      "checks": 4610,
+      "failures": [],
+      "name": "sparse symmetric tensor orbits",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 2754,
+      "failures": [],
+      "name": "sparse polynomial provider equivalence",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 4553,
+      "failures": [],
+      "name": "projection-cached packet execution",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 2250,
+      "failures": [],
+      "name": "packet-jet snapshots and persistence",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 1405,
+      "failures": [],
+      "name": "portable schema integrity",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 331,
+      "failures": [],
+      "name": "directional automatic differentiation",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 16,
+      "failures": [],
+      "name": "public API compatibility",
+      "passed": true,
+      "skipped": []
+    },
+    {
+      "checks": 5,
+      "failures": [],
+      "name": "optional backend boundary",
+      "passed": true,
+      "skipped": [
+        "Device-backed CuPy correctness and performance were not tested"
+      ]
+    }
+  ],
+  "passed": true,
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "skipped": 1,
+  "version": "0.10.0a1"
+}

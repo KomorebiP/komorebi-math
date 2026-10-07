@@ -1,0 +1,6 @@
+numpy>=1.26,<3
+pytest>=8,<10
+build>=1.2,<2
+ruff>=0.6
+mypy>=1.10
+mkdocs>=1.6

@@ -1,0 +1,23 @@
+{
+  "boolean_failures": 0,
+  "boolean_trials": 3000,
+  "cancellation_no_go_witness_pass": true,
+  "claims": {
+    "finite_assertion": "Implementation matches direct scalar semantics on the stated deterministic trials.",
+    "non_claim": "Finite randomized success is not a proof of the universal algebraic theorems or a novelty result."
+  },
+  "expression_tree_failures": 0,
+  "expression_tree_trials": 1000,
+  "max_cancellation_ratio": 1.0,
+  "max_correction_bound_slack": 12.517655932077123,
+  "max_free_energy_relative_error": 4.2209528108477033e-16,
+  "max_merge_relative_error": 2.220446049250313e-16,
+  "max_product_relative_error": 2.451141935222442e-16,
+  "schema": "komorebi-math.episode011-carrier-change-probe",
+  "schema_version": 1,
+  "seed": 20260923,
+  "signed_failures": 0,
+  "signed_trials": 3000,
+  "tropical_failures": 0,
+  "tropical_trials": 5000
+}

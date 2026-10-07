@@ -1,0 +1,116 @@
+{
+  "baselines": {
+    "portable_codecs": {
+      "count": 51,
+      "filename": "portable_codec_contract_0_16.json",
+      "sha256": "47414a81311e02a49a6270889069ae70fa6e41ac0c7aebd124d8c8b25458124f",
+      "version": "0.16.0a2"
+    },
+    "stable_api": [
+      {
+        "count": 72,
+        "filename": "public_api_stable_0_15.json",
+        "sha256": "7f5852261fb2fd9ce1f1df595eec93cf510db1beac67c4800f03be6f9bf12cef",
+        "version": "0.15.0a2"
+      },
+      {
+        "count": 131,
+        "filename": "public_api_stable_0_16.json",
+        "sha256": "34318ed498301a8a7ae663c0fe7a0ea1671852a534ffbf844752482ca431f30c",
+        "version": "0.16.0a2"
+      },
+      {
+        "count": 131,
+        "filename": "public_api_stable_1_0_0b1.json",
+        "sha256": "6ebab99eeeb4dddd80b71ad96b164b5d4a8402bdc80f4164865b0c7dbe5068bf",
+        "version": "1.0.0b1"
+      },
+      {
+        "count": 131,
+        "filename": "public_api_stable_1_0_0b2.json",
+        "sha256": "711b8de2f7a4981dab21df0fb6072db5528b8c86062c24f84f63052f1cea73c0",
+        "version": "1.0.0b2"
+      },
+      {
+        "count": 131,
+        "filename": "public_api_stable_1_0_0b3.json",
+        "sha256": "766a22dd30c70e5c986aebe1338b424b31906c70a59b5e576f061a43140ad1ad",
+        "version": "1.0.0b3"
+      }
+    ],
+    "stable_semantics": {
+      "count": 10,
+      "filename": "stable_semantics_0_16.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "version": "0.16.0a2"
+    }
+  },
+  "fixtures": [
+    {
+      "expected_type": "komorebi_math.refinement.polyphase.PolyphaseRefinement",
+      "filename": "upgrade_0_15_0a2_polyphase_refinement.json",
+      "name": "upgrade_0_15_0a2_polyphase_refinement",
+      "payload_sha256": "c6514211346d43b75df36e7d6daaa9a1badb8029c88688e1d862cff5e21c85ae",
+      "producer_version": "0.15.0a2",
+      "sha256": "3bf97872bdec4f5d92c0cd404f997c96e53a6fec04face77f197eb3d555bc5d1"
+    },
+    {
+      "expected_type": "komorebi_math.refinement.polyphase.PolyphaseRefinementTower",
+      "filename": "upgrade_0_15_0a2_polyphase_tower.json",
+      "name": "upgrade_0_15_0a2_polyphase_tower",
+      "payload_sha256": "550eba5392dad840cd70e5a5d58981a956a74f7e27a12b7c45a7d3ec463d1da8",
+      "producer_version": "0.15.0a2",
+      "sha256": "3e16df855e2ce16c2778ee5eb8336517effd3d837d54ca483383667c38d9a36f"
+    },
+    {
+      "expected_type": "komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem",
+      "filename": "upgrade_0_16_0a2_analysis_synthesis.json",
+      "name": "upgrade_0_16_0a2_analysis_synthesis",
+      "payload_sha256": "1c84683db2696775566366cd3f133381e8be0e4f4deebc0a20fcde1a85ec8ed8",
+      "producer_version": "0.16.0a2",
+      "sha256": "af4836f0831d47c83ca018fcc7d6e705441522852fcd0a713a859cf5872d281c"
+    },
+    {
+      "expected_type": "komorebi_math.arithmetic.polyphase.ArithmeticPolyphase",
+      "filename": "upgrade_0_16_0a2_arithmetic_polyphase.json",
+      "name": "upgrade_0_16_0a2_arithmetic_polyphase",
+      "payload_sha256": "26bd8ed78885636bb22bc8ae5e1db39e515c23204cf12e63efba6c0cf6c25f36",
+      "producer_version": "0.16.0a2",
+      "sha256": "7d1fd7327ed1684043b3daf369686ce0087395045090dbde700c5c8981d2cb09"
+    },
+    {
+      "expected_type": "komorebi_math.coordinates.basis.FiniteBasis",
+      "filename": "upgrade_0_16_0a2_finite_basis.json",
+      "name": "upgrade_0_16_0a2_finite_basis",
+      "payload_sha256": "907889f17da66aabb956f92eedf25d3f75132429c117d193a3e9ec3e3ce05031",
+      "producer_version": "0.16.0a2",
+      "sha256": "9281a0ee5a45a1faa8ef0063e704d723d57f1ea4a638b22c3f1928995cf839f3"
+    },
+    {
+      "expected_type": "komorebi_math.refinement.polyphase.PolyphaseRefinement",
+      "filename": "upgrade_0_16_0a2_polyphase_refinement.json",
+      "name": "upgrade_0_16_0a2_polyphase_refinement",
+      "payload_sha256": "c6514211346d43b75df36e7d6daaa9a1badb8029c88688e1d862cff5e21c85ae",
+      "producer_version": "0.16.0a2",
+      "sha256": "e9369fa2e89f250e114c2ef914bf85e18dd0a5b1022fc49840ff1930d6fac953"
+    },
+    {
+      "expected_type": "komorebi_math.refinement.polyphase.PolyphaseRefinementTower",
+      "filename": "upgrade_0_16_0a2_polyphase_tower.json",
+      "name": "upgrade_0_16_0a2_polyphase_tower",
+      "payload_sha256": "550eba5392dad840cd70e5a5d58981a956a74f7e27a12b7c45a7d3ec463d1da8",
+      "producer_version": "0.16.0a2",
+      "sha256": "92166c41effccd377ae8f7c43e2fc566b92d19848be3adc905dacf1abd0c0899"
+    }
+  ],
+  "predecessor_versions": [
+    "0.15.0a2",
+    "0.16.0a2",
+    "1.0.0b1",
+    "1.0.0b2",
+    "1.0.0b3"
+  ],
+  "schema": "komorebi-math.upgrade-contract",
+  "schema_version": 1,
+  "target_version": "1.0.0b4"
+}

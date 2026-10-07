@@ -1,0 +1,262 @@
+{
+  "entries": [
+    {
+      "implementation_type": "komorebi_math.arithmetic.polyphase.ArithmeticPolyphase",
+      "tag": "arithmetic.polyphase_coordinates",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.affine.AffineCoordinateTransform",
+      "tag": "coordinates.affine_transform",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem",
+      "tag": "coordinates.analysis_synthesis",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.basis.CoordinateAtlas",
+      "tag": "coordinates.atlas",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.affine.BarycentricCoordinateSystem",
+      "tag": "coordinates.barycentric_system",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.operators.BezoutDefectIdentity",
+      "tag": "coordinates.bezout_defect_identity",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.budget.CoordinateBudget",
+      "tag": "coordinates.budget",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.basis.FiniteBasis",
+      "tag": "coordinates.finite_basis",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.modular.FiniteFieldCoordinateTransform",
+      "tag": "coordinates.finite_field_transform",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.formal.FormalCoordinateChange",
+      "tag": "coordinates.formal_change",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.realization.IntertwinerSpace",
+      "tag": "coordinates.intertwiner_space",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.realization.LinearRealization",
+      "tag": "coordinates.linear_realization",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.numeric.ModalCoordinateSystem",
+      "tag": "coordinates.modal_system",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.numeric.NumericCoordinateTransform",
+      "tag": "coordinates.numeric_transform",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.calculus.PolynomialCoordinateOperator",
+      "tag": "coordinates.polynomial_operator",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.families.RecurrenceModel",
+      "tag": "coordinates.recurrence_model",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.recurrence.RecurrenceCoordinateRecord",
+      "tag": "coordinates.recurrence_record",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.operators.ShiftPolynomial",
+      "tag": "coordinates.shift_polynomial",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.realization.StateRecovery",
+      "tag": "coordinates.state_recovery",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.state_space.StateSpaceModel",
+      "tag": "coordinates.state_space_model",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.basis.CoordinateSystem",
+      "tag": "coordinates.system",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.coordinates.transform.CoordinateTransform",
+      "tag": "coordinates.transform",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.certificates.Certificate",
+      "tag": "core.certificate",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.deformation.forests.LiftBranch",
+      "tag": "deformation.lift_branch",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.basis.BasisDescriptor",
+      "tag": "generating.basis_descriptor",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.budget.GeneratingBudget",
+      "tag": "generating.budget",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.masks.CarryLayerConvolution",
+      "tag": "generating.carry_layer_convolution",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.cartier.CartierAutomaton",
+      "tag": "generating.cartier_automaton",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.cartier.CartierLinearRepresentation",
+      "tag": "generating.cartier_linear_representation",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.masks.FiniteMaskCarryPlan",
+      "tag": "generating.finite_mask_carry_plan",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.finite_series.FiniteNormalizedSeries",
+      "tag": "generating.finite_normalized_series",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.series.FormalSeries",
+      "tag": "generating.formal_series",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.portable.FrozenGeneratingFunction",
+      "tag": "generating.frozen_function",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.masks.KummerLayerDistribution",
+      "tag": "generating.kummer_layer_distribution",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.generating.basis.WeightedMonomialBasis",
+      "tag": "generating.weighted_monomial_basis",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.filtered.FilteredSpectralSequenceResult",
+      "tag": "nonlinear.filtered_spectral_sequence_result",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.lifting.FiniteLiftTree",
+      "tag": "nonlinear.finite_lift_tree",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.lifting.LiftTreeNode",
+      "tag": "nonlinear.lift_tree_node",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.trees.OrderedRootedTree",
+      "tag": "nonlinear.ordered_rooted_tree",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.jets.PacketJetAddress",
+      "tag": "nonlinear.packet_jet_address",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.snapshots.PacketJetCoefficient",
+      "tag": "nonlinear.packet_jet_coefficient",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.snapshots.PacketJetSnapshot",
+      "tag": "nonlinear.packet_jet_snapshot",
+      "version": 2
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.sparse.SparseSymmetricTensor",
+      "tag": "nonlinear.sparse_symmetric_tensor",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.filtered.SpectralSequenceEntry",
+      "tag": "nonlinear.spectral_sequence_entry",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.nonlinear.filtered.SpectralSequencePage",
+      "tag": "nonlinear.spectral_sequence_page",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.refinement.polyphase.LatticePolyphaseRefinement",
+      "tag": "refinement.lattice_polyphase",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.refinement.polyphase.PolyphaseRefinement",
+      "tag": "refinement.polyphase",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.refinement.polyphase.PolyphaseRefinementTower",
+      "tag": "refinement.polyphase_tower",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.refinement.residue.ResidueCoordinates",
+      "tag": "refinement.residue_coordinates",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.signals.polyphase.LatticePolyphaseCoordinates",
+      "tag": "signals.lattice_polyphase_coordinates",
+      "version": 1
+    },
+    {
+      "implementation_type": "komorebi_math.signals.polyphase.PolyphaseCoordinates",
+      "tag": "signals.polyphase_coordinates",
+      "version": 1
+    }
+  ],
+  "package_version": "1.0.0b1",
+  "schema": "komorebi-math.portable-codec-contract",
+  "schema_version": 1
+}

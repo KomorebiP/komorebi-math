@@ -1,0 +1,277 @@
+{
+  "beta": {
+    "added": [],
+    "certificate": {
+      "assumptions_checked": [
+        "selected namespaces define explicit __all__ exports",
+        "export presence and broad symbol kind",
+        "deterministic callable signature text"
+      ],
+      "assumptions_unchecked": [
+        "behavioral and mathematical semantic equivalence",
+        "compatibility of undocumented implementation details"
+      ],
+      "diagnostics": {
+        "added": 0,
+        "kind_changed": 0,
+        "removed": 0,
+        "signature_changed": 0,
+        "stability_level": "1.0-beta-additive-strict-signatures",
+        "strict_signatures": true
+      },
+      "exactness": "exact",
+      "message": "public API is structurally compatible with the committed manifest",
+      "residuals": {
+        "kind_changes": 0.0,
+        "removed_exports": 0.0,
+        "signature_changes": 0.0
+      },
+      "theorem_id": "KM-API-010",
+      "tolerance": null,
+      "valid": true
+    },
+    "compatible": true,
+    "current_digest": "25f7b9457021f11a7f5a7030fcd166c4fd5363124179fd83a4660ac0a3e5346a",
+    "kind_changed": [],
+    "reference_digest": "987325a841adee25e18523f6b5f9f41422d843d293175a82088b522076edf198",
+    "removed": [],
+    "signature_changed": [],
+    "strict_signatures": true
+  },
+  "package_version": "1.0.0b3",
+  "passed": true,
+  "reference_version": "1.0.0b2",
+  "research": {
+    "added": [
+      [
+        "komorebi_math",
+        "AtomicIntegratedDerivativeProvider"
+      ],
+      [
+        "komorebi_math",
+        "AtomicMeasure"
+      ],
+      [
+        "komorebi_math",
+        "CompositeSimpson"
+      ],
+      [
+        "komorebi_math",
+        "DerivativeBound"
+      ],
+      [
+        "komorebi_math",
+        "ErrorGuarantee"
+      ],
+      [
+        "komorebi_math",
+        "ExactAffineMap"
+      ],
+      [
+        "komorebi_math",
+        "ExactPolynomial"
+      ],
+      [
+        "komorebi_math",
+        "ExactQuadratureRule"
+      ],
+      [
+        "komorebi_math",
+        "IntegralIdentity"
+      ],
+      [
+        "komorebi_math",
+        "IntegralResult"
+      ],
+      [
+        "komorebi_math",
+        "IntegrationError"
+      ],
+      [
+        "komorebi_math",
+        "IntervalMeasure"
+      ],
+      [
+        "komorebi_math",
+        "Measure"
+      ],
+      [
+        "komorebi_math",
+        "PolynomialIntegrationCovector"
+      ],
+      [
+        "komorebi_math",
+        "ProductMeasure"
+      ],
+      [
+        "komorebi_math",
+        "PushforwardMeasure"
+      ],
+      [
+        "komorebi_math",
+        "QuadratureExactness"
+      ],
+      [
+        "komorebi_math",
+        "QuadratureRule"
+      ],
+      [
+        "komorebi_math",
+        "affine_interval_change_of_variables"
+      ],
+      [
+        "komorebi_math",
+        "all_fubini_orders"
+      ],
+      [
+        "komorebi_math",
+        "analysis_synthesis_integration_certificate"
+      ],
+      [
+        "komorebi_math",
+        "coordinate_fundamental_theorem"
+      ],
+      [
+        "komorebi_math",
+        "coordinate_transport_identity"
+      ],
+      [
+        "komorebi_math",
+        "fubini_identity"
+      ],
+      [
+        "komorebi_math",
+        "fundamental_theorem"
+      ],
+      [
+        "komorebi_math",
+        "integrate"
+      ],
+      [
+        "komorebi_math",
+        "integrate_derivative_provider"
+      ],
+      [
+        "komorebi_math",
+        "integrate_formal_series"
+      ],
+      [
+        "komorebi_math",
+        "integrate_polynomial_coordinates"
+      ],
+      [
+        "komorebi_math",
+        "integrate_polynomial_oriented"
+      ],
+      [
+        "komorebi_math",
+        "integration_by_parts"
+      ],
+      [
+        "komorebi_math",
+        "polynomial_derivative_bound"
+      ],
+      [
+        "komorebi_math",
+        "polynomial_from_family_coordinates"
+      ],
+      [
+        "komorebi_math",
+        "polynomial_from_formal_series"
+      ],
+      [
+        "komorebi_math",
+        "polynomial_integration_covector"
+      ],
+      [
+        "komorebi_math",
+        "product_measure"
+      ],
+      [
+        "komorebi_math",
+        "pushforward_identity"
+      ],
+      [
+        "komorebi_math",
+        "pushforward_measure"
+      ]
+    ],
+    "certificate": {
+      "assumptions_checked": [
+        "selected namespaces define explicit __all__ exports",
+        "export presence and broad symbol kind",
+        "deterministic callable signature text"
+      ],
+      "assumptions_unchecked": [
+        "behavioral and mathematical semantic equivalence",
+        "compatibility of undocumented implementation details"
+      ],
+      "diagnostics": {
+        "added": 38,
+        "kind_changed": 0,
+        "removed": 0,
+        "signature_changed": 0,
+        "stability_level": "pre-beta-additive",
+        "strict_signatures": true
+      },
+      "exactness": "exact",
+      "message": "public API is structurally compatible with the committed manifest",
+      "residuals": {
+        "kind_changes": 0.0,
+        "removed_exports": 0.0,
+        "signature_changes": 0.0
+      },
+      "theorem_id": "KM-API-010",
+      "tolerance": null,
+      "valid": true
+    },
+    "compatible": true,
+    "current_digest": "1544a5632f86e452c642c0f76ee1e2fe83481fa2116a1dffdbfce13d0dd8e60a",
+    "kind_changed": [],
+    "reference_digest": "dd14b2f2f4a5ab699c4d626c2d7cca900d6cff3e596849e88c44afd4fd7402df",
+    "removed": [],
+    "signature_changed": [],
+    "strict_signatures": true
+  },
+  "schema": "komorebi-math.block19-api-additivity",
+  "schema_version": 1,
+  "stable": {
+    "added": [],
+    "certificate": {
+      "assumptions_checked": [
+        "selected namespaces define explicit __all__ exports",
+        "export presence and broad symbol kind",
+        "deterministic callable signature text"
+      ],
+      "assumptions_unchecked": [
+        "behavioral and mathematical semantic equivalence",
+        "compatibility of undocumented implementation details"
+      ],
+      "diagnostics": {
+        "added": 0,
+        "kind_changed": 0,
+        "removed": 0,
+        "signature_changed": 0,
+        "stability_level": "1.0-frozen-strict-signatures-semantics-and-persistence",
+        "strict_signatures": true
+      },
+      "exactness": "exact",
+      "message": "public API is structurally compatible with the committed manifest",
+      "residuals": {
+        "kind_changes": 0.0,
+        "removed_exports": 0.0,
+        "signature_changes": 0.0
+      },
+      "theorem_id": "KM-API-010",
+      "tolerance": null,
+      "valid": true
+    },
+    "compatible": true,
+    "current_digest": "0769e222a6a6b154c511ca9b5f48d21f58d9acb3e0e531c745af37b80fd6ff1b",
+    "kind_changed": [],
+    "reference_digest": "0881859c0f0939d2a91c18abed91a723a99ff04b8c21d6484dd2002db64d3202",
+    "removed": [],
+    "signature_changed": [],
+    "strict_signatures": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "duration_seconds": 47.19261646270752,
+  "failed_files": [],
+  "files": 1,
+  "passed": true,
+  "passed_tests": 68,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 47.19203139599995,
+      "passed": 68,
+      "path": "tests/test_generating_foundation.py",
+      "returncode": 0,
+      "sha256": "fd7fca313208302af2c54b89bcb700ddee1c1566aed17cf14fac7684a4849a6c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....................................................................     [100%]\n68 passed in 44.97s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164879.2035038
+}

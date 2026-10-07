@@ -1,0 +1,76 @@
+{
+  "payload": {
+    "__komorebi_type__": "coordinates.analysis_synthesis",
+    "__version__": 1,
+    "data": {
+      "__komorebi_type__": "python.mapping",
+      "__version__": 1,
+      "data": [
+        [
+          "analysis",
+          {
+            "__komorebi_type__": "numpy.ndarray",
+            "__version__": 1,
+            "data": {
+              "data": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "dtype": "float64",
+              "shape": [
+                3,
+                2
+              ]
+            }
+          }
+        ],
+        [
+          "coordinates",
+          "coordinates"
+        ],
+        [
+          "source",
+          "source"
+        ],
+        [
+          "synthesis",
+          {
+            "__komorebi_type__": "numpy.ndarray",
+            "__version__": 1,
+            "data": {
+              "data": [
+                0.6666666666666664,
+                -0.33333333333333315,
+                0.33333333333333326,
+                -0.3333333333333333,
+                0.6666666666666666,
+                0.33333333333333337
+              ],
+              "dtype": "float64",
+              "shape": [
+                2,
+                3
+              ]
+            }
+          }
+        ],
+        [
+          "theorem",
+          "KM-AS-01"
+        ],
+        [
+          "tolerance",
+          1e-12
+        ]
+      ]
+    }
+  },
+  "payload_sha256": "1c84683db2696775566366cd3f133381e8be0e4f4deebc0a20fcde1a85ec8ed8",
+  "producer_version": "0.16.0a2",
+  "schema": "komorebi-math.portable",
+  "schema_version": 1
+}

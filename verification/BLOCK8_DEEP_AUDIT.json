@@ -1,0 +1,55 @@
+{
+  "checks": 33185,
+  "failures": 0,
+  "groups": [
+    {
+      "checks": 12000,
+      "failures": [],
+      "name": "serialization",
+      "passed": true
+    },
+    {
+      "checks": 6560,
+      "failures": [],
+      "name": "table normalization",
+      "passed": true
+    },
+    {
+      "checks": 10000,
+      "failures": [],
+      "name": "document rendering",
+      "passed": true
+    },
+    {
+      "checks": 2300,
+      "failures": [],
+      "name": "file exports",
+      "passed": true
+    },
+    {
+      "checks": 2000,
+      "failures": [],
+      "name": "certificate exports",
+      "passed": true
+    },
+    {
+      "checks": 300,
+      "failures": [],
+      "name": "multi-format bundles",
+      "passed": true
+    },
+    {
+      "checks": 13,
+      "failures": [],
+      "name": "LaTeX PDF compilation",
+      "passed": true
+    },
+    {
+      "checks": 12,
+      "failures": [],
+      "name": "source integrity",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

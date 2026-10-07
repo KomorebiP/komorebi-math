@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "version and frozen API boundaries",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "oblique coefficient gauge",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "coefficient-map sandwich and quotient",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "cross-presentation composition bridge",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "coefficient blocks and physical-block counterexample",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "physical and dual adjoints",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "exact rational frame algebra",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "consistent SVD pseudoinverse threshold",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "research API additive against 1.0.0b1",
+      "passed": true
+    },
+    {
+      "detail": "",
+      "name": "ten frozen stable semantics",
+      "passed": true
+    }
+  ],
+  "package_version": "1.0.0b2",
+  "passed": true,
+  "passed_count": 10,
+  "schema": "komorebi-math.block18-math-verification",
+  "schema_version": 1,
+  "total_count": 10
+}

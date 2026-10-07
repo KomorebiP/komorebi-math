@@ -1,0 +1,24 @@
+{
+  "certificate_require_failures": 0,
+  "certificate_validity_failures": 0,
+  "explicit_rank_deficient_case": {
+    "certificate_valid": false,
+    "constituent_count": 2,
+    "rank": 1,
+    "require_rejected": true,
+    "separating": false
+  },
+  "full_rank_trials": 1283,
+  "non_claims": [
+    "This finite computation does not prove any Chebotarev-density or global Galois-representation statement.",
+    "Random tables audit implementation consistency; the full-column-rank uniqueness theorem is proved separately by linear algebra."
+  ],
+  "passed": true,
+  "rank_deficient_trials": 517,
+  "rank_or_status_failures": 0,
+  "recovery_failures": 0,
+  "schema": "komorebi-math.episode017-deformation-separator-probe",
+  "schema_version": 1,
+  "seed": 20260924,
+  "trials": 1800
+}

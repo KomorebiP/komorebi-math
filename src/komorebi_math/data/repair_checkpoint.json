@@ -1,0 +1,14 @@
+{
+  "author": "Komorebi P.",
+  "baseline_archive_sha256": "24cbd13e88dd5ab9aa4cf13e4530ece2a6643a09ce79c160b99b6f2d4562436a",
+  "license_note": "Existing proprietary/private-evaluation terms are preserved. No new public redistribution or reuse permissions are granted.",
+  "package_version": "1.0.0b4",
+  "predecessor_archive_sha256": "fdfc3e3b71449364cd81b41a2a5611446c5edd49eee5bca99428be5b04cb1a50",
+  "release_channel": "development_checkpoint",
+  "release_id": "1.0.0b4-repair-r4-block6",
+  "repair_date": "2026-09-22",
+  "schema": "komorebi-math.release-identity",
+  "schema_version": 1,
+  "scope": "Scoped mutation/lifecycle repair: selected certified finite objects now own constructor matrix snapshots; NumPy snapshots that underpin cached derived state are read-only. Serialization/reloading and whole-suite release regression remain pending.",
+  "wheel_build_tag": "4b6"
+}

@@ -1,0 +1,77 @@
+{
+  "archive": {
+    "checks": 11,
+    "clean_single_root": true,
+    "fresh_extract": {
+      "adversarial": 47,
+      "artifact_audit_checks": 17,
+      "block15": 174,
+      "block19": 24,
+      "documentation": 1,
+      "independent_math": 16,
+      "integration": 12,
+      "stable": 6,
+      "worked_exact": "106/5"
+    },
+    "fresh_extract_validated": true,
+    "member_count": 802,
+    "status": "passed"
+  },
+  "artifacts": {
+    "sdist": {
+      "name": "komorebi_math-1.0.0b3.tar.gz",
+      "sha256": "0a5c76a1eac0d7614f34129286fcdd404969660ad850756565df377371660006",
+      "size": 5544849
+    },
+    "wheel": {
+      "name": "komorebi_math-1.0.0b3-py3-none-any.whl",
+      "sha256": "592f50b7fa95dcaff9cfbe3d6f73c7dd800af95a790121f913893bf7795f1fa5",
+      "size": 1274364
+    }
+  },
+  "checks": {
+    "api_additivity_research_38_stable_0_beta_0": true,
+    "distribution_audit_19": true,
+    "primary_adversarial_47": true,
+    "primary_documentation_1": true,
+    "primary_independent_math_16": true,
+    "primary_qualification_12_24_6_174": true,
+    "primary_worked_exact_106_5": true,
+    "sdist_adversarial_47": true,
+    "sdist_documentation_1": true,
+    "sdist_independent_math_16": true,
+    "sdist_qualification_12_24_6_174": true,
+    "sdist_rebuilt_wheel_payload_identical": true,
+    "sdist_worked_exact_106_5": true,
+    "source_adversarial_47": true,
+    "source_documentation_1": true,
+    "source_independent_math_16": true,
+    "source_qualification_12_24_6_174": true,
+    "source_worked_exact_106_5": true,
+    "wheel_record_complete": true,
+    "wheel_source_bytes_identical": true
+  },
+  "execution_boundary": {
+    "executed": [
+      "Linux Python 3.12 source qualification",
+      "primary wheel isolated install",
+      "fresh-sdist rebuilt-wheel isolated install",
+      "fixture-free Block 19 adversarial runner"
+    ],
+    "legacy_not_claimed": [
+      "verify release",
+      "verify beta",
+      "release qualify"
+    ],
+    "not_executed_or_claimed": [
+      "Windows",
+      "CUDA",
+      "pytest",
+      "rendered MkDocs build"
+    ]
+  },
+  "package_version": "1.0.0b3",
+  "passed": true,
+  "schema": "komorebi-math.block19-validation-summary",
+  "schema_version": 1
+}

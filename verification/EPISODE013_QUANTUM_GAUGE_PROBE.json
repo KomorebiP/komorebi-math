@@ -1,0 +1,45 @@
+{
+  "channel_failures": 0,
+  "channel_max_choi_error": 1.6809122000127112e-15,
+  "channel_max_superoperator_error": 1.1013934030750614e-15,
+  "channel_trials": 400,
+  "declared_basis_max_residual_ratio_observed": 40.82057756894647,
+  "default_tolerance_counterexample": {
+    "sparse_declared_max_residual": 2.0000000000000003e-10,
+    "sparse_invariant_obstruction": 0.5,
+    "sparse_valid": false,
+    "spread_declared_max_residual": 5.000000000000001e-11,
+    "spread_invariant_obstruction": 0.5000000000000002,
+    "spread_valid": false
+  },
+  "non_claims": [
+    "Randomized trials do not prove universal gauge invariance; the block-operator similarity argument supplies the proof for resolved spans.",
+    "Numerical SVD cannot stably resolve arbitrarily ill-conditioned error generators; the singular spectrum remains part of the certificate diagnostics.",
+    "The random general-linear recovery audit is bounded to moderate generator condition numbers; arbitrarily ill-conditioned error bases remain a finite-precision boundary even though exact span semantics is unchanged."
+  ],
+  "pass": true,
+  "recovery_failures": 0,
+  "recovery_general_linear_failures": 0,
+  "recovery_general_linear_max_condition": 49.46693296661293,
+  "recovery_general_linear_max_superoperator_error": 1.6921039811171944e-14,
+  "recovery_general_linear_trials": 80,
+  "recovery_max_superoperator_error": 2.0210051466504187e-15,
+  "recovery_scaling_failures": 0,
+  "recovery_scaling_max_superoperator_error": 6.9637756429015e-16,
+  "recovery_trials": 80,
+  "schema": "komorebi-math.episode013-quantum-gauge-probe",
+  "schema_version": 1,
+  "seed": 20260923,
+  "span_failures": 0,
+  "span_max_abs_error": 1.2212453270876722e-15,
+  "span_max_rel_error": 1.2212453270876722e-15,
+  "span_trials": 400,
+  "uniform_scaling_probe": {
+    "large_declared_max_residual": 0.5,
+    "large_invariant_obstruction": 0.5,
+    "large_valid": false,
+    "tiny_declared_max_residual": 5e-25,
+    "tiny_invariant_obstruction": 0.5,
+    "tiny_valid": false
+  }
+}

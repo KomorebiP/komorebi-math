@@ -1,0 +1,126 @@
+{
+  "duration_seconds": 30.41355061531067,
+  "failed_files": [],
+  "files": 10,
+  "passed": true,
+  "passed_tests": 139,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 1.4763454680000905,
+      "passed": 20,
+      "path": "tests/test_block12_resampling_adaptive.py",
+      "returncode": 0,
+      "sha256": "77c99acac918ceb6524cff3a8acc24be5dc33cb6fdbaff7b3b86ccafb9883600",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....................                                                     [100%]\n20 passed in 0.46s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3283194509999703,
+      "passed": 16,
+      "path": "tests/test_block12_spectral_filtering.py",
+      "returncode": 0,
+      "sha256": "a4be856cc734902db527a3ba8349ef16c1eea4050151ccec4102f89d3c111045",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "................                                                         [100%]\n16 passed in 0.34s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3948508339999535,
+      "passed": 17,
+      "path": "tests/test_block12_windows_time_frequency.py",
+      "returncode": 0,
+      "sha256": "13bd62fad94e6be6e973aff3148682e78cbc528bea1c0cc8adb0a37ae08a4db0",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".................                                                        [100%]\n17 passed in 0.36s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 7.876406884000062,
+      "passed": 5,
+      "path": "tests/test_block13_cli_api.py",
+      "returncode": 0,
+      "sha256": "eee90f4b0b8ea37ede417e3ce3eb16c24a4247e867e8d2b3d447c5fa8ccbce52",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 6.69s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 7.904006695999669,
+      "passed": 5,
+      "path": "tests/test_block14_cli_api.py",
+      "returncode": 0,
+      "sha256": "d0af2f00cc7ebaca41744f9fe9409ac08e4b6eb09e3ee764ce4dd15610fb8554",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 6.72s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.4708797110001797,
+      "passed": 10,
+      "path": "tests/test_block15_persistence.py",
+      "returncode": 0,
+      "sha256": "fdcc7603d590640a027f206162c600728f1adab247a8d9f1478100da1165402f",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..........                                                               [100%]\n10 passed in 0.34s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.470621955000297,
+      "passed": 44,
+      "path": "tests/test_block15_polyphase_refinement.py",
+      "returncode": 0,
+      "sha256": "26e277967a58ee361d0d814682bf5a75ff36772d217e326cdf477e0d237f523e",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "............................................                             [100%]\n44 passed in 0.39s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.5608028709998507,
+      "passed": 9,
+      "path": "tests/test_block15_stable_api.py",
+      "returncode": 0,
+      "sha256": "9888c2f66ad8cbed8a71261156a641c4b5d99283bf667bfb8f642c954bb4b222",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".........                                                                [100%]\n9 passed in 0.37s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 1.3228865480000422,
+      "passed": 9,
+      "path": "tests/test_block16_analysis_synthesis.py",
+      "returncode": 0,
+      "sha256": "3c984e6f63122fa19e7ee08750eeb7bcc5e833b64febedac01a52b1177ffd377",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".........                                                                [100%]\n9 passed in 0.32s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.602641997999854,
+      "passed": 4,
+      "path": "tests/test_block16_cli.py",
+      "returncode": 0,
+      "sha256": "b31ba047c87d2a40e17eadb1385e4abbb05a7cb1556d53c6fb671b98cf2c7319",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 3.49s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/komorebi_ep008/Komorebi_Math_R4_Block12_Episode008/komorebi-math",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1790140087.0922246
+}

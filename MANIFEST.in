@@ -1,0 +1,116 @@
+include README.md
+include README_BLOCK16.md
+include LICENSE.md
+include CHANGELOG.md
+include CITATION.cff
+include mkdocs.yml
+exclude PACKAGE_AUDIT.json
+exclude PACKAGE_AUDIT.md
+exclude STATIC_AUDIT.json
+exclude STATIC_AUDIT.md
+exclude SHA256SUMS.txt
+include run_block16_source_validation.sh
+include install_and_verify_block16.sh
+include run_gpu_validation.sh
+include Run_Block16_Source_Validation.ps1
+include Install_And_Verify_Block16.ps1
+include Run_GPU_Validation.ps1
+recursive-include src/komorebi_math/data *.json
+recursive-include docs *.md
+recursive-include examples *.py *.ps1
+recursive-include verification *.py *.json
+recursive-include tests *.py *.json
+recursive-include constraints *.txt
+recursive-include environment *.yml
+recursive-include .github *.yml
+include run_block16_batched_validation.sh
+include build_block16_distributions.sh
+include Run_Block16_Batched_Validation.ps1
+include Build_Block16_Distributions.ps1
+include README_BLOCK17.md
+include README_BLOCK18.md
+include run_block17_source_validation.sh
+include install_and_verify_block17.sh
+include run_block17_gpu_validation.sh
+include run_block17_upgrade_validation.sh
+include build_block17_distributions.sh
+include Run_Block17_Source_Validation.ps1
+include Install_And_Verify_Block17.ps1
+include Run_Block17_GPU_Validation.ps1
+include Run_Block17_Upgrade_Validation.ps1
+include Build_Block17_Distributions.ps1
+include run_block18_source_validation.sh
+include install_and_verify_block18.sh
+include build_block18_distributions.sh
+include Run_Block18_Source_Validation.ps1
+include Install_And_Verify_Block18.ps1
+include Build_Block18_Distributions.ps1
+include README_BLOCK19.md
+include run_block19_source_validation.sh
+include install_and_verify_block19.sh
+include build_block19_distributions.sh
+include Run_Block19_Source_Validation.ps1
+include Install_And_Verify_Block19.ps1
+include Build_Block19_Distributions.ps1
+include README_BLOCK20.md
+include run_block20_source_validation.sh
+include install_and_verify_block20.sh
+include build_block20_distributions.sh
+include Run_Block20_Source_Validation.ps1
+include Install_And_Verify_Block20.ps1
+include Build_Block20_Distributions.ps1
+recursive-include release/predecessors *.whl *.tar.gz
+include README_BLOCK21.md
+include REPRODUCIBILITY.md
+include SECURITY.md
+include CONTRIBUTING.md
+include run_block21_publication_gate.sh
+include build_block21_handoff.sh
+include Run_Block21_Publication_Gate.ps1
+include Build_Block21_Handoff.ps1
+include .gitignore
+
+include RELEASE_ID.json
+include RELEASE_REPAIR_R1.md
+include VERIFY_REPAIR.ps1
+include verify_repair.sh
+include RELEASE_REPAIR_R2.md
+
+include RELEASE_REPAIR_R3.md
+
+include REPAIR_BLOCK1.md
+include KNOWN_ISSUES_BLOCK1.md
+include EVIDENCE_PRECEDENCE.md
+
+include REPAIR_BLOCK2.md
+include KNOWN_ISSUES_BLOCK2.md
+
+include REPAIR_BLOCK3.md
+include KNOWN_ISSUES_BLOCK3.md
+include EPISODE014_MATHEMATICAL_AUDIT.md
+include EPISODE014_LITERATURE_AUDIT.md
+include EPISODE014_HANDOFF.md
+include build_block18_r4_distributions.sh
+include verification/episode014_lindblad_gauge_probe.py
+include verification/EPISODE014_LINDBLAD_GAUGE_PROBE.json
+include tests/test_r4_block18_lindblad_gauge.py
+include verification/installed_block18_probe.py
+include EPISODE015_MATHEMATICAL_AUDIT.md
+include EPISODE015_LITERATURE_AUDIT.md
+include EPISODE015_HANDOFF.md
+include build_block19_r4_distributions.sh
+include verification/build_r4_block19_distributions.py
+include verification/episode015_arithmetic_semantic_probe.py
+include verification/EPISODE015_ARITHMETIC_SEMANTIC_PROBE.json
+include tests/test_r4_block19_arithmetic_semantic_repair.py
+include verification/installed_block19_probe.py
+
+include EPISODE017_MATHEMATICAL_AUDIT.md
+include EPISODE017_LITERATURE_AUDIT.md
+include EPISODE017_HANDOFF.md
+include verification/build_r4_block20_distributions.py
+include verification/episode017_deformation_separator_probe.py
+include verification/EPISODE017_DEFORMATION_SEPARATOR_PROBE.json
+include verification/installed_block20_probe.py
+include tests/test_r4_block20_deformation_separator_repair.py
+include docs/R4_BLOCK20_DEFORMATION_SEPARATOR_REPAIR.md

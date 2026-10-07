@@ -1,0 +1,106 @@
+{
+  "duration_seconds": 12.170167446136475,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 8,
+  "jobs": 4,
+  "passed": true,
+  "passed_tests": 48,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 6.631066973999623,
+      "passed": 10,
+      "path": "tests/test_lifting.py",
+      "returncode": 0,
+      "sha256": "611bc7dfcf5917204b12bbf51df631386343d743ab441fd0e8e91fd087f899ab",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "..........                                                               [100%]\n10 passed in 1.54s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.829428970999743,
+      "passed": 5,
+      "path": "tests/test_linear_defects.py",
+      "returncode": 0,
+      "sha256": "c4726faaf1c1106124ed6d41d3cef10eabc85b28a85bdcaa0c4a9632f1a6b48c",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 1.95s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.569591665000189,
+      "passed": 4,
+      "path": "tests/test_morphisms.py",
+      "returncode": 0,
+      "sha256": "d05bca8a0d24dd3ae561c3fc8b0a780b4448d0377a6f9ed464ed961e80d1b1a9",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "....                                                                     [100%]\n4 passed in 1.48s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 6.359802085999945,
+      "passed": 6,
+      "path": "tests/test_nonlinear_coordinates_defects.py",
+      "returncode": 0,
+      "sha256": "ade9bc91d6bd8d6218f687c54f1f52f97514d836ae474cdc88ef995c408a024e",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 1.43s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.955350561000159,
+      "passed": 5,
+      "path": "tests/test_nonlinear_correction_elimination.py",
+      "returncode": 0,
+      "sha256": "384937220abf662c7be8ce43fa16b58ab426e924f454d11a93d03d93a2f5c468",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 1.36s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 5.5915368119999584,
+      "passed": 6,
+      "path": "tests/test_nonlinear_execution.py",
+      "returncode": 0,
+      "sha256": "c063dc8f1bed70580f17cc99bf274cee40aa1d206d259045272b62ca047293b9",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 1.27s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.844919000000118,
+      "passed": 7,
+      "path": "tests/test_nonlinear_filtered.py",
+      "returncode": 0,
+      "sha256": "700ab5332e39b0dc21d23ff8495e3ecb90ac854e8a93d2d9399a026a4530b6be",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".......                                                                  [100%]\n7 passed in 0.75s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 5.054599713999778,
+      "passed": 5,
+      "path": "tests/test_nonlinear_graded.py",
+      "returncode": 0,
+      "sha256": "290618d697e7f0c1f5c6e8b91d7507f24f912b3e2e4688fc41db25f9fff541ed",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 1.14s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164957.2816255
+}

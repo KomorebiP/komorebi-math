@@ -1,0 +1,51 @@
+{
+  "label": "primary wheel",
+  "origin": "site-packages/komorebi_math/__init__.py",
+  "package_version": "1.0.0b4",
+  "passed": true,
+  "schema": "komorebi-math.block20-installed-qualification",
+  "schema_version": 1,
+  "source_digest": "ccb99fbf85ddeb395a137f42f0f6c974278d5f98567123701e974c20c93b81bd",
+  "suites": {
+    "block15": {
+      "checks": 174,
+      "expected": 174,
+      "passed": true
+    },
+    "block19": {
+      "checks": 24,
+      "expected": 24,
+      "passed": true
+    },
+    "block20": {
+      "checks": 46,
+      "expected": 46,
+      "passed": true
+    },
+    "documentation": {
+      "checks": 1,
+      "expected": 1,
+      "passed": true
+    },
+    "expression": {
+      "checks": 22,
+      "expected": 22,
+      "passed": true
+    },
+    "integration": {
+      "checks": 12,
+      "expected": 12,
+      "passed": true
+    },
+    "stable": {
+      "checks": 6,
+      "expected": 6,
+      "passed": true
+    }
+  },
+  "tested_artifact": {
+    "name": "komorebi_math-1.0.0b4-py3-none-any.whl",
+    "sha256": "87d0356daa755d6e7dd555783f1ab9b0da8526d47ac42ac97264d41dcf7abdf5",
+    "size": 1457054
+  }
+}

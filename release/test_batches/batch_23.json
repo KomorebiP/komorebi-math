@@ -1,0 +1,51 @@
+{
+  "duration_seconds": 5.232378244400024,
+  "execution": "parallel-independent-interpreters",
+  "failed_files": [],
+  "files": 3,
+  "jobs": 3,
+  "passed": true,
+  "passed_tests": 19,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "python_executable": "/opt/pyvenv/bin/python",
+  "results": [
+    {
+      "duration_seconds": 4.692159307000111,
+      "passed": 8,
+      "path": "tests/test_nonlinear_jets_composition.py",
+      "returncode": 0,
+      "sha256": "0fefc36b7202604ced03bdacf6d60d66ad585afc7e5fe9c915eae17139f8dc68",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "........                                                                 [100%]\n8 passed in 1.59s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 4.554279386999951,
+      "passed": 6,
+      "path": "tests/test_nonlinear_obstruction.py",
+      "returncode": 0,
+      "sha256": "de347c398420228421865a70869c167f4bda6b09a2fe87510f927540940d761a",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": "......                                                                   [100%]\n6 passed in 1.42s\n",
+      "timed_out": false
+    },
+    {
+      "duration_seconds": 5.224081376000413,
+      "passed": 5,
+      "path": "tests/test_nonlinear_snapshots_persistence.py",
+      "returncode": 0,
+      "sha256": "6c8b134121fd08f17f98b5d7879f9ce3a2d7cc6ba764d912c67789d9e8b541d5",
+      "skipped": 0,
+      "stderr": "",
+      "stdout": ".....                                                                    [100%]\n5 passed in 1.35s\n",
+      "timed_out": false
+    }
+  ],
+  "root": "/mnt/data/Komorebi_Math_Complete_Handoff_1.0.0b1",
+  "schema": "komorebi-math.isolated-pytest-ledger",
+  "schema_version": 1,
+  "skipped_tests": 0,
+  "started_unix": 1787164977.0884693
+}
