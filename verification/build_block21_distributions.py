@@ -15,6 +15,7 @@ import sys
 import tarfile
 import tempfile
 import zipfile
+from email.parser import Parser
 from pathlib import Path, PurePosixPath
 from typing import Any
 from unicodedata import normalize
@@ -113,8 +114,8 @@ def _audit_wheel(path: Path, version: str) -> dict[str, Any]:
         )
         if metadata_name is None:
             raise SystemExit("wheel has no METADATA")
-        metadata = archive.read(metadata_name).decode("utf-8")
-        if f"Version: {version}\n" not in metadata:
+        metadata = Parser().parsestr(archive.read(metadata_name).decode("utf-8"))
+        if metadata.get_all("Version", []) != [version]:
             raise SystemExit("wheel metadata version mismatch")
         if not any(name.endswith(".dist-info/RECORD") for name in names):
             raise SystemExit("wheel has no RECORD")

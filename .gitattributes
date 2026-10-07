@@ -1,0 +1,3 @@
+# Preserve the committed bytes used by source and certificate hashes.
+# In particular, Windows checkout must not apply core.autocrlf conversion.
+* -text

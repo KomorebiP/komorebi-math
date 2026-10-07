@@ -15,6 +15,7 @@ import types
 import warnings
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
+from enum import Enum, EnumType
 from functools import wraps
 from hashlib import sha256
 from importlib import import_module
@@ -253,6 +254,21 @@ def _public_kind(value: Any) -> str:
 def _public_signature(value: Any) -> str | None:
     if not (callable(value) or inspect.isclass(value)):
         return None
+    # EnumType's inherited constructor has the same member-lookup behavior
+    # across the supported interpreters, but inspect.signature reports its
+    # functional enum-creation parameters on Python 3.11 and ``(*values)`` on
+    # 3.12+. Keep the committed form for that stdlib constructor only; an
+    # explicit signature or a custom metaclass call still needs reflection.
+    if (
+        isinstance(value, EnumType)
+        and type(value).__call__ is EnumType.__call__
+        and not any(
+            "__signature__" in base.__dict__
+            for base in value.__mro__
+            if base is not Enum
+        )
+    ):
+        return "(*values)"
     # ``types.GenericAlias`` objects such as ``tuple[int, ...]`` are exported
     # intentionally as lightweight public coordinate aliases.  Their runtime
     # constructor signature is supplied by the interpreter rather than by the
