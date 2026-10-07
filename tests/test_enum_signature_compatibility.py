@@ -40,6 +40,22 @@ def test_explicit_enum_signature_is_preserved() -> None:
     assert compatibility._public_signature(Explicit) == "(member)"
 
 
+def test_custom_metaclass_signature_with_inherited_constructor_is_preserved() -> None:
+    class SignatureEnumType(EnumType):
+        @property
+        def __signature__(cls):
+            return inspect.Signature(
+                [inspect.Parameter("member", inspect.Parameter.POSITIONAL_OR_KEYWORD)]
+            )
+
+    class Custom(StrEnum, metaclass=SignatureEnumType):
+        MEMBER = "member"
+
+    assert type(Custom).__call__ is EnumType.__call__
+    assert str(inspect.signature(Custom)) == "(member)"
+    assert compatibility._public_signature(Custom) == "(member)"
+
+
 def test_custom_enum_metaclass_constructor_is_reflected(monkeypatch) -> None:
     class CustomEnumType(EnumType):
         def __call__(cls, member, *, strict=True):

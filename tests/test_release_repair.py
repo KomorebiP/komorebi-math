@@ -21,7 +21,7 @@ INFO = f'komorebi_math-{VERSION}.dist-info'
 
 
 def metadata_bytes(root: Path) -> bytes:
-    project = tomllib.loads((root/'pyproject.toml').read_text())['project']
+    project = tomllib.loads((root/'pyproject.toml').read_text(encoding='utf-8'))['project']
     lines = ['Metadata-Version: 2.4', f"Name: {project['name']}", f"Version: {project['version']}"]
     for key, field in [('requires-python', 'Requires-Python'), ('license', 'License-Expression')]:
         if key in project:
@@ -31,8 +31,8 @@ def metadata_bytes(root: Path) -> bytes:
     for extra, dependencies in project.get('optional-dependencies', {}).items():
         lines.append(f'Provides-Extra: {extra}')
         lines += [f'Requires-Dist: {item}; extra == "{extra}"' for item in dependencies]
-    description = (root/project['readme']).read_text() if 'readme' in project else ''
-    return ('\n'.join(lines)+'\n\n'+description).encode()
+    description = (root/project['readme']).read_text(encoding='utf-8') if 'readme' in project else ''
+    return ('\n'.join(lines)+'\n\n'+description).encode('utf-8')
 
 
 def write_wheel(root: Path, overrides: dict[str, bytes | None] | None = None, *, bad_record: bool = False) -> None:
@@ -104,7 +104,7 @@ def release(tmp_path: Path) -> Path:
         'VERIFY_REPAIR.ps1': 'Write-Output "test"\n', 'verify_repair.sh': '#!/bin/sh\necho test\n',
     }
     for name, value in files.items():
-        p = root/name; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(value)
+        p = root/name; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(value,encoding='utf-8')
         p.chmod(0o755 if name.endswith('.sh') else 0o644)
     (root/'release/dist').mkdir(parents=True)
     write_wheel(root); write_sdist(root)

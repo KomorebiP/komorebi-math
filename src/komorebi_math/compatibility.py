@@ -258,10 +258,9 @@ def _public_signature(value: Any) -> str | None:
     # across the supported interpreters, but inspect.signature reports its
     # functional enum-creation parameters on Python 3.11 and ``(*values)`` on
     # 3.12+. Keep the committed form for that stdlib constructor only; an
-    # explicit signature or a custom metaclass call still needs reflection.
+    # explicit signature or any custom metaclass still needs reflection.
     if (
-        isinstance(value, EnumType)
-        and type(value).__call__ is EnumType.__call__
+        type(value) is EnumType
         and not any(
             "__signature__" in base.__dict__
             for base in value.__mro__

@@ -69,7 +69,19 @@ def test_pep639_build_floor(release: Path) -> None:
         check_build_configuration(release)
 
 
-def test_utf8_readme_metadata_roundtrip(release: Path) -> None:
+@pytest.mark.parametrize('default_encoding', ['utf-8', 'cp1252'])
+def test_utf8_readme_metadata_roundtrip(release: Path, monkeypatch, default_encoding: str) -> None:
+    original_read_text = Path.read_text
+
+    def read_text(path, encoding=None, errors=None, **kwargs):
+        return original_read_text(
+            path,
+            encoding=default_encoding if encoding is None else encoding,
+            errors=errors,
+            **kwargs,
+        )
+
+    monkeypatch.setattr(Path, 'read_text', read_text)
     (release/'README.md').write_text('# Exact π and café\n',encoding='utf-8')
     write_wheel(release);write_sdist(release)
     report=verify_release(release)
