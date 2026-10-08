@@ -2,7 +2,7 @@
 
 Reviewed on 2026-10-08. The current Python library is a qualified research beta in `KomorebiP/komorebi-math`. Its package version remains `1.0.0b4`, its repair identity is `1.0.0b4-repair-r4-block21`, and its wheel build tag is `4b21`. The frozen stable surface has 131 symbols. A qualified beta checkpoint does not change the release channel to final 1.0.
 
-## Qualified repository state
+## Historical default-branch qualification
 
 | Item | Recorded value |
 |---|---|
@@ -17,7 +17,7 @@ Reviewed on 2026-10-08. The current Python library is a qualified research beta 
 
 The repository contains the canonical Block 21 source and three subsequent repository repairs. These repairs fix workflow YAML, preserve hash-sensitive checkout bytes, produce Windows metadata with consistent newlines, and make enum signature reflection portable to Python 3.11 while retaining custom enum behavior. Regression tests accompany the implementation repairs.
 
-## Executed qualification
+## Historical default-branch checks
 
 | Check | Evidence and scope |
 |---|---|
@@ -38,33 +38,27 @@ These results apply to the named commit. Any subsequent change needs the corresp
 
 ### Deeper audit and machinery integration
 
-The [deeper audit](DEEP_AUDIT_2026_10_08.md) extends the readiness repairs with
-independent mathematical controls and reusable machinery from the newer K-COS,
-OEIS, special-function, signal and stratified releases. Its source provenance,
-reproduced counterexamples, supported domains and replay commands are recorded
-there. The installed-artifact profile includes all new regression files.
+The [deeper audit](DEEP_AUDIT_2026_10_08.md) added independent mathematical
+controls and six scoped families of reusable machinery. Its source provenance,
+reproduced counterexamples, supported domains, and replay commands are recorded
+there. Revision `bd1b8258aeb290769b67c3ea13275b777ab3513b` passed all nine jobs in
+[exact-head run 37830645262](https://github.com/KomorebiP/komorebi-math/actions/runs/37830645262)
+and all nine PR checks in
+[run 37830649398](https://github.com/KomorebiP/komorebi-math/actions/runs/37830649398).
+The ninth job qualifies the minimum CPU dependency combination.
 
-The preceding dependency-readiness revision
-`a362d4722bbabcd9486ccc039b77dd413338e3cf` passed all nine jobs in
-[run 37822650674](https://github.com/KomorebiP/komorebi-math/actions/runs/37822650674).
-That result predates the deeper implementation changes. Each expanded revision
-needs its own source, minimum-dependency, documentation and distribution checks.
-The current work is reviewable in [pull request 1](https://github.com/KomorebiP/komorebi-math/pull/1).
+The preceding dependency repair raised the optional SymPy floor to 1.14,
+restored NumPy 1.26 numerical helpers, and normalized NumPy scalar defaults in
+API snapshots. The deeper audit repaired certificates, exact witnesses, memory,
+quantum and signal calculations and qualified clean installed artifacts. The
+131-symbol stable API and historical manifests remain unchanged.
 
-### Readiness repairs prepared on 2026-10-08
-
-The next repository change corrects dependency capabilities that the
-latest-dependency matrix did not cover. It raises the optional SymPy floor to
-1.14, restores NumPy 1.26 quadrature and pseudoinverse support, and normalizes
-NumPy scalar default representations in API snapshots. The callable signatures
-and committed API manifests remain unchanged. Smith certificates now check
-integrality, shape compatibility, the transformation identity, unimodularity,
-diagonal form and divisibility, and invariant factor agreement independently.
-
-New regressions exercise these failure modes, and a ninth CI job targets the
-minimum CPU dependency combination. The eight-job run above predates these
-repairs; qualification of this change must use its own test and artifact records.
-The package remains a research beta under the existing license.
+The [current user guide](USER_GUIDE.md), [new machinery guide](NEW_MACHINERY_GUIDE.md),
+and [manual revision notes](MANUAL_RELEASE_NOTES.md) record the subsequent
+manual correction work and its additional regression checks. The ongoing branch
+is reviewable in [pull request 1](https://github.com/KomorebiP/komorebi-math/pull/1).
+Historical workflow evidence above remains evidence for its named commit;
+subsequent revisions receive their own qualification.
 
 ### Local commands
 
@@ -89,7 +83,7 @@ python verification/episode018_certificate_consistency_probe.py --root . --outpu
 python -m pip check
 ```
 
-The independent Episode 018 probe is an additional audit command. It is not a separate step in the eight-job CI run cited above.
+The independent Episode 018 probe is an additional audit command. It is not a separate step in the historical eight-job CI run.
 
 To install the generated wheel:
 

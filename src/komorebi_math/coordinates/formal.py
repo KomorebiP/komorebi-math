@@ -190,6 +190,12 @@ class FormalCoordinateChange:
         if not values:
             return ()
         bound = min(len(values) - 1, self.degree) if degree is None else degree
+        if isinstance(bound, bool) or not isinstance(bound, int) or bound < 0:
+            raise ValidationError("pushforward degree must be nonnegative")
+        if bound > self.degree:
+            raise DimensionError("pushforward degree exceeds the coordinate jet")
+        if bound == 0:
+            return values[:1]
         return self.inverse(degree=bound).pullback_coefficients(values, degree=bound)
 
     def substitution_transform(

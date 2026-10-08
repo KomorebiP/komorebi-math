@@ -1,5 +1,12 @@
 # Changelog
 
+## Manual release edition, 2026-10-08
+
+- Add a current reader manual and six-family machinery guide with 16 independently replayed Python examples and documentation CI coverage.
+- Correct installation metadata, wheel and wrapper paths, certificate persistence, quantum memory formulas, numerical contracts, recipes, cross-references, and historical evidence labels.
+- Repair nine manual-disclosed validation and boundary defects in radix, exact valuations, q-factorials, modular recurrence execution, formal constants, polynomial gcd, sparse algebraic degrees, Lucas inputs, and recognition holdouts. Add 46 regression cases to source and installed-artifact qualification.
+- Preserve the beta designation, frozen public signatures, and existing license.
+
 ## Deeper audit and source integration, 2026-10-08
 
 - Add research APIs for directed positive K-COS tails and verified stored-factor spectra, exact reciprocal-power/k-bonacci/Fubini/derangement families with local offset-aware OEIS matching, corrected Gamma/Meixner and Bernoulli–Hurwitz companions, finite scalar Racah functions, Fourier/Hankel jump recovery, exact finite join quotients, and fixed four-spinor Dirac modes.

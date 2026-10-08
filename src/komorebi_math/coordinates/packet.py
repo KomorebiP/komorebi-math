@@ -36,10 +36,12 @@ def residue_class_transform(length: int, modulus: int) -> CoordinateTransform:
 
 
 def digit_reversal_order(length: int, radix: int = 2) -> tuple[int, ...]:
-    """Return the fixed-width base-radix digit-reversal order."""
+    """Return the fixed-width digit-reversal order for an integer radix >= 2."""
 
     count = _positive(length, name="length")
     base = _positive(radix, name="radix")
+    if base < 2:
+        raise ValidationError("radix must be at least two")
     power = 1
     digits = 0
     while power < count:

@@ -98,6 +98,7 @@ def simultaneous_unit_difference(
     """Return simultaneous local valuations for one exponential unit mode.
 
     A common jump is the least common multiple of the local Carmichael exponents.
+    A zero difference has valuation ``float('inf')`` at every declared prime.
     """
 
     if not primes_and_depths:
@@ -126,7 +127,7 @@ def simultaneous_unit_difference(
     if n < 0 or r < 0:
         raise ValidationError("index and order must be nonnegative")
     value = u**n * (u**common - 1) ** r
-    valuations = {prime: int(padic_valuation(value, prime)) for prime in normalized}
+    valuations = {prime: padic_valuation(value, prime) for prime in normalized}
     valid = all(valuations[prime] >= normalized[prime] * r for prime in normalized)
     return ComputationResult(
         valuations,

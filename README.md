@@ -2,7 +2,7 @@
 
 > **Current checkpoint:** `1.0.0b4-repair-r4-block21` (`4b21`) is the R4 Block 21 certificate-consistency research beta. The 131-symbol stable namespace remains frozen. See [GitHub readiness](docs/GITHUB_READINESS.md) for the qualified commit, installation steps, and release boundaries.
 
-The baseline [CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed all eight jobs on commit `50447a253c2d00d4a7a4108440e090844b7148b2`. The subsequent dependency-readiness revision passed [all nine jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37822650674), including the minimum CPU dependency line. These records qualify their named revisions. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
+The deeper implementation audit at `bd1b8258aeb290769b67c3ea13275b777ab3513b` passed [all nine CPU qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37830645262), including Linux and Windows Python 3.11–3.13, minimum dependencies, strict documentation and isolated distributions. Qualification records apply to the revisions they name. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
 
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
@@ -39,6 +39,8 @@ Block 4 uses a signal first finite convolution convention. The `same` mode alway
 
 ## Installation
 
+The [current user guide](docs/USER_GUIDE.md) gives checked installation paths, first programs, certificate lifecycle rules, and a route through the library. The [new machinery guide](docs/NEW_MACHINERY_GUIDE.md) covers all six October additions with twelve executable examples. [Manual revision notes](docs/MANUAL_RELEASE_NOTES.md) record corrections and example qualification.
+
 Use Python 3.11, 3.12, or 3.13. From the root of an authorized checkout, install the base package:
 
 ```bash
@@ -53,7 +55,7 @@ python -m pip install ".[exact]"
 python -m pip install ".[scientific]"
 ```
 
-The `exact` extra adds SymPy 1.14 or newer for symbolic functionality. Standard-library rational, modular, carry, and Cartier operations are already included in the base package. The `scientific` extra adds SciPy and mpmath.
+The `exact` extra adds SymPy 1.14 or newer for symbolic functionality. Standard-library rational, modular, carry, and Cartier operations are already included in the base package. The `scientific` extra adds SciPy and mpmath. Directed quadratic-form enclosures specifically require the qualified `mpmath==1.3.0` backend.
 
 For development and source qualification:
 

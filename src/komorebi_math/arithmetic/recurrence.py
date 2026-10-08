@@ -176,7 +176,12 @@ class LinearRecurrence:
         """Return integral recurrence data for modular execution."""
 
         data = (*self.coefficients, *self.initial)
-        if any(isinstance(value, bool) or not isinstance(value, Integral) for value in data):
+        if any(
+            isinstance(value, bool)
+            or not isinstance(value, Rational)
+            or Fraction(value).denominator != 1
+            for value in data
+        ):
             raise ValidationError("modular recurrence execution requires integral coefficients and initial values")
         return tuple(int(value) for value in self.coefficients), tuple(int(value) for value in self.initial)
 
@@ -189,9 +194,11 @@ class LinearRecurrence:
             raise ValidationError("index must be nonnegative")
         if mod < 2:
             raise ValidationError("modulus must be at least two")
-        self._integral_data()
-        jump = matrix_power_mod(self.companion_matrix, n, mod)
-        state = np.asarray(tuple(int(value) % mod for value in self.initial), dtype=object)
+        coefficients, initial = self._integral_data()
+        matrix = self.companion_matrix
+        matrix[-1, :] = coefficients
+        jump = matrix_power_mod(matrix, n, mod)
+        state = np.asarray(tuple(value % mod for value in initial), dtype=object)
         return int((jump @ state)[0]) % mod
 
     def first(self, count: int) -> tuple[Number, ...]:

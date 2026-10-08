@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from math import comb
 from typing import Iterable, Sequence
 
+from .._number_theory import require_prime as _require_prime
+
 
 def base_digits(index: int, radix: int) -> tuple[int, ...]:
     """Return least-significant-first digits, with zero represented by ``(0,)``."""
@@ -136,8 +138,7 @@ def factorial_power_digit_kernel(power: int, prime: int) -> DigitKernel:
 
     if isinstance(power, bool) or not isinstance(power, int) or power < 1:
         raise ValueError("power must be a positive integer")
-    if isinstance(prime, bool) or not isinstance(prime, int) or prime < 2:
-        raise ValueError("prime must be at least two")
+    prime = _require_prime(prime)
     table = tuple(
         tuple(pow(comb(digit, subdigit), power, prime) for subdigit in range(digit + 1))
         for digit in range(prime)

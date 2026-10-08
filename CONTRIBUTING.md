@@ -1,6 +1,6 @@
 # Contributing
 
-Komorebi Math is publicly reviewable research software under the license in `LICENSE.md`. The license is restrictive and is not an OSI open-source license. Do not assume that public visibility grants permission to redistribute or incorporate the code elsewhere.
+Komorebi Math is reviewable by authorized repository collaborators research software under the license in `LICENSE.md`. The license is restrictive and is not an OSI open-source license. Do not assume that public visibility grants permission to redistribute or incorporate the code elsewhere.
 
 Before preparing a substantial change, open an issue describing the mathematical claim, implementation boundary, expected API tier, verification strategy, and compatibility impact. Small corrections may be submitted directly when repository permissions allow.
 

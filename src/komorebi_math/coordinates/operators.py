@@ -104,6 +104,8 @@ def polynomial_extended_gcd(
     r"""Return monic ``g,u,v`` with ``u*left+v*right=g``."""
 
     old_r, r = _trim(left), _trim(right)
+    if old_r == (Fraction(0),) and r == (Fraction(0),):
+        raise ValidationError("at least one polynomial must be nonzero for a monic gcd")
     old_s, s = (Fraction(1),), (Fraction(0),)
     old_t, t = (Fraction(0),), (Fraction(1),)
     while r != (Fraction(0),):

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 from typing import Callable, Mapping
 
+from .._number_theory import require_integer as _require_integer
 from .basis import WeightedMonomialBasis, ordinary_basis
 from .sequences import generalized_bell_numbers, weighted_generalized_bell_numbers
 from .series import FormalSeries
@@ -171,14 +172,17 @@ def algebraic_function(
     """
 
     terms = {
-        (int(z_degree), int(y_degree)): Fraction(coefficient)
+        (
+            _require_integer(z_degree, name="z degree"),
+            _require_integer(y_degree, name="y degree"),
+        ): Fraction(coefficient)
         for (z_degree, y_degree), coefficient in polynomial_terms.items()
-        if Fraction(coefficient) != 0
     }
-    if not terms:
-        raise ValueError("algebraic polynomial must contain at least one nonzero term")
     if any(z_degree < 0 or y_degree < 0 for z_degree, y_degree in terms):
         raise ValueError("algebraic polynomial degrees must be nonnegative")
+    terms = {degrees: coefficient for degrees, coefficient in terms.items() if coefficient != 0}
+    if not terms:
+        raise ValueError("algebraic polynomial must contain at least one nonzero term")
     y0 = Fraction(initial_value)
     constant = sum(
         coefficient * y0**y_degree

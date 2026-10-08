@@ -13,7 +13,8 @@ from math import gcd
 from importlib import import_module
 from typing import Any, Iterable, Sequence
 
-from ..exceptions import BackendUnavailableError
+from .._number_theory import require_integer as _require_integer
+from ..exceptions import BackendUnavailableError, ValidationError
 
 
 def _sympy() -> Any:
@@ -29,6 +30,15 @@ def _sympy() -> Any:
 
 def _fractions(values: Iterable[int | Fraction]) -> tuple[Fraction, ...]:
     return tuple(Fraction(value) for value in values)
+
+
+def _validated_holdout(value: int | None) -> int | None:
+    if value is None:
+        return None
+    count = _require_integer(value, name="holdout")
+    if count < 0:
+        raise ValidationError("holdout must be nonnegative")
+    return count
 
 
 def _primitive_integer_vector(values: Sequence[Any]) -> tuple[int, ...]:
@@ -146,6 +156,7 @@ def guess_linear_recurrence(
 ) -> LinearRecurrenceGuess | None:
     """Guess the smallest exact constant-coefficient recurrence."""
 
+    holdout = _validated_holdout(holdout)
     sp = _sympy()
     data = _fractions(values)
     if len(data) < 4:
@@ -214,6 +225,7 @@ def guess_hypergeometric_ratio(
 ) -> HypergeometricGuess | None:
     """Guess ``a[n+1]/a[n]=P(n)/Q(n)`` by exact nullspace search."""
 
+    holdout = _validated_holdout(holdout)
     sp = _sympy()
     data = _fractions(values)
     if len(data) < 6 or any(value == 0 for value in data[:-1]):
@@ -271,6 +283,7 @@ def guess_p_recursive(
 ) -> PRecursiveGuess | None:
     r"""Guess ``sum_(j=0)^r P_j(n)a[n+j]=0`` exactly on a prefix."""
 
+    holdout = _validated_holdout(holdout)
     sp = _sympy()
     data = _fractions(values)
     if len(data) < 10:
@@ -335,6 +348,7 @@ def guess_algebraic_gf(
 ) -> AlgebraicGFGuess | None:
     r"""Guess an exact relation ``P(x,F(x))=0`` from ordinary coefficients."""
 
+    holdout = _validated_holdout(holdout)
     sp = _sympy()
     data = _fractions(values)
     if len(data) < 10:
@@ -403,6 +417,7 @@ def guess_quasipolynomial(
 ) -> QuasiPolynomialGuess | None:
     """Guess a quasipolynomial by constant finite differences on each lane."""
 
+    holdout = _validated_holdout(holdout)
     data = _fractions(values)
     if len(data) < 8:
         return None

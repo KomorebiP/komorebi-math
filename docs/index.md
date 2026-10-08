@@ -2,9 +2,13 @@
 
 The current checkpoint is `1.0.0b4-repair-r4-block21`, the R4 Block 21 certificate-consistency research beta. It combines twenty finite execution and stabilization blocks with the Block 21 reproducibility gate and subsequent R4 repairs. Exact, numerical, conditional, API, semantic, persistence, and release certificates retain their declared scopes. The 131-symbol stable namespace was frozen in `1.0.0b1`; Blocks 18 through 20 remain research-only additions.
 
-The [GitHub CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed the six Linux and Windows source-test jobs for Python 3.11 through 3.13, strict documentation, and distribution qualification. [GitHub readiness](GITHUB_READINESS.md) records the exact commit and the remaining public-release decisions.
+The [nine-job CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37830645262) passed on deep-audit revision `bd1b8258aeb290769b67c3ea13275b777ab3513b`, covering Linux and Windows Python 3.11 through 3.13, minimum dependencies, strict documentation, and isolated artifact qualification. [GitHub readiness](GITHUB_READINESS.md) records revision-specific evidence and release boundaries.
 
 ## Start here
+
+* [Current user guide](USER_GUIDE.md)
+* [New machinery and twelve worked examples](NEW_MACHINERY_GUIDE.md)
+* [Manual corrections and validation](MANUAL_RELEASE_NOTES.md)
 
 * [GitHub readiness and installation](GITHUB_READINESS.md)
 * [Block 21 public reproducibility](BLOCK_21_PUBLIC_REPRODUCIBILITY.md)

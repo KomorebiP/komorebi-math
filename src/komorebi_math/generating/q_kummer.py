@@ -60,6 +60,8 @@ def q_factorial(index: int, base: int) -> int:
 
     if index < 0:
         raise ValueError("index must be nonnegative")
+    if base <= 1:
+        raise ValueError("base must exceed one")
     result = 1
     for value in range(1, index + 1):
         result *= q_integer(value, base)

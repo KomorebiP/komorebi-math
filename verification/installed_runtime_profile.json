@@ -86,6 +86,7 @@
     "test_special_functions_bernoulli.py",
     "test_special_functions_shape.py",
     "test_special_functions_terminating.py",
-    "test_dirac_modes.py"
+    "test_dirac_modes.py",
+    "test_manual_release_regressions.py"
   ]
 }

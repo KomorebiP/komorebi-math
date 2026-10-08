@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from math import comb, gcd, isqrt
 from typing import Callable, Sequence
 
+from .._number_theory import require_prime as _require_prime
 from ..exceptions import ValidationError
 from .padic_units import binomial_valuation, factorial_valuation
 
@@ -152,6 +153,7 @@ def local_normalized_kernel(
 ) -> int:
     """Return the no-carry local kernel for a digit-twisted factorial basis."""
 
+    prime = _require_prime(prime)
     if not 0 <= selected_digit <= total_digit < prime:
         return 0
     if factorial_power < 1:
@@ -176,6 +178,7 @@ def digit_factorized_normalized_kernel(
 ) -> int:
     """Multiply the local normalized kernels over all base-p digits."""
 
+    prime = _require_prime(prime)
     if subindex < 0 or subindex > index:
         return 0
     n_digits = list(base_digits(index, prime))
