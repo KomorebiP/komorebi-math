@@ -73,10 +73,12 @@ class HaarPacketTree:
         values = np.asarray(signal)
         if values.ndim != 1 or values.size == 0:
             raise DimensionError("Haar packet analysis requires a nonempty one dimensional signal")
+        if not np.all(np.isfinite(values)):
+            raise ValidationError("Haar packet signal entries must be finite")
         tree_depth = _strict_depth(depth)
         if values.size % (2**tree_depth):
             raise DimensionError("signal length must be divisible by two to the tree depth")
-        dtype = np.result_type(values.dtype, float) if normalized else values.dtype
+        dtype = np.result_type(values.dtype, float)
         root = values.astype(dtype, copy=True)
         nodes: dict[str, np.ndarray] = {"": root}
         for level in range(tree_depth):
@@ -182,8 +184,18 @@ class HaarPacketTree:
         selected = self.full_leaves if leaves is None else self.validate_pruning(leaves)
         reconstructed = self.reconstruct(selected)
         residual = float(np.linalg.norm(reconstructed - self.signal))
-        energy_residual = abs(float(np.vdot(self.signal, self.signal).real) - self.energy(selected))
-        valid = residual <= tolerance and (not self.normalized or energy_residual <= tolerance)
+        signal_energy = float(np.vdot(self.signal, self.signal).real)
+        energy_residual = abs(signal_energy - self.energy(selected))
+        reconstruction_scale = max(1.0, float(np.linalg.norm(self.signal)))
+        energy_scale = max(1.0, signal_energy)
+        valid = (
+            np.isfinite(residual)
+            and np.isfinite(energy_residual)
+            and np.isfinite(reconstruction_scale)
+            and np.isfinite(energy_scale)
+            and residual <= tolerance * reconstruction_scale
+            and (not self.normalized or energy_residual <= tolerance * energy_scale)
+        )
         return ComputationResult(
             reconstructed,
             Certificate(

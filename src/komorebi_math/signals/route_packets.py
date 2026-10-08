@@ -37,6 +37,15 @@ def _vector(value: Any, name: str) -> np.ndarray:
     array = np.asarray(value)
     if array.ndim != 1 or array.size == 0:
         raise DimensionError(f"{name} must be a nonempty one dimensional array")
+    if array.dtype.kind in "biu":
+        # Casting integer arrays to object materializes Python integers, so
+        # intermediate convolution products cannot wrap in fixed-width dtypes.
+        array = array.astype(object)
+    elif array.dtype == object:
+        array = np.asarray(
+            [int(item) if isinstance(item, (np.integer, np.bool_)) else item for item in array],
+            dtype=object,
+        )
     return array
 
 

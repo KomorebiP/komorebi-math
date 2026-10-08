@@ -68,7 +68,7 @@ def test_quantum_feshbach_and_memory() -> None:
     reduction.upper_half_plane_sign_certificate(2.1 + 0.4j).require()
     kernel = reduction.memory_kernel()
     z = 2.1 + 0.4j
-    assert np.allclose(kernel.laplace(-1j * z), 1j * reduction.self_energy(z), atol=1e-8)
+    assert np.allclose(kernel.laplace(-1j * z), -1j * reduction.self_energy(z), atol=1e-8)
     assert not reduction.bare_closure_certificate().valid
 
 

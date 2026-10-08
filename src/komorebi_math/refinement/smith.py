@@ -165,15 +165,15 @@ def smith_decomposition(matrix: Any) -> SmithDecomposition:
             "install or upgrade the 'exact' optional dependency"
         ) from exc
 
-    value = sp.Matrix(matrix)
+    value = sp.ImmutableMatrix(matrix)
     if any(not entry.is_Integer for entry in value):
         raise ValidationError("Smith decomposition requires an integer matrix")
     rows, columns = value.shape
     domain_matrix = DomainMatrix.from_Matrix(value).convert_to(ZZ)
     diagonal_dm, left_dm, right_dm = smith_normal_decomp(domain_matrix)
-    diagonal = diagonal_dm.to_Matrix()
-    left = left_dm.to_Matrix()
-    right = right_dm.to_Matrix()
+    diagonal = sp.ImmutableMatrix(diagonal_dm.to_Matrix())
+    left = sp.ImmutableMatrix(left_dm.to_Matrix())
+    right = sp.ImmutableMatrix(right_dm.to_Matrix())
     factors: list[int] = []
     for index in range(min(rows, columns)):
         entry = int(diagonal[index, index])
@@ -224,11 +224,12 @@ class SmithCongruenceProblem:
 
     def __init__(self, matrix: Any, rhs: Any, *, prime: int, depth: int) -> None:
         prime = require_prime(prime)
+        depth = require_integer(depth, name="depth")
         if depth <= 0:
             raise ValueError("depth must be positive")
         sp = _sympy()
-        self.matrix = sp.Matrix(matrix)
-        self.rhs = sp.Matrix(rhs)
+        self.matrix = sp.ImmutableMatrix(matrix)
+        self.rhs = sp.ImmutableMatrix(rhs)
         if self.rhs.cols != 1:
             if self.rhs.rows == 1:
                 self.rhs = self.rhs.T
@@ -246,6 +247,19 @@ class SmithCongruenceProblem:
     def solve(self) -> SmithCongruenceSolution:
         sp = _sympy()
         decomposition = self.decomposition
+        # A cached decomposition is a witness for one specific matrix, not a
+        # permanent permission to trust public fields after their replacement.
+        decomposition.certificate().require()
+        if decomposition.matrix != self.matrix:
+            raise ValidationError("cached Smith decomposition does not match the current matrix")
+        prime = require_prime(self.prime)
+        depth = require_integer(self.depth, name="depth")
+        if depth <= 0 or self.modulus != prime ** depth:
+            raise ValidationError("current Smith modulus and depth do not agree")
+        if self.rhs.shape != (self.matrix.rows, 1):
+            raise DimensionError("current right hand side does not match the matrix")
+        if any(getattr(entry, "is_Integer", None) is not True for entry in self.rhs):
+            raise ValidationError("current Smith right hand side must be integral")
         transformed_rhs_matrix = decomposition.left * self.rhs
         transformed_rhs = tuple(int(value) % self.modulus for value in transformed_rhs_matrix)
         rank = decomposition.rank
@@ -291,15 +305,18 @@ class SmithCongruenceProblem:
                 generator = [0] * columns
                 generator[index] = 1
                 generators_y.append(generator)
-            y_matrix = sp.Matrix(y)
+            y_matrix = sp.Matrix(columns, 1, y)
             particular_matrix = decomposition.right * y_matrix
             particular = tuple(int(value) % self.modulus for value in particular_matrix)
             kernel_generators = tuple(
-                tuple(int(value) % self.modulus for value in decomposition.right * sp.Matrix(generator))
+                tuple(int(value) % self.modulus for value in decomposition.right * sp.Matrix(columns, 1, generator))
                 for generator in generators_y
             )
-            residual = self.matrix * sp.Matrix(particular) - self.rhs
-            valid = all(int(value) % self.modulus == 0 for value in residual)
+            residual = self.matrix * sp.Matrix(columns, 1, particular) - self.rhs
+            valid = (all(int(value) % self.modulus == 0 for value in residual)
+                     and all(all(int(value) % self.modulus == 0
+                                 for value in self.matrix * sp.Matrix(columns, 1, generator))
+                             for generator in kernel_generators))
         else:
             count = 0
             particular = None
@@ -310,7 +327,7 @@ class SmithCongruenceProblem:
             valid=bool(valid),
             exactness=Exactness.EXACT,
             residuals={"modular_residual": 0.0 if valid else 1.0},
-            assumptions_checked=("Smith decomposition", "prime power modulus", "coordinate divisibility tests"),
+            assumptions_checked=("fresh Smith decomposition", "matrix witness identity", "prime power modulus", "coordinate divisibility tests"),
             diagnostics={
                 "solvable": solvable,
                 "rank": rank,

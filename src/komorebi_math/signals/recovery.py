@@ -85,6 +85,8 @@ def recover_separated_jumps(
     values = np.asarray(samples, dtype=float)
     if values.ndim != 1 or values.size < 2:
         raise DimensionError("samples must be a one dimensional array with at least two entries")
+    if not np.all(np.isfinite(values)):
+        raise ValidationError("samples must contain only finite values")
     h = float(spacing)
     m = float(lipschitz_bound)
     epsilon = float(noise_bound)
@@ -94,8 +96,12 @@ def recover_separated_jumps(
         raise ValidationError("all recovery parameters must be finite")
     if h <= 0 or m < 0 or epsilon < 0 or a_min <= 0:
         raise ValidationError("spacing and minimum_jump must be positive and the bounds must be nonnegative")
-    if minimum_separation is not None and float(minimum_separation) < h:
-        raise AssumptionError("minimum_separation must be at least one sample spacing")
+    if minimum_separation is not None:
+        separation = float(minimum_separation)
+        if not np.isfinite(separation):
+            raise ValidationError("minimum_separation must be finite")
+        if separation < h:
+            raise AssumptionError("minimum_separation must be at least one sample spacing")
     background = m * h + 2.0 * epsilon
     if a_min <= 2.0 * background:
         raise AssumptionError("the declared minimum jump does not exceed twice the smooth and noise contrast bound")
@@ -103,6 +109,8 @@ def recover_separated_jumps(
     if not background < theta < a_min - background:
         raise AssumptionError("threshold must lie strictly between the background bound and minimum_jump minus that bound")
     differences = np.diff(values)
+    if not np.all(np.isfinite(differences)):
+        raise ValidationError("sample contrasts exceed the finite numerical range")
     cells = np.flatnonzero(np.abs(differences) > theta)
     detections = tuple(
         JumpDetection(
@@ -114,6 +122,8 @@ def recover_separated_jumps(
         )
         for cell in cells
     )
+    if any(not np.isfinite(item.location) or not np.isfinite(item.right_position) for item in detections):
+        raise ValidationError("jump locations exceed the finite numerical range")
     certificate = Certificate(
         valid=True,
         exactness=Exactness.CONDITIONAL,
@@ -244,7 +254,13 @@ def detect_piecewise_polynomial_breaks(
     if not np.isfinite(epsilon) or epsilon < 0:
         raise ValidationError("noise_bound must be nonnegative and finite")
     order = int(degree) + 1
-    response = finite_difference(samples, order=order)
+    values = np.asarray(samples)
+    if not np.all(np.isfinite(values)):
+        raise ValidationError("samples must contain only finite values")
+    values = values.astype(np.result_type(values.dtype, float), copy=False)
+    response = finite_difference(values, order=order)
+    if not np.all(np.isfinite(response)):
+        raise ValidationError("finite differences exceed the finite numerical range")
     amplification = (2.0**order) * epsilon
     theta = amplification if threshold is None else float(threshold)
     if not np.isfinite(theta) or theta < amplification:

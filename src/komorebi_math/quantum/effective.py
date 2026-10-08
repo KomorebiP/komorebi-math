@@ -72,12 +72,18 @@ class QuantumFeshbachReduction:
         )
 
     def memory_kernel(self) -> MemoryKernel:
-        """Return the exact hidden packet memory kernel for Schrödinger evolution."""
+        r"""Return the derivative kernel ``-H_PQ exp(-it H_QQ) H_QP``.
+
+        Eliminating the hidden coordinates from ``psi' = -i H psi`` gives
+        ``psi_P' = -i H_PP psi_P + integral K(t-s) psi_P(s) ds`` for zero
+        hidden initial state. Both coupling maps therefore carry ``-i``.
+        The energy-domain self energy keeps its separate Hamiltonian convention.
+        """
 
         return MemoryKernel(
-            self.reduction.a_pq,
+            -1j * self.reduction.a_pq,
             -1j * self.reduction.hidden_block,
-            self.reduction.a_qp,
+            -1j * self.reduction.a_qp,
         )
 
     def bare_closure_certificate(self) -> Certificate:

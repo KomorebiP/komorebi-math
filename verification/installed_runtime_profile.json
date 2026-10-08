@@ -1,6 +1,6 @@
 {
   "schema": "komorebi-math.installed-runtime-profile",
-  "name": "github-readiness-mathematics-and-hardening-runtime",
+  "name": "github-readiness-deep-mathematics-and-new-machinery-runtime",
   "scope": "Named finite mathematics, numerical and serialization tests. Repository-layout, packaging, GPU, optional autodiff and document-rendering tests are not in this installed profile.",
   "test_files": [
     "test_algebra_quotients.py",
@@ -68,6 +68,24 @@
     "test_minimum_dependency_capabilities.py",
     "test_filterbank_pseudoinverse_compatibility.py",
     "test_numpy_signature_compatibility.py",
-    "test_smith_certificate_soundness.py"
+    "test_smith_certificate_soundness.py",
+    "test_certificate_finite_evidence.py",
+    "test_deep_analysis_synthesis_soundness.py",
+    "test_deep_exact_core_soundness.py",
+    "test_deep_route_packet_exactness.py",
+    "test_deep_signal_spectral_tf.py",
+    "test_deep_signal_states_and_frames.py",
+    "test_finite_join_semilattice.py",
+    "test_fourier_recovery.py",
+    "test_memory_laplace_domains.py",
+    "test_quadratic_forms.py",
+    "test_quadratic_forms_source.py",
+    "test_quantum_numerics_adversarial.py",
+    "test_sequences_oeis_families.py",
+    "test_sequences_oeis_matching.py",
+    "test_special_functions_bernoulli.py",
+    "test_special_functions_shape.py",
+    "test_special_functions_terminating.py",
+    "test_dirac_modes.py"
   ]
 }

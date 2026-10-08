@@ -2,7 +2,9 @@
 
 > **Current checkpoint:** `1.0.0b4-repair-r4-block21` (`4b21`) is the R4 Block 21 certificate-consistency research beta. The 131-symbol stable namespace remains frozen. See [GitHub readiness](docs/GITHUB_READINESS.md) for the qualified commit, installation steps, and release boundaries.
 
-The [CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed all eight jobs on commit `50447a253c2d00d4a7a4108440e090844b7148b2`: full source tests on Linux and Windows with Python 3.11, 3.12, and 3.13, strict documentation, and isolated wheel and source-distribution checks. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
+The baseline [CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed all eight jobs on commit `50447a253c2d00d4a7a4108440e090844b7148b2`. The subsequent dependency-readiness revision passed [all nine jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37822650674), including the minimum CPU dependency line. These records qualify their named revisions. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
+
+The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
 
 `komorebi-math` is the executable Python package for the Komorebi Math research program. It implements the mathematical constructions as reusable objects, functions, certificates, and command line checks. The installed wheel does not contain article PDFs, LaTeX manuscripts, or paper figures.

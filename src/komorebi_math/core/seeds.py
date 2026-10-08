@@ -6,7 +6,6 @@ from collections import deque
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from itertools import combinations
-from math import ceil
 from typing import Any
 
 from ..backends import LinearAlgebraBackend, get_backend
@@ -14,6 +13,7 @@ from ..certificates import Certificate, ComputationResult, Exactness
 from ..config import get_settings
 from ..exceptions import BackendUnavailableError, DimensionError, ValidationError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
+from .._number_theory import require_integer
 
 
 @dataclass(frozen=True, slots=True)
@@ -278,13 +278,14 @@ class SeedSystem:
 def semisimple_seed_rank(block_dimensions: Sequence[int], multiplicities: Sequence[int]) -> int:
     """Return the generator number from semisimple block multiplicities."""
 
-    dimensions = [int(value) for value in block_dimensions]
-    counts = [int(value) for value in multiplicities]
+    dimensions = [require_integer(value, name="block dimension") for value in block_dimensions]
+    counts = [require_integer(value, name="multiplicity") for value in multiplicities]
     if not dimensions or len(dimensions) != len(counts):
         raise ValidationError("matching nonempty block dimensions and multiplicities are required")
     if any(value <= 0 for value in dimensions) or any(value < 0 for value in counts):
         raise ValidationError("block dimensions must be positive and multiplicities nonnegative")
-    return max(ceil(count / dimension) for dimension, count in zip(dimensions, counts, strict=True))
+    return max((count + dimension - 1) // dimension
+               for dimension, count in zip(dimensions, counts, strict=True))
 
 
 def _sympy() -> Any:

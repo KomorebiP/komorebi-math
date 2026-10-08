@@ -19,6 +19,8 @@ def _filter_tuple(filters: Iterable[Any], name: str) -> tuple[np.ndarray, ...]:
         raise ValidationError(f"{name} cannot be empty")
     if any(value.ndim != 1 or value.size == 0 for value in result):
         raise DimensionError(f"every {name} entry must be a nonempty one dimensional filter")
+    if any(not np.all(np.isfinite(value)) for value in result):
+        raise ValidationError(f"every {name} entry must contain only finite values")
     return result
 
 
@@ -140,10 +142,12 @@ class PeriodicFilterBank:
         )
 
     def frame_bounds(self, length: int) -> tuple[float, float]:
-        singular_values = np.linalg.svd(self.analysis_matrix(length), compute_uv=False)
+        analysis = self.analysis_matrix(length)
+        singular_values = np.linalg.svd(analysis, compute_uv=False)
         if singular_values.size == 0:
             return 0.0, 0.0
-        return float(singular_values[-1] ** 2), float(singular_values[0] ** 2)
+        lower = 0.0 if analysis.shape[0] < analysis.shape[1] else float(singular_values[-1] ** 2)
+        return lower, float(singular_values[0] ** 2)
 
     def canonical_synthesis_matrix(self, length: int, *, rcond: float | None = None) -> np.ndarray:
         """Return the Moore Penrose canonical dual synthesis matrix."""
@@ -179,30 +183,52 @@ class HaarFilterBank:
         x = np.asarray(signal)
         if x.ndim != 1 or x.size % 2:
             raise DimensionError("Haar analysis requires an even one dimensional signal")
+        if not np.all(np.isfinite(x)):
+            raise ValidationError("Haar signal entries must be finite")
+        x = x.astype(np.result_type(x.dtype, float), copy=False)
         even = x[0::2]
         odd = x[1::2]
         scale = np.sqrt(2.0) if self.normalized else 1.0
         return (even + odd) / scale, (even - odd) / scale
 
     def synthesize(self, coefficients: Iterable[Any]) -> np.ndarray:
-        low, high = tuple(np.asarray(value) for value in coefficients)
+        channels = tuple(np.asarray(value) for value in coefficients)
+        if len(channels) != 2:
+            raise DimensionError("Haar synthesis requires two coefficient channels")
+        low, high = channels
         if low.ndim != 1 or high.ndim != 1 or low.shape != high.shape:
             raise DimensionError("Haar coefficient channels must be equal one dimensional arrays")
+        if not np.all(np.isfinite(low)) or not np.all(np.isfinite(high)):
+            raise ValidationError("Haar coefficient entries must be finite")
+        dtype = np.result_type(low.dtype, high.dtype, float)
+        low = low.astype(dtype, copy=False)
+        high = high.astype(dtype, copy=False)
         scale = np.sqrt(2.0) if self.normalized else 2.0
-        result = np.empty(low.size * 2, dtype=np.result_type(low.dtype, high.dtype, float))
+        result = np.empty(low.size * 2, dtype=dtype)
         result[0::2] = (low + high) / scale
         result[1::2] = (low - high) / scale
         return result
 
     def certificate(self, signal: Any, *, tolerance: float = 1e-12) -> ComputationResult[np.ndarray]:
         x = np.asarray(signal)
+        x = x.astype(np.result_type(x.dtype, float), copy=False)
         reconstructed = self.synthesize(self.analyze(x))
         residual = float(np.linalg.norm(reconstructed - x))
+        energy = float(np.vdot(x, x).real)
         energy_residual = abs(
-            float(np.vdot(x, x).real)
+            energy
             - sum(float(np.vdot(channel, channel).real) for channel in self.analyze(x))
         )
-        valid = residual <= tolerance and (not self.normalized or energy_residual <= tolerance)
+        reconstruction_scale = max(1.0, float(np.linalg.norm(x)))
+        energy_scale = max(1.0, energy)
+        valid = (
+            np.isfinite(residual)
+            and np.isfinite(energy_residual)
+            and np.isfinite(reconstruction_scale)
+            and np.isfinite(energy_scale)
+            and residual <= tolerance * reconstruction_scale
+            and (not self.normalized or energy_residual <= tolerance * energy_scale)
+        )
         return ComputationResult(
             reconstructed,
             Certificate(
@@ -316,6 +342,8 @@ class FiniteFilterBank:
             raise DimensionError("analysis and synthesis operators must be matrices")
         if synthesis.shape != (analysis.shape[1], analysis.shape[0]):
             raise DimensionError("synthesis matrix shape must be the transpose shape of analysis")
+        if not np.all(np.isfinite(analysis)) or not np.all(np.isfinite(synthesis)):
+            raise ValidationError("analysis and synthesis matrices must contain only finite values")
         object.__setattr__(self, "analysis_matrix", analysis)
         object.__setattr__(self, "synthesis_matrix", synthesis)
 
@@ -344,7 +372,11 @@ class FiniteFilterBank:
 
     def report(self, *, tolerance: float = 1e-10) -> FilterBankReport:
         singular_values = np.linalg.svd(self.analysis_matrix, compute_uv=False)
-        lower = float(singular_values[-1] ** 2) if singular_values.size else 0.0
+        lower = (
+            float(singular_values[-1] ** 2)
+            if singular_values.size and self.coefficient_dimension >= self.input_dimension
+            else 0.0
+        )
         upper = float(singular_values[0] ** 2) if singular_values.size else 0.0
         residual = float(np.linalg.norm(self.reconstruction_operator() - np.eye(self.input_dimension), 2))
         valid = residual <= tolerance

@@ -94,8 +94,9 @@ class LinearFilter:
         """Filter one finite signal and return the state required for continuation."""
 
         source = _vector(signal, "signal", allow_empty=True)
+        state_dtype = np.asarray(initial_state).dtype if initial_state is not None else float
         dtype = np.dtype(
-            np.result_type(source.dtype, self.numerator.dtype, self.denominator.dtype)
+            np.result_type(source.dtype, self.numerator.dtype, self.denominator.dtype, state_dtype)
         )
         if initial_state is None:
             state = np.zeros(self.order, dtype=dtype)

@@ -6,6 +6,7 @@ from typing import Any
 
 import numpy as np
 
+from .._residuals import finite_tolerance
 from ..exceptions import DimensionError, ValidationError
 
 
@@ -45,6 +46,7 @@ def as_vector(value: Any, *, dimension: int | None = None, name: str = "vector")
 def require_hermitian(matrix: Any, *, tolerance: float = 1e-10, name: str = "matrix") -> np.ndarray:
     """Validate Hermitian symmetry."""
 
+    tolerance = finite_tolerance(tolerance)
     value = as_square_matrix(matrix, name=name)
     if not np.allclose(value, value.conj().T, atol=tolerance, rtol=0.0):
         raise ValidationError(f"{name} must be Hermitian")
@@ -54,6 +56,7 @@ def require_hermitian(matrix: Any, *, tolerance: float = 1e-10, name: str = "mat
 def require_unitary(matrix: Any, *, tolerance: float = 1e-10, name: str = "matrix") -> np.ndarray:
     """Validate unitarity."""
 
+    tolerance = finite_tolerance(tolerance)
     value = as_square_matrix(matrix, name=name)
     identity = np.eye(value.shape[0], dtype=complex)
     if not np.allclose(value.conj().T @ value, identity, atol=tolerance, rtol=0.0):
@@ -70,6 +73,7 @@ def require_projector(
 ) -> np.ndarray:
     """Validate idempotence and optionally orthogonal self adjointness."""
 
+    tolerance = finite_tolerance(tolerance)
     value = as_square_matrix(matrix, name=name)
     if not np.allclose(value @ value, value, atol=tolerance, rtol=0.0):
         raise ValidationError(f"{name} must be idempotent")
@@ -81,11 +85,16 @@ def require_projector(
 def density_matrix(value: Any, *, tolerance: float = 1e-10, normalize: bool = False) -> np.ndarray:
     """Validate a finite density matrix."""
 
+    tolerance = finite_tolerance(tolerance)
     matrix = require_hermitian(value, tolerance=tolerance, name="density matrix")
     eigenvalues = np.linalg.eigvalsh(matrix)
+    if not np.all(np.isfinite(eigenvalues)):
+        raise ValidationError("density matrix spectrum exceeds finite floating-point range")
     if float(np.min(eigenvalues)) < -tolerance:
         raise ValidationError("density matrix must be positive semidefinite")
     trace = complex(np.trace(matrix))
+    if not np.isfinite(trace):
+        raise ValidationError("density matrix trace exceeds finite floating-point range")
     if normalize:
         if abs(trace) <= tolerance:
             raise ValidationError("density matrix trace must be nonzero")

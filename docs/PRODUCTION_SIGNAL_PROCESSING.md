@@ -93,6 +93,7 @@ D[n] = \sum_m w[n-mH]v[n-mH].
 A reconstruction certificate fails when this denominator vanishes on a required sample. Constant framewise detrending is deliberately marked noninvertible because the removed means are not retained.
 
 Real input supports one-sided Fourier coordinates. Complex input requires a two-sided transform.
+Complex analysis windows also require two-sided coordinates. Inverse and roundtrip certificates check finite coefficients and synthesis output in addition to overlap coverage. A numerical overflow cannot pass a certificate merely because both an error and its reference scale become infinite.
 
 ## Spectrograms and spectral estimates
 
@@ -147,6 +148,7 @@ report.certificate.require()
 Coherence is clipped to its finite numerical range. A high observed coherence is a property of the supplied record and estimator. It is not a causal-identification theorem.
 
 `parseval_certificate` separately checks the finite DFT energy identity for real or complex records.
+Coherence normalization avoids multiplying the two auto spectra before normalization, preserving the supplied-record coherence when those finite spectra are small enough that their product would underflow.
 
 ## FIR design and filtering
 
@@ -177,6 +179,7 @@ The finite modes are:
 - `valid`: samples with complete kernel overlap
 
 `StreamingFIR` retains exactly `num_taps - 1` prior input samples. Its `process` method emits one causal output per accepted input sample. `flush` emits the remaining full-convolution tail once.
+FIR arithmetic promotes fixed-width integer data to a floating or complex computation type before products and sums. A complex history remains complex when a subsequent chunk contains only real samples.
 
 ```python
 from komorebi_math.signals import stream_fir_filter
@@ -194,6 +197,7 @@ The stream certificate compares the chunked output with the direct causal finite
 ## Recursive FIR and IIR filtering
 
 `LinearFilter` normalizes a finite rational transfer function and executes it in direct-form II transposed form. The returned `FilterOutput` contains both samples and the exact finite continuation state required by the next chunk.
+The computation type includes the supplied initial state. Real input chunks and real filter coefficients therefore preserve any imaginary continuation state from preceding complex samples.
 
 ```python
 from komorebi_math.signals import design_biquad, stream_lfilter
@@ -271,6 +275,7 @@ Complex signals use conjugate inner products and coefficient updates. Parameter-
 ## Multilevel Haar denoising
 
 `haar_decompose` repeatedly applies the normalized finite Haar filter bank. A decomposition certificate verifies reconstruction and normalized energy conservation.
+Haar pair arithmetic and energy diagnostics promote fixed-width integer data before summation. Reconstruction and energy use separate relative scales, so the numerical certificate has the same meaning for an otherwise identical scaled signal. `FiniteFilterBank.report` and `PeriodicFilterBank.frame_bounds` include unobserved input directions: an analysis operator with fewer rows than input coordinates has lower frame bound zero.
 
 `wavelet_denoise` supports:
 
@@ -301,6 +306,8 @@ denoising_risk_certificate(clean, noisy, result.signal).require()
 ```
 
 The shrinkage certificate verifies finite reconstruction and coefficient-magnitude monotonicity. The observed-risk certificate requires a supplied clean reference. Universal and SURE rules do not establish application-specific optimality without their noise-model assumptions.
+
+The scalar and vector jump-recovery APIs reject nonfinite samples and nonfinite grid declarations. Vector jump contrasts promote integer data before subtraction, preventing unsigned downward jumps from wrapping to small positive contrasts. Their guarantees remain conditional on the declared smoothness, noise, jump-size, and separation hypotheses.
 
 ## Streaming STFT
 

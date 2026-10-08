@@ -36,7 +36,7 @@ def _validate_signal(signal: Any, name: str = "signal") -> np.ndarray:
         raise DimensionError(f"{name} must be a nonempty one dimensional signal")
     if not np.all(np.isfinite(value)):
         raise ValidationError(f"{name} entries must be finite")
-    return value
+    return np.asarray(value, dtype=np.result_type(value.dtype, float))
 
 
 def _detrend(frames: np.ndarray, mode: DetrendMode) -> np.ndarray:
@@ -60,13 +60,15 @@ def _onesided_factor(bin_count: int, fft_length: int) -> np.ndarray:
 
 def _spectral_denominator(window: np.ndarray, sample_rate: float, scaling: SpectralScaling) -> float:
     if scaling == "density":
-        return sample_rate * float(np.sum(np.abs(window) ** 2))
-    if scaling == "spectrum":
-        coherent = abs(complex(np.sum(window))) ** 2
-        if coherent <= np.finfo(float).eps:
-            raise ValidationError("spectrum scaling requires nonzero window coherent gain")
-        return float(coherent)
-    raise ValidationError(f"unknown spectral scaling: {scaling}")
+        denominator = sample_rate * float(np.sum(np.abs(window) ** 2))
+    elif scaling == "spectrum":
+        coherent = np.abs(np.sum(window))
+        denominator = float(coherent * coherent)
+    else:
+        raise ValidationError(f"unknown spectral scaling: {scaling}")
+    if not np.isfinite(denominator) or denominator <= 0:
+        raise ValidationError(f"{scaling} scaling requires positive finite window normalization")
+    return denominator
 
 
 def _fft_frames(frames: np.ndarray, fft_length: int, onesided: bool) -> tuple[np.ndarray, np.ndarray]:
@@ -180,8 +182,8 @@ def periodogram(
     transform_length = value.size if fft_length is None else _positive_integer(fft_length, "fft_length")
     if transform_length < value.size:
         raise ValidationError("fft_length cannot be smaller than the signal length")
-    one_sided = bool(np.isrealobj(value)) if onesided is None else bool(onesided)
     analysis_window = np.asarray(get_window(window, value.size, periodic=False))
+    one_sided = bool(np.isrealobj(value) and np.isrealobj(analysis_window)) if onesided is None else bool(onesided)
     frame = _detrend(value[np.newaxis, :], detrend) * analysis_window[np.newaxis, :]
     transform, normalized_frequencies = _fft_frames(frame, transform_length, one_sided)
     denominator = _spectral_denominator(analysis_window, rate, scaling)
@@ -267,8 +269,8 @@ def welch_psd(
     transform_length = length if fft_length is None else _positive_integer(fft_length, "fft_length")
     if transform_length < length:
         raise ValidationError("fft_length cannot be smaller than frame_length")
-    one_sided = bool(np.isrealobj(value)) if onesided is None else bool(onesided)
     analysis_window = np.asarray(get_window(window, length, periodic=True))
+    one_sided = bool(np.isrealobj(value) and np.isrealobj(analysis_window)) if onesided is None else bool(onesided)
     frames = _detrend(_welch_frames(value, length, hop), detrend)
     transform, normalized_frequencies = _fft_frames(frames * analysis_window[np.newaxis, :], transform_length, one_sided)
     denominator = _spectral_denominator(analysis_window, rate, scaling)
@@ -335,8 +337,8 @@ def cross_spectrum(
     ridge = float(regularization)
     if not np.isfinite(ridge) or ridge < 0:
         raise ValidationError("regularization must be finite and nonnegative")
-    one_sided = bool(np.isrealobj(x) and np.isrealobj(y)) if onesided is None else bool(onesided)
     analysis_window = np.asarray(get_window(window, length, periodic=True))
+    one_sided = bool(np.isrealobj(x) and np.isrealobj(y) and np.isrealobj(analysis_window)) if onesided is None else bool(onesided)
     x_frames = _detrend(_welch_frames(x, length, hop), detrend) * analysis_window[np.newaxis, :]
     y_frames = _detrend(_welch_frames(y, length, hop), detrend) * analysis_window[np.newaxis, :]
     x_transform, normalized_frequencies = _fft_frames(x_frames, transform_length, one_sided)
@@ -349,13 +351,15 @@ def cross_spectrum(
     pxx = np.asarray(np.real_if_close(_average(pxx_segments, average), tol=1000), dtype=float)
     pyy = np.asarray(np.real_if_close(_average(pyy_segments, average), tol=1000), dtype=float)
     pxy = np.asarray(_average(pxy_segments, average))
-    denominator_coherence = (pxx + ridge) * (pyy + ridge)
+    input_regularized = pxx + ridge
+    output_regularized = pyy + ridge
     raw_coherence = np.zeros_like(pxx, dtype=float)
-    valid_bins = denominator_coherence > 0
-    raw_coherence[valid_bins] = np.abs(pxy[valid_bins]) ** 2 / denominator_coherence[valid_bins]
+    valid_bins = (input_regularized > 0) & (output_regularized > 0)
+    normalized_cross = pxy[valid_bins] / np.sqrt(input_regularized[valid_bins]) / np.sqrt(output_regularized[valid_bins])
+    raw_coherence[valid_bins] = np.abs(normalized_cross) ** 2
     coherence = np.clip(raw_coherence, 0.0, 1.0)
     transfer = np.zeros_like(pxy, dtype=np.result_type(pxy.dtype, complex))
-    transfer_denominator = pxx + ridge
+    transfer_denominator = input_regularized
     nonzero = transfer_denominator > 0
     transfer[nonzero] = pxy[nonzero] / transfer_denominator[nonzero]
     bound_residual = float(max(0.0, np.max(raw_coherence) - 1.0, -np.min(raw_coherence)))
@@ -363,6 +367,8 @@ def cross_spectrum(
         np.all(np.isfinite(pxx))
         and np.all(np.isfinite(pyy))
         and np.all(np.isfinite(pxy))
+        and np.all(np.isfinite(input_regularized))
+        and np.all(np.isfinite(output_regularized))
         and np.all(np.isfinite(coherence))
         and np.all(np.isfinite(transfer))
     )
@@ -410,11 +416,17 @@ def parseval_certificate(signal: Any, *, tolerance: float = 1e-12) -> Certificat
     if tolerance < 0 or not np.isfinite(tolerance):
         raise ValidationError("tolerance must be finite and nonnegative")
     transform = np.fft.fft(value)
-    time_energy = float(np.sum(np.abs(value) ** 2))
-    frequency_energy = float(np.sum(np.abs(transform) ** 2) / value.size)
+    with np.errstate(over="ignore", invalid="ignore"):
+        time_energy = float(np.sum(np.abs(value) ** 2))
+        frequency_energy = float(np.sum(np.abs(transform / np.sqrt(value.size)) ** 2))
     residual = abs(time_energy - frequency_energy)
     scale = max(1.0, time_energy, frequency_energy)
-    valid = residual <= tolerance * scale
+    valid = bool(
+        np.isfinite(time_energy)
+        and np.isfinite(frequency_energy)
+        and np.isfinite(residual)
+        and residual <= tolerance * scale
+    )
     return Certificate(
         valid=valid,
         exactness=Exactness.NUMERICAL,

@@ -17,10 +17,37 @@ import numpy as np
 
 from ..certificates import Certificate, Exactness
 from ..exceptions import DimensionError, ValidationError
+from .._number_theory import require_integer
+
+
+def _numeric_array(value: Any, *, name: str) -> np.ndarray:
+    """Promote integer input before arithmetic in this numerical API."""
+
+    try:
+        dtype = np.complex128 if np.iscomplexobj(value) else np.float64
+        return np.asarray(value, dtype=dtype)
+    except (TypeError, ValueError, OverflowError) as exc:
+        raise ValidationError(f"{name} must contain finite numerical values") from exc
+
+
+def _norm(value: Any) -> float:
+    """A display norm that avoids intermediate squared-magnitude overflow."""
+
+    array = np.asarray(value)
+    with np.errstate(over="ignore", invalid="ignore", under="ignore"):
+        magnitudes = np.hypot(array.real, array.imag)
+        result = float(np.hypot.reduce(magnitudes.ravel(), initial=0.0))
+    return result if np.isfinite(result) else float("inf")
+
+
+def _within_tolerance(residual: float, scale: float, tolerance: float) -> bool:
+    # Nonfinite intermediate arithmetic never grants a numerical certificate.
+    return bool(np.isfinite(residual) and np.isfinite(scale)
+                and residual / max(1.0, scale) <= tolerance)
 
 
 def _matrix(value: Any, *, name: str) -> np.ndarray:
-    array = np.asarray(value)
+    array = _numeric_array(value, name=name)
     if array.ndim != 2:
         raise DimensionError(f"{name} must be a matrix")
     if array.shape[0] == 0 or array.shape[1] == 0:
@@ -33,7 +60,7 @@ def _matrix(value: Any, *, name: str) -> np.ndarray:
 
 
 def _vector(value: Any, *, length: int, name: str) -> np.ndarray:
-    array = np.asarray(value)
+    array = _numeric_array(value, name=name)
     if array.ndim != 1 or array.shape[0] != length:
         raise DimensionError(f"{name} must have length {length}")
     if not np.all(np.isfinite(array)):
@@ -47,7 +74,8 @@ def _normalized_groups(
 ) -> tuple[tuple[int, ...], ...]:
     if groups is None:
         return tuple((index,) for index in range(coordinate_dimension))
-    normalized = tuple(tuple(int(index) for index in group) for group in groups)
+    normalized = tuple(tuple(require_integer(index, name="coordinate index") for index in group)
+                       for group in groups)
     if not normalized or any(not group for group in normalized):
         raise ValidationError("analysis--synthesis groups must be nonempty")
     flattened = tuple(index for group in normalized for index in group)
@@ -68,7 +96,8 @@ class AnalysisSynthesisBlocks:
     operator: np.ndarray
 
     def __post_init__(self) -> None:
-        size = len(self.groups)
+        groups = _normalized_groups(self.groups, self.system.coordinate_dimension)
+        size = len(groups)
         if len(self.blocks) != size or any(len(row) != size for row in self.blocks):
             raise DimensionError("operator block grid does not match the packet groups")
         expected = (self.system.source_dimension, self.system.source_dimension)
@@ -86,6 +115,7 @@ class AnalysisSynthesisBlocks:
             normalized_rows.append(tuple(normalized_row))
         object.__setattr__(self, "operator", operator)
         object.__setattr__(self, "blocks", tuple(normalized_rows))
+        object.__setattr__(self, "groups", groups)
 
     def reconstruct(self) -> np.ndarray:
         """Sum every transfer block back into the represented operator."""
@@ -101,19 +131,30 @@ class AnalysisSynthesisBlocks:
         """Certify numerical reconstruction of the operator block expansion."""
 
         reconstructed = self.reconstruct()
-        residual = float(np.linalg.norm(reconstructed - self.operator))
-        scale = max(1.0, float(np.linalg.norm(self.operator)))
+        with np.errstate(over="ignore", invalid="ignore"):
+            residual = _norm(reconstructed - self.operator)
+            components = self.system.components(self.groups)
+            definition_residual = max(
+                _norm(block - target @ self.operator @ source)
+                for target, row in zip(components, self.blocks, strict=True)
+                for source, block in zip(components, row, strict=True)
+            )
+        scale = max(1.0, _norm(self.operator))
         tolerance = self.system.tolerance
-        valid = self.system.certificate().valid and residual <= tolerance * scale
+        valid = (self.system.certificate().valid
+                 and _within_tolerance(residual, scale, tolerance)
+                 and _within_tolerance(definition_residual, scale, tolerance))
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,
-            residuals={"operator_block_reconstruction": residual},
+            residuals={"operator_block_reconstruction": residual,
+                       "operator_block_definition": definition_residual},
             tolerance=tolerance,
             assumptions_checked=(
                 "finite analysis and synthesis matrices",
                 "coordinate groups form a partition",
                 "analysis--synthesis left inverse",
+                "each block equals its declared reconstruction components",
             ),
             theorem_id="KM-AS-02",
             message=(
@@ -262,9 +303,9 @@ class AnalysisSynthesisSystem:
         """
 
         if isinstance(indices, (int, np.integer)):
-            normalized = (int(indices),)
+            normalized = (require_integer(indices, name="component coordinate"),)
         else:
-            normalized = tuple(int(index) for index in indices)
+            normalized = tuple(require_integer(index, name="component coordinate") for index in indices)
         if not normalized or len(normalized) != len(set(normalized)):
             raise ValidationError("component coordinates must be nonempty and unique")
         if min(normalized) < 0 or max(normalized) >= self.coordinate_dimension:
@@ -329,10 +370,11 @@ class AnalysisSynthesisSystem:
 
         operator = self.frame_operator()
         identity = np.eye(self.source_dimension, dtype=operator.dtype)
-        residual = float(np.linalg.norm(operator - identity))
-        scale = max(1.0, float(np.linalg.norm(identity)))
+        residual = _norm(operator - identity)
+        scale = max(1.0, _norm(identity))
         rank = int(np.linalg.matrix_rank(self.analysis))
-        valid = residual <= self.tolerance * scale and rank == self.source_dimension
+        valid = (_within_tolerance(residual, scale, self.tolerance)
+                 and rank == self.source_dimension)
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,
@@ -363,9 +405,10 @@ class AnalysisSynthesisSystem:
 
         source = _vector(value, length=self.source_dimension, name="source vector")
         reconstructed = self.reconstruct(source)
-        residual = float(np.linalg.norm(reconstructed - source))
-        scale = max(1.0, float(np.linalg.norm(source)))
-        valid = self.certificate().valid and residual <= self.tolerance * scale
+        with np.errstate(over="ignore", invalid="ignore"):
+            residual = _norm(reconstructed - source)
+        scale = max(1.0, _norm(source))
+        valid = self.certificate().valid and _within_tolerance(residual, scale, self.tolerance)
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,

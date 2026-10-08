@@ -6,6 +6,7 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from .._residuals import finite_tolerance
 from ..certificates import Certificate, Exactness
 from ..dynamics._linalg import matrix_exponential
 from ..exceptions import DimensionError, ValidationError
@@ -27,18 +28,35 @@ class LindbladGenerator:
     """A finite Gorini Kossakowski Sudarshan Lindblad generator."""
 
     def __init__(self, hamiltonian: Any, jumps: Iterable[Any], *, tolerance: float = 1e-10) -> None:
+        tolerance = finite_tolerance(tolerance)
         h = require_hermitian(hamiltonian, tolerance=tolerance, name="Hamiltonian")
         operators = tuple(as_square_matrix(value, name="Lindblad jump") for value in jumps)
         if any(operator.shape != h.shape for operator in operators):
             raise DimensionError("every jump operator must act on the Hamiltonian space")
-        self.hamiltonian = h
-        self.jumps = operators
+        # Validated state must not change when the caller edits its input arrays.
+        self.hamiltonian = np.array(h, copy=True)
+        self.jumps = tuple(np.array(operator, copy=True) for operator in operators)
+        self.hamiltonian.setflags(write=False)
+        for operator in self.jumps:
+            operator.setflags(write=False)
         self.dimension = h.shape[0]
         self.tolerance = float(tolerance)
+
+    def _validate_form(self) -> None:
+        """Recheck the represented form, including publicly reassigned attributes."""
+
+        h = require_hermitian(self.hamiltonian, tolerance=self.tolerance, name="Hamiltonian")
+        if h.shape != (self.dimension, self.dimension):
+            raise DimensionError("Hamiltonian has changed dimension")
+        for jump in self.jumps:
+            operator = as_square_matrix(jump, name="Lindblad jump")
+            if operator.shape != h.shape:
+                raise DimensionError("every jump operator must act on the Hamiltonian space")
 
     def apply(self, operator: Any) -> np.ndarray:
         """Apply the Lindblad generator to one operator."""
 
+        self._validate_form()
         value = as_square_matrix(operator, name="Lindblad input")
         if value.shape != (self.dimension, self.dimension):
             raise DimensionError("Lindblad input has the wrong dimension")
@@ -46,11 +64,14 @@ class LindbladGenerator:
         for jump in self.jumps:
             effect = jump.conj().T @ jump
             result += jump @ value @ jump.conj().T - 0.5 * (effect @ value + value @ effect)
+        if not np.all(np.isfinite(result)):
+            raise ValidationError("Lindblad application overflowed finite floating-point range")
         return result
 
     def superoperator(self) -> np.ndarray:
         """Return the column vectorized generator matrix."""
 
+        self._validate_form()
         identity = np.eye(self.dimension, dtype=complex)
         result = -1j * (
             np.kron(identity, self.hamiltonian)
@@ -61,6 +82,8 @@ class LindbladGenerator:
             result += np.kron(jump.conj(), jump)
             result -= 0.5 * np.kron(identity, effect)
             result -= 0.5 * np.kron(effect.T, identity)
+        if not np.all(np.isfinite(result)):
+            raise ValidationError("Lindblad superoperator overflowed finite floating-point range")
         return result
 
     def evolve(self, state: Any, time: float) -> np.ndarray:
@@ -80,7 +103,10 @@ class LindbladGenerator:
             for column in range(self.dimension):
                 unit = np.zeros((self.dimension, self.dimension), dtype=complex)
                 unit[row, column] = 1
-                residual = max(residual, abs(complex(np.trace(self.apply(unit)))))
+                derivative = complex(np.trace(self.apply(unit)))
+                if not np.isfinite(derivative):
+                    raise ValidationError("Lindblad trace derivative became nonfinite")
+                residual = max(residual, abs(derivative))
         return Certificate(
             valid=residual <= self.tolerance,
             exactness=Exactness.NUMERICAL,

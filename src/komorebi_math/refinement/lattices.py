@@ -96,19 +96,19 @@ class LatticePacketData:
     ) -> None:
         prime = require_prime(prime)
         sp = _sympy()
-        self.lattice_basis = sp.Matrix(lattice_basis)
+        self.lattice_basis = sp.ImmutableMatrix(lattice_basis)
         if self.lattice_basis.rows != self.lattice_basis.cols:
             raise DimensionError("lattice basis must be square")
         if self.lattice_basis.det() == 0:
             raise ValidationError("lattice basis must be invertible")
-        self.projectors = tuple(sp.Matrix(projector) for projector in projectors)
+        self.projectors = tuple(sp.ImmutableMatrix(projector) for projector in projectors)
         if not self.projectors:
             raise ValueError("at least one packet projector is required")
         dimension = self.lattice_basis.rows
         if any(projector.shape != (dimension, dimension) for projector in self.projectors):
             raise DimensionError("projectors and lattice basis must have one ambient dimension")
         self.prime = prime
-        self.split_basis = None if split_basis is None else sp.Matrix(split_basis)
+        self.split_basis = None if split_basis is None else sp.ImmutableMatrix(split_basis)
         if self.split_basis is not None and self.split_basis.shape != self.lattice_basis.shape:
             raise DimensionError("split lattice basis must have the same shape as the ambient lattice basis")
         if self.split_basis is not None:
@@ -123,25 +123,47 @@ class LatticePacketData:
 
     def certificate(self) -> Certificate:
         sp = _sympy()
-        identity = sp.eye(self.dimension)
-        total = sp.zeros(self.dimension)
-        valid = True
-        for index, projector in enumerate(self.projectors):
-            valid &= projector * projector == projector
-            total += projector
-            for other_index, other in enumerate(self.projectors):
-                if index != other_index:
-                    valid &= projector * other == sp.zeros(self.dimension)
-        valid &= total == identity
+        checks = {"prime valuation": False, "rational lattice data": False,
+                  "full lattice basis": False, "rational packet axioms": False}
         if self.split_basis is not None:
-            inclusion = self.inclusion_matrix()
-            valid &= all(entry.is_Integer for entry in inclusion)
-            valid &= inclusion.det() != 0
+            checks["integral split inclusion"] = False
+        try:
+            require_prime(self.prime)
+            checks["prime valuation"] = True
+            lattice = sp.ImmutableMatrix(self.lattice_basis)
+            projectors = tuple(sp.ImmutableMatrix(projector) for projector in self.projectors)
+            split = None if self.split_basis is None else sp.ImmutableMatrix(self.split_basis)
+            matrices = (lattice,) + projectors + (() if split is None else (split,))
+            checks["rational lattice data"] = all(
+                getattr(entry, "is_Rational", None) is True
+                for matrix in matrices for entry in matrix)
+            checks["full lattice basis"] = lattice.rows == lattice.cols and lattice.det() != 0
+            dimension = lattice.rows
+            packet_shapes = bool(projectors) and all(
+                projector.shape == (dimension, dimension) for projector in projectors)
+            if packet_shapes and checks["rational lattice data"]:
+                zero = sp.zeros(dimension)
+                total = sum(projectors, zero)
+                checks["rational packet axioms"] = (
+                    all(projector * projector == projector for projector in projectors)
+                    and all(projector * other == zero
+                            for index, projector in enumerate(projectors)
+                            for other_index, other in enumerate(projectors) if index != other_index)
+                    and total == sp.eye(dimension))
+            if (split is not None and checks["full lattice basis"]
+                    and checks["rational lattice data"] and split.shape == lattice.shape):
+                inclusion = lattice.inv() * split
+                checks["integral split inclusion"] = (
+                    all(entry.is_Integer for entry in inclusion) and inclusion.det() != 0)
+        except (TypeError, ValueError, ValidationError, sp.ShapeError):
+            pass
+        valid = all(checks.values())
         return Certificate(
             valid=bool(valid),
             exactness=Exactness.EXACT,
             residuals={"packet_axioms": 0.0 if valid else 1.0},
-            assumptions_checked=("rational packet axioms", "full lattice basis") + (("integral split inclusion",) if self.split_basis is not None else ()),
+            assumptions_checked=tuple(name for name, checked in checks.items() if checked),
+            diagnostics={"checks": checks},
             theorem_id="PSC-II-D12",
             message="valid lattice packet data" if valid else "invalid rational packet or lattice data",
         )
@@ -163,6 +185,7 @@ class LatticePacketData:
     def projector_weights(self) -> tuple[int, ...]:
         """Return the exact prime denominator exponent of every packet projector."""
 
+        self.certificate().require()
         weights: list[int] = []
         for index in range(len(self.projectors)):
             matrix = self.projector_in_lattice_basis(index)
@@ -199,6 +222,7 @@ class LatticePacketData:
         )
     )
     def gluing_module(self) -> GluingModule:
+        self.certificate().require()
         inclusion = self.inclusion_matrix()
         if any(not entry.is_Integer for entry in inclusion):
             raise ValidationError("split lattice is not integrally contained in the ambient lattice")
@@ -265,6 +289,8 @@ def _refinement_parent_map(coarse: LatticePacketData, fine: LatticePacketData) -
 def refinement_weight_monotonicity(coarse: LatticePacketData, fine: LatticePacketData) -> Certificate:
     """Certify exact weight monotonicity for an actual packet refinement."""
 
+    coarse.certificate().require()
+    fine.certificate().require()
     if coarse.prime != fine.prime:
         raise ValidationError("coarse and fine lattice data must use one prime")
     if coarse.lattice_basis != fine.lattice_basis:

@@ -60,9 +60,9 @@ def get_window(
     *,
     periodic: bool = True,
 ) -> np.ndarray:
-    """Return a finite real window using an explicit periodic or symmetric convention.
+    """Return a finite window using an explicit periodic or symmetric convention.
 
-    A supplied array is copied and must already have the requested length.  A
+    A supplied real or complex array is copied and must already have the requested length.  A
     tuple is accepted as ``("kaiser", beta)`` or ``("tukey", alpha)``.  Periodic cosine
     windows are formed by constructing a symmetric window of length ``N + 1``
     and dropping its last sample.
@@ -75,7 +75,7 @@ def get_window(
             raise DimensionError("an explicit window must be one dimensional with the requested length")
         if not np.all(np.isfinite(value)):
             raise ValidationError("window entries must be finite")
-        return value.copy()
+        return np.asarray(value, dtype=np.result_type(value.dtype, float)).copy()
 
     parameter = 14.0
     if isinstance(window, tuple):
@@ -96,6 +96,8 @@ def get_window(
         if name == "tukey":
             parameter = 0.5
 
+    if name not in {"boxcar", "hann", "hamming", "blackman", "bartlett", "kaiser", "tukey"}:
+        raise ValidationError(f"unknown window: {name}")
     if n_samples == 1:
         return np.ones(1, dtype=float)
     evaluation_length = n_samples + 1 if periodic else n_samples
@@ -114,7 +116,10 @@ def get_window(
     elif name == "bartlett":
         result = np.bartlett(evaluation_length)
     elif name == "kaiser":
-        result = np.kaiser(evaluation_length, parameter)
+        with np.errstate(over="ignore", invalid="ignore"):
+            result = np.kaiser(evaluation_length, parameter)
+        if not np.all(np.isfinite(result)):
+            raise ValidationError("Kaiser window evaluation became nonfinite; choose a smaller beta")
     elif name == "tukey":
         alpha = parameter
         if alpha <= 0.0:
@@ -169,6 +174,7 @@ def window_metrics(window: Any, *, sample_rate: float = 1.0) -> WindowMetrics:
         raise DimensionError("window metrics require a nonempty one dimensional window")
     if not np.all(np.isfinite(value)):
         raise ValidationError("window entries must be finite")
+    value = np.asarray(value, dtype=np.result_type(value.dtype, float))
     rate = float(sample_rate)
     if not np.isfinite(rate) or rate <= 0:
         raise ValidationError("sample_rate must be positive and finite")
@@ -198,6 +204,9 @@ def overlap_profile(window: Any, hop_length: int, *, squared: bool = True) -> np
     value = np.asarray(window)
     if value.ndim != 1 or value.size == 0:
         raise DimensionError("overlap profiling requires a nonempty one dimensional window")
+    if not np.all(np.isfinite(value)):
+        raise ValidationError("window entries must be finite")
+    value = np.asarray(value, dtype=np.result_type(value.dtype, float))
     hop = _positive_integer(hop_length, "hop_length")
     if hop > value.size:
         raise ValidationError("hop_length cannot exceed the window length")
@@ -235,8 +244,8 @@ def overlap_add_certificate(
     magnitude = np.abs(profile)
     minimum = float(np.min(magnitude))
     spread = float(np.max(np.abs(profile - profile[0])))
-    scale = max(1.0, float(np.max(magnitude)))
-    nonzero = minimum > tolerance * scale
+    scale = float(np.max(magnitude))
+    nonzero = bool(np.all(np.isfinite(profile)) and minimum > tolerance * scale)
     constant = spread <= tolerance * scale
     valid = nonzero and (constant or not require_constant)
     condition = float(np.max(magnitude) / minimum) if nonzero else float("inf")
@@ -276,13 +285,15 @@ def canonical_dual_window(
 ) -> ComputationResult[np.ndarray]:
     """Return the canonical synthesis window for the declared shift lattice."""
 
+    if tolerance < 0 or not np.isfinite(tolerance):
+        raise ValidationError("tolerance must be finite and nonnegative")
     value = np.asarray(window)
     if value.ndim != 1 or value.size == 0:
         raise DimensionError("dual-window construction requires a nonempty one dimensional window")
     profile = np.asarray(overlap_profile(value, hop_length, squared=True), dtype=float)
-    scale = max(1.0, float(np.max(np.abs(profile))))
+    scale = float(np.max(np.abs(profile)))
     minimum = float(np.min(np.abs(profile)))
-    valid = minimum > tolerance * scale
+    valid = bool(np.all(np.isfinite(profile)) and minimum > tolerance * scale)
     if valid:
         denominator = profile[np.arange(value.size) % int(hop_length)]
         dual = np.conjugate(value) / denominator

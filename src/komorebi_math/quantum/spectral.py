@@ -64,7 +64,10 @@ def heat_trace(operator: Any, time: float) -> float:
         status=ClaimStatus.DEFINITION,
         source="Paper VII",
         assumptions=("finite nonnegative Hermitian operator", "positive diffusion time"),
-        limitations=("finite dimension forces zero limits at both time endpoints",),
+        limitations=(
+            "finite dimension forces the zero-time limit to zero",
+            "the large-time limit is zero only when the operator has a zero eigenvalue",
+        ),
         verification_suite="quantum.spectral",
     )
 )
@@ -79,8 +82,17 @@ def spectral_dimension(operator: Any, time: float) -> float:
     if float(np.min(eigenvalues)) < -1e-10:
         raise ValidationError("spectral operator must be nonnegative")
     clipped = np.maximum(eigenvalues, 0.0)
-    weights = np.exp(-t * clipped)
-    return float(2 * t * np.sum(clipped * weights) / np.sum(weights))
+    # The common exp(-t*lambda_min) cancels. Keeping it in either sum would
+    # produce 0/0 once the heat trace underflows, even for the scalar identity.
+    minimum = float(np.min(clipped))
+    gaps = clipped - minimum
+    with np.errstate(over="ignore", under="ignore"):
+        weights = np.exp(-t * gaps)
+        mean = minimum + float(np.sum(gaps * weights) / np.sum(weights))
+        result = float(2 * (t * mean))
+    if not np.isfinite(result):
+        raise ValidationError("spectral dimension exceeds finite floating-point range")
+    return result
 
 
 def periodic_lattice_eigenvalues(shape: Sequence[int], *, spacing: float | None = None) -> np.ndarray:

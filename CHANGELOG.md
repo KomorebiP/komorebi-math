@@ -1,5 +1,15 @@
 # Changelog
 
+## Deeper audit and source integration, 2026-10-08
+
+- Add research APIs for directed positive K-COS tails and verified stored-factor spectra, exact reciprocal-power/k-bonacci/Fubini/derangement families with local offset-aware OEIS matching, corrected Gamma/Meixner and Bernoulli–Hurwitz companions, finite scalar Racah functions, Fourier/Hankel jump recovery, exact finite join quotients, and fixed four-spinor Dirac modes.
+- Repair false-valid analysis/synthesis and mutable Smith/lattice witnesses; use exact integer seed-rank division and owned finite live certificate evidence.
+- Correct the Schrödinger derivative memory sign, distinguish rational continuation from convergent Laplace integration, and evaluate resonant finite integrals without resolvent inversion.
+- Repair spectral underflow, constraint-span scale dependence, mutable Lindblad inputs and density trace overflow.
+- Repair underdetermined frame bounds, integer Haar/jump/route arithmetic, complex streaming state, and invalid window/spectral/STFT/recovery domains.
+- Add independent exact, interval, trajectory, quadrature, Fourier and exhaustive-partition controls to source and clean installed-artifact qualification. Record source archive provenance and reproducible input/output hashes.
+- Preserve the existing research beta, private-evaluation license, stable exports and historical API manifests. Numerical evaluations and finite consistency checks retain their stated limits.
+
 ## GitHub readiness repairs, 2026-10-08
 
 - Require SymPy 1.14 for the exact extra, matching the Smith decomposition API in use. Older manual installations receive explicit dependency guidance.

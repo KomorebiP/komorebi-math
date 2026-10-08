@@ -16,9 +16,14 @@ from .singular_packets import SingularPacket1D
 
 def _sample_matrix(samples: Any) -> tuple[np.ndarray, bool]:
     values = np.asarray(samples)
+    if not np.all(np.isfinite(values)):
+        raise ValidationError("samples must contain only finite values")
+    values = values.astype(np.result_type(values.dtype, float), copy=False)
     if values.ndim == 1:
         return values[:, None], True
     if values.ndim == 2:
+        if values.shape[1] == 0:
+            raise DimensionError("samples must have at least one component")
         return values, False
     raise DimensionError("samples must have shape (n,) or (n, d)")
 
@@ -81,6 +86,9 @@ def recover_jumps(
     values, scalar = _sample_matrix(samples)
     if values.shape[0] < 2:
         raise DimensionError("at least two samples are required")
+    origin = float(origin)
+    if not np.isfinite(origin):
+        raise ValidationError("origin must be finite")
     h = float(spacing)
     if not np.isfinite(h) or h <= 0:
         raise ValidationError("spacing must be positive and finite")
@@ -97,9 +105,13 @@ def recover_jumps(
     threshold_valid = background < chosen < minimum - background
 
     contrasts = np.diff(values, axis=0)
+    if not np.all(np.isfinite(contrasts)):
+        raise ValidationError("sample contrasts exceed the finite numerical range")
     magnitudes = np.linalg.norm(contrasts, axis=1) if not scalar else np.abs(contrasts[:, 0])
     cells = tuple(int(index) for index in np.flatnonzero(magnitudes > chosen))
     locations = np.asarray([origin + (index + 0.5) * h for index in cells], dtype=float)
+    if not np.all(np.isfinite(locations)):
+        raise ValidationError("jump locations exceed the finite numerical range")
     amplitudes_matrix = contrasts[np.asarray(cells, dtype=int)] if cells else np.zeros((0, values.shape[1]))
     amplitudes = amplitudes_matrix[:, 0] if scalar else amplitudes_matrix
     detected_separated = all(right - left > 1 for left, right in zip(cells, cells[1:]))

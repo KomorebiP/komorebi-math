@@ -163,6 +163,7 @@ class HaarDecomposition:
         """Certify reconstruction and, when normalized, energy conservation."""
 
         source = _signal(original)
+        source = source.astype(np.result_type(source.dtype, float), copy=False)
         if source.size != self.original_length:
             raise DimensionError("original signal length does not match this decomposition")
         reconstructed = self.reconstruct()
@@ -171,9 +172,15 @@ class HaarDecomposition:
         coefficient_energy += sum(float(np.vdot(detail, detail).real) for detail in self.details)
         source_energy = float(np.vdot(source, source).real)
         energy_residual = abs(coefficient_energy - source_energy)
-        scale = max(1.0, float(np.linalg.norm(source)), source_energy)
-        valid = residual <= tolerance * scale and (
-            not self.normalized or energy_residual <= tolerance * scale
+        reconstruction_scale = max(1.0, float(np.linalg.norm(source)))
+        energy_scale = max(1.0, source_energy)
+        valid = (
+            np.isfinite(residual)
+            and np.isfinite(energy_residual)
+            and np.isfinite(reconstruction_scale)
+            and np.isfinite(energy_scale)
+            and residual <= tolerance * reconstruction_scale
+            and (not self.normalized or energy_residual <= tolerance * energy_scale)
         )
         return Certificate(
             valid=valid,
@@ -200,6 +207,7 @@ def haar_decompose(signal: Any, levels: int, *, normalized: bool = True) -> Haar
     """Compute a complete finite multilevel Haar decomposition."""
 
     source = _signal(signal)
+    source = source.astype(np.result_type(source.dtype, float), copy=False)
     depth = _levels(levels, source.size)
     bank = HaarFilterBank(normalized=normalized)
     current = source

@@ -7,6 +7,7 @@ from typing import Any, Callable
 
 import numpy as np
 
+from .._residuals import finite_tolerance
 from ..certificates import Certificate, ComputationResult, Exactness
 from ..exceptions import DimensionError, ValidationError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
@@ -40,7 +41,11 @@ def _trapezoid(values: np.ndarray, grid: np.ndarray) -> float:
 )
 @dataclass(frozen=True, slots=True)
 class MemoryKernel:
-    """A matrix kernel ``B exp(tD) C`` with rational Laplace transform."""
+    """A matrix kernel ``B exp(tD) C`` with a convergent-half-plane Laplace transform.
+
+    ``rational_transform`` separately provides the resolvent continuation where
+    it exists. ``finite_laplace`` is defined even at resolvent poles.
+    """
 
     output: np.ndarray
     hidden: np.ndarray
@@ -56,9 +61,14 @@ class MemoryKernel:
             raise DimensionError("memory realization dimensions do not agree")
         if b.shape[0] != c.shape[1]:
             raise DimensionError("memory kernel must have a common retained input and output dimension")
-        object.__setattr__(self, "output", b)
-        object.__setattr__(self, "hidden", d)
-        object.__setattr__(self, "input", c)
+        if b.shape[0] < 1 or d.shape[0] < 1:
+            raise DimensionError("memory retained and hidden dimensions must be positive")
+        snapshots = tuple(np.array(value, copy=True) for value in (b, d, c))
+        for value in snapshots:
+            value.setflags(write=False)
+        object.__setattr__(self, "output", snapshots[0])
+        object.__setattr__(self, "hidden", snapshots[1])
+        object.__setattr__(self, "input", snapshots[2])
 
     @property
     def retained_dimension(self) -> int:
@@ -78,19 +88,59 @@ class MemoryKernel:
         return self.at(time)
 
     def laplace(self, spectral_parameter: complex) -> np.ndarray:
+        """Evaluate the integral where ``Re(z) > max Re spectrum(D)``.
+
+        This sufficient half-plane is intentionally conservative for realizations
+        with canceled hidden modes. Use ``rational_transform`` for the algebraic
+        continuation without an infinite-integral convergence claim.
+        """
+
+        z, abscissa = self._laplace_domain(spectral_parameter)
+        if z.real <= abscissa:
+            raise ValidationError("Laplace parameter must lie to the right of the hidden spectral abscissa")
+        return self.rational_transform(z)
+
+    def _laplace_domain(self, spectral_parameter: complex) -> tuple[complex, float]:
         z = complex(spectral_parameter)
+        if not np.isfinite(z):
+            raise ValidationError("spectral parameter must be finite")
+        hidden = _matrix(self.hidden, "hidden matrix")
+        eigenvalues = np.linalg.eigvals(hidden)
+        if not np.all(np.isfinite(eigenvalues)):
+            raise ValidationError("hidden spectral abscissa exceeds finite floating-point range")
+        return z, float(np.max(eigenvalues.real))
+
+    def rational_transform(self, spectral_parameter: complex) -> np.ndarray:
+        """Return ``B (zI-D)^(-1) C`` without claiming integral convergence."""
+
+        z = complex(spectral_parameter)
+        if not np.isfinite(z):
+            raise ValidationError("spectral parameter must be finite")
         identity = np.eye(self.hidden_dimension, dtype=np.result_type(self.hidden, z))
-        return self.output @ np.linalg.inv(z * identity - self.hidden) @ self.input
+        result = self.output @ np.linalg.solve(z * identity - self.hidden, self.input)
+        if not np.all(np.isfinite(result)):
+            raise ValidationError("rational memory transform exceeded finite floating-point range")
+        return result
 
     def finite_laplace(self, spectral_parameter: complex, horizon: float) -> np.ndarray:
+        """Evaluate ``integral_0^h exp(-zt) K(t) dt``, including resolvent poles."""
+
         z = complex(spectral_parameter)
+        if not np.isfinite(z):
+            raise ValidationError("spectral parameter must be finite")
         final = float(horizon)
         if not np.isfinite(final) or final < 0:
             raise ValidationError("horizon must be finite and nonnegative")
         identity = np.eye(self.hidden_dimension, dtype=np.result_type(self.hidden, z))
-        resolvent = np.linalg.inv(z * identity - self.hidden)
-        tail_factor = matrix_exponential((self.hidden - z * identity) * final)
-        return self.output @ resolvent @ (identity - tail_factor) @ self.input
+        generator = self.hidden - z * identity
+        zeros = np.zeros_like(generator)
+        augmented = np.block([[generator, identity], [zeros, zeros]])
+        # The upper-right exponential block is the integral of exp(t*generator).
+        integral = matrix_exponential(final * augmented)[: self.hidden_dimension, self.hidden_dimension :]
+        result = self.output @ integral @ self.input
+        if not np.all(np.isfinite(result)):
+            raise ValidationError("finite Laplace integral exceeded finite floating-point range")
+        return result
 
     def certificate(
         self,
@@ -103,15 +153,28 @@ class MemoryKernel:
         """Certify the finite horizon plus tail decomposition of the Laplace transform."""
 
         count = int(points)
-        if count < 2:
-            raise ValidationError("points must be at least two")
-        z = complex(spectral_parameter)
+        if isinstance(points, bool) or count != points or count < 2:
+            raise ValidationError("points must be an integer at least two")
+        tolerance = finite_tolerance(tolerance)
+        z, abscissa = self._laplace_domain(spectral_parameter)
         final = float(horizon)
+        if not np.isfinite(final) or final < 0:
+            raise ValidationError("horizon must be finite and nonnegative")
+        if z.real <= abscissa:
+            return Certificate(
+                valid=False,
+                exactness=Exactness.NUMERICAL,
+                tolerance=tolerance,
+                assumptions_checked=("finite auxiliary realization",),
+                assumptions_unchecked=("infinite Laplace integral convergence outside the sufficient half-plane",),
+                diagnostics={"spectral_abscissa": abscissa, "parameter_real_part": z.real},
+                theorem_id="PSC-VI-T30",
+                message="Laplace convergence was not established in the declared half-plane",
+            )
         identity = np.eye(self.hidden_dimension, dtype=np.result_type(self.hidden, z))
-        resolvent = np.linalg.inv(z * identity - self.hidden)
         tail_factor = matrix_exponential((self.hidden - z * identity) * final)
-        finite = self.output @ resolvent @ (identity - tail_factor) @ self.input
-        tail = self.output @ resolvent @ tail_factor @ self.input
+        finite = self.finite_laplace(z, final)
+        tail = self.output @ np.linalg.solve(z * identity - self.hidden, tail_factor @ self.input)
         exact = self.laplace(z)
         residual = float(np.linalg.norm(finite + tail - exact, ord=2))
         valid = residual <= tolerance * max(1.0, float(np.linalg.norm(exact, ord=2)))
@@ -120,8 +183,16 @@ class MemoryKernel:
             exactness=Exactness.NUMERICAL,
             residuals={"laplace_decomposition": residual},
             tolerance=tolerance,
-            assumptions_checked=("finite auxiliary realization", "hidden resolvent exists"),
-            diagnostics={"horizon": final, "requested_quadrature_points": count, "tail_norm": float(np.linalg.norm(tail, 2))},
+            assumptions_checked=(
+                "finite auxiliary realization", "hidden resolvent exists",
+                "parameter lies right of the numerically resolved hidden spectral abscissa",
+            ),
+            diagnostics={
+                "horizon": final, "requested_quadrature_points": count,
+                "tail_norm": float(np.linalg.norm(tail, 2)),
+                "spectral_abscissa": abscissa, "parameter_real_part": z.real,
+                "domain_check": "sufficient half-plane for the full hidden realization",
+            },
             theorem_id="PSC-VI-T30",
             message="rational memory transform verified" if valid else "rational memory transform failed",
         )

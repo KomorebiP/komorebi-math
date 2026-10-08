@@ -21,8 +21,9 @@ def fft_lowpass_1d(signal: np.ndarray | Sequence[float], modes: int) -> np.ndarr
     if isinstance(modes, bool) or int(modes) != modes or modes < 0:
         raise ValidationError("modes must be a nonnegative integer")
     spectrum = np.fft.fft(value)
-    frequencies = np.fft.fftfreq(value.size) * value.size
-    return np.real_if_close(np.fft.ifft(spectrum * (np.abs(frequencies) <= int(modes))), tol=1000)
+    indices = np.arange(value.size, dtype=int)
+    frequency_magnitudes = np.minimum(indices, value.size - indices)
+    return np.real_if_close(np.fft.ifft(spectrum * (frequency_magnitudes <= int(modes))), tol=1000)
 
 
 def fft_lowpass_2d(image: np.ndarray, cutoff: int) -> np.ndarray:
@@ -44,15 +45,24 @@ def fft_lowpass_2d(image: np.ndarray, cutoff: int) -> np.ndarray:
 def otsu_threshold(values: np.ndarray | Sequence[float], bins: int = 256) -> float:
     """Return the finite histogram threshold that maximizes between class variance."""
 
-    array = np.asarray(values, dtype=float).ravel()
+    raw = np.asarray(values)
+    if np.iscomplexobj(raw):
+        raise ValidationError("Otsu thresholding requires real values")
+    array = np.asarray(raw, dtype=float).ravel()
     if not array.size:
         raise ValidationError("Otsu thresholding requires at least one value")
-    if bins < 2:
-        raise ValidationError("bins must be at least two")
+    if not np.all(np.isfinite(array)):
+        raise ValidationError("Otsu thresholding requires finite values")
+    if isinstance(bins, bool) or int(bins) != bins or bins < 2:
+        raise ValidationError("bins must be an integer of at least two")
     low, high = float(array.min()), float(array.max())
-    if np.isclose(low, high):
+    if low == high:
         return low
-    histogram, edges = np.histogram(array, bins=int(bins), range=(low, high))
+    width = high - low
+    if not np.isfinite(width):
+        raise ValidationError("Otsu value range exceeds finite floating-point representation")
+    normalized = (array - low) / width
+    histogram, edges = np.histogram(normalized, bins=int(bins), range=(0.0, 1.0))
     centers = 0.5 * (edges[:-1] + edges[1:])
     probability = histogram.astype(float) / histogram.sum()
     omega = np.cumsum(probability)
@@ -61,7 +71,7 @@ def otsu_threshold(values: np.ndarray | Sequence[float], bins: int = 256) -> flo
     score = np.zeros_like(denominator)
     valid = denominator > 0
     score[valid] = (mean[-1] * omega[valid] - mean[valid]) ** 2 / denominator[valid]
-    return float(centers[int(np.argmax(score))])
+    return float(low + width * centers[int(np.argmax(score))])
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,7 +98,10 @@ class PacketEstimate1D:
 def estimate_positive_packet_1d(signal: np.ndarray | Sequence[float], *, bins: int = 256) -> PacketEstimate1D:
     """Estimate one positive contrast region by Otsu thresholding."""
 
-    value = np.asarray(signal, dtype=float)
+    raw = np.asarray(signal)
+    if np.iscomplexobj(raw):
+        raise ValidationError("positive contrast estimation requires real values")
+    value = np.asarray(raw, dtype=float)
     if value.ndim != 1 or not value.size:
         raise DimensionError("the estimator requires a nonempty one dimensional signal")
     threshold = otsu_threshold(value, bins=bins)

@@ -322,6 +322,9 @@ def fir_filter(signal: Any, taps: Any, *, mode: FIRMode = "causal") -> np.ndarra
 
     source = _vector(signal, "signal")
     coefficients = _extract_taps(taps)
+    dtype = np.result_type(source.dtype, coefficients.dtype, float)
+    source = source.astype(dtype, copy=False)
+    coefficients = coefficients.astype(dtype, copy=False)
     full = np.convolve(source, coefficients, mode="full")
     return np.real_if_close(_crop(full, source.size, coefficients.size, mode), tol=1000)
 
@@ -350,7 +353,7 @@ class StreamingFIR:
         values = _vector(chunk, "chunk", allow_empty=True)
         if values.size == 0:
             return np.zeros(0, dtype=np.result_type(values.dtype, self.taps.dtype))
-        dtype = np.result_type(values.dtype, self.taps.dtype)
+        dtype = np.result_type(values.dtype, self.taps.dtype, self._history.dtype, float)
         history = self._history.astype(dtype, copy=False)
         combined = np.concatenate((history, values.astype(dtype, copy=False)))
         full = np.convolve(combined, self.taps.astype(dtype, copy=False), mode="full")

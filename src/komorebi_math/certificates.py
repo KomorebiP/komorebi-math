@@ -7,8 +7,10 @@ conditional constructions, heuristics, and planned features visibly distinct.
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass, field
 from enum import StrEnum
+from types import MappingProxyType
 from typing import Any, Generic, TypeVar
 
 import numpy as np
@@ -16,6 +18,18 @@ import numpy as np
 from .exceptions import ValidationError
 
 T = TypeVar("T")
+
+
+def _finite_real(value: Any) -> bool:
+    """Check finite scalar evidence without rounding unbounded integers."""
+    if isinstance(value, (bool, np.bool_)):
+        return False
+    if isinstance(value, (int, np.integer)):
+        return True
+    try:
+        return math.isfinite(value)
+    except (TypeError, ValueError, OverflowError):
+        return False
 
 
 class Exactness(StrEnum):
@@ -49,6 +63,25 @@ class Certificate:
             object.__setattr__(self, "valid", bool(self.valid))
         elif type(self.valid) is not bool:
             raise ValidationError("certificate valid must be a boolean")
+        # The frozen record owns its residuals, so changing a caller's mapping
+        # cannot silently change the evidence under an old true validity flag.
+        object.__setattr__(self, "residuals", MappingProxyType(dict(self.residuals)))
+        object.__setattr__(self, "diagnostics", dict(self.diagnostics))
+        object.__setattr__(self, "assumptions_checked", tuple(self.assumptions_checked))
+        object.__setattr__(self, "assumptions_unchecked", tuple(self.assumptions_unchecked))
+        failures = [
+            f"residual {name!r} must be finite"
+            for name, value in self.residuals.items()
+            if not _finite_real(value)
+        ]
+        if self.tolerance is not None and (
+            not _finite_real(self.tolerance) or self.tolerance < 0
+        ):
+            failures.append("tolerance must be finite and nonnegative")
+        if self.valid and failures:
+            object.__setattr__(self, "valid", False)
+            reason = "; ".join(failures)
+            object.__setattr__(self, "message", f"{self.message}; {reason}" if self.message else reason)
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Certificate):

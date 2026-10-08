@@ -7,6 +7,7 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from .._residuals import finite_tolerance
 from ..certificates import Certificate, Exactness
 from ..exceptions import DimensionError, ValidationError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
@@ -38,8 +39,15 @@ def constraint_closure(
     *,
     tolerance: float = 1e-10,
 ) -> ConstraintClosureReport:
-    """Project every commutator onto the declared complex linear constraint span."""
+    """Project commutators and certify closure of the resolved constraint span.
 
+    Declared-coordinate coefficients and residuals remain diagnostic outputs.
+    Certificate validity uses the norm of the quotient commutator map in a
+    Hilbert--Schmidt orthonormal span basis, so rescaling or mixing generators
+    does not change the represented numerical closure obstruction.
+    """
+
+    tolerance = finite_tolerance(tolerance)
     values = tuple(require_hermitian(value, tolerance=tolerance, name="constraint") for value in constraints)
     if not values:
         raise ValidationError("at least one constraint is required")
@@ -53,23 +61,56 @@ def constraint_closure(
         row: list[np.ndarray] = []
         for right, second in enumerate(values):
             commutator = first @ second - second @ first
+            if not np.all(np.isfinite(commutator)):
+                raise ValidationError("constraint commutators overflowed finite floating-point range")
             solution, *_ = np.linalg.lstsq(basis, commutator.reshape(-1, order="F"), rcond=None)
             reconstructed = (basis @ solution).reshape(shape, order="F")
             residuals[left, right] = np.linalg.norm(commutator - reconstructed, ord=2)
             row.append(solution)
         coefficients.append(tuple(row))
     maximum = float(np.max(residuals))
-    scale = max(1.0, max(float(np.linalg.norm(value, ord=2)) for value in values))
+    left_vectors, singular_values, _ = np.linalg.svd(basis, full_matrices=False)
+    if not np.all(np.isfinite(singular_values)):
+        raise ValidationError("constraint span exceeds finite singular-value range")
+    threshold = (
+        np.finfo(float).eps * max(basis.shape) * float(singular_values[0])
+        if singular_values.size else 0.0
+    )
+    rank = int(np.sum(singular_values > threshold))
+    resolved = left_vectors[:, :rank]
+    quotient_commutators = np.zeros((basis.shape[0], rank * rank), dtype=complex)
+    for left in range(rank):
+        first = resolved[:, left].reshape(shape, order="F")
+        for right in range(rank):
+            second = resolved[:, right].reshape(shape, order="F")
+            commutator = (first @ second - second @ first).reshape(-1, order="F")
+            quotient_commutators[:, left * rank + right] = (
+                commutator - resolved @ (resolved.conj().T @ commutator)
+            )
+    obstruction = float(np.linalg.norm(quotient_commutators, ord=2)) if rank else 0.0
     return ConstraintClosureReport(
         tuple(coefficients),
         residuals,
         maximum,
         Certificate(
-            valid=maximum <= tolerance * scale,
+            valid=obstruction <= tolerance,
             exactness=Exactness.NUMERICAL,
-            residuals={"closure_obstruction": maximum},
-            tolerance=tolerance * scale,
-            assumptions_checked=("finite complex linear constraint span",),
+            residuals={
+                "closure_obstruction": obstruction,
+                "declared_basis_max_residual": maximum,
+            },
+            tolerance=tolerance,
+            assumptions_checked=(
+                "finite complex linear constraint span",
+                "Hilbert Schmidt constraint span resolved by numerical SVD",
+            ),
+            diagnostics={
+                "constraint_span_rank": rank,
+                "constraint_span_rank_threshold": threshold,
+                "constraint_span_singular_values": tuple(float(value) for value in singular_values),
+                "obstruction_norm": "spectral norm of the quotient commutator map",
+                "declared_basis_max_residual_is_invariant": False,
+            },
             theorem_id="PSC-VII-T64",
             message="constraint commutators close in the declared span",
         ),

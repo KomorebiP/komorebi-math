@@ -23,6 +23,18 @@ def _positive_integer(value: int, name: str) -> int:
     return int(value)
 
 
+def _finite_norm(value: np.ndarray) -> float:
+    """Evaluate a Euclidean norm without squaring the original scale."""
+
+    magnitude = np.abs(value)
+    largest = float(np.max(magnitude))
+    if not np.isfinite(largest):
+        return float("inf")
+    if largest == 0:
+        return 0.0
+    return largest * float(np.linalg.norm(value / largest))
+
+
 def _pad(array: np.ndarray, left: int, right: int, boundary: BoundaryMode) -> np.ndarray:
     if left == 0 and right == 0:
         return array.copy()
@@ -226,12 +238,16 @@ class STFTResult:
         source = np.asarray(signal)
         if source.ndim != 1 or source.size != self.original_length:
             raise DimensionError("roundtrip source must match the STFT original length")
+        if not np.all(np.isfinite(source)):
+            raise ValidationError("roundtrip source entries must be finite")
+        source = np.asarray(source, dtype=np.result_type(source.dtype, float))
         reconstructed = self.inverse(tolerance=tolerance)
         if not reconstructed.valid:
             return reconstructed.certificate
-        residual = float(np.linalg.norm(reconstructed.value - source))
-        scale = max(1.0, float(np.linalg.norm(source)))
-        valid = residual <= tolerance * scale
+        with np.errstate(over="ignore", invalid="ignore"):
+            residual = _finite_norm(reconstructed.value - source)
+            scale = max(1.0, _finite_norm(source))
+        valid = bool(np.isfinite(residual) and np.isfinite(scale) and residual <= tolerance * scale)
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,
@@ -272,6 +288,8 @@ def stft(
     value = np.asarray(signal)
     if value.ndim != 1 or value.size == 0:
         raise DimensionError("STFT requires a nonempty one dimensional signal")
+    if not np.all(np.isfinite(value)):
+        raise ValidationError("STFT signal entries must be finite")
     rate = float(sample_rate)
     if not np.isfinite(rate) or rate <= 0:
         raise ValidationError("sample_rate must be positive and finite")
@@ -282,10 +300,10 @@ def stft(
         raise ValidationError("fft_length cannot be smaller than frame_length")
     if detrend not in ("none", "constant"):
         raise ValidationError("detrend must be 'none' or 'constant'")
-    one_sided = bool(np.isrealobj(value)) if onesided is None else bool(onesided)
-    if one_sided and not np.isrealobj(value):
-        raise ValidationError("one-sided STFT is only defined here for real input")
     analysis_window = np.asarray(get_window(window, length, periodic=True))
+    one_sided = bool(np.isrealobj(value) and np.isrealobj(analysis_window)) if onesided is None else bool(onesided)
+    if one_sided and (not np.isrealobj(value) or not np.isrealobj(analysis_window)):
+        raise ValidationError("one-sided STFT requires a real signal and analysis window")
     batch = frame_signal(
         value,
         length,
@@ -348,12 +366,18 @@ def istft(
         raise AssumptionError("constant detrending discards frame means and is not invertible")
     if tolerance < 0 or not np.isfinite(tolerance):
         raise ValidationError("tolerance must be finite and nonnegative")
+    if not np.all(np.isfinite(transform.coefficients)):
+        raise ValidationError("STFT coefficients must be finite")
+    if not np.all(np.isfinite(transform.analysis_window)):
+        raise ValidationError("analysis window entries must be finite")
     if synthesis_window is None:
         synthesis = np.conjugate(np.asarray(transform.analysis_window))
     else:
         synthesis = np.asarray(synthesis_window)
         if synthesis.ndim != 1 or synthesis.size != transform.frame_length:
             raise DimensionError("synthesis window length must equal frame_length")
+    if not np.all(np.isfinite(synthesis)):
+        raise ValidationError("synthesis window entries must be finite")
     if transform.onesided:
         frames = np.fft.irfft(transform.coefficients, n=transform.fft_length, axis=1)
     else:
@@ -376,13 +400,22 @@ def istft(
     if stop > represented_length:
         raise DimensionError("STFT frames do not cover the requested inverse range")
     local_denominator = denominator[start:stop]
-    scale = max(1.0, float(np.max(np.abs(local_denominator))))
+    scale = float(np.max(np.abs(local_denominator)))
     minimum = float(np.min(np.abs(local_denominator))) if local_denominator.size else 0.0
-    valid = minimum > tolerance * scale
+    valid = bool(
+        np.all(np.isfinite(numerator[start:stop]))
+        and np.all(np.isfinite(local_denominator))
+        and minimum > tolerance * scale
+    )
     if valid:
         reconstructed = numerator[start:stop] / local_denominator
         reconstruction_identity = float(
             np.max(np.abs(reconstructed * local_denominator - numerator[start:stop]))
+        )
+        valid = bool(
+            np.all(np.isfinite(reconstructed))
+            and np.isfinite(reconstruction_identity)
+            and reconstruction_identity <= tolerance * max(1.0, float(np.max(np.abs(numerator[start:stop]))))
         )
     else:
         reconstructed = np.zeros(requested, dtype=numerator.dtype)
@@ -456,13 +489,15 @@ def spectrogram(
             values = _double_onesided(values, transform.fft_length)
     elif scaling == "density":
         denominator = transform.sample_rate * float(np.sum(np.abs(transform.analysis_window) ** 2))
+        if not np.isfinite(denominator) or denominator <= 0:
+            raise ValidationError("density scaling requires positive finite window energy")
         values = magnitude**2 / denominator
         if transform.onesided:
             values = _double_onesided(values, transform.fft_length)
     elif scaling == "spectrum":
         coherent = abs(complex(np.sum(transform.analysis_window))) ** 2
-        if coherent <= np.finfo(float).eps:
-            raise ValidationError("spectrum scaling requires nonzero window coherent gain")
+        if not np.isfinite(coherent) or coherent <= 0:
+            raise ValidationError("spectrum scaling requires positive finite squared coherent gain")
         values = magnitude**2 / coherent
         if transform.onesided:
             values = _double_onesided(values, transform.fft_length)

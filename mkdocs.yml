@@ -5,6 +5,14 @@ docs_dir: docs
 nav:
   - Home: index.md
   - GitHub Readiness: GITHUB_READINESS.md
+  - Deep Audit and New Machinery: DEEP_AUDIT_2026_10_08.md
+  - Quadratic Form Tails: quadratic_forms.md
+  - Sequence and OEIS Tools: sequences_oeis.md
+  - Special Functions: special_functions.md
+  - Fourier Jump Recovery: fourier_recovery.md
+  - Finite Join Quotients: finite_join_semilattice.md
+  - Fixed Dirac Modes: dirac_modes.md
+  - Quantum and Memory Contracts: QUANTUM_MEMORY_NUMERICAL_CONTRACTS.md
   - Public API: PUBLIC_API.md
   - Block 21 Public Reproducibility: BLOCK_21_PUBLIC_REPRODUCIBILITY.md
   - Block 20 Typed Expressions: BLOCK_20_RELEASE.md

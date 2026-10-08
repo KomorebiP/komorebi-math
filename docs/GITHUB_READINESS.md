@@ -36,6 +36,21 @@ These results apply to the named commit. Any subsequent change needs the corresp
 
 ## Install and verify
 
+### Deeper audit and machinery integration
+
+The [deeper audit](DEEP_AUDIT_2026_10_08.md) extends the readiness repairs with
+independent mathematical controls and reusable machinery from the newer K-COS,
+OEIS, special-function, signal and stratified releases. Its source provenance,
+reproduced counterexamples, supported domains and replay commands are recorded
+there. The installed-artifact profile includes all new regression files.
+
+The preceding dependency-readiness revision
+`a362d4722bbabcd9486ccc039b77dd413338e3cf` passed all nine jobs in
+[run 37822650674](https://github.com/KomorebiP/komorebi-math/actions/runs/37822650674).
+That result predates the deeper implementation changes. Each expanded revision
+needs its own source, minimum-dependency, documentation and distribution checks.
+The current work is reviewable in [pull request 1](https://github.com/KomorebiP/komorebi-math/pull/1).
+
 ### Readiness repairs prepared on 2026-10-08
 
 The next repository change corrects dependency capabilities that the

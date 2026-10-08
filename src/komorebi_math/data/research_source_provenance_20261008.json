@@ -1,0 +1,45 @@
+{
+  "schema": "komorebi-math.research-source-provenance",
+  "date": "2026-10-08",
+  "starting_pr_commit": "a362d4722bbabcd9486ccc039b77dd413338e3cf",
+  "sources": [
+    {
+      "archive": "Komorebi_Quadratic_Form_KCOS_Final_2026-10-07.zip",
+      "sha256": "4ea92a13ad1fc20c02d01aa7f9dcd12aad04ee8e436b94c25936d93b092c1629"
+    },
+    {
+      "archive": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "060b5559c14b3d9c02f2f028d3efea78663b6763ff0b23dacef6da6f58942a42"
+    },
+    {
+      "archive": "Komorebi_OEIS_v1.0.0_Final.zip",
+      "sha256": "914675e73d7af3d5c5fa7063bb96d5b250b23793c26d08154d5d05899b74d8ca"
+    },
+    {
+      "archive": "Komorebi_Special_Functions_Expanded_Visual_Guide_v0.4_Source.zip",
+      "sha256": "df775d10c1940bf333848025379c3303fc136d51e417b4a5768cebdce73a965a"
+    },
+    {
+      "archive": "Komorebi_Signal_Reconstruction_Final_Edition_2026-10-06.zip",
+      "sha256": "9be7d654bede8cf880cb31ff7d7e5405051c19796c48e9a39cc2fc79f0be1857"
+    },
+    {
+      "archive": "Komorebi_Stratified_Blocks17_26_2026-09-24.zip",
+      "sha256": "956e55188e658bea7dc1b72075595d76f99357f24c7df5390181d741753eade0"
+    },
+    {
+      "archive": "Komorebi_H12_Cubic_Divisor_Final_2026-10-07.zip",
+      "sha256": "ffdd65e42be4cd269472aade83d05239bf70c53081d35e547459e0799ab105a8"
+    },
+    {
+      "archive": "Komorebi_Physics_Complete_Publication_Set_2026-10-06.zip",
+      "sha256": "0cbc6679f2aa4ea6b88c033a5a3bff353a5dfe1fe356e41175dbf06124aa5450"
+    }
+  ],
+  "github_source": {
+    "repository": "KomorebiP/Operation-KOMOREBI",
+    "commit": "5c2a0084db5c5441c88a15d31dc3711fbb967619",
+    "selected_family": "papers/quadratic-form-kcos/engine"
+  },
+  "scope": "Selected reusable machinery only; original archive hashes establish source identity, not correctness of every contained theorem or experiment."
+}
