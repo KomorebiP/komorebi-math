@@ -10,7 +10,7 @@ from typing import Any
 from ..certificates import Certificate, Exactness
 from ..exceptions import BackendUnavailableError, DimensionError, ValidationError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
-from .._number_theory import require_prime
+from .._number_theory import require_integer, require_prime
 
 
 def _sympy() -> Any:
@@ -62,15 +62,82 @@ class SmithDecomposition:
         return len(self.invariant_factors)
 
     def certificate(self) -> Certificate:
-        residual = self.left * self.matrix * self.right - self.diagonal
-        valid = residual == _sympy().zeros(*self.diagonal.shape)
+        """Independently check integrality, unimodularity, and Smith form."""
+
+        sp = _sympy()
+        checks = {
+            "matrix_shapes": False,
+            "integer_entries": False,
+            "smith_identity": False,
+            "unimodular_transforms": False,
+            "diagonal_form": False,
+            "diagonal_divisibility": False,
+            "invariant_factors": False,
+        }
+        diagnostics: dict[str, Any] = {"checks": checks}
+        try:
+            matrix, diagonal, left, right = (
+                sp.Matrix(value) for value in (self.matrix, self.diagonal, self.left, self.right)
+            )
+        except (TypeError, ValueError) as exc:
+            diagnostics["input_error"] = f"{type(exc).__name__}: {exc}"
+        else:
+            rows, columns = matrix.shape
+            checks["matrix_shapes"] = (
+                diagonal.shape == matrix.shape
+                and left.shape == (rows, rows)
+                and right.shape == (columns, columns)
+            )
+            checks["integer_entries"] = all(
+                getattr(entry, "is_Integer", None) is True
+                for value in (matrix, diagonal, left, right)
+                for entry in value
+            )
+            if checks["matrix_shapes"] and checks["integer_entries"]:
+                checks["smith_identity"] = left * matrix * right == diagonal
+                left_determinant, right_determinant = left.det(), right.det()
+                diagnostics["left_determinant"] = str(left_determinant)
+                diagnostics["right_determinant"] = str(right_determinant)
+                checks["unimodular_transforms"] = (
+                    left_determinant in (-1, 1) and right_determinant in (-1, 1)
+                )
+                checks["diagonal_form"] = all(
+                    diagonal[row, column] == 0
+                    for row in range(rows)
+                    for column in range(columns)
+                    if row != column
+                )
+                if checks["diagonal_form"]:
+                    entries = tuple(abs(int(diagonal[index, index])) for index in range(min(rows, columns)))
+                    factors = tuple(entry for entry in entries if entry != 0)
+                    # Nonzero entries precede zeros, and each divides its successor.
+                    checks["diagonal_divisibility"] = (
+                        entries == factors + (0,) * (len(entries) - len(factors))
+                        and all(b % a == 0 for a, b in zip(factors, factors[1:], strict=False))
+                    )
+                    try:
+                        recorded_factors = tuple(
+                            require_integer(value, name="invariant factor") for value in self.invariant_factors
+                        )
+                    except (TypeError, ValidationError):
+                        recorded_factors = None
+                    checks["invariant_factors"] = recorded_factors == factors
+                    diagnostics["diagonal_invariant_factors"] = factors
+        valid = all(checks.values())
+        failed = tuple(name for name, passed in checks.items() if not passed)
+        diagnostics["failed_obligations"] = failed
         return Certificate(
-            valid=bool(valid),
+            valid=valid,
             exactness=Exactness.EXACT,
-            residuals={"smith_identity": 0.0 if valid else float(residual.norm())},
-            assumptions_checked=("integer matrix", "unimodular transforms", "diagonal divisibility"),
+            # These are exact predicate failure counts, not rounded norms.
+            residuals={
+                "smith_identity": float(not checks["smith_identity"]),
+                "failed_obligations": float(len(failed)),
+            },
+            assumptions_checked=tuple(name for name, passed in checks.items() if passed),
+            diagnostics=diagnostics,
             theorem_id="PSC-II-SNF",
-            message="valid Smith decomposition" if valid else "Smith decomposition identity failed",
+            message="valid Smith decomposition" if valid else "Smith decomposition obligations failed: " + ", ".join(failed),
         )
 
 
@@ -90,7 +157,13 @@ def smith_decomposition(matrix: Any) -> SmithDecomposition:
     sp = _sympy()
     from sympy.polys.domains import ZZ
     from sympy.polys.matrices import DomainMatrix
-    from sympy.polys.matrices.normalforms import smith_normal_decomp
+    try:
+        from sympy.polys.matrices.normalforms import smith_normal_decomp
+    except ImportError as exc:
+        raise BackendUnavailableError(
+            "Smith decomposition requires SymPy >=1.14 with smith_normal_decomp; "
+            "install or upgrade the 'exact' optional dependency"
+        ) from exc
 
     value = sp.Matrix(matrix)
     if any(not entry.is_Integer for entry in value):

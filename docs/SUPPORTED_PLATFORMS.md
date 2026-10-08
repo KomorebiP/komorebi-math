@@ -8,6 +8,12 @@ The machine-readable source of truth is `src/komorebi_math/data/support_matrix_1
 - NumPy 1.26 or newer
 - no mandatory JAX, PyTorch, CuPy, SciPy, SymPy, or LaTeX installation
 
+The optional `exact` and `all` extras require SymPy 1.14 or newer. Smith
+decomposition uses the transformation-matrix API introduced in that line.
+NumPy 1.26 remains supported: the CPU CI workflow also exercises NumPy 1.26.4,
+SymPy 1.14.0, SciPy 1.11.4, and mpmath 1.3.0 on Python 3.11. This checks one
+minimum dependency combination rather than every permitted version combination.
+
 Every declared Python minor must pass the base installed-wheel contract before the final 1.0 release. Declared metadata is not treated as executed evidence.
 
 ## Optional backends

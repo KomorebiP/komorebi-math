@@ -1,3 +1,14 @@
+# Changelog
+
+## GitHub readiness repairs, 2026-10-08
+
+- Require SymPy 1.14 for the exact extra, matching the Smith decomposition API in use. Older manual installations receive explicit dependency guidance.
+- Preserve NumPy 1.26 support in moving leakage quadrature and both canonical filter-bank pseudoinverses.
+- Keep NumPy scalar defaults in API snapshots consistent across NumPy 1.26 and 2 without changing callable signatures or committed manifests.
+- Check every claimed Smith certificate obligation, including integral entries, compatible shapes, unimodular transforms, diagonal divisibility, and invariant factors.
+- Add adversarial certificate and dependency regressions to source and installed-artifact qualification, plus a minimum CPU dependency CI job.
+- Correct the release instructions and distinguish current successful CI from historical preparation failures. The package version, research beta status, stable exports, and existing license are preserved.
+
 ## R4 Block 17 quantum Kraus/error-span gauge repair
 
 - Audit Kraus/channel semantics against decomposition-sensitive quantum diagnostics.
@@ -5,8 +16,6 @@
 - Retain the old maximum declared-basis residual only as a diagnostic because it is not invariant under harmless error-label mixing.
 - Add adversarial default-tolerance, uniform-rescaling, random error-span, channel-gauge, and recovery-gauge tests.
 - Preserve the frozen aggregate API; this is a semantic correctness repair inside the research-tier quantum subsystem.
-
-# Changelog
 
 ## R4 Block 16 development checkpoint
 

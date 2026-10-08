@@ -1,8 +1,8 @@
-> **Current development audit:** R4 Block 7 (`4b7`) repairs portable-certificate persistence so loaded validity is historical evidence requiring producer-specific revalidation. This is not final R4. See `REPAIR_BLOCK7.md` and `KNOWN_ISSUES_BLOCK7.md`.
-
 # Komorebi Math
 
-> **Release status:** `1.0.0b4` is the Block 20 research beta. The typed finite expression calculus is additive at the research tier; the 131-symbol stable namespace remains frozen.
+> **Current checkpoint:** `1.0.0b4-repair-r4-block21` (`4b21`) is the R4 Block 21 certificate-consistency research beta. The 131-symbol stable namespace remains frozen. See [GitHub readiness](docs/GITHUB_READINESS.md) for the qualified commit, installation steps, and release boundaries.
+
+The [CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed all eight jobs on commit `50447a253c2d00d4a7a4108440e090844b7148b2`: full source tests on Linux and Windows with Python 3.11, 3.12, and 3.13, strict documentation, and isolated wheel and source-distribution checks. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
 
 
 `komorebi-math` is the executable Python package for the Komorebi Math research program. It implements the mathematical constructions as reusable objects, functions, certificates, and command line checks. The installed wheel does not contain article PDFs, LaTeX manuscripts, or paper figures.
@@ -37,32 +37,46 @@ Block 4 uses a signal first finite convolution convention. The `same` mode alway
 
 ## Installation
 
-Install the wheel directly:
+Use Python 3.11, 3.12, or 3.13. From the root of an authorized checkout, install the base package:
 
-```powershell
-python -m pip install --force-reinstall .\release\dist\komorebi_math-1.0.0b4-4b7-py3-none-any.whl
+```bash
+python -m pip install .
+python -m komorebi_math verify stable
 ```
 
-Install exact integer and rational functionality with SymPy:
+Select optional dependencies from the same checkout:
 
-```powershell
-python -m pip install "komorebi-math[exact]"
+```bash
+python -m pip install ".[exact]"
+python -m pip install ".[scientific]"
 ```
 
-Install optional SciPy and high precision analytic dependencies:
+The `exact` extra adds SymPy 1.14 or newer for symbolic functionality. Standard-library rational, modular, carry, and Cartier operations are already included in the base package. The `scientific` extra adds SciPy and mpmath.
 
-```powershell
-python -m pip install "komorebi-math[scientific]"
+For development and source qualification:
+
+```bash
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs
+python -m pytest -q --tb=short tests
 ```
 
-Install one automatic differentiation adapter only when needed:
+Build the current wheel and source distribution with the release builder:
 
-```powershell
-python -m pip install "komorebi-math[jax]"
-python -m pip install "komorebi-math[torch]"
+```bash
+python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
+python -m pip install --force-reinstall release/dist/komorebi_math-1.0.0b4-4b21-py3-none-any.whl
+```
+
+Install one automatic differentiation adapter when needed:
+
+```bash
+python -m pip install ".[jax]"
+python -m pip install ".[torch]"
 ```
 
 CuPy is detected dynamically and is not installed by the wheel because the correct package depends on the local CUDA platform.
+
+These commands install local source or a local artifact. The repository has no tagged GitHub Release as of the recorded readiness review, and this guide does not assume a PyPI publication.
 
 
 ### Optional native-backend preflight
@@ -87,7 +101,7 @@ import komorebi_math.api.v1 as api_v1
 assert stable.__all__ == v1.__all__ == api_v1.__all__
 ```
 
-The frozen stable layer and Block 17 verify eight independent contracts:
+The frozen stable layer and Block 17 check the following contract categories:
 
 1. exported names, kinds, and reflected signatures
 2. committed mathematical behavior across the central construction pipeline

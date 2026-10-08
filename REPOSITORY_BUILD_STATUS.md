@@ -1,8 +1,26 @@
 # Repository preparation status
 
+## Current GitHub qualification
+
+Reviewed on 2026-10-08 against `KomorebiP/komorebi-math` main commit `50447a253c2d00d4a7a4108440e090844b7148b2`, Git tree `faf5d17d4ab43090ab02bb4b2b53d2d5b87f2081`. The source identity remains `1.0.0b4-repair-r4-block21` under the existing private evaluation license.
+
+The [CPU release qualification workflow](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) succeeded on 2026-10-07. All eight jobs passed:
+
+- full source tests and contract checks on Linux and Windows, each with Python 3.11, 3.12, and 3.13
+- strict MkDocs documentation and the documentation-required publication gate
+- reproducible distributions, source parity, isolated wheel and source-distribution regressions, and clean installed-wheel contract checks
+
+The Linux Python 3.13 source job reported 1,725 passed, 7 skipped, and 4 warnings. Its skipped tests require absent JAX, PyTorch, or LaTeX installations. CUDA qualification remains separate. The source matrix includes the exact, scientific, and YAML extras, while clean base-wheel checks in this run use Linux Python 3.13.
+
+This GitHub evidence supersedes the local-environment limitations recorded below for source tests, documentation, CPU platform coverage, and installed distributions. The original preparation results remain historical evidence. See [GitHub readiness](docs/GITHUB_READINESS.md) for the artifact identity, precise scope, current installation instructions, and outstanding license and publication decisions. No GitHub Release was listed at review, and the repository remains private.
+
+## Historical local preparation
+
+The remainder of this document records the preparation environment on 2026-10-07 before the successful GitHub CI run. References below to missing pytest, skipped MkDocs, pending Windows execution, or unresolved repository URLs describe that earlier local preparation and do not describe the currently qualified GitHub commit.
+
 Prepared on 2026-10-07 from the selected Block 21 certificate-consistency checkpoint. This is a repository candidate. It has not been published, and its existing license has not been changed.
 
-## Source identity
+### Original source identity
 
 - Source archive: `Komorebi_Math_R4_Block21_Certificate_Consistency_2026-09-24.zip`
 - Archive SHA-256: `324632eb1fcd559469571173c6bbcfc840b6214786ef58f5a8205f8c2f97cf71`
@@ -15,7 +33,7 @@ This identity comes from the archive contents and `RELEASE_ID.json`. Selection o
 
 The repository preserves substantive source, tests, documentation, historical qualification evidence, compatibility predecessor fixtures, workflows, and license files. Python caches, the current wheel and source distribution, and an unreferenced Block 9 distribution backup were excluded from the repository candidate. All excluded distribution bytes and the five sibling evidence files remain in the preparation handoff with SHA-256 provenance. Shell entry points have executable POSIX modes. No mathematical implementation was changed.
 
-## Fresh validation
+### Original local validation
 
 Validation used Linux x86-64, CPython 3.12.14, and NumPy 2.3.5.
 
@@ -41,7 +59,7 @@ The available producer probes call the original probe functions without modifyin
 
 Historical reports under `release` and `verification` retain their historical scope and dates. In particular, the original final Block 21 handoff explicitly says the complete source and full installed-runtime suites were not run. The gate's platform-evidence check reviews those records; it does not constitute fresh Windows or CUDA execution.
 
-## Publication blockers and remaining gates
+### Original publication blockers and remaining gates
 
 - **License:** `LICENSE.md` grants private evaluation and reproducibility testing only, reserves all rights, and prohibits redistribution without separate written permission. `pyproject.toml` uses `LicenseRef-Proprietary`, and `RELEASE_ID.json` preserves those terms. An explicit replacement license is needed before representing this package as open source.
 - **Repository identity:** `CITATION.cff`, `pyproject.toml`, and `mkdocs.yml` reference `github.com/KomorebiP/komorebi-math`. These URLs need to match the actual connected owner and repository. No destination was assumed or written remotely.

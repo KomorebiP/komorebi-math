@@ -149,6 +149,8 @@ class PeriodicFilterBank:
         """Return the Moore Penrose canonical dual synthesis matrix."""
 
         analysis = self.analysis_matrix(length)
+        if rcond is None:
+            return np.linalg.pinv(analysis)
         return np.linalg.pinv(analysis, rcond=rcond)
 
     def reconstruction_error_bound(self, length: int) -> float:
@@ -364,7 +366,10 @@ class FiniteFilterBank:
     def canonical_dual(self, *, rcond: float | None = None) -> "FiniteFilterBank":
         if np.linalg.matrix_rank(self.analysis_matrix) < self.input_dimension:
             raise ValidationError("canonical dual requires a full column rank analysis matrix")
-        synthesis = np.linalg.pinv(self.analysis_matrix, rcond=rcond)
+        if rcond is None:
+            synthesis = np.linalg.pinv(self.analysis_matrix)
+        else:
+            synthesis = np.linalg.pinv(self.analysis_matrix, rcond=rcond)
         return FiniteFilterBank(self.analysis_matrix, synthesis)
 
     def perturbation_bound(self, analysis_error: Any, synthesis_error: Any) -> float:

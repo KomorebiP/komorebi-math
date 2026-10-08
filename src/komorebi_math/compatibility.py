@@ -22,6 +22,8 @@ from importlib import import_module
 from pathlib import Path, PurePath
 from typing import Any, ParamSpec, TypeVar
 
+import numpy as np
+
 from ._version import __version__
 from .certificates import Certificate, Exactness
 from .exceptions import ValidationError
@@ -251,6 +253,14 @@ def _public_kind(value: Any) -> str:
     return "data"
 
 
+@dataclass(frozen=True, slots=True)
+class _SignatureDefault:
+    text: str
+
+    def __repr__(self) -> str:
+        return self.text
+
+
 def _public_signature(value: Any) -> str | None:
     if not (callable(value) or inspect.isclass(value)):
         return None
@@ -279,7 +289,19 @@ def _public_signature(value: Any) -> str | None:
     if isinstance(value, types.GenericAlias):
         return "(*args, **kwargs)"
     try:
-        return str(inspect.signature(value))
+        signature = inspect.signature(value)
+        # NumPy 2 added the scalar type to float64 repr. Keep the committed
+        # representation on NumPy 1.26 without changing the callable default
+        # or concealing actual changes to its type or value.
+        parameters = [
+            parameter.replace(
+                default=_SignatureDefault(f"np.float64({float(parameter.default)!r})")
+            )
+            if type(parameter.default) is np.float64
+            else parameter
+            for parameter in signature.parameters.values()
+        ]
+        return str(signature.replace(parameters=parameters))
     except (TypeError, ValueError):
         return None
 

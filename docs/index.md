@@ -1,9 +1,13 @@
 # Komorebi Math documentation
 
-Version `1.0.0b4` contains twenty numbered finite execution and stabilization blocks with explicit exact, numerical, conditional, API, semantic, persistence, and release certificates. The 131-symbol stable namespace was frozen in `1.0.0b1`; Blocks 18 through 20 remain research-only additions.
+The current checkpoint is `1.0.0b4-repair-r4-block21`, the R4 Block 21 certificate-consistency research beta. It combines twenty finite execution and stabilization blocks with the Block 21 reproducibility gate and subsequent R4 repairs. Exact, numerical, conditional, API, semantic, persistence, and release certificates retain their declared scopes. The 131-symbol stable namespace was frozen in `1.0.0b1`; Blocks 18 through 20 remain research-only additions.
+
+The [GitHub CPU qualification run](https://github.com/KomorebiP/komorebi-math/actions/runs/37698654422) passed the six Linux and Windows source-test jobs for Python 3.11 through 3.13, strict documentation, and distribution qualification. [GitHub readiness](GITHUB_READINESS.md) records the exact commit and the remaining public-release decisions.
 
 ## Start here
 
+* [GitHub readiness and installation](GITHUB_READINESS.md)
+* [Block 21 public reproducibility](BLOCK_21_PUBLIC_REPRODUCIBILITY.md)
 * [Block 20 typed finite expression release](BLOCK_20_RELEASE.md)
 * [Typed finite expression calculus](TYPED_FINITE_EXPRESSION_CALCULUS.md)
 * [Block 20 worked example](BLOCK_20_WORKED_EXAMPLE.md)
@@ -48,6 +52,6 @@ Version `1.0.0b4` contains twenty numbered finite execution and stabilization bl
 
 ## Validation
 
-The source distribution includes focused installed suites and independent deep-audit scripts. Block 20 retains the frozen stable, beta, semantic, and 51-codec contracts while adding a typed expression verifier, fixture-free adversarial runner, and an independent 15-check exact-mathematics verifier.
+The source distribution includes focused installed suites and independent deep-audit scripts. The qualified commit passed its complete source suite in every declared CPU matrix job. Block 21 adds source, documentation, capability-tour, contract, and distribution checks. Block 20 retains the frozen stable, beta, semantic, and 51-codec contracts while adding a typed expression verifier, fixture-free adversarial runner, and an independent 15-check exact-mathematics verifier.
 
 Rigorous Simpson certification is limited to a provenance-matched `ExactPolynomial` on the same exact rational interval, with exact rational evaluation, summation, and bound arithmetic. Arbitrary floating callables remain estimated or conditional. Platform and device paths are reported as passed only when they were actually executed.

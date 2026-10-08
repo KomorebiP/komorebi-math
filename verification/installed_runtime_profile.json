@@ -1,6 +1,6 @@
 {
   "schema": "komorebi-math.installed-runtime-profile",
-  "name": "repair-r3-mathematics-and-hardening-runtime",
+  "name": "github-readiness-mathematics-and-hardening-runtime",
   "scope": "Named finite mathematics, numerical and serialization tests. Repository-layout, packaging, GPU, optional autodiff and document-rendering tests are not in this installed profile.",
   "test_files": [
     "test_algebra_quotients.py",
@@ -64,6 +64,10 @@
     "test_lifting.py",
     "test_graphs.py",
     "test_holonomy.py",
-    "test_repair_r3_hardening.py"
+    "test_repair_r3_hardening.py",
+    "test_minimum_dependency_capabilities.py",
+    "test_filterbank_pseudoinverse_compatibility.py",
+    "test_numpy_signature_compatibility.py",
+    "test_smith_certificate_soundness.py"
   ]
 }

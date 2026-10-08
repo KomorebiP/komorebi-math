@@ -118,7 +118,13 @@ def moving_packet_leakage_bound(
         ],
         dtype=float,
     )
-    value = float(np.trapezoid(norms, times))
+    trapezoid = getattr(np, "trapezoid", None)
+    if trapezoid is None:
+        # NumPy 1.26 is supported. This is the same composite trapezoid
+        # formula, without relying on the API introduced in NumPy 2.0.
+        value = float(np.sum(np.diff(times) * (norms[1:] + norms[:-1]) / 2.0))
+    else:
+        value = float(trapezoid(norms, times))
     return ComputationResult(
         value,
         Certificate(
