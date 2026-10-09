@@ -92,11 +92,13 @@ def test_actual_git_revision_cleanliness_and_generated_files(candidate):
 
 def test_offline_verification_checks_content_without_claiming_git_authentication(candidate):
     root, path, binding, _ = candidate
-    shutil.rmtree(root / ".git")
-    assert ce.candidate_identity(root, path)["release_binding"] == binding
+    offline_root = root.with_name("offline-source")
+    shutil.copytree(root, offline_root, ignore=shutil.ignore_patterns(".git"))
+    assert not (offline_root / ".git").exists()
+    assert ce.candidate_identity(offline_root, path)["release_binding"] == binding
     binding["source_sha256"] = "f" * 64
     with pytest.raises(ValueError, match="stale"):
-        ce.verify_candidate(root, path)
+        ce.verify_candidate(offline_root, path)
 
 
 def test_untracked_source_cannot_claim_clean_revision(candidate):
