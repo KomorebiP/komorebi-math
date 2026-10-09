@@ -51,12 +51,22 @@ python -m komorebi_math release readiness --final
 ```
 
 The final forms deliberately fail when any declared platform lacks a
-current-version, digest-checked execution record. Beta readiness may use an
-authorized predecessor record through the frozen upgrade contract; final
-readiness may not. Current CPU CI and the embedded evidence registry are
-separate records. Passing CI does not update the registry automatically. See
+current-version, digest-checked execution record. Here, "current" means the
+record's package version matches the installed version. The digest checks the
+record's source JSON, not a Git commit or the current package contents. The
+embedded Linux record reports 1,138 tests from an earlier `1.0.0b4` checkpoint;
+it does not qualify subsequent repairs. Beta readiness may use an authorized
+predecessor record through the frozen upgrade contract; final readiness may
+not. Revision-specific CPU CI and the embedded evidence registry are separate
+records. Passing CI does not update the registry automatically. See
 [GitHub readiness](GITHUB_READINESS.md) for the tested revisions and
 [beta to release candidate](BETA_TO_RC.md) for the remaining registry boundary.
+
+`--final` does not request GPU execution or check tag cleanliness. On the CUDA
+qualification host, use `release readiness --final --require-gpu` to require
+both the platform-evidence and hardware checks. The complete release policy
+also requires the artifact and source-revision checks in the
+[release process](RELEASE_PROCESS.md).
 
 ## Distribution and handoff reproducibility
 
@@ -69,9 +79,12 @@ publish to PyPI, create a GitHub release, or create an authenticated tag.
 ## CUDA gate
 
 ```powershell
-.\Run_GPU_Validation.ps1 -Python "$env:CONDA_PREFIX\python.exe"
+.\Run_GPU_Validation.ps1 -Python "$env:CONDA_PREFIX\python.exe" -Output release\CURRENT_GPU_QUALIFICATION.json
 ```
 
 A missing GPU does not invalidate the base NumPy wheel. It invalidates only a
-claim that explicitly requires CUDA qualification. Block 16 launchers remain
-in the repository solely as historical `0.16.0a2` reproduction paths.
+claim that explicitly requires CUDA qualification. This generic wrapper checks
+the package installed for the chosen interpreter. Its default output name
+contains `BLOCK16` for compatibility; the explicit path above avoids confusing
+a new run with a historical report. Block 16 source and distribution launchers
+remain historical `0.16.0a2` reproduction paths.

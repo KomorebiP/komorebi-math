@@ -6,16 +6,20 @@ Reviewed on 2026-10-09. The current Python library is a qualified research beta 
 
 The subsequent [9 October closeout](RELEASE_CLOSEOUT_2026_10_09.md) adds
 contract repairs, stricter qualification tools, and offline equation rendering.
-Its final revision is identified by the latest PR checks; the runs below remain
-evidence for the explicitly named earlier revision.
+Its local qualification was saved at commit
+`4a6473723af8679cb4882858ee21c6b995704dd5`. No new GitHub CI run for that commit
+has been established in this review, and the PR still reports the earlier head.
+The successful runs below remain evidence only for their named revision.
 
 Revision `46267f52513c17eba0f599edbdbed896a8adcfd3` passed all ten jobs in
 [push run 37873314805](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805)
 and all ten jobs in
 [pull-request run 37873317952](https://github.com/KomorebiP/komorebi-math/actions/runs/37873317952).
-The matrix covers Linux and Windows Python 3.11–3.13, minimum CPU
-dependencies, strict documentation, isolated installed artifacts, and a
-separate Linux CPU JAX/PyTorch campaign. The candidate remains reviewable in
+The editable-source matrix covers Linux and Windows Python 3.11–3.13. Separate
+jobs cover minimum CPU dependencies, strict documentation, isolated installed
+artifacts on Linux Python 3.13, and Linux CPU JAX/PyTorch. Clean installed
+artifacts have not been qualified across that whole six-way matrix. The
+candidate remains reviewable in
 [pull request 1](https://github.com/KomorebiP/komorebi-math/pull/1).
 
 The [stress audit](STRESS_AUDIT_2026_10_08.md) records the reproduced defects,

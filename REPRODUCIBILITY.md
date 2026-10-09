@@ -60,11 +60,18 @@ Code blocks remain literal code.
 ```bash
 python -m mkdocs build --strict
 python verification/check_math_docs.py --site-dir site --output release/MATH_DOCS_CHECK.json
+python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/MANUAL_EXAMPLES.json
 ```
 
 This check verifies math preservation, code exclusion, local asset references,
 and the copied asset hashes. It does not replace browser rendering checks or
 validate the mathematical assertions themselves.
+
+The example profile selects 64 standalone Python blocks across the README and
+current reference guides, including four API import smoke blocks. It records
+16 contextual/signature fragments and one LaTeX-dependent PDF example as explicit
+exclusions. Changing a guide's Python-fence count requires reviewing the profile.
+Without `--profile`, the checker retains the 16-example reader-guide selection.
 
 ## Evidence outputs
 

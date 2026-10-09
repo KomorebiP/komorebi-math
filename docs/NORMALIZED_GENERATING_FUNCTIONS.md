@@ -178,4 +178,13 @@ A finite ordinary series can be interpreted as an FIR transfer polynomial under 
 
 ## Resource contracts
 
-Potentially expansive operations accept `GeneratingBudget`. The contract limits degree, coefficient growth, matrix dimension, reachable states, local combinations, modulus size, serialized size, and recursion depth. Requests that exceed the declared contract raise `ResourceLimitError` before allocation or enumeration.
+Operations that accept `GeneratingBudget` check operation-specific limits on
+degree, coefficient size, matrix dimension, reachable states, local combinations,
+and modulus size. Exceeding an enforced limit raises `ResourceLimitError`.
+Checks may require preliminary input conversion or arithmetic, so the budget is
+not an overall memory or elapsed-time bound.
+
+The `maximum_serialized_bytes` and `maximum_recursion_depth` fields are retained
+in the budget record but are not currently enforced by generating-function
+operations. Portable persistence has its own explicit `max_depth` parameter.
+Bound serialized input and output sizes separately when needed.

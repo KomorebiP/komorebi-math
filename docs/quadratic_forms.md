@@ -80,7 +80,8 @@ responsible for supplying valid outward endpoints of the intended interval.
 The explicitly parameterized evaluator also checks positive tilt, a support
 endpoint above the threshold, and a second tilt strictly between the first
 tilt and every MGF singularity. Its `passed_positive_sum` field reports whether
-the analytic and arithmetic error interval proves a positive lower tail sum.
+the analytic and arithmetic error interval proves a positive lower bound for the
+tail sum.
 It does not assert that a requested relative tolerance was achieved.
 
 ## Stored-factor interpretation

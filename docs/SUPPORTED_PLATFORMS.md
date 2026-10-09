@@ -19,6 +19,12 @@ minimum dependency combination rather than every permitted version combination.
 
 Every declared Python minor must pass the base installed-wheel contract before the final 1.0 release. Declared metadata is not treated as executed evidence.
 
+The recorded GitHub Linux/Windows Python 3.11–3.13 matrix installs editable
+source. Its separate clean wheel and source-rebuilt-wheel job runs on Linux
+Python 3.13. The 9 October local closeout also exercised clean installations on
+Linux Python 3.12. These runs do not establish clean-package coverage on every
+declared platform and Python minor.
+
 ## Optional backends
 
 JAX and PyTorch availability is determined by a child-interpreter import and a capability check for the directional JVP primitive. Package discovery alone is insufficient.
@@ -33,6 +39,13 @@ CuPy is not a base dependency because its wheel must match the local CUDA line. 
 ## Recorded and unqualified environments
 
 The support matrix records successful environments individually. Platforms that have not executed the release gates remain explicitly unqualified. The current record does not claim qualification for macOS, Windows ARM64, Linux ARM64, native Windows JAX GPU, or unrecorded CUDA versions.
+
+The embedded `1.0.0b4` Linux record predates the October repairs and contains
+1,138 passing source tests. The Windows record comes from `0.16.0a2`. In
+`release evidence`, "current" checks package-version equality, and the stored
+digest authenticates a record's JSON. Neither condition establishes that a
+later commit has been tested. Release evidence must also identify the source
+revision and artifacts actually executed.
 
 ## Constraints
 

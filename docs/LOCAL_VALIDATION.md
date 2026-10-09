@@ -46,8 +46,11 @@ cumulative or publication gate.
 ```
 
 `release readiness --final` is stricter than beta readiness: it requires
-current-version evidence on every declared platform family. A nonzero result
-must be preserved until those records are committed and digest-bound.
+current-version evidence on every declared platform family. The registry uses
+version equality and digests of the referenced JSON records. It does not check
+that the tested Git revision matches the present checkout. Preserve nonzero
+results, and record the actual source revision and artifact hashes alongside
+new platform evidence. `--final` does not itself require GPU execution.
 
 ## CUDA qualification
 
@@ -55,13 +58,22 @@ Run the hardware gate only in an environment containing a working CUDA
 PyTorch build and exactly one compatible CuPy distribution:
 
 ```powershell
-.\Run_GPU_Validation.ps1 -Python $py
+.\Run_GPU_Validation.ps1 -Python $py -Output release\CURRENT_GPU_QUALIFICATION.json
 ```
 
 PyTorch and CuPy computations execute in separate child interpreters. A native
 import failure, timeout, or abnormal exit becomes a failed hardware record
 instead of terminating the parent release process. Missing CUDA does not
 invalidate the NumPy-only base wheel.
+
+This wrapper checks the package installed for `$py`; an editable installation
+checks its linked source tree. It runs `release qualify --require-gpu` and
+`verify gpu`, but does not run final platform readiness. To require both the
+platform registry and hardware conditions on this host, also run:
+
+```powershell
+& $py -m komorebi_math release readiness --final --require-gpu --output release\CURRENT_GPU_READINESS.json --force
+```
 
 ## Historical Block 16 reproduction
 

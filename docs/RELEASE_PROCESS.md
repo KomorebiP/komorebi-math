@@ -25,13 +25,39 @@ The POSIX wrapper skips MkDocs when it is absent. For a strict POSIX handoff,
 install MkDocs and use the explicit `--full-tests --require-mkdocs` command in
 that guide; an automatic documentation skip is not a strict documentation pass.
 
-Current GitHub CPU qualification covers Linux and Windows, as recorded in
+Revision-specific GitHub CPU qualification covers Linux and Windows, as recorded in
 [GitHub readiness](GITHUB_READINESS.md). The embedded beta-evidence registry
-is separate: it contains a `1.0.0b4` Linux record and inherits its Windows record
-from `0.16.0a2` through the upgrade contract. Consequently,
-`release readiness --final` still fails until current Windows evidence is
-committed and digest-bound. Passing CI does not rewrite that registry or add
+is separate: its `1.0.0b4` Linux record predates the October repairs, and its
+Windows record is inherited from `0.16.0a2` through the upgrade contract.
+`release readiness --final` checks version equality and record-JSON digests;
+it currently fails because Windows lacks a matching-version record. It does
+not verify the present Git revision, tag cleanliness, or CUDA execution.
+Both platforms need qualification tied to the intended source revision and
+artifacts before promotion. Passing CI does not rewrite the registry or add
 fresh CUDA evidence.
+
+## Clean installed-artifact qualification
+
+After building the distributions, prepare a wheelhouse for the same operating
+system, architecture, and Python minor that will execute the check. This
+download step needs network access, but the artifact gate itself runs offline:
+
+```powershell
+python -m pip download --only-binary=:all: --dest release/wheelhouse "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
+python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse release/wheelhouse --output release/LOCAL_ARTIFACT_GATE.json
+```
+
+The source-build interpreter must use the same setuptools version as the
+wheelhouse. A copied wheelhouse is suitable only when its wheels support the
+target interpreter and platform. This mode creates clean environments without
+inheriting host dependencies, installs the direct wheel, rebuilds a wheel from
+the source distribution, and runs the installed runtime profile on both. It
+fails if a required local dependency is missing and does not fall back to an
+online installation. Retain the report and the tested artifact hashes.
+
+The recorded six-way Linux/Windows Python 3.11–3.13 CI matrix uses editable
+source. Clean artifact CI runs separately on Linux Python 3.13; this does not
+establish clean-install coverage across the whole matrix.
 
 ## Historical Block 20 qualification gate
 
@@ -76,6 +102,11 @@ The rigorous composite-Simpson path is restricted to a provenance-matched `Exact
 ## Release candidate
 
 A release candidate must additionally be built from a clean tag and pass the declared CPU platform matrix, hardware-backed CUDA qualification on the recorded NVIDIA environment, a strict documentation build, and archive-integrity verification. Historical Windows or CUDA evidence is not recast as a current-version result.
+
+On the hardware qualification host, `release readiness --final --require-gpu`
+requires both the embedded platform-evidence checks and CUDA execution. It is
+one part of this policy, not an aggregate check of the tag, artifacts, complete
+CPU matrix, and documentation build.
 
 ## Final release
 

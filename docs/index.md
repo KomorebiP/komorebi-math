@@ -10,6 +10,7 @@ The [ten-job qualification run](https://github.com/KomorebiP/komorebi-math/actio
 * [New machinery and twelve worked examples](NEW_MACHINERY_GUIDE.md)
 * [Manual corrections and validation](MANUAL_RELEASE_NOTES.md)
 * [Release stress audit and bounded replay](STRESS_AUDIT_2026_10_08.md)
+* [Release closeout and remaining qualification boundaries](RELEASE_CLOSEOUT_2026_10_09.md)
 
 * [GitHub readiness and installation](GITHUB_READINESS.md)
 * [Block 21 public reproducibility](BLOCK_21_PUBLIC_REPRODUCIBILITY.md)

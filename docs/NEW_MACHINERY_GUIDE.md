@@ -294,10 +294,13 @@ an earlier prefix agreed.
 The loaders accept internal-format, stripped-format, and archive-schema JSON
 text, including `.gz` files. Internal-format parsing assembles `%S/%T/%U` fields
 or their signed `%V/%W/%X` counterparts; `%O` supplies the offset. Stripped text
-has no offset field, so its offsets remain unknown. Malformed identifiers,
-terms, sizes, and indexing inputs raise `ValidationError`; file access errors
-retain the usual filesystem exceptions. Booleans and fractional integer
-coercions are rejected.
+has no offset field, so its offsets remain unknown. Internal-format parsing
+ignores lines that do not match its field syntax, including malformed
+identifiers; inspect the returned records before comparing them. Record
+construction, stripped rows, and JSON snapshots validate identifiers. Invalid
+terms in recognized fields, sizes, and indexing inputs raise `ValidationError`;
+file access errors retain the usual filesystem exceptions. Booleans and
+fractional integer coercions are rejected.
 
 No reference corpus is bundled or downloaded. A finite match establishes only
 the supplied finite comparison. A failed local search cannot establish absence
@@ -315,8 +318,7 @@ then round their results. More than 10,000 working decimal digits, or excessive
 positive window-exponent work, raises `ResourceLimitError`. These outputs retain
 ordinary numerical precision rather than a directed enclosure.
 
-Importing
-the namespace does not load mpmath, SciPy, or SymPy.
+Importing the namespace does not load mpmath, SciPy, or SymPy.
 
 | Export group | Arithmetic and supported object |
 | --- | --- |
@@ -522,10 +524,11 @@ representative with its mean removed. `fourier(0)` is therefore zero.
 The rank gate compares singular values with
 `rank_tolerance * largest_singular_value`. A `known_order` hint must not exceed
 the observed numerical rank. The default tolerances are `rank_tolerance=1e-10`
-and `tolerance=1e-8`. Missing modes and invalid scalar or integer inputs raise
-`ValidationError`. Inconsistent real conjugacy, singular recovery geometry,
-and invalid active-packet assumptions can raise `AssumptionError`. Requiring a
-failed certificate raises `ValidationError`.
+and `tolerance=1e-8`. Missing modes, invalid integer inputs, and out-of-range
+real scalar parameters raise `ValidationError`. Unsupported scalar types may
+raise Python conversion exceptions. Inconsistent real conjugacy, singular
+recovery geometry, and invalid active-packet assumptions can raise
+`AssumptionError`. Requiring a failed certificate raises `ValidationError`.
 
 The certificate checks the represented model's finite moment fit,
 annihilating recurrence, node-circle residual, real amplitudes, and zero sum.
@@ -548,11 +551,11 @@ floating labels, invalid ranges, and ragged tables.
 
 ### Generate the least congruence containing a relation
 
-For the Boolean semilattice on two elements, labels are subset bit masks and
-join is bitwise OR. Identifying zero with one also forces two to be identified
-with three. The certificate replays the finite merge derivation and checks the
-quotient homomorphism. The example checks every pair in the source table as a
-separate homomorphism control.
+For the Boolean semilattice of subsets of a two-element set, labels are bit
+masks and join is bitwise OR. Identifying zero with one also forces two to be
+identified with three. The certificate replays the finite merge derivation and
+checks the quotient homomorphism. The example checks every pair in the source
+table as a separate homomorphism control.
 
 ```python
 from komorebi_math.core.semilattice import FiniteJoinSemilattice
@@ -667,7 +670,7 @@ assert np.allclose(hamiltonian @ hamiltonian, energy_squared * np.eye(4),
 \(p\operatorname{sinc}(hp/\pi)\) coordinatewise, where \(p=2\pi n\),
 \(h=\texttt{mesh}\), and NumPy uses
 \(\operatorname{sinc}(x)=\sin(\pi x)/(\pi x)\). For nonzero mesh this equals
-\(\sin(hp)/h\); at zero mesh the value is \(p\). The example checks the four
+\(\sin(hp)/h\); at zero mesh the value is \(p\). The example checks all pairwise
 Clifford anticommutators, continuum momentum, a central-difference value, and
 zero-energy evolution at a large finite time.
 

@@ -43,15 +43,19 @@ The encoder supports:
 
 * `None`, booleans, integers, strings, and finite floats
 * exact fractions
-* complex values
+* finite complex values
 * NumPy scalar values that convert to supported Python scalar types
 * NumPy arrays with shape and dtype metadata
-* tuples, lists, and mappings
+* tuples, lists, sets, frozensets, and mappings
+* bytes and `pathlib.Path` values
 * explicitly registered portable codecs
 
 Mappings are represented by sorted key-value pairs so heterogeneous key types remain deterministic.
 
-Object arrays are recursively encoded. Numeric arrays use finite scalar data and restore the declared shape. The decoder validates dimensions and recursion depth before reconstruction.
+Object arrays are recursively encoded, preserving nested lists, tuples, and
+arrays as individual cells. Numeric arrays use finite scalar data and restore
+the declared shape. Structured and subarray dtypes are unsupported. The decoder
+validates dimensions and recursion depth before reconstruction.
 
 Integer array payloads must contain genuine integers within the declared
 dtype's range; fractional truncation and integer overflow are rejected.
@@ -110,7 +114,7 @@ register_portable_migration(
     tag="my_project.record",
     from_version=1,
     to_version=2,
-    migrate=lambda data: {**data, "schema_name": "record-v2"},
+    migrator=lambda data: {**data, "schema_name": "record-v2"},
 )
 ```
 

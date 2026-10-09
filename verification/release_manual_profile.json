@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "description": "Standalone development-environment Python snippets. Counts include import smoke blocks. Contextual/signature fragments and the separately checked LaTeX example are explicitly excluded.",
+  "sources": {
+    "README.md": {
+      "python_fences": 21,
+      "exclude": [
+        {
+          "example": 4,
+          "reason": "Contextual stream lifecycle fragment requiring previously constructed jet and directions."
+        },
+        {
+          "example": 19,
+          "reason": "Complete PDF example requires external LaTeX; validate separately when LaTeX is available."
+        }
+      ]
+    },
+    "docs/PUBLIC_API.md": {
+      "python_fences": 30,
+      "exclude": [
+        {
+          "example": 14,
+          "reason": "Certificate attribute reference requiring a previously constructed certificate object."
+        },
+        {
+          "example": 15,
+          "reason": "Configuration template with an intentional ellipsis placeholder."
+        },
+        {
+          "example": 17,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 18,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 19,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 20,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 21,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 22,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 23,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 24,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 25,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 26,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 27,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 28,
+          "reason": "API name/signature reference, not an executable program."
+        },
+        {
+          "example": 29,
+          "reason": "API name/signature reference, not an executable program."
+        }
+      ]
+    },
+    "docs/USER_GUIDE.md": {
+      "python_fences": 4,
+      "exclude": []
+    },
+    "docs/NEW_MACHINERY_GUIDE.md": {
+      "python_fences": 12,
+      "exclude": []
+    },
+    "docs/sequences_oeis.md": {
+      "python_fences": 2,
+      "exclude": []
+    },
+    "docs/fourier_recovery.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/finite_join_semilattice.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/quadratic_forms.md": {
+      "python_fences": 2,
+      "exclude": []
+    },
+    "docs/special_functions.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/dirac_modes.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/NORMALIZED_GENERATING_FUNCTIONS.md": {
+      "python_fences": 4,
+      "exclude": []
+    },
+    "docs/PERSISTENCE_SCHEMAS.md": {
+      "python_fences": 2,
+      "exclude": []
+    }
+  }
+}

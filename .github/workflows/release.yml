@@ -49,6 +49,7 @@ jobs:
           PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
       - run: python -m mkdocs build --strict --site-dir dist/docs
       - run: python verification/check_math_docs.py --site-dir dist/docs --output release/TAG_MATH_DOCS.json
+      - run: python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/TAG_MANUAL_EXAMPLES.json
       - name: Prepare dependencies for clean offline artifact qualification
         run: |
           python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
@@ -76,4 +77,5 @@ jobs:
             release/TAG_BLOCK21_DISTRIBUTION_BUILD.json
             release/TAG_REPAIR_ARTIFACT_GATE.json
             release/TAG_MATH_DOCS.json
+            release/TAG_MANUAL_EXAMPLES.json
           if-no-files-found: error

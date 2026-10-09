@@ -23,8 +23,10 @@ platform records in that companion refer to the revisions they name.
 
 ## Installation
 
-Python 3.11 is the declared minimum. The CPU qualification matrix covers Python
-3.11, 3.12, and 3.13 on Linux and Windows. The base dependency is NumPy 1.26 or
+Python 3.11 is the declared minimum. The CPU source-test matrix covers Python
+3.11, 3.12, and 3.13 on Linux and Windows using editable installations. Clean
+artifact qualification is a separate check. See [readiness](GITHUB_READINESS.md)
+for results tied to specific revisions. The base dependency is NumPy 1.26 or
 newer. Start in the repository root and use the same interpreter for pip and
 the program.
 

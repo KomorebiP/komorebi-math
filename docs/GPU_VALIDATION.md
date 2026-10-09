@@ -1,43 +1,57 @@
 # GPU Validation
 
-GPU support is optional and excluded from the base NumPy dependency set. Block 16 distinguishes package correctness from hardware qualification.
+GPU support is optional and excluded from the base NumPy dependency set.
+Package correctness and hardware qualification are separate checks.
 
-## Validated Windows configuration
+## Historical Windows configuration
 
-The committed support record includes the user-executed configuration:
+The committed `validation_windows_0_16_0a2.json` record includes the
+user-executed configuration for package version `0.16.0a2`:
 
 - Windows 11 x86-64
 - Python 3.13.0
 - NumPy 2.5.2
 - JAX 0.11.1 on CPU
-- PyTorch 2.12.1 with CUDA 12.6
+- PyTorch 2.12.1+cu126 with CUDA 12.6
 - CuPy 14.1.1 for CUDA 12.x
 - NVIDIA GeForce RTX 3070 Ti Laptop GPU
-- 960 source tests passed with both automatic-differentiation adapters available
+- 1,009 source tests passed, installed-wheel qualification passed, and 4/4 GPU
+  verification checks passed
 
-This is recorded evidence for that configuration, not a universal hardware claim.
+This record does not qualify the subsequent `1.0.0b4` repairs or other hardware.
+New qualification must identify the source revision and installed artifact
+actually tested.
 
 ## PowerShell gate
 
 ```powershell
-.\Run_GPU_Validation.ps1
+.\Run_GPU_Validation.ps1 -Python "$env:CONDA_PREFIX\python.exe" -Output release\CURRENT_GPU_QUALIFICATION.json
 ```
 
-or directly:
+Use the intended interpreter's full path when Conda is not active. The wrapper
+runs both commands below against that interpreter's installed package:
 
 ```powershell
-python -m komorebi_math release qualify --require-gpu --output .\release\BLOCK16_GPU_QUALIFICATION.json --force
+python -m komorebi_math release qualify --require-gpu --output .\release\CURRENT_GPU_QUALIFICATION.json --force
+python -m komorebi_math verify gpu
 ```
+
+The wrapper's default output filename still contains `BLOCK16` for compatibility;
+the explicit output above distinguishes a new run. It does not run final
+platform readiness. That separate condition is requested with
+`python -m komorebi_math release readiness --final --require-gpu`.
 
 ## Checked computations
 
 The two isolated backend workers check:
 
 1. `torch.cuda.is_available()`
-2. a cubic directional JVP on `cuda:0`
-3. at least one CuPy CUDA device
-4. device-resident `PacketIR` execution through the CuPy backend
-5. the expected vector `[0, 1, 4, 6]` with maximum absolute residual at most `1e-12`
+2. a cubic directional JVP at `2` on the default CUDA device, returning value
+   `8` and tangent `12`
+3. a CUDA matrix-vector product with expected result `[14, 38, 62, 86]`
+4. at least one CuPy CUDA device
+5. device-resident `PacketIR` execution through the CuPy backend
+6. the expected vector `[0, 1, 4, 6]` with Euclidean residual norm at most `1e-12`
 
 ## Isolation
 

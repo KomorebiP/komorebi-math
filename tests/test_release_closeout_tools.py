@@ -11,6 +11,7 @@ from types import SimpleNamespace
 import pytest
 
 from verification import check_release_manual as manual
+from verification import check_math_docs as math_docs
 from verification import stress_release_candidate as stress
 from verification import stress_resource_probe as resources
 
@@ -156,6 +157,58 @@ def test_manual_failure_replaces_stale_success(tmp_path, monkeypatch):
 def test_manual_examples_inside_non_python_fence_are_ignored():
     text = "````text\n```python\nraise AssertionError\n```\n````\n```python\nassert True\n```\n"
     assert list(manual._python_examples(text, "fixture")) == [(6, "assert True\n")]
+
+
+def test_manual_children_keep_assertions_with_inherited_optimization(tmp_path, monkeypatch):
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    for name in ("USER_GUIDE.md", "NEW_MACHINERY_GUIDE.md"):
+        (docs / name).write_text("```python\nassert False, 'required control'\n```\n", encoding="utf-8")
+    # A parent started with -E, or an embedding application, can have enabled
+    # assertions while its child inherits this environment setting.
+    monkeypatch.setenv("PYTHONOPTIMIZE", "1")
+    report = manual.check(tmp_path)
+    assert report["example_count"] == 2
+    assert report["passed"] is False
+    assert all(row["returncode"] != 0 for row in report["examples"])
+
+
+def test_math_docs_failure_replaces_stale_success(tmp_path, monkeypatch):
+    target = tmp_path / "result.json"
+    target.write_text('{"passed":true}', encoding="utf-8")
+    monkeypatch.setattr(sys, "argv", [str(math_docs.__file__), "--root", str(tmp_path),
+                                     "--site-dir", str(tmp_path / "absent-site"),
+                                     "--output", str(target)])
+    assert math_docs.main() == 1
+    report = json.loads(target.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert "documentation site is empty" in report["error"]
+
+
+def test_manual_profile_records_exclusions_and_rejects_added_fences(tmp_path):
+    source = tmp_path / "README.md"
+    source.write_text("```python\nassert True\n```\n```python\nundefined_context\n```\n", encoding="utf-8")
+    profile = tmp_path / "profile.json"
+    profile.write_text(json.dumps({"schema_version": 1, "sources": {
+        "README.md": {"python_fences": 2, "exclude": [{"example": 2, "reason": "Contextual fragment"}]}
+    }}), encoding="utf-8")
+    report = manual.check(tmp_path, profile=profile)
+    assert report["passed"] and report["example_count"] == 1
+    assert report["excluded_examples"][0]["reason"] == "Contextual fragment"
+    source.write_text(source.read_text(encoding="utf-8") + "```python\nassert False\n```\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Python-fence count changed"):
+        manual.check(tmp_path, profile=profile)
+
+
+def test_manual_profile_rejects_duplicate_exclusions(tmp_path):
+    (tmp_path / "README.md").write_text("```python\nassert True\n```\n", encoding="utf-8")
+    profile = tmp_path / "profile.json"
+    profile.write_text(json.dumps({"schema_version": 1, "sources": {
+        "README.md": {"python_fences": 1, "exclude": [
+            {"example": 1, "reason": "Context"}, {"example": 1, "reason": "Repeated context"}]}
+    }}), encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate exclusion"):
+        manual.check(tmp_path, profile=profile)
 
 
 @pytest.mark.parametrize("report", [{"status": "passed", "records": []}, {"status": "passed"}, []])

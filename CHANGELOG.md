@@ -1,5 +1,12 @@
 # Changelog
 
+## Continued manual review, 2026-10-09
+
+- Repair the README polynomial connection example and persistence migration keyword; make the API Taylor example self-contained.
+- Clarify numerical, OEIS, Fourier, persistence, resource-budget, platform-evidence, and GPU qualification boundaries against implementation.
+- Add a 64-block reference-example profile with explicit fragment and LaTeX exclusions to documentation CI and tag qualification.
+- Keep child example assertions enabled despite inherited optimization settings, and replace stale math-documentation success reports after a failed check.
+
 ## Release closeout, 2026-10-09
 
 - Preserve exact NumPy-backed fractions and nested object-array cells in portable round trips.

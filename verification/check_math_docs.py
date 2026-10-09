@@ -12,9 +12,6 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 
-import markdown
-
-
 class Page(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -67,6 +64,10 @@ def require(condition: bool, message: str) -> None:
 
 
 def check(root: Path, site: Path) -> dict:
+    pages = sorted(site.rglob("*.html"))
+    require(bool(pages), "the built documentation site is empty")
+    import markdown
+
     # These samples failed without math preservation: brackets made a link,
     # backslashes disappeared, and underscores entered Markdown processing.
     source = r"""Inline \(q_i^2\).
@@ -90,8 +91,6 @@ literal = r"\(x_[R](z)\)"
     require("z" not in sample.links, "math became a Markdown hyperlink")
     require(sample.code == ['literal = r"\\(x_[R](z)\\)"\n'], "fenced code was typeset or changed")
 
-    pages = sorted(site.rglob("*.html"))
-    require(bool(pages), "the built documentation site is empty")
     math_pages = 0
     math_expressions = 0
     for path in pages:
@@ -132,12 +131,18 @@ def main() -> int:
     parser.add_argument("--site-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    report = check(args.root.resolve(), args.site_dir.resolve())
+    try:
+        report = check(args.root.resolve(), args.site_dir.resolve())
+    except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
+        report = {"passed": False, "error": f"{type(exc).__name__}: {exc}"}
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(f"Math documentation passed: {report['math_expressions']} expressions in {report['math_pages']} pages")
-    return 0
+    if report["passed"]:
+        print(f"Math documentation passed: {report['math_expressions']} expressions in {report['math_pages']} pages")
+    else:
+        print(f"Math documentation FAILED: {report['error']}")
+    return 0 if report["passed"] else 1
 
 
 if __name__ == "__main__":

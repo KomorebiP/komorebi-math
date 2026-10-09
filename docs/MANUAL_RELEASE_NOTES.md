@@ -65,7 +65,8 @@ assertions:
 python verification/check_release_manual.py --output release/MANUAL_EXAMPLE_CHECKS.json
 ```
 
-The documentation CI job runs this replay alongside strict MkDocs. The clean
+The documentation CI job now runs the broader profile described below, which
+includes these reader examples, alongside strict MkDocs. The clean
 installed-artifact profile includes the 46 new regression cases, so they are
 also checked against the wheel and the source-rebuilt wheel.
 
@@ -98,7 +99,7 @@ The final reader pass corrects fresh-checkout instructions to build distribution
 before the full suite and to use the same interpreter throughout Windows
 validation. It distinguishes the strict PowerShell documentation requirement
 from the POSIX wrappers' automatic MkDocs skip, updates optional-backend replay
-instructions, and separates passing current CPU CI from the older embedded
+instructions, and separates revision-specific CPU CI from the older embedded
 platform-evidence registry used by final readiness.
 
 The persistence chapter now documents checked NumPy dtype conversion,
@@ -113,3 +114,35 @@ expressions such as `\mathcal M_p[R](z)` from becoming accidental hyperlinks.
 The renderer and SVG font data work offline, while code blocks remain literal.
 A dedicated documentation check verifies preservation and the bundled asset
 hashes. The third-party MathJax license is included beside its unmodified files.
+
+## Continued reference review
+
+The subsequent pass checked the README, API reference, domain guides, and
+release instructions against the implementation. It repaired the README's
+polynomial connection call, the API reference's incomplete Taylor example,
+and the persistence migration example's `migrator` keyword. It also corrected
+the beta status, namespace guidance, GPU test description, OEIS parsing rules,
+Fourier conjugacy scope, and resource-budget promises.
+
+The reproducible reference profile selects **64 standalone Python blocks**
+across 12 files, including four API import smoke blocks. It explicitly excludes
+16 contextual/signature fragments and one PDF example requiring external LaTeX.
+The latter passed separately on the local host with LaTeX available. This
+selection extends the 16-example reader check without treating reference
+signatures or undefined-context fragments as executable programs.
+
+```bash
+python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/MANUAL_REFERENCE_CHECKS.json
+```
+
+Every selected block runs in a fresh interpreter and temporary directory with
+assertions enabled. Reports record source and block hashes, exclusions, and
+child output. A changed Python-fence count requires profile review. The CI and
+tagged-artifact workflows are configured to run this profile; configuration
+alone is not evidence that a hosted run has completed.
+
+Two additional failed controls reproduced checker defects: inherited
+`PYTHONOPTIMIZE` could disable child assertions, and a failed mathematical-site
+check could leave a previous success report intact. Both are repaired. The
+underlying package API, mathematical formulas, historical evidence files,
+version, and license are unchanged by this pass.

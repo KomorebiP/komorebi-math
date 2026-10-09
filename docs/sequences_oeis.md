@@ -79,6 +79,8 @@ assert match.index_alignment_verified
 `parse_oeis_internal` reads `%S/%T/%U` fields, preferring signed `%V/%W/%X`
 fields when supplied. Continuations are assembled in field order. `%N` provides
 the name and `%O` supplies the starting index. Missing offsets remain `None`.
+Lines that do not match the internal field syntax are ignored, including lines
+with malformed identifiers. Inspect the returned records before comparing them.
 `parse_oeis_stripped` reads the terms and optional names. The stripped format
 contains no index offset, so the loader preserves an unknown offset.
 

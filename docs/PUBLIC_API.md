@@ -286,13 +286,19 @@ Complete dynamics APIs include semigroups, refinement defects, finite towers, co
 The base wheel contains a NumPy matrix exponential fallback. It can be tested independently with
 
 ```python
+import numpy as np
 from komorebi_math.dynamics import matrix_exponential
-matrix_exponential(generator, method="taylor")
+
+generator = np.diag([-1.0, -2.0])
+exponential = matrix_exponential(generator, method="taylor")
+assert np.allclose(exponential, np.diag(np.exp([-1.0, -2.0])))
 ```
 
 ## Certificates
 
-Every validation method returns a `Certificate`.
+Validation APIs return a `Certificate` directly or a result with a
+`certificate` attribute. For an existing certificate, the following attributes
+describe its evidence and `require()` checks its live validity:
 
 ```python
 certificate.valid
@@ -566,6 +572,11 @@ Finite group and orbit calculations are exact. Automorphic induction plans and u
 
 ## Ramification, global support, and completion
 
+The first three types below are exported by
+`komorebi_math.langlands.ramification`, the next three by
+`komorebi_math.langlands.global_`, and the final two by
+`komorebi_math.langlands.completion`.
+
 ```python
 ProjectiveMultiplicityPacket
 RamificationStage
@@ -732,7 +743,7 @@ The version 0.12 research manifest covers explicit exports of `komorebi_math`, `
 
 ### Curated beta surface
 
-`komorebi_math.beta` re-exports 83 reviewed names from the finite certificate, packet, nonlinear execution, streaming, persistence, profiling, and compatibility layers. Existing beta signatures are checked strictly while additions remain permitted. The complete package remains alpha.
+`komorebi_math.beta` re-exports 83 reviewed names from the finite certificate, packet, nonlinear execution, streaming, persistence, profiling, and compatibility layers. Existing beta signatures are checked strictly while additions remain permitted. The complete package is currently the `1.0.0b4` research beta. The separate 131-symbol stable namespace is the frozen 1.0 candidate described above.
 
 * `BETA_PUBLIC_NAMESPACES`
 * `BETA_API_STABILITY_LEVEL`

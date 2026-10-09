@@ -68,13 +68,18 @@ to verify that required stress and installed-runtime cases still execute.
 
 ## Scope and remaining release gates
 
-The PR's latest Actions checks and attached reports identify the qualified
-revision. Prior successful runs do not certify subsequent edits. These finite
-tests are regression evidence, not universal mathematical or performance proofs.
+Local closeout checks bind revision `4a6473723af8679cb4882858ee21c6b995704dd5`.
+At the subsequent review, no GitHub Actions run for that revision was available
+and PR metadata still named the earlier head. The preceding successful runs
+therefore remain evidence only for their named revision. These finite tests
+are regression evidence, not universal mathematical or performance proofs.
 
 CPU beta qualification does not satisfy the separate final-release policy.
-The embedded platform registry still needs current Windows evidence, and the
-RC/final process requires current hardware CUDA qualification. Existing Windows
-CPU CI and simulated CUDA metadata do not substitute for these records. No
+The embedded platform registry still needs current Windows evidence. Its Linux
+record matches the package version but predates this revision; the record's
+digest authenticates its JSON, not the latest source. The RC/final process also
+requires current hardware CUDA qualification, which is a separate check from
+`release readiness --final`. Existing Windows CPU CI and simulated CUDA metadata
+do not substitute for these records. No
 macOS, ARM, expanded optional-version matrix, or fresh GPU qualification is
 claimed. See [release qualification](RELEASE_QUALIFICATION.md) before promotion.

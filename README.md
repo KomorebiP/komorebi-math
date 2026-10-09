@@ -4,6 +4,10 @@
 
 The stress-tested candidate at `46267f52513c17eba0f599edbdbed896a8adcfd3` passed [all ten qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805), including Linux and Windows Python 3.11–3.13, minimum CPU dependencies, strict documentation, isolated distributions, and a separate Linux CPU JAX/PyTorch campaign. Qualification records apply to the revisions they name. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
 
+The subsequent [release closeout](docs/RELEASE_CLOSEOUT_2026_10_09.md) records
+local contract repairs, stricter checks, and offline equation rendering. Its
+local results do not extend the older CI qualification to later commits.
+
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
 
@@ -199,6 +203,7 @@ Block 14 implements coordinate changes across arbitrary exact bases, normalized 
 from komorebi_math.coordinates import (
     CoordinateAtlas,
     basis_from_matrix,
+    connection_transform,
     get_polynomial_family,
     standard_basis,
 )
@@ -218,7 +223,7 @@ atlas.register_transform(change, include_inverse=True)
 
 legendre = get_polynomial_family("legendre")
 chebyshev = get_polynomial_family("chebyshev-t")
-legendre.connection_to(chebyshev, 8).certificate().require()
+connection_transform(legendre, chebyshev, 8).certificate().require()
 ```
 
 ```powershell
@@ -274,6 +279,9 @@ See `docs/NORMALIZED_GENERATING_FUNCTIONS.md` for the complete API model.
 ## Resumable streams, migrations, and beta compatibility
 
 Block 11 adds directory-backed packet-jet streams for finite derivative data that is too large or too costly to capture in one uninterrupted operation. Direct capture can stop at a declared evaluation budget and resume from a verified committed prefix. Existing snapshots can be written in bounded coefficient batches. Readers verify chunks independently and can iterate, select, or evaluate a declared coefficient range without loading the complete stream.
+
+The following fragment assumes a previously constructed `jet` and compatible
+`directions`; it illustrates the stream lifecycle rather than a standalone program.
 
 ```python
 from pathlib import Path
