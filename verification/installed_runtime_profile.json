@@ -1,6 +1,6 @@
 {
   "schema": "komorebi-math.installed-runtime-profile",
-  "name": "github-readiness-deep-mathematics-and-new-machinery-runtime",
+  "name": "github-readiness-stress-qualified-runtime",
   "scope": "Named finite mathematics, numerical and serialization tests. Repository-layout, packaging, GPU, optional autodiff and document-rendering tests are not in this installed profile.",
   "test_files": [
     "test_algebra_quotients.py",
@@ -87,6 +87,11 @@
     "test_special_functions_shape.py",
     "test_special_functions_terminating.py",
     "test_dirac_modes.py",
-    "test_manual_release_regressions.py"
+    "test_manual_release_regressions.py",
+    "test_stress_certificates.py",
+    "test_stress_directed_tails.py",
+    "test_stress_exact_arithmetic.py",
+    "test_stress_numerical.py",
+    "test_stress_autodiff_contracts.py"
   ]
 }

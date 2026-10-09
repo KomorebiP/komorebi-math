@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import json
 import math
+from decimal import Decimal
 from dataclasses import dataclass, field
 from enum import StrEnum
+from numbers import Rational, Real
 from types import MappingProxyType
 from typing import Any, Generic, TypeVar
 
@@ -24,8 +26,18 @@ def _finite_real(value: Any) -> bool:
     """Check finite scalar evidence without rounding unbounded integers."""
     if isinstance(value, (bool, np.bool_)):
         return False
-    if isinstance(value, (int, np.integer)):
+    if isinstance(value, (Rational, np.integer)):
         return True
+    if isinstance(value, np.floating):
+        # math.isfinite converts through a C double and can overflow a finite
+        # extended-precision NumPy scalar before testing it.
+        return bool(np.isfinite(value))
+    if isinstance(value, Decimal):
+        return value.is_finite()
+    if not isinstance(value, Real):
+        # In particular, reject mutable zero-dimensional and length-one arrays.
+        # Their implicit float conversion does not make owned scalar evidence.
+        return False
     try:
         return math.isfinite(value)
     except (TypeError, ValueError, OverflowError):

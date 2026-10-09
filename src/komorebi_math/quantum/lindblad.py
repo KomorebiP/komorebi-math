@@ -90,8 +90,13 @@ class LindbladGenerator:
         """Evolve a density matrix for one finite time."""
 
         rho = density_matrix(state, tolerance=self.tolerance)
+        if rho.shape != (self.dimension, self.dimension):
+            raise DimensionError("Lindblad state has the wrong dimension")
+        duration = float(time)
+        if not np.isfinite(duration):
+            raise ValidationError("Lindblad evolution time must be finite")
         vector = rho.reshape(-1, order="F")
-        evolved = matrix_exponential(float(time) * self.superoperator()) @ vector
+        evolved = matrix_exponential(duration * self.superoperator()) @ vector
         result = evolved.reshape((self.dimension, self.dimension), order="F")
         return density_matrix(result, tolerance=max(self.tolerance, 1e-8), normalize=True)
 

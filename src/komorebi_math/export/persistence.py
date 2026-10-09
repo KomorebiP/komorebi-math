@@ -292,7 +292,13 @@ def _certificate_v1_to_v2(data: Any) -> dict[str, Any]:
     }
 
 
-def _finite_certificate_number(value: Any, *, label: str, nonnegative: bool = False) -> float:
+def _finite_certificate_number(value: Any, *, label: str, nonnegative: bool = False) -> float | int | Fraction:
+    if isinstance(value, (int, np.integer, Fraction)) and not isinstance(value, (bool, np.bool_)):
+        normalized = int(value) if isinstance(value, (int, np.integer)) else value
+        if nonnegative and normalized < 0:
+            raise ValidationError(f"portable certificate {label} must be finite nonnegative")
+        # Exact integer and rational evidence must not round through float64.
+        return normalized
     if isinstance(value, bool) or not isinstance(value, (int, float, np.integer, np.floating)):
         raise ValidationError(f"portable certificate {label} must be a finite real number")
     normalized = float(value)
@@ -669,7 +675,12 @@ def _encode(value: Any, *, depth: int, max_depth: int) -> Any:
             raise ValidationError("portable serialization rejects nonfinite floats")
         return value
     if isinstance(value, np.generic):
-        return _encode(value.item(), depth=next_depth, max_depth=max_depth)
+        item = value.item()
+        if isinstance(item, np.generic):
+            raise ValidationError(
+                "portable serialization does not support extended NumPy scalar precision"
+            )
+        return _encode(item, depth=next_depth, max_depth=max_depth)
     if isinstance(value, Fraction):
         return _tagged(
             "python.fraction",
@@ -790,7 +801,7 @@ def _decode(value: Any, *, depth: int, max_depth: int) -> Any:
         try:
             real = float(raw_data["real"])
             imag = float(raw_data["imag"])
-        except (TypeError, ValueError) as exc:
+        except (TypeError, ValueError, OverflowError) as exc:
             raise ValidationError("portable complex data is invalid") from exc
         if not isfinite(real) or not isfinite(imag):
             raise ValidationError("portable complex data contains a nonfinite component")
@@ -873,10 +884,19 @@ def _decode(value: Any, *, depth: int, max_depth: int) -> Any:
             _decode(item, depth=next_depth, max_depth=max_depth)
             for item in raw_data["data"]
         ]
+        if dtype.kind in "iu":
+            bounds = np.iinfo(dtype)
+            if any(type(item) is not int or not bounds.min <= item <= bounds.max
+                   for item in decoded):
+                raise ValidationError("portable integer ndarray data must contain in-range integers")
         try:
-            return np.asarray(decoded, dtype=dtype).reshape(shape)
-        except (TypeError, ValueError) as exc:
+            with np.errstate(over="ignore", invalid="ignore"):
+                array = np.asarray(decoded, dtype=dtype).reshape(shape)
+        except (TypeError, ValueError, OverflowError) as exc:
             raise ValidationError("ndarray payload is incompatible with its declared dtype") from exc
+        if dtype.kind in "fc" and not bool(np.all(np.isfinite(array))):
+            raise ValidationError("portable ndarray conversion produced nonfinite values")
+        return array
 
     _ensure_builtin_codecs()
     try:
@@ -987,6 +1007,31 @@ def loads_portable(text: str | bytes, *, max_depth: int = 128) -> Any:
     return from_portable_data(payload, max_depth=max_depth)
 
 
+def _publish_exclusive(
+    temporary: Path,
+    destination: Path,
+    *,
+    windows: bool | None = None,
+) -> None:
+    """Publish a complete file without replacing an existing destination.
+
+    Windows rename refuses an existing destination and works on FAT/exFAT as
+    well as NTFS. POSIX rename replaces existing files, so that branch requires
+    same-directory hard-link support instead. The private override permits
+    isolated platform-branch tests without changing the process's OS identity.
+    """
+
+    use_rename = os.name == "nt" if windows is None else windows
+    try:
+        if use_rename:
+            os.rename(temporary, destination)
+        else:
+            os.link(temporary, destination)
+    except FileExistsError as exc:
+        raise ValidationError(f"refusing to overwrite existing portable file {destination}") from exc
+    temporary.unlink(missing_ok=True)
+
+
 def save_portable(
     value: Any,
     path: str | os.PathLike[str],
@@ -995,7 +1040,12 @@ def save_portable(
     indent: int | None = 2,
     max_depth: int = 128,
 ) -> Path:
-    """Atomically write a portable envelope to disk."""
+    """Atomically write a portable envelope to disk.
+
+    Exclusive writes use Windows no-replacement rename or POSIX hard links.
+    The POSIX destination filesystem must therefore support hard links when
+    ``overwrite`` is false.
+    """
 
     destination = Path(path)
     if destination.exists() and not overwrite:
@@ -1013,7 +1063,12 @@ def save_portable(
             stream.write(content)
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, destination)
+        if overwrite:
+            os.replace(temporary, destination)
+        else:
+            # Publish the completed file exclusively. An existence check followed
+            # by replace would let concurrent writers silently overwrite each other.
+            _publish_exclusive(temporary, destination)
     except Exception:
         temporary.unlink(missing_ok=True)
         raise

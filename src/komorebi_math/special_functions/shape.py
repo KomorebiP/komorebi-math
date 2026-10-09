@@ -1,7 +1,9 @@
 """Positive Gamma windows and normalized Meixner shape refinement.
 
 These are scalar numerical evaluations of closed formulas, not interval
-certificates. Each call uses its own mpmath precision context. The Fourier
+certificates. Each call uses its own mpmath precision context with bounded
+working guard digits, then rounds to the requested precision. More than 10000
+working decimal digits or window-exponent digits is rejected. The Fourier
 convention is (2*pi)**(-1/2) * integral f(y)*exp(-i*omega*y) dy.
 """
 
@@ -9,9 +11,34 @@ from __future__ import annotations
 
 from typing import Any, Iterable
 
-from ..exceptions import DimensionError
+from ..exceptions import DimensionError, ResourceLimitError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
 from ._validation import context, integer, real
+
+
+def _working_context(dps, specifications, degrees=()):
+    """Retain requested digits after large log-Gamma terms cancel.
+
+    Parameter magnitudes set a conservative bound on guard precision.
+    Limit the work before creating the enlarged context. Reparse original
+    inputs there so adding one to a huge shape does not disappear prematurely.
+    """
+    result = context(dps)
+    if result.dps > 10000:
+        raise ResourceLimitError("shape evaluation exceeds the 10000 working decimal digit budget")
+    parsed = tuple(real(result, value, name, positive=positive)
+                   for name, value, positive in specifications)
+    guard = 20
+    for value in (*parsed, *degrees):
+        magnitude = abs(value)
+        if magnitude > 1:
+            guard += int(result.ceil(result.log10(magnitude)))
+    if result.dps + guard > 10000:
+        raise ResourceLimitError("shape evaluation exceeds the 10000 working decimal digit budget")
+    work = context(result.dps + guard)
+    values = tuple(real(work, value, name, positive=positive)
+                   for name, value, positive in specifications)
+    return result, work, values
 
 
 def _log_cosh(ctx, value):
@@ -22,19 +49,19 @@ def _log_cosh(ctx, value):
 
 def log_gamma_window(shape: Any, y: Any, *, dps: int = 50):
     """Return Gamma(shape)**(-1/2)*exp(shape*y/2-exp(y)/2), shape>0."""
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
-    point = real(ctx, y, "y")
-    return ctx.exp((s * point - ctx.exp(point) - ctx.loggamma(s)) / 2)
+    result, ctx, (s, point) = _working_context(dps, (("shape", shape, True), ("y", y, False)))
+    # The outer exponential would otherwise require an enormous integer mpf
+    # exponent even though y itself is a finite, cheaply represented scalar.
+    if point > 10000 * ctx.log(10):
+        raise ResourceLimitError("log-Gamma window exponent requires more than 10000 decimal digits")
+    return result.mpf(ctx.exp((s * point - ctx.exp(point) - ctx.loggamma(s)) / 2))
 
 
 def log_gamma_fourier(shape: Any, omega: Any, *, dps: int = 50):
     """Evaluate the unitary Fourier transform of ``log_gamma_window``."""
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
-    frequency = real(ctx, omega, "omega")
+    result, ctx, (s, frequency) = _working_context(dps, (("shape", shape, True), ("omega", omega, False)))
     z = s / 2 - ctx.j * frequency
-    return ctx.exp(z * ctx.log(2) + ctx.loggamma(z) - (ctx.log(2 * ctx.pi) + ctx.loggamma(s)) / 2)
+    return result.mpc(ctx.exp(z * ctx.log(2) + ctx.loggamma(z) - (ctx.log(2 * ctx.pi) + ctx.loggamma(s)) / 2))
 
 
 @documented(ProvenanceRecord(
@@ -48,53 +75,42 @@ def log_gamma_fourier(shape: Any, omega: Any, *, dps: int = 50):
 ))
 def gamma_sech_ambiguity(alpha: Any, gamma: Any, h: Any, eta: Any, *, dps: int = 50):
     """Return integral g_alpha(y+h/2)*g_gamma(y-h/2)*exp(i*eta*y) dy."""
-    ctx = context(dps)
-    a = real(ctx, alpha, "alpha", positive=True)
-    g = real(ctx, gamma, "gamma", positive=True)
-    shift = real(ctx, h, "h")
-    frequency = real(ctx, eta, "eta")
+    result, ctx, (a, g, shift, frequency) = _working_context(dps, (
+        ("alpha", alpha, True), ("gamma", gamma, True), ("h", h, False), ("eta", eta, False)))
     z = (a + g) / 2 + ctx.j * frequency
-    return ctx.exp(
+    return result.mpc(ctx.exp(
         (a - g) * shift / 4 + ctx.loggamma(z)
         - (ctx.loggamma(a) + ctx.loggamma(g)) / 2
         - z * _log_cosh(ctx, shift / 2)
-    )
+    ))
 
 
 def shape_affinity(alpha: Any, gamma: Any, *, dps: int = 50):
     """Return the real positive zero-shift overlap of two unit Gamma windows."""
-    ctx = context(dps)
-    a = real(ctx, alpha, "alpha", positive=True)
-    g = real(ctx, gamma, "gamma", positive=True)
-    return ctx.exp(ctx.loggamma((a + g) / 2) - (ctx.loggamma(a) + ctx.loggamma(g)) / 2)
+    result, ctx, (a, g) = _working_context(dps, (("alpha", alpha, True), ("gamma", gamma, True)))
+    return result.mpf(ctx.exp(ctx.loggamma((a + g) / 2) - (ctx.loggamma(a) + ctx.loggamma(g)) / 2))
 
 
 def meixner_density(shape: Any, omega: Any, *, dps: int = 50):
     """Evaluate rho_s(omega)=2**(s-1)*|Gamma(s/2+i*omega)|**2/(pi*Gamma(s))."""
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
-    frequency = real(ctx, omega, "omega")
-    return ctx.exp((s - 1) * ctx.log(2) - ctx.log(ctx.pi) - ctx.loggamma(s)
-                   + 2 * ctx.re(ctx.loggamma(s / 2 + ctx.j * frequency)))
+    result, ctx, (s, frequency) = _working_context(dps, (("shape", shape, True), ("omega", omega, False)))
+    return result.mpf(ctx.exp((s - 1) * ctx.log(2) - ctx.log(ctx.pi) - ctx.loggamma(s)
+                   + 2 * ctx.re(ctx.loggamma(s / 2 + ctx.j * frequency))))
 
 
 def meixner_characteristic(shape: Any, h: Any, *, dps: int = 50):
     """Return sech(h/2)**shape, the characteristic function of rho_shape."""
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
-    shift = real(ctx, h, "h")
-    return ctx.exp(-s * _log_cosh(ctx, shift / 2))
+    result, ctx, (s, shift) = _working_context(dps, (("shape", shape, True), ("h", h, False)))
+    return result.mpf(ctx.exp(-s * _log_cosh(ctx, shift / 2)))
 
 
 def beta_logit_density(alpha: Any, gamma: Any, h: Any, *, dps: int = 50):
     """Evaluate the density of log(U/(1-U)) for U~Beta(alpha,gamma)."""
-    ctx = context(dps)
-    a = real(ctx, alpha, "alpha", positive=True)
-    g = real(ctx, gamma, "gamma", positive=True)
-    shift = real(ctx, h, "h")
-    return ctx.exp(ctx.loggamma(a + g) - ctx.loggamma(a) - ctx.loggamma(g)
+    result, ctx, (a, g, shift) = _working_context(dps, (
+        ("alpha", alpha, True), ("gamma", gamma, True), ("h", h, False)))
+    return result.mpf(ctx.exp(ctx.loggamma(a + g) - ctx.loggamma(a) - ctx.loggamma(g)
                    - (a + g) * ctx.log(2) + (a - g) * shift / 2
-                   - (a + g) * _log_cosh(ctx, shift / 2))
+                   - (a + g) * _log_cosh(ctx, shift / 2)))
 
 
 def meixner_pollaczek(shape: Any, degree: int, x: Any, *, dps: int = 50):
@@ -103,18 +119,16 @@ def meixner_pollaczek(shape: Any, degree: int, x: Any, *, dps: int = 50):
     Its unnormalized generating function is
     (1-i*z)**(-s/2+i*x)*(1+i*z)**(-s/2-i*x).
     """
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
     n = integer(degree, "degree")
-    point = real(ctx, x, "x")
+    result, ctx, (s, point) = _working_context(dps, (("shape", shape, True), ("x", x, False)), (n,))
     previous = ctx.mpf(1)
     if n == 0:
-        return previous
+        return result.mpf(previous)
     current = 2 * point / ctx.sqrt(s)
     for k in range(1, n):
         following = (2 * point * current - ctx.sqrt(k * (k + s - 1)) * previous) / ctx.sqrt((k + 1) * (k + s))
         previous, current = current, following
-    return current
+    return result.mpf(current)
 
 
 def _refinement(ctx, shapes, degrees):
@@ -136,28 +150,24 @@ def _refinement(ctx, shapes, degrees):
 ))
 def shape_refinement_coefficient(shapes: Iterable[Any], degrees: Iterable[int], *, dps: int = 50):
     """Return sqrt(n!*prod((s_j)_(r_j)/r_j!)/(sum(s_j))_n), n=sum(r_j)."""
-    ctx = context(dps)
-    values = tuple(real(ctx, s, "shape", positive=True) for s in shapes)
+    inputs = tuple(shapes)
     orders = tuple(integer(n, "degree") for n in degrees)
-    if not values or len(values) != len(orders):
+    if not inputs or len(inputs) != len(orders):
         raise DimensionError("shapes and degrees must have the same positive length")
-    return _refinement(ctx, values, orders)
+    result, ctx, values = _working_context(dps, tuple(("shape", s, True) for s in inputs), orders)
+    return result.mpf(_refinement(ctx, values, orders))
 
 
 def beta_binomial_refinement(degree: int, alpha: Any, gamma: Any, *, dps: int = 50) -> tuple:
     """Return all n+1 positive two-child amplitudes; their squares sum to one."""
-    ctx = context(dps)
     n = integer(degree, "degree")
-    a = real(ctx, alpha, "alpha", positive=True)
-    g = real(ctx, gamma, "gamma", positive=True)
-    return tuple(_refinement(ctx, (a, g), (r, n - r)) for r in range(n + 1))
+    result, ctx, (a, g) = _working_context(dps, (("alpha", alpha, True), ("gamma", gamma, True)), (n,))
+    return tuple(result.mpf(_refinement(ctx, (a, g), (r, n - r))) for r in range(n + 1))
 
 
 def shape_transfer_singular_value(shape: Any, increment: Any, degree: int, *, dps: int = 50):
     """Return sqrt((shape)_degree/(shape+increment)_degree), shape and increment>0."""
-    ctx = context(dps)
-    s = real(ctx, shape, "shape", positive=True)
-    t = real(ctx, increment, "increment", positive=True)
     n = integer(degree, "degree")
-    return ctx.exp((ctx.loggamma(s + n) - ctx.loggamma(s)
-                    - ctx.loggamma(s + t + n) + ctx.loggamma(s + t)) / 2)
+    result, ctx, (s, t) = _working_context(dps, (("shape", shape, True), ("increment", increment, True)), (n,))
+    return result.mpf(ctx.exp((ctx.loggamma(s + n) - ctx.loggamma(s)
+                    - ctx.loggamma(s + t + n) + ctx.loggamma(s + t)) / 2))

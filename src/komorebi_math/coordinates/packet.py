@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from math import gcd, prod
+from numbers import Integral
 from typing import Callable, Sequence
 
 from ..exceptions import DimensionError, ValidationError
@@ -21,7 +22,9 @@ def residue_class_order(length: int, modulus: int) -> tuple[int, ...]:
 
     count = _positive(length, name="length")
     radix = _positive(modulus, name="modulus")
-    return tuple(index for residue in range(radix) for index in range(residue, count, radix))
+    # Empty lanes beyond the finite prefix need no enumeration.
+    return tuple(index for residue in range(min(radix, count))
+                 for index in range(residue, count, radix))
 
 
 def residue_class_transform(length: int, modulus: int) -> CoordinateTransform:
@@ -97,6 +100,9 @@ def tensor_axis_permutation_order(
     if not dimensions:
         raise DimensionError("tensor shape must be nonempty")
     permutation = tuple(axes)
+    if any(isinstance(axis, bool) or not isinstance(axis, Integral) for axis in permutation):
+        raise ValidationError("axes must be integer tensor dimensions")
+    permutation = tuple(int(axis) for axis in permutation)
     if sorted(permutation) != list(range(len(dimensions))):
         raise ValidationError("axes must be a permutation of tensor dimensions")
     target_shape = tuple(dimensions[axis] for axis in permutation)

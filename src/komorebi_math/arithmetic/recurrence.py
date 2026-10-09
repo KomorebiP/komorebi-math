@@ -21,8 +21,23 @@ def _integer(value: int, *, name: str) -> int:
     return int(value)
 
 
+def _native_number(value: Number) -> Number:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, Integral):
+        return int(value)
+    if isinstance(value, Rational):
+        return Fraction(int(value.numerator), int(value.denominator))
+    return value
+
+
 def _object_matrix(matrix: Iterable[Iterable[Number]]) -> np.ndarray:
-    array = np.asarray(tuple(tuple(row) for row in matrix), dtype=object)
+    # Object arrays can still contain fixed-width NumPy integer scalars. Lift
+    # them before arithmetic so an "exact" product cannot overflow internally.
+    array = np.asarray(
+        tuple(tuple(_native_number(value) for value in row) for row in matrix),
+        dtype=object,
+    )
     if array.ndim != 2 or array.shape[0] != array.shape[1]:
         raise DimensionError("matrix must be square")
     return array
@@ -58,11 +73,11 @@ def matrix_power_mod(matrix: np.ndarray, exponent: int, modulus: int) -> np.ndar
     if any(isinstance(value, bool) or not isinstance(value, Integral) for value in array.flat):
         raise ValidationError("modular matrix powers require integral matrix entries")
     result = np.eye(array.shape[0], dtype=object)
-    base = np.vectorize(lambda value: int(value) % mod)(array)
+    base = np.vectorize(lambda value: int(value) % mod, otypes=[object])(array)
     while power:
         if power & 1:
-            result = np.vectorize(lambda value: int(value) % mod)(result @ base)
-        base = np.vectorize(lambda value: int(value) % mod)(base @ base)
+            result = np.vectorize(lambda value: int(value) % mod, otypes=[object])(result @ base)
+        base = np.vectorize(lambda value: int(value) % mod, otypes=[object])(base @ base)
         power //= 2
     return result
 
@@ -124,8 +139,8 @@ class LinearRecurrence:
     """
 
     def __init__(self, coefficients: Iterable[Number], initial: Iterable[Number], *, name: str | None = None) -> None:
-        recurrence = tuple(coefficients)
-        seeds = tuple(initial)
+        recurrence = tuple(_native_number(value) for value in coefficients)
+        seeds = tuple(_native_number(value) for value in initial)
         if not recurrence:
             raise ValidationError("at least one recurrence coefficient is required")
         if len(seeds) != len(recurrence):
@@ -244,7 +259,7 @@ class LinearRecurrence:
         if limit < 1:
             raise ValidationError("max_steps must be positive")
         self._integral_data()
-        matrix = np.vectorize(lambda value: int(value) % mod)(self.companion_matrix)
+        matrix = np.vectorize(lambda value: int(value) % mod, otypes=[object])(self.companion_matrix)
         state = tuple(int(value) % mod for value in self.initial_state)
         seen: dict[tuple[int, ...], int] = {}
         current = state
@@ -277,7 +292,7 @@ class LinearRecurrence:
                 )
             seen[current] = step
             vector = np.asarray(current, dtype=object)
-            vector = np.vectorize(lambda value: int(value) % mod)(matrix @ vector)
+            vector = np.vectorize(lambda value: int(value) % mod, otypes=[object])(matrix @ vector)
             current = tuple(int(value) for value in vector)
         raise ValidationError("period search exceeded max_steps before a state repeated")
 

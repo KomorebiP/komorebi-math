@@ -9,6 +9,7 @@ from mpmath import iv
 import numpy as np
 
 from ._accuracy import certified_positive_logsf
+from ._interval import _PlanningDomainError
 from ._directed_accuracy import (directed_relative_accuracy, interval_endpoint_strings,
                                interval_midpoint, positive_decimal, scaled_accuracy_budget,
                                outward_interval_string)
@@ -269,9 +270,11 @@ def certified_float64_factor_logsf(
     kwargs = dict(tail_kwargs or {})
     refinements = 0
     last = None
+    failure_reason = "spectral/tail resource caps reached before requested end-to-end accuracy was proved"
 
     digits = int(initial_candidate_digits)
     while digits <= int(max_candidate_digits):
+        last_digits = digits
         spec = certify_float64_factor_spectrum(
             A,
             candidate_digits=digits,
@@ -285,19 +288,30 @@ def certified_float64_factor_logsf(
         if len(lower) <= 2:
             raise RuntimeError("lower spectral enclosure has rank <= 2")
 
-        lo_tail = certified_positive_logsf(
-            q_decimal,
-            lower,
-            relative_accuracy=tail_eps_text,
-            **kwargs,
-        )
-        hi_tail = certified_positive_logsf(
-            q_decimal,
-            upper,
-            relative_accuracy=tail_eps_text,
-            **kwargs,
-        )
+        try:
+            lo_tail = certified_positive_logsf(
+                q_decimal,
+                lower,
+                relative_accuracy=tail_eps_text,
+                **kwargs,
+            )
+            hi_tail = certified_positive_logsf(
+                q_decimal,
+                upper,
+                relative_accuracy=tail_eps_text,
+                **kwargs,
+            )
+        except _PlanningDomainError:
+            # The public boundary checks q against the exact stored trace.
+            # Conservative spectral inflation can nevertheless put the upper
+            # comparison spectrum's mean above q. Refine that enclosure before
+            # attempting another above-mean tail, and fail closed at the cap.
+            last = (spec, None, None, None)
+            failure_reason = "spectral precision caps reached before the comparison-spectrum planning domain was resolved"
+            digits += int(candidate_step)
+            continue
 
+        failure_reason = "spectral/tail resource caps reached before requested end-to-end accuracy was proved"
         if not lo_tail.certified or not hi_tail.certified:
             last = (spec, lo_tail, hi_tail, None)
             digits += int(candidate_step)
@@ -330,7 +344,7 @@ def certified_float64_factor_logsf(
         digits += int(candidate_step)
 
     spec, lo_tail, hi_tail, ratio = last
-    if lo_tail.certified and hi_tail.certified:
+    if lo_tail is not None and hi_tail is not None and lo_tail.certified and hi_tail.certified:
         lo_a, _ = _parse_log_interval(lo_tail.log10_interval)
         _, hi_b = _parse_log_interval(hi_tail.log10_interval)
         interval_s = f"[{lo_a}, {hi_b}]"
@@ -348,11 +362,11 @@ def certified_float64_factor_logsf(
         log10_interval=interval_s,
         log10_midpoint=midpoint,
         spectral_enclosure=spec,
-        lower_tail_interval=lo_tail.log10_interval,
-        upper_tail_interval=hi_tail.log10_interval,
-        candidate_digits=int(max_candidate_digits),
+        lower_tail_interval=lo_tail.log10_interval if lo_tail is not None else "[-inf,+inf]",
+        upper_tail_interval=hi_tail.log10_interval if hi_tail is not None else "[-inf,+inf]",
+        candidate_digits=last_digits,
         spectral_refinements=refinements,
-        failure_reason="spectral/tail resource caps reached before requested end-to-end accuracy was proved",
+        failure_reason=failure_reason,
     )
 
 

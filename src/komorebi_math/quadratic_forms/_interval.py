@@ -4,11 +4,24 @@ from dataclasses import dataclass
 import math
 from collections import OrderedDict
 from decimal import Decimal
+from fractions import Fraction
 from typing import Iterable, Sequence
 
 import mpmath as mp
 from mpmath import iv
 from ._directed_accuracy import outward_interval_string
+
+
+class _PlanningDomainError(ValueError):
+    """An exact spectrum is outside the automatic positive-tilt domain."""
+
+
+class _PlanningResolutionError(ValueError):
+    """The point planning precision cannot distinguish admissible design points."""
+
+
+class _IntervalResolutionError(ValueError):
+    """Admissible exact decimals are unresolved at the interval precision."""
 
 
 @dataclass(frozen=True)
@@ -115,7 +128,11 @@ def design_positive_tail_parameters(
             raise ValueError("positive eigenvalues are required")
         mean = mp.fsum(lams)
         if q <= mean:
-            raise ValueError("q must be above the mean for the positive-tilt backend")
+            exact_q = Fraction(Decimal(q_decimal))
+            exact_mean = sum((Fraction(Decimal(x)) for x in eigenvalue_decimals), Fraction(0))
+            if exact_q <= exact_mean:
+                raise _PlanningDomainError("q must be above the mean for the positive-tilt backend")
+            raise _PlanningResolutionError("working precision cannot resolve q above the exact mean")
 
         singularity = 1 / (2 * max(lams))
         eps = mp.power(10, -(working_dps // 2))
@@ -132,13 +149,23 @@ def design_positive_tail_parameters(
             U, lams, theta, singularity * (1 - eps)
         )
 
-        return {
+        result = {
             "q": mp.nstr(q, output_digits),
             "theta": mp.nstr(theta, output_digits),
             "upper": mp.nstr(U, output_digits),
             "eta": mp.nstr(eta, output_digits),
             "L": str(L),
         }
+        # A rounded design is still required to satisfy the exact decimal
+        # admissibility inequalities. A failed design proves no tail bound.
+        tq = Fraction(Decimal(q_decimal))
+        tt = Fraction(Decimal(result["theta"]))
+        tu = Fraction(Decimal(result["upper"]))
+        te = Fraction(Decimal(result["eta"]))
+        if not (0 < tt < te and tu > tq and
+                all(2 * te * Fraction(Decimal(x)) < 1 for x in eigenvalue_decimals)):
+            raise _PlanningResolutionError("working precision cannot resolve admissible tilt/support design points")
+        return result
 
 
 def _re_tilted_cf(u, theta, groups):
@@ -272,6 +299,22 @@ def interval_positive_logsf(
                 str(eta_decimal)] + values
     if not all(Decimal(x).is_finite() for x in literals):
         raise ValueError("all tail inputs must be finite decimals")
+    exact_q, exact_theta, exact_upper, exact_eta = (
+        Fraction(Decimal(x)) for x in literals[:4]
+    )
+    exact_coefficients = [Fraction(Decimal(x)) for x in values]
+    if not all(lam > 0 for lam in exact_coefficients):
+        raise ValueError("positive eigenvalues are required")
+    if exact_q < 0:
+        raise ValueError("q must be nonnegative for integration on [0,U]")
+    if exact_theta <= 0:
+        raise ValueError("theta must be positive")
+    if exact_upper <= exact_q:
+        raise ValueError("upper must exceed q")
+    if exact_eta <= exact_theta:
+        raise ValueError("eta must exceed theta")
+    if not all(2 * exact_eta * lam < 1 for lam in exact_coefficients):
+        raise ValueError("theta and eta must lie inside the MGF domain")
     iv.dps = int(interval_dps)
 
     q = iv.mpf(q_decimal)
@@ -294,11 +337,11 @@ def interval_positive_logsf(
     if not bool(theta.a > 0):
         raise ValueError("theta must be positive")
     if not bool(U.a > q.b):
-        raise ValueError("upper must exceed q")
+        raise _IntervalResolutionError("interval precision cannot resolve upper above q")
     if not bool(eta.a > theta.b):
-        raise ValueError("eta must exceed theta")
+        raise _IntervalResolutionError("interval precision cannot resolve eta above theta")
     if not all(bool((2 * eta * lam).b < 1) for lam in coefficients):
-        raise ValueError("theta and eta must lie inside the MGF domain")
+        raise _IntervalResolutionError("interval precision cannot resolve the MGF domain margin")
 
     finite_sum = iv.mpf("0")
     for k in range(int(K)):

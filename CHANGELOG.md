@@ -1,5 +1,13 @@
 # Changelog
 
+## Release stress audit, 2026-10-08
+
+- Repair arbitrary-precision recurrence/matrix/transform arithmetic for accepted NumPy integer and rational inputs, validate Hurwitz moduli and tensor axes, and avoid enumerating empty residue lanes beyond a finite prefix.
+- Reject mutable certificate scalar evidence, preserve exact portable evidence, check array dtype conversion, validate contract versions, and publish exclusive saves without concurrent overwrites.
+- Reject invalid autodiff primal/input/residual evidence and coerced derivative orders. Add isolated CPU JAX/PyTorch qualification to CI.
+- Resolve large-shape Gamma cancellation with bounded guard precision, retain represented central Dirac phases, snapshot Kraus arrays, and reject unrepresentable quantum spectral/lattice outputs and incompatible Lindblad states.
+- Correct directed-tail precision provenance and make precision-budget exhaustion explicit. Add bounded stress replay, independent finite controls, measured resource examples, and installed-artifact regressions. See the stress audit for tested ranges and limitations.
+
 ## Manual release edition, 2026-10-08
 
 - Add a current reader manual and six-family machinery guide with 16 independently replayed Python examples and documentation CI coverage.

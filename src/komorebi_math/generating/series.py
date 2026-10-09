@@ -7,10 +7,11 @@ from fractions import Fraction
 from typing import Iterable, Sequence
 
 from .basis import WeightedMonomialBasis
+from .domains import _native_fraction
 
 
 def _fraction_tuple(values: Iterable[int | Fraction]) -> tuple[Fraction, ...]:
-    return tuple(Fraction(value) for value in values)
+    return tuple(_native_fraction(value) for value in values)
 
 
 def _ordinary_multiply(left: Sequence[Fraction], right: Sequence[Fraction], degree: int) -> list[Fraction]:
@@ -117,7 +118,7 @@ class FormalSeries:
         return self.add(other.scale(-1), degree=degree)
 
     def scale(self, scalar: int | Fraction) -> "FormalSeries":
-        factor = Fraction(scalar)
+        factor = _native_fraction(scalar)
         return FormalSeries(self.basis, (factor * value for value in self.coefficients))
 
     def multiply(self, other: "FormalSeries", *, degree: int | None = None) -> "FormalSeries":
@@ -151,7 +152,7 @@ class FormalSeries:
         return FormalSeries(self.basis, out)
 
     def ordinary_integral(self, constant: int | Fraction = 0) -> "FormalSeries":
-        out = [Fraction(constant)]
+        out = [_native_fraction(constant)]
         for n, value in enumerate(self.coefficients):
             out.append(value * self.basis.gamma(n + 1) / (Fraction(n + 1) * self.basis.gamma(n)))
         return FormalSeries(self.basis, out)

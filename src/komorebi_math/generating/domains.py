@@ -12,6 +12,13 @@ from ..exceptions import ValidationError
 Element = TypeVar("Element")
 
 
+def _native_fraction(value: Any) -> Fraction:
+    # Fraction accepts Rational scalars whose numerator/denominator can be
+    # fixed-width NumPy integers. Canonicalize both before exact arithmetic.
+    fraction = Fraction(value)
+    return Fraction(int(fraction.numerator), int(fraction.denominator))
+
+
 def _integer(value: Any, name: str) -> int:
     if isinstance(value, bool) or not isinstance(value, int):
         raise ValidationError(f"{name} must be an integer")
@@ -69,7 +76,7 @@ class IntegerDomain:
     one: int = 1
 
     def coerce(self, value: Any) -> int:
-        fraction = Fraction(value)
+        fraction = _native_fraction(value)
         if fraction.denominator != 1:
             raise ValidationError("value is not integral")
         return fraction.numerator
@@ -115,7 +122,7 @@ class RationalDomain:
 
     def coerce(self, value: Any) -> Fraction:
         try:
-            return Fraction(value)
+            return _native_fraction(value)
         except (TypeError, ValueError, ZeroDivisionError) as exc:
             raise ValidationError("value is not rational") from exc
 
@@ -180,7 +187,7 @@ class ResidueRingDomain:
         return 1
 
     def coerce(self, value: Any) -> int:
-        fraction = Fraction(value)
+        fraction = _native_fraction(value)
         numerator = fraction.numerator % self.modulus
         denominator = fraction.denominator % self.modulus
         if gcd(denominator, self.modulus) != 1:

@@ -170,6 +170,13 @@ those fields before using an enclosure as an accepted accuracy result.
 
 Malformed domains and cap settings are rejected, usually with
 `ValidationError`; backend admissibility failures can also raise `ValueError`.
+When exact input domains are valid but planning or interval precision cannot
+resolve admissible margins within the supplied caps, the automatic controller
+returns `certified=False` with a failure reason. Matrix comparison-spectrum
+obstructions trigger bounded candidate refinement. Reported candidate precision
+is the actual last attempted precision. Direct domain and unresolved-rank errors
+remain explicit.
+
 Caps restrict each attempted transform and precision, not elapsed time or total
 work. Public directed calls serialize their entire backend computation and
 restore point and interval precision on success or failure. Concurrent external
@@ -302,7 +309,13 @@ schema, historical provenance, and recurrence conventions.
 
 `komorebi_math.special_functions` contains two arithmetic layers. Exact
 rational scalar functions return `Fraction` values without an optional backend.
-Numerical functions return mpmath scalars at the requested precision. Importing
+Numerical functions return mpmath scalars at the requested precision. Shape
+functions use isolated guard digits to resolve cancellation at large parameters,
+then round their results. More than 10,000 working decimal digits, or excessive
+positive window-exponent work, raises `ResourceLimitError`. These outputs retain
+ordinary numerical precision rather than a directed enclosure.
+
+Importing
 the namespace does not load mpmath, SciPy, or SymPy.
 
 | Export group | Arithmetic and supported object |

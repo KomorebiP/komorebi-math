@@ -44,6 +44,17 @@ def _low_mode(mode: Sequence[int], shape: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(indices)
 
 
+def _spacing_scale(sizes: tuple[int, ...], spacing: float | None) -> tuple[float, float]:
+    h = 1 / max(sizes) if spacing is None else float(spacing)
+    if not np.isfinite(h) or h <= 0:
+        raise ValidationError("spacing must be positive and finite")
+    # Squaring h first can underflow or overflow even though h is finite.
+    scale = (1.0 / h) / h
+    if not np.isfinite(scale) or scale == 0:
+        raise ValidationError("inverse squared spacing exceeds representable positive floating-point range")
+    return h, scale
+
+
 def heat_trace(operator: Any, time: float) -> float:
     """Return ``Tr(exp(-time*operator))`` for a nonnegative Hermitian matrix."""
 
@@ -52,6 +63,8 @@ def heat_trace(operator: Any, time: float) -> float:
     if not np.isfinite(t) or t <= 0:
         raise ValidationError("time must be positive and finite")
     eigenvalues = np.linalg.eigvalsh(value)
+    if not np.all(np.isfinite(eigenvalues)):
+        raise ValidationError("spectral operator eigenvalues exceed finite floating-point range")
     if float(np.min(eigenvalues)) < -1e-10:
         raise ValidationError("spectral operator must be nonnegative")
     return float(np.sum(np.exp(-t * np.maximum(eigenvalues, 0.0))))
@@ -79,6 +92,8 @@ def spectral_dimension(operator: Any, time: float) -> float:
     if not np.isfinite(t) or t <= 0:
         raise ValidationError("time must be positive and finite")
     eigenvalues = np.linalg.eigvalsh(value)
+    if not np.all(np.isfinite(eigenvalues)):
+        raise ValidationError("spectral operator eigenvalues exceed finite floating-point range")
     if float(np.min(eigenvalues)) < -1e-10:
         raise ValidationError("spectral operator must be nonnegative")
     clipped = np.maximum(eigenvalues, 0.0)
@@ -99,22 +114,23 @@ def periodic_lattice_eigenvalues(shape: Sequence[int], *, spacing: float | None 
     """Return eigenvalues of the nearest neighbor periodic lattice Laplacian."""
 
     sizes = _periodic_shape(shape)
-    h = 1 / max(sizes) if spacing is None else float(spacing)
-    if not np.isfinite(h) or h <= 0:
-        raise ValidationError("spacing must be positive and finite")
+    _, scale = _spacing_scale(sizes, spacing)
     values = []
     for index in product(*(range(size) for size in sizes)):
-        values.append(4 / h**2 * sum(np.sin(pi * index[axis] / sizes[axis]) ** 2 for axis in range(len(sizes))))
-    return np.sort(np.asarray(values, dtype=float))
+        values.append(4 * scale * sum(np.sin(pi * index[axis] / sizes[axis]) ** 2 for axis in range(len(sizes))))
+    result = np.asarray(values, dtype=float)
+    if not np.all(np.isfinite(result)):
+        raise ValidationError("lattice eigenvalues exceed finite floating-point range")
+    return np.sort(result)
 
 
 def periodic_laplacian(shape: Sequence[int], *, spacing: float | None = None) -> np.ndarray:
     """Construct the finite nearest neighbor periodic lattice Laplacian."""
 
     sizes = _periodic_shape(shape)
-    h = 1 / max(sizes) if spacing is None else float(spacing)
-    if not np.isfinite(h) or h <= 0:
-        raise ValidationError("spacing must be positive and finite")
+    _, scale = _spacing_scale(sizes, spacing)
+    if not np.isfinite(2 * len(sizes) * scale):
+        raise ValidationError("lattice coefficients exceed finite floating-point range")
     dimension = int(np.prod(sizes))
     matrix = np.zeros((dimension, dimension), dtype=float)
 
@@ -123,12 +139,12 @@ def periodic_laplacian(shape: Sequence[int], *, spacing: float | None = None) ->
 
     for index in product(*(range(size) for size in sizes)):
         row = flat(index)
-        matrix[row, row] = 2 * len(sizes) / h**2
+        matrix[row, row] = 2 * len(sizes) * scale
         for axis, size in enumerate(sizes):
             for step in (-1, 1):
                 neighbor = list(index)
                 neighbor[axis] = (neighbor[axis] + step) % size
-                matrix[row, flat(tuple(neighbor))] -= 1 / h**2
+                matrix[row, flat(tuple(neighbor))] -= scale
     return matrix
 
 
@@ -137,12 +153,13 @@ def low_mode_dispersion_bound(shape: Sequence[int], mode: Sequence[int], *, spac
 
     sizes = _periodic_shape(shape)
     indices = _low_mode(mode, sizes)
-    h = 1 / max(sizes) if spacing is None else float(spacing)
-    if not np.isfinite(h) or h <= 0:
-        raise ValidationError("spacing must be positive and finite")
-    discrete = 4 / h**2 * sum(np.sin(pi * indices[axis] / sizes[axis]) ** 2 for axis in range(len(sizes)))
-    continuum = sum((2 * pi * indices[axis] / (sizes[axis] * h)) ** 2 for axis in range(len(sizes)))
-    bound = sum((2 * pi * indices[axis] / (sizes[axis] * h)) ** 4 * h**2 / 12 for axis in range(len(sizes)))
+    _, scale = _spacing_scale(sizes, spacing)
+    angles = tuple(2 * pi * index / size for index, size in zip(indices, sizes, strict=True))
+    discrete = scale * sum(4 * np.sin(angle / 2) ** 2 for angle in angles)
+    continuum = scale * sum(angle ** 2 for angle in angles)
+    bound = scale * sum(angle ** 4 / 12 for angle in angles)
+    if not all(np.isfinite(value) for value in (discrete, continuum, bound)):
+        raise ValidationError("dispersion values exceed finite floating-point range")
     return float(discrete), float(continuum), float(bound)
 
 

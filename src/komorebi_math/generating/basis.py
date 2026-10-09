@@ -14,6 +14,7 @@ from functools import lru_cache
 from math import factorial
 from typing import Any, Callable, Iterable, Mapping
 
+from .domains import _native_fraction
 
 GammaRule = Callable[[int], int | Fraction]
 BasisParameter = int | Fraction | str | tuple[Fraction, ...]
@@ -163,7 +164,7 @@ class WeightedMonomialBasis:
 
         if isinstance(n, bool) or not isinstance(n, int) or n < 0:
             raise ValueError("basis degree must be a nonnegative integer")
-        value = Fraction(self._gamma_rule(n))
+        value = _native_fraction(self._gamma_rule(n))
         if value == 0:
             raise ZeroDivisionError(f"basis normalization gamma({n}) vanishes")
         return value
@@ -336,7 +337,7 @@ def pochhammer_basis(
 ) -> WeightedMonomialBasis:
     """Return ``z^n/(alpha)_n`` for a nonterminating rational path."""
 
-    scalar = Fraction(alpha)
+    scalar = _native_fraction(alpha)
     if scalar.denominator == 1 and scalar.numerator <= 0:
         raise ValueError("alpha cannot be a nonpositive integer")
 
@@ -362,7 +363,7 @@ def basis_from_values(
 ) -> WeightedMonomialBasis:
     """Create a finite portable basis from an explicit normalization table."""
 
-    table = tuple(Fraction(value) for value in values)
+    table = tuple(_native_fraction(value) for value in values)
     if not table or table[0] != 1:
         raise ValueError("the normalization table must start with one")
     if any(value == 0 for value in table):

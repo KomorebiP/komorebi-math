@@ -8,20 +8,20 @@ from typing import Iterable
 
 from .._number_theory import require_integer
 from ..exceptions import ValidationError
-from .base import Sequence
+from .base import Sequence, _native_number
 
 
 def binomial_transform_values(values: Iterable[Number]) -> tuple[Number, ...]:
     """Return the finite binomial transform of a value prefix."""
 
-    data = tuple(values)
+    data = tuple(_native_number(value) for value in values)
     return tuple(sum(comb(n, k) * data[k] for k in range(n + 1)) for n in range(len(data)))
 
 
 def inverse_binomial_transform_values(values: Iterable[Number]) -> tuple[Number, ...]:
     """Return the inverse finite binomial transform."""
 
-    data = tuple(values)
+    data = tuple(_native_number(value) for value in values)
     return tuple(sum((-1) ** (n - k) * comb(n, k) * data[k] for k in range(n + 1)) for n in range(len(data)))
 
 

@@ -17,7 +17,8 @@ def _fraction(value: Scalar) -> Fraction:
     if isinstance(value, bool):
         raise ValidationError("boolean values are not scalar coefficients")
     try:
-        return Fraction(value)
+        fraction = Fraction(value)
+        return Fraction(int(fraction.numerator), int(fraction.denominator))
     except (TypeError, ValueError, ZeroDivisionError) as exc:
         raise ValidationError("value is not an exact rational coefficient") from exc
 

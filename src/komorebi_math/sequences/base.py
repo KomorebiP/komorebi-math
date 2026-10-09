@@ -11,6 +11,16 @@ from .._number_theory import require_integer
 from ..exceptions import ValidationError
 
 
+def _native_number(value: Number) -> Number:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, Integral):
+        return int(value)
+    if isinstance(value, Rational):
+        return Fraction(int(value.numerator), int(value.denominator))
+    return value
+
+
 class Sequence:
     """A cached lazy sequence indexed by nonnegative integers."""
 
@@ -40,6 +50,7 @@ class Sequence:
             value = self._evaluator(n)
             if not isinstance(value, Number):
                 raise ValidationError("sequence evaluator must return a numeric value")
+            value = _native_number(value)
             self._cache[n] = value
         return self._cache[n]
 

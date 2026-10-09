@@ -16,12 +16,23 @@ from .domains import ModularRing
 ExactNumber = int | Fraction
 
 
+def _validated_modulus(modulus: int | None) -> int | None:
+    if modulus is None:
+        return None
+    value = require_integer(modulus, name="modulus")
+    if value < 2:
+        raise ValidationError("modulus must be at least two")
+    return value
+
+
 def _normalize(value: Number, modulus: int | None) -> Number:
     if modulus is None:
         if isinstance(value, bool) or not isinstance(value, Number):
             raise ValidationError("Hurwitz coefficients must be numeric")
-        if isinstance(value, (int, Fraction)):
-            return Fraction(value)
+        if isinstance(value, Integral):
+            return Fraction(int(value))
+        if isinstance(value, Fraction):
+            return Fraction(int(value.numerator), int(value.denominator))
         return value
     if isinstance(value, bool) or not isinstance(value, Integral):
         raise ValidationError("modular Hurwitz coefficients must be integers")
@@ -37,6 +48,7 @@ def hurwitz_product(
 ) -> tuple[Number, ...]:
     """Return a finite Hurwitz product through the requested degree."""
 
+    modulus = _validated_modulus(modulus)
     a = tuple(_normalize(value, modulus) for value in left)
     b = tuple(_normalize(value, modulus) for value in right)
     if degree is None:
@@ -63,6 +75,7 @@ def hurwitz_inverse(
 ) -> tuple[Number, ...]:
     """Return the finite Hurwitz inverse through ``degree``."""
 
+    modulus = _validated_modulus(modulus)
     nmax = require_integer(degree, name="degree")
     if nmax < 0:
         raise ValidationError("degree must be nonnegative")
@@ -106,11 +119,10 @@ class HurwitzSeries:
     modulus: int | None = None
 
     def __init__(self, coefficients: Iterable[Number], modulus: int | None = None) -> None:
+        modulus = _validated_modulus(modulus)
         values = tuple(_normalize(value, modulus) for value in coefficients)
         if not values:
             raise ValidationError("HurwitzSeries requires at least one coefficient")
-        if modulus is not None and modulus < 2:
-            raise ValidationError("modulus must be at least two")
         object.__setattr__(self, "coefficients", values)
         object.__setattr__(self, "modulus", modulus)
 
@@ -176,6 +188,7 @@ class HurwitzSeries:
     def exponential_mode(cls, value: int, degree: int, *, modulus: int | None = None) -> "HurwitzSeries":
         """Return the mode ``(value**n)`` through ``degree``."""
 
+        modulus = _validated_modulus(modulus)
         nmax = require_integer(degree, name="degree")
         if nmax < 0:
             raise ValidationError("degree must be nonnegative")

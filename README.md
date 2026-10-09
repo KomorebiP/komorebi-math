@@ -39,7 +39,7 @@ Block 4 uses a signal first finite convolution convention. The `same` mode alway
 
 ## Installation
 
-The [current user guide](docs/USER_GUIDE.md) gives checked installation paths, first programs, certificate lifecycle rules, and a route through the library. The [new machinery guide](docs/NEW_MACHINERY_GUIDE.md) covers all six October additions with twelve executable examples. [Manual revision notes](docs/MANUAL_RELEASE_NOTES.md) record corrections and example qualification.
+The [current user guide](docs/USER_GUIDE.md) gives checked installation paths, first programs, certificate lifecycle rules, and a route through the library. The [new machinery guide](docs/NEW_MACHINERY_GUIDE.md) covers all six October additions with twelve executable examples. [Manual revision notes](docs/MANUAL_RELEASE_NOTES.md) record corrections and example qualification. [Release stress audit](docs/STRESS_AUDIT_2026_10_08.md) records the additional adversarial checks, repairs, optional CPU backend qualification, and bounded replay.
 
 Use Python 3.11, 3.12, or 3.13. From the root of an authorized checkout, install the base package:
 

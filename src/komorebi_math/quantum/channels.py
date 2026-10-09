@@ -7,6 +7,7 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from .._residuals import finite_tolerance
 from ..certificates import Certificate, ComputationResult, Exactness
 from ..core import PacketSystem
 from ..exceptions import DimensionError, ValidationError
@@ -78,10 +79,28 @@ class QuantumChannel:
         output_dimension, input_dimension = operators[0].shape
         if any(operator.shape != (output_dimension, input_dimension) for operator in operators):
             raise DimensionError("all Kraus operators must have one common rectangular shape")
-        self.kraus = operators
+        self.kraus = tuple(np.array(operator, copy=True) for operator in operators)
+        for operator in self.kraus:
+            operator.setflags(write=False)
         self.input_dimension = input_dimension
         self.output_dimension = output_dimension
-        self.tolerance = float(tolerance)
+        self.tolerance = finite_tolerance(tolerance)
+
+    def _validate_form(self) -> None:
+        """Recheck public state before a represented channel is used."""
+        finite_tolerance(self.tolerance)
+        if not self.kraus:
+            raise ValidationError("a quantum channel requires at least one Kraus operator")
+        for operator in self.kraus:
+            value = as_matrix(operator, name="Kraus operator")
+            if value.shape != (self.output_dimension, self.input_dimension):
+                raise DimensionError("Kraus operators have changed the channel dimensions")
+
+    @staticmethod
+    def _finite_result(value: np.ndarray, name: str) -> np.ndarray:
+        if not np.all(np.isfinite(value)):
+            raise ValidationError(f"{name} exceeds finite floating-point range")
+        return value
 
     @classmethod
     def identity(cls, dimension: int) -> "QuantumChannel":
@@ -95,10 +114,11 @@ class QuantumChannel:
     def apply(self, operator: Any) -> np.ndarray:
         """Apply the channel to one input operator."""
 
+        self._validate_form()
         value = as_square_matrix(operator, name="channel input")
         if value.shape != (self.input_dimension, self.input_dimension):
             raise DimensionError("channel input has the wrong dimension")
-        return sum(kraus @ value @ kraus.conj().T for kraus in self.kraus)
+        return self._finite_result(sum(kraus @ value @ kraus.conj().T for kraus in self.kraus), "channel output")
 
     def apply_density(self, state: Any) -> np.ndarray:
         """Apply the channel to a validated density matrix."""
@@ -112,29 +132,42 @@ class QuantumChannel:
     def adjoint(self, operator: Any) -> np.ndarray:
         """Apply the Hilbert Schmidt adjoint channel."""
 
+        self._validate_form()
         value = as_square_matrix(operator, name="adjoint channel input")
         if value.shape != (self.output_dimension, self.output_dimension):
             raise DimensionError("adjoint channel input has the wrong dimension")
-        return sum(kraus.conj().T @ value @ kraus for kraus in self.kraus)
+        return self._finite_result(sum(kraus.conj().T @ value @ kraus for kraus in self.kraus), "adjoint channel output")
 
     def is_trace_preserving(self) -> bool:
         """Return whether the Kraus family is trace preserving."""
 
+        self._validate_form()
         total = sum(kraus.conj().T @ kraus for kraus in self.kraus)
+        self._finite_result(total, "Kraus Gram matrix")
         return bool(np.allclose(total, np.eye(self.input_dimension), atol=self.tolerance, rtol=0.0))
 
     def is_unital(self) -> bool:
         """Return whether the channel maps the identity to the identity."""
 
+        self._validate_form()
         total = sum(kraus @ kraus.conj().T for kraus in self.kraus)
+        self._finite_result(total, "Kraus Gram matrix")
         return bool(np.allclose(total, np.eye(self.output_dimension), atol=self.tolerance, rtol=0.0))
 
     def certificate(self) -> Certificate:
         """Return the complete positivity and trace preservation certificate."""
 
+        self._validate_form()
         tp = sum(kraus.conj().T @ kraus for kraus in self.kraus)
+        self._finite_result(tp, "Kraus Gram matrix")
         residual = float(np.linalg.norm(tp - np.eye(self.input_dimension), ord=2))
-        choi_eigenvalue = float(np.min(np.linalg.eigvalsh((self.choi_matrix() + self.choi_matrix().conj().T) / 2)))
+        choi = self.choi_matrix()
+        # Divide before addition: finite entries near float max can otherwise
+        # overflow merely while averaging an already Hermitian Choi matrix.
+        choi_values = np.linalg.eigvalsh(choi / 2 + choi.conj().T / 2)
+        if not np.isfinite(residual) or not np.all(np.isfinite(choi_values)):
+            raise ValidationError("channel certificate spectrum exceeds finite floating-point range")
+        choi_eigenvalue = float(np.min(choi_values))
         return Certificate(
             valid=residual <= self.tolerance and choi_eigenvalue >= -self.tolerance,
             exactness=Exactness.NUMERICAL,
@@ -148,7 +181,8 @@ class QuantumChannel:
     def superoperator(self) -> np.ndarray:
         """Return the column vectorized superoperator matrix."""
 
-        return sum(np.kron(kraus.conj(), kraus) for kraus in self.kraus)
+        self._validate_form()
+        return self._finite_result(sum(np.kron(kraus.conj(), kraus) for kraus in self.kraus), "channel superoperator")
 
     def choi_matrix(self) -> np.ndarray:
         """Return the Choi matrix in output tensor input ordering."""
@@ -167,6 +201,8 @@ class QuantumChannel:
     def compose(self, previous: "QuantumChannel") -> "QuantumChannel":
         """Return ``self`` after ``previous``."""
 
+        self._validate_form()
+        previous._validate_form()
         if previous.output_dimension != self.input_dimension:
             raise DimensionError("channel dimensions do not compose")
         return QuantumChannel(
@@ -177,6 +213,8 @@ class QuantumChannel:
     def tensor(self, other: "QuantumChannel") -> "QuantumChannel":
         """Return the tensor product channel."""
 
+        self._validate_form()
+        other._validate_form()
         return QuantumChannel(
             tuple(np.kron(left, right) for left in self.kraus for right in other.kraus),
             tolerance=max(self.tolerance, other.tolerance),

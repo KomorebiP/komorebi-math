@@ -8,6 +8,8 @@ from ._directed_accuracy import directed_relative_accuracy, positive_decimal
 from ._interval import (
     design_positive_tail_parameters,
     interval_positive_logsf,
+    _PlanningResolutionError,
+    _IntervalResolutionError,
 )
 
 
@@ -86,24 +88,44 @@ def certified_positive_logsf(
     refinements = 0
     best = None
 
-    while True:
-        params = design_positive_tail_parameters(
-            q_decimal,
-            list(eigenvalue_decimals),
-            L=str(L),
-            working_dps=working_dps,
-            output_digits=max(180, working_dps - 30),
+    def resolution_failure(reason):
+        return AccuracyDrivenTailResult(
+            certified=False, requested_relative_accuracy=eps_text,
+            achieved_relative_ratio_minus_one="inf", log10_interval="[-inf,+inf]",
+            log10_midpoint="nan", width_decades="inf", K=K, L=str(L),
+            interval_dps=dps, refinements=refinements,
+            support_alias_bound_interval="unknown", series_tail_bound_interval="unknown",
+            arithmetic_only_log10_interval="unknown", failure_reason=reason,
         )
 
-        r = interval_positive_logsf(
-            q_decimal,
-            list(eigenvalue_decimals),
-            theta_decimal=params["theta"],
-            upper_decimal=params["upper"],
-            eta_decimal=params["eta"],
-            K=K,
-            interval_dps=dps,
-        )
+    while True:
+        try:
+            params = design_positive_tail_parameters(
+                q_decimal,
+                list(eigenvalue_decimals),
+                L=str(L),
+                working_dps=working_dps,
+                output_digits=max(180, working_dps - 30),
+            )
+        except _PlanningResolutionError as error:
+            return resolution_failure(f"planning precision budget exhausted: {error}")
+
+        try:
+            r = interval_positive_logsf(
+                q_decimal,
+                list(eigenvalue_decimals),
+                theta_decimal=params["theta"],
+                upper_decimal=params["upper"],
+                eta_decimal=params["eta"],
+                K=K,
+                interval_dps=dps,
+            )
+        except _IntervalResolutionError as error:
+            refinements += 1
+            if dps < max_interval_dps:
+                dps = min(max_interval_dps, dps + 30)
+                continue
+            return resolution_failure(f"interval precision budget exhausted: {error}")
         refinements += 1
         best = r
 

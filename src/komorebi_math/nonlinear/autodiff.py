@@ -14,6 +14,7 @@ from importlib import import_module
 from importlib.util import find_spec
 from itertools import permutations
 import json
+from numbers import Rational
 import subprocess
 import sys
 from typing import Any, Protocol, runtime_checkable
@@ -57,7 +58,29 @@ def _vector_length(value: Any) -> int:
 
 
 def _norm(value: Any) -> float:
-    return float(np.linalg.norm(np.asarray(value, dtype=complex).reshape(-1)))
+    residual = float(np.linalg.norm(np.asarray(value, dtype=complex).reshape(-1)))
+    # ``max(0.0, nan)`` is 0.0, so a NaN norm must not disappear while
+    # aggregating symmetry evidence. Infinite residuals fail certification.
+    return residual if np.isfinite(residual) else float("inf")
+
+
+def _finite_ad_values(value: Any) -> bool:
+    """Check finite concrete values without rounding exact rational numbers."""
+
+    for entry in np.asarray(value, dtype=object).reshape(-1):
+        if isinstance(entry, (Rational, np.integer)):
+            continue
+        declared_finite = getattr(entry, "is_finite", None)
+        if declared_finite is True:
+            continue
+        if declared_finite is False:
+            return False
+        try:
+            if not bool(np.isfinite(entry)):
+                return False
+        except (TypeError, ValueError, OverflowError):
+            return False
+    return True
 
 
 def _subtract(left: Any, right: Any) -> Any:
@@ -267,10 +290,10 @@ class AutomaticDifferentiationProvider:
     def supports_order(self, order: int) -> bool:
         try:
             normalized = int(order)
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, OverflowError):
             return False
         return (
-            not isinstance(order, bool)
+            not isinstance(order, (bool, np.bool_))
             and normalized == order
             and 1 <= normalized <= self.max_order
         )
@@ -308,11 +331,11 @@ class AutomaticDifferentiationProvider:
         return result[1]
 
     def derivative(self, order: int, point: Any, directions: Sequence[Any]) -> Any:
-        derivative_order = int(order)
-        if not self.supports_order(derivative_order):
+        if not self.supports_order(order):
             raise ValidationError(
                 f"automatic-differentiation order must lie between 1 and {self.max_order}"
             )
+        derivative_order = int(order)
         self._validate_point(point)
         direction_tuple = tuple(directions)
         if len(direction_tuple) != derivative_order:
@@ -336,7 +359,12 @@ class AutomaticDifferentiationProvider:
 
         self._validate_point(point)
         probes = tuple(directions)
-        residual = 0.0
+        finite_data = (
+            _finite_ad_values(point)
+            and all(_finite_ad_values(direction) for direction in probes)
+            and _finite_ad_values(self.value(point))
+        )
+        residual = 0.0 if finite_data else float("inf")
         checked_orders: list[int] = []
         for order in range(1, min(self.max_order, len(probes)) + 1):
             selected = probes[:order]
@@ -350,13 +378,19 @@ class AutomaticDifferentiationProvider:
                 residual = max(residual, _norm(_subtract(candidate, reference)))
             checked_orders.append(order)
         threshold = 0.0 if self.exactness is Exactness.EXACT else float(tolerance)
+        if not np.isfinite(threshold) or threshold < 0:
+            raise ValidationError("AD validation tolerance must be finite and nonnegative")
         valid = residual <= threshold
         return Certificate(
             valid=valid,
             exactness=self.exactness,
             residuals={"directional_symmetry": residual},
             tolerance=None if self.exactness is Exactness.EXACT else threshold,
-            assumptions_checked=("finite source and target dimensions", "permutation symmetry probes"),
+            assumptions_checked=(
+                "finite source and target dimensions",
+                "finite tested points, directions, and function values",
+                "permutation symmetry probes",
+            ),
             assumptions_unchecked=(
                 "global correctness of the supplied JVP primitive",
                 "framework tracing outside the tested points",
@@ -386,10 +420,10 @@ class _FrameworkProviderBase:
     def supports_order(self, order: int) -> bool:
         try:
             normalized = int(order)
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, OverflowError):
             return False
         return (
-            not isinstance(order, bool)
+            not isinstance(order, (bool, np.bool_))
             and normalized == order
             and 1 <= normalized <= self.max_order
         )
@@ -428,7 +462,12 @@ class _FrameworkProviderBase:
 
         self._validate_input(point, name="point")
         probes = tuple(directions)
-        residual = 0.0
+        finite_data = (
+            _finite_ad_values(point)
+            and all(_finite_ad_values(direction) for direction in probes)
+            and _finite_ad_values(self.value(point))
+        )
+        residual = 0.0 if finite_data else float("inf")
         checked_orders: list[int] = []
         for order in range(1, min(self.max_order, len(probes)) + 1):
             selected = probes[:order]
@@ -452,6 +491,7 @@ class _FrameworkProviderBase:
             tolerance=threshold,
             assumptions_checked=(
                 "finite source and target dimensions",
+                "finite tested points, directions, and function values",
                 "permutation symmetry probes",
             ),
             assumptions_unchecked=(
@@ -539,9 +579,9 @@ class JaxDerivativeProvider(_FrameworkProviderBase):
         return self._validate_output_array(value)
 
     def derivative(self, order: int, point: Any, directions: Sequence[Any]) -> np.ndarray:
-        derivative_order = int(order)
-        if not self.supports_order(derivative_order):
+        if not self.supports_order(order):
             raise ValidationError(f"JAX derivative order must lie between 1 and {self.max_order}")
+        derivative_order = int(order)
         self._validate_input(point, name="point")
         direction_tuple = tuple(directions)
         if len(direction_tuple) != derivative_order:
@@ -648,11 +688,11 @@ class TorchDerivativeProvider(_FrameworkProviderBase):
         return self._validate_output_array(self._host(value))
 
     def derivative(self, order: int, point: Any, directions: Sequence[Any]) -> np.ndarray:
-        derivative_order = int(order)
-        if not self.supports_order(derivative_order):
+        if not self.supports_order(order):
             raise ValidationError(
                 f"PyTorch derivative order must lie between 1 and {self.max_order}"
             )
+        derivative_order = int(order)
         self._validate_input(point, name="point")
         direction_tuple = tuple(directions)
         if len(direction_tuple) != derivative_order:

@@ -76,7 +76,16 @@ def central_mode_momentum(mode: Any, mesh: float = 0.0) -> np.ndarray:
         phase = spacing * momentum
     if not np.all(np.isfinite(phase)):
         raise ValidationError("central-difference phase exceeds finite floating-point range")
-    return momentum * np.sinc(phase / np.pi)
+    # sinc divides and then multiplies its argument by pi. At huge phases
+    # that round trip can change the represented phase by many periods.
+    # Retain its removable-value branch only where the argument is small.
+    result = np.empty_like(momentum)
+    small = np.abs(phase) <= 1e-4
+    result[small] = momentum[small] * np.sinc(phase[small] / np.pi)
+    result[~small] = np.sin(phase[~small]) / spacing
+    if not np.all(np.isfinite(result)):
+        raise ValidationError("central-difference momentum exceeds finite floating-point range")
+    return result
 
 
 def dirac_symbol(momentum: Any, mass: float = 1.0) -> np.ndarray:

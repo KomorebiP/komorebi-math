@@ -39,8 +39,8 @@ class PortableCodecContractEntry:
         tag = str(self.tag).strip()
         if not tag or any(character.isspace() for character in tag):
             raise ValidationError("portable codec contract tags must be nonempty and contain no whitespace")
-        version = int(self.version)
-        if isinstance(self.version, bool) or version != self.version or version < 1:
+        version = self.version
+        if type(version) is not int or version < 1:
             raise ValidationError("portable codec contract versions must be positive integers")
         implementation = str(self.implementation_type).strip()
         if not implementation or "." not in implementation:
@@ -62,7 +62,7 @@ class PortableCodecContractEntry:
             raise ValidationError("portable codec contract entry fields do not match the schema")
         return cls(
             tag=str(value["tag"]),
-            version=int(value["version"]),
+            version=value["version"],
             implementation_type=str(value["implementation_type"]),
         )
 
@@ -79,7 +79,8 @@ class PortableCodecContract:
     def __post_init__(self) -> None:
         if self.schema != PORTABLE_CODEC_CONTRACT_SCHEMA:
             raise ValidationError("unknown portable codec contract schema")
-        if int(self.schema_version) != PORTABLE_CODEC_CONTRACT_SCHEMA_VERSION:
+        if (type(self.schema_version) is not int
+                or self.schema_version != PORTABLE_CODEC_CONTRACT_SCHEMA_VERSION):
             raise ValidationError("unsupported portable codec contract schema version")
         entries = tuple(self.entries)
         if tuple(sorted(entries)) != entries:
@@ -112,7 +113,7 @@ class PortableCodecContract:
             raise ValidationError("portable codec contract entries must be objects")
         return cls(
             schema=str(value["schema"]),
-            schema_version=int(value["schema_version"]),
+            schema_version=value["schema_version"],
             package_version=str(value["package_version"]),
             entries=tuple(PortableCodecContractEntry.from_dict(entry) for entry in raw_entries),
         )
