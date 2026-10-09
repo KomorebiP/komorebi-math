@@ -7,6 +7,17 @@ optional hardware qualification.
 
 ## Source publication gate
 
+From the checkout root, install the test dependencies and tools, then rebuild
+the distributions before running the gate:
+
+```powershell
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
+python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
+```
+
+Use that same interpreter for the wrapper. The following Conda example assumes
+the intended environment is active:
+
 ```powershell
 .\Run_Block21_Publication_Gate.ps1 -Python "$env:CONDA_PREFIX\python.exe"
 ```
@@ -42,7 +53,10 @@ python -m komorebi_math release readiness --final
 The final forms deliberately fail when any declared platform lacks a
 current-version, digest-checked execution record. Beta readiness may use an
 authorized predecessor record through the frozen upgrade contract; final
-readiness may not.
+readiness may not. Current CPU CI and the embedded evidence registry are
+separate records. Passing CI does not update the registry automatically. See
+[GitHub readiness](GITHUB_READINESS.md) for the tested revisions and
+[beta to release candidate](BETA_TO_RC.md) for the remaining registry boundary.
 
 ## Distribution and handoff reproducibility
 

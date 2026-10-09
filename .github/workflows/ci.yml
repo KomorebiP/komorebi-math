@@ -66,11 +66,40 @@ jobs:
           python-version: "3.13"
           cache: pip
       - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel
-      - run: python -m pip install -e ".[test,exact,scientific,yaml]" setuptools wheel mkdocs
+      - run: python -m pip install -e ".[test,exact,scientific,yaml]" setuptools wheel mkdocs "pymdown-extensions==10.16.1"
       - run: python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/CI_REPAIR_DISTRIBUTION_BUILD.json
       - run: python -m mkdocs build --strict
+      - run: python verification/check_math_docs.py --site-dir site --output release/CI_MATH_DOCS.json
       - run: python verification/check_release_manual.py --output release/CI_MANUAL_EXAMPLES.json
       - run: python verification/block21_publication_gate.py --require-mkdocs --output release/CI_DOCS_BLOCK21.json --markdown release/CI_DOCS_BLOCK21.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documentation-${{ github.sha }}
+          path: |
+            site/
+            release/CI_MATH_DOCS.json
+            release/CI_MANUAL_EXAMPLES.json
+          if-no-files-found: error
+
+  stress-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e ".[test,exact,scientific,yaml]"
+      - name: Run every requested stress case and bounded resource control
+        run: python verification/stress_release_candidate.py --revision "${{ github.sha }}" --timeout 180 --total-timeout 300 --output-directory release/CI_STRESS
+        env:
+          PYTEST_ADDOPTS: "-k deliberately_unmatched_release_control"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stress-replay-${{ github.sha }}
+          path: release/CI_STRESS/*
+          if-no-files-found: error
 
   optional-backends:
     runs-on: ubuntu-latest
@@ -103,7 +132,7 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel build mkdocs
+      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel build mkdocs "pymdown-extensions==10.16.1"
       - name: Build byte-reproducible distributions
         run: python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/CI_BLOCK21_DISTRIBUTION_BUILD.json
       - run: python -m pip install numpy
@@ -112,6 +141,8 @@ jobs:
           python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
       - name: Source parity and installed wheel plus sdist regressions
         run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/CI_REPAIR_ARTIFACT_GATE.json
+        env:
+          PYTEST_ADDOPTS: "-k polynomial"
       - run: python -m venv .venv-dist
       - run: .venv-dist/bin/python -m pip install release/dist/*.whl
       - run: .venv-dist/bin/python -m komorebi_math api check --strict-signatures

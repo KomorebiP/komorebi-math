@@ -63,6 +63,12 @@ least 15. The process-wide mpmath precision is unchanged. Shapes must be
 positive finite real values. Real arguments must be finite, and booleans are
 excluded from all scalar and integer domains.
 
+Shape functions use extra isolated working digits to resolve cancellation at
+large parameters, then round the returned result to the requested precision.
+More than 10,000 working decimal digits, or excessive positive window-exponent
+work, raises `ResourceLimitError`. This work limit is not a uniform bound on
+elapsed time, and extra precision does not make the output a directed enclosure.
+
 | Functions | Object and convention |
 | --- | --- |
 | `log_gamma_window`, `log_gamma_fourier` | Unit window `g_s(y)=Gamma(s)**(-1/2)*exp(s*y/2-exp(y)/2)`; unitary Fourier transform with `exp(-i*omega*y)` |

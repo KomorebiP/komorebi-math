@@ -44,7 +44,7 @@ The encoder supports:
 * `None`, booleans, integers, strings, and finite floats
 * exact fractions
 * complex values
-* NumPy scalar values
+* NumPy scalar values that convert to supported Python scalar types
 * NumPy arrays with shape and dtype metadata
 * tuples, lists, and mappings
 * explicitly registered portable codecs
@@ -52,6 +52,12 @@ The encoder supports:
 Mappings are represented by sorted key-value pairs so heterogeneous key types remain deterministic.
 
 Object arrays are recursively encoded. Numeric arrays use finite scalar data and restore the declared shape. The decoder validates dimensions and recursion depth before reconstruction.
+
+Integer array payloads must contain genuine integers within the declared
+dtype's range; fractional truncation and integer overflow are rejected.
+Floating and complex conversions must remain finite. Extended NumPy scalar
+precision that cannot convert to a supported Python scalar is rejected
+explicitly, rather than rounded silently or serialized recursively.
 
 ## Built-in mathematical codecs
 
@@ -118,7 +124,13 @@ The stream reader can decode one chunk at a time, but the complete basis count r
 
 ## File writes
 
-`save_portable` writes a temporary file in the destination directory, flushes the encoded text, and atomically replaces the destination. Existing destinations are rejected unless `overwrite=True` is explicit. Temporary files are cleaned after failure where the platform permits.
+`save_portable` writes and flushes a temporary file in the destination directory,
+then publishes the complete file atomically. With the default `overwrite=False`,
+publication rejects an existing destination even when another writer creates
+it concurrently. This uses a no-replacement rename on Windows and a hard link
+on POSIX, so the POSIX destination filesystem must support hard links. With
+`overwrite=True`, publication atomically replaces the destination. Temporary
+files are cleaned after failure where the platform permits.
 
 ## Custom codecs
 

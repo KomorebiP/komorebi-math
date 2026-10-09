@@ -14,7 +14,13 @@ planning requires the threshold to exceed the exact sum of the supplied
 coefficients. This is a research API with explicit numerical and mathematical
 assumptions. The existing private-evaluation project license is unchanged.
 
-Install `komorebi-math[scientific]`. Directed operations currently require
+From an authorized checkout, install the scientific extra and qualified backend:
+
+```bash
+python -m pip install ".[scientific]" "mpmath==1.3.0"
+```
+
+Directed operations currently require
 `mpmath==1.3.0`, the qualified arithmetic implementation used by the source
 audit. Importing the package or this namespace does not import mpmath. A
 missing or unqualified arithmetic backend raises an actionable
@@ -103,9 +109,12 @@ on modest matrices. `VerifiedSpectrum.rank` is the number of coefficient
 intervals, including zero eigenvalues, rather than the algebraic matrix rank.
 The automatic matrix-tail bridge requires a threshold above the exact stored
 trace and at least three strictly positive lower coefficient bounds.
-Unresolved spectral-rank or planner-domain cases can raise an informative
-error. Supported queries exhausting valid accuracy budgets return
-`certified=False`. The public options preserve the supplied caps.
+Unresolved spectral rank and invalid planner domains can raise an informative
+error. When valid input domains cannot be resolved at the supplied working or
+interval precision, the automatic controller returns `certified=False` with
+its failure reason. Conservative comparison-spectrum obstructions trigger
+bounded candidate refinement. Reported candidate precision is the actual last
+attempt, including on exhaustion. The public options preserve the supplied caps.
 
 Public operations hold a reentrant lock for their entire backend computation
 and restore the caller's point and interval precision in a `finally` block.

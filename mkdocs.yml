@@ -8,6 +8,7 @@ nav:
   - New Machinery Guide: NEW_MACHINERY_GUIDE.md
   - Manual Revision Notes: MANUAL_RELEASE_NOTES.md
   - GitHub Readiness: GITHUB_READINESS.md
+  - Release Closeout: RELEASE_CLOSEOUT_2026_10_09.md
   - Release Stress Audit: STRESS_AUDIT_2026_10_08.md
   - Deep Audit and New Machinery: DEEP_AUDIT_2026_10_08.md
   - Quadratic Form Tails: quadratic_forms.md
@@ -75,3 +76,12 @@ nav:
   - Export and LaTeX: EXPORT_AND_LATEX.md
 theme:
   name: mkdocs
+  highlightjs: false
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - assets/mathjax-config.js
+  - assets/mathjax-3.2.2/tex-svg-full.js
+extra_css:
+  - assets/math.css

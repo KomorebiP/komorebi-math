@@ -2,7 +2,7 @@
 
 > **Current checkpoint:** `1.0.0b4-repair-r4-block21` (`4b21`) is the R4 Block 21 certificate-consistency research beta. The 131-symbol stable namespace remains frozen. See [GitHub readiness](docs/GITHUB_READINESS.md) for the qualified commit, installation steps, and release boundaries.
 
-The deeper implementation audit at `bd1b8258aeb290769b67c3ea13275b777ab3513b` passed [all nine CPU qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37830645262), including Linux and Windows Python 3.11–3.13, minimum dependencies, strict documentation and isolated distributions. Qualification records apply to the revisions they name. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
+The stress-tested candidate at `46267f52513c17eba0f599edbdbed896a8adcfd3` passed [all ten qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805), including Linux and Windows Python 3.11–3.13, minimum CPU dependencies, strict documentation, isolated distributions, and a separate Linux CPU JAX/PyTorch campaign. Qualification records apply to the revisions they name. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
 
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
@@ -60,14 +60,16 @@ The `exact` extra adds SymPy 1.14 or newer for symbolic functionality. Standard-
 For development and source qualification:
 
 ```bash
-python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
+python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
 python -m pytest -q --tb=short tests
 ```
 
-Build the current wheel and source distribution with the release builder:
+Build before the full suite because its publication checks compare the source
+with the distributions. Rebuild after changing source or documentation. Install
+the generated wheel in a separate environment when checking installed behavior:
 
 ```bash
-python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
 python -m pip install --force-reinstall release/dist/komorebi_math-1.0.0b4-4b21-py3-none-any.whl
 ```
 
@@ -88,10 +90,16 @@ These commands install local source or a local artifact. The repository has no t
 An installed JAX or PyTorch package is not automatically considered usable. Komorebi Math checks each runtime in a child interpreter and confirms the directional JVP primitive required by the adapter. This prevents a broken native import from terminating the main source-validation process.
 
 ```powershell
+& "$env:CONDA_PREFIX\python.exe" .\verification\optional_ad_backend_status.py
 .\Run_Block21_Publication_Gate.ps1 -Python "$env:CONDA_PREFIX\python.exe"
 ```
 
-The command reports the Python executable, NumPy and pytest versions, and isolated JAX and PyTorch status before pytest begins. Backend integration tests are also executed in separate child interpreters.
+Run the diagnostic through the same interpreter used for the gate. It reports
+Python and isolated JAX/PyTorch status. The publication wrapper
+does not run this standalone preflight automatically. Backend integration tests
+also execute in separate child interpreters. See
+[optional backend isolation](docs/OPTIONAL_BACKEND_ISOLATION.md) for the strict
+CPU replay, which rejects skipped integration cases.
 
 ## Version 1 candidate contract
 

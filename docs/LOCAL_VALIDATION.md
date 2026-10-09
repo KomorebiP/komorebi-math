@@ -9,10 +9,19 @@ requires strict MkDocs.
 ## Complete source qualification
 
 ```powershell
-conda activate komorebi-full
-Set-Location "$HOME\Downloads\Komorebi_Math_1.0.0b4_Block21_WindowsHotfix1"
-.\Run_Block21_Publication_Gate.ps1 -Python "$env:CONDA_PREFIX\python.exe"
+Set-Location C:\path\to\komorebi-math
+py -3.12 -m venv .venv
+$py = (Resolve-Path .\.venv\Scripts\python.exe).Path
+& $py -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
+& $py verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
+.\Run_Block21_Publication_Gate.ps1 -Python $py
 ```
+
+Replace the checkout path with the actual location. An existing qualified
+Conda environment can be used by setting `$py` to its Python executable instead
+of creating a virtual environment. The distribution build must precede the
+full suite because publication tests check source/artifact parity. Rebuild
+after editing source or documentation.
 
 The run writes `release\BLOCK21_PUBLICATION_GATE.json`, its Markdown report,
 and `release\BLOCK21_PUBLIC_CAPABILITY_TOUR.json`. Use `-Quick` only for a
@@ -26,14 +35,14 @@ The current installed cumulative verifier is `block20`. The historical
 cumulative or publication gate.
 
 ```powershell
-python -m komorebi_math api check --stable
-python -m komorebi_math release contract
-python -m komorebi_math release upgrade
-python -m komorebi_math release evidence
-python -m komorebi_math release documentation
-python -m komorebi_math release readiness
-python -m komorebi_math verify stable
-python -m komorebi_math verify block20
+& $py -m komorebi_math api check --stable
+& $py -m komorebi_math release contract
+& $py -m komorebi_math release upgrade
+& $py -m komorebi_math release evidence
+& $py -m komorebi_math release documentation
+& $py -m komorebi_math release readiness
+& $py -m komorebi_math verify stable
+& $py -m komorebi_math verify block20
 ```
 
 `release readiness --final` is stricter than beta readiness: it requires
@@ -46,7 +55,7 @@ Run the hardware gate only in an environment containing a working CUDA
 PyTorch build and exactly one compatible CuPy distribution:
 
 ```powershell
-.\Run_GPU_Validation.ps1 -Python "$env:CONDA_PREFIX\python.exe"
+.\Run_GPU_Validation.ps1 -Python $py
 ```
 
 PyTorch and CuPy computations execute in separate child interpreters. A native

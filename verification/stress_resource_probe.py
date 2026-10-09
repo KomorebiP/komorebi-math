@@ -5,6 +5,7 @@ import argparse
 from decimal import Decimal
 import json
 from pathlib import Path
+import sys
 import time
 import tracemalloc
 
@@ -19,6 +20,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    if sys.flags.optimize:
+        parser.error("resource qualification requires enabled Python assertions")
     records = []
 
     def measure(name, size, operation):

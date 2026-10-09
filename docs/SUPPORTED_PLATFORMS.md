@@ -1,6 +1,9 @@
 # Supported Platforms and Dependency Policy
 
-The machine-readable source of truth is `src/komorebi_math/data/support_matrix_1_0.json`.
+The declared support policy and embedded historical environment records are in
+`src/komorebi_math/data/support_matrix_1_0.json`. Newer revision-specific CI and
+stress results are recorded in [GitHub readiness](GITHUB_READINESS.md); a
+successful external run does not automatically update that embedded file.
 
 ## Declared base contract
 
@@ -19,6 +22,11 @@ Every declared Python minor must pass the base installed-wheel contract before t
 ## Optional backends
 
 JAX and PyTorch availability is determined by a child-interpreter import and a capability check for the directional JVP primitive. Package discovery alone is insufficient.
+
+The stress-tested candidate separately qualified JAX/JAXlib 0.11.2 and
+PyTorch 2.14.1+cpu on Linux Python 3.12. This CPU result does not establish
+support for every version permitted by the optional dependency lower bounds,
+Windows optional runtimes, or GPU execution.
 
 CuPy is not a base dependency because its wheel must match the local CUDA line. CUDA qualification is a separate hardware gate.
 

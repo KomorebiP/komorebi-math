@@ -17,11 +17,21 @@ documentation links. `Build_Block21_Handoff.ps1` or
 `build_block21_handoff.sh` then performs reproducible distribution and
 repository-ZIP builds plus clean-extraction replay.
 
-The committed beta evidence covers both declared platform families, but only
-Linux has current `1.0.0b4` evidence. Windows is inherited from `0.16.0a2`
-through the upgrade contract, so `release readiness` passes while
-`release readiness --final` correctly fails until current Windows evidence is
-committed and digest-bound.
+Install the source-test extras and release tools, then build the distributions
+before running the source gate. Its parity checks reject absent or stale
+artifacts. The complete preparation sequence is in the
+[user guide](USER_GUIDE.md#command-line-workflows-and-verification).
+The POSIX wrapper skips MkDocs when it is absent. For a strict POSIX handoff,
+install MkDocs and use the explicit `--full-tests --require-mkdocs` command in
+that guide; an automatic documentation skip is not a strict documentation pass.
+
+Current GitHub CPU qualification covers Linux and Windows, as recorded in
+[GitHub readiness](GITHUB_READINESS.md). The embedded beta-evidence registry
+is separate: it contains a `1.0.0b4` Linux record and inherits its Windows record
+from `0.16.0a2` through the upgrade contract. Consequently,
+`release readiness --final` still fails until current Windows evidence is
+committed and digest-bound. Passing CI does not rewrite that registry or add
+fresh CUDA evidence.
 
 ## Historical Block 20 qualification gate
 
@@ -40,10 +50,10 @@ pass from a source tree bound to a deterministic digest:
   `SOURCE_DATE_EPOCH`
 * a safe single-root source handoff archive and SHA-256 manifest
 
-The source tree in this workspace has no authenticated release-tag metadata, so
-this beta gate binds a deterministic source digest and does not claim a clean or
-signed tag. Windows, CUDA, and strict MkDocs results are claimed only when they
-are actually run and recorded.
+The historical Block 20 source handoff had no authenticated release-tag
+metadata, so its beta gate bound a deterministic source digest without claiming
+a clean or signed tag. Windows, CUDA, and strict MkDocs results belong only to
+the runs that actually executed and recorded them.
 
 ## Block 19 qualification gate
 
@@ -65,7 +75,7 @@ The rigorous composite-Simpson path is restricted to a provenance-matched `Exact
 
 ## Release candidate
 
-A release candidate must additionally be built from a clean tag and pass the declared CPU platform matrix, hardware-backed CUDA qualification on the recorded NVIDIA environment, a strict documentation build, and archive-integrity verification. Historical Windows or CUDA evidence is not recast as a current Block 20 result.
+A release candidate must additionally be built from a clean tag and pass the declared CPU platform matrix, hardware-backed CUDA qualification on the recorded NVIDIA environment, a strict documentation build, and archive-integrity verification. Historical Windows or CUDA evidence is not recast as a current-version result.
 
 ## Final release
 
@@ -97,8 +107,9 @@ PowerShell smoke paths:
 The PowerShell scripts exercise source validation, distribution construction,
 and the primary wheel on a Windows host. They do not currently rebuild and
 install the sdist or produce the evidence chain required by the handoff
-builder. Accordingly, this checkpoint makes no current Windows qualification
-claim; the POSIX builder will reject incomplete or stale PowerShell evidence.
+builder. Accordingly, those historical smoke paths alone make no current
+Windows qualification claim; the POSIX builder rejects incomplete or stale
+PowerShell evidence. Current CPU CI has its own revision-specific scope.
 
 ## Local Block 19 commands
 

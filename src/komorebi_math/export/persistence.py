@@ -685,7 +685,10 @@ def _encode(value: Any, *, depth: int, max_depth: int) -> Any:
         return _tagged(
             "python.fraction",
             1,
-            {"numerator": value.numerator, "denominator": value.denominator},
+            # Fraction can retain fixed-width NumPy integer components. JSON
+            # requires native integers, and later exact arithmetic must not
+            # inherit fixed-width overflow from those scalar implementations.
+            {"numerator": int(value.numerator), "denominator": int(value.denominator)},
         )
     if isinstance(value, complex):
         if not isfinite(value.real) or not isfinite(value.imag):
@@ -891,7 +894,16 @@ def _decode(value: Any, *, depth: int, max_depth: int) -> Any:
                 raise ValidationError("portable integer ndarray data must contain in-range integers")
         try:
             with np.errstate(over="ignore", invalid="ignore"):
-                array = np.asarray(decoded, dtype=dtype).reshape(shape)
+                if dtype.kind == "O":
+                    # np.asarray recursively expands nested lists and arrays,
+                    # even with dtype=object. Each decoded value is one cell in
+                    # the declared outer shape and must remain one cell.
+                    array = np.empty(expected, dtype=dtype)
+                    for index, item in enumerate(decoded):
+                        array[index] = item
+                    array = array.reshape(shape)
+                else:
+                    array = np.asarray(decoded, dtype=dtype).reshape(shape)
         except (TypeError, ValueError, OverflowError) as exc:
             raise ValidationError("ndarray payload is incompatible with its declared dtype") from exc
         if dtype.kind in "fc" and not bool(np.all(np.isfinite(array))):

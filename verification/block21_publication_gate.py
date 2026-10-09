@@ -213,6 +213,7 @@ def _environment() -> dict[str, Any]:
 def _run_full_tests(root: Path) -> dict[str, Any]:
     environment = os.environ.copy()
     environment.pop("PYTHONOPTIMIZE", None)
+    environment.pop("PYTEST_ADDOPTS", None)
     environment["PYTHONPATH"] = str(root / "src")
     environment["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
     completed = subprocess.run(

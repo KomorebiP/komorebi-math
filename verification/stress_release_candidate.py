@@ -25,6 +25,7 @@ CAMPAIGNS = {
     "exact_arithmetic": ("test_stress_exact_arithmetic.py",),
     "numerical": ("test_stress_numerical.py",),
     "autodiff_contracts": ("test_stress_autodiff_contracts.py",),
+    "closeout_contracts": ("test_release_closeout_contracts.py",),
     "optional_backends": ("test_stress_optional_backends.py",
                           "test_nonlinear_sparse_autodiff.py",
                           "test_block10_sparse_autodiff.py"),
@@ -33,6 +34,47 @@ CAMPAIGNS = {
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _pytest_counts(path: Path) -> dict[str, int]:
+    """Validate the concrete pytest JUnit cases, including failed/skipped cases."""
+    tree = ET.parse(path)
+    if tree.getroot().tag not in {"testsuite", "testsuites"}:
+        raise ValueError("unsupported JUnit document")
+    suites = list(tree.iter("testsuite"))
+    if not suites:
+        raise ValueError("JUnit document has no test suites")
+    counts = {key: 0 for key in ("tests", "failures", "errors", "skipped")}
+    for suite in suites:
+        if suite.findall("testsuite"):
+            raise ValueError("nested JUnit suites are not supported")
+        values = {}
+        for key in counts:
+            value = suite.get(key, "")
+            if not value.isascii() or not value.isdigit():
+                raise ValueError(f"invalid JUnit {key} count")
+            values[key] = int(value)
+        cases = suite.findall("testcase")
+        observed = {"tests": len(cases), **{
+            key: sum(case.find(tag) is not None for case in cases)
+            for key, tag in (("failures", "failure"), ("errors", "error"), ("skipped", "skipped"))
+        }}
+        if values != observed:
+            raise ValueError("JUnit counts disagree with recorded test cases")
+        for key in counts:
+            counts[key] += values[key]
+    return counts
+
+
+def _resource_result_valid(path: Path) -> bool:
+    report = json.loads(path.read_text(encoding="utf-8"))
+    expected = ({("finite join validation and quotient", n) for n in (4, 8, 16, 32, 64)}
+                | {("directed stored-factor spectrum", n) for n in (4, 8, 16)}
+                | {("bounded directed positive tail", n) for n in (4, 8, 16)})
+    records = report["records"]
+    return (report["status"] == "passed" and len(records) == len(expected)
+            and {(row["operation"], row["size"]) for row in records} == expected
+            and all(row.get("passed") is True for row in records))
 
 
 def main() -> int:
@@ -54,6 +96,9 @@ def main() -> int:
     output = (root / args.output_directory).resolve()
     if not output.is_relative_to(root) or output == root:
         parser.error("output directory must be strictly below the project root")
+    output.mkdir(parents=True, exist_ok=True)
+    target = output / "manifest.json"
+    target.unlink(missing_ok=True)
     selected = list(dict.fromkeys(args.campaign or [n for n in CAMPAIGNS if n != "optional_backends"]))
     if args.include_optional_backends and "optional_backends" not in selected:
         selected.append("optional_backends")
@@ -67,10 +112,11 @@ def main() -> int:
                     | {p for p in (root / "src/komorebi_math").rglob("*")
                        if p.is_file() and p.suffix in {".py", ".json"}})
     inputs = [{"path": p.relative_to(root).as_posix(), "sha256": digest(p)} for p in pinned]
-    output.mkdir(parents=True, exist_ok=True)
     environment = dict(os.environ, PYTHONPATH=str(root / "src"),
                        PYTEST_DISABLE_PLUGIN_AUTOLOAD="1", OPENBLAS_NUM_THREADS="1",
                        OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
+    # A user's normal test filters must not narrow release qualification.
+    environment.pop("PYTEST_ADDOPTS", None)
     started = datetime.now(timezone.utc).isoformat()
     clock = time.monotonic()
     commands = []
@@ -99,6 +145,9 @@ def main() -> int:
                                 exit_status=process.returncode)
                 except subprocess.TimeoutExpired:
                     item.update(status="timeout", exit_status=124)
+                except OSError as exc:
+                    item.update(status="launch-error", exit_status=1,
+                                error=f"{type(exc).__name__}: {exc}")
         item["runtime_seconds"] = time.monotonic() - t0
         if item["status"] == "completed" and not scientific_result.is_file():
             item["status"] = "result-missing"
@@ -113,9 +162,10 @@ def main() -> int:
         item = run(campaign, command, junit, output / f"{campaign}.log")
         counts = {k: 0 for k in ("tests", "failures", "errors", "skipped")}
         if junit.is_file():
-            for suite in ET.parse(junit).iter("testsuite"):
-                for key in counts:
-                    counts[key] += int(suite.get(key, "0"))
+            try:
+                counts = _pytest_counts(junit)
+            except (ET.ParseError, OSError, ValueError) as exc:
+                item.update(status="result-invalid", error=f"{type(exc).__name__}: {exc}")
         item["pytest_counts"] = counts
         if item["status"] == "completed" and (not counts["tests"] or any(counts[k] for k in ("failures", "errors", "skipped"))):
             item["status"] = "result-invalid"
@@ -124,8 +174,12 @@ def main() -> int:
         result = output / "resources.json"
         command = [sys.executable, "verification/stress_resource_probe.py", "--output", str(result)]
         item = run("resources", command, result, output / "resources.log")
-        if item["status"] == "completed" and json.loads(result.read_text())["status"] != "passed":
-            item["status"] = "result-invalid"
+        if item["status"] == "completed":
+            try:
+                if not _resource_result_valid(result):
+                    item["status"] = "result-invalid"
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                item.update(status="result-invalid", error=f"{type(exc).__name__}: {exc}")
         results.append(item)
     for entry, path in zip(inputs, pinned, strict=True):
         entry["sha256_after"] = digest(path) if path.is_file() else None
@@ -175,7 +229,6 @@ def main() -> int:
         "residual_risks": ["Directed arithmetic depends on the documented mpmath trust base.",
                            "Numerical cases retain their model, tolerance and conditioning assumptions.",
                            "Thread environment caps are cooperative; no OS memory or affinity cap is asserted."]}
-    target = output / "manifest.json"
     target.write_text(json.dumps(manifest, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(json.dumps({"status": manifest["run"]["status"], "campaigns": results, "manifest": str(target)}))
     return 0 if passed else 1

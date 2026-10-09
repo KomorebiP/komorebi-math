@@ -17,6 +17,7 @@ include Install_And_Verify_Block16.ps1
 include Run_GPU_Validation.ps1
 recursive-include src/komorebi_math/data *.json
 recursive-include docs *.md
+recursive-include docs/assets *
 recursive-include examples *.py *.ps1
 recursive-include verification *.py *.json
 recursive-include tests *.py *.json

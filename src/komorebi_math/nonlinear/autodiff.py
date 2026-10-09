@@ -58,7 +58,15 @@ def _vector_length(value: Any) -> int:
 
 
 def _norm(value: Any) -> float:
-    residual = float(np.linalg.norm(np.asarray(value, dtype=complex).reshape(-1)))
+    magnitudes = np.abs(np.asarray(value, dtype=complex).reshape(-1))
+    if not bool(np.all(np.isfinite(magnitudes))):
+        return float("inf")
+    scale = float(np.max(magnitudes, initial=0.0))
+    if scale == 0.0:
+        return 0.0
+    # Scaling avoids squaring tiny finite residuals to zero or large finite
+    # residuals to infinity before taking the square root.
+    residual = float(scale * np.linalg.norm(magnitudes / scale))
     # ``max(0.0, nan)`` is 0.0, so a NaN norm must not disappear while
     # aggregating symmetry evidence. Infinite residuals fail certification.
     return residual if np.isfinite(residual) else float("inf")
@@ -355,7 +363,11 @@ class AutomaticDifferentiationProvider:
         *,
         tolerance: float = 1e-8,
     ) -> Certificate:
-        """Check finite permutation symmetry of available derivative orders."""
+        """Check finite permutation symmetry of available derivative orders.
+
+        Exact providers record a zero/nonzero discrepancy indicator. Numerical
+        providers record the largest Euclidean discrepancy among the probes.
+        """
 
         self._validate_point(point)
         probes = tuple(directions)
@@ -375,7 +387,18 @@ class AutomaticDifferentiationProvider:
                     point,
                     tuple(selected[index] for index in permutation),
                 )
-                residual = max(residual, _norm(_subtract(candidate, reference)))
+                difference = _subtract(candidate, reference)
+                if self.exactness is Exactness.EXACT:
+                    # Exact evidence uses a zero/nonzero discrepancy indicator.
+                    # Converting a rational difference to a machine float can
+                    # erase a nonzero difference or overflow a finite one.
+                    discrepancy = 0.0 if all(
+                        entry == 0
+                        for entry in np.asarray(difference, dtype=object).reshape(-1)
+                    ) else 1.0
+                else:
+                    discrepancy = _norm(difference)
+                residual = max(residual, discrepancy)
             checked_orders.append(order)
         threshold = 0.0 if self.exactness is Exactness.EXACT else float(tolerance)
         if not np.isfinite(threshold) or threshold < 0:

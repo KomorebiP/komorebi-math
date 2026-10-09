@@ -66,12 +66,17 @@ def main() -> int:
                 if not audit['passed']:
                     session.exitstatus=1
         previous=Path.cwd();os.chdir(work)
+        previous_addopts=os.environ.pop('PYTEST_ADDOPTS',None)
         try:
             with redirect_stdout(capture),redirect_stderr(capture):
                 code=pytest.main(['-q','--tb=short','--strict-markers','--import-mode=importlib',
                                   '-p','no:cacheprovider',f'--junitxml={work/"installed-tests.xml"}',
                                   *[str(work/'tests'/name) for name in files]],plugins=[ImportGuard()])
         finally:
+            if previous_addopts is None:
+                os.environ.pop('PYTEST_ADDOPTS',None)
+            else:
+                os.environ['PYTEST_ADDOPTS']=previous_addopts
             os.chdir(previous)
         xml=ET.parse(work/'installed-tests.xml')
         suites=list(xml.getroot().iter('testsuite'))

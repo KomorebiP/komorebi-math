@@ -1,0 +1,25 @@
+{
+  "name": "MathJax",
+  "version": "3.2.2",
+  "upstream": "https://github.com/mathjax/MathJax",
+  "distribution_url": "https://registry.npmjs.org/mathjax/-/mathjax-3.2.2.tgz",
+  "tarball_sha256": "1b9c0a1c44df864e915690558e72adb9cc5203360daefd385084ced3b6c64c09",
+  "registry_integrity": "sha512-Bt+SSVU8eBG27zChVewOicYs7Xsdt40qm4+UpHyX7k0/O9NliPc+x77k1/FEsPsjKPZGJvtRZM1vO+geW0OhGw==",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "source_member": "package/es5/tex-svg-full.js",
+      "path": "tex-svg-full.js",
+      "bytes": 2275113,
+      "sha256": "a4354ff94fd868aea0cc6eaaa79a57fda0588646fc46ee3700a349ee0a11cbe6"
+    },
+    {
+      "source_member": "package/LICENSE",
+      "path": "LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "modifications": "None. The upstream combined JavaScript bundle and LICENSE are copied byte-for-byte.",
+  "scope": "Third-party license applies to these MathJax files; the Komorebi Math project license is unchanged."
+}

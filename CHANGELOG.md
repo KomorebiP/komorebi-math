@@ -1,5 +1,15 @@
 # Changelog
 
+## Release closeout, 2026-10-09
+
+- Preserve exact NumPy-backed fractions and nested object-array cells in portable round trips.
+- Compare exact autodiff symmetry discrepancies without a floating conversion and scale numerical norms to retain tiny and large finite residuals.
+- Prevent inherited pytest filters from reducing qualification coverage, invalidate stale success records on failed launches or malformed results, and reject resource controls with disabled assertions.
+- Replay Python examples across supported Markdown fence syntax and require executable examples in each current reader guide.
+- Qualify CPU tensor execution independently of CUDA wheel metadata; include the closeout contract cases in bounded stress replay and installed-artifact checks.
+- Correct installation and release instructions, distinguish current CI from historical hardware evidence, and render mathematical documentation using preserved TeX and a local MathJax SVG bundle.
+- Add generic stress replay and rendered-math preservation to CI. Public signatures, the beta version, and existing package license are unchanged.
+
 ## Release stress audit, 2026-10-08
 
 - Repair arbitrary-precision recurrence/matrix/transform arithmetic for accepted NumPy integer and rational inputs, validate Hurwitz moduli and tensor axes, and avoid enumerating empty residue lanes beyond a finite prefix.

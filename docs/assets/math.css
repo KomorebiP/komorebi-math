@@ -1,0 +1,6 @@
+/* Keep wide display equations scrollable without expanding the page. */
+div.arithmatex {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}

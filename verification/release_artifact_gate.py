@@ -79,7 +79,7 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
         if not integrity['passed']:
             raise RuntimeError('Refusing to qualify distributions that fail source parity/integrity.')
         environment=os.environ.copy()
-        for key in ('PYTHONPATH','PYTHONHOME','PYTHONOPTIMIZE'):
+        for key in ('PYTHONPATH','PYTHONHOME','PYTHONOPTIMIZE','PYTEST_ADDOPTS'):
             environment.pop(key,None)
         environment.update(PYTHONDONTWRITEBYTECODE='1',PYTHONNOUSERSITE='1',PYTEST_DISABLE_PLUGIN_AUTOLOAD='1',
             SOURCE_DATE_EPOCH='1787356800',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1')

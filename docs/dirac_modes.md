@@ -29,7 +29,11 @@ No new Lean compilation or Python-to-Lean certification is claimed.
 
 `central_mode_momentum(mode,mesh)` accepts a strict integer triple. It computes
 `p*sinc(mesh*p/pi)` for `p=2*pi*mode`, with the continuum value at zero mesh.
-This form handles the removable zero-mesh limit and small meshes. The central
+This formula handles the removable zero-mesh limit and small meshes. Away
+from that limit, the implementation evaluates `sin(mesh*p)/mesh` directly to
+avoid changing a large represented phase through a divide/multiply roundtrip.
+It still operates on the supplied floating-point phase, so it cannot recover
+phase information already lost in input conversion or multiplication. The central
 symbol is periodic in momentum; distinct Fourier labels can have the same
 central symbol. There is no Nyquist restriction or claim of recovering labels
 from that symbol. No sampled finite-grid Hilbert space is constructed.

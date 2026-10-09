@@ -1,6 +1,34 @@
 # GitHub readiness
 
-Reviewed on 2026-10-08. The current Python library is a qualified research beta in `KomorebiP/komorebi-math`. Its package version remains `1.0.0b4`, its repair identity is `1.0.0b4-repair-r4-block21`, and its wheel build tag is `4b21`. The frozen stable surface has 131 symbols. A qualified beta checkpoint does not change the release channel to final 1.0.
+Reviewed on 2026-10-09. The current Python library is a qualified research beta in `KomorebiP/komorebi-math`. Its package version remains `1.0.0b4`, its repair identity is `1.0.0b4-repair-r4-block21`, and its wheel build tag is `4b21`. The frozen stable surface has 131 symbols. A qualified beta checkpoint does not change the release channel to final 1.0.
+
+## Stress-tested candidate
+
+The subsequent [9 October closeout](RELEASE_CLOSEOUT_2026_10_09.md) adds
+contract repairs, stricter qualification tools, and offline equation rendering.
+Its final revision is identified by the latest PR checks; the runs below remain
+evidence for the explicitly named earlier revision.
+
+Revision `46267f52513c17eba0f599edbdbed896a8adcfd3` passed all ten jobs in
+[push run 37873314805](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805)
+and all ten jobs in
+[pull-request run 37873317952](https://github.com/KomorebiP/komorebi-math/actions/runs/37873317952).
+The matrix covers Linux and Windows Python 3.11–3.13, minimum CPU
+dependencies, strict documentation, isolated installed artifacts, and a
+separate Linux CPU JAX/PyTorch campaign. The candidate remains reviewable in
+[pull request 1](https://github.com/KomorebiP/komorebi-math/pull/1).
+
+The [stress audit](STRESS_AUDIT_2026_10_08.md) records the reproduced defects,
+315 added backend-independent regression cases, bounded resource checks,
+and replay commands. Its local source run passed 2,544 cases with six optional
+backend cases skipped. All six ran successfully in the separate CPU backend
+environment. The isolated wheel and source-rebuilt wheel each passed 1,533
+runtime cases, and the rebuilt wheel was byte-identical.
+
+These records qualify their named source revision and executed environments.
+They do not update the embedded platform-evidence registry automatically,
+qualify CUDA or macOS, or promote the package to a release candidate. Later
+changes need the corresponding checks rerun.
 
 ## Historical default-branch qualification
 
@@ -34,9 +62,7 @@ The successful distribution job uploaded artifact `11516153327`, named `komorebi
 
 These results apply to the named commit. Any subsequent change needs the corresponding checks rerun before its own readiness is asserted. Finite verification establishes the recorded finite semantics and certificate hypotheses, not stronger infinite-dimensional or unconditional mathematical claims.
 
-## Install and verify
-
-### Deeper audit and machinery integration
+## Earlier deeper audit and machinery integration
 
 The [deeper audit](DEEP_AUDIT_2026_10_08.md) added independent mathematical
 controls and six scoped families of reusable machinery. Its source provenance,
@@ -60,7 +86,7 @@ is reviewable in [pull request 1](https://github.com/KomorebiP/komorebi-math/pul
 Historical workflow evidence above remains evidence for its named commit;
 subsequent revisions receive their own qualification.
 
-### Local commands
+## Install and verify
 
 From the root of an authorized checkout, using Python 3.11 through 3.13:
 
@@ -74,7 +100,7 @@ python -m komorebi_math verify block20
 For the full CPU source and documentation checks:
 
 ```bash
-python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
 python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
 python -m pytest -q --tb=short tests
 python -m mkdocs build --strict

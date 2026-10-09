@@ -23,7 +23,13 @@ windows-x86_64
 linux-x86_64
 ```
 
-For `1.0.0b1`, the expected open item is current Windows evidence. Once the exact beta passes the Windows source, wheel, upgrade, and GPU scripts, that result can replace inherited Windows evidence.
+The current package is `1.0.0b4`. Its embedded registry still inherits the
+Windows record from `0.16.0a2`. Current Linux and Windows CPU CI results are
+recorded separately in [GitHub readiness](GITHUB_READINESS.md); they do not
+replace that registry entry automatically. Final readiness requires a
+current-version Windows execution record committed with its digest. GPU
+qualification is a separate hardware requirement in the
+[release process](RELEASE_PROCESS.md), and cannot be inferred from CPU CI.
 
 ## Freeze discipline
 

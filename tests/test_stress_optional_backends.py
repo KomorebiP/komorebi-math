@@ -39,6 +39,7 @@ from komorebi_math.exceptions import ValidationError
 from komorebi_math.nonlinear.autodiff import JaxDerivativeProvider, TorchDerivativeProvider
 
 framework = sys.argv[1]
+provider_options = {}
 if framework == 'jax':
     import jax
     import jax.numpy as xp
@@ -53,8 +54,10 @@ else:
     Provider = TorchDerivativeProvider
     version = torch.__version__
     torch.set_num_threads(1)
-    assert torch.version.cuda is None
-    def stack(values): return torch.stack(values)
+    provider_options = {'device': 'cpu'}
+    def stack(values):
+        assert all(value.device.type == 'cpu' for value in values)
+        return torch.stack(values)
 
 rng = np.random.default_rng(182613)
 checks = 0
@@ -69,9 +72,10 @@ for dtype in ('float32', 'float64', 'complex128'):
         if framework == 'jax':
             aa, bb = xp.asarray(a, dtype=dtype), xp.asarray(b, dtype=dtype)
         else:
-            aa, bb = torch.tensor(a, dtype=getattr(torch, dtype)), torch.tensor(b, dtype=getattr(torch, dtype))
+            aa = torch.tensor(a, dtype=getattr(torch, dtype), device='cpu')
+            bb = torch.tensor(b, dtype=getattr(torch, dtype), device='cpu')
         function = lambda x: stack((xp.exp((x * aa).sum()), xp.sin((x * bb).sum())))
-        provider = Provider(function, dimension, 2, max_order=4, dtype=dtype)
+        provider = Provider(function, dimension, 2, max_order=4, dtype=dtype, **provider_options)
         for scale in (0.01, 1.0, 3.0):
             for sample in range(2):
                 point = rng.normal(size=dimension) * scale
@@ -105,7 +109,7 @@ for dtype in ('float32', 'float64', 'complex128'):
 # sqrt has nonfinite tangents outside its real domain, while log can return
 # a nonfinite primal with finite tangents. Neither may be certified.
 for operation in (xp.sqrt, xp.log):
-    bad = Provider(lambda x: stack((operation(x[0]),)), 1, 1, max_order=2, dtype='float64')
+    bad = Provider(lambda x: stack((operation(x[0]),)), 1, 1, max_order=2, dtype='float64', **provider_options)
     certificate = bad.validation_certificate(np.array([-1.0]), (np.array([1.0]), np.array([2.0])))
     assert not certificate.current_valid
     try:
@@ -118,7 +122,7 @@ for operation in (xp.sqrt, xp.log):
 
 # Unsupported differentiation dtypes and absent dtype names must fail.
 for dtype in ('int64', 'komorebi_nonexistent_dtype'):
-    invalid = Provider(lambda x: stack((x[0] ** 2,)), 1, 1, dtype=dtype)
+    invalid = Provider(lambda x: stack((x[0] ** 2,)), 1, 1, dtype=dtype, **provider_options)
     try:
         invalid.derivative(1, [1.0], ([1.0],))
     except (TypeError, ValueError, ValidationError):
@@ -145,3 +149,19 @@ def test_optional_cpu_ad_matches_independent_analytic_controls(framework) -> Non
     assert report["passed"] is True
     assert report["checks"] == 337
     print(json.dumps(report, sort_keys=True))
+
+
+@pytest.mark.optional_backend
+def test_torch_cpu_controls_allow_cuda_build_metadata() -> None:
+    """CPU execution also works when a PyTorch wheel advertises CUDA support."""
+    status = ad_framework_diagnostics()["torch"]
+    if not status["available"]:
+        pytest.skip(f"torch unavailable: {status['detail']}")
+    # This is a metadata-only compatibility control, not a CUDA runtime test.
+    program = "import torch\ntorch.version.cuda = '12.6'\n" + _ANALYTIC_CPU_PROGRAM
+    result = _run_child(program, "torch")
+    assert result.returncode == 0, (result.stdout + result.stderr)[-8000:]
+    report = json.loads(result.stdout.strip().splitlines()[-1])
+    assert report["passed"] is True
+    assert report["cpu_only"] is True
+    assert report["checks"] == 337

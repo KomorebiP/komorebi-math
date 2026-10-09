@@ -1,6 +1,6 @@
 # Komorebi Math user guide
 
-Release documentation edition: **8 October 2026**, for **`1.0.0b4`**.
+Release documentation edition: **9 October 2026**, for **`1.0.0b4`**.
 
 Komorebi Math provides reusable finite mathematical objects: operators, packet
 decompositions, coordinate changes, exact sequences, signal models, integration
@@ -74,7 +74,7 @@ declared by the current package metadata.
 | `torch` | PyTorch >= 2.1 | PyTorch directional differentiation |
 | `autodiff` | JAX and PyTorch | Both differentiation adapters |
 | `test` | pytest >= 8 | Source tests |
-| `dev` | pytest, build, mypy, Ruff, MkDocs | Development tools |
+| `dev` | pytest, build, mypy, Ruff, MkDocs, PyMdown Extensions | Development and mathematical documentation tools |
 | `all` | Exact, scientific, plot, and YAML dependencies | Broad mathematical dependencies |
 
 ```bash
@@ -214,7 +214,9 @@ comparison rule: the base class does not recompute every identity or impose one
 universal norm on all residuals.
 
 Residuals are copied into a read-only mapping. Use `dict(certificate.residuals)`
-for an ordinary dictionary display. Diagnostics are copied only at the outer
+for an ordinary dictionary display. Residual values must be supported immutable
+scalars; a mutable NumPy array, including a zero-dimensional array, cannot serve
+as live certificate evidence. Diagnostics are copied only at the outer
 dictionary level and are not deeply immutable. `.require()` accepts a live
 true certificate; it does not discharge unchecked assumptions.
 
@@ -356,7 +358,7 @@ python examples/release_manual_machinery.py
 For source development and release checks, install the explicit tools:
 
 ```bash
-python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
 python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
 python -m pytest -q --tb=short tests
 python -m mkdocs build --strict
@@ -374,6 +376,12 @@ It uses the interpreter supplied by the caller and binds imports to `src`. It
 does not create an isolated environment. `-Quick` omits the complete source
 suite, and `-SkipMkDocs` omits strict documentation. These switches describe a
 smaller diagnostic check and are not the full release command above.
+
+For the bounded stress replay and separate optional CPU campaign, see the
+[stress audit](STRESS_AUDIT_2026_10_08.md) and
+[optional backend isolation](OPTIONAL_BACKEND_ISOLATION.md). Requested stress
+campaigns must execute without skips. Their finite checks and resource budgets
+are recorded with the tested source hashes.
 
 Independent clean artifact checks also need a populated dependency wheelhouse:
 
@@ -397,7 +405,7 @@ source or documentation changes before checking source parity.
 | A loaded certificate requires revalidation | Rerun its producer; retain the loaded record as historical evidence |
 | Exact input is rejected | Use the API's declared integer or rational domain; avoid fractional truncation and Boolean indices |
 | Numerical recovery is unstable | Inspect singular values, thresholds, and residuals; the declared model and data conditioning still matter |
-| The full gate cannot build documentation | Install MkDocs explicitly and rerun without `-SkipMkDocs` |
+| The full gate cannot build documentation | Install MkDocs and `pymdown-extensions==10.16.1`, then rerun without `-SkipMkDocs` |
 | Artifact parity fails after editing | Rebuild wheel and source distribution from the edited source |
 
 Include the package version, interpreter, dependency versions, minimal input,

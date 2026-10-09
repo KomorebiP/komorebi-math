@@ -1,0 +1,11 @@
+MathJax 3.2.2
+MathJax Consortium
+https://github.com/mathjax/MathJax
+
+The unmodified tex-svg-full.js component is copied from the official
+npm mathjax@3.2.2 distribution. It includes TeX extensions and SVG font
+data for local, offline equation rendering.
+
+The accompanying upstream LICENSE applies to this third-party component.
+SOURCE.json records its source URL, archive integrity, file sizes, and
+SHA-256 hashes. The Komorebi Math project license is unchanged.

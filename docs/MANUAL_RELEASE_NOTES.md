@@ -91,3 +91,25 @@ The package remains beta `1.0.0b4`. Current CPU source, artifact, dependency,
 and documentation qualification belongs to its named source revision.
 Older platform and hardware records keep their dates and scope. This manual
 does not designate a final 1.0 release or record a public package upload.
+
+## 9 October closeout corrections
+
+The final reader pass corrects fresh-checkout instructions to build distributions
+before the full suite and to use the same interpreter throughout Windows
+validation. It distinguishes the strict PowerShell documentation requirement
+from the POSIX wrappers' automatic MkDocs skip, updates optional-backend replay
+instructions, and separates passing current CPU CI from the older embedded
+platform-evidence registry used by final readiness.
+
+The persistence chapter now documents checked NumPy dtype conversion,
+unsupported extended scalar precision, and concurrent exclusive publication
+with its POSIX hard-link requirement. The domain pages retain the stress
+repairs' precision, resource, and represented-phase boundaries. Historical
+audit records, mathematical formulas, package version, and license are unchanged.
+
+The documentation build now preserves LaTeX delimiters before Markdown parsing
+and renders equations with a locally bundled MathJax SVG engine. This prevents
+expressions such as `\mathcal M_p[R](z)` from becoming accidental hyperlinks.
+The renderer and SVG font data work offline, while code blocks remain literal.
+A dedicated documentation check verifies preservation and the bundled asset
+hashes. The third-party MathJax license is included beside its unmodified files.

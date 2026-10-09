@@ -92,6 +92,7 @@
     "test_stress_directed_tails.py",
     "test_stress_exact_arithmetic.py",
     "test_stress_numerical.py",
-    "test_stress_autodiff_contracts.py"
+    "test_stress_autodiff_contracts.py",
+    "test_release_closeout_contracts.py"
   ]
 }
