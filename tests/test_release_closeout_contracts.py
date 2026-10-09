@@ -20,7 +20,22 @@ from komorebi_math.nonlinear.autodiff import AutomaticDifferentiationProvider
 @pytest.mark.parametrize("integer_type", [np.int8, np.int64, np.uint64])
 @pytest.mark.parametrize("as_certificate", [False, True])
 def test_numpy_fraction_components_roundtrip_as_native_exact_integers(integer_type, as_certificate):
-    fraction = Fraction(integer_type(5), integer_type(3))
+    class NumpyComponentFraction(Fraction):
+        # Model the public scalar boundary without depending on NumPy's
+        # version-specific mixed signed/unsigned arithmetic in Fraction's
+        # constructor. In NumPy 1.26, uint64 components can fail before the
+        # serializer runs. The serializer must still receive NumPy components.
+        @property
+        def numerator(self):
+            return integer_type(super().numerator)
+
+        @property
+        def denominator(self):
+            return integer_type(super().denominator)
+
+    fraction = NumpyComponentFraction(5, 3)
+    assert type(fraction.numerator) is integer_type
+    assert type(fraction.denominator) is integer_type
     original = (Certificate(True, Exactness.EXACT, {"identity": fraction})
                 if as_certificate else fraction)
     encoded = to_portable_data(original)

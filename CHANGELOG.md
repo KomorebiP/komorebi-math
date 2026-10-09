@@ -6,6 +6,7 @@
 - Clarify numerical, OEIS, Fourier, persistence, resource-budget, platform-evidence, and GPU qualification boundaries against implementation.
 - Add a 64-block reference-example profile with explicit fragment and LaTeX exclusions to documentation CI and tag qualification.
 - Keep child example assertions enabled despite inherited optimization settings, and replace stale math-documentation success reports after a failed check.
+- Make the NumPy-backed fraction regression fixture portable to NumPy 1.26 while retaining NumPy integer components at the serializer boundary.
 
 ## Release closeout, 2026-10-09
 
