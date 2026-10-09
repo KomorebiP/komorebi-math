@@ -35,6 +35,7 @@ def test_full_publication_tests_ignore_external_selection(tmp_path, monkeypatch)
 def test_artifact_child_environment_ignores_external_selection(tmp_path, monkeypatch, mode):
     monkeypatch.setenv("PYTEST_ADDOPTS", "-k keep")
     monkeypatch.setattr(artifacts, "verify_release", lambda root: {"passed": True})
+    monkeypatch.setattr(artifacts, "release_binding", lambda root: {"source_sha256": "fixture"})
     monkeypatch.setattr(artifacts, "_tar_files", lambda path: ({}, {}))
     (tmp_path / "RELEASE_ID.json").write_text(
         json.dumps({"release_id": "fixture", "wheel_build_tag": "1"}), encoding="utf-8"

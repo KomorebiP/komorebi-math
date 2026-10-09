@@ -8,6 +8,10 @@ The subsequent [release closeout](docs/RELEASE_CLOSEOUT_2026_10_09.md) records
 local contract repairs, stricter checks, and offline equation rendering. Its
 local results do not extend the older CI qualification to later commits.
 
+The [stable candidate workflow](docs/STABLE_RELEASE_CANDIDATE.md) qualifies one
+set of package artifacts across the declared CPU matrix and provides an
+offline Windows CUDA handoff with source and artifact identity checks.
+
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
 

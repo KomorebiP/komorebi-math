@@ -7,6 +7,9 @@ on:
 permissions:
   contents: read
 
+env:
+  KOMOREBI_SOURCE_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+
 jobs:
   test:
     strategy:
@@ -17,6 +20,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
@@ -39,6 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -61,6 +68,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
@@ -74,7 +83,7 @@ jobs:
       - run: python verification/block21_publication_gate.py --require-mkdocs --output release/CI_DOCS_BLOCK21.json --markdown release/CI_DOCS_BLOCK21.md
       - uses: actions/upload-artifact@v4
         with:
-          name: documentation-${{ github.sha }}
+          name: documentation-${{ env.KOMOREBI_SOURCE_REVISION }}
           path: |
             site/
             release/CI_MATH_DOCS.json
@@ -85,19 +94,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install -e ".[test,exact,scientific,yaml]"
       - name: Run every requested stress case and bounded resource control
-        run: python verification/stress_release_candidate.py --revision "${{ github.sha }}" --timeout 180 --total-timeout 300 --output-directory release/CI_STRESS
+        run: python verification/stress_release_candidate.py --revision "${{ env.KOMOREBI_SOURCE_REVISION }}" --timeout 180 --total-timeout 300 --output-directory release/CI_STRESS
         env:
           PYTEST_ADDOPTS: "-k deliberately_unmatched_release_control"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stress-replay-${{ github.sha }}
+          name: stress-replay-${{ env.KOMOREBI_SOURCE_REVISION }}
           path: release/CI_STRESS/*
           if-no-files-found: error
 
@@ -105,6 +116,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -115,46 +128,178 @@ jobs:
           python -m pip install -e ".[test,exact,scientific,yaml]" "jax==0.11.2" "jaxlib==0.11.2"
           python -m pip install "torch==2.14.1+cpu" --index-url https://download.pytorch.org/whl/cpu
       - name: Require all requested CPU backend checks to execute
-        run: python verification/stress_release_candidate.py --campaign optional_backends --skip-resources --revision "${{ github.sha }}" --timeout 180 --total-timeout 300 --output-directory release/CI_OPTIONAL_STRESS
+        run: python verification/stress_release_candidate.py --campaign optional_backends --skip-resources --revision "${{ env.KOMOREBI_SOURCE_REVISION }}" --timeout 180 --total-timeout 300 --output-directory release/CI_OPTIONAL_STRESS
       - run: python -m pip check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: optional-cpu-stress-${{ github.sha }}
+          name: optional-cpu-stress-${{ env.KOMOREBI_SOURCE_REVISION }}
           path: release/CI_OPTIONAL_STRESS/*
           if-no-files-found: error
 
-  distribution:
+  candidate-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
           cache: pip
-      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel build mkdocs "pymdown-extensions==10.16.1"
-      - name: Build byte-reproducible distributions
+      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel build
+      - name: Build the common candidate distributions
         run: python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/CI_BLOCK21_DISTRIBUTION_BUILD.json
-      - run: python -m pip install numpy
+      - name: Bind the candidate to the actual clean Git revision
+        run: python verification/candidate_evidence.py create --root . --revision "${{ env.KOMOREBI_SOURCE_REVISION }}" --output release/CANDIDATE.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidate-${{ env.KOMOREBI_SOURCE_REVISION }}
+          path: |
+            release/dist/*
+            release/CANDIDATE.json
+            release/CI_BLOCK21_DISTRIBUTION_BUILD.json
+          if-no-files-found: error
+
+  distribution:
+    needs: candidate-build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel build
+      - uses: actions/download-artifact@v4
+        with:
+          name: candidate-${{ env.KOMOREBI_SOURCE_REVISION }}
+          path: release
       - name: Prepare dependencies for clean offline artifact qualification
         run: |
           python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
-      - name: Source parity and installed wheel plus sdist regressions
+      - name: Source parity and installed common wheel plus sdist regressions
         run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/CI_REPAIR_ARTIFACT_GATE.json
         env:
           PYTEST_ADDOPTS: "-k polynomial"
-      - run: python -m venv .venv-dist
-      - run: .venv-dist/bin/python -m pip install release/dist/*.whl
-      - run: .venv-dist/bin/python -m komorebi_math api check --strict-signatures
-      - run: .venv-dist/bin/python -m komorebi_math api check --stable
-      - run: .venv-dist/bin/python -m komorebi_math verify stable
-      - run: .venv-dist/bin/python -m komorebi_math verify block20
-      - run: .venv-dist/bin/python -m komorebi_math release qualify
+      - name: Check all public CLI gates from a clean offline installation
+        shell: python
+        env:
+          KOMOREBI_WHEELHOUSE: ${{ runner.temp }}/komorebi-wheelhouse
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          subprocess.run([sys.executable, "-m", "venv", ".venv-dist"], check=True)
+          python = Path(".venv-dist") / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+          wheels = list(Path("release/dist").glob("*.whl"))
+          if len(wheels) != 1:
+              raise RuntimeError("expected exactly one candidate wheel")
+          subprocess.run([str(python), "-I", "-m", "pip", "--isolated", "install", "--no-index",
+                          "--find-links", os.environ["KOMOREBI_WHEELHOUSE"], str(wheels[0])], check=True)
+          for arguments in (("api", "check", "--strict-signatures"), ("api", "check", "--stable"),
+                            ("verify", "stable"), ("verify", "block20"), ("release", "qualify")):
+              subprocess.run([str(python), "-I", "-m", "komorebi_math", *arguments], check=True)
+          subprocess.run([str(python), "-I", "-m", "pip", "--isolated", "check"], check=True)
+      - name: Verify the Windows hardware wrapper rejects missing GPU backends
+        if: matrix.os == 'windows-latest' && matrix.python == '3.13'
+        shell: pwsh
+        run: |
+          $ReportPath = Join-Path $PWD "release/CI_HARDWARE_UNAVAILABLE.json"
+          $LogPath = Join-Path $PWD "release/CI_HARDWARE_UNAVAILABLE.log"
+          Remove-Item $ReportPath -ErrorAction SilentlyContinue
+          Remove-Item $LogPath -ErrorAction SilentlyContinue
+          $CaughtFailure = $false
+          try {
+              & ./Run_Hardware_Qualification.ps1 -Python ".venv-dist/Scripts/python.exe" `
+                  -Candidate "release/CANDIDATE.json" -Output $ReportPath 2>&1 |
+                  Tee-Object -FilePath $LogPath
+          } catch {
+              $CaughtFailure = $true
+              $_ | Out-String | Add-Content -Path $LogPath
+          }
+          if (-not $CaughtFailure) { throw "Hardware wrapper accepted an environment without GPU backends" }
+          if (-not (Test-Path $ReportPath)) { throw "Hardware wrapper did not write fresh failure evidence" }
+          $Record = Get-Content -Raw $ReportPath | ConvertFrom-Json
+          if ($Record.passed -ne $false -or $Record.candidate_unchanged -ne $true) {
+              throw "Hardware failure evidence has an invalid outcome or candidate binding"
+          }
+          if ($Record.installed.installed_before.passed -ne $true) {
+              throw "Hardware wrapper did not verify the installed candidate wheel"
+          }
+          if ($Record.installed.passed -ne $false -or $Record.installed.gpu.qualification.passed -ne $false) {
+              throw "Missing GPU backends were not propagated as installed qualification failure"
+          }
+          $Backends = @($Record.installed.gpu.qualification.backends)
+          if ($Backends.Count -ne 2 -or (($Backends.backend | Sort-Object) -join ',') -ne 'cupy,torch') {
+              throw "Hardware failure evidence did not include both required backends"
+          }
+          foreach ($Backend in $Backends) {
+              if ($Backend.discovered -ne $false -or $Backend.available -ne $false -or
+                  $Backend.passed -ne $false -or $Backend.returncode -ne 2) {
+                  throw "Expected a missing backend diagnostic for $($Backend.backend)"
+              }
+          }
+          $global:LASTEXITCODE = 0
+          Write-Host "Windows hardware wrapper correctly rejected both missing GPU backends."
+      - name: Record observed CPU qualification against the candidate
+        run: python verification/candidate_evidence.py cpu --root . --candidate release/CANDIDATE.json --artifact-report release/CI_REPAIR_ARTIFACT_GATE.json --output release/CPU_${{ matrix.os }}_${{ matrix.python }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cpu-${{ matrix.os }}-${{ matrix.python }}-${{ env.KOMOREBI_SOURCE_REVISION }}
+          path: |
+            release/CI_REPAIR_ARTIFACT_GATE.json
+            release/CPU_${{ matrix.os }}_${{ matrix.python }}.json
+            release/CI_HARDWARE_UNAVAILABLE.json
+            release/CI_HARDWARE_UNAVAILABLE.log
+          if-no-files-found: error
+
+  candidate-cpu-evidence:
+    needs: distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          name: candidate-${{ env.KOMOREBI_SOURCE_REVISION }}
+          path: release
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cpu-*-${{ env.KOMOREBI_SOURCE_REVISION }}
+          path: release/CPU_REPORTS
+      - name: Require every supported CPU platform and Python cell
+        shell: python
+        run: |
+          from pathlib import Path
+          import subprocess
+          import sys
+          records = sorted(Path("release/CPU_REPORTS").glob("*/CPU_*.json"))
+          if len(records) != 6:
+              raise RuntimeError(f"expected six CPU qualification records, found {len(records)}")
+          subprocess.run([sys.executable, "verification/candidate_evidence.py", "aggregate", "--root", ".",
+                          "--candidate", "release/CANDIDATE.json", "--records", *map(str, records),
+                          "--output", "release/CPU_CANDIDATE.json"], check=True)
       - uses: actions/upload-artifact@v4
         with:
-          name: komorebi-math-${{ github.sha }}
+          name: cpu-candidate-evidence-${{ env.KOMOREBI_SOURCE_REVISION }}
           path: |
             release/dist/*
+            release/CANDIDATE.json
+            release/CPU_CANDIDATE.json
             release/CI_BLOCK21_DISTRIBUTION_BUILD.json
-            release/CI_REPAIR_ARTIFACT_GATE.json
+            release/CPU_REPORTS/
           if-no-files-found: error

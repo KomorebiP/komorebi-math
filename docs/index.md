@@ -13,6 +13,7 @@ The [ten-job qualification run](https://github.com/KomorebiP/komorebi-math/actio
 * [Release closeout and remaining qualification boundaries](RELEASE_CLOSEOUT_2026_10_09.md)
 
 * [GitHub readiness and installation](GITHUB_READINESS.md)
+* [Stable candidate qualification and Windows CUDA handoff](STABLE_RELEASE_CANDIDATE.md)
 * [Block 21 public reproducibility](BLOCK_21_PUBLIC_REPRODUCIBILITY.md)
 * [Block 20 typed finite expression release](BLOCK_20_RELEASE.md)
 * [Typed finite expression calculus](TYPED_FINITE_EXPRESSION_CALCULUS.md)

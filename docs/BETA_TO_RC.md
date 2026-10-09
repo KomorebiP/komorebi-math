@@ -2,6 +2,10 @@
 
 The beta gate and release-candidate gate are intentionally different.
 
+The [stable candidate workflow](STABLE_RELEASE_CANDIDATE.md) adds external
+revision- and artifact-bound CPU and hardware evidence. It preserves the
+historical embedded registry and does not automatically promote the version.
+
 ## Beta gate
 
 ```powershell
@@ -42,5 +46,10 @@ python -m komorebi_math release readiness --final --require-gpu
 ```
 
 ## Freeze discipline
+
+The current readiness implementation and release contract are beta-specific.
+An eventual `rc` or final version requires a deliberate stage/metadata
+transition and fresh qualification of the resulting artifacts. A version-only
+edit would fail the existing beta rules.
 
 After beta publication, changes permitted before `1.0.0rc1` are limited to defect corrections, documentation corrections, platform qualification, packaging corrections, and validation expansion. Any stable API or persistence change restarts beta qualification.

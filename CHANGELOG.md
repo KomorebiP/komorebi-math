@@ -1,5 +1,13 @@
 # Changelog
 
+## Stable candidate qualification, 2026-10-09
+
+- Qualify one candidate wheel and source distribution across clean Linux and Windows environments on Python 3.11, 3.12, and 3.13.
+- Normalize wheel archive metadata and generated metadata newlines for reproducible builds across the declared platforms.
+- Add external candidate, CPU-matrix, and installed-wheel hardware evidence tied to source and artifact hashes, with rejection controls for stale or incomplete results.
+- Add an offline Windows hardware wrapper that preserves the selected environment and records actual CUDA execution failures.
+- Keep the beta identity and frozen package contracts while separating CPU qualification, hardware qualification, and future release-stage promotion.
+
 ## Continued manual review, 2026-10-09
 
 - Repair the README polynomial connection example and persistence migration keyword; make the API Taylor example self-contained.

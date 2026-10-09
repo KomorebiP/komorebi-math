@@ -55,9 +55,14 @@ the source distribution, and runs the installed runtime profile on both. It
 fails if a required local dependency is missing and does not fall back to an
 online installation. Retain the report and the tested artifact hashes.
 
-The recorded six-way Linux/Windows Python 3.11–3.13 CI matrix uses editable
-source. Clean artifact CI runs separately on Linux Python 3.13; this does not
-establish clean-install coverage across the whole matrix.
+The six-way Linux/Windows Python 3.11–3.13 source matrix uses editable installs.
+The expanded artifact matrix additionally consumes one common candidate wheel
+and source distribution across all six environments, retaining byte-identical
+rebuild and isolated installed-runtime checks. Its external aggregate requires
+all six passing records for the same candidate. See the
+[stable candidate guide](STABLE_RELEASE_CANDIDATE.md) for exact identity and
+hardware handoff requirements. Earlier Linux-only artifact runs retain their
+original scope.
 
 ## Historical Block 20 qualification gate
 

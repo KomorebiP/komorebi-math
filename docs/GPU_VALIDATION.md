@@ -3,6 +3,13 @@
 GPU support is optional and excluded from the base NumPy dependency set.
 Package correctness and hardware qualification are separate checks.
 
+For a new candidate, use the artifact-bound
+[Windows hardware handoff](STABLE_RELEASE_CANDIDATE.md#windows-cuda-handoff).
+It installs the exact candidate wheel in a temporary environment, records
+source and artifact identity, and retains both successful and failed CUDA
+results. The older commands below remain useful for diagnosing the package
+already installed in an interpreter, but do not supply that candidate binding.
+
 ## Historical Windows configuration
 
 The committed `validation_windows_0_16_0a2.json` record includes the

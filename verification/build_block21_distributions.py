@@ -20,7 +20,12 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 from unicodedata import normalize
 
-from setuptools.build_meta import build_sdist, build_wheel
+from setuptools.build_meta import build_sdist
+
+try:
+    from .reproducible_wheel import build_canonical_wheel, reproducible_metadata
+except ImportError:
+    from reproducible_wheel import build_canonical_wheel, reproducible_metadata
 
 SOURCE_DATE_EPOCH = 1787356800
 
@@ -81,8 +86,9 @@ def _build_once(root: Path, destination: Path, version: str) -> tuple[Path, Path
         os.chdir(root)
         identity = json.loads((root / "RELEASE_ID.json").read_text(encoding="utf-8"))
         build_tag = identity["wheel_build_tag"]
-        wheel_name = build_wheel(str(destination), config_settings={"--build-option": [f"--build-number={build_tag}"]})
-        sdist_name = build_sdist(str(destination))
+        wheel_name = build_canonical_wheel(str(destination), build_tag)
+        with reproducible_metadata():
+            sdist_name = build_sdist(str(destination))
     finally:
         os.chdir(old)
     wheel = destination / wheel_name
@@ -213,6 +219,7 @@ def build(root: Path, destination: Path, report_path: Path) -> dict[str, Any]:
         "source_distribution_integrity": integrity,
         "passed": True,
         "byte_reproducible_rebuild": True,
+        "wheel_envelope": "sorted ZIP_STORED members, fixed POSIX metadata; member bytes preserved",
         "source_date_epoch": SOURCE_DATE_EPOCH,
         "toolchain": {
             "python": platform.python_version(),

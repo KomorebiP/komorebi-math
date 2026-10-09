@@ -8,6 +8,7 @@ import argparse
 import importlib.metadata
 import json
 import os
+import platform
 from pathlib import Path
 import shutil
 import site
@@ -18,9 +19,9 @@ import time
 from typing import Any
 
 try:
-    from .release_integrity import _tar_files, compare_files, package_files, sha256, verify_release, _zip_files
+    from .release_integrity import _tar_files, compare_files, package_files, release_binding, sha256, verify_release, _zip_files
 except ImportError:
-    from release_integrity import _tar_files, compare_files, package_files, sha256, verify_release, _zip_files
+    from release_integrity import _tar_files, compare_files, package_files, release_binding, sha256, verify_release, _zip_files
 
 
 def require_identical_wheels(direct: Path, rebuilt: Path) -> dict[str, Any]:
@@ -70,7 +71,8 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
     report: dict[str,Any]={'schema':'komorebi-math.installed-artifact-gate','schema_version':2,
         'passed':False,'dependency_mode_requested':dependency_mode,'dependency_isolated':False,
         'dependencies_inherited':dependency_mode=='inherited','network_used':False,
-        'runtime_tests_requested':runtime_tests,'commands':[]}
+        'runtime_tests_requested':runtime_tests,'commands':[],
+        'environment':{'platform':platform.system(),'machine':platform.machine(),'python':platform.python_version()}}
     try:
         wheelhouse=validate_options(dependency_mode,wheelhouse)
         if sys.flags.optimize:
@@ -78,6 +80,7 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
         integrity=verify_release(root);report['integrity']=integrity
         if not integrity['passed']:
             raise RuntimeError('Refusing to qualify distributions that fail source parity/integrity.')
+        report['binding_before']=release_binding(root)
         environment=os.environ.copy()
         for key in ('PYTHONPATH','PYTHONHOME','PYTHONOPTIMIZE','PYTEST_ADDOPTS'):
             environment.pop(key,None)
@@ -130,9 +133,10 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
                 target.write_bytes(content);target.chmod(modes[name])
             rebuilt_dir=work/'rebuilt';rebuilt_dir.mkdir()
             builder=make_venv('build_environment',build_environment=True) if dependency_mode=='isolated' else Path(sys.executable)
-            code=('import sys; from setuptools.build_meta import build_wheel; '
-                  'build_wheel(sys.argv[1],config_settings={"--build-option":["--build-number="+sys.argv[2]]})')
-            run([str(builder),'-I','-B','-c',code,str(rebuilt_dir),identity['wheel_build_tag']],extracted)
+            code=('import sys; sys.path.insert(0,sys.argv[1]); '
+                  'from reproducible_wheel import build_canonical_wheel; '
+                  'build_canonical_wheel(sys.argv[2],sys.argv[3])')
+            run([str(builder),'-I','-B','-c',code,str(root/'verification'),str(rebuilt_dir),identity['wheel_build_tag']],extracted)
             candidates=list(rebuilt_dir.glob('*.whl'))
             if len(candidates)!=1:
                 raise RuntimeError('sdist rebuild must produce exactly one wheel')
@@ -174,6 +178,9 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
                         raise RuntimeError(f'{label} installed runtime suite failed')
                     report[label]['runtime_suite']=result
             report['dependency_isolated']=dependency_mode=='isolated'
+            report['binding_after']=release_binding(root)
+            if report['binding_before'] != report['binding_after']:
+                raise RuntimeError('release source or artifacts changed during qualification')
             report['passed']=True
     except (OSError,RuntimeError,ValueError,KeyError,TypeError,subprocess.TimeoutExpired,StopIteration) as exc:
         report['error']=f'{type(exc).__name__}: {exc}'

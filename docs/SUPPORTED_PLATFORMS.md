@@ -19,11 +19,13 @@ minimum dependency combination rather than every permitted version combination.
 
 Every declared Python minor must pass the base installed-wheel contract before the final 1.0 release. Declared metadata is not treated as executed evidence.
 
-The recorded GitHub Linux/Windows Python 3.11–3.13 matrix installs editable
-source. Its separate clean wheel and source-rebuilt-wheel job runs on Linux
-Python 3.13. The 9 October local closeout also exercised clean installations on
-Linux Python 3.12. These runs do not establish clean-package coverage on every
-declared platform and Python minor.
+The earlier GitHub Linux/Windows Python 3.11–3.13 matrix installed editable
+source, with clean artifact qualification on Linux Python 3.13. The expanded
+workflow now requires a common candidate wheel and source distribution to pass
+clean installed-runtime qualification on all six platform/Python cells.
+The [candidate guide](STABLE_RELEASE_CANDIDATE.md) defines the evidence and
+replay procedure. Only completed records for the named candidate establish
+coverage; workflow configuration alone does not.
 
 ## Optional backends
 

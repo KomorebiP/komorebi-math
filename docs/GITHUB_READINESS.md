@@ -2,14 +2,33 @@
 
 Reviewed on 2026-10-09. The current Python library is a qualified research beta in `KomorebiP/komorebi-math`. Its package version remains `1.0.0b4`, its repair identity is `1.0.0b4-repair-r4-block21`, and its wheel build tag is `4b21`. The frozen stable surface has 131 symbols. A qualified beta checkpoint does not change the release channel to final 1.0.
 
-## Stress-tested candidate
+## Continued proofreading and candidate qualification
+
+Revision `3a1767a5e0ec4bbf21cc3acbc38f7fa7905741c8` passed all eleven jobs in
+[push run 37954458151](https://github.com/KomorebiP/komorebi-math/actions/runs/37954458151)
+and [PR run 37954463442](https://github.com/KomorebiP/komorebi-math/actions/runs/37954463442).
+Both runs included six source-platform cells, minimum dependencies,
+documentation, generic stress replay, optional CPU backends, and clean Linux
+artifact qualification. The wheel and source-rebuilt wheel each passed 1,556
+cases plus 13 subtests with zero skips. The manual profile passed 64 selected
+Python blocks. A NumPy 1.26 fixture-construction failure found in the preceding
+run was corrected without weakening the serialization regression.
+
+The next [stable candidate workflow](STABLE_RELEASE_CANDIDATE.md) expands clean
+artifact checks to all six declared platform/Python cells and records external
+revision-bound evidence. Results for `3a1767a` do not qualify those later
+workflow or packaging changes. Consult the candidate manifest and completed
+workflow records for the exact revision being assessed.
+
+## Earlier stress-tested candidate
 
 The subsequent [9 October closeout](RELEASE_CLOSEOUT_2026_10_09.md) adds
 contract repairs, stricter qualification tools, and offline equation rendering.
 Its local qualification was saved at commit
-`4a6473723af8679cb4882858ee21c6b995704dd5`. No new GitHub CI run for that commit
-has been established in this review, and the PR still reports the earlier head.
-The successful runs below remain evidence only for their named revision.
+`4a6473723af8679cb4882858ee21c6b995704dd5`. At that checkpoint no new CI run had
+appeared and the PR reported an earlier head. The later `3a1767a` publication
+resolved that mismatch and completed the eleven-job runs above. The older
+successful runs below remain evidence only for their named revision.
 
 Revision `46267f52513c17eba0f599edbdbed896a8adcfd3` passed all ten jobs in
 [push run 37873314805](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805)

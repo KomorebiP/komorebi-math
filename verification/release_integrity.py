@@ -16,6 +16,7 @@ import os
 import re
 import stat
 import tarfile
+import tempfile
 import zipfile
 from email.parser import BytesParser
 from pathlib import Path, PurePosixPath
@@ -83,6 +84,46 @@ def _zip_files(path: Path) -> dict[str, bytes]:
             if not info.is_dir():
                 files[name] = archive.read(info)  # Also validates CRC.
     return files
+
+
+def canonicalize_wheel(path: Path) -> None:
+    """Normalize ZIP transport metadata without changing any wheel member byte.
+
+    Store members uncompressed so the envelope does not depend on the host zlib
+    version. RECORD remains byte-for-byte intact and is checked before and after.
+    """
+    if path.is_symlink():
+        raise ValueError('wheel must not be a symlink')
+    path = path.resolve(strict=True)
+    payloads = _zip_files(path)
+    _record_check(payloads)
+    with zipfile.ZipFile(path) as source:
+        directories = {info.filename for info in source.infolist() if info.is_dir()}
+        if any(source.read(name) for name in directories):
+            raise ValueError('wheel directory contains data')
+    handle, temporary_name = tempfile.mkstemp(prefix='komorebi-wheel-', suffix='.whl', dir=path.parent)
+    os.close(handle)
+    temporary = Path(temporary_name)
+    try:
+        with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_STORED) as target:
+            for name in sorted(set(payloads) | directories):
+                info = zipfile.ZipInfo(name, date_time=(2026, 8, 22, 0, 0, 0))
+                info.create_system = 3
+                info.compress_type = zipfile.ZIP_STORED
+                info.external_attr = ((stat.S_IFDIR | 0o755) if name in directories else
+                                      (stat.S_IFREG | 0o644)) << 16
+                if name in directories:
+                    info.external_attr |= 0x10
+                target.writestr(info, b'' if name in directories else payloads[name])
+        normalized = _zip_files(temporary)
+        if normalized != payloads:
+            raise ValueError('wheel canonicalization changed member bytes')
+        _record_check(normalized)
+        temporary.chmod(0o644)
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def _tar_files(path: Path) -> tuple[dict[str, bytes], dict[str, int]]:
