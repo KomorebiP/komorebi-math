@@ -19,8 +19,10 @@ from typing import Any
 
 try:
     from .release_integrity import package_files, release_binding, support_files, verify_release
+    from .release_artifact_gate import require_installed_math_campaign
 except ImportError:
     from release_integrity import package_files, release_binding, support_files, verify_release
+    from release_artifact_gate import require_installed_math_campaign
 
 MANIFEST_SCHEMA = "komorebi-math.candidate-manifest"
 CPU_SCHEMA = "komorebi-math.candidate-cpu-record"
@@ -186,12 +188,18 @@ def _cell(environment: Any) -> tuple[str, str]:
     return cell
 
 
-def _all_passed(value: Any) -> None:
+def _all_passed(value: Any, *, campaign_counts: bool = False) -> None:
     if isinstance(value, dict):
         if "passed" in value:
-            _require(value["passed"] is True, "nested qualification result failed")
-        for item in value.values():
-            _all_passed(item)
+            if campaign_counts:
+                # Stress campaign status counters use "passed" as a count,
+                # while result records require an actual Boolean certificate.
+                _require(_integer(value["passed"], 0), "invalid nested passed count")
+            else:
+                _require(value["passed"] is True, "nested qualification result failed")
+        for name, item in value.items():
+            _all_passed(item, campaign_counts=(name == "counts"
+                        and value.get("kind") == "finite_mathematical_stress_report"))
     elif isinstance(value, list):
         for item in value:
             _all_passed(item)
@@ -248,6 +256,10 @@ def _validate_artifact_report(root: Path, report: dict[str, Any], identity: dict
         _require(isinstance(artifact, dict) and artifact.get("passed") is True
                  and artifact.get("require_installed") is True and artifact.get("cli_help_passed") is True,
                  f"missing installed artifact probes: {name}")
+        try:
+            require_installed_math_campaign(artifact.get("mathematical_campaign"))
+        except RuntimeError as exc:
+            raise ValueError(f"invalid installed math campaign in {name}: {exc}") from exc
         probes = artifact.get("tests", [])
         _require(isinstance(probes, list) and len(probes) == len(expected_probes)
                  and all(isinstance(p, dict) and p.get("passed") is True for p in probes)

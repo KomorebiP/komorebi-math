@@ -183,27 +183,39 @@ def nested_subspace_occupancy(
     *,
     tolerance: float = 1e-10,
 ) -> NestedOccupancyResult:
-    """Compute the intersection of a finite sequence of column spaces."""
+    """Compute the intersection of a finite sequence of column spaces.
+
+    ``stabilized_at`` records the first unchanged intersection in the final
+    constant run of the supplied finite sequence. It is ``None`` when the
+    final step shrinks the intersection or no comparison was supplied. This
+    finite observation does not certify stability at any unseen later level.
+    """
 
     matrices = [np.asarray(matrix, dtype=complex) for matrix in bases]
     if not matrices:
         raise ValidationError("nested occupancy requires at least one subspace")
+    if not np.isfinite(tolerance) or not 0 <= tolerance < 1:
+        raise ValidationError("occupancy tolerance must be finite and lie in [0, 1)")
+    if any(matrix.ndim != 2 for matrix in matrices):
+        raise DimensionError("every subspace basis must be a matrix")
     ambient = matrices[0].shape[0]
-    if any(matrix.ndim != 2 or matrix.shape[0] != ambient for matrix in matrices):
+    if any(matrix.shape[0] != ambient for matrix in matrices):
         raise DimensionError("every subspace basis must use one ambient dimension")
+    if any(not np.all(np.isfinite(matrix)) for matrix in matrices):
+        raise ValidationError("subspace bases must have finite entries")
 
     def orthonormal_columns(matrix: np.ndarray) -> np.ndarray:
         if matrix.shape[1] == 0:
             return np.zeros((ambient, 0), dtype=complex)
-        q, r = np.linalg.qr(matrix)
-        diagonal = np.abs(np.diag(r))
-        rank = int(np.sum(diagonal > tolerance))
-        return q[:, :rank]
+        # Unpivoted QR followed by the first ``rank`` columns can lose the
+        # actual span when zero or dependent columns precede an independent
+        # one. Left singular vectors select the full column space directly.
+        left, singular_values, _ = np.linalg.svd(matrix, full_matrices=False)
+        return left[:, singular_values > tolerance]
 
     current = orthonormal_columns(matrices[0])
     dimensions = [current.shape[1]]
-    stabilized_at: int | None = None
-    for index, matrix in enumerate(matrices[1:], start=1):
+    for matrix in matrices[1:]:
         right = orthonormal_columns(matrix)
         if current.shape[1] == 0 or right.shape[1] == 0:
             current = np.zeros((ambient, 0), dtype=complex)
@@ -212,8 +224,15 @@ def nested_subspace_occupancy(
             indices = np.flatnonzero(singular_values >= 1.0 - tolerance)
             current = current @ u[:, indices]
         dimensions.append(current.shape[1])
-        if stabilized_at is None and dimensions[-1] == dimensions[-2]:
-            stabilized_at = index
+    stabilized_at = next(
+        (
+            index
+            for index in range(1, len(dimensions))
+            if dimensions[index - 1] == dimensions[index]
+            and all(dimension == dimensions[index] for dimension in dimensions[index:])
+        ),
+        None,
+    )
     nested = all(dimensions[index + 1] <= dimensions[index] for index in range(len(dimensions) - 1))
     return NestedOccupancyResult(
         dimensions=tuple(dimensions),
@@ -224,7 +243,12 @@ def nested_subspace_occupancy(
             exactness=Exactness.NUMERICAL,
             tolerance=tolerance,
             assumptions_checked=("finite-dimensional column spaces", "numerical principal-angle intersection"),
-            diagnostics={"dimensions": tuple(dimensions)},
+            diagnostics={
+                "dimensions": tuple(dimensions),
+                "stabilized_at": stabilized_at,
+                "stability_scope": "supplied finite prefix only",
+                "span_method": "singular value decomposition",
+            },
             theorem_id="PSC-X-FINITE-OCCUPANCY",
             message="finite-dimensional occupancy intersection computed" if nested else "intersection dimensions are inconsistent",
         ),

@@ -1,0 +1,1093 @@
+{
+  "schema": "komorebi-math.paper-machinery-crosswalk.fragment.v1",
+  "audit_scope": "Current Strong Artin, Hodge, Catalan constant and Inverse Galois readers: finite executable layers and explicit geometric/arithmetic/formal boundaries.",
+  "audit": {
+    "scope": "Coverage-only construction-to-runtime audit of the four current reader PDFs",
+    "source_acquisition": "Authorized local complete PDF/text copies; current definitions and scoped mechanism sections inspected, historical crosswalks not treated as authority",
+    "claim_boundary": "Finite Python/runtime contracts and bounded independent arithmetic replay; not a full proof audit or fresh source research/Lean replay",
+    "not_claimed": [
+      "all conjecture machinery integrated",
+      "Strong Artin completion",
+      "general rational Hodge proof or counterexample",
+      "Catalan constant irrationality",
+      "universal inverse Galois realization",
+      "fresh Lean build",
+      "fresh full source research-bundle replay"
+    ],
+    "distinctions": [
+      "Combinatorial Catalan numbers and the Apéry zeta(3) recurrence are not Catalan-constant rational approximants.",
+      "A finite faithful representation is not an actual number-field realization.",
+      "Hodge type/packet balance is not an actual rational Chow correspondence.",
+      "Finite local lifting or gate reports do not supply arithmetic realization or infinite endpoints."
+    ]
+  },
+  "sources": [
+    {
+      "id": "Strong_Artin",
+      "title": "Strong Artin — Cyclic attachment and finite realization",
+      "path": "Komorebi_Strong_Artin_Conjecture_Piece_v1.0.pdf",
+      "sha256": "a232cdc1aee848f50cf3f65763ff33b0cd2a008250c685ac04d8cda1e61ecc0f",
+      "version": "Reader edition 1.0, 8 October 2026",
+      "pages": 58
+    },
+    {
+      "id": "Hodge",
+      "title": "Hodge Conjecture — Cycles, packets and explicit constructors",
+      "path": "Komorebi_Hodge_Conjecture_Piece_v1.0.pdf",
+      "sha256": "607f0a25fc27ab36379147292c8ac803076498bdde3d766329ee814a0b4eab87",
+      "version": "Reader edition 1.0, 9 October 2026",
+      "pages": 126
+    },
+    {
+      "id": "Catalan_Constant",
+      "title": "Catalan’s constant — The arithmetic still required",
+      "path": "Komorebi_Catalan_Constant_Conjecture_Piece_v1.0.pdf",
+      "sha256": "217cfccee04ac533a22f9db75146b47e3c3a162df5f0af9be0f4ebf1c029d057",
+      "version": "Reader edition 1.0, 9 October 2026",
+      "pages": 70
+    },
+    {
+      "id": "Inverse_Galois",
+      "title": "Inverse Galois — The realization still required",
+      "path": "Komorebi_Inverse_Galois_Conjecture_Piece_v1.0.pdf",
+      "sha256": "cb1ec0db4cd4a733ff9de795a2de1de72b7983eba73c54ee91ce4fc8bac93706",
+      "version": "Reader edition 1.0, 9 October 2026",
+      "pages": 45
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "strong_artin.cyclic_clifford_data",
+      "source_id": "Strong_Artin",
+      "section": "§§2, 16; §28.1",
+      "summary": "Declared prime-cyclic Clifford order/degree words, induction versus extension, depth and unmet attachment gates.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.langlands.finite_image.clifford.CliffordStep",
+        "komorebi_math.langlands.finite_image.clifford.CliffordTower.report",
+        "komorebi_math.langlands.finite_image.clifford.CliffordTower.automorphic_plan"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py"
+      ],
+      "boundaries": [
+        "Only internally consistent supplied finite tower data are checked; representation restriction data and automorphic attachment are assumptions.",
+        "Prime quotient orders and induction/extension dimension laws are validated; this does not construct a Galois representation."
+      ]
+    },
+    {
+      "key": "strong_artin.finite_induction",
+      "source_id": "Strong_Artin",
+      "section": "§2; §28.1",
+      "summary": "Explicit finite groups, subgroups, multiplicative linear characters and induced monomial representations.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup",
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup",
+        "komorebi_math.langlands.finite_image.characters.LinearCharacter",
+        "komorebi_math.langlands.finite_image.characters.InducedRepresentation.certificate"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py"
+      ],
+      "boundaries": [
+        "Finite group laws are explicit; character and induced matrices are complex NumPy values with declared tolerances, not general exact cyclotomic coefficients.",
+        "There is no automatic irreducible-character-table or invariant-type extension constructor, and no global automorphic induction implementation."
+      ]
+    },
+    {
+      "key": "strong_artin.coefficient_rotation_selectors",
+      "source_id": "Strong_Artin",
+      "section": "§3, Theorem 3.3; §28.2",
+      "summary": "Active characteristic-polynomial coefficient degrees determine which prime-cyclic twists can be separated; trace and determinant are special cases.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The runtime has no dedicated exact cyclotomic coefficient-rotation or active-degree selector API.",
+        "A coefficient degree divisible by the quotient prime is twist-blind; a finite trace comparison alone does not establish global attachment."
+      ]
+    },
+    {
+      "key": "strong_artin.twist_blindness",
+      "source_id": "Strong_Artin",
+      "section": "§4; §21",
+      "summary": "Central characters, sufficiently ramified epsilon data and total induced torsors can fail to distinguish cyclic descents.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These are source mathematical no-go statements, not permission to treat a failed selector as successful attachment.",
+        "No automated local epsilon-factor or central-character blindness theorem checker is integrated."
+      ]
+    },
+    {
+      "key": "strong_artin.local_extension_spectrum",
+      "source_id": "Strong_Artin",
+      "section": "§5; §28.3–28.4",
+      "summary": "Stable H-type multiplicity polynomials in Z[z]/(z^p−1), moving blocks, simultaneous cyclic shifts and common rotational stabilizers.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A dedicated H-type decomposition, exact multiplicity-polynomial rotation and alignment-coset implementation is absent.",
+        "All stable-type spectra must share the same shift; Fourier zero modes must match, rather than being skipped. Generic cyclic quantum projectors do not supply this type data."
+      ]
+    },
+    {
+      "key": "strong_artin.global_spectrum_intersection",
+      "source_id": "Strong_Artin",
+      "section": "§6",
+      "summary": "Global attachment is the intersection of the compatible local alignment sets, including all required places.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Intersecting a finite user-selected set of local candidates does not establish the intersection over all places.",
+        "Split places have the full quotient-character torsor; actual local/global automorphic parameters are external input."
+      ]
+    },
+    {
+      "key": "strong_artin.classical_artin_descent",
+      "source_id": "Strong_Artin",
+      "section": "§§7–8",
+      "summary": "Local Artin descent, temperedness, infinity types, finite Satake roots and cyclotomic Hecke coefficient fields.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Classical local Langlands, cyclic base change and cuspidal descent are imported source contracts, not constructed by Python.",
+        "There is no general automorphic representation, Satake number-field or infinity-type realization API."
+      ]
+    },
+    {
+      "key": "strong_artin.finite_trace_separators",
+      "source_id": "Strong_Artin",
+      "section": "§9; §18",
+      "summary": "A finite supplied characteristic-zero trace family can be separated by finitely many trace coordinates.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.companions.FrobeniusSpine",
+        "komorebi_math.deformation.companions.finite_frobenius_separator"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "The runtime separator uses supplied finite rational trace coordinates, not arbitrary algebraic polynomial alphabets or number-field prime ideals.",
+        "Chebotarev existence of actual Frobenius places, good-prime exclusion and Galois/automorphic equality are external mathematical obligations."
+      ]
+    },
+    {
+      "key": "strong_artin.residual_alphabets",
+      "source_id": "Strong_Artin",
+      "section": "§§10–14",
+      "summary": "Residual trace alphabets, semisimple finite-image bounds, quotient-prime collapse, one-prime residual attachment and finite Satake rigidity.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No automatic residual Galois realization, mod-prime pseudocharacter or algebraic coefficient prime-selection constructor is integrated.",
+        "Characteristic zero or residual characteristic greater than the dimension is essential to the source trace-faithfulness argument; finite alphabet data alone do not produce an Artin representation."
+      ]
+    },
+    {
+      "key": "strong_artin.realization_gate_reports",
+      "source_id": "Strong_Artin",
+      "section": "§§15–17; §29",
+      "summary": "Explicitly record residual, cohomological, pseudofamily and complex pseudocharacter realization assumptions.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.completion.gates.AutomorphicCompletionReport",
+        "komorebi_math.langlands.completion.gates.GateStatus",
+        "komorebi_math.langlands.completion.gates.CompatiblePropagationReport"
+      ],
+      "tests": [
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "Gate reports check supplied Boolean assumptions and return conditional conclusions; they do not construct cohomology, patching, arithmetic representations or automorphy.",
+        "The weight-zero realization bottleneck remains an external/open source obligation, including nonregular limits and the all-local attachment refinement."
+      ]
+    },
+    {
+      "key": "strong_artin.automorphic_fibre_separator",
+      "source_id": "Strong_Artin",
+      "section": "§19",
+      "summary": "Separate the finite automorphic descent fibre once its candidates and distinguishing data have been produced.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source theorem requires an actual automorphic fibre and realizations; a list of symbolic candidate labels is insufficient.",
+        "No automorphic Hecke-eigenvalue or descent-fibre constructor exists in the runtime."
+      ]
+    },
+    {
+      "key": "strong_artin.positive_induction_cone",
+      "source_id": "Strong_Artin",
+      "section": "§20",
+      "summary": "A nonnegative integral monomial induction relation would transfer holomorphy from the known entire factors.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.clifford.VirtualCharacterTerm",
+        "komorebi_math.langlands.finite_image.clifford.VirtualCharacterResolution",
+        "komorebi_math.langlands.finite_image.characters.InducedRepresentation.trace"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py"
+      ],
+      "boundaries": [
+        "The runtime stores declared signed terms and detects negative coefficients; it does not solve character-table cone membership or positive saturation.",
+        "Holomorphy of the inducing Artin L-functions is external; virtual subtraction does not certify an entire target L-function."
+      ]
+    },
+    {
+      "key": "strong_artin.square_zero_lift_obstruction",
+      "source_id": "Strong_Artin",
+      "section": "§27.2",
+      "summary": "Square-zero ring lift defects are group 2-cocycles; changing lifts adds a coboundary and H2 measures obstruction.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.complexes.FiniteCochainComplex",
+        "komorebi_math.nonlinear.obstruction.LinearObstructionProblem"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py",
+        "tests/test_nonlinear_obstruction.py"
+      ],
+      "boundaries": [
+        "Only supplied finite cochain matrices over prime fields or finite linear obstruction systems are executable.",
+        "The runtime does not construct the ring-kernel conjugation action, defect cocycle or group-cochain complex automatically; the source square-zero and action hypotheses must be proved for the actual ring."
+      ]
+    },
+    {
+      "key": "strong_artin.local_conjugacy_gluing",
+      "source_id": "Strong_Artin",
+      "section": "§27.3",
+      "summary": "A distinct H1 obstruction controls gluing local conjugacies after representation lifts exist.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.complexes.FiniteCochainComplex.cohomology",
+        "komorebi_math.nonlinear.obstruction.LinearObstructionProblem"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py",
+        "tests/test_nonlinear_obstruction.py"
+      ],
+      "boundaries": [
+        "A supplied finite cohomology problem can be evaluated; actual local conjugators, global restriction maps and their compatibility are not generated.",
+        "Vanishing of an H2 lifting obstruction does not by itself remove this H1 gluing obligation."
+      ]
+    },
+    {
+      "key": "strong_artin.moving_syzygy_lifting",
+      "source_id": "Strong_Artin",
+      "section": "§27.4",
+      "summary": "Simultaneous polynomial digit correction with nonlinear compatibility and faithful leading-layer hypotheses.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.lift_fiber",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.stack"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Exact prime-field Jacobian fibres and bounded lift towers are integrated; moving syzygy certificates B_x F(x)=0, im J=ker B and faithful principal-ideal layers are not automatic.",
+        "The source examples F(x)=(x,x²) and torsion layers distinguish ambient divisibility from internal divisibility; arbitrary compatible target modules are not covered by a free-coordinate prime digit fibre."
+      ]
+    },
+    {
+      "key": "strong_artin.ordered_matrix_power_derivative",
+      "source_id": "Strong_Artin",
+      "section": "§27.5; §27.7",
+      "summary": "The derivative of A↦A^d is the ordered sum ∑ A^j H A^(d−1−j), with a stated ultrametric remainder bound.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated ordered noncommutative power derivative and ultrametric operator-norm remainder certificate API is present.",
+        "The bound assumes the specified nonarchimedean norm and unit/radius controls; a complex spectral-norm calculation is a different contract."
+      ]
+    },
+    {
+      "key": "strong_artin.two_sided_matrix_power_inverse",
+      "source_id": "Strong_Artin",
+      "section": "§27.6–27.7",
+      "summary": "A bounded additive inverse Q of the power derivative gives a contraction and unique small-ball root under Kr<1.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.correction.RightInverseCorrectionProblem",
+        "komorebi_math.nonlinear.correction.LyapunovSchmidtReduction"
+      ],
+      "tests": [
+        "tests/test_nonlinear_correction_elimination.py"
+      ],
+      "boundaries": [
+        "Current finite numerical correction APIs provide a related finite-dimensional framework, not the source integral two-sided QD=DQ=I matrix-unit certificate or a p-adic ball theorem.",
+        "Norm constants, integrality scale, both inverse directions and target membership must be proved; a claimed right inverse alone is insufficient."
+      ]
+    },
+    {
+      "key": "strong_artin.joint_finite_lift_branches",
+      "source_id": "Strong_Artin",
+      "section": "§27.8",
+      "summary": "Verify one finite compatible filtered branch; record the extra hypotheses needed for a projective-limit endpoint.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.filtered.verify_finite_filtered_branch",
+        "komorebi_math.nonlinear.filtered.conditional_projective_limit_completion",
+        "komorebi_math.nonlinear.filtered.FilteredCorrectionProblem"
+      ],
+      "tests": [
+        "tests/test_nonlinear_filtered.py",
+        "tests/test_paper_core_machinery.py"
+      ],
+      "boundaries": [
+        "Finite prime-field branch checks and condition-labelled endpoint records are executable, with exact finite matrix arithmetic.",
+        "Compatible joint lifts, compactness, completeness and an infinite branch remain external hypotheses; separate finite forests do not construct a common infinite endpoint."
+      ]
+    },
+    {
+      "key": "strong_artin.formal_receipts_and_universal_boundary",
+      "source_id": "Strong_Artin",
+      "section": "§24; §27.9; §29",
+      "summary": "Source formal mechanisms and verification receipts are distinguished from the conjectural arithmetic realization step.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source formal/research artifacts are not rebuilt or imported as Python kernel proofs by this audit.",
+        "Neither the bounded runtime tests nor Boolean gate reports prove Strong Artin or the source unresolved universal realization and all-local attachment statements."
+      ]
+    },
+    {
+      "key": "hodge.rational_projector_target",
+      "source_id": "Hodge",
+      "section": "§§1–2; §17",
+      "summary": "The obstruction P_Hdg−P_Alg and primitive/coniveau reformulations state the rational Hodge target.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No runtime constructor computes the actual algebraic-cycle span, rational Hodge subspace or geometric coniveau of an arbitrary smooth projective variety.",
+        "A finite matrix projector is useful only after its geometric meaning and rational cycle classes have been established."
+      ]
+    },
+    {
+      "key": "hodge.finite_cycle_frame",
+      "source_id": "Hodge",
+      "section": "§3",
+      "summary": "For supplied rational cycle-class columns, exact span and positive-frame calculations test coverage of a supplied target subspace.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.exact.matrix_rank",
+        "komorebi_math.coordinates.exact.augment",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisSystem.canonical_dual"
+      ],
+      "tests": [
+        "tests/test_block18_frame_algebra.py"
+      ],
+      "boundaries": [
+        "Exact rational matrix rank and full-column-rank frame duals are integrated; actual algebraic cycles, cup-product adjoints and Hodge target bases are external.",
+        "Containment of the columns in the target is required for the positive-frame restriction argument. Without containment, use rank[C H]=rank C; canonical_dual rejects deficient rank."
+      ]
+    },
+    {
+      "key": "hodge.packet_frame_reconstruction",
+      "source_id": "Hodge",
+      "section": "§§3–4",
+      "summary": "Finite rational analysis/synthesis maps, coefficient projections and exact composition reconstruct supplied packet presentations.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisSystem",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisMap",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisSystem.tensor_product"
+      ],
+      "tests": [
+        "tests/test_block18_frame_algebra.py"
+      ],
+      "boundaries": [
+        "This row covers finite rational presentation algebra only; it does not certify that any matrix represents a Chow correspondence or algebraic cycle class.",
+        "Degree polyphase, parent/child incidence maps and geometric adjoints still must be supplied with their actual cohomological meaning."
+      ]
+    },
+    {
+      "key": "hodge.finite_dimension_saturation",
+      "source_id": "Hodge",
+      "section": "§5",
+      "summary": "An increasing cycle span in a fixed finite-dimensional ambient space eventually stabilizes at a finite degree.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source existence statement does not give an effective universal stopping degree.",
+        "An unchanged observed prefix does not prove that every later algebraic cycle lies in the supplied span."
+      ]
+    },
+    {
+      "key": "hodge.geometric_support_descent",
+      "source_id": "Hodge",
+      "section": "§6",
+      "summary": "Support is detected by restriction away from a closed subset and purity supplies lower-dimensional algebraicity transfer.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Generic presented-module Fitting support does not implement geometric restriction, purity, cycle support or resolutions of singularities.",
+        "An actual variety, closed subset, restriction map and geometric purity hypotheses are required."
+      ]
+    },
+    {
+      "key": "hodge.divisor_lowering_return",
+      "source_id": "Hodge",
+      "section": "§7",
+      "summary": "Combined lowering maps give T=∑ A†A; invertibility and Cayley–Hamilton furnish a return from lower-degree algebraic data.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.exact.matrix_multiply",
+        "komorebi_math.coordinates.exact.inverse_matrix",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisMap"
+      ],
+      "tests": [
+        "tests/test_block18_frame_algebra.py"
+      ],
+      "boundaries": [
+        "The finite matrix inversion/composition layer is present; geometric lowering maps, adjoints and actual algebraic correspondences are not constructed.",
+        "Positive or invertible finite matrices alone do not supply the required cycle-theoretic maps."
+      ]
+    },
+    {
+      "key": "hodge.classical_validation_channels",
+      "source_id": "Hodge",
+      "section": "§§8–11",
+      "summary": "Family propagation, affine pavings, projective bundles, blowups, cubic fourfold and Gushel–Mukai incidence transfers.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These rely on specific geometric constructions and classical theorem contracts; no general family, Chow group or incidence-variety implementation is integrated.",
+        "Validation examples in the paper are not fresh runtime proofs of general rational Hodge."
+      ]
+    },
+    {
+      "key": "hodge.adams_degree_packets",
+      "source_id": "Hodge",
+      "section": "§12",
+      "summary": "Lagrange projectors split supplied Adams eigenvalues m^q into degree packets.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.core.paper_machinery.rational_spectral_projectors",
+        "komorebi_math.core.paper_machinery.rational_primary_packets"
+      ],
+      "tests": [
+        "tests/test_paper_core_machinery.py"
+      ],
+      "boundaries": [
+        "Exact primary projectors of supplied finite rational operators are integrated, including nonsemisimple blocks.",
+        "Topological K-theory, genuine Adams operations and the geometric cycle identification are external; supplying a matrix with the desired eigenvalues does not construct them."
+      ]
+    },
+    {
+      "key": "hodge.dolbeault_range_obstruction",
+      "source_id": "Hodge",
+      "section": "§13",
+      "summary": "Range cancellation and the remaining harmonic/Kuranishi obstruction are separated in a finite Lyapunov–Schmidt framework.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.correction.HilbertObstructionProjector",
+        "komorebi_math.nonlinear.correction.LyapunovSchmidtReduction",
+        "komorebi_math.nonlinear.correction.RightInverseCorrectionProblem"
+      ],
+      "tests": [
+        "tests/test_nonlinear_correction_elimination.py"
+      ],
+      "boundaries": [
+        "Current APIs are finite numerical systems. Dolbeault Sobolev spaces, Fredholm gauge splittings, bundle equations and analytic norm estimates are not built.",
+        "The source contraction requires 4CM²∥Qf∥<1; range cancellation alone is not a solution unless Π(f+B(a,a))=0."
+      ]
+    },
+    {
+      "key": "hodge.balanced_fermat_orbits",
+      "source_id": "Hodge",
+      "section": "§18; §23",
+      "summary": "Unit-orbit balance, rational character packets, gcd conductor deflation and odd prime-power classification.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A dedicated Fermat character-tuple balance, unit-orbit census and conductor classifier is absent from the Python runtime.",
+        "A balanced tuple proves the expected Hodge type, not the existence of an algebraic cycle representing its rational packet."
+      ]
+    },
+    {
+      "key": "hodge.conductor_mobius_projectors",
+      "source_id": "Hodge",
+      "section": "§19; §22",
+      "summary": "Conductor projectors combine power-map graph correspondences through divisor Möbius inversion and gcd product laws.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Generic finite spectral projectors are not the actual graph correspondences E_m,d or their normalization 1/(m/d)^5.",
+        "Degree inflation can preserve an old conductor; it does not turn a lower-conductor packet into a full-conductor one."
+      ]
+    },
+    {
+      "key": "hodge.saturated_cycle_grammar",
+      "source_id": "Hodge",
+      "section": "§20",
+      "summary": "Complementary pairs and balanced four-packets form an exact saturated multiset certificate with an antisymmetric dual obstruction.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "There is no specialized saturated Fermat multiset solver or dual-charge certificate API.",
+        "Even an exact arithmetic grammar identity needs genuine curve/Delsarte/incidence Chow maps; a failed lower grammar is a method obstruction, not nonalgebraicity."
+      ]
+    },
+    {
+      "key": "hodge.degree33_correction",
+      "source_id": "Hodge",
+      "section": "§21",
+      "summary": "The degree-33 packet (7,10,13,19,22,28) records a failed rejection route and a manuscript Klein–Delsarte constructor.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The corrected source branch is included for provenance; it is not integrated as a geometric constructor or independently rebuilt here.",
+        "The retracted Newton-data rejection cannot be used to certify a nonalgebraic Hodge class."
+      ]
+    },
+    {
+      "key": "hodge.weighted_dyadic_grammar",
+      "source_id": "Hodge",
+      "section": "§24",
+      "summary": "Complement triangles, tree/circulation reconstruction, 2-SAT and four-star weighted dyadic certificate families.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source finite research scripts are not an integrated arbitrary weighted-dyadic constructor, and were not freshly replayed in this task.",
+        "The current reader explicitly downgrades the earlier uniform writeup; finite dyadic audits do not establish universal reconstructibility."
+      ]
+    },
+    {
+      "key": "hodge.finite_degree_audit",
+      "source_id": "Hodge",
+      "section": "§25; §31",
+      "summary": "The bounded global packet census through degree 100 and stated dyadic/weighted finite runs are source evidence.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "This inventory records the source scope rather than claiming a fresh full replay of its theorem-specific research bundle.",
+        "The finite endpoint does not cover arbitrary degree, mixed conductor, or actual cycle constructions beyond each audited family."
+      ]
+    },
+    {
+      "key": "hodge.phase_and_cm_selectors",
+      "source_id": "Hodge",
+      "section": "§§26–29",
+      "summary": "Local mod-5 K4/K23 phase grammar, pair–triple sign factorization and imaginary CM selectors identify candidate carriers.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated K4/K23 Fermat phase or CM carrier API is integrated.",
+        "Matching a character type or sign pattern does not provide the correctly typed rational Chow correspondence and nonzero target coefficient."
+      ]
+    },
+    {
+      "key": "hodge.conditional_packet_theorem",
+      "source_id": "Hodge",
+      "section": "§32; §§33–34",
+      "summary": "The packet theorem assumes Chow join associativity, Tate-pair removal, resolved Delsarte boundary and nonzero typed constructor coefficients.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These geometric assumptions are not certified by generic matrix/grammar computations.",
+        "Universal mixed-conductor coverage and the Chow correspondence obligations remain explicit live targets."
+      ]
+    },
+    {
+      "key": "hodge.normal_weighted_degree70_carrier",
+      "source_id": "Hodge",
+      "section": "§35",
+      "summary": "A degree-30 weighted carrier with seed (1,20,24,42,61,62) mod 70 carries the stated rational 24-dimensional packet.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "There is no constructor for the normal weighted hypersurface, cover matrix, mixed-Hodge lift or cycle-class map in the runtime.",
+        "Finite monomial, rank or Jacobian checks would still need the source geometric normality, uniruledness and exact correspondence arguments."
+      ]
+    },
+    {
+      "key": "hodge.degree210_signed_transfer",
+      "source_id": "Hodge",
+      "section": "§36",
+      "summary": "An exact multiset transfer from the conductor-70 seed to the conductor-210 target uses pairs, four-packets and standard cycles.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The specialized 30-entry signed transfer and its actual Chow correspondences are not implemented; the reported 24/46 source assertions are not this audit’s replay.",
+        "Only justified Tate-pair removal is allowed. Arbitrary motivic cancellation and a universal direct matrix constructor are not certified."
+      ]
+    },
+    {
+      "key": "hodge.invariant_column_capacity",
+      "source_id": "Hodge",
+      "section": "§37.1–37.3",
+      "summary": "A dual weight vector bounds every allowed invariant integer column and proves the specified carrier method capacity obstruction.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No specialized infinite-column capacity certificate checker is integrated.",
+        "A finite column enumeration is insufficient for the global all-integer-column bound; failure of one matrix method does not prove that the target class is nonalgebraic."
+      ]
+    },
+    {
+      "key": "hodge.explicit_five_phase_cycles",
+      "source_id": "Hodge",
+      "section": "§37.4 onward",
+      "summary": "The replacement five-phase family uses actual Aoki complete-intersection surfaces, a uniform Jacobian determinant and a nonzero exact period.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The actual surface, containment, complete-intersection, period and rational-orbit reconstruction constructors are absent.",
+        "The replacement requires a nonzero cycle coefficient, not just a compatible phase census or finite determinant display."
+      ]
+    },
+    {
+      "key": "hodge.weil_replacement_representatives",
+      "source_id": "Hodge",
+      "section": "§§38–40",
+      "summary": "The explicit Weil sixfold basis/intersection calculations distinguish a failed graph representative from replacement factorizations.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "There is no general Weil-class geometric or tangent-locus constructor, and the 924-dimensional source replay is not reproduced here.",
+        "An obstruction to one graph/representative is not an obstruction to every representative and cannot establish universal nonalgebraicity."
+      ]
+    },
+    {
+      "key": "hodge.formal_artifacts",
+      "source_id": "Hodge",
+      "section": "§16; §31; §39",
+      "summary": "Preserved source Lean scripts certify only their exact formal statement stack when successfully built.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The current reader records a build blocked before elaboration by missing compiler/Mathlib; no fresh Lean pass is claimed.",
+        "The final abstract algebraicity predicate and seed/closure assumptions do not constitute a general geometric construction or a proof of rational Hodge."
+      ]
+    },
+    {
+      "key": "hodge.universal_claim_boundary",
+      "source_id": "Hodge",
+      "section": "§17; §§40–41",
+      "summary": "Current source corrections and the live constructor/universality obligations remain visible.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No rational Hodge proof or counterexample is claimed by this inventory.",
+        "Finite packet identities, exact matrices and source-specific geometric families do not close the general conjecture or universal mixed-conductor constructor target."
+      ]
+    },
+    {
+      "key": "catalan_constant.series_and_integrals",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 1; §§1.1–1.7",
+      "summary": "Alternating rational partial sums, positive Euler-difference enclosures and integral representations of G.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.transforms.partial_sums",
+        "komorebi_math.sequences.transforms.finite_difference"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "Generic exact sequence sums/differences can be supplied; no specialized Catalan-constant enclosure or integral API is present.",
+        "The library’s combinatorial Catalan numbers, Catalan majorants and Apéry ζ(3) recurrence are distinct objects and do not implement these approximants."
+      ]
+    },
+    {
+      "key": "catalan_constant.rational_irrationality_criterion",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 2",
+      "summary": "A nonzero integer linear form tending to zero contradicts rationality; reduced denominator and exponent margins matter.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A finite list of small errors does not establish a nonzero infinite family tending to zero.",
+        "Identifying the real limit and classifying its arithmetic nature are different claims."
+      ]
+    },
+    {
+      "key": "catalan_constant.zudilin_recurrence",
+      "source_id": "Catalan_Constant",
+      "section": "§§3.1–3.5; Definition 3.1",
+      "summary": "Execute the exact rational recurrence for u,v with the stated signs and initial pairs.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence",
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence.first",
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence.certificate"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "Supply the source-specific ascending coefficient lists; no named Catalan-constant recurrence factory is claimed. The documentation gives the exact adapter.",
+        "The library convention is ∑P_j(k)w[k+j]=0; use source n=k+1. Starting the v recurrence at source n=0 would impose an invalid extra initial equation. Executed leading coefficients must be nonzero."
+      ]
+    },
+    {
+      "key": "catalan_constant.analytic_limit_rates",
+      "source_id": "Catalan_Constant",
+      "section": "§§3.6–3.7; source contracts LC01–LC02",
+      "summary": "The identification v_n/u_n→G and the characteristic exponential rates are external analytic theorems.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "An exact finite recurrence prefix does not identify its limit as Catalan’s constant or prove the universal growth/decay rates.",
+        "Zudilin source normalization and the distinguished initial pair are part of the contract."
+      ]
+    },
+    {
+      "key": "catalan_constant.wronskian_brackets",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 4",
+      "summary": "The exact alternating Wronskian controls the adjacent approximant differences and limiting bracket.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence",
+        "komorebi_math.sequences.transforms.finite_difference"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "Finite Wronskians were checked independently in this audit, but there is no dedicated universal bracket/limit theorem API.",
+        "Strict rational brackets alone do not imply the limit is irrational. The analytic theorem is still needed to name it G."
+      ]
+    },
+    {
+      "key": "catalan_constant.integer_half_binomial_formula",
+      "source_id": "Catalan_Constant",
+      "section": "§§5.1–5.4",
+      "summary": "The half-binomial sum proves T_n=16^n u_n is integral; the stated v denominator bound is a separate theorem.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence",
+        "komorebi_math.arithmetic.valuation.exact_binomial",
+        "komorebi_math.arithmetic.valuation.binomial_valuation"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py",
+        "tests/test_arithmetic_domains_valuation.py"
+      ],
+      "boundaries": [
+        "The recurrence and generic integer/binomial valuation layers are available; no named half-binomial summation/integrality constructor or proof is integrated.",
+        "The audit directly checked 25 u rows against an independent generalized-binomial sum and 25 denominator rows. These are finite evidence, not a substitute for the universal integrality proof."
+      ]
+    },
+    {
+      "key": "catalan_constant.integral_normalization",
+      "source_id": "Catalan_Constant",
+      "section": "§5.5–5.6; §10",
+      "summary": "Normalize the published integral by J_n=8(−1)^n(u_nG−v_n), separating the corrected factor from the invalid quarter-factor formula.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Whipple/Tonelli and the special-function integral identity are source contracts, not derived by the generic recurrence engine.",
+        "The corrected constant and the stated weaker 8·16^n·lcm² clearing versus stronger 4·16^n·lcm² denominator theorem must not be conflated."
+      ]
+    },
+    {
+      "key": "catalan_constant.binomial_packets",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 6; §§6.1–6.5",
+      "summary": "Finite Pascal packets S_n,m=∑binom(m,i)T_(n+i), H_n,m and signed integral filters.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.transforms.binomial_transform_values",
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "The exact prefix binomial transform can run a supplied slice; there is no specialized (n,m) Catalan-constant packet API or integral-filter theorem checker.",
+        "Even filter order has a source nonzero positive-integral argument; the old universal odd-order sign guess failed. Finite packet arithmetic alone does not prove nonvanishing of forms involving G."
+      ]
+    },
+    {
+      "key": "catalan_constant.modular_valuation_evidence",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 7",
+      "summary": "A nonzero residue mod 2^K determines a valuation below K; a zero residue yields only a lower bound.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.valuation.padic_valuation",
+        "komorebi_math.arithmetic.valuation.factorial_valuation",
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence"
+      ],
+      "tests": [
+        "tests/test_arithmetic_domains_valuation.py",
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "Exact scalar valuations are available; the specialized modular packet scan, precision policy and full-integer controls are not an integrated framework.",
+        "A residue of zero does not certify an exact valuation, and a bounded scan cannot prove asymptotic content growth."
+      ]
+    },
+    {
+      "key": "catalan_constant.primitive_content_reduction",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 8; §§8.1–8.5",
+      "summary": "Reduce V=N/D and compute h=gcd(DU,N), g=(Q/D)h and the primitive pair (DU/h,N/h).",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence",
+        "komorebi_math.sequences.transforms.binomial_transform_values"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_sequences_models.py"
+      ],
+      "boundaries": [
+        "The rational coefficient and packet ingredients are integrated, while the source-specific primitive-content adapter is not a runtime factory.",
+        "The audit checked 63 finite packet/content identities with exact Fraction and stdlib gcd/lcm. Extra clearing multiplies content without improving the primitive fraction; content growth must be measured intrinsically."
+      ]
+    },
+    {
+      "key": "catalan_constant.sufficient_content_margin",
+      "source_id": "Catalan_Constant",
+      "section": "§9.1–9.4; Theorem 9.2",
+      "summary": "The even-order asymptotic packet theorem would imply irrationality if the required strict content-growth margin were proved.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The sufficient liminf(log g_n)/n inequality is an unproved arithmetic input in this source; analytic decay alone has no adequate cleared margin.",
+        "No finite prefix or valuation scan establishes this liminf. This audit does not claim Catalan’s constant irrationality."
+      ]
+    },
+    {
+      "key": "catalan_constant.evidence_and_recovery_boundary",
+      "source_id": "Catalan_Constant",
+      "section": "Chapter 10",
+      "summary": "Current reader distinguishes corrected normalization, finite research evidence and the remaining asymptotic theorem.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "This is not recovery of a missing earlier irrationality proof, a fresh replay of all source packet scans, or formal certification.",
+        "The exact runtime example validates normalization and finite arithmetic only."
+      ]
+    },
+    {
+      "key": "inverse_galois.actual_field_target",
+      "source_id": "Inverse_Galois",
+      "section": "§1; Conjecture 1.1",
+      "summary": "The target is an actual finite Galois field extension L/Q with the full stated automorphism group.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A faithful finite representation or a matrix algebra is not a field realization.",
+        "The degree |G| alone does not certify separability, normality or the full automorphism group."
+      ]
+    },
+    {
+      "key": "inverse_galois.classical_small_fields",
+      "source_id": "Inverse_Galois",
+      "section": "§2",
+      "summary": "The C2,V4,cyclic cubic,S3 and S4 examples require actual polynomial fields and splitting-field/group certification.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The library has explicit finite groups but no dedicated rational polynomial number-field or splitting-field certificate constructor.",
+        "Discriminants and good-prime factor cycle types require their exact classical hypotheses; toy examples do not establish universal inverse Galois."
+      ]
+    },
+    {
+      "key": "inverse_galois.regular_permutation_module",
+      "source_id": "Inverse_Galois",
+      "section": "§§3–4",
+      "summary": "Explicit finite groups and regular/coset permutation actions supply finite combinatorial representation data.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup",
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup.left_coset_representatives",
+        "komorebi_math.langlands.finite_image.characters.InducedRepresentation"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py"
+      ],
+      "boundaries": [
+        "Finite explicit group operations and induced trivial-character permutation matrices are present; the invariant rational function field and generic Galois field are not.",
+        "Numerical representation matrices are not exact field multiplication constants, and the generic fixed field is not automatically Q."
+      ]
+    },
+    {
+      "key": "inverse_galois.invariant_field_specialization",
+      "source_id": "Inverse_Galois",
+      "section": "§3; §5",
+      "summary": "Regular generic fixed fields and rationality/regularity plus Hilbert irreducibility are routes to arithmetic specialization.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No invariant-field rationality solver, regular Galois family constructor or Hilbert specialization certificate is integrated.",
+        "The Noether rationality problem is not universally true, and a finite sample specialization may collapse the generic group."
+      ]
+    },
+    {
+      "key": "inverse_galois.subgroup_average_projectors",
+      "source_id": "Inverse_Galois",
+      "section": "§4.1–4.3",
+      "summary": "Regular representation subgroup averages have fixed rank |G|/|H| and explicit product multiplicity |H∩K|.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup",
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup.intersection",
+        "komorebi_math.langlands.finite_image.characters.InducedRepresentation",
+        "komorebi_math.quantum.symmetry.finite_group_projector"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py",
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Finite group and supplied unitary average ingredients exist; no dedicated exact regular subgroup-average/product certificate API is integrated.",
+        "quantum.finite_group_projector takes a declared character and unitary matrices and does not infer irreducibility or certify the full representation law. Source subgroup averages require the specified actual regular action."
+      ]
+    },
+    {
+      "key": "inverse_galois.regular_action_faithfulness_boundary",
+      "source_id": "Inverse_Galois",
+      "section": "§4.4–4.6",
+      "summary": "In the faithful group-algebra realization, average commutation detects HK=KH and centrality detects subgroup normality.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup.is_normal",
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup.conjugate",
+        "komorebi_math.coordinates.exact.matrix_multiply"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py",
+        "tests/test_block18_frame_algebra.py"
+      ],
+      "boundaries": [
+        "Subgroup normality can be checked directly from an explicit finite group; the regular group-algebra equivalence is not automatic for an arbitrary faithful representation.",
+        "The source S4 standard representation hides nonnormality through a zero average. Faithful as a group representation is weaker than injective as a group-algebra representation."
+      ]
+    },
+    {
+      "key": "inverse_galois.fixed_vector_vs_fixed_field",
+      "source_id": "Inverse_Galois",
+      "section": "§4.7",
+      "summary": "Subgroup fixed vectors and averaging projectors do not determine fixed-field multiplication, traces or norms.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The runtime has no actual fixed-number-field constructor from these projectors.",
+        "Field multiplication constants and the genuine field automorphism action must be retained; vector-space packet dimensions do not supply them."
+      ]
+    },
+    {
+      "key": "inverse_galois.embedding_problem_lifts",
+      "source_id": "Inverse_Galois",
+      "section": "§6.1–6.3",
+      "summary": "Finite group extension diagrams distinguish a weak quotient lift from a proper lift whose image contains the full kernel.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup.generated_subgroup",
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup.is_normal",
+        "komorebi_math.deformation.complexes.FiniteCochainComplex"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py",
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Explicit finite subgroup images and supplied finite cochain systems can be inspected; a dedicated group-extension/section cocycle factory is absent.",
+        "Continuous arithmetic Galois lifts, ramification control and actual proper solutions are external. A weak lift can miss the kernel even when the quotient map is onto."
+      ]
+    },
+    {
+      "key": "inverse_galois.actual_field_certificate",
+      "source_id": "Inverse_Galois",
+      "section": "§7; Appendix A",
+      "summary": "A realization certificate needs an irreducible rational polynomial, explicit root polynomials, exact field operations and verified distinct group automorphisms.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No specialized certificate checker for arbitrary such number fields, normal-basis multiplication tables or polynomial splitting data is integrated.",
+        "Matrix action closure, vector-space dimension and a copied group table do not certify irreducibility or produce a field."
+      ]
+    },
+    {
+      "key": "inverse_galois.universal_realization_boundary",
+      "source_id": "Inverse_Galois",
+      "section": "§8",
+      "summary": "Classical solvable realization and specific nonsolvable cases are external theorems; the general finite-group target remains open.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source literature claims and dated M23 state are not independently proof-audited or made current by this local coverage task.",
+        "No generic finite-group-to-Q-Galois-field constructor or universal inverse Galois completion is claimed."
+      ]
+    }
+  ],
+  "validation": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_langlands_finite_image.py tests/test_langlands_ramification_global_completion.py tests/test_deformation_complex_support_companions.py tests/test_nonlinear_filtered.py tests/test_nonlinear_obstruction.py tests/test_nonlinear_correction_elimination.py tests/test_sequences_execution.py tests/test_sequences_models.py tests/test_paper_core_machinery.py tests/test_block18_frame_algebra.py tests/test_quantum_symmetry_circuits.py",
+    "result": "97 passed",
+    "seconds": 1.33,
+    "scope": "Representative existing integrated finite group, conditional gate, cohomology, correction, exact frame/primary packet and sequence suites; not an external conjecture/geometry/formal replay",
+    "catalan_constant_fresh_exact_replay": {
+      "u_binomial_rows": 25,
+      "u_integrality_rows": 25,
+      "v_denominator_rows": 25,
+      "wronskian_rows": 24,
+      "packet_content_identities": 63,
+      "packet_domain": "0 <= n <= 8, 0 <= m <= 6",
+      "arithmetic": "Fraction, integer gcd/lcm, direct generalized half-binomial summation, source coefficient polynomials independently expanded with SymPy",
+      "scope": "Finite normalization/identity checks, not universal integrality, analytic rate or irrationality proof"
+    },
+    "crosswalk_checks": {
+      "all_named_api_references_resolve": true,
+      "all_cited_repo_test_files_exist": true,
+      "source_sha256_matches_current_pdfs": true,
+      "note": "API/test-path validation is separate from theorem-specific implementation and source replay. See every row boundary.",
+      "unique_api_references": 53,
+      "unique_test_files": 13,
+      "documentation_python_examples_passed": true
+    }
+  }
+}

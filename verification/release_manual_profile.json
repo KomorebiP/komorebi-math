@@ -93,8 +93,13 @@
       "exclude": []
     },
     "docs/fourier_recovery.md": {
-      "python_fences": 1,
-      "exclude": []
+      "python_fences": 2,
+      "exclude": [
+        {
+          "example": 2,
+          "reason": "Conditional known-order continuation of the preceding standalone reconstruction example; measurements and model declarations are established there."
+        }
+      ]
     },
     "docs/finite_join_semilattice.md": {
       "python_fences": 1,

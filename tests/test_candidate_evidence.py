@@ -10,6 +10,7 @@ import subprocess
 import pytest
 
 from verification import candidate_evidence as ce
+from verification.release_artifact_gate import INSTALLED_MATH_CHECKS
 
 
 def write(path, value):
@@ -65,6 +66,16 @@ def artifact_report(binding, environment):
     for name in ("installed_wheel", "installed_sdist_rebuilt_wheel"):
         report[name] = {"passed": True, "require_installed": True, "cli_help_passed": True,
                         "package_version": "1.0.0b4",
+                        "mathematical_campaign": {
+                            "kind": "finite_mathematical_stress_report", "status": "passed",
+                            "stress_status": "passed", "seed": 20261010, "source_inputs_unchanged": True,
+                            "counts": {"passed": len(INSTALLED_MATH_CHECKS), "failed": 0, "error": 0,
+                                       "skipped": 0, "timeout": 0, "not_run": 0},
+                            "checks": [{"identifier": identifier, "status": "passed"}
+                                       for identifier in sorted(INSTALLED_MATH_CHECKS)],
+                            "resource_limits": {"per_check_wall_seconds": 30, "total_wall_seconds": 180},
+                            "paper_coverage": {"valid": True, "api_links_checked": True,
+                                               "all_catalogued_mechanisms_implemented": False}},
                         "tests": [{"name": p, "passed": True} for p in (
                             "recurrence_synthesize", "direct_mapping_roundtrip", "direct_ndarray_roundtrip")],
                         "runtime_suite": {"schema": "komorebi-math.installed-runtime-suite", "passed": True,
@@ -125,6 +136,50 @@ def test_candidate_integrity_failure_is_not_hidden(candidate, monkeypatch):
     monkeypatch.setattr(ce, "verify_release", lambda _: {"passed": False, "failures": ["parity"]})
     with pytest.raises(ValueError, match="parity"):
         ce.verify_candidate(root, path)
+
+
+def test_nested_mathematical_pass_count_is_not_a_boolean_certificate():
+    ce._all_passed({"passed": True, "mathematical_campaign": {
+        "kind": "finite_mathematical_stress_report",
+        "counts": {"passed": 21, "failed": 0, "error": 0},
+        "checks": [{"passed": True}],
+    }})
+
+
+@pytest.mark.parametrize("value", [False, True, -1, 1.0, "21", None])
+def test_nested_pass_count_requires_a_nonnegative_integer(value):
+    with pytest.raises(ValueError, match="passed count"):
+        ce._all_passed({"kind": "finite_mathematical_stress_report", "counts": {"passed": value}})
+
+
+@pytest.mark.parametrize("value", [False, 21, 1, "true", None])
+def test_nested_result_still_requires_a_true_boolean(value):
+    with pytest.raises(ValueError, match="qualification result failed"):
+        ce._all_passed({"nested": {"passed": value}})
+
+
+@pytest.mark.parametrize("value", [False, 21, 1, "true", None])
+def test_unknown_counts_records_cannot_bypass_boolean_certificate_checks(value):
+    with pytest.raises(ValueError, match="qualification result failed"):
+        ce._all_passed({"optional_unknown_record": {"counts": {"passed": value}}})
+
+
+@pytest.mark.parametrize("name", ["installed_wheel", "installed_sdist_rebuilt_wheel"])
+@pytest.mark.parametrize("mutation", [
+    lambda artifact: artifact.pop("mathematical_campaign"),
+    lambda artifact: artifact["mathematical_campaign"]["checks"][0].update(identifier="unrequested-check"),
+    lambda artifact: artifact["mathematical_campaign"]["checks"][0].update(status="skipped"),
+    lambda artifact: artifact["mathematical_campaign"]["counts"].update(passed=25, skipped=1),
+    lambda artifact: artifact["mathematical_campaign"].update(source_inputs_unchanged=False),
+    lambda artifact: artifact["mathematical_campaign"]["paper_coverage"].update(api_links_checked=False),
+])
+def test_cpu_evidence_revalidates_both_installed_math_campaigns(candidate, tmp_path, name, mutation):
+    root, path, binding, env = candidate
+    report = artifact_report(binding, env)
+    mutation(report[name])
+    raw = write(tmp_path / "artifact.json", report)
+    with pytest.raises(ValueError, match="installed math campaign"):
+        ce.create_cpu_record(root, path, raw)
 
 
 def test_complete_cpu_matrix_and_provenance(candidate, tmp_path, monkeypatch):

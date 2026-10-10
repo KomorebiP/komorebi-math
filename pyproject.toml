@@ -68,6 +68,10 @@ package-dir = {"" = "src"}
 include-package-data = true
 [tool.setuptools.packages.find]
 where = ["src"]
+exclude = ["*.rsync-tmp", "*.rsync-tmp.*"]
+
+[tool.setuptools.exclude-package-data]
+"*" = [".rsync-tmp/*", "*/.rsync-tmp/*"]
 
 [tool.setuptools.package-data]
 komorebi_math = ["py.typed", "data/*.json"]

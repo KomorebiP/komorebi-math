@@ -65,6 +65,58 @@ def checked_run(command: list[str], cwd: Path, environment: dict[str,str], repor
     return result.stdout
 
 
+INSTALLED_MATH_CHECKS = frozenset({
+    'core.independent-controls-v1', 'arithmetic.independent-controls-v1',
+    'special_functions.independent-controls-v1', 'coordinates.independent-controls-v1',
+    'finite_joins.independent-controls-v1', 'signals.independent-controls-v1',
+    'quantum.independent-controls-v1', 'paper.core.mapping-cones',
+    'paper.core.rational-packets', 'paper.compiler.exact-audits',
+    'paper.gaussian.hermite-transfer', 'paper.arithmetic.lifting-stencils',
+    'paper.langlands.tame-tensor', 'paper.collatz.words',
+    'paper.signals.predictive-foundations', 'paper.bayesian.gaussian-verifier',
+    'paper.generating.prime-power-cartier', 'paper.special.coupled_exact_inverse',
+    'paper.special.coupled_tail_anchor', 'paper.special.sieve_resolution',
+    'paper.special.compact_resolution', 'paper.avoc.finite-decisions',
+    'paper.avoc.boolean-minimum', 'paper.signals.tikhonov-certificates',
+    'paper.generating.residual-modules', 'paper.arithmetic.lehmer-shells',
+})
+
+
+def require_installed_math_campaign(result: dict[str, Any]) -> None:
+    """Require every bounded mathematical check and the installed catalog."""
+    if not isinstance(result, dict):
+        raise RuntimeError('installed mathematical campaign has no structured report')
+    count = len(INSTALLED_MATH_CHECKS)
+    expected_counts = {'passed': count, 'failed': 0, 'error': 0, 'skipped': 0, 'timeout': 0, 'not_run': 0}
+    counters = result.get('counts')
+    checks = result.get('checks')
+    if (result.get('kind') != 'finite_mathematical_stress_report'
+            or result.get('status') != 'passed' or result.get('stress_status') != 'passed'
+            or result.get('seed') != 20261010 or counters != expected_counts
+            or not isinstance(counters, dict) or any(type(value) is not int for value in counters.values())
+            or result.get('source_inputs_unchanged') is not True
+            or not isinstance(checks, list) or len(checks) != count):
+        raise RuntimeError(f'installed mathematical campaign did not execute all {count} checks successfully')
+    identifiers = []
+    for check in checks:
+        if (not isinstance(check, dict) or check.get('status') != 'passed'
+                or not isinstance(check.get('identifier'), str) or not check['identifier']):
+            raise RuntimeError('installed mathematical campaign has missing or nonpassing check evidence')
+        identifiers.append(check['identifier'])
+    if len(set(identifiers)) != count:
+        raise RuntimeError('installed mathematical campaign has duplicate check identifiers')
+    if set(identifiers) != INSTALLED_MATH_CHECKS:
+        raise RuntimeError('installed mathematical campaign has unexpected or missing check identifiers')
+    limits = result.get('resource_limits')
+    if (not isinstance(limits, dict) or limits.get('per_check_wall_seconds') != 30
+            or limits.get('total_wall_seconds') != 180):
+        raise RuntimeError('installed mathematical campaign did not retain its finite wall-time bounds')
+    coverage = result.get('paper_coverage')
+    if (not isinstance(coverage, dict) or coverage.get('valid') is not True
+            or coverage.get('api_links_checked') is not True):
+        raise RuntimeError('installed mathematical campaign did not validate the installed paper catalog')
+
+
 def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inherited',
             wheelhouse: Path | None=None) -> dict[str,Any]:
     root=root.resolve()
@@ -177,6 +229,14 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
                     if result.get('passed') is not True:
                         raise RuntimeError(f'{label} installed runtime suite failed')
                     report[label]['runtime_suite']=result
+                    # Run from the isolated workspace so both the campaign and
+                    # catalog are loaded from this wheel, with exact extras present.
+                    mathematical = json.loads(run(
+                        [str(python), '-I', '-B', '-m', 'komorebi_math.audit', '--papers', '--coverage',
+                         '--samples', '1', '--seed', '20261010', '--timeout', '30', '--total-timeout', '180'],
+                        suite, timeout=220))
+                    report[label]['mathematical_campaign']=mathematical
+                    require_installed_math_campaign(mathematical)
             report['dependency_isolated']=dependency_mode=='isolated'
             report['binding_after']=release_binding(root)
             if report['binding_before'] != report['binding_after']:

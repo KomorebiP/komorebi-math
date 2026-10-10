@@ -7,9 +7,9 @@ constant coefficient, this module studies the unique formal unit series
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from math import isqrt
-from typing import Iterable, Sequence
 
 from ..exceptions import ValidationError
 from .budget import DEFAULT_GENERATING_BUDGET, GeneratingBudget
@@ -66,8 +66,9 @@ def polynomial_power_mod(
     while remaining:
         if remaining & 1:
             result = polynomial_multiply_mod(result, base, modulus)
-        base = polynomial_multiply_mod(base, base, modulus)
         remaining >>= 1
+        if remaining:
+            base = polynomial_multiply_mod(base, base, modulus)
     return result
 
 

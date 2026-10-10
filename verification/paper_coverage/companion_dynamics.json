@@ -1,0 +1,758 @@
+{
+  "schema": "komorebi.paper_coverage.fragment.v1",
+  "audit_scope": "Four mathematical companion PDFs: source definitions/computational contracts mapped to current finite APIs and tests. This is coverage extraction, not a full proof audit or fresh Lean validation.",
+  "sources": [
+    {
+      "id": "certified_bayesian_core_1_0",
+      "title": "Certified Bayesian Inference",
+      "path": "Certified_Bayesian_Traditional_Final.pdf",
+      "sha256": "fcb1b67d262c86d2ab0fc16e852190c050502ccaad10fcd4c0f5939239d262e7",
+      "edition": "8 October 2026; based on Certified Inference Core 1.0.0",
+      "fully_read": true,
+      "extracted_text": "text/Certified_Bayesian_Traditional_Final.txt",
+      "source_scope": "Exact rational finite-dimensional Gaussian inference for one observation; archived formal release and separate Python producer."
+    },
+    {
+      "id": "generative_deformation_1_1",
+      "title": "Universal Generative Deformation Calculus",
+      "path": "Generative_Deformation_Traditional_Final.pdf",
+      "sha256": "075dcf64d6d7d31780f6689c61b68850e39772441a0c1243cf2a15446a052715",
+      "edition": "8 October 2026; archived software 1.1.0 plus separate publication correction",
+      "fully_read": true,
+      "extracted_text": "text/Generative_Deformation_Traditional_Final.txt",
+      "source_scope": "Declared admissible grammars, raw routes, continuation-compatible quotients, finite syntax and conditional metric completion."
+    },
+    {
+      "id": "quantum_arithmetic_traditional",
+      "title": "Quantum–Arithmetic Bridge",
+      "path": "Komorebi_Quantum_Arithmetic_Traditional_Paper.pdf",
+      "sha256": "11849facbed0441a8ff2d2bfef25a74147e71e495dc5a35c1ca1a406e0d92b38",
+      "edition": "8 October 2026",
+      "fully_read": true,
+      "extracted_text": "text/Komorebi_Quantum_Arithmetic_Traditional_Paper.txt",
+      "source_scope": "Traditional edition, QA01-QA20; exact and numerical finite constructions distinguished."
+    },
+    {
+      "id": "physics_traditional_block44",
+      "title": "Fourier Packets and Hilbert Stability",
+      "path": "Komorebi_Physics_Traditional_Paper.pdf",
+      "sha256": "1c0c1c79262b9e1715aa65301524933054864d06b7e4d6ff946cdd24e42e5496",
+      "edition": "8 October 2026; traditional paper states Block 44 frontier",
+      "fully_read": true,
+      "extracted_text": "text/Komorebi_Physics_Traditional_Paper.txt",
+      "source_scope": "Traditional PH01-PH12 source; later Block 49 Lean deliverable is separate and is not a Python API claim."
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "CB.factor_coded_gaussian_model",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§2.1 equations (3)-(6); §3 Lemma 3.1 and Theorem 3.2",
+      "summary": "Rational factor-coded singular Gaussian prior, positive noise floor, innovation inverse and Joseph posterior identity.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.dynamics.gaussian_verifier.FactorGaussianModel",
+        "komorebi_math.dynamics.gaussian_verifier.exact_gaussian_posterior"
+      ],
+      "tests": [
+        "tests/test_gaussian_verifier.py"
+      ],
+      "boundaries": [
+        "Exact rational factors, positive floor, singular/zero priors and rectangular observation operators are supported within declared dimension/bit caps.",
+        "The posterior gain is solved on observation space without inverting the prior; Joseph parameters are computed exactly.",
+        "Independent Gaussian law interpretation and source disintegration theorem remain separate from a new Lean/kernel or host-refinement proof."
+      ],
+      "missing_reusable_api": false
+    },
+    {
+      "key": "CB.gain_residual_law_score",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§4 Proposition 4.1 equations (14)-(18); §5 Lemma 5.1 and Theorem 5.2 equations (19)-(22)",
+      "summary": "Candidate Joseph covariance, excess-covariance residual identity and inverse-free score E(F)*(sigma+||d||²)/sigma².",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.dynamics.gaussian_verifier.evaluate_gaussian_gain",
+        "komorebi_math.dynamics.gaussian_verifier.check_gaussian_tolerance"
+      ],
+      "tests": [
+        "tests/test_gaussian_verifier.py"
+      ],
+      "boundaries": [
+        "Exact candidate Joseph parameters, full residual energy, score and cross-multiplied sufficient tolerance are recomputed from supplied model and gain.",
+        "The score bounds squared W2 under the source's declared independent Gaussian interpretation; it is not the optimal Wasserstein distance.",
+        "Finite tests and exact checks do not replay the source's measure-level/formal proof or prove unrestricted statistical validity."
+      ],
+      "missing_reusable_api": false
+    },
+    {
+      "key": "CB.complete_orthogonal_packets",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§6 equations (23)-(28); Theorem 6.1 and Corollary 6.2",
+      "summary": "Complete self-adjoint orthogonal input/output packets and two-sided residual decomposition.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.packets.PacketSystem.hilbert_certificate",
+        "komorebi_math.core.operators.PacketOperator.from_operator",
+        "komorebi_math.dynamics.gaussian_verifier.gaussian_packet_energy"
+      ],
+      "tests": [
+        "tests/test_packets.py",
+        "tests/test_operators_transfer.py",
+        "tests/test_gaussian_verifier.py"
+      ],
+      "boundaries": [
+        "gaussian_packet_energy checks exact symmetry, idempotence, orthogonality and completeness of both families and computes every two-sided residual energy.",
+        "Generic PacketSystem requires hilbert_certificate for self-adjointness; its basic certificate allows oblique packets.",
+        "Partial, oblique or overlapping families cannot establish complete residual stopping evidence.",
+        "Fixed finite packet-energy machinery does not implement the source's selected cache/trajectory or majorant proposal batch."
+      ]
+    },
+    {
+      "key": "CB.exact_selective_cache_and_fuel",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§9 Definition 9.1 and Proposition 9.2 equations (33)-(36); §10 Proposition 10.1, Lemma 10.2 equations (37)-(39)",
+      "summary": "Exact maximum-energy packet cache with invariant Ga=QaF(B), identical greedy trajectory and rational finite fuel.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No exact Gaussian selective cache, prepared kernel, strict tie-selection or rational fuel API was found.",
+        "Both model operators and fixed complete output packets must be declared; selection completeness is not inferred from sampled labels.",
+        "A resource-capped host execution may fail even though the source's ideal finite-success theorem applies."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "CB.dyadic_verifier_and_output",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§11 equation (40), precisionFor equation (41), Theorem 11.1; §12 equation (42), Theorem 12.1",
+      "summary": "Formal operation-by-operation dyadic graph, coefficient budgets, automatic fallback and declared result-array equality.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The new direct dyadic finite evaluator is a separate implementation; the formal graph, scoreRoundCoeff, precisionFor fallback and formal evaluator/result equality have not been ported.",
+        "Direct final-value enclosures do not reproduce operation-by-operation rounded outputs from the paper.",
+        "Law tolerance epsilon and output radius delta retain distinct meanings; neither certifies a Gaussian from center-only covariance."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "CB.rounding_and_sequential_boundaries",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§15 rounded-cache counterexample and rounded full-gain branch; §§16-17.3",
+      "summary": "Rounded full-gain perturbation contract and limits of exact cache/sequential reuse.",
+      "status": "theory_boundary",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Independent rounding of gain and residual centers destroys the exact-cache invariant; the source gives a scalar counterexample.",
+        "Rounded selective caches, sequential filtering, changing hierarchies, executable sampling and universal parser/host refinement are separate extensions.",
+        "Archived formal build and bounded producer tests are distinct evidence; no fresh Lean build or universal host refinement is asserted here."
+      ]
+    },
+    {
+      "key": "CB.discrete_bayes_is_adjacent",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§1 reading contract; §2 finite Gaussian state/observation model",
+      "summary": "Existing discrete finite Bayesian update/filter APIs are adjacent machinery.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.dynamics.bayes.BayesianUpdate",
+        "komorebi_math.dynamics.bayes.BayesianPartition",
+        "komorebi_math.dynamics.bayes.HiddenMarkovFilter"
+      ],
+      "tests": [
+        "tests/test_dynamics_bayes_martingales.py"
+      ],
+      "boundaries": [
+        "These APIs use finite probability vectors and floating likelihood arithmetic.",
+        "They do not implement the source's rational Gaussian gain, Joseph covariance, packet cache, Wasserstein certificate or dyadic parameter output."
+      ]
+    },
+    {
+      "key": "GD.typed_routes_and_endpoint_keys",
+      "source_id": "generative_deformation_1_1",
+      "section": "Definitions 2.1 and 3.1; Theorems 3.2 and 3.4; §5 Proposition 5.1; §14 Theorem 14.1",
+      "summary": "Raw admissible routes, endpoint grouping, concrete route-state retention and conditional finite-depth exploration.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.grammar.OperatorGrammar",
+        "komorebi_math.core.grammar.OperatorWord",
+        "komorebi_math.core.realization.OperatorRealization"
+      ],
+      "tests": [
+        "tests/test_grammar_realization.py"
+      ],
+      "boundaries": [
+        "Existing finite typed quiver paths and declared matrix realizations provide a restricted homogeneous linear sector.",
+        "No general state-dependent admissible grammar explorer retaining actual per-route endpoints, explicit truncation records and finite one-step family-check scope was found.",
+        "A canonical endpoint key does not justify representative substitution for future continuations.",
+        "Depth-dependent state, immutable callback semantics and complete exposed fibers are separate assumptions."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "GD.quotient_descent",
+      "source_id": "generative_deformation_1_1",
+      "section": "Definition 4.1, Theorem 4.2, Examples 4.3-4.4; §16.1",
+      "summary": "Labeled partial action descends exactly when equivalent representatives have identical enabled labels and equivalent successors.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No generic finite continuation-domain/successor compatibility checker was found.",
+        "Existing declared linear relation certificates are not a checker for nonlinear state-dependent quotient descent.",
+        "Graph-isomorphism keys can merge two P3 representatives whose attach-at-vertex-0 successors are nonisomorphic; both domain and successor clauses must be checked.",
+        "Transported direction identifiers require additional coherence data."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "GD.ordered_syntax_and_catalan",
+      "source_id": "generative_deformation_1_1",
+      "section": "Definition 6.1, Theorems 6.2-6.3, Proposition 6.4",
+      "summary": "Ordered multi-input tree syntax, exact Catalan counts and finite evaluation.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.nonlinear.trees.OrderedRootedTree",
+        "komorebi_math.nonlinear.trees.ordered_trees_with_leaves",
+        "komorebi_math.nonlinear.trees.catalan_number",
+        "komorebi_math.nonlinear.trees.PolynomialFixedPointProblem.tree_value",
+        "komorebi_math.sequences.catalog.catalan_sequence"
+      ],
+      "tests": [
+        "tests/test_nonlinear_trees.py",
+        "tests/test_sequences_execution.py"
+      ],
+      "boundaries": [
+        "Existing ordered trees have one implicit operation per arity and an unlabeled leaf, not the paper's general typed symbol/seed signature with partial admissibility.",
+        "Finite enumeration uses explicit combinatorial caps; the entire recursively generated free syntax space is not returned.",
+        "Exact evaluation depends on exact supplied multilinear operations; general associativity or commutativity is not inferred from finite agreement."
+      ]
+    },
+    {
+      "key": "GD.family_parameter_laws_and_prefixes",
+      "source_id": "generative_deformation_1_1",
+      "section": "Definition 7.1, Theorem 7.2, Example 7.4; §8 finite family and recurrence checker boundary",
+      "summary": "All-parameter semiconjugacy and relation preservation versus exact finite prefix recurrence fitting.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.sequences.transforms.partial_sums",
+        "komorebi_math.sequences.compiler.detect_linear_recurrence",
+        "komorebi_math.sequences.compiler.compile_sequence",
+        "komorebi_math.arithmetic.recurrence.LinearRecurrence"
+      ],
+      "tests": [
+        "tests/test_sequences_execution.py",
+        "tests/test_stress_exact_arithmetic.py"
+      ],
+      "boundaries": [
+        "Exact inclusive partial sums and prefix-supported recurrence fitting are available.",
+        "No general all-parameter family-semiconjugacy API or finite raw-state family checker from this companion was found.",
+        "A fitted finite prefix does not prove an unseen all-index recurrence.",
+        "The existing finite_difference is forward difference and should not be identified with the paper's backward D(a)_n=a_n-a_(n-1) without a boundary/index translation."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "GD.paired_cover_affine_bound",
+      "source_id": "generative_deformation_1_1",
+      "section": "Definition 9.1, Theorem 9.3 equation (3), Example 9.2, §9.1; Theorem 11.1 equation (5)",
+      "summary": "Cross-fiber paired admissible covers and product-sum affine endpoint/model-error envelopes.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated exact interval-direction grid/cover or variable-step affine recurrence envelope API was found.",
+        "A finite net of the sampled-state fiber does not automatically cover the exact-state fiber.",
+        "Transported controls can increase the state sensitivity from L to L+M.",
+        "An endpoint error bound alone does not establish convergence, quotient-key equality or symbolic identity."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "GD.infinite_branch_completion",
+      "source_id": "generative_deformation_1_1",
+      "section": "Theorem 10.1 equation (4), Corollary 10.2, §§10.1-10.2, §15.5",
+      "summary": "Summable-step Cauchy completion and dyadic infinite tails.",
+      "status": "theory_boundary",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A finite suffix sum or batch diameter cannot certify the omitted infinite tail.",
+        "Limit existence requires a complete target; preservation of validity requires a closed validity region or another argument.",
+        "Dyadic tail 2^-N and periodic branch limit 5/7 follow from the source's geometric-series theorem; finite prefixes alone are not proofs.",
+        "No general metric completion API was found."
+      ]
+    },
+    {
+      "key": "GD.finite_cylinder_packet_transfer",
+      "source_id": "generative_deformation_1_1",
+      "section": "Theorem 12.1, Proposition 12.2 and §12.1",
+      "summary": "Finite fixed-depth prefix cylinder partitions and transfer through complete intermediate resolutions.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.packets.PacketSystem.aggregate",
+        "komorebi_math.core.operators.PacketOperator.compose",
+        "komorebi_math.core.operators.PacketOperator.reconstruct"
+      ],
+      "tests": [
+        "tests/test_packets.py",
+        "tests/test_operators_transfer.py"
+      ],
+      "boundaries": [
+        "Finite coordinate masks can be represented as exact packet projectors and finite transfer products.",
+        "No dedicated route-cylinder builder verifies fixed ambient depth, prefix freedom and route coverage.",
+        "Countable sums are strong limits with stated directed/rectangular summation; they are not finite API claims or arbitrary norm-convergent rearrangements.",
+        "A cut meeting all infinite routes need not cover the supplied finite depth."
+      ]
+    },
+    {
+      "key": "GD.congruence_lift_realization",
+      "source_id": "generative_deformation_1_1",
+      "section": "§15.4 prime congruence lifts; §16.4 declared discrete metric choices",
+      "summary": "Finite prime polynomial correction fibers and explicit compatible residue branches.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.lift_fiber",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.finite_tower",
+        "komorebi_math.deformation.forests.residue_forest",
+        "komorebi_math.deformation.forests.FiniteLiftForest"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py",
+        "tests/test_deformation_forests_visibility_counting.py"
+      ],
+      "boundaries": [
+        "The prime-field correction solver verifies supplied finite polynomial systems; a composite base does not satisfy the derivative/unit implication.",
+        "Finite towers and stable cores cover only declared levels, not p-adic limit existence or topology.",
+        "FiniteLiftForest is an explicit inverse system, not the paper's general state-dependent route explorer.",
+        "The paper's discrete finite model must not be confused with a p-adic inverse-limit metric."
+      ]
+    },
+    {
+      "key": "GD.weighted_counts_and_scheduler",
+      "source_id": "generative_deformation_1_1",
+      "section": "Theorem 13.1, Proposition 13.2; Propositions 14.2-14.3",
+      "summary": "Infinite weighted route-count criteria and fair countable or priority scheduling.",
+      "status": "theory_boundary",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "A prefix entropy maximum or finite growth polynomial does not determine infinite limsup entropy or a convergence radius.",
+        "A branching upper bound and positive step-cost lower bound supply a sufficient criterion; their converse need not hold for a general grammar.",
+        "Fair countable dovetailing and complete general route-cost accounting are not implemented by the existing finite graph/lift structures.",
+        "Formal companion covers selected natural-number envelopes and masks, not full real metric completion or arbitrary typed partial syntax."
+      ]
+    },
+    {
+      "key": "QA.fourier_conventions",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§2, QA01-QA03",
+      "summary": "Positive-sign normalized synthesis and coherent-state Fourier transport.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.quantum.symmetry.cyclic_symmetry_projectors"
+      ],
+      "tests": [
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Numerical cyclic character projectors are related machinery; no dedicated exact positive-sign normalized Fourier constructor was located.",
+        "Source synthesis F[n,a]=N^-1/2 exp(2*pi*i*n*a/N); cyclic labels depend on the supplied symmetry convention."
+      ]
+    },
+    {
+      "key": "QA.ramanujan_signal",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§3, QA04-QA05",
+      "summary": "Integer Ramanujan signal from coprime residue support and Fourier energy.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.coordinates.combinatorial.mobius_integer"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_combinatorial.py"
+      ],
+      "boundaries": [
+        "Scalar Möbius infrastructure exists, but no dedicated Ramanujan signal/support/energy API was located.",
+        "The q=1 branch includes the coprime label 0."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.rational_order_shells",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§4, QA06; §§4.1-4.2",
+      "summary": "Exact rational character-order shell projector and unions of divisor classes.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.paper_machinery.rational_spectral_projectors",
+        "komorebi_math.core.paper_machinery.rational_primary_packets",
+        "komorebi_math.core.packets.PacketSystem.aggregate"
+      ],
+      "tests": [
+        "tests/test_paper_core_machinery.py"
+      ],
+      "boundaries": [
+        "Generic rational spectral packets construct cyclic-shift shells using cyclotomic characteristic factors.",
+        "Dedicated order labeling and Ramanujan-kernel formula are absent; generic tests do not specifically validate the divisor-shell formula.",
+        "Kernel normalization is 1/N, including d<N."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.complementary_reconstruction",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§5, QA07",
+      "summary": "Selector, complementary residual and complete orthogonal reconstruction.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem.analyze",
+        "komorebi_math.core.packets.PacketCoordinates.reconstruct",
+        "komorebi_math.core.packets.PacketSystem.hilbert_certificate"
+      ],
+      "tests": [
+        "tests/test_packets.py"
+      ],
+      "boundaries": [
+        "A proper selector discards the complement; invertible basis transport is different from projection.",
+        "Orthogonal energy geometry requires self-adjointness beyond the basic algebraic packet certificate."
+      ]
+    },
+    {
+      "key": "QA.coefficient_residue_lanes",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§6.1, QA08",
+      "summary": "Coefficient/sample residue lanes and formal root-rotation masks.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.arithmetic.polyphase.polyphase_analyze",
+        "komorebi_math.arithmetic.polyphase.polyphase_synthesize",
+        "komorebi_math.refinement.residue.residue_packet_system"
+      ],
+      "tests": [
+        "tests/test_arithmetic_mahler_polyphase.py",
+        "tests/test_residue_crt.py"
+      ],
+      "boundaries": [
+        "Finite coefficient/sample lanes exist.",
+        "No generic infinite formal-series root-rotation projector was located; source formal identity needs roots of unity and 1/L, without analytic convergence."
+      ]
+    },
+    {
+      "key": "QA.polyphase_alias_transport",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§6.2, QA09; §7.2",
+      "summary": "Interleaving, Fourier twiddles and offset-dependent alias reconstruction.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.signals.polyphase.polyphase_analyze",
+        "komorebi_math.signals.polyphase.polyphase_synthesize",
+        "komorebi_math.signals.polyphase.residue_project"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py"
+      ],
+      "boundaries": [
+        "Interleaving exists; dedicated source Fourier-twiddle and decimation-alias equations/tests were not located.",
+        "Source assumes N=L*M. One sample lane loses alias separation; sample-residue masks are different from character-order shells."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.literal_modulus_twelve_bridge",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§§7-10, QA10-QA15; §13, QA18",
+      "summary": "Literal arithmetic/projector/unitary chain and transformed outcome probabilities.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.paper_machinery.rational_spectral_projectors",
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.quantum.circuits.CircuitPacketExpansion"
+      ],
+      "tests": [
+        "tests/test_paper_core_machinery.py",
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Generic components can express the example, but its literal c,b,x,F,D,P,u,psi,chi source fixture and exact probabilities 1/0 were not located.",
+        "No efficient gate decomposition, quantum speedup or advantage follows from finite equalities."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.luders_instrument",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§11, QA16",
+      "summary": "Projective effects, outcome probabilities and conditional Lüders branches.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.quantum.channels.operator_packets",
+        "komorebi_math.quantum.channels.QuantumChannel",
+        "komorebi_math.quantum.channels.dephase"
+      ],
+      "tests": [
+        "tests/test_quantum_channels_qec.py"
+      ],
+      "boundaries": [
+        "Nonselective packet dephasing and finite Kraus action exist.",
+        "Dedicated conditional Lüders normalization/probabilities were not located; normalize only nonzero branches.",
+        "Effects alone do not specify the measurement instrument."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.radical_coordinate_interpretation",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§12, QA17",
+      "summary": "Exact Q^4 multiplication/conjugation for a+b*sqrt(3)+i*(c+d*sqrt(3)).",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated tuple arithmetic/sound complex-interpretation API or test was found.",
+        "General SymPy exact expressions are related infrastructure, not a reproduction of the source's finite formal certificate."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.relative_phase_family",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§14, QA19",
+      "summary": "Constant initial histogram and selected probability sin²(theta/2).",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.quantum.circuits.CircuitPacketExpansion.interference"
+      ],
+      "tests": [
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Generic finite circuit interference exists; no dedicated chi_theta=v_plus+exp(i*theta)*v_minus API/test was located.",
+        "Continuous parameter variation remains finite dimensional and does not imply an infinite operator theorem."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "QA.dephased_probability",
+      "source_id": "quantum_arithmetic_traditional",
+      "section": "§15, QA20",
+      "summary": "Nonselective density-matrix dephasing of the source example.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.quantum.channels.dephase",
+        "komorebi_math.quantum.channels.operator_packets"
+      ],
+      "tests": [
+        "tests/test_quantum_channels_qec.py"
+      ],
+      "boundaries": [
+        "Generic dephasing exists; source-specific selected probability 1/3 is not covered by the located tests.",
+        "Coherent absolute-amplitude replacement differs from density-matrix dephasing.",
+        "QA20 lies outside the source's inherited finite quantum Lean package."
+      ]
+    },
+    {
+      "key": "PH.clifford_and_shell",
+      "source_id": "physics_traditional_block44",
+      "section": "§§3-4, PH01-PH02",
+      "summary": "Coordinate Clifford actions and finite Dirac mass-shell symbol.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.quantum.dirac.dirac_matrices",
+        "komorebi_math.quantum.dirac.dirac_symbol"
+      ],
+      "tests": [
+        "tests/test_dirac_modes.py"
+      ],
+      "boundaries": [
+        "Literal coordinate entries are NumPy complex arrays; general symbol evaluation is numerical.",
+        "Spinor coordinate order and alpha_y*e0=i*e3 match the traditional source.",
+        "No unbounded Dirac domain or continuum Hilbert operator is constructed."
+      ]
+    },
+    {
+      "key": "PH.centered_symbol",
+      "source_id": "physics_traditional_block44",
+      "section": "§4 and §7, PH07",
+      "summary": "Centered Fourier multiplier p=2*pi*n, sin(h*p)/h, filled at zero mesh.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.quantum.dirac.central_mode_momentum"
+      ],
+      "tests": [
+        "tests/test_dirac_modes.py"
+      ],
+      "boundaries": [
+        "Finite mode labels, signed/zero/tiny mesh and finite-range arithmetic are tested.",
+        "Dedicated generator/dispersion quadratic-error bound with C(n)=sqrt(sum|p_j|^6)/6 is not implemented.",
+        "This is a continuum-torus multiplier; no sampled-grid Hilbert norm, Nyquist restriction or label recovery is implied."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.closed_mode_evolution",
+      "source_id": "physics_traditional_block44",
+      "section": "§5, PH03-PH04",
+      "summary": "Closed trigonometric propagator including zero-energy identity.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.quantum.dirac.dirac_propagator"
+      ],
+      "tests": [
+        "tests/test_dirac_modes.py"
+      ],
+      "boundaries": [
+        "Numerical finite matrices support real signed time/mass and independent eigensystem/group-law controls.",
+        "Dedicated positive/negative spectral-projector API P_plusminus=(I+-H/E)/2 was not located.",
+        "General-symbol splitting is traditional prose, beyond matching checked Block44 claims."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.finite_packet_parseval",
+      "source_id": "physics_traditional_block44",
+      "section": "§6, PH05-PH06; §10, PH10",
+      "summary": "Normalized torus finite packet assembly and norm conservation.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.quantum.dirac.dirac_propagator",
+        "komorebi_math.core.packets.PacketSystem"
+      ],
+      "tests": [
+        "tests/test_dirac_modes.py",
+        "tests/test_packets.py"
+      ],
+      "boundaries": [
+        "Per-mode evolution and generic finite packets exist, but no dedicated torus Fourier isometry, three-mode source fixture or packet-conservation test was located.",
+        "Parseval uses the source's normalized torus Fourier convention.",
+        "Infinite support and cutoff removal are separate claims."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.fixed_time_consistency",
+      "source_id": "physics_traditional_block44",
+      "section": "§8, PH08",
+      "summary": "Fixed-mode and finite-packet quadratic propagator consistency.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.dynamics.semigroups.MatrixSemigroup",
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.direct_defect",
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.norm_bound"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Generic finite exponential comparisons are available, not a source-specific quadratic convergence envelope.",
+        "Mode, support, amplitudes and time are fixed; constants grow with momentum."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.coordinate_conjugacy",
+      "source_id": "physics_traditional_block44",
+      "section": "§9, PH09",
+      "summary": "Algebraic max-norm to Hilbert Euclidean-norm generator/exponential bridge.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "General exact coordinate maps are related infrastructure; no dedicated normed bridge or matching test was located.",
+        "The identity coordinate map between these norms is not an isometry.",
+        "The full PH09 conclusion is traditional prose beyond the checked coordinate ingredients."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.sharp_compact_time_bound",
+      "source_id": "physics_traditional_block44",
+      "section": "§11, finite Hermitian Duhamel lemma and PH11",
+      "summary": "All-real-time Hermitian |t| operator bound and weighted finite-packet envelope.",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.duhamel",
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.norm_bound"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Existing bound is a general exponential estimate with nonnegative-time API, not the sharp ||exp(-itA)-exp(-itB)||<=|t|*||A-B|| source contract.",
+        "Amplitude-weighted packet bound is absent.",
+        "PH11 is explicitly beyond the traditional paper's Block44 checked frontier."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "PH.hamiltonian_expectation",
+      "source_id": "physics_traditional_block44",
+      "section": "§12, PH12",
+      "summary": "Conservation and comparison of a finite packet's Hamiltonian expectation.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Supplied finite symbols/propagators allow direct calculation, but no dedicated conservation/comparison API/test was found.",
+        "Squared norm, rest mass, shell energy and Hamiltonian expectation are distinct.",
+        "Only each system's own time-independent Hamiltonian is covered; interactions, forcing and time-dependent generators are separate."
+      ],
+      "missing_reusable_api": true
+    },
+    {
+      "key": "CB.direct_dyadic_finite_evaluator",
+      "source_id": "certified_bayesian_core_1_0",
+      "section": "§5 Theorem 5.2; §12 equation (42) parameter meaning; distinct direct evaluator inspired by §§11-12",
+      "summary": "Exact rational score/parameters followed by direct outward dyadic floor/ceiling intervals and upper-score/radius verification.",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.dynamics.gaussian_verifier.outward_dyadic",
+        "komorebi_math.dynamics.gaussian_verifier.verify_gaussian_gain",
+        "komorebi_math.dynamics.gaussian_verifier.GaussianBudget"
+      ],
+      "tests": [
+        "tests/test_gaussian_verifier.py"
+      ],
+      "boundaries": [
+        "This recomputes exact final rational values then encloses endpoints; it is not Core1.0.0's operation-by-operation dyadic graph or its coefficient/fallback proof.",
+        "Verification accepts only when the upper squared score passes exact Fraction comparison; a coarse overlapping interval cannot pass.",
+        "Mean/covariance radii describe the returned Joseph law, not coordinate error against the exact posterior, and centers are not a separately certified PSD Gaussian.",
+        "Caps apply to input and derived rational bits, dimensions, packet count and precision; conservative dyadic pre-scaling can reject values whose reduced endpoint would fit."
+      ]
+    }
+  ],
+  "validation": {
+    "scope": "Source extraction and API/test mapping; existing related finite tests replayed without asserting universal source theorem verification.",
+    "source_reads": "All four supplied extracted texts fully read by the main extractor and delegated quantum/physics extractor.",
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_packets.py tests/test_operators_transfer.py tests/test_grammar_realization.py tests/test_nonlinear_trees.py tests/test_sequences_execution.py tests/test_deformation_forests_visibility_counting.py tests/test_dynamics_bayes_martingales.py",
+    "result": "47 passed",
+    "version_boundary": "Existing dirac_modes.md cites the 6 October Physics set. This fragment pins the distinct 8 October traditional edition, Block44. Later Block49 Lean artifacts are not evaluated or counted as Python APIs.",
+    "non_claims": [
+      "Not a full proof audit.",
+      "No fresh Lean compiler validation.",
+      "Related APIs and source-constructible specializations are not counted as complete dedicated implementations.",
+      "No finite test establishes unrestricted discovery, unknown-operator coverage, universal statistical validity or continuum convergence."
+    ],
+    "gaussian_slice": {
+      "command": "PYTHONPATH=src python -m pytest -q tests/test_gaussian_verifier.py",
+      "result": "96 passed",
+      "independent_controls": "32 full-inverse/Schur-complement posterior and completed-square candidate comparisons; coupling cost and principal-minor PSD checks; direct scalar rotated packet sums; singular/zero prior, false packets, exact/coarse dyadic threshold, mutable-diagnostics, arithmetic and resource controls.",
+      "worked_example": "PYTHONPATH=src python examples/finite_gaussian_verifier.py",
+      "worked_outputs": {
+        "posterior_gain": "(1/2,0)",
+        "joseph_variance": "5/9",
+        "posterior_variance": "1/2",
+        "residual_energy": "1/9",
+        "score": "2/9",
+        "precision_8_score_upper": "57/256",
+        "parameter_radius": "1/512"
+      }
+    }
+  }
+}

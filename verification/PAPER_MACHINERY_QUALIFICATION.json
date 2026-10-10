@@ -1,0 +1,112 @@
+{
+  "schema": "komorebi.paper-machinery-qualification.v1",
+  "interpretation": "Bounded Linux CPython source/wheel evidence. Catalog validation does not approve every paper mechanism or theorem.",
+  "full_source_tests": {
+    "passed": 3414,
+    "skipped": 7,
+    "warnings": 6,
+    "failed": 0,
+    "log": "verification/PAPER_MACHINERY_PYTEST.txt",
+    "skip_reason": "JAX/PyTorch are unavailable in this interpreter."
+  },
+  "stress": {
+    "source_counts": {
+      "error": 0,
+      "failed": 0,
+      "not_run": 0,
+      "passed": 21,
+      "skipped": 0,
+      "timeout": 0
+    },
+    "wheel_counts": {
+      "error": 0,
+      "failed": 0,
+      "not_run": 0,
+      "passed": 21,
+      "skipped": 0,
+      "timeout": 0
+    },
+    "seed": 20261010,
+    "samples_per_suite": 16,
+    "replay_digest": "15c57fb0a8a6ede69da696f06a3282186dafd1f4ac5b9ef349b84fedd17d8d39",
+    "same_source_and_wheel_scientific_digest": true,
+    "source_inputs_unchanged": true
+  },
+  "coverage": {
+    "catalog_sha256": "8c1c2a2e385234742aec9a34b71af8f9ba896857d3ceb9dbd2ee2a222d6cdf79",
+    "source_count": 55,
+    "mechanism_count": 528,
+    "status_counts": {
+      "external": 70,
+      "implemented": 159,
+      "missing": 36,
+      "partial": 177,
+      "separate_reference": 21,
+      "theory_only": 65
+    },
+    "checked_api_references": 646
+  },
+  "packaging": {
+    "byte_reproducible_rebuild": true,
+    "wheel": {
+      "audit": {
+        "members": 418,
+        "metadata": "komorebi_math-1.0.0b4.dist-info/METADATA"
+      },
+      "name": "komorebi_math-1.0.0b4-4b21-py3-none-any.whl",
+      "sha256": "209330f98c2e9d80fc175ea24ff82b16182f9d04faf27b4291e84e2a1d3476e8",
+      "size": 9772976
+    },
+    "note": "Build artifacts are validation outputs; no tagged release is declared.",
+    "frozen_private_source_snapshot": true,
+    "artifact_hashes_unchanged_during_full_regression": true
+  },
+  "docs": {
+    "strict_mkdocs_passed": true,
+    "math_expressions": 446,
+    "math_pages": 34
+  },
+  "new_python_ruff_passed": true,
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "non_claims": [
+    "No fresh Lean compiler run.",
+    "No universal proof, conjecture completion or complete-runtime approval.",
+    "No unexecuted platform, GPU or absent optional backend qualification."
+  ],
+  "corrected_failures": [
+    "Unpinned test commands selected the older installed package and failed new-module collection; all final source commands used PYTHONPATH=src.",
+    "Initial full source run:3218 passed; four publication checks failed because historical records and built distributions were absent from the local sdist-based copy. Upstream historical files were restored and distributions built; final full source run passes.",
+    "The initial bounded campaign wrapper refused an invocation without explicit pinned --input arguments. Replay pins424 code/data inputs and its evidence manifest validates.",
+    "One example command used the wrong relative virtualenv path; the final example used the verified installed-wheel absolute path.",
+    "Independent reviews found arithmetic/occupancy, worker optimization, allocation and derived resource guard defects; regression controls and independent replay verify the repairs.",
+    "Automatic review rejected forced cleanup of generated sdist staging; the directory was moved aside reversibly.",
+    "A final rebuild initially failed byte reproducibility because transient synchronization files entered one wheel; publication checks then rejected the stale source distribution. Explicit packaging exclusions restored reproducibility with the identical tested wheel SHA-256. Final publication checks are rerun against the rebuilt artifacts.",
+    "An isolated-import wheel campaign and inherited-system-site replay each reported19 passes and2 explicit SymPy skips; the gate rejected them. With the existing exact dependency directory explicitly declared,21 checks passed under isolated imports and the gate accepted the report.",
+    "A later full recheck produced3406 passes and two source-distribution parity failures: the artifact on disk no longer matched the completed build report and contained the previous gate files. Mathematical-wheel parity passed. A fresh artifact snapshot and regression recheck were required.",
+    "Source exclusions alone did not stop synchronization transients introduced into build/lib after source filtering. Builds now use one private frozen source snapshot, audits reject transient members, and artifact hashes stayed unchanged throughout the final3414-pass regression.",
+    "One provenance-copy command used the wrong relative parent path and failed before copying; absolute resolved paths were used for the retained reports."
+  ],
+  "installed_ci_replay": {
+    "checks": 21,
+    "samples_per_suite": 1,
+    "seed": 20261010,
+    "per_check_wall_seconds": 30,
+    "total_wall_seconds": 180,
+    "outer_process_seconds": 220,
+    "successful_report": "verification/paper_runs/installed_ci/explicit_dependencies.json",
+    "dependency_mode": "Explicit bridge to existing scientific dependencies, including parent user-site SymPy1.14.0; not an isolated dependency installation.",
+    "missing_dependency_reports": [
+      "verification/paper_runs/installed_ci/plain_isolated.json",
+      "verification/paper_runs/installed_ci/inherited_sites.json"
+    ],
+    "missing_dependency_counts": {
+      "passed": 19,
+      "skipped": 2
+    },
+    "gate_rejected_missing_dependencies": true,
+    "future_artifact_gate_runs_direct_and_rebuilt_wheels": true
+  }
+}

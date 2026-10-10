@@ -1,0 +1,2730 @@
+{
+  "schema_version": 2,
+  "claim_id": "KOMOREBI_FINITE_PAPER_MACHINERY_CONTINUATION",
+  "repository": {
+    "commit": "24f290b4eac15b16576767f12d5bb56dfd8dc04f",
+    "dirty": true
+  },
+  "command": [
+    "/workspace/scratch/99279ee62f30/demo_env/bin/python",
+    "-m",
+    "komorebi_math.audit",
+    "--papers",
+    "--coverage",
+    "--samples",
+    "16",
+    "--seed",
+    "20261010",
+    "--timeout",
+    "30",
+    "--total-timeout",
+    "180",
+    "--output",
+    "verification/paper_runs/continuation_source/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.14"
+      },
+      {
+        "name": "Python",
+        "version": "3.12.14"
+      },
+      {
+        "name": "komorebi-math",
+        "version": "1.0.0b4; continuation of remote commit 5ef999f2618958e0e2691cfbd677e1083c0364b2; exact executed source hashes retained"
+      },
+      {
+        "name": "NumPy",
+        "version": "2.3.5"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "mathematics": {
+    "assertion_tested": "Twenty-six bounded independent checks for finite mathematical constructions, exact and numerical controls, and refusal of invalid premises. No universal paper or conjecture conclusion.",
+    "coefficient_domain": "Exact integers, prime-field residues and rational Fractions/SymPy; numerical complex/real NumPy checks explicitly declare tolerances.",
+    "conventions": "Each StressCheck declares exactness, tested_range, parameters and assumptions; per-check seeds derived deterministically from root seed and check identifier.",
+    "inputs": [
+      "Seven base, ten initial paper, four special-function and five continuation checks; catalog of the explicitly recorded source editions."
+    ],
+    "bounds": {
+      "requested_checks": 26,
+      "samples_per_check": 16,
+      "check_wall_seconds": 30,
+      "total_check_wall_seconds": 180,
+      "campaign_wall_seconds": 240
+    },
+    "non_claims": [
+      "No universal theorem or complete paper-runtime approval.",
+      "No new Lean compilation or formal proof validation.",
+      "No qualification of absent optional backends, GPU or unexecuted platforms.",
+      "A named API/test link does not establish the associated unrestricted paper theorem."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "random.Random; SHA-256-derived per-check seeds",
+    "seed": 20261010
+  },
+  "run": {
+    "started_at": "2026-10-10T10:33:39.916475+00:00",
+    "runtime_seconds": 21.228989,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": 2147483648,
+      "cpu_seconds": 180,
+      "max_cores": 2,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "src/komorebi_math/__init__.py",
+    "src/komorebi_math/__main__.py",
+    "src/komorebi_math/_features.py",
+    "src/komorebi_math/_majorants.py",
+    "src/komorebi_math/_number_theory.py",
+    "src/komorebi_math/_planned.py",
+    "src/komorebi_math/_prerequisites.py",
+    "src/komorebi_math/_residuals.py",
+    "src/komorebi_math/_snapshots.py",
+    "src/komorebi_math/_version.py",
+    "src/komorebi_math/algorithms/__init__.py",
+    "src/komorebi_math/algorithms/_validation.py",
+    "src/komorebi_math/algorithms/benchmarks.py",
+    "src/komorebi_math/algorithms/boolean_synthesis.py",
+    "src/komorebi_math/algorithms/compiler.py",
+    "src/komorebi_math/algorithms/compiler_audit.py",
+    "src/komorebi_math/algorithms/complexity.py",
+    "src/komorebi_math/algorithms/discovery.py",
+    "src/komorebi_math/algorithms/gpu.py",
+    "src/komorebi_math/algorithms/ir.py",
+    "src/komorebi_math/algorithms/krylov.py",
+    "src/komorebi_math/algorithms/layout.py",
+    "src/komorebi_math/algorithms/low_rank.py",
+    "src/komorebi_math/algorithms/precision.py",
+    "src/komorebi_math/algorithms/scheduling.py",
+    "src/komorebi_math/algorithms/structured.py",
+    "src/komorebi_math/algorithms/support.py",
+    "src/komorebi_math/analytic/__init__.py",
+    "src/komorebi_math/analytic/_series.py",
+    "src/komorebi_math/analytic/appell.py",
+    "src/komorebi_math/analytic/cyclic.py",
+    "src/komorebi_math/analytic/reciprocal.py",
+    "src/komorebi_math/analytic/sections.py",
+    "src/komorebi_math/analytic/zeros.py",
+    "src/komorebi_math/api/__init__.py",
+    "src/komorebi_math/api/v1.py",
+    "src/komorebi_math/arithmetic/__init__.py",
+    "src/komorebi_math/arithmetic/collatz.py",
+    "src/komorebi_math/arithmetic/domains.py",
+    "src/komorebi_math/arithmetic/euler.py",
+    "src/komorebi_math/arithmetic/hurwitz.py",
+    "src/komorebi_math/arithmetic/lehmer_shells.py",
+    "src/komorebi_math/arithmetic/local_modes.py",
+    "src/komorebi_math/arithmetic/mahler.py",
+    "src/komorebi_math/arithmetic/packet_differences.py",
+    "src/komorebi_math/arithmetic/polynomial_lifting.py",
+    "src/komorebi_math/arithmetic/polyphase.py",
+    "src/komorebi_math/arithmetic/recurrence.py",
+    "src/komorebi_math/arithmetic/standard_windows.py",
+    "src/komorebi_math/arithmetic/valuation.py",
+    "src/komorebi_math/audit/__init__.py",
+    "src/komorebi_math/audit/__main__.py",
+    "src/komorebi_math/audit/continuation_checks.py",
+    "src/komorebi_math/audit/coverage.py",
+    "src/komorebi_math/audit/paper_suites.py",
+    "src/komorebi_math/audit/runner.py",
+    "src/komorebi_math/audit/special_function_checks.py",
+    "src/komorebi_math/audit/suites.py",
+    "src/komorebi_math/backends/__init__.py",
+    "src/komorebi_math/backends/base.py",
+    "src/komorebi_math/backends/numpy.py",
+    "src/komorebi_math/backends/sympy.py",
+    "src/komorebi_math/beta/__init__.py",
+    "src/komorebi_math/certificates.py",
+    "src/komorebi_math/cli/__init__.py",
+    "src/komorebi_math/cli/contracts.py",
+    "src/komorebi_math/cli/main.py",
+    "src/komorebi_math/compatibility.py",
+    "src/komorebi_math/config.py",
+    "src/komorebi_math/coordinates/__init__.py",
+    "src/komorebi_math/coordinates/affine.py",
+    "src/komorebi_math/coordinates/analysis_synthesis.py",
+    "src/komorebi_math/coordinates/basis.py",
+    "src/komorebi_math/coordinates/budget.py",
+    "src/komorebi_math/coordinates/calculus.py",
+    "src/komorebi_math/coordinates/classical.py",
+    "src/komorebi_math/coordinates/combinatorial.py",
+    "src/komorebi_math/coordinates/exact.py",
+    "src/komorebi_math/coordinates/families.py",
+    "src/komorebi_math/coordinates/formal.py",
+    "src/komorebi_math/coordinates/frame_algebra.py",
+    "src/komorebi_math/coordinates/modular.py",
+    "src/komorebi_math/coordinates/normalized.py",
+    "src/komorebi_math/coordinates/numeric.py",
+    "src/komorebi_math/coordinates/operators.py",
+    "src/komorebi_math/coordinates/packet.py",
+    "src/komorebi_math/coordinates/polynomials.py",
+    "src/komorebi_math/coordinates/portable.py",
+    "src/komorebi_math/coordinates/realization.py",
+    "src/komorebi_math/coordinates/recurrence.py",
+    "src/komorebi_math/coordinates/state_space.py",
+    "src/komorebi_math/coordinates/tensor.py",
+    "src/komorebi_math/coordinates/transform.py",
+    "src/komorebi_math/core/__init__.py",
+    "src/komorebi_math/core/algebra.py",
+    "src/komorebi_math/core/carrier_change.py",
+    "src/komorebi_math/core/grammar.py",
+    "src/komorebi_math/core/graphs.py",
+    "src/komorebi_math/core/morphisms.py",
+    "src/komorebi_math/core/operators.py",
+    "src/komorebi_math/core/packets.py",
+    "src/komorebi_math/core/paper_machinery.py",
+    "src/komorebi_math/core/realization.py",
+    "src/komorebi_math/core/seeds.py",
+    "src/komorebi_math/core/semilattice.py",
+    "src/komorebi_math/core/transfer.py",
+    "src/komorebi_math/data/architecture.json",
+    "src/komorebi_math/data/behavioral_golden_0_11.json",
+    "src/komorebi_math/data/behavioral_golden_0_13.json",
+    "src/komorebi_math/data/behavioral_golden_0_14.json",
+    "src/komorebi_math/data/paper_machinery_coverage.json",
+    "src/komorebi_math/data/portable_codec_contract_0_16.json",
+    "src/komorebi_math/data/portable_codec_contract_1_0.json",
+    "src/komorebi_math/data/portable_codec_contract_1_0_0b1.json",
+    "src/komorebi_math/data/portable_codec_contract_1_0_0b2.json",
+    "src/komorebi_math/data/portable_codec_contract_1_0_0b3.json",
+    "src/komorebi_math/data/portable_codec_contract_1_0_0b4.json",
+    "src/komorebi_math/data/public_api_0_10.json",
+    "src/komorebi_math/data/public_api_0_11.json",
+    "src/komorebi_math/data/public_api_0_12.json",
+    "src/komorebi_math/data/public_api_0_13.json",
+    "src/komorebi_math/data/public_api_0_14.json",
+    "src/komorebi_math/data/public_api_0_15.json",
+    "src/komorebi_math/data/public_api_0_16.json",
+    "src/komorebi_math/data/public_api_1_0.json",
+    "src/komorebi_math/data/public_api_1_0_0b1.json",
+    "src/komorebi_math/data/public_api_1_0_0b2.json",
+    "src/komorebi_math/data/public_api_1_0_0b3.json",
+    "src/komorebi_math/data/public_api_1_0_0b4.json",
+    "src/komorebi_math/data/public_api_beta_0_11.json",
+    "src/komorebi_math/data/public_api_beta_0_12.json",
+    "src/komorebi_math/data/public_api_beta_0_13.json",
+    "src/komorebi_math/data/public_api_beta_0_14.json",
+    "src/komorebi_math/data/public_api_beta_0_15.json",
+    "src/komorebi_math/data/public_api_beta_0_16.json",
+    "src/komorebi_math/data/public_api_beta_1_0.json",
+    "src/komorebi_math/data/public_api_beta_1_0_0b1.json",
+    "src/komorebi_math/data/public_api_beta_1_0_0b2.json",
+    "src/komorebi_math/data/public_api_beta_1_0_0b3.json",
+    "src/komorebi_math/data/public_api_beta_1_0_0b4.json",
+    "src/komorebi_math/data/public_api_stable_0_15.json",
+    "src/komorebi_math/data/public_api_stable_0_16.json",
+    "src/komorebi_math/data/public_api_stable_1_0.json",
+    "src/komorebi_math/data/public_api_stable_1_0_0b1.json",
+    "src/komorebi_math/data/public_api_stable_1_0_0b2.json",
+    "src/komorebi_math/data/public_api_stable_1_0_0b3.json",
+    "src/komorebi_math/data/public_api_stable_1_0_0b4.json",
+    "src/komorebi_math/data/release_contract_0_16.json",
+    "src/komorebi_math/data/release_contract_1_0.json",
+    "src/komorebi_math/data/repair_checkpoint.json",
+    "src/komorebi_math/data/research_source_provenance_20261008.json",
+    "src/komorebi_math/data/stable_documentation_1_0.json",
+    "src/komorebi_math/data/stable_documentation_1_0_0b3.json",
+    "src/komorebi_math/data/stable_documentation_1_0_0b4.json",
+    "src/komorebi_math/data/stable_semantics_0_16.json",
+    "src/komorebi_math/data/stable_semantics_1_0.json",
+    "src/komorebi_math/data/stable_semantics_1_0_0b1.json",
+    "src/komorebi_math/data/stable_semantics_1_0_0b2.json",
+    "src/komorebi_math/data/stable_semantics_1_0_0b3.json",
+    "src/komorebi_math/data/stable_semantics_1_0_0b4.json",
+    "src/komorebi_math/data/support_matrix_0_16.json",
+    "src/komorebi_math/data/support_matrix_1_0.json",
+    "src/komorebi_math/data/upgrade_0_15_0a2_polyphase_refinement.json",
+    "src/komorebi_math/data/upgrade_0_15_0a2_polyphase_tower.json",
+    "src/komorebi_math/data/upgrade_0_16_0a2_analysis_synthesis.json",
+    "src/komorebi_math/data/upgrade_0_16_0a2_arithmetic_polyphase.json",
+    "src/komorebi_math/data/upgrade_0_16_0a2_finite_basis.json",
+    "src/komorebi_math/data/upgrade_0_16_0a2_polyphase_refinement.json",
+    "src/komorebi_math/data/upgrade_0_16_0a2_polyphase_tower.json",
+    "src/komorebi_math/data/upgrade_contract_1_0.json",
+    "src/komorebi_math/data/validation_evidence_1_0.json",
+    "src/komorebi_math/data/validation_linux_1_0_0b1.json",
+    "src/komorebi_math/data/validation_linux_1_0_0b4.json",
+    "src/komorebi_math/data/validation_windows_0_16_0a2.json",
+    "src/komorebi_math/decision/__init__.py",
+    "src/komorebi_math/decision/avoc.py",
+    "src/komorebi_math/deformation/__init__.py",
+    "src/komorebi_math/deformation/companions.py",
+    "src/komorebi_math/deformation/complexes.py",
+    "src/komorebi_math/deformation/counting.py",
+    "src/komorebi_math/deformation/forests.py",
+    "src/komorebi_math/deformation/support.py",
+    "src/komorebi_math/deformation/visibility.py",
+    "src/komorebi_math/dynamics/__init__.py",
+    "src/komorebi_math/dynamics/_linalg.py",
+    "src/komorebi_math/dynamics/bayes.py",
+    "src/komorebi_math/dynamics/feshbach.py",
+    "src/komorebi_math/dynamics/feynman_kac.py",
+    "src/komorebi_math/dynamics/fractional.py",
+    "src/komorebi_math/dynamics/gaussian_verifier.py",
+    "src/komorebi_math/dynamics/green.py",
+    "src/komorebi_math/dynamics/hermite.py",
+    "src/komorebi_math/dynamics/markov.py",
+    "src/komorebi_math/dynamics/martingales.py",
+    "src/komorebi_math/dynamics/memory.py",
+    "src/komorebi_math/dynamics/semigroups.py",
+    "src/komorebi_math/dynamics/survival.py",
+    "src/komorebi_math/exceptions.py",
+    "src/komorebi_math/export/__init__.py",
+    "src/komorebi_math/export/latex.py",
+    "src/komorebi_math/export/model.py",
+    "src/komorebi_math/export/persistence.py",
+    "src/komorebi_math/export/renderers.py",
+    "src/komorebi_math/export/report.py",
+    "src/komorebi_math/export/serialization.py",
+    "src/komorebi_math/export/writers.py",
+    "src/komorebi_math/expression/__init__.py",
+    "src/komorebi_math/expression/certification.py",
+    "src/komorebi_math/expression/engine.py",
+    "src/komorebi_math/expression/model.py",
+    "src/komorebi_math/expression/planning.py",
+    "src/komorebi_math/expression/polynomial.py",
+    "src/komorebi_math/expression/portable.py",
+    "src/komorebi_math/extensions/__init__.py",
+    "src/komorebi_math/extensions/api.py",
+    "src/komorebi_math/extensions/discovery.py",
+    "src/komorebi_math/generating/__init__.py",
+    "src/komorebi_math/generating/adapters.py",
+    "src/komorebi_math/generating/basis.py",
+    "src/komorebi_math/generating/bell.py",
+    "src/komorebi_math/generating/budget.py",
+    "src/komorebi_math/generating/cartier.py",
+    "src/komorebi_math/generating/cartier_prime_power.py",
+    "src/komorebi_math/generating/closed_forms.py",
+    "src/komorebi_math/generating/congruences.py",
+    "src/komorebi_math/generating/cyclotomic.py",
+    "src/komorebi_math/generating/digit_algebra.py",
+    "src/komorebi_math/generating/domains.py",
+    "src/komorebi_math/generating/finite_series.py",
+    "src/komorebi_math/generating/functions.py",
+    "src/komorebi_math/generating/masks.py",
+    "src/komorebi_math/generating/monoid.py",
+    "src/komorebi_math/generating/normalization.py",
+    "src/komorebi_math/generating/padic_units.py",
+    "src/komorebi_math/generating/portable.py",
+    "src/komorebi_math/generating/q_kummer.py",
+    "src/komorebi_math/generating/residual_modules.py",
+    "src/komorebi_math/generating/sections.py",
+    "src/komorebi_math/generating/sequences.py",
+    "src/komorebi_math/generating/series.py",
+    "src/komorebi_math/golden.py",
+    "src/komorebi_math/integration/__init__.py",
+    "src/komorebi_math/integration/adapters.py",
+    "src/komorebi_math/integration/coordinates.py",
+    "src/komorebi_math/integration/identities.py",
+    "src/komorebi_math/integration/measures.py",
+    "src/komorebi_math/integration/polynomial.py",
+    "src/komorebi_math/integration/quadrature.py",
+    "src/komorebi_math/integration/rules.py",
+    "src/komorebi_math/langlands/__init__.py",
+    "src/komorebi_math/langlands/completion/__init__.py",
+    "src/komorebi_math/langlands/completion/gates.py",
+    "src/komorebi_math/langlands/finite_image/__init__.py",
+    "src/komorebi_math/langlands/finite_image/characters.py",
+    "src/komorebi_math/langlands/finite_image/clifford.py",
+    "src/komorebi_math/langlands/finite_image/groups.py",
+    "src/komorebi_math/langlands/finite_image/mackey.py",
+    "src/komorebi_math/langlands/finite_image/orbits.py",
+    "src/komorebi_math/langlands/finite_image/plans.py",
+    "src/komorebi_math/langlands/global_/__init__.py",
+    "src/komorebi_math/langlands/global_/dyadic.py",
+    "src/komorebi_math/langlands/global_/hecke.py",
+    "src/komorebi_math/langlands/global_/patching.py",
+    "src/komorebi_math/langlands/local/__init__.py",
+    "src/komorebi_math/langlands/local/bridge.py",
+    "src/komorebi_math/langlands/local/envelopes.py",
+    "src/komorebi_math/langlands/local/finite_fields.py",
+    "src/komorebi_math/langlands/local/gauss.py",
+    "src/komorebi_math/langlands/local/heisenberg.py",
+    "src/komorebi_math/langlands/local/symplectic.py",
+    "src/komorebi_math/langlands/local/tame.py",
+    "src/komorebi_math/langlands/local/tame_tensor.py",
+    "src/komorebi_math/langlands/ramification/__init__.py",
+    "src/komorebi_math/langlands/ramification/towers.py",
+    "src/komorebi_math/nonlinear/__init__.py",
+    "src/komorebi_math/nonlinear/autodiff.py",
+    "src/komorebi_math/nonlinear/composition.py",
+    "src/komorebi_math/nonlinear/convex_packets.py",
+    "src/komorebi_math/nonlinear/coordinates.py",
+    "src/komorebi_math/nonlinear/correction.py",
+    "src/komorebi_math/nonlinear/defects.py",
+    "src/komorebi_math/nonlinear/derivatives.py",
+    "src/komorebi_math/nonlinear/distortion.py",
+    "src/komorebi_math/nonlinear/elimination.py",
+    "src/komorebi_math/nonlinear/execution.py",
+    "src/komorebi_math/nonlinear/filtered.py",
+    "src/komorebi_math/nonlinear/gpu.py",
+    "src/komorebi_math/nonlinear/graded.py",
+    "src/komorebi_math/nonlinear/holonomy.py",
+    "src/komorebi_math/nonlinear/jets.py",
+    "src/komorebi_math/nonlinear/lifting.py",
+    "src/komorebi_math/nonlinear/obstruction.py",
+    "src/komorebi_math/nonlinear/profiling.py",
+    "src/komorebi_math/nonlinear/provenance_packets.py",
+    "src/komorebi_math/nonlinear/snapshots.py",
+    "src/komorebi_math/nonlinear/sparse.py",
+    "src/komorebi_math/nonlinear/streaming.py",
+    "src/komorebi_math/nonlinear/transport.py",
+    "src/komorebi_math/nonlinear/trees.py",
+    "src/komorebi_math/persistence_contract.py",
+    "src/komorebi_math/provenance.py",
+    "src/komorebi_math/quadratic_forms/__init__.py",
+    "src/komorebi_math/quadratic_forms/_accuracy.py",
+    "src/komorebi_math/quadratic_forms/_directed_accuracy.py",
+    "src/komorebi_math/quadratic_forms/_interval.py",
+    "src/komorebi_math/quadratic_forms/_spectrum.py",
+    "src/komorebi_math/quadratic_forms/api.py",
+    "src/komorebi_math/qualification.py",
+    "src/komorebi_math/quantum/__init__.py",
+    "src/komorebi_math/quantum/_validation.py",
+    "src/komorebi_math/quantum/channels.py",
+    "src/komorebi_math/quantum/circuits.py",
+    "src/komorebi_math/quantum/constraints.py",
+    "src/komorebi_math/quantum/dirac.py",
+    "src/komorebi_math/quantum/effective.py",
+    "src/komorebi_math/quantum/error_correction.py",
+    "src/komorebi_math/quantum/euclidean.py",
+    "src/komorebi_math/quantum/kato.py",
+    "src/komorebi_math/quantum/leakage.py",
+    "src/komorebi_math/quantum/lindblad.py",
+    "src/komorebi_math/quantum/seeds.py",
+    "src/komorebi_math/quantum/spectral.py",
+    "src/komorebi_math/quantum/symmetry.py",
+    "src/komorebi_math/quantum/towers.py",
+    "src/komorebi_math/refinement/__init__.py",
+    "src/komorebi_math/refinement/crt.py",
+    "src/komorebi_math/refinement/defects.py",
+    "src/komorebi_math/refinement/lattices.py",
+    "src/komorebi_math/refinement/polyphase.py",
+    "src/komorebi_math/refinement/portable.py",
+    "src/komorebi_math/refinement/residue.py",
+    "src/komorebi_math/refinement/smith.py",
+    "src/komorebi_math/refinement/towers.py",
+    "src/komorebi_math/refinement/weighted.py",
+    "src/komorebi_math/registry.py",
+    "src/komorebi_math/release/__init__.py",
+    "src/komorebi_math/release/_gpu_worker.py",
+    "src/komorebi_math/release/contract.py",
+    "src/komorebi_math/release/documentation.py",
+    "src/komorebi_math/release/evidence.py",
+    "src/komorebi_math/release/gpu.py",
+    "src/komorebi_math/release/readiness.py",
+    "src/komorebi_math/release/upgrade.py",
+    "src/komorebi_math/sequences/__init__.py",
+    "src/komorebi_math/sequences/automatic.py",
+    "src/komorebi_math/sequences/base.py",
+    "src/komorebi_math/sequences/catalog.py",
+    "src/komorebi_math/sequences/compiler.py",
+    "src/komorebi_math/sequences/families.py",
+    "src/komorebi_math/sequences/holonomic.py",
+    "src/komorebi_math/sequences/oeis.py",
+    "src/komorebi_math/sequences/transforms.py",
+    "src/komorebi_math/signals/__init__.py",
+    "src/komorebi_math/signals/adaptive.py",
+    "src/komorebi_math/signals/approximation.py",
+    "src/komorebi_math/signals/convolution.py",
+    "src/komorebi_math/signals/denoise.py",
+    "src/komorebi_math/signals/edge_recovery.py",
+    "src/komorebi_math/signals/fft_convolution.py",
+    "src/komorebi_math/signals/filterbanks.py",
+    "src/komorebi_math/signals/filtering.py",
+    "src/komorebi_math/signals/foundations.py",
+    "src/komorebi_math/signals/fourier_recovery.py",
+    "src/komorebi_math/signals/nonlinear.py",
+    "src/komorebi_math/signals/polyphase.py",
+    "src/komorebi_math/signals/recovery.py",
+    "src/komorebi_math/signals/recursive.py",
+    "src/komorebi_math/signals/resampling.py",
+    "src/komorebi_math/signals/route_packets.py",
+    "src/komorebi_math/signals/singular_packets.py",
+    "src/komorebi_math/signals/smith.py",
+    "src/komorebi_math/signals/spectral.py",
+    "src/komorebi_math/signals/streaming.py",
+    "src/komorebi_math/signals/tikhonov.py",
+    "src/komorebi_math/signals/time_frequency.py",
+    "src/komorebi_math/signals/wavelets.py",
+    "src/komorebi_math/signals/windows.py",
+    "src/komorebi_math/special_functions/__init__.py",
+    "src/komorebi_math/special_functions/_validation.py",
+    "src/komorebi_math/special_functions/bernoulli.py",
+    "src/komorebi_math/special_functions/paper_machinery.py",
+    "src/komorebi_math/special_functions/shape.py",
+    "src/komorebi_math/special_functions/terminating.py",
+    "src/komorebi_math/stable.py",
+    "src/komorebi_math/stable_contract.py",
+    "src/komorebi_math/stable_semantics.py",
+    "src/komorebi_math/support.py",
+    "src/komorebi_math/typing.py",
+    "src/komorebi_math/unified.py",
+    "src/komorebi_math/v1.py",
+    "src/komorebi_math/verify/__init__.py",
+    "src/komorebi_math/verify/algorithms.py",
+    "src/komorebi_math/verify/analytic.py",
+    "src/komorebi_math/verify/arithmetic.py",
+    "src/komorebi_math/verify/beta.py",
+    "src/komorebi_math/verify/coordinates.py",
+    "src/komorebi_math/verify/core.py",
+    "src/komorebi_math/verify/deformation.py",
+    "src/komorebi_math/verify/dsp.py",
+    "src/komorebi_math/verify/dynamics.py",
+    "src/komorebi_math/verify/export.py",
+    "src/komorebi_math/verify/expression.py",
+    "src/komorebi_math/verify/frame_algebra.py",
+    "src/komorebi_math/verify/generating.py",
+    "src/komorebi_math/verify/gpu.py",
+    "src/komorebi_math/verify/hardening.py",
+    "src/komorebi_math/verify/integration.py",
+    "src/komorebi_math/verify/langlands.py",
+    "src/komorebi_math/verify/nonlinear.py",
+    "src/komorebi_math/verify/nonlinear_advanced.py",
+    "src/komorebi_math/verify/quantum.py",
+    "src/komorebi_math/verify/refinement.py",
+    "src/komorebi_math/verify/release.py",
+    "src/komorebi_math/verify/scalable_nonlinear.py",
+    "src/komorebi_math/verify/sequences.py",
+    "src/komorebi_math/verify/signals.py",
+    "src/komorebi_math/verify/stabilization.py",
+    "src/komorebi_math/verify/streaming_beta.py",
+    "verification/PAPER_MACHINERY_CONTINUATION_COVERAGE.json",
+    "verification/build_paper_coverage.py",
+    "verification/check_paper_continuation_review.py",
+    "verification/paper_coverage/companion_arithmetic.json",
+    "verification/paper_coverage/companion_calculus.json",
+    "verification/paper_coverage/companion_dynamics.json",
+    "verification/paper_coverage/conjecture_arithmetic.json",
+    "verification/paper_coverage/conjecture_dynamics.json",
+    "verification/paper_coverage/conjecture_geometry.json",
+    "verification/paper_coverage/core.json",
+    "verification/paper_coverage/late.json",
+    "verification/paper_coverage/middle.json",
+    "verification/paper_coverage/signal_machine.json",
+    "verification/paper_coverage/special_functions.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "src/komorebi_math/__init__.py",
+      "sha256": "b427cf245f4876c3ad76fff3e335353311d9447fda1e182fe754ecd00d0d1e6d",
+      "sha256_after": "b427cf245f4876c3ad76fff3e335353311d9447fda1e182fe754ecd00d0d1e6d"
+    },
+    {
+      "path": "src/komorebi_math/__main__.py",
+      "sha256": "39a0ee4edd1039df8ab4d00b1ec77526b5b23a3e4669abb926c64f380798144c",
+      "sha256_after": "39a0ee4edd1039df8ab4d00b1ec77526b5b23a3e4669abb926c64f380798144c"
+    },
+    {
+      "path": "src/komorebi_math/_features.py",
+      "sha256": "719ef5cb446b01a947578be521b7d895adbb5676f7159cd5ed48f7ce515007a2",
+      "sha256_after": "719ef5cb446b01a947578be521b7d895adbb5676f7159cd5ed48f7ce515007a2"
+    },
+    {
+      "path": "src/komorebi_math/_majorants.py",
+      "sha256": "5b385ee9e7bf3e946bed5997f2dd30a7ace8b4442b6d537cc18dfb353d9099f1",
+      "sha256_after": "5b385ee9e7bf3e946bed5997f2dd30a7ace8b4442b6d537cc18dfb353d9099f1"
+    },
+    {
+      "path": "src/komorebi_math/_number_theory.py",
+      "sha256": "d125f065a96f24bb01b7223c60ef46effdad5b641735151e75b5e779973307a9",
+      "sha256_after": "d125f065a96f24bb01b7223c60ef46effdad5b641735151e75b5e779973307a9"
+    },
+    {
+      "path": "src/komorebi_math/_planned.py",
+      "sha256": "660a23f170c6fe9d039b6f6ebca7bf2130f51fcf50d88a31aed4e131aab973de",
+      "sha256_after": "660a23f170c6fe9d039b6f6ebca7bf2130f51fcf50d88a31aed4e131aab973de"
+    },
+    {
+      "path": "src/komorebi_math/_prerequisites.py",
+      "sha256": "f0dde1e52410dc35ee05f00d670c800b82e098aa7dd9154926d0669254ea7792",
+      "sha256_after": "f0dde1e52410dc35ee05f00d670c800b82e098aa7dd9154926d0669254ea7792"
+    },
+    {
+      "path": "src/komorebi_math/_residuals.py",
+      "sha256": "729623c21ad9a3bf664ba4ae36cc0172b7183fe56d59bb58948da7546b0adfc1",
+      "sha256_after": "729623c21ad9a3bf664ba4ae36cc0172b7183fe56d59bb58948da7546b0adfc1"
+    },
+    {
+      "path": "src/komorebi_math/_snapshots.py",
+      "sha256": "d3022d1e09eadac7eb59d5c53f87ab80640bfeefe5fb06da9e6b4c3087b7bd63",
+      "sha256_after": "d3022d1e09eadac7eb59d5c53f87ab80640bfeefe5fb06da9e6b4c3087b7bd63"
+    },
+    {
+      "path": "src/komorebi_math/_version.py",
+      "sha256": "bfdd9f8d756a3db58aa5d44064b426e5ad81ef31807c6597df92ff0f78e61fce",
+      "sha256_after": "bfdd9f8d756a3db58aa5d44064b426e5ad81ef31807c6597df92ff0f78e61fce"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/__init__.py",
+      "sha256": "914568810861185f4bc4ddd656b61df676f8d2c6e789f3b84b39a7d1c454f409",
+      "sha256_after": "914568810861185f4bc4ddd656b61df676f8d2c6e789f3b84b39a7d1c454f409"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/_validation.py",
+      "sha256": "71adc32e6fdfcbbc1648975fe66ba4b899cd831e44f9fb352eeccaef8a51a187",
+      "sha256_after": "71adc32e6fdfcbbc1648975fe66ba4b899cd831e44f9fb352eeccaef8a51a187"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/benchmarks.py",
+      "sha256": "9f1bbd4dd9644ff5adf335629176d183ce0f5c052a9b4980cf7cc024b7f54b5b",
+      "sha256_after": "9f1bbd4dd9644ff5adf335629176d183ce0f5c052a9b4980cf7cc024b7f54b5b"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/boolean_synthesis.py",
+      "sha256": "bb59973fc2b48ee20b341f59516fbe5b6cbd3ceefa3d766dc7b45d507cb706cc",
+      "sha256_after": "bb59973fc2b48ee20b341f59516fbe5b6cbd3ceefa3d766dc7b45d507cb706cc"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/compiler.py",
+      "sha256": "b651ace032f740b2dbcef50939539239c9a869769621d4887d11f9d511a1351d",
+      "sha256_after": "b651ace032f740b2dbcef50939539239c9a869769621d4887d11f9d511a1351d"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/compiler_audit.py",
+      "sha256": "8cdf40e265628366f9739f3cf8ba834aa01927be8d3b2a22845e0b241b6ba2fe",
+      "sha256_after": "8cdf40e265628366f9739f3cf8ba834aa01927be8d3b2a22845e0b241b6ba2fe"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/complexity.py",
+      "sha256": "2728e130cc780dd3b1acbb1f93c6bda32d23c82d267623da9b9b18d0555f8e0f",
+      "sha256_after": "2728e130cc780dd3b1acbb1f93c6bda32d23c82d267623da9b9b18d0555f8e0f"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/discovery.py",
+      "sha256": "2d80ca238d92a8b57b0633ad98d94399c0070dda1c4c400270ea90b0dd50d87e",
+      "sha256_after": "2d80ca238d92a8b57b0633ad98d94399c0070dda1c4c400270ea90b0dd50d87e"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/gpu.py",
+      "sha256": "83aa2b3d85369e02b819c9ea5a3d6b7674e8ceac46b5e86bc1da83a27ae77abd",
+      "sha256_after": "83aa2b3d85369e02b819c9ea5a3d6b7674e8ceac46b5e86bc1da83a27ae77abd"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/ir.py",
+      "sha256": "437053d4666cfb7f1096cf9cae4284a23683a42f29b603ceae2f6cea17332cf1",
+      "sha256_after": "437053d4666cfb7f1096cf9cae4284a23683a42f29b603ceae2f6cea17332cf1"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/krylov.py",
+      "sha256": "d6c5ae7cdd4ac9beabcda0fbdd4a16392b2d0f444145ecd9a3b64c2f4cda725d",
+      "sha256_after": "d6c5ae7cdd4ac9beabcda0fbdd4a16392b2d0f444145ecd9a3b64c2f4cda725d"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/layout.py",
+      "sha256": "455a8d3718c57d0689695bee09f665077d4b2c6c9b506848f3eb89d8ea3db0fa",
+      "sha256_after": "455a8d3718c57d0689695bee09f665077d4b2c6c9b506848f3eb89d8ea3db0fa"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/low_rank.py",
+      "sha256": "63f9c6af6c8210140e993fefa0a249d3c92be9cf68d0b7da3bcd0771aa7ccf99",
+      "sha256_after": "63f9c6af6c8210140e993fefa0a249d3c92be9cf68d0b7da3bcd0771aa7ccf99"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/precision.py",
+      "sha256": "22ac27d7fd78abbc197e68162182fca9268c33b25e53eb76be2e24f6393600a7",
+      "sha256_after": "22ac27d7fd78abbc197e68162182fca9268c33b25e53eb76be2e24f6393600a7"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/scheduling.py",
+      "sha256": "4e82dc70675b6a01f6b8f4fd6b62f1fc0df2fe75f69a5cb7831fc11c5e0586b8",
+      "sha256_after": "4e82dc70675b6a01f6b8f4fd6b62f1fc0df2fe75f69a5cb7831fc11c5e0586b8"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/structured.py",
+      "sha256": "a6a8edebd8429fedc710b7d32d8891eca77ee334ab3b7f57ef92ee6ffcb8eb52",
+      "sha256_after": "a6a8edebd8429fedc710b7d32d8891eca77ee334ab3b7f57ef92ee6ffcb8eb52"
+    },
+    {
+      "path": "src/komorebi_math/algorithms/support.py",
+      "sha256": "349fe33f7f780527e7907728d33a5b8a2ad528e3a4aff299dd0e779293283bf3",
+      "sha256_after": "349fe33f7f780527e7907728d33a5b8a2ad528e3a4aff299dd0e779293283bf3"
+    },
+    {
+      "path": "src/komorebi_math/analytic/__init__.py",
+      "sha256": "a66468c72a4eeda343096a6568060ae9f9dcec21ec2e6d2d0aca730118fdd3d7",
+      "sha256_after": "a66468c72a4eeda343096a6568060ae9f9dcec21ec2e6d2d0aca730118fdd3d7"
+    },
+    {
+      "path": "src/komorebi_math/analytic/_series.py",
+      "sha256": "c2741faf01809dd78789bf9a907a9f63429b7378cbcddef4d32be8379306cf52",
+      "sha256_after": "c2741faf01809dd78789bf9a907a9f63429b7378cbcddef4d32be8379306cf52"
+    },
+    {
+      "path": "src/komorebi_math/analytic/appell.py",
+      "sha256": "77e09c343a4ea948497bd375a3676fa3fba41cb619e1dcb24e33adb273083c28",
+      "sha256_after": "77e09c343a4ea948497bd375a3676fa3fba41cb619e1dcb24e33adb273083c28"
+    },
+    {
+      "path": "src/komorebi_math/analytic/cyclic.py",
+      "sha256": "1fe389400de98f65f2fb56459538b3327a6a7a0849b94af2ab59d0e3f7632766",
+      "sha256_after": "1fe389400de98f65f2fb56459538b3327a6a7a0849b94af2ab59d0e3f7632766"
+    },
+    {
+      "path": "src/komorebi_math/analytic/reciprocal.py",
+      "sha256": "50e0b6e36c23385f84ac3570fcc0b15cc0a55f9985db9f8f4a664701ace1cd6d",
+      "sha256_after": "50e0b6e36c23385f84ac3570fcc0b15cc0a55f9985db9f8f4a664701ace1cd6d"
+    },
+    {
+      "path": "src/komorebi_math/analytic/sections.py",
+      "sha256": "d33b4dcff5f0c442a3290ef57bcdd02da2af03c2e616efd773ba7e1f562a046e",
+      "sha256_after": "d33b4dcff5f0c442a3290ef57bcdd02da2af03c2e616efd773ba7e1f562a046e"
+    },
+    {
+      "path": "src/komorebi_math/analytic/zeros.py",
+      "sha256": "f39a5a958e9dd8376fce930435998a754b956702d7bca99fc5d1ae4aa6c63023",
+      "sha256_after": "f39a5a958e9dd8376fce930435998a754b956702d7bca99fc5d1ae4aa6c63023"
+    },
+    {
+      "path": "src/komorebi_math/api/__init__.py",
+      "sha256": "844fd5e33759826603fb5bb9c25f93df9f164896a5c91b3f7c20db5c5d802b10",
+      "sha256_after": "844fd5e33759826603fb5bb9c25f93df9f164896a5c91b3f7c20db5c5d802b10"
+    },
+    {
+      "path": "src/komorebi_math/api/v1.py",
+      "sha256": "053a732923c0c6115925c96c64e7d8ebdb3ff6f5102771c4c4b36c40489da70f",
+      "sha256_after": "053a732923c0c6115925c96c64e7d8ebdb3ff6f5102771c4c4b36c40489da70f"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/__init__.py",
+      "sha256": "d2e6e0a6edba21d0531a80746962dd7a4d3e4a3681dbece359a8bfd6d15f1bcd",
+      "sha256_after": "d2e6e0a6edba21d0531a80746962dd7a4d3e4a3681dbece359a8bfd6d15f1bcd"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/collatz.py",
+      "sha256": "223fe01974177ca7f8dd8b138e91253d41eca67fc88f635d61f6b72547ce56f6",
+      "sha256_after": "223fe01974177ca7f8dd8b138e91253d41eca67fc88f635d61f6b72547ce56f6"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/domains.py",
+      "sha256": "7cdd8f00f0c36d3e407443bae80c1f3959ac100636370e2d96c3e85ae6e7ac6b",
+      "sha256_after": "7cdd8f00f0c36d3e407443bae80c1f3959ac100636370e2d96c3e85ae6e7ac6b"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/euler.py",
+      "sha256": "0e0ae8608e6fa652719c21e93fdfcf82c9c1293ea8f8e2f5a23ce410568c0d80",
+      "sha256_after": "0e0ae8608e6fa652719c21e93fdfcf82c9c1293ea8f8e2f5a23ce410568c0d80"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/hurwitz.py",
+      "sha256": "609a3a02abeadb913835f2052b6e6030a7d2e745f255c267129ae5f7b39b63e4",
+      "sha256_after": "609a3a02abeadb913835f2052b6e6030a7d2e745f255c267129ae5f7b39b63e4"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/lehmer_shells.py",
+      "sha256": "ecd40d0446b4d9138f4a232fbf7d6641a14cb02f494047b601012c915feab852",
+      "sha256_after": "ecd40d0446b4d9138f4a232fbf7d6641a14cb02f494047b601012c915feab852"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/local_modes.py",
+      "sha256": "6677dd4d2e890efa351a093ce082a8aef2772b1efa194c7a1ef639350cfbb916",
+      "sha256_after": "6677dd4d2e890efa351a093ce082a8aef2772b1efa194c7a1ef639350cfbb916"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/mahler.py",
+      "sha256": "790f544c7e98b132949e20d209f02f702e340fbdc10a7a35babb442686e3c5ae",
+      "sha256_after": "790f544c7e98b132949e20d209f02f702e340fbdc10a7a35babb442686e3c5ae"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/packet_differences.py",
+      "sha256": "6b6b9cd724c04b86dbec168f83e86b590dca1413278a3ce6ed28e722248ccc8f",
+      "sha256_after": "6b6b9cd724c04b86dbec168f83e86b590dca1413278a3ce6ed28e722248ccc8f"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/polynomial_lifting.py",
+      "sha256": "c6297d5f1e1d86a7266a67fa6c7163fad59be23d9ba002320f6ec3655636cd2f",
+      "sha256_after": "c6297d5f1e1d86a7266a67fa6c7163fad59be23d9ba002320f6ec3655636cd2f"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/polyphase.py",
+      "sha256": "a03e0b8499db987cd2b0221dc5e74ba0221540c1d0f419b10a27137741a73be5",
+      "sha256_after": "a03e0b8499db987cd2b0221dc5e74ba0221540c1d0f419b10a27137741a73be5"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/recurrence.py",
+      "sha256": "552bc76a1fa7609456c83885c18e969d57cc6ffd88b5e3c26c8e4f266fdcae0b",
+      "sha256_after": "552bc76a1fa7609456c83885c18e969d57cc6ffd88b5e3c26c8e4f266fdcae0b"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/standard_windows.py",
+      "sha256": "a255d07bb27261ab7fce8c8370f32e7cb6b74fb38df7dc99d4553aa18f4ad1de",
+      "sha256_after": "a255d07bb27261ab7fce8c8370f32e7cb6b74fb38df7dc99d4553aa18f4ad1de"
+    },
+    {
+      "path": "src/komorebi_math/arithmetic/valuation.py",
+      "sha256": "b5b73ce2d861abfde917c88e8b2db88761e7749777f498049e500511361c59c9",
+      "sha256_after": "b5b73ce2d861abfde917c88e8b2db88761e7749777f498049e500511361c59c9"
+    },
+    {
+      "path": "src/komorebi_math/audit/__init__.py",
+      "sha256": "638379effeb5847e7cab05f3b0688448f4c8540e8ae6f39fd7480322ad130896",
+      "sha256_after": "638379effeb5847e7cab05f3b0688448f4c8540e8ae6f39fd7480322ad130896"
+    },
+    {
+      "path": "src/komorebi_math/audit/__main__.py",
+      "sha256": "9196b4aaca3da1f9bcb50afe869e09792eb27c3c100eec9af2905d0744f38c3a",
+      "sha256_after": "9196b4aaca3da1f9bcb50afe869e09792eb27c3c100eec9af2905d0744f38c3a"
+    },
+    {
+      "path": "src/komorebi_math/audit/continuation_checks.py",
+      "sha256": "8bd950b497cf3f4608b22058348ff3836a17d1f85ed853817ae632d4bfcbbb20",
+      "sha256_after": "8bd950b497cf3f4608b22058348ff3836a17d1f85ed853817ae632d4bfcbbb20"
+    },
+    {
+      "path": "src/komorebi_math/audit/coverage.py",
+      "sha256": "25c148133daf5a88c0de07571602a185b8154b2f31cd3bdca7cc1285bdf811c9",
+      "sha256_after": "25c148133daf5a88c0de07571602a185b8154b2f31cd3bdca7cc1285bdf811c9"
+    },
+    {
+      "path": "src/komorebi_math/audit/paper_suites.py",
+      "sha256": "bfd65e0d70311c8377f298f4f8146f28fa5368bef17f6f0836a7ce284b2ee2d3",
+      "sha256_after": "bfd65e0d70311c8377f298f4f8146f28fa5368bef17f6f0836a7ce284b2ee2d3"
+    },
+    {
+      "path": "src/komorebi_math/audit/runner.py",
+      "sha256": "ea69a049d9d8159f14df3310a6b80b371bf474123671a8fbb6adf813072018a7",
+      "sha256_after": "ea69a049d9d8159f14df3310a6b80b371bf474123671a8fbb6adf813072018a7"
+    },
+    {
+      "path": "src/komorebi_math/audit/special_function_checks.py",
+      "sha256": "e39347a805414096dca7887db16ea4b17f929839e775c23058a6384b8c1f7484",
+      "sha256_after": "e39347a805414096dca7887db16ea4b17f929839e775c23058a6384b8c1f7484"
+    },
+    {
+      "path": "src/komorebi_math/audit/suites.py",
+      "sha256": "7d5d54b6cea3a30c8096fe2b6b7e8494c4b839494179dc49374a935dc7c23d7b",
+      "sha256_after": "7d5d54b6cea3a30c8096fe2b6b7e8494c4b839494179dc49374a935dc7c23d7b"
+    },
+    {
+      "path": "src/komorebi_math/backends/__init__.py",
+      "sha256": "b5a016ff2b71593a9c0abc2064ae65a6c61ecee415d1da94362b27085344adf7",
+      "sha256_after": "b5a016ff2b71593a9c0abc2064ae65a6c61ecee415d1da94362b27085344adf7"
+    },
+    {
+      "path": "src/komorebi_math/backends/base.py",
+      "sha256": "08139171a8fa566031432844e7d6608c4abfbf78141520c39e1677b8642cf343",
+      "sha256_after": "08139171a8fa566031432844e7d6608c4abfbf78141520c39e1677b8642cf343"
+    },
+    {
+      "path": "src/komorebi_math/backends/numpy.py",
+      "sha256": "3cd97eae8ce3cd7e0d0a9b1d262a922e858d745e0bcd4caae0b78d2e6145cde1",
+      "sha256_after": "3cd97eae8ce3cd7e0d0a9b1d262a922e858d745e0bcd4caae0b78d2e6145cde1"
+    },
+    {
+      "path": "src/komorebi_math/backends/sympy.py",
+      "sha256": "8f5082c8e05db32e851f6f3755cda979322598e7d5b921532e1c36b3eeab6972",
+      "sha256_after": "8f5082c8e05db32e851f6f3755cda979322598e7d5b921532e1c36b3eeab6972"
+    },
+    {
+      "path": "src/komorebi_math/beta/__init__.py",
+      "sha256": "b56d0c7448fdcdfbeaa8949de392fec3e1004c2603b08a63e0c2fd09158b2944",
+      "sha256_after": "b56d0c7448fdcdfbeaa8949de392fec3e1004c2603b08a63e0c2fd09158b2944"
+    },
+    {
+      "path": "src/komorebi_math/certificates.py",
+      "sha256": "d9fee0cd11405c119b35d9f9d984a4032f9ff0a8fd337ea2526f56fc65698b9f",
+      "sha256_after": "d9fee0cd11405c119b35d9f9d984a4032f9ff0a8fd337ea2526f56fc65698b9f"
+    },
+    {
+      "path": "src/komorebi_math/cli/__init__.py",
+      "sha256": "d79725da2dfaf0dfcc692773e7a6a8b2a853f010c74b0c828f07effa8c21f31a",
+      "sha256_after": "d79725da2dfaf0dfcc692773e7a6a8b2a853f010c74b0c828f07effa8c21f31a"
+    },
+    {
+      "path": "src/komorebi_math/cli/contracts.py",
+      "sha256": "39011c0addae62b5fa4caab8304261295c357863ceb561edf000c6e10d0fd7cd",
+      "sha256_after": "39011c0addae62b5fa4caab8304261295c357863ceb561edf000c6e10d0fd7cd"
+    },
+    {
+      "path": "src/komorebi_math/cli/main.py",
+      "sha256": "a61a4e5d81a838e766d1e8b890c1393f9645aa44351581223bd3e314eda85813",
+      "sha256_after": "a61a4e5d81a838e766d1e8b890c1393f9645aa44351581223bd3e314eda85813"
+    },
+    {
+      "path": "src/komorebi_math/compatibility.py",
+      "sha256": "593d5b37be7cf41762c359b6bfddc221df4c8a5121f73f082bb7e18b805d89c7",
+      "sha256_after": "593d5b37be7cf41762c359b6bfddc221df4c8a5121f73f082bb7e18b805d89c7"
+    },
+    {
+      "path": "src/komorebi_math/config.py",
+      "sha256": "7abfb1bf4bb37a06574a6c0db8708d31a78fee4a704f660909de70ff2af1919d",
+      "sha256_after": "7abfb1bf4bb37a06574a6c0db8708d31a78fee4a704f660909de70ff2af1919d"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/__init__.py",
+      "sha256": "94c38b190c95bbea8d7068c6b25cb08b5575c52aac1fb27757386febb00a158b",
+      "sha256_after": "94c38b190c95bbea8d7068c6b25cb08b5575c52aac1fb27757386febb00a158b"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/affine.py",
+      "sha256": "758d3b5f1ea53c60ac9a98a12d88abc52c8ec35f733c8b566fad12ec1d7fc29a",
+      "sha256_after": "758d3b5f1ea53c60ac9a98a12d88abc52c8ec35f733c8b566fad12ec1d7fc29a"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/analysis_synthesis.py",
+      "sha256": "55fa42063b3ea5f561a46ae6668cc102c04e4a6b1e2f5be5872273f107e4aa0a",
+      "sha256_after": "55fa42063b3ea5f561a46ae6668cc102c04e4a6b1e2f5be5872273f107e4aa0a"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/basis.py",
+      "sha256": "9f7351fd968c2c8c94f01b445bc98899c438d01bcdf7a6fac1379a7b4c30ce7f",
+      "sha256_after": "9f7351fd968c2c8c94f01b445bc98899c438d01bcdf7a6fac1379a7b4c30ce7f"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/budget.py",
+      "sha256": "c4f4aaf38abc0263f198dd6ac1fe9cab2133ce14ac7f7695d948a02b9af68150",
+      "sha256_after": "c4f4aaf38abc0263f198dd6ac1fe9cab2133ce14ac7f7695d948a02b9af68150"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/calculus.py",
+      "sha256": "7156398767a48211d18dafb48bc3a874c541d847e2922a36df9f99624d0c286f",
+      "sha256_after": "7156398767a48211d18dafb48bc3a874c541d847e2922a36df9f99624d0c286f"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/classical.py",
+      "sha256": "4a44df81afb429df6bbeb7655b3eabe929eef48d989013c743958d5055660577",
+      "sha256_after": "4a44df81afb429df6bbeb7655b3eabe929eef48d989013c743958d5055660577"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/combinatorial.py",
+      "sha256": "bb0a73e44deecfd2c64ea6c1418c38be7792d09d3106b22facda9dbf72c1dbc1",
+      "sha256_after": "bb0a73e44deecfd2c64ea6c1418c38be7792d09d3106b22facda9dbf72c1dbc1"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/exact.py",
+      "sha256": "84de7edffd2cdaa724782d65b662b1c2e02c3b8f4f48d52cad6a676d9a7204f7",
+      "sha256_after": "84de7edffd2cdaa724782d65b662b1c2e02c3b8f4f48d52cad6a676d9a7204f7"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/families.py",
+      "sha256": "13eb428d864cbd31e2c660cd2833945e9f148d900bb2ffac744484f5632e3fc6",
+      "sha256_after": "13eb428d864cbd31e2c660cd2833945e9f148d900bb2ffac744484f5632e3fc6"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/formal.py",
+      "sha256": "db41d12ae27b421800a27e29ecccee0e46c5bb99be3c4172681a718cf5591f91",
+      "sha256_after": "db41d12ae27b421800a27e29ecccee0e46c5bb99be3c4172681a718cf5591f91"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/frame_algebra.py",
+      "sha256": "cb9f91235c866b83f830c78378676337d2c166938177c8a3da6be6c0e4531760",
+      "sha256_after": "cb9f91235c866b83f830c78378676337d2c166938177c8a3da6be6c0e4531760"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/modular.py",
+      "sha256": "743596d148b5cffc625333a82d9393959b330a3c8fbdc2c1a6c607e0702a1121",
+      "sha256_after": "743596d148b5cffc625333a82d9393959b330a3c8fbdc2c1a6c607e0702a1121"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/normalized.py",
+      "sha256": "e92de85740e231a32b2473e0bef00ad36cfb09792aeb5cba376a22c69560f295",
+      "sha256_after": "e92de85740e231a32b2473e0bef00ad36cfb09792aeb5cba376a22c69560f295"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/numeric.py",
+      "sha256": "868983da6260f318d30427252443b69a9837698743a9d1b63e5094c52e90af04",
+      "sha256_after": "868983da6260f318d30427252443b69a9837698743a9d1b63e5094c52e90af04"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/operators.py",
+      "sha256": "405c48d9eed15f1d3a01b209948ee326abf76c5e80879db6e36dda99d9c37048",
+      "sha256_after": "405c48d9eed15f1d3a01b209948ee326abf76c5e80879db6e36dda99d9c37048"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/packet.py",
+      "sha256": "a2a371c47e39abe48023bbae3417979cdd6b1e04f498cdea8e717e2f85603e0a",
+      "sha256_after": "a2a371c47e39abe48023bbae3417979cdd6b1e04f498cdea8e717e2f85603e0a"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/polynomials.py",
+      "sha256": "4b891dbe1541765e1016ed18ff2b8bff5e3f325da56601fd1659953ef4f2c08e",
+      "sha256_after": "4b891dbe1541765e1016ed18ff2b8bff5e3f325da56601fd1659953ef4f2c08e"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/portable.py",
+      "sha256": "9951aea34982c1109c29bda32ade51f9a647a0aca5e320bf890325029db75cea",
+      "sha256_after": "9951aea34982c1109c29bda32ade51f9a647a0aca5e320bf890325029db75cea"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/realization.py",
+      "sha256": "c120c7b5c75b6614aa7f3311239a8745d475b7470574aa83ca7755a57db3fd98",
+      "sha256_after": "c120c7b5c75b6614aa7f3311239a8745d475b7470574aa83ca7755a57db3fd98"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/recurrence.py",
+      "sha256": "38fe5570bf0b632ea31ad337835548198331198468848fb4eb413bc1ed188157",
+      "sha256_after": "38fe5570bf0b632ea31ad337835548198331198468848fb4eb413bc1ed188157"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/state_space.py",
+      "sha256": "dbcf5a293e5a4dd090d6a8ba700ae1c5d1851ae60fc715e0abdb17dd8bf9860d",
+      "sha256_after": "dbcf5a293e5a4dd090d6a8ba700ae1c5d1851ae60fc715e0abdb17dd8bf9860d"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/tensor.py",
+      "sha256": "2b882d2e43168d656d674d6b59218d591851b862c6b47e106984d2fcd016dc87",
+      "sha256_after": "2b882d2e43168d656d674d6b59218d591851b862c6b47e106984d2fcd016dc87"
+    },
+    {
+      "path": "src/komorebi_math/coordinates/transform.py",
+      "sha256": "9af015fc51071cadb1adfd2ca95404c3c7f50e745770e886491740b044e8e39f",
+      "sha256_after": "9af015fc51071cadb1adfd2ca95404c3c7f50e745770e886491740b044e8e39f"
+    },
+    {
+      "path": "src/komorebi_math/core/__init__.py",
+      "sha256": "cc9b9d613fed58b76c6c064ad27ebc2339e048b21f44a27f2b97d29b02d10b2e",
+      "sha256_after": "cc9b9d613fed58b76c6c064ad27ebc2339e048b21f44a27f2b97d29b02d10b2e"
+    },
+    {
+      "path": "src/komorebi_math/core/algebra.py",
+      "sha256": "e62691c9a68bd44887187f171095a2cdb74f97ff652259e55193867be2288a8c",
+      "sha256_after": "e62691c9a68bd44887187f171095a2cdb74f97ff652259e55193867be2288a8c"
+    },
+    {
+      "path": "src/komorebi_math/core/carrier_change.py",
+      "sha256": "50ab324dd78588b3c024f10afa7c0752a4673a52cb6825b6dbd6a7e02795d690",
+      "sha256_after": "50ab324dd78588b3c024f10afa7c0752a4673a52cb6825b6dbd6a7e02795d690"
+    },
+    {
+      "path": "src/komorebi_math/core/grammar.py",
+      "sha256": "003a8bb22f6dfeace368a313e269a073d35f9cbf2a07f8d64ec734b66b033260",
+      "sha256_after": "003a8bb22f6dfeace368a313e269a073d35f9cbf2a07f8d64ec734b66b033260"
+    },
+    {
+      "path": "src/komorebi_math/core/graphs.py",
+      "sha256": "b565ad292c4dc647f5f65f3adfbf7977a29b0386e5f881c61d0f159a5cd62efa",
+      "sha256_after": "b565ad292c4dc647f5f65f3adfbf7977a29b0386e5f881c61d0f159a5cd62efa"
+    },
+    {
+      "path": "src/komorebi_math/core/morphisms.py",
+      "sha256": "98d608496d70e83a0ca1a6ed20d5ec980a0f4b6fa99a2831eecd0c7199aab958",
+      "sha256_after": "98d608496d70e83a0ca1a6ed20d5ec980a0f4b6fa99a2831eecd0c7199aab958"
+    },
+    {
+      "path": "src/komorebi_math/core/operators.py",
+      "sha256": "b1d36d27875b515aafa1dace9e718c241ddff5d7792430af5e74a451325b21f7",
+      "sha256_after": "b1d36d27875b515aafa1dace9e718c241ddff5d7792430af5e74a451325b21f7"
+    },
+    {
+      "path": "src/komorebi_math/core/packets.py",
+      "sha256": "9012ca99faeb9e290d2be76bf7ebbcd16853ca63948744ccb8a2e6ef1c53007e",
+      "sha256_after": "9012ca99faeb9e290d2be76bf7ebbcd16853ca63948744ccb8a2e6ef1c53007e"
+    },
+    {
+      "path": "src/komorebi_math/core/paper_machinery.py",
+      "sha256": "9cd9b944322a22e7ddbc40dc7d18986044ee14cf7b633422aa57d5eff22899de",
+      "sha256_after": "9cd9b944322a22e7ddbc40dc7d18986044ee14cf7b633422aa57d5eff22899de"
+    },
+    {
+      "path": "src/komorebi_math/core/realization.py",
+      "sha256": "6c2e4ea513a3ebb794aa5bfdb6a9d38eedeb515f26b3ff3dbc64d6a21a92b039",
+      "sha256_after": "6c2e4ea513a3ebb794aa5bfdb6a9d38eedeb515f26b3ff3dbc64d6a21a92b039"
+    },
+    {
+      "path": "src/komorebi_math/core/seeds.py",
+      "sha256": "9b78ed780403aa6dac89e638853730c1ec08afcc2a9add8b03c35837720e806a",
+      "sha256_after": "9b78ed780403aa6dac89e638853730c1ec08afcc2a9add8b03c35837720e806a"
+    },
+    {
+      "path": "src/komorebi_math/core/semilattice.py",
+      "sha256": "8529583125a18555183e433a4c94517e21a0922d2f7b6312a1bbd4926a51700c",
+      "sha256_after": "8529583125a18555183e433a4c94517e21a0922d2f7b6312a1bbd4926a51700c"
+    },
+    {
+      "path": "src/komorebi_math/core/transfer.py",
+      "sha256": "e73b17b5d126002aac63436b78c480f084275b783313cf2552c308ffa8341079",
+      "sha256_after": "e73b17b5d126002aac63436b78c480f084275b783313cf2552c308ffa8341079"
+    },
+    {
+      "path": "src/komorebi_math/data/architecture.json",
+      "sha256": "c040dfc4b072c62ca90eaa2991f93641d1e98a5d18841e2bb8bc170a4fb7dcdc",
+      "sha256_after": "c040dfc4b072c62ca90eaa2991f93641d1e98a5d18841e2bb8bc170a4fb7dcdc"
+    },
+    {
+      "path": "src/komorebi_math/data/behavioral_golden_0_11.json",
+      "sha256": "84ae2952a8ae7d1b22dc70ca506eb54d736e8b25c8912324be2a344dee5b32fd",
+      "sha256_after": "84ae2952a8ae7d1b22dc70ca506eb54d736e8b25c8912324be2a344dee5b32fd"
+    },
+    {
+      "path": "src/komorebi_math/data/behavioral_golden_0_13.json",
+      "sha256": "c020890be795e0dad4c9d545f4da2172c4405f36fe30c9c43b58884522e66f9b",
+      "sha256_after": "c020890be795e0dad4c9d545f4da2172c4405f36fe30c9c43b58884522e66f9b"
+    },
+    {
+      "path": "src/komorebi_math/data/behavioral_golden_0_14.json",
+      "sha256": "9f32d06766cc4850e9f3d0d6004f9288f33819be6797883935823f3bad390d99",
+      "sha256_after": "9f32d06766cc4850e9f3d0d6004f9288f33819be6797883935823f3bad390d99"
+    },
+    {
+      "path": "src/komorebi_math/data/paper_machinery_coverage.json",
+      "sha256": "bf64b0c8e05c88e246a724053b0db6f120a5c6b856bdee398459c2fb159080f9",
+      "sha256_after": "bf64b0c8e05c88e246a724053b0db6f120a5c6b856bdee398459c2fb159080f9"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_0_16.json",
+      "sha256": "47414a81311e02a49a6270889069ae70fa6e41ac0c7aebd124d8c8b25458124f",
+      "sha256_after": "47414a81311e02a49a6270889069ae70fa6e41ac0c7aebd124d8c8b25458124f"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_1_0.json",
+      "sha256": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05",
+      "sha256_after": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_1_0_0b1.json",
+      "sha256": "52e887a24ef63f2cd6852952cba0c1514c126c5dc0b743cecb55369560ff693d",
+      "sha256_after": "52e887a24ef63f2cd6852952cba0c1514c126c5dc0b743cecb55369560ff693d"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_1_0_0b2.json",
+      "sha256": "4b5ec6655f6453f415863e74679735831128494d30f1edcdbbbf9e38ab594cb5",
+      "sha256_after": "4b5ec6655f6453f415863e74679735831128494d30f1edcdbbbf9e38ab594cb5"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_1_0_0b3.json",
+      "sha256": "817bb08f84f360149051828c7c167e2d226de4d7fb6134d9f6169d876ffb7407",
+      "sha256_after": "817bb08f84f360149051828c7c167e2d226de4d7fb6134d9f6169d876ffb7407"
+    },
+    {
+      "path": "src/komorebi_math/data/portable_codec_contract_1_0_0b4.json",
+      "sha256": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05",
+      "sha256_after": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_10.json",
+      "sha256": "30b75483d563b190657310adad6904ea9664fa7d16eff2bbebbabf6d5bb927a8",
+      "sha256_after": "30b75483d563b190657310adad6904ea9664fa7d16eff2bbebbabf6d5bb927a8"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_11.json",
+      "sha256": "243498dda93134718b602017447f139aee6c6a4be5e4c7c18946492f18ce931c",
+      "sha256_after": "243498dda93134718b602017447f139aee6c6a4be5e4c7c18946492f18ce931c"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_12.json",
+      "sha256": "0d4f164d51a3e5bf691d76e9d3c25a99f8f58b64c74f118651261d6bdfb98529",
+      "sha256_after": "0d4f164d51a3e5bf691d76e9d3c25a99f8f58b64c74f118651261d6bdfb98529"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_13.json",
+      "sha256": "d847bfc40640f59b83e4aed8831557771c292c87fafd5d64ac852fa41f014251",
+      "sha256_after": "d847bfc40640f59b83e4aed8831557771c292c87fafd5d64ac852fa41f014251"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_14.json",
+      "sha256": "abf8c92b3b5207470f0d1733bcc8bb011dce8760898d6f168ed6190d593ffacb",
+      "sha256_after": "abf8c92b3b5207470f0d1733bcc8bb011dce8760898d6f168ed6190d593ffacb"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_15.json",
+      "sha256": "b2f6c7b669ec225ca16a909e340a847f3cbfb6a213302b0dcf065f5efbb00c19",
+      "sha256_after": "b2f6c7b669ec225ca16a909e340a847f3cbfb6a213302b0dcf065f5efbb00c19"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_0_16.json",
+      "sha256": "5ca687a0a036693df6059afc1ab547bf8a3a5357bce1e8dcf58f0ad0b64103f1",
+      "sha256_after": "5ca687a0a036693df6059afc1ab547bf8a3a5357bce1e8dcf58f0ad0b64103f1"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_1_0.json",
+      "sha256": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357",
+      "sha256_after": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_1_0_0b1.json",
+      "sha256": "cd84f7e3b923778aca751bf73e0460dc297ea5d365b201efdc0149ec07a6c812",
+      "sha256_after": "cd84f7e3b923778aca751bf73e0460dc297ea5d365b201efdc0149ec07a6c812"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_1_0_0b2.json",
+      "sha256": "7bd532093db8bd94c31736fab9cbb8da5c6ac1904aa90bb7b6c3d482fc68f414",
+      "sha256_after": "7bd532093db8bd94c31736fab9cbb8da5c6ac1904aa90bb7b6c3d482fc68f414"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_1_0_0b3.json",
+      "sha256": "7d9ff93ff5b733f6c1d486d3e46113d0a4631a4ed5673b4fc411765ede180ab2",
+      "sha256_after": "7d9ff93ff5b733f6c1d486d3e46113d0a4631a4ed5673b4fc411765ede180ab2"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_1_0_0b4.json",
+      "sha256": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357",
+      "sha256_after": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_11.json",
+      "sha256": "93adfc9169bb0625001624d2275a9073120fd23ae01fd08b86aaf6ee450e458a",
+      "sha256_after": "93adfc9169bb0625001624d2275a9073120fd23ae01fd08b86aaf6ee450e458a"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_12.json",
+      "sha256": "2e1801b486fabcd671635fde6f90b74e3d8cfb9e873bf25309093ac11c0926a2",
+      "sha256_after": "2e1801b486fabcd671635fde6f90b74e3d8cfb9e873bf25309093ac11c0926a2"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_13.json",
+      "sha256": "7803dd813512bc2ef6bbcf10547d225b666becd7c019e139749c8579d7ea7bcc",
+      "sha256_after": "7803dd813512bc2ef6bbcf10547d225b666becd7c019e139749c8579d7ea7bcc"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_14.json",
+      "sha256": "151a037aa012ed374de9ec84f7b1036f66d1ea7297b5191dd189fd0c3f5e19be",
+      "sha256_after": "151a037aa012ed374de9ec84f7b1036f66d1ea7297b5191dd189fd0c3f5e19be"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_15.json",
+      "sha256": "e5547f6aa39eddf3c1c94bb01c1052749b4e4858a0d33e92e2ecf0e566eb1ec7",
+      "sha256_after": "e5547f6aa39eddf3c1c94bb01c1052749b4e4858a0d33e92e2ecf0e566eb1ec7"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_0_16.json",
+      "sha256": "1cdb1392340a11e3247f41d4f8c052d1b75da219537c39e565ae86d52648a28d",
+      "sha256_after": "1cdb1392340a11e3247f41d4f8c052d1b75da219537c39e565ae86d52648a28d"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_1_0.json",
+      "sha256": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000",
+      "sha256_after": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_1_0_0b1.json",
+      "sha256": "f2f445d9d85c64005e53da98a77c026fdd80d6f6de72d44d0807757bdb1e62b3",
+      "sha256_after": "f2f445d9d85c64005e53da98a77c026fdd80d6f6de72d44d0807757bdb1e62b3"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_1_0_0b2.json",
+      "sha256": "40c334d2082c5bd62202174bb4b0496a641e17655948452401516888db5ad7c2",
+      "sha256_after": "40c334d2082c5bd62202174bb4b0496a641e17655948452401516888db5ad7c2"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_1_0_0b3.json",
+      "sha256": "7721b4c92d4600cd6a45b1153fad23bed3a7b73f96b47029c1dd5b442289d472",
+      "sha256_after": "7721b4c92d4600cd6a45b1153fad23bed3a7b73f96b47029c1dd5b442289d472"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_beta_1_0_0b4.json",
+      "sha256": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000",
+      "sha256_after": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_0_15.json",
+      "sha256": "7f5852261fb2fd9ce1f1df595eec93cf510db1beac67c4800f03be6f9bf12cef",
+      "sha256_after": "7f5852261fb2fd9ce1f1df595eec93cf510db1beac67c4800f03be6f9bf12cef"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_0_16.json",
+      "sha256": "34318ed498301a8a7ae663c0fe7a0ea1671852a534ffbf844752482ca431f30c",
+      "sha256_after": "34318ed498301a8a7ae663c0fe7a0ea1671852a534ffbf844752482ca431f30c"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_1_0.json",
+      "sha256": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67",
+      "sha256_after": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_1_0_0b1.json",
+      "sha256": "6ebab99eeeb4dddd80b71ad96b164b5d4a8402bdc80f4164865b0c7dbe5068bf",
+      "sha256_after": "6ebab99eeeb4dddd80b71ad96b164b5d4a8402bdc80f4164865b0c7dbe5068bf"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_1_0_0b2.json",
+      "sha256": "711b8de2f7a4981dab21df0fb6072db5528b8c86062c24f84f63052f1cea73c0",
+      "sha256_after": "711b8de2f7a4981dab21df0fb6072db5528b8c86062c24f84f63052f1cea73c0"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_1_0_0b3.json",
+      "sha256": "766a22dd30c70e5c986aebe1338b424b31906c70a59b5e576f061a43140ad1ad",
+      "sha256_after": "766a22dd30c70e5c986aebe1338b424b31906c70a59b5e576f061a43140ad1ad"
+    },
+    {
+      "path": "src/komorebi_math/data/public_api_stable_1_0_0b4.json",
+      "sha256": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67",
+      "sha256_after": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67"
+    },
+    {
+      "path": "src/komorebi_math/data/release_contract_0_16.json",
+      "sha256": "4490f9b763a22ef2057e8526a9c2631cd1640250873c2a5e7ef9c2dc0c2cbe57",
+      "sha256_after": "4490f9b763a22ef2057e8526a9c2631cd1640250873c2a5e7ef9c2dc0c2cbe57"
+    },
+    {
+      "path": "src/komorebi_math/data/release_contract_1_0.json",
+      "sha256": "d4a3379f265c0070819b2bbdc39ab34dd4c4492a1befd3bdf9cccbebb6f4bdab",
+      "sha256_after": "d4a3379f265c0070819b2bbdc39ab34dd4c4492a1befd3bdf9cccbebb6f4bdab"
+    },
+    {
+      "path": "src/komorebi_math/data/repair_checkpoint.json",
+      "sha256": "91782927e2b54330160d292f63e191320ae0f12278c197d0b4427902911920e7",
+      "sha256_after": "91782927e2b54330160d292f63e191320ae0f12278c197d0b4427902911920e7"
+    },
+    {
+      "path": "src/komorebi_math/data/research_source_provenance_20261008.json",
+      "sha256": "ddbd7cb2d4e9a33eff43830ac11ad1eab0e62d60f30d0610f52ce38b50c08868",
+      "sha256_after": "ddbd7cb2d4e9a33eff43830ac11ad1eab0e62d60f30d0610f52ce38b50c08868"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_documentation_1_0.json",
+      "sha256": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299",
+      "sha256_after": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_documentation_1_0_0b3.json",
+      "sha256": "691f0eccc84839fbfe931752efd80820fbb5552d5f0ed54389b71338ad8409dc",
+      "sha256_after": "691f0eccc84839fbfe931752efd80820fbb5552d5f0ed54389b71338ad8409dc"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_documentation_1_0_0b4.json",
+      "sha256": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299",
+      "sha256_after": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_0_16.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_1_0.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_1_0_0b1.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_1_0_0b2.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_1_0_0b3.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/stable_semantics_1_0_0b4.json",
+      "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e",
+      "sha256_after": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
+    },
+    {
+      "path": "src/komorebi_math/data/support_matrix_0_16.json",
+      "sha256": "f0e8c1646c8420047fa97c5d339cb939a1b8784d2f5768a347e10134373b7477",
+      "sha256_after": "f0e8c1646c8420047fa97c5d339cb939a1b8784d2f5768a347e10134373b7477"
+    },
+    {
+      "path": "src/komorebi_math/data/support_matrix_1_0.json",
+      "sha256": "ee5db71f7bcdc0ffe0921a85e23cc90630a01f353bc0d7922a6073aff2df6711",
+      "sha256_after": "ee5db71f7bcdc0ffe0921a85e23cc90630a01f353bc0d7922a6073aff2df6711"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_15_0a2_polyphase_refinement.json",
+      "sha256": "3bf97872bdec4f5d92c0cd404f997c96e53a6fec04face77f197eb3d555bc5d1",
+      "sha256_after": "3bf97872bdec4f5d92c0cd404f997c96e53a6fec04face77f197eb3d555bc5d1"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_15_0a2_polyphase_tower.json",
+      "sha256": "3e16df855e2ce16c2778ee5eb8336517effd3d837d54ca483383667c38d9a36f",
+      "sha256_after": "3e16df855e2ce16c2778ee5eb8336517effd3d837d54ca483383667c38d9a36f"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_16_0a2_analysis_synthesis.json",
+      "sha256": "af4836f0831d47c83ca018fcc7d6e705441522852fcd0a713a859cf5872d281c",
+      "sha256_after": "af4836f0831d47c83ca018fcc7d6e705441522852fcd0a713a859cf5872d281c"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_16_0a2_arithmetic_polyphase.json",
+      "sha256": "7d1fd7327ed1684043b3daf369686ce0087395045090dbde700c5c8981d2cb09",
+      "sha256_after": "7d1fd7327ed1684043b3daf369686ce0087395045090dbde700c5c8981d2cb09"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_16_0a2_finite_basis.json",
+      "sha256": "9281a0ee5a45a1faa8ef0063e704d723d57f1ea4a638b22c3f1928995cf839f3",
+      "sha256_after": "9281a0ee5a45a1faa8ef0063e704d723d57f1ea4a638b22c3f1928995cf839f3"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_16_0a2_polyphase_refinement.json",
+      "sha256": "e9369fa2e89f250e114c2ef914bf85e18dd0a5b1022fc49840ff1930d6fac953",
+      "sha256_after": "e9369fa2e89f250e114c2ef914bf85e18dd0a5b1022fc49840ff1930d6fac953"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_0_16_0a2_polyphase_tower.json",
+      "sha256": "92166c41effccd377ae8f7c43e2fc566b92d19848be3adc905dacf1abd0c0899",
+      "sha256_after": "92166c41effccd377ae8f7c43e2fc566b92d19848be3adc905dacf1abd0c0899"
+    },
+    {
+      "path": "src/komorebi_math/data/upgrade_contract_1_0.json",
+      "sha256": "d80de9c2b6913df3386a776519fefffb47b2820a57678b53ed19afae87f3e84d",
+      "sha256_after": "d80de9c2b6913df3386a776519fefffb47b2820a57678b53ed19afae87f3e84d"
+    },
+    {
+      "path": "src/komorebi_math/data/validation_evidence_1_0.json",
+      "sha256": "7aea0d877dbd1e896567199b9f6a857aa53a0bf40189c6aa17a05827115deaf2",
+      "sha256_after": "7aea0d877dbd1e896567199b9f6a857aa53a0bf40189c6aa17a05827115deaf2"
+    },
+    {
+      "path": "src/komorebi_math/data/validation_linux_1_0_0b1.json",
+      "sha256": "683cb552a196ce7787580e7f224112f6f00cb746ffe7254f99a0f83eb4295d64",
+      "sha256_after": "683cb552a196ce7787580e7f224112f6f00cb746ffe7254f99a0f83eb4295d64"
+    },
+    {
+      "path": "src/komorebi_math/data/validation_linux_1_0_0b4.json",
+      "sha256": "121be035a8c2c398ad7bdae32ee8da4e4534b753cff80a3b97fb61654932bf47",
+      "sha256_after": "121be035a8c2c398ad7bdae32ee8da4e4534b753cff80a3b97fb61654932bf47"
+    },
+    {
+      "path": "src/komorebi_math/data/validation_windows_0_16_0a2.json",
+      "sha256": "b63e25550a9ac849a128515207aa903fbcdd48aabcdb3b0795bd9bed4d2ef9c4",
+      "sha256_after": "b63e25550a9ac849a128515207aa903fbcdd48aabcdb3b0795bd9bed4d2ef9c4"
+    },
+    {
+      "path": "src/komorebi_math/decision/__init__.py",
+      "sha256": "acb8a9bb37cc6927522c4fd0408dc2454dd862a61fac0724f23dc301bc4b4636",
+      "sha256_after": "acb8a9bb37cc6927522c4fd0408dc2454dd862a61fac0724f23dc301bc4b4636"
+    },
+    {
+      "path": "src/komorebi_math/decision/avoc.py",
+      "sha256": "d516e61e8b1192f72e1fe76fbaaabbc087602ca509b6c6aef88a1ff5ab463220",
+      "sha256_after": "d516e61e8b1192f72e1fe76fbaaabbc087602ca509b6c6aef88a1ff5ab463220"
+    },
+    {
+      "path": "src/komorebi_math/deformation/__init__.py",
+      "sha256": "c7d52eec665158f07f4edefc01f8c239080f438d6f5749fa3739a8c50534b491",
+      "sha256_after": "c7d52eec665158f07f4edefc01f8c239080f438d6f5749fa3739a8c50534b491"
+    },
+    {
+      "path": "src/komorebi_math/deformation/companions.py",
+      "sha256": "ae6885292bbb60899094c86de9692895ea8303172e4033bed8cdc54c84bc4b13",
+      "sha256_after": "ae6885292bbb60899094c86de9692895ea8303172e4033bed8cdc54c84bc4b13"
+    },
+    {
+      "path": "src/komorebi_math/deformation/complexes.py",
+      "sha256": "880725eb8cbd80a370792271d095cec265739faa2eabdd6bd503ad822e2230fc",
+      "sha256_after": "880725eb8cbd80a370792271d095cec265739faa2eabdd6bd503ad822e2230fc"
+    },
+    {
+      "path": "src/komorebi_math/deformation/counting.py",
+      "sha256": "5f9171cbf1899f5476a66b3088de5e04315b35c3c8c29df20d18dc2fb58ce6e8",
+      "sha256_after": "5f9171cbf1899f5476a66b3088de5e04315b35c3c8c29df20d18dc2fb58ce6e8"
+    },
+    {
+      "path": "src/komorebi_math/deformation/forests.py",
+      "sha256": "3721563aea386fe8d6c11511cdc5037a2778ca33083d2380054f5b6b209d233d",
+      "sha256_after": "3721563aea386fe8d6c11511cdc5037a2778ca33083d2380054f5b6b209d233d"
+    },
+    {
+      "path": "src/komorebi_math/deformation/support.py",
+      "sha256": "b0685afe109904a23cf9961fa1f014978eafdda812573249408795db49afb0ed",
+      "sha256_after": "b0685afe109904a23cf9961fa1f014978eafdda812573249408795db49afb0ed"
+    },
+    {
+      "path": "src/komorebi_math/deformation/visibility.py",
+      "sha256": "3b61d0116228a4692c51bf0caffad0136d3849381d4b32c8e3f034128d81a5f5",
+      "sha256_after": "3b61d0116228a4692c51bf0caffad0136d3849381d4b32c8e3f034128d81a5f5"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/__init__.py",
+      "sha256": "e4c6b8fdf58de4680176aee363f791018314ded0de4837e8c9afc2a6db9b3390",
+      "sha256_after": "e4c6b8fdf58de4680176aee363f791018314ded0de4837e8c9afc2a6db9b3390"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/_linalg.py",
+      "sha256": "3b75d5e7183b8b78dabd0e5f9a2838cf376ac638ed38fa89ee1c213aab6607ff",
+      "sha256_after": "3b75d5e7183b8b78dabd0e5f9a2838cf376ac638ed38fa89ee1c213aab6607ff"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/bayes.py",
+      "sha256": "da5215d0b6a8be7c7f2c98e423ce1dd32bc2764998d7884b4e64cab66862927f",
+      "sha256_after": "da5215d0b6a8be7c7f2c98e423ce1dd32bc2764998d7884b4e64cab66862927f"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/feshbach.py",
+      "sha256": "b011baa1ebef8aa2792185081d530fc040b71518d00e2acceb20c2840215bd72",
+      "sha256_after": "b011baa1ebef8aa2792185081d530fc040b71518d00e2acceb20c2840215bd72"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/feynman_kac.py",
+      "sha256": "49c17e4210904781d37b39c66556c70ed79640caf53b3d66757fdb3f7e99662f",
+      "sha256_after": "49c17e4210904781d37b39c66556c70ed79640caf53b3d66757fdb3f7e99662f"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/fractional.py",
+      "sha256": "90b600829c896cdbe14c195a9f220ca9a201011ff7cae9eb7829f498e41222bc",
+      "sha256_after": "90b600829c896cdbe14c195a9f220ca9a201011ff7cae9eb7829f498e41222bc"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/gaussian_verifier.py",
+      "sha256": "8b40f52693f135e37c17ac8720e4030c1d70de7b85892d897b0b2768a414b403",
+      "sha256_after": "8b40f52693f135e37c17ac8720e4030c1d70de7b85892d897b0b2768a414b403"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/green.py",
+      "sha256": "b757cff0bfdfaf243483c04275f87254cea3adddf80ddba31c8658775892a01c",
+      "sha256_after": "b757cff0bfdfaf243483c04275f87254cea3adddf80ddba31c8658775892a01c"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/hermite.py",
+      "sha256": "00867390c762c4b86814255ace821bbe102620f607480d198db8d4e60f43474c",
+      "sha256_after": "00867390c762c4b86814255ace821bbe102620f607480d198db8d4e60f43474c"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/markov.py",
+      "sha256": "adc03fae56e584300e5f5ff7db0f41f16bcccad50858a7375eafa17d95223b4e",
+      "sha256_after": "adc03fae56e584300e5f5ff7db0f41f16bcccad50858a7375eafa17d95223b4e"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/martingales.py",
+      "sha256": "afabfcd820079bb900695c5854fca36679135057ede1cae988aa23ad68bb7da1",
+      "sha256_after": "afabfcd820079bb900695c5854fca36679135057ede1cae988aa23ad68bb7da1"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/memory.py",
+      "sha256": "22f34482be93ec2f84ce672b57649f47c4fc40aa0e77763f4c959dcdaee613fe",
+      "sha256_after": "22f34482be93ec2f84ce672b57649f47c4fc40aa0e77763f4c959dcdaee613fe"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/semigroups.py",
+      "sha256": "3e905fdef4dc9eec1886653ecd3b4b791cb70a0381ca402ec67a34aa9d480d99",
+      "sha256_after": "3e905fdef4dc9eec1886653ecd3b4b791cb70a0381ca402ec67a34aa9d480d99"
+    },
+    {
+      "path": "src/komorebi_math/dynamics/survival.py",
+      "sha256": "a02759b3a1b01c4c5d6861e42d750bd187c5801955d1e6014787aab97877d702",
+      "sha256_after": "a02759b3a1b01c4c5d6861e42d750bd187c5801955d1e6014787aab97877d702"
+    },
+    {
+      "path": "src/komorebi_math/exceptions.py",
+      "sha256": "65aee29fea129eec941c2a3667dd3d5dff67680cafb50e37674bb475fa21a1bb",
+      "sha256_after": "65aee29fea129eec941c2a3667dd3d5dff67680cafb50e37674bb475fa21a1bb"
+    },
+    {
+      "path": "src/komorebi_math/export/__init__.py",
+      "sha256": "46407a9f8b1ddb007f63d8c2f0210f4c5bf5b6fae87f7e1346711cf8c78e2056",
+      "sha256_after": "46407a9f8b1ddb007f63d8c2f0210f4c5bf5b6fae87f7e1346711cf8c78e2056"
+    },
+    {
+      "path": "src/komorebi_math/export/latex.py",
+      "sha256": "6732665ea6282003b6588486ff76d4b92cd406e43311c2c7d679cbe446707690",
+      "sha256_after": "6732665ea6282003b6588486ff76d4b92cd406e43311c2c7d679cbe446707690"
+    },
+    {
+      "path": "src/komorebi_math/export/model.py",
+      "sha256": "14821695790ebcf99bfac47e3b45cccd357ac869af536030e83e8a7e9dfe7d1b",
+      "sha256_after": "14821695790ebcf99bfac47e3b45cccd357ac869af536030e83e8a7e9dfe7d1b"
+    },
+    {
+      "path": "src/komorebi_math/export/persistence.py",
+      "sha256": "2fc2f03c69363710f66f398b6114b31621c0080b914f061cd13be57ab3ec10dc",
+      "sha256_after": "2fc2f03c69363710f66f398b6114b31621c0080b914f061cd13be57ab3ec10dc"
+    },
+    {
+      "path": "src/komorebi_math/export/renderers.py",
+      "sha256": "1a86b12145e02c3084710ed9e6d1a89346ef29344aeecfd6b98945ff1845d157",
+      "sha256_after": "1a86b12145e02c3084710ed9e6d1a89346ef29344aeecfd6b98945ff1845d157"
+    },
+    {
+      "path": "src/komorebi_math/export/report.py",
+      "sha256": "f303c23f5f9c027f1e7430eb14f9850c137bde58330fa4218d65d5c7f43cf6c7",
+      "sha256_after": "f303c23f5f9c027f1e7430eb14f9850c137bde58330fa4218d65d5c7f43cf6c7"
+    },
+    {
+      "path": "src/komorebi_math/export/serialization.py",
+      "sha256": "20d4f7cf7754519df781523dc84ebfd968acac2df92351e4847cb8f21cdd98dc",
+      "sha256_after": "20d4f7cf7754519df781523dc84ebfd968acac2df92351e4847cb8f21cdd98dc"
+    },
+    {
+      "path": "src/komorebi_math/export/writers.py",
+      "sha256": "4ac13bea553cd0321737ecbdf8e474063849df2afd3e5b042693c3cb74385e10",
+      "sha256_after": "4ac13bea553cd0321737ecbdf8e474063849df2afd3e5b042693c3cb74385e10"
+    },
+    {
+      "path": "src/komorebi_math/expression/__init__.py",
+      "sha256": "a4526fb71a56d60389ae1229950e924233de717397d8d983b20afe7c8377ec44",
+      "sha256_after": "a4526fb71a56d60389ae1229950e924233de717397d8d983b20afe7c8377ec44"
+    },
+    {
+      "path": "src/komorebi_math/expression/certification.py",
+      "sha256": "4348615486a61a715c77538729825ccaa5330b7ef0885f06e1845424e2fd6576",
+      "sha256_after": "4348615486a61a715c77538729825ccaa5330b7ef0885f06e1845424e2fd6576"
+    },
+    {
+      "path": "src/komorebi_math/expression/engine.py",
+      "sha256": "5ae39e027b7f9c33dbacffe22e641f4be7e523177679436b037d3ab47303302d",
+      "sha256_after": "5ae39e027b7f9c33dbacffe22e641f4be7e523177679436b037d3ab47303302d"
+    },
+    {
+      "path": "src/komorebi_math/expression/model.py",
+      "sha256": "9fca497f97163c08a47ac7ac840fbf99c9d52463571587ab59fe4fef8707bcc2",
+      "sha256_after": "9fca497f97163c08a47ac7ac840fbf99c9d52463571587ab59fe4fef8707bcc2"
+    },
+    {
+      "path": "src/komorebi_math/expression/planning.py",
+      "sha256": "cfa5341a696cabed25fe632060ea179455bf41f84f027a92572b7a44cd2eddc7",
+      "sha256_after": "cfa5341a696cabed25fe632060ea179455bf41f84f027a92572b7a44cd2eddc7"
+    },
+    {
+      "path": "src/komorebi_math/expression/polynomial.py",
+      "sha256": "73a4a594e4c0f26c3fbabbad2b29041bfe08842e241f37ec53281651875c52a2",
+      "sha256_after": "73a4a594e4c0f26c3fbabbad2b29041bfe08842e241f37ec53281651875c52a2"
+    },
+    {
+      "path": "src/komorebi_math/expression/portable.py",
+      "sha256": "366c25d81842e91cbf228f84b10ad6626493d48eef3acad1129439cbdaf0e9d0",
+      "sha256_after": "366c25d81842e91cbf228f84b10ad6626493d48eef3acad1129439cbdaf0e9d0"
+    },
+    {
+      "path": "src/komorebi_math/extensions/__init__.py",
+      "sha256": "f58b0afe8ae4a746c9738c41b4da8d0a4d4f60f7a2ec00e67c41432373fc3ec6",
+      "sha256_after": "f58b0afe8ae4a746c9738c41b4da8d0a4d4f60f7a2ec00e67c41432373fc3ec6"
+    },
+    {
+      "path": "src/komorebi_math/extensions/api.py",
+      "sha256": "e0a5f52cd0e4dbd434e357bf38ed73a387c386fcff716a3271288251cd1b55b6",
+      "sha256_after": "e0a5f52cd0e4dbd434e357bf38ed73a387c386fcff716a3271288251cd1b55b6"
+    },
+    {
+      "path": "src/komorebi_math/extensions/discovery.py",
+      "sha256": "93b3ea91e482d33df9233f8f20ec9e57356463bb1fef33cc414d0d810b11079e",
+      "sha256_after": "93b3ea91e482d33df9233f8f20ec9e57356463bb1fef33cc414d0d810b11079e"
+    },
+    {
+      "path": "src/komorebi_math/generating/__init__.py",
+      "sha256": "b936240b6714f457b1707abd71b21fd2ce87f9a3e54ed50a33e896c4bd6eb444",
+      "sha256_after": "b936240b6714f457b1707abd71b21fd2ce87f9a3e54ed50a33e896c4bd6eb444"
+    },
+    {
+      "path": "src/komorebi_math/generating/adapters.py",
+      "sha256": "8a0a1f837ec254adef8f733f31902d23ec8f63caa799aafc281e806e15763efa",
+      "sha256_after": "8a0a1f837ec254adef8f733f31902d23ec8f63caa799aafc281e806e15763efa"
+    },
+    {
+      "path": "src/komorebi_math/generating/basis.py",
+      "sha256": "d2c0a2eb619cb8671916fa6d72583181f7a0f23ce36560ebeecfb1885c9afc58",
+      "sha256_after": "d2c0a2eb619cb8671916fa6d72583181f7a0f23ce36560ebeecfb1885c9afc58"
+    },
+    {
+      "path": "src/komorebi_math/generating/bell.py",
+      "sha256": "4c5a85c09768939de456f93e7551ca131ed53318a7b19d5f01440feb017e4b52",
+      "sha256_after": "4c5a85c09768939de456f93e7551ca131ed53318a7b19d5f01440feb017e4b52"
+    },
+    {
+      "path": "src/komorebi_math/generating/budget.py",
+      "sha256": "10277f2d7fe126db2824f5e7d8564b37c0c6445db7d11dbb0336c0fd69de62fb",
+      "sha256_after": "10277f2d7fe126db2824f5e7d8564b37c0c6445db7d11dbb0336c0fd69de62fb"
+    },
+    {
+      "path": "src/komorebi_math/generating/cartier.py",
+      "sha256": "e6642e8f58d9fdde0068764479f788f628925dd28db302785f7530a15ffe0ce8",
+      "sha256_after": "e6642e8f58d9fdde0068764479f788f628925dd28db302785f7530a15ffe0ce8"
+    },
+    {
+      "path": "src/komorebi_math/generating/cartier_prime_power.py",
+      "sha256": "acb801c9b480a532d485a1194a23153a57f2210b038e88831e48a8fd1ca0bac4",
+      "sha256_after": "acb801c9b480a532d485a1194a23153a57f2210b038e88831e48a8fd1ca0bac4"
+    },
+    {
+      "path": "src/komorebi_math/generating/closed_forms.py",
+      "sha256": "ded47935bbb3349390e2f1ff9588f3589a4537bf863c79144d7a19722857c726",
+      "sha256_after": "ded47935bbb3349390e2f1ff9588f3589a4537bf863c79144d7a19722857c726"
+    },
+    {
+      "path": "src/komorebi_math/generating/congruences.py",
+      "sha256": "db2e2d5a38d8ba6a590a0562c02433ac3764615afb3dc842a69a84f676e1fd92",
+      "sha256_after": "db2e2d5a38d8ba6a590a0562c02433ac3764615afb3dc842a69a84f676e1fd92"
+    },
+    {
+      "path": "src/komorebi_math/generating/cyclotomic.py",
+      "sha256": "4410f5e15f14de2b2369a371eff368043655dd187cd9b4f5d4a0d2fde6a244f0",
+      "sha256_after": "4410f5e15f14de2b2369a371eff368043655dd187cd9b4f5d4a0d2fde6a244f0"
+    },
+    {
+      "path": "src/komorebi_math/generating/digit_algebra.py",
+      "sha256": "2a979747e53029a71acb6d7c41725e9492a1efe89f9fd906f8add4c63753c9f1",
+      "sha256_after": "2a979747e53029a71acb6d7c41725e9492a1efe89f9fd906f8add4c63753c9f1"
+    },
+    {
+      "path": "src/komorebi_math/generating/domains.py",
+      "sha256": "e909bd946185d871acb2746b9390f2ea349cbe9c2abc3cbe9f014d6deeb45337",
+      "sha256_after": "e909bd946185d871acb2746b9390f2ea349cbe9c2abc3cbe9f014d6deeb45337"
+    },
+    {
+      "path": "src/komorebi_math/generating/finite_series.py",
+      "sha256": "367d3797ce0f2af6a21be66d7cd200681ff5a5728f541be677616c5819287941",
+      "sha256_after": "367d3797ce0f2af6a21be66d7cd200681ff5a5728f541be677616c5819287941"
+    },
+    {
+      "path": "src/komorebi_math/generating/functions.py",
+      "sha256": "4796b58d5b97bf9f61f1f829dc14ccea61b9dba2a986442822b15cb97b01b632",
+      "sha256_after": "4796b58d5b97bf9f61f1f829dc14ccea61b9dba2a986442822b15cb97b01b632"
+    },
+    {
+      "path": "src/komorebi_math/generating/masks.py",
+      "sha256": "cd0f5beac88643f1c8c0817eed19f23fc0e04d1fd7f3c2fd25b8c358873784a8",
+      "sha256_after": "cd0f5beac88643f1c8c0817eed19f23fc0e04d1fd7f3c2fd25b8c358873784a8"
+    },
+    {
+      "path": "src/komorebi_math/generating/monoid.py",
+      "sha256": "6912891418926c3649d1f86b81ee4e4526c353dbdab1e6919eaf8a2e322184b1",
+      "sha256_after": "6912891418926c3649d1f86b81ee4e4526c353dbdab1e6919eaf8a2e322184b1"
+    },
+    {
+      "path": "src/komorebi_math/generating/normalization.py",
+      "sha256": "ae899b625ac95c7d2d7bc258b886639e2ed3ef5a85bbae340a22eff66122263f",
+      "sha256_after": "ae899b625ac95c7d2d7bc258b886639e2ed3ef5a85bbae340a22eff66122263f"
+    },
+    {
+      "path": "src/komorebi_math/generating/padic_units.py",
+      "sha256": "3c4e77f1eb3a55f625d6aed3ab660b6bacecececd69096f67eef55a2aa2908ff",
+      "sha256_after": "3c4e77f1eb3a55f625d6aed3ab660b6bacecececd69096f67eef55a2aa2908ff"
+    },
+    {
+      "path": "src/komorebi_math/generating/portable.py",
+      "sha256": "6a6fdf84655de482e3505a96b49c9976a598e9f69c34a8aefd110498d360b338",
+      "sha256_after": "6a6fdf84655de482e3505a96b49c9976a598e9f69c34a8aefd110498d360b338"
+    },
+    {
+      "path": "src/komorebi_math/generating/q_kummer.py",
+      "sha256": "68325b095b548a5c684f40649e013f0786b0bdc953a03f4561100e73f77a6673",
+      "sha256_after": "68325b095b548a5c684f40649e013f0786b0bdc953a03f4561100e73f77a6673"
+    },
+    {
+      "path": "src/komorebi_math/generating/residual_modules.py",
+      "sha256": "d9a8ac7570c4d1957b7388fa922a0b9d6a21bbd15beb0d87dcc8aba62477bad6",
+      "sha256_after": "d9a8ac7570c4d1957b7388fa922a0b9d6a21bbd15beb0d87dcc8aba62477bad6"
+    },
+    {
+      "path": "src/komorebi_math/generating/sections.py",
+      "sha256": "4b8f10c0f695fa9540f57a3fda489d4a78d16314259a341b78b07c51a71b7baa",
+      "sha256_after": "4b8f10c0f695fa9540f57a3fda489d4a78d16314259a341b78b07c51a71b7baa"
+    },
+    {
+      "path": "src/komorebi_math/generating/sequences.py",
+      "sha256": "f7865546be191e8e319263e9d63abf9fd2d9a1e12e3271b187d48eaa5a25657a",
+      "sha256_after": "f7865546be191e8e319263e9d63abf9fd2d9a1e12e3271b187d48eaa5a25657a"
+    },
+    {
+      "path": "src/komorebi_math/generating/series.py",
+      "sha256": "781711af553b0dba14eff4ebb7d59dae8ea0a50d5b7457569fb9565f54e62472",
+      "sha256_after": "781711af553b0dba14eff4ebb7d59dae8ea0a50d5b7457569fb9565f54e62472"
+    },
+    {
+      "path": "src/komorebi_math/golden.py",
+      "sha256": "af7f39387bb8aa352c50ecc5f737f78d829f792253e5191022e066b22307a45c",
+      "sha256_after": "af7f39387bb8aa352c50ecc5f737f78d829f792253e5191022e066b22307a45c"
+    },
+    {
+      "path": "src/komorebi_math/integration/__init__.py",
+      "sha256": "43776914f55055c7f24894e2dd15ac595c86100382119e5c52082f781d04a5de",
+      "sha256_after": "43776914f55055c7f24894e2dd15ac595c86100382119e5c52082f781d04a5de"
+    },
+    {
+      "path": "src/komorebi_math/integration/adapters.py",
+      "sha256": "9b8a3651c643a7a2444f7c5579f6829f1fa00b01ca091dca74cfea4551336521",
+      "sha256_after": "9b8a3651c643a7a2444f7c5579f6829f1fa00b01ca091dca74cfea4551336521"
+    },
+    {
+      "path": "src/komorebi_math/integration/coordinates.py",
+      "sha256": "687601788d64e15fd2463bbf284bf4023126db96f28ad58ca7d46a7d4029abdc",
+      "sha256_after": "687601788d64e15fd2463bbf284bf4023126db96f28ad58ca7d46a7d4029abdc"
+    },
+    {
+      "path": "src/komorebi_math/integration/identities.py",
+      "sha256": "5a323effecd17cde4aa52ba4c24d49372d93dc765d1f18a8fa8a6d3dd1f71acd",
+      "sha256_after": "5a323effecd17cde4aa52ba4c24d49372d93dc765d1f18a8fa8a6d3dd1f71acd"
+    },
+    {
+      "path": "src/komorebi_math/integration/measures.py",
+      "sha256": "8afd4b87c10b7309add2e348e673b2bc04aa4ff53c3bf7ede6ddc07c6bd1e488",
+      "sha256_after": "8afd4b87c10b7309add2e348e673b2bc04aa4ff53c3bf7ede6ddc07c6bd1e488"
+    },
+    {
+      "path": "src/komorebi_math/integration/polynomial.py",
+      "sha256": "f4f739bafd6ab4da09eeb3049f31b83009e216b4ed006779c650a6de91fa038c",
+      "sha256_after": "f4f739bafd6ab4da09eeb3049f31b83009e216b4ed006779c650a6de91fa038c"
+    },
+    {
+      "path": "src/komorebi_math/integration/quadrature.py",
+      "sha256": "0b48e7ee5eb5b42caf11f072132c0d0ab1613fef9ddbebc78a9d6e98957f8800",
+      "sha256_after": "0b48e7ee5eb5b42caf11f072132c0d0ab1613fef9ddbebc78a9d6e98957f8800"
+    },
+    {
+      "path": "src/komorebi_math/integration/rules.py",
+      "sha256": "ba0e8d7ad4154999323a34724a47a2790131ab5389d1eea62980096b44e7a451",
+      "sha256_after": "ba0e8d7ad4154999323a34724a47a2790131ab5389d1eea62980096b44e7a451"
+    },
+    {
+      "path": "src/komorebi_math/langlands/__init__.py",
+      "sha256": "13d0d7c50d0fdb808a36c7902147ad4a58c42b69464d34bdb14d9bdb75dc6335",
+      "sha256_after": "13d0d7c50d0fdb808a36c7902147ad4a58c42b69464d34bdb14d9bdb75dc6335"
+    },
+    {
+      "path": "src/komorebi_math/langlands/completion/__init__.py",
+      "sha256": "cf6c28c2492cd2c3866a4f1d21ec070a766aab179d8a5b26c7a00e4a3d7b4797",
+      "sha256_after": "cf6c28c2492cd2c3866a4f1d21ec070a766aab179d8a5b26c7a00e4a3d7b4797"
+    },
+    {
+      "path": "src/komorebi_math/langlands/completion/gates.py",
+      "sha256": "9eae5b42d05d6d492b207eaf49a7bad012a1abe9ba455fa30273946fadfe9400",
+      "sha256_after": "9eae5b42d05d6d492b207eaf49a7bad012a1abe9ba455fa30273946fadfe9400"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/__init__.py",
+      "sha256": "6fa36cd624baf74d098be2609961be067357be0862e78b73aff0c5314c1e9c27",
+      "sha256_after": "6fa36cd624baf74d098be2609961be067357be0862e78b73aff0c5314c1e9c27"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/characters.py",
+      "sha256": "e0d6d96f440ba0a193802e57d8e9e888cbd246ea967df94830093fbce3b2ff05",
+      "sha256_after": "e0d6d96f440ba0a193802e57d8e9e888cbd246ea967df94830093fbce3b2ff05"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/clifford.py",
+      "sha256": "4c808f92dc3ed8fecdd3437fc614d242a8ba784ec424af206c179af2149af1b5",
+      "sha256_after": "4c808f92dc3ed8fecdd3437fc614d242a8ba784ec424af206c179af2149af1b5"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/groups.py",
+      "sha256": "dd578ed3fb3d9d85b2d4073724e6da8dc763f3bc3dd7697f0f40a4ec26347f5c",
+      "sha256_after": "dd578ed3fb3d9d85b2d4073724e6da8dc763f3bc3dd7697f0f40a4ec26347f5c"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/mackey.py",
+      "sha256": "2804cd9bed595227820fd27c24345ec611be5d8cf34b4c776ea3d7a33529e388",
+      "sha256_after": "2804cd9bed595227820fd27c24345ec611be5d8cf34b4c776ea3d7a33529e388"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/orbits.py",
+      "sha256": "828529d2ffa213f776bed411251bdcfacbbe971add1bf339f97bc4e32f207b8e",
+      "sha256_after": "828529d2ffa213f776bed411251bdcfacbbe971add1bf339f97bc4e32f207b8e"
+    },
+    {
+      "path": "src/komorebi_math/langlands/finite_image/plans.py",
+      "sha256": "9004a8c55d653ba19c50ef0909e6c5bf95e3b068997361acb8700f49f7d21bc6",
+      "sha256_after": "9004a8c55d653ba19c50ef0909e6c5bf95e3b068997361acb8700f49f7d21bc6"
+    },
+    {
+      "path": "src/komorebi_math/langlands/global_/__init__.py",
+      "sha256": "767c34a5eb0c1b3bdb3daa481cf6061897de4ab6457b8772bd9aae6c87737ad4",
+      "sha256_after": "767c34a5eb0c1b3bdb3daa481cf6061897de4ab6457b8772bd9aae6c87737ad4"
+    },
+    {
+      "path": "src/komorebi_math/langlands/global_/dyadic.py",
+      "sha256": "9bacd8ed4d652c2daee6bd702366b051f1f10203ef8365d91da1c74817c69f63",
+      "sha256_after": "9bacd8ed4d652c2daee6bd702366b051f1f10203ef8365d91da1c74817c69f63"
+    },
+    {
+      "path": "src/komorebi_math/langlands/global_/hecke.py",
+      "sha256": "147eea0cf592a9b98cd82b844aa3143d39a8a8c029e920da3a22fe719f779997",
+      "sha256_after": "147eea0cf592a9b98cd82b844aa3143d39a8a8c029e920da3a22fe719f779997"
+    },
+    {
+      "path": "src/komorebi_math/langlands/global_/patching.py",
+      "sha256": "6bb134c099c638528a6354df9571b30c25d47ec08cbb378fa34fabf6e934617b",
+      "sha256_after": "6bb134c099c638528a6354df9571b30c25d47ec08cbb378fa34fabf6e934617b"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/__init__.py",
+      "sha256": "cce8b2f7cd922550288319df42527be6e912e692068d2c0f570412ff49749f61",
+      "sha256_after": "cce8b2f7cd922550288319df42527be6e912e692068d2c0f570412ff49749f61"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/bridge.py",
+      "sha256": "d602ecb7891d84c6867b4fd220f5713b333f47cad1acf9a0789c98e7e9eb6106",
+      "sha256_after": "d602ecb7891d84c6867b4fd220f5713b333f47cad1acf9a0789c98e7e9eb6106"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/envelopes.py",
+      "sha256": "4b6469345802df9f679a7a38790e274aaabe775f505d30e4bf76e5a7f6d11373",
+      "sha256_after": "4b6469345802df9f679a7a38790e274aaabe775f505d30e4bf76e5a7f6d11373"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/finite_fields.py",
+      "sha256": "078140eafd79608302582ff7486542314aebaa4160cc7005ff7db3becf00368f",
+      "sha256_after": "078140eafd79608302582ff7486542314aebaa4160cc7005ff7db3becf00368f"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/gauss.py",
+      "sha256": "a09ddf5c664e70175cd074207d6c8b7b9864f030ca3a78ad740a255f2e4bcc77",
+      "sha256_after": "a09ddf5c664e70175cd074207d6c8b7b9864f030ca3a78ad740a255f2e4bcc77"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/heisenberg.py",
+      "sha256": "489d9922de7922c5286481ad2f1b5a25d962e404f95dce184a3e6b3190902ccd",
+      "sha256_after": "489d9922de7922c5286481ad2f1b5a25d962e404f95dce184a3e6b3190902ccd"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/symplectic.py",
+      "sha256": "83e286a4dadaf4d2460bdace6bffb51b6414ffb29ab5436f99299721dd842df5",
+      "sha256_after": "83e286a4dadaf4d2460bdace6bffb51b6414ffb29ab5436f99299721dd842df5"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/tame.py",
+      "sha256": "63ba77e6127a5e1318d176d9badc7d0bad8ed1448f7fec69533f3ab800fcd867",
+      "sha256_after": "63ba77e6127a5e1318d176d9badc7d0bad8ed1448f7fec69533f3ab800fcd867"
+    },
+    {
+      "path": "src/komorebi_math/langlands/local/tame_tensor.py",
+      "sha256": "c2ef2910c17d7d52d47be81063d8735e5b589eaf3e0240c5ca5140da342d3e67",
+      "sha256_after": "c2ef2910c17d7d52d47be81063d8735e5b589eaf3e0240c5ca5140da342d3e67"
+    },
+    {
+      "path": "src/komorebi_math/langlands/ramification/__init__.py",
+      "sha256": "de860a4740cd27ed1730f506fa9fac0b33fe6a54b7ee90880131951d275bea57",
+      "sha256_after": "de860a4740cd27ed1730f506fa9fac0b33fe6a54b7ee90880131951d275bea57"
+    },
+    {
+      "path": "src/komorebi_math/langlands/ramification/towers.py",
+      "sha256": "9efdf00432bb3b62b90a6fffef93699d742fa191ef8c730e85ad8a4162af1158",
+      "sha256_after": "9efdf00432bb3b62b90a6fffef93699d742fa191ef8c730e85ad8a4162af1158"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/__init__.py",
+      "sha256": "2d8d2b30b1dace1f1a7e2eb9ceadf253d6d809aeed24420791b91097adaf78b8",
+      "sha256_after": "2d8d2b30b1dace1f1a7e2eb9ceadf253d6d809aeed24420791b91097adaf78b8"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/autodiff.py",
+      "sha256": "366c5f352858c1472fbc779dc4fef27c0d15dd8609fadcf75c4cf514a116709c",
+      "sha256_after": "366c5f352858c1472fbc779dc4fef27c0d15dd8609fadcf75c4cf514a116709c"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/composition.py",
+      "sha256": "04cf20f7b51806c1b4c81b296a4f6d6a5de14651a33965048c918a8cfc8c3739",
+      "sha256_after": "04cf20f7b51806c1b4c81b296a4f6d6a5de14651a33965048c918a8cfc8c3739"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/convex_packets.py",
+      "sha256": "f483b507db31048068d2631207514062c19845f56b5009bb8a3a8721253b0951",
+      "sha256_after": "f483b507db31048068d2631207514062c19845f56b5009bb8a3a8721253b0951"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/coordinates.py",
+      "sha256": "1e736f06d9abee5ceb51b9d76d6afa7c62e3c09e765d0099ba2aa0f3956e4cdc",
+      "sha256_after": "1e736f06d9abee5ceb51b9d76d6afa7c62e3c09e765d0099ba2aa0f3956e4cdc"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/correction.py",
+      "sha256": "d9da3c13177965db8139026083c7bb704c55845da965ef70efcb2508964aad43",
+      "sha256_after": "d9da3c13177965db8139026083c7bb704c55845da965ef70efcb2508964aad43"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/defects.py",
+      "sha256": "c035ec4f6ea1dcee71afe37f3f9ee6bad51a1e6e399c78ffef5c0d283236a12f",
+      "sha256_after": "c035ec4f6ea1dcee71afe37f3f9ee6bad51a1e6e399c78ffef5c0d283236a12f"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/derivatives.py",
+      "sha256": "5811299542d369ef7005c91cf688aac53572c65e06d2c7a3cd107bef01ddb5e0",
+      "sha256_after": "5811299542d369ef7005c91cf688aac53572c65e06d2c7a3cd107bef01ddb5e0"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/distortion.py",
+      "sha256": "5e700b0080abe6e7dbca94ac2ce5d0ae0bcee9c6e22b3cb3c6a59a148f248b6c",
+      "sha256_after": "5e700b0080abe6e7dbca94ac2ce5d0ae0bcee9c6e22b3cb3c6a59a148f248b6c"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/elimination.py",
+      "sha256": "06b03eaa50f239ce2a81ef99d82f61d9f5c6e546b486010c56b8f8a480616a5d",
+      "sha256_after": "06b03eaa50f239ce2a81ef99d82f61d9f5c6e546b486010c56b8f8a480616a5d"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/execution.py",
+      "sha256": "47347be9bf968c2bf7d576972b92f825f0810d420e1ba45dbc0e8c643c793222",
+      "sha256_after": "47347be9bf968c2bf7d576972b92f825f0810d420e1ba45dbc0e8c643c793222"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/filtered.py",
+      "sha256": "f9dbcb7717e068cd95530302953c80815d06859f8d7127b3ee79d38ad8e12675",
+      "sha256_after": "f9dbcb7717e068cd95530302953c80815d06859f8d7127b3ee79d38ad8e12675"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/gpu.py",
+      "sha256": "2a4ffa8606b9b8ea94dba2cb26bc73ebd78ff29e9838225c8acbe2d96fe4c1e8",
+      "sha256_after": "2a4ffa8606b9b8ea94dba2cb26bc73ebd78ff29e9838225c8acbe2d96fe4c1e8"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/graded.py",
+      "sha256": "e5bf1040fbc52e1a50d43c8bc27251699ab9d6d8c127fb1f321bde70067e9c29",
+      "sha256_after": "e5bf1040fbc52e1a50d43c8bc27251699ab9d6d8c127fb1f321bde70067e9c29"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/holonomy.py",
+      "sha256": "81c189ac773a08800f079288626a8f38cf122bff0baf72a6c624531bda490739",
+      "sha256_after": "81c189ac773a08800f079288626a8f38cf122bff0baf72a6c624531bda490739"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/jets.py",
+      "sha256": "8680b2c9690bda703d97ad47853287de144e2454fef4443cc15846bd2940f98b",
+      "sha256_after": "8680b2c9690bda703d97ad47853287de144e2454fef4443cc15846bd2940f98b"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/lifting.py",
+      "sha256": "d28ba65c3473b900bcbe1a9c93866b14f5ecc5bf7cb36b7cc5554f0ff2c1b011",
+      "sha256_after": "d28ba65c3473b900bcbe1a9c93866b14f5ecc5bf7cb36b7cc5554f0ff2c1b011"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/obstruction.py",
+      "sha256": "778db0ad47436ce985bedeb6ae8d0d9c1b0b7b67f34b86810d99698584b22fce",
+      "sha256_after": "778db0ad47436ce985bedeb6ae8d0d9c1b0b7b67f34b86810d99698584b22fce"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/profiling.py",
+      "sha256": "034aa8498ddafce588627e5219ba80b7ee5950b512548f09503eff07263ab0de",
+      "sha256_after": "034aa8498ddafce588627e5219ba80b7ee5950b512548f09503eff07263ab0de"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/provenance_packets.py",
+      "sha256": "951e465c355b161b78a957ad57354d9a00931f22ffd9fd54eee87738268442cb",
+      "sha256_after": "951e465c355b161b78a957ad57354d9a00931f22ffd9fd54eee87738268442cb"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/snapshots.py",
+      "sha256": "3ee5d99378074a3a6dc7a7d448e145a77fdd4cefdc427cde879dfb543a3be2e5",
+      "sha256_after": "3ee5d99378074a3a6dc7a7d448e145a77fdd4cefdc427cde879dfb543a3be2e5"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/sparse.py",
+      "sha256": "a25b42666730818592e92d8312f3e85873254c08179b31662eda612525f8b15d",
+      "sha256_after": "a25b42666730818592e92d8312f3e85873254c08179b31662eda612525f8b15d"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/streaming.py",
+      "sha256": "9ff39d5cfce59cc9af7ec2c87870ef1843f14e6658f5cacd4ae2d04823c793a4",
+      "sha256_after": "9ff39d5cfce59cc9af7ec2c87870ef1843f14e6658f5cacd4ae2d04823c793a4"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/transport.py",
+      "sha256": "5c2aeb190ae8e9e30c2f64a17e29284d820f6764e18901854d1569f006fa6dfc",
+      "sha256_after": "5c2aeb190ae8e9e30c2f64a17e29284d820f6764e18901854d1569f006fa6dfc"
+    },
+    {
+      "path": "src/komorebi_math/nonlinear/trees.py",
+      "sha256": "b50c262ebcb3a6876219d62d3582f3fed60e6925d1bb5be1df40f18aabc49c6f",
+      "sha256_after": "b50c262ebcb3a6876219d62d3582f3fed60e6925d1bb5be1df40f18aabc49c6f"
+    },
+    {
+      "path": "src/komorebi_math/persistence_contract.py",
+      "sha256": "94a968f237a9c87135f0806df5661419447a965142e4ffa973c3cd8b5497fb8e",
+      "sha256_after": "94a968f237a9c87135f0806df5661419447a965142e4ffa973c3cd8b5497fb8e"
+    },
+    {
+      "path": "src/komorebi_math/provenance.py",
+      "sha256": "64c95e2cf499a0c9761b5a72f5a0c122209ebdbc0fda48002a887210da02a63f",
+      "sha256_after": "64c95e2cf499a0c9761b5a72f5a0c122209ebdbc0fda48002a887210da02a63f"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/__init__.py",
+      "sha256": "858771302518928bfad1f3f2a948062e9b23c21111cae96021a58f36fddc2e66",
+      "sha256_after": "858771302518928bfad1f3f2a948062e9b23c21111cae96021a58f36fddc2e66"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/_accuracy.py",
+      "sha256": "30c02b78d2376f3eb70781121b93f49d1b6c6e5bda58d7e4c7e73eb17aa53d18",
+      "sha256_after": "30c02b78d2376f3eb70781121b93f49d1b6c6e5bda58d7e4c7e73eb17aa53d18"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/_directed_accuracy.py",
+      "sha256": "50e3c263fd75affdcf1f00f69fea78fbd4e3532a3c55771370dc14ba4bd7365c",
+      "sha256_after": "50e3c263fd75affdcf1f00f69fea78fbd4e3532a3c55771370dc14ba4bd7365c"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/_interval.py",
+      "sha256": "186afb3f70d6ab07cfd7d88dc0f39554f096785e4f0728628b90695277026fdc",
+      "sha256_after": "186afb3f70d6ab07cfd7d88dc0f39554f096785e4f0728628b90695277026fdc"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/_spectrum.py",
+      "sha256": "4bb5908ddb8c3cddd6ee8ae4ecdb5d099f946d09a22ef2b8d6dac8acf8e43e8a",
+      "sha256_after": "4bb5908ddb8c3cddd6ee8ae4ecdb5d099f946d09a22ef2b8d6dac8acf8e43e8a"
+    },
+    {
+      "path": "src/komorebi_math/quadratic_forms/api.py",
+      "sha256": "47d7766e42695b2ad89e402ff7eb5ccb949e9b54421ee2cb91b7534033b7d09a",
+      "sha256_after": "47d7766e42695b2ad89e402ff7eb5ccb949e9b54421ee2cb91b7534033b7d09a"
+    },
+    {
+      "path": "src/komorebi_math/qualification.py",
+      "sha256": "bbc2a27a6c3f797f4b07527a76a2c94b1fc2cd8acd91347b59632c377ccd340d",
+      "sha256_after": "bbc2a27a6c3f797f4b07527a76a2c94b1fc2cd8acd91347b59632c377ccd340d"
+    },
+    {
+      "path": "src/komorebi_math/quantum/__init__.py",
+      "sha256": "03d21a689ca36e8421aa0549fad40c54ef14e6b6ffdca36e52a3ebd68a70d7e5",
+      "sha256_after": "03d21a689ca36e8421aa0549fad40c54ef14e6b6ffdca36e52a3ebd68a70d7e5"
+    },
+    {
+      "path": "src/komorebi_math/quantum/_validation.py",
+      "sha256": "09275a5a1672489ac26b081c6295c253ddf350a487b5986bc6c0543f3df2b5f6",
+      "sha256_after": "09275a5a1672489ac26b081c6295c253ddf350a487b5986bc6c0543f3df2b5f6"
+    },
+    {
+      "path": "src/komorebi_math/quantum/channels.py",
+      "sha256": "b99a168412248c27f1b9e9231235ba139a6e5900d01c6c36647822851def931a",
+      "sha256_after": "b99a168412248c27f1b9e9231235ba139a6e5900d01c6c36647822851def931a"
+    },
+    {
+      "path": "src/komorebi_math/quantum/circuits.py",
+      "sha256": "49c75d8b5fb23c57405f733136e9e5fdfb24950fb54c271d9c46305a5300d2cb",
+      "sha256_after": "49c75d8b5fb23c57405f733136e9e5fdfb24950fb54c271d9c46305a5300d2cb"
+    },
+    {
+      "path": "src/komorebi_math/quantum/constraints.py",
+      "sha256": "80b3dd54f5f59d7fef4904a9b909209748292dee30d96826798fd409b93f3aca",
+      "sha256_after": "80b3dd54f5f59d7fef4904a9b909209748292dee30d96826798fd409b93f3aca"
+    },
+    {
+      "path": "src/komorebi_math/quantum/dirac.py",
+      "sha256": "3cb76399fac74e7fbfd989564af409c6b50c3c9c9a235be2f19a84782d88d99d",
+      "sha256_after": "3cb76399fac74e7fbfd989564af409c6b50c3c9c9a235be2f19a84782d88d99d"
+    },
+    {
+      "path": "src/komorebi_math/quantum/effective.py",
+      "sha256": "8cccb251520866e1a355068c3e3f14109db7a638788b8803297be8cd038254e4",
+      "sha256_after": "8cccb251520866e1a355068c3e3f14109db7a638788b8803297be8cd038254e4"
+    },
+    {
+      "path": "src/komorebi_math/quantum/error_correction.py",
+      "sha256": "01b57361b09f6377da83bb8a55f3eec5950f7751bc466f58c985fa7b9e88800b",
+      "sha256_after": "01b57361b09f6377da83bb8a55f3eec5950f7751bc466f58c985fa7b9e88800b"
+    },
+    {
+      "path": "src/komorebi_math/quantum/euclidean.py",
+      "sha256": "b93ca15e938e27753bfff5a14a7ba70c3e31657576bf0279b6bf25dbe7a28982",
+      "sha256_after": "b93ca15e938e27753bfff5a14a7ba70c3e31657576bf0279b6bf25dbe7a28982"
+    },
+    {
+      "path": "src/komorebi_math/quantum/kato.py",
+      "sha256": "5358211f57124e3fefe04724c18e9175eb6bd6d3ea5d249d8f262bd4469f1b0a",
+      "sha256_after": "5358211f57124e3fefe04724c18e9175eb6bd6d3ea5d249d8f262bd4469f1b0a"
+    },
+    {
+      "path": "src/komorebi_math/quantum/leakage.py",
+      "sha256": "705df5dd7e40498a562291cf43c6d311d913ccaea0a273764d0acd09bf2c64de",
+      "sha256_after": "705df5dd7e40498a562291cf43c6d311d913ccaea0a273764d0acd09bf2c64de"
+    },
+    {
+      "path": "src/komorebi_math/quantum/lindblad.py",
+      "sha256": "9dada076c0fc3f796690f7ea786ec3617775d78028a7d915164c9b4926b0bf0d",
+      "sha256_after": "9dada076c0fc3f796690f7ea786ec3617775d78028a7d915164c9b4926b0bf0d"
+    },
+    {
+      "path": "src/komorebi_math/quantum/seeds.py",
+      "sha256": "81fdd926c04153338ea9a03c23b238881a20141f91b2bbe153682c8e0989ddd7",
+      "sha256_after": "81fdd926c04153338ea9a03c23b238881a20141f91b2bbe153682c8e0989ddd7"
+    },
+    {
+      "path": "src/komorebi_math/quantum/spectral.py",
+      "sha256": "4d29a109e7a75db2149d191e35d8c18f175896c56b590572942589e5fed8b234",
+      "sha256_after": "4d29a109e7a75db2149d191e35d8c18f175896c56b590572942589e5fed8b234"
+    },
+    {
+      "path": "src/komorebi_math/quantum/symmetry.py",
+      "sha256": "d0ec6a9053f19bf2a0ff497e2930f7e0f1448f883d44582af69e1a9e0df3e1eb",
+      "sha256_after": "d0ec6a9053f19bf2a0ff497e2930f7e0f1448f883d44582af69e1a9e0df3e1eb"
+    },
+    {
+      "path": "src/komorebi_math/quantum/towers.py",
+      "sha256": "5236b88b39304556d15cf5d00df500b285cc0a514d6a3dc119a0442de838b0b7",
+      "sha256_after": "5236b88b39304556d15cf5d00df500b285cc0a514d6a3dc119a0442de838b0b7"
+    },
+    {
+      "path": "src/komorebi_math/refinement/__init__.py",
+      "sha256": "86c29af7a7991527f52b6f89f704cdb9a10c5799645fc8fc9bfc72d0790960db",
+      "sha256_after": "86c29af7a7991527f52b6f89f704cdb9a10c5799645fc8fc9bfc72d0790960db"
+    },
+    {
+      "path": "src/komorebi_math/refinement/crt.py",
+      "sha256": "72cf5291bf5a9e82a7135b42412d4efc621132ebaec1f0abd895b5e31e15c42b",
+      "sha256_after": "72cf5291bf5a9e82a7135b42412d4efc621132ebaec1f0abd895b5e31e15c42b"
+    },
+    {
+      "path": "src/komorebi_math/refinement/defects.py",
+      "sha256": "8754cc0a01fc6b7dc78886ffeb2ef388506ba489c8cf3f290e715490a4174dba",
+      "sha256_after": "8754cc0a01fc6b7dc78886ffeb2ef388506ba489c8cf3f290e715490a4174dba"
+    },
+    {
+      "path": "src/komorebi_math/refinement/lattices.py",
+      "sha256": "bd77cc53167f8c7a4fc04e572b1cf26446f05714447d844ee0970fda436f5bc2",
+      "sha256_after": "bd77cc53167f8c7a4fc04e572b1cf26446f05714447d844ee0970fda436f5bc2"
+    },
+    {
+      "path": "src/komorebi_math/refinement/polyphase.py",
+      "sha256": "013f8f23a15f24438b66f5e370af9374d524e5d2d3f36c31050836bd1791f132",
+      "sha256_after": "013f8f23a15f24438b66f5e370af9374d524e5d2d3f36c31050836bd1791f132"
+    },
+    {
+      "path": "src/komorebi_math/refinement/portable.py",
+      "sha256": "7b2bd87214fe500d0196f9bb7c0c4875fba347f869d3684b2fdca905bd25a003",
+      "sha256_after": "7b2bd87214fe500d0196f9bb7c0c4875fba347f869d3684b2fdca905bd25a003"
+    },
+    {
+      "path": "src/komorebi_math/refinement/residue.py",
+      "sha256": "8287237612523129284fa5b7a559d78643c87478379d67b4f1f6d8c04519165a",
+      "sha256_after": "8287237612523129284fa5b7a559d78643c87478379d67b4f1f6d8c04519165a"
+    },
+    {
+      "path": "src/komorebi_math/refinement/smith.py",
+      "sha256": "1e07bb30f9c5361adaa85255a8f7b9ceecf0a85bc6a1641b3b4c8fc0f57627cd",
+      "sha256_after": "1e07bb30f9c5361adaa85255a8f7b9ceecf0a85bc6a1641b3b4c8fc0f57627cd"
+    },
+    {
+      "path": "src/komorebi_math/refinement/towers.py",
+      "sha256": "05aadab408635b548691f472bf6f50da7800a21e9533ab72d043f3756fa0691e",
+      "sha256_after": "05aadab408635b548691f472bf6f50da7800a21e9533ab72d043f3756fa0691e"
+    },
+    {
+      "path": "src/komorebi_math/refinement/weighted.py",
+      "sha256": "a4c4c5ba14f24c67bea31567b8443c63293625e6c7649290c7574ba5bae63bda",
+      "sha256_after": "a4c4c5ba14f24c67bea31567b8443c63293625e6c7649290c7574ba5bae63bda"
+    },
+    {
+      "path": "src/komorebi_math/registry.py",
+      "sha256": "e4e93781427a808f7ab31b6014c2b1a33dcb687e7bcbd45d47d8e4409232fef2",
+      "sha256_after": "e4e93781427a808f7ab31b6014c2b1a33dcb687e7bcbd45d47d8e4409232fef2"
+    },
+    {
+      "path": "src/komorebi_math/release/__init__.py",
+      "sha256": "93d7ade753bb79de28416660734e3ffe313a19b5d285c5319239f44f7b6e0a35",
+      "sha256_after": "93d7ade753bb79de28416660734e3ffe313a19b5d285c5319239f44f7b6e0a35"
+    },
+    {
+      "path": "src/komorebi_math/release/_gpu_worker.py",
+      "sha256": "45d51b0da5eeadce11e5e8239897f5592e18c2c05c7fc250aafa1cd51f8f1ce4",
+      "sha256_after": "45d51b0da5eeadce11e5e8239897f5592e18c2c05c7fc250aafa1cd51f8f1ce4"
+    },
+    {
+      "path": "src/komorebi_math/release/contract.py",
+      "sha256": "80f205ddc875538f4417b701ff9368ab9edd41e117b6596069812b0c314db279",
+      "sha256_after": "80f205ddc875538f4417b701ff9368ab9edd41e117b6596069812b0c314db279"
+    },
+    {
+      "path": "src/komorebi_math/release/documentation.py",
+      "sha256": "9158244b43886cd51881c9f26a8443cdd635624bb4a09e501919b89aaf656e4a",
+      "sha256_after": "9158244b43886cd51881c9f26a8443cdd635624bb4a09e501919b89aaf656e4a"
+    },
+    {
+      "path": "src/komorebi_math/release/evidence.py",
+      "sha256": "c471af87d4ef017eb24ac7c11c46f60249cfd30ac6bf909e0a72f0422e42f560",
+      "sha256_after": "c471af87d4ef017eb24ac7c11c46f60249cfd30ac6bf909e0a72f0422e42f560"
+    },
+    {
+      "path": "src/komorebi_math/release/gpu.py",
+      "sha256": "4cbc2f52cec7a18f7a44db68f2309c6b0a5bb41b220afce8ca0743a1a0daa197",
+      "sha256_after": "4cbc2f52cec7a18f7a44db68f2309c6b0a5bb41b220afce8ca0743a1a0daa197"
+    },
+    {
+      "path": "src/komorebi_math/release/readiness.py",
+      "sha256": "4b1c4c219082e6d0c67a57d551e1b17a8745ec350484aa40c6709e7f71c9de71",
+      "sha256_after": "4b1c4c219082e6d0c67a57d551e1b17a8745ec350484aa40c6709e7f71c9de71"
+    },
+    {
+      "path": "src/komorebi_math/release/upgrade.py",
+      "sha256": "8fce6479bd8875e4265afe64dd897aaaefb5b3406308648b9da08596e30012d0",
+      "sha256_after": "8fce6479bd8875e4265afe64dd897aaaefb5b3406308648b9da08596e30012d0"
+    },
+    {
+      "path": "src/komorebi_math/sequences/__init__.py",
+      "sha256": "0a9a1a527365949535b51a7383f71faf1aafdd00b8435cb4083da7d20b63ca71",
+      "sha256_after": "0a9a1a527365949535b51a7383f71faf1aafdd00b8435cb4083da7d20b63ca71"
+    },
+    {
+      "path": "src/komorebi_math/sequences/automatic.py",
+      "sha256": "00eb49222a7e5cdec343bf95bfb615223180966f677fbedbafb99f53aa8268e9",
+      "sha256_after": "00eb49222a7e5cdec343bf95bfb615223180966f677fbedbafb99f53aa8268e9"
+    },
+    {
+      "path": "src/komorebi_math/sequences/base.py",
+      "sha256": "299341416bc05ed3edfaa1f5cbea9e01010d49be5829cc3bbfccccc7e31fca81",
+      "sha256_after": "299341416bc05ed3edfaa1f5cbea9e01010d49be5829cc3bbfccccc7e31fca81"
+    },
+    {
+      "path": "src/komorebi_math/sequences/catalog.py",
+      "sha256": "655764bb651a0f1c95bd7203a262056a22964baa50cc3f2f42d8761ccabcac15",
+      "sha256_after": "655764bb651a0f1c95bd7203a262056a22964baa50cc3f2f42d8761ccabcac15"
+    },
+    {
+      "path": "src/komorebi_math/sequences/compiler.py",
+      "sha256": "7c8a2dbf9deeded39523da04720ea3c91120823f8ab1e0c74ec0cc1cd12b3758",
+      "sha256_after": "7c8a2dbf9deeded39523da04720ea3c91120823f8ab1e0c74ec0cc1cd12b3758"
+    },
+    {
+      "path": "src/komorebi_math/sequences/families.py",
+      "sha256": "cf90f774b891a5e52dc32ec6b43a3aa5035b35797ff88996e5b45f5187562d1a",
+      "sha256_after": "cf90f774b891a5e52dc32ec6b43a3aa5035b35797ff88996e5b45f5187562d1a"
+    },
+    {
+      "path": "src/komorebi_math/sequences/holonomic.py",
+      "sha256": "59d3301e58c9c239b1f62c18d5e4d43a4d2d72beb388fdabaf31546014c025db",
+      "sha256_after": "59d3301e58c9c239b1f62c18d5e4d43a4d2d72beb388fdabaf31546014c025db"
+    },
+    {
+      "path": "src/komorebi_math/sequences/oeis.py",
+      "sha256": "fda6713970ec37480520075da4d70c769b6adc40205eba25f91f4a13a4819e29",
+      "sha256_after": "fda6713970ec37480520075da4d70c769b6adc40205eba25f91f4a13a4819e29"
+    },
+    {
+      "path": "src/komorebi_math/sequences/transforms.py",
+      "sha256": "f79ed882468192270517b77c2664c7c546e7a1e6e062a6440b481af419ac3fe4",
+      "sha256_after": "f79ed882468192270517b77c2664c7c546e7a1e6e062a6440b481af419ac3fe4"
+    },
+    {
+      "path": "src/komorebi_math/signals/__init__.py",
+      "sha256": "6f57c41ee2ae91f3f1293c6c1e72f6e5f10922c4c73cc728d2ea87bb45c7f1b1",
+      "sha256_after": "6f57c41ee2ae91f3f1293c6c1e72f6e5f10922c4c73cc728d2ea87bb45c7f1b1"
+    },
+    {
+      "path": "src/komorebi_math/signals/adaptive.py",
+      "sha256": "2266adb261be7eced01d916483669367710fcbdba1f73ba57a7e84c30018178f",
+      "sha256_after": "2266adb261be7eced01d916483669367710fcbdba1f73ba57a7e84c30018178f"
+    },
+    {
+      "path": "src/komorebi_math/signals/approximation.py",
+      "sha256": "da2c5f5f3fd9dcedcbf66f3be8d250316594d25c8e1fb114c49dcc2eb1271bfd",
+      "sha256_after": "da2c5f5f3fd9dcedcbf66f3be8d250316594d25c8e1fb114c49dcc2eb1271bfd"
+    },
+    {
+      "path": "src/komorebi_math/signals/convolution.py",
+      "sha256": "2260b1f8345213ad2eff73bbd22ef7acf3a1745b94587817a36382777a556a66",
+      "sha256_after": "2260b1f8345213ad2eff73bbd22ef7acf3a1745b94587817a36382777a556a66"
+    },
+    {
+      "path": "src/komorebi_math/signals/denoise.py",
+      "sha256": "7a3ce34bbafdc45fec53ef287e0f718c0e3c93ee345d1e2640995acea769bc79",
+      "sha256_after": "7a3ce34bbafdc45fec53ef287e0f718c0e3c93ee345d1e2640995acea769bc79"
+    },
+    {
+      "path": "src/komorebi_math/signals/edge_recovery.py",
+      "sha256": "c6bd63f8245d3dc55bb56f8a9cde41df788cb7dd47687be52450357c4ab9d76c",
+      "sha256_after": "c6bd63f8245d3dc55bb56f8a9cde41df788cb7dd47687be52450357c4ab9d76c"
+    },
+    {
+      "path": "src/komorebi_math/signals/fft_convolution.py",
+      "sha256": "3f88cfd9bd289139686b14b1b21dd3f2d0cad4f9eb9f605744718957698f2e5b",
+      "sha256_after": "3f88cfd9bd289139686b14b1b21dd3f2d0cad4f9eb9f605744718957698f2e5b"
+    },
+    {
+      "path": "src/komorebi_math/signals/filterbanks.py",
+      "sha256": "7a2dfcf28cfad39630f4b5b2222f15f2950e008de36e5c492c0a9eb5fc6e3f27",
+      "sha256_after": "7a2dfcf28cfad39630f4b5b2222f15f2950e008de36e5c492c0a9eb5fc6e3f27"
+    },
+    {
+      "path": "src/komorebi_math/signals/filtering.py",
+      "sha256": "3b5a576bfe360662a21824256b48e30470d320ac1fda8d8a7298f8a053629ea8",
+      "sha256_after": "3b5a576bfe360662a21824256b48e30470d320ac1fda8d8a7298f8a053629ea8"
+    },
+    {
+      "path": "src/komorebi_math/signals/foundations.py",
+      "sha256": "76db83750c0c305679984379866fc4ccd3e48b3a60a4c8d8d5023e778f5697aa",
+      "sha256_after": "76db83750c0c305679984379866fc4ccd3e48b3a60a4c8d8d5023e778f5697aa"
+    },
+    {
+      "path": "src/komorebi_math/signals/fourier_recovery.py",
+      "sha256": "1289d50cff1bdf9da4d17f9106924780c877dac2d8dedff9e1b7b2e43379de2e",
+      "sha256_after": "1289d50cff1bdf9da4d17f9106924780c877dac2d8dedff9e1b7b2e43379de2e"
+    },
+    {
+      "path": "src/komorebi_math/signals/nonlinear.py",
+      "sha256": "711b02775de75032e94719aa1b36a38ccf04130bded7ece1fa1b368bbd659e40",
+      "sha256_after": "711b02775de75032e94719aa1b36a38ccf04130bded7ece1fa1b368bbd659e40"
+    },
+    {
+      "path": "src/komorebi_math/signals/polyphase.py",
+      "sha256": "bcfda9ec1c68b4cc0761ed0b598a47a305296be9a189b06565a0806078585200",
+      "sha256_after": "bcfda9ec1c68b4cc0761ed0b598a47a305296be9a189b06565a0806078585200"
+    },
+    {
+      "path": "src/komorebi_math/signals/recovery.py",
+      "sha256": "e4dc627a7d0dc83e6979ceb6934ac6c19f7260f07862e7219f90faaf1287a283",
+      "sha256_after": "e4dc627a7d0dc83e6979ceb6934ac6c19f7260f07862e7219f90faaf1287a283"
+    },
+    {
+      "path": "src/komorebi_math/signals/recursive.py",
+      "sha256": "8e36eeef6991ce9c7ccfc01292cd8140690010da397fe78fcf566841e65bb1f0",
+      "sha256_after": "8e36eeef6991ce9c7ccfc01292cd8140690010da397fe78fcf566841e65bb1f0"
+    },
+    {
+      "path": "src/komorebi_math/signals/resampling.py",
+      "sha256": "051a0a75295f6df6c443de50d0fdba05662b9e5a8235d035b0e773057a391265",
+      "sha256_after": "051a0a75295f6df6c443de50d0fdba05662b9e5a8235d035b0e773057a391265"
+    },
+    {
+      "path": "src/komorebi_math/signals/route_packets.py",
+      "sha256": "cf614ff3f83dbbe1a98d9b1aef57b89b0cb026c9e4be4264fb6e12f46e35b6eb",
+      "sha256_after": "cf614ff3f83dbbe1a98d9b1aef57b89b0cb026c9e4be4264fb6e12f46e35b6eb"
+    },
+    {
+      "path": "src/komorebi_math/signals/singular_packets.py",
+      "sha256": "856d0f0739890bcb12708770f4ca07bc77ff4d8b1f3d38935081dd52c25963ac",
+      "sha256_after": "856d0f0739890bcb12708770f4ca07bc77ff4d8b1f3d38935081dd52c25963ac"
+    },
+    {
+      "path": "src/komorebi_math/signals/smith.py",
+      "sha256": "2590d54d968ad6541d55bea166213b956af40b4012936aa7d36b0e48e8e2e722",
+      "sha256_after": "2590d54d968ad6541d55bea166213b956af40b4012936aa7d36b0e48e8e2e722"
+    },
+    {
+      "path": "src/komorebi_math/signals/spectral.py",
+      "sha256": "79eed22f316fb29ff07ea6f27a26f3572f4019690e6683f28bf04c8cc0c34617",
+      "sha256_after": "79eed22f316fb29ff07ea6f27a26f3572f4019690e6683f28bf04c8cc0c34617"
+    },
+    {
+      "path": "src/komorebi_math/signals/streaming.py",
+      "sha256": "906f29ed7a2828ee49a960189df83fc3a2f7a216c52671c243553f7dcb467fc3",
+      "sha256_after": "906f29ed7a2828ee49a960189df83fc3a2f7a216c52671c243553f7dcb467fc3"
+    },
+    {
+      "path": "src/komorebi_math/signals/tikhonov.py",
+      "sha256": "9e304d78cae3a1a2974287fc4823baa1948325d5f6af67c32b64b730f7ea5c28",
+      "sha256_after": "9e304d78cae3a1a2974287fc4823baa1948325d5f6af67c32b64b730f7ea5c28"
+    },
+    {
+      "path": "src/komorebi_math/signals/time_frequency.py",
+      "sha256": "3b2953e49368c23fbfb9a299205e34f8632cf22145b4f3643c2f4855bb719df5",
+      "sha256_after": "3b2953e49368c23fbfb9a299205e34f8632cf22145b4f3643c2f4855bb719df5"
+    },
+    {
+      "path": "src/komorebi_math/signals/wavelets.py",
+      "sha256": "87d95310a030164da72568ab28cb97c2bfe92a928c4936eb43595fb2cb4c8b40",
+      "sha256_after": "87d95310a030164da72568ab28cb97c2bfe92a928c4936eb43595fb2cb4c8b40"
+    },
+    {
+      "path": "src/komorebi_math/signals/windows.py",
+      "sha256": "9bb2a18689a08e4422c552a52e7eb5171f4bde72d7f8bd0247f55e5e80e03e72",
+      "sha256_after": "9bb2a18689a08e4422c552a52e7eb5171f4bde72d7f8bd0247f55e5e80e03e72"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/__init__.py",
+      "sha256": "d72a731aaabab1fd81abe0c70c4f652bda27887ba3c0fd1f77757b5319121c69",
+      "sha256_after": "d72a731aaabab1fd81abe0c70c4f652bda27887ba3c0fd1f77757b5319121c69"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/_validation.py",
+      "sha256": "77960e38cd399ff36f11fc9871eb6da338547b85343fcf33df40aae91216007f",
+      "sha256_after": "77960e38cd399ff36f11fc9871eb6da338547b85343fcf33df40aae91216007f"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/bernoulli.py",
+      "sha256": "5a592eb24dae64634575c0e94e607ea6401fa09e07332ddd1fbbac23c6e0b552",
+      "sha256_after": "5a592eb24dae64634575c0e94e607ea6401fa09e07332ddd1fbbac23c6e0b552"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/paper_machinery.py",
+      "sha256": "3dcd794b77d103b0fbb59dc59d1e58494db447f1d0cf411c25a00819e55c1312",
+      "sha256_after": "3dcd794b77d103b0fbb59dc59d1e58494db447f1d0cf411c25a00819e55c1312"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/shape.py",
+      "sha256": "faa7b65c37096a42aeb9342d58af96f52d15c99e1132f68a6d2038c9e759373e",
+      "sha256_after": "faa7b65c37096a42aeb9342d58af96f52d15c99e1132f68a6d2038c9e759373e"
+    },
+    {
+      "path": "src/komorebi_math/special_functions/terminating.py",
+      "sha256": "1dd97d4dc30d28701e30c7ca7307a1a9539ea5dc13e22dff6378de89d9bbb681",
+      "sha256_after": "1dd97d4dc30d28701e30c7ca7307a1a9539ea5dc13e22dff6378de89d9bbb681"
+    },
+    {
+      "path": "src/komorebi_math/stable.py",
+      "sha256": "8fc11ed02b8971c9cced028fdedc4cfc6020a1a110837612c209e2f938087e2b",
+      "sha256_after": "8fc11ed02b8971c9cced028fdedc4cfc6020a1a110837612c209e2f938087e2b"
+    },
+    {
+      "path": "src/komorebi_math/stable_contract.py",
+      "sha256": "80cf6fe3febe68038a999398d561a8376c3fde838cffd53ec85918fa0331e199",
+      "sha256_after": "80cf6fe3febe68038a999398d561a8376c3fde838cffd53ec85918fa0331e199"
+    },
+    {
+      "path": "src/komorebi_math/stable_semantics.py",
+      "sha256": "739e76603fef9645f8d9a6b27a946ccb1c9bcef53881bdb86a3f47d1672caa57",
+      "sha256_after": "739e76603fef9645f8d9a6b27a946ccb1c9bcef53881bdb86a3f47d1672caa57"
+    },
+    {
+      "path": "src/komorebi_math/support.py",
+      "sha256": "34a2beb47434175b8db4f29254734c230977d0db8ba3bb6edcfb782a05cdf15e",
+      "sha256_after": "34a2beb47434175b8db4f29254734c230977d0db8ba3bb6edcfb782a05cdf15e"
+    },
+    {
+      "path": "src/komorebi_math/typing.py",
+      "sha256": "70a5dcaba944a26dbcb94d2c7a7cc6ab1ce59a8b0f082a181cb6099e0c21c2ad",
+      "sha256_after": "70a5dcaba944a26dbcb94d2c7a7cc6ab1ce59a8b0f082a181cb6099e0c21c2ad"
+    },
+    {
+      "path": "src/komorebi_math/unified.py",
+      "sha256": "025c94a00ccd651a4e41a1319bd35a8b52fa5235edf693a86837c8f9718dabfd",
+      "sha256_after": "025c94a00ccd651a4e41a1319bd35a8b52fa5235edf693a86837c8f9718dabfd"
+    },
+    {
+      "path": "src/komorebi_math/v1.py",
+      "sha256": "c2d39f24ed6249f63265e7d941b68eebd7ee75b01dbebce2380598e84acc6db4",
+      "sha256_after": "c2d39f24ed6249f63265e7d941b68eebd7ee75b01dbebce2380598e84acc6db4"
+    },
+    {
+      "path": "src/komorebi_math/verify/__init__.py",
+      "sha256": "569fa314a0d4a8d7a039a3fb9c5564b6a68d051396046db42f9a346376557227",
+      "sha256_after": "569fa314a0d4a8d7a039a3fb9c5564b6a68d051396046db42f9a346376557227"
+    },
+    {
+      "path": "src/komorebi_math/verify/algorithms.py",
+      "sha256": "b9ca065d0d4af8a436b45976b936b671714050f70a818e570a2ff597f10b4ada",
+      "sha256_after": "b9ca065d0d4af8a436b45976b936b671714050f70a818e570a2ff597f10b4ada"
+    },
+    {
+      "path": "src/komorebi_math/verify/analytic.py",
+      "sha256": "d2ccc2ee0e4ae07aeb746edcbe9c91f6b7fbace219da4b287b20799db9d12136",
+      "sha256_after": "d2ccc2ee0e4ae07aeb746edcbe9c91f6b7fbace219da4b287b20799db9d12136"
+    },
+    {
+      "path": "src/komorebi_math/verify/arithmetic.py",
+      "sha256": "7f4960cd813a8e2a549556b963bf7695c9fa2d34889f6a46bf5747007ccaab03",
+      "sha256_after": "7f4960cd813a8e2a549556b963bf7695c9fa2d34889f6a46bf5747007ccaab03"
+    },
+    {
+      "path": "src/komorebi_math/verify/beta.py",
+      "sha256": "f1579f4095f62875db3c1e171ca44c2ce5937643d0d4dc905631202d5b65255b",
+      "sha256_after": "f1579f4095f62875db3c1e171ca44c2ce5937643d0d4dc905631202d5b65255b"
+    },
+    {
+      "path": "src/komorebi_math/verify/coordinates.py",
+      "sha256": "82e37ae57211e3d6c6592fb9e84bb8b628092f05043035c2f46ac5c974556460",
+      "sha256_after": "82e37ae57211e3d6c6592fb9e84bb8b628092f05043035c2f46ac5c974556460"
+    },
+    {
+      "path": "src/komorebi_math/verify/core.py",
+      "sha256": "d673945ade70d3cba6cfb013f567cd6e535d20a5c0edfd6e76efe1447fdeeb83",
+      "sha256_after": "d673945ade70d3cba6cfb013f567cd6e535d20a5c0edfd6e76efe1447fdeeb83"
+    },
+    {
+      "path": "src/komorebi_math/verify/deformation.py",
+      "sha256": "15d2a260a18c34941f46f1b57f7a8cb32850ca693eabd40a1813f9918cdf474d",
+      "sha256_after": "15d2a260a18c34941f46f1b57f7a8cb32850ca693eabd40a1813f9918cdf474d"
+    },
+    {
+      "path": "src/komorebi_math/verify/dsp.py",
+      "sha256": "688c3f4d5b39eb23bab4d7f1357e083c77b6a087c9d8d2cb75227fa52bb38b39",
+      "sha256_after": "688c3f4d5b39eb23bab4d7f1357e083c77b6a087c9d8d2cb75227fa52bb38b39"
+    },
+    {
+      "path": "src/komorebi_math/verify/dynamics.py",
+      "sha256": "e8f740da54c4c4be92512d15131e64e1c71a4855bfe08ce00ae6de63bfb84553",
+      "sha256_after": "e8f740da54c4c4be92512d15131e64e1c71a4855bfe08ce00ae6de63bfb84553"
+    },
+    {
+      "path": "src/komorebi_math/verify/export.py",
+      "sha256": "9d6757c71e0df993000b7acd8e9d4562dca0357044707f3ea6ec3bb5af29c787",
+      "sha256_after": "9d6757c71e0df993000b7acd8e9d4562dca0357044707f3ea6ec3bb5af29c787"
+    },
+    {
+      "path": "src/komorebi_math/verify/expression.py",
+      "sha256": "fee8884d61def5d82cf0bb650329c710de81a8ca346737672950ebf99139b29e",
+      "sha256_after": "fee8884d61def5d82cf0bb650329c710de81a8ca346737672950ebf99139b29e"
+    },
+    {
+      "path": "src/komorebi_math/verify/frame_algebra.py",
+      "sha256": "c593d648e038cfa49b236cac8d9fc330d32b1e6297ab228231c4c50c9505dc44",
+      "sha256_after": "c593d648e038cfa49b236cac8d9fc330d32b1e6297ab228231c4c50c9505dc44"
+    },
+    {
+      "path": "src/komorebi_math/verify/generating.py",
+      "sha256": "d02a650e9c6271115faf19767c220227f47c13f0e19588dc8a3981c0806301cd",
+      "sha256_after": "d02a650e9c6271115faf19767c220227f47c13f0e19588dc8a3981c0806301cd"
+    },
+    {
+      "path": "src/komorebi_math/verify/gpu.py",
+      "sha256": "e5234f735f8cfc2a9a7580a582973aec832b7a6fc40878117f338192c9b8d096",
+      "sha256_after": "e5234f735f8cfc2a9a7580a582973aec832b7a6fc40878117f338192c9b8d096"
+    },
+    {
+      "path": "src/komorebi_math/verify/hardening.py",
+      "sha256": "5bd44d51e6397c7a33896372a1e1e0b1e03e95f2783f87aac7a252feda23f719",
+      "sha256_after": "5bd44d51e6397c7a33896372a1e1e0b1e03e95f2783f87aac7a252feda23f719"
+    },
+    {
+      "path": "src/komorebi_math/verify/integration.py",
+      "sha256": "43fa1d21f1e086afc0ab0dfa04e3f3c82c9b6eec830b6e79b84f0407e83080c7",
+      "sha256_after": "43fa1d21f1e086afc0ab0dfa04e3f3c82c9b6eec830b6e79b84f0407e83080c7"
+    },
+    {
+      "path": "src/komorebi_math/verify/langlands.py",
+      "sha256": "b2a1616fec75cf0d7f39df0ab8ad12096593f6cbd7395712a0ff5fe8374d50e2",
+      "sha256_after": "b2a1616fec75cf0d7f39df0ab8ad12096593f6cbd7395712a0ff5fe8374d50e2"
+    },
+    {
+      "path": "src/komorebi_math/verify/nonlinear.py",
+      "sha256": "d829cec4bd763d28cc5ff0b1d4608327ba5106537793d771518d2b0a37c66215",
+      "sha256_after": "d829cec4bd763d28cc5ff0b1d4608327ba5106537793d771518d2b0a37c66215"
+    },
+    {
+      "path": "src/komorebi_math/verify/nonlinear_advanced.py",
+      "sha256": "b8b7d3b65fe11a927106a4dafc8575b7bce2c3ac372b697ea36463515d6bccb2",
+      "sha256_after": "b8b7d3b65fe11a927106a4dafc8575b7bce2c3ac372b697ea36463515d6bccb2"
+    },
+    {
+      "path": "src/komorebi_math/verify/quantum.py",
+      "sha256": "8af5b89ad28093b64450a747f46897b8cc79ca819d4ba80ca8961cef4c8db813",
+      "sha256_after": "8af5b89ad28093b64450a747f46897b8cc79ca819d4ba80ca8961cef4c8db813"
+    },
+    {
+      "path": "src/komorebi_math/verify/refinement.py",
+      "sha256": "e008926e1df92a77310e3dd921c6bcb0423237435e40b7c113f3a62d473fe82d",
+      "sha256_after": "e008926e1df92a77310e3dd921c6bcb0423237435e40b7c113f3a62d473fe82d"
+    },
+    {
+      "path": "src/komorebi_math/verify/release.py",
+      "sha256": "47400964ee98a885019e105825876b558b02f560a0f7a594632bc80db245276d",
+      "sha256_after": "47400964ee98a885019e105825876b558b02f560a0f7a594632bc80db245276d"
+    },
+    {
+      "path": "src/komorebi_math/verify/scalable_nonlinear.py",
+      "sha256": "cccac56a9186bea0aa85cb99041dc8c7c4d9b487f825e319f4e71f2c0099f651",
+      "sha256_after": "cccac56a9186bea0aa85cb99041dc8c7c4d9b487f825e319f4e71f2c0099f651"
+    },
+    {
+      "path": "src/komorebi_math/verify/sequences.py",
+      "sha256": "4f7ed714444193082285649e1aa90b26a8b168e99a06a38591bba3bd92b20027",
+      "sha256_after": "4f7ed714444193082285649e1aa90b26a8b168e99a06a38591bba3bd92b20027"
+    },
+    {
+      "path": "src/komorebi_math/verify/signals.py",
+      "sha256": "c981e9878071c41aed43742626d89b111e6211283cb7da5215520b8bee59d8d5",
+      "sha256_after": "c981e9878071c41aed43742626d89b111e6211283cb7da5215520b8bee59d8d5"
+    },
+    {
+      "path": "src/komorebi_math/verify/stabilization.py",
+      "sha256": "9a969f6fbd408f50a8554dd6cb597117b58e15cde46a9bf47ceaa04917defdd8",
+      "sha256_after": "9a969f6fbd408f50a8554dd6cb597117b58e15cde46a9bf47ceaa04917defdd8"
+    },
+    {
+      "path": "src/komorebi_math/verify/streaming_beta.py",
+      "sha256": "fae5f92bedb4f7d8bbb87444b809640fccd6b5337469cfd148c09f03aa219da4",
+      "sha256_after": "fae5f92bedb4f7d8bbb87444b809640fccd6b5337469cfd148c09f03aa219da4"
+    },
+    {
+      "path": "verification/PAPER_MACHINERY_CONTINUATION_COVERAGE.json",
+      "sha256": "9706558170b025264843b20ff2a3654d642bc5f3435cd21d7f875aba0ac68c1f",
+      "sha256_after": "9706558170b025264843b20ff2a3654d642bc5f3435cd21d7f875aba0ac68c1f"
+    },
+    {
+      "path": "verification/build_paper_coverage.py",
+      "sha256": "40ab27947797dd9d3cb9ca473a70cf960f6120bc706d304cb118cd0c36cdb5a5",
+      "sha256_after": "40ab27947797dd9d3cb9ca473a70cf960f6120bc706d304cb118cd0c36cdb5a5"
+    },
+    {
+      "path": "verification/check_paper_continuation_review.py",
+      "sha256": "064735ee71411237d722750275a53e24f467f3b4e5e7f5a532948a47fc757e89",
+      "sha256_after": "064735ee71411237d722750275a53e24f467f3b4e5e7f5a532948a47fc757e89"
+    },
+    {
+      "path": "verification/paper_coverage/companion_arithmetic.json",
+      "sha256": "7873d5522860d162d4c9387841ca559e98254b066bdf4885dcdcdeb4a5d9d8c3",
+      "sha256_after": "7873d5522860d162d4c9387841ca559e98254b066bdf4885dcdcdeb4a5d9d8c3"
+    },
+    {
+      "path": "verification/paper_coverage/companion_calculus.json",
+      "sha256": "f4c2993272f1354f47c8e40be41ff762103eb1e23ac87faa72ab7356343b2f62",
+      "sha256_after": "f4c2993272f1354f47c8e40be41ff762103eb1e23ac87faa72ab7356343b2f62"
+    },
+    {
+      "path": "verification/paper_coverage/companion_dynamics.json",
+      "sha256": "a808050a5eb4d32f7d8f8f48afe508e5590d1058d80252e3dc0cf1068c50835f",
+      "sha256_after": "a808050a5eb4d32f7d8f8f48afe508e5590d1058d80252e3dc0cf1068c50835f"
+    },
+    {
+      "path": "verification/paper_coverage/conjecture_arithmetic.json",
+      "sha256": "5487ec7bf89d2dd7ea6c86cf3beb9e27cf13449a37bca2204e4151f2c605fc00",
+      "sha256_after": "5487ec7bf89d2dd7ea6c86cf3beb9e27cf13449a37bca2204e4151f2c605fc00"
+    },
+    {
+      "path": "verification/paper_coverage/conjecture_dynamics.json",
+      "sha256": "3d8a26ae25ce3206c28fbe5bfcf892c752cfcabd3d5b9bf1501d397604ed48fb",
+      "sha256_after": "3d8a26ae25ce3206c28fbe5bfcf892c752cfcabd3d5b9bf1501d397604ed48fb"
+    },
+    {
+      "path": "verification/paper_coverage/conjecture_geometry.json",
+      "sha256": "44f630d6003f26535f366f98a6bf8095ba1ed8cb2669770bd2269770216466ff",
+      "sha256_after": "44f630d6003f26535f366f98a6bf8095ba1ed8cb2669770bd2269770216466ff"
+    },
+    {
+      "path": "verification/paper_coverage/core.json",
+      "sha256": "4d065a5d2c7bcd5bb845b1f3add2f5d1abccca0f6da56dd76049826307d713a9",
+      "sha256_after": "4d065a5d2c7bcd5bb845b1f3add2f5d1abccca0f6da56dd76049826307d713a9"
+    },
+    {
+      "path": "verification/paper_coverage/late.json",
+      "sha256": "0418f2632afcf7c779d3d1fb959238fe611fc28434e0f7133e98fbf530e13b8b",
+      "sha256_after": "0418f2632afcf7c779d3d1fb959238fe611fc28434e0f7133e98fbf530e13b8b"
+    },
+    {
+      "path": "verification/paper_coverage/middle.json",
+      "sha256": "5b75cf5a01a15d92e734e0f40b05423093c301b1f6f58871458ab766ac5e2eb1",
+      "sha256_after": "5b75cf5a01a15d92e734e0f40b05423093c301b1f6f58871458ab766ac5e2eb1"
+    },
+    {
+      "path": "verification/paper_coverage/signal_machine.json",
+      "sha256": "c8915553123cc508f221f9151057f0e30c6911ab198e5f9e205de4d8d49afb6c",
+      "sha256_after": "c8915553123cc508f221f9151057f0e30c6911ab198e5f9e205de4d8d49afb6c"
+    },
+    {
+      "path": "verification/paper_coverage/special_functions.json",
+      "sha256": "0575c1187e652f5de1b6871e76c53cf32aff375cf753b1ed5218d9638113e5ba",
+      "sha256_after": "0575c1187e652f5de1b6871e76c53cf32aff375cf753b1ed5218d9638113e5ba"
+    }
+  ],
+  "output_directory": "verification/paper_runs/continuation_source",
+  "declared_results": [
+    "verification/paper_runs/continuation_source/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "verification/paper_runs/continuation_source/stdout.txt",
+      "sha256": "f9af0b0fc12b1eee1841cbcac977f3e957bd024b15c0b274073a135d943c1a33",
+      "kind": "log"
+    },
+    {
+      "path": "verification/paper_runs/continuation_source/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "verification/paper_runs/continuation_source/result.json",
+      "sha256": "f9af0b0fc12b1eee1841cbcac977f3e957bd024b15c0b274073a135d943c1a33",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

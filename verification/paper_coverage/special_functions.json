@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "scope": "Special Functions I–VIII corrected consolidation and Discovery1.1 portable machinery",
+  "sources": [
+    {
+      "id": "special-functions-consolidation-0.1",
+      "title": "Special Functions I–VIII corrected consolidation",
+      "path": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "060b5559c14b3d9c02f2f028d3efea78663b6763ff0b23dacef6da6f58942a42"
+    },
+    {
+      "id": "special-function-discovery-1.1",
+      "title": "Special Function Discovery 1.1 editable release",
+      "path": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "63caec262718377a2d152b980f101e425daa76793c44ec13da7ee14613faf4d0"
+    },
+    {
+      "id": "special-functions-resolution-guide-1.1",
+      "title": "Resolution and coupled special functions visual guide 1.1",
+      "path": "Komorebi_Special_Functions_Resolution_and_Coupled_Visual_Guide_v1.1.pdf",
+      "sha256": "0f7a2e530c27ccaac06deae6a4a94508f5f87ac6f4e1992f158a5b9d8efb9bfe"
+    },
+    {
+      "id": "special-functions-expanded-guide-0.4",
+      "title": "Expanded visual guide 0.4 source",
+      "path": "Komorebi_Special_Functions_Expanded_Visual_Guide_v0.4_Source.zip",
+      "sha256": "df775d10c1940bf333848025379c3303fc136d51e417b4a5768cebdce73a965a"
+    },
+    {
+      "id": "sf-arithmetic_core",
+      "title": "Corrected arithmetic machinery",
+      "path": "special_functions_v0.1/manuscript/arithmetic_core.tex",
+      "archive": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "f450ffeaeedf718ded8fb66a5526301b8afa93a2b74eeeae35e41689fac9c41d"
+    },
+    {
+      "id": "sf-shape_core",
+      "title": "Corrected Gamma shape machinery",
+      "path": "special_functions_v0.1/manuscript/shape_core.tex",
+      "archive": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "992f08f580938b7cc7de834fe363330e62676c34f6e93d7d0eb21053200a5003"
+    },
+    {
+      "id": "sf-recoupling_core",
+      "title": "Corrected classical and q recoupling machinery",
+      "path": "special_functions_v0.1/manuscript/recoupling_core.tex",
+      "archive": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "aa1703e88e7c4c50bb7cce9fcad893b1a6b94f8c5e63a96f619e44b8c6b6c2aa"
+    },
+    {
+      "id": "sf-corrections",
+      "title": "Corrections C01–C12",
+      "path": "special_functions_v0.1/manuscript/corrections.tex",
+      "archive": "Komorebi_Special_Functions_Consolidation_v0.1.zip",
+      "sha256": "664994527d7f194b08dd1643703fbcb1ebab29295a2f2a93b758fc3c4befdb7f"
+    },
+    {
+      "id": "sf-feedback-lab",
+      "title": "Exact scalar feedback laboratory",
+      "path": "special_function_discovery_v1.1/family_lab.py",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "7b546c1cd3159bb59634a3306c116719cd8d8d368c0046af90270c709b08cc8e"
+    },
+    {
+      "id": "sf-coupled-lab",
+      "title": "Exact coupled laboratory",
+      "path": "special_function_discovery_v1.1/coupled_lab.py",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "dff2a80db6f459e52dda45bc3399e0be45edf287df2efbeb1a56b57d38dfe20a"
+    },
+    {
+      "id": "sf-coupled-inverse",
+      "title": "Exact degree-seven inverse",
+      "path": "special_function_discovery_v1.1/coupled_inverse.py",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "7a20582094149e667a834e6b5059ae6456d1d5bf00422dfb0de0f6b05640a2e0"
+    },
+    {
+      "id": "sf-coupled-growth",
+      "title": "Coupled characteristic growth proof",
+      "path": "special_function_discovery_v1.1/research_v11/coupled_growth_proof.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "0faa09bdc4d434e2fb9a9a5bb5f6f6b2122a3de30656b8c8c9c73206c08f763b"
+    },
+    {
+      "id": "sf-coupled-identifiability",
+      "title": "Coupled component classification and inverse proof",
+      "path": "special_function_discovery_v1.1/research_v11/coupled_identifiability.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "8e8c8f7c5b3a5a2667ac82c633d82c647d0a1b184e4d8cab6431bf53e2396ee9"
+    },
+    {
+      "id": "sf-resolution-atlas",
+      "title": "Resolution atlas proof and bounds",
+      "path": "special_function_discovery_v1.1/research_v11/resolution_atlas.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "a5960fb85336f3a89b08d1bc2d5e69202c67ea4652c363bd44d3588ecdc634e6"
+    },
+    {
+      "id": "sf-resolution-checks",
+      "title": "Resolution exact finite laboratory",
+      "path": "special_function_discovery_v1.1/checks/resolution_v11.py",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "ac5fe57ab2abad9b8aafe5ca9d48d9c1652f8acf6cbc3b3ea446e0877b8fc877"
+    },
+    {
+      "id": "sf-arithmetic-inverse",
+      "title": "Arithmetic inverse and character resolution",
+      "path": "special_function_discovery_v1.1/new_results/arithmetic_inverse.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "a8c29614a565231ac91e14c17312928ebdc40bcd5c1597e73b487f1f8b00cc81"
+    },
+    {
+      "id": "sf-multi-prime",
+      "title": "Multiplicative finite-prime sieve and positivity",
+      "path": "special_function_discovery_v1.1/new_results/multi_prime_sieve.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "5b5997c122e80bfad68cbb20698e704788e9ff6b82e72794418efde3a0df716e"
+    },
+    {
+      "id": "sf-spectral-continuation",
+      "title": "Orbit spectral zeta continuation",
+      "path": "special_function_discovery_v1.1/new_results/spectral_continuation.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "d131b25e28921d79700a5b7a86e357e4f60623785c73a657664e0b7bd7c81d7b"
+    },
+    {
+      "id": "sf-dilation-type",
+      "title": "Feedback type and compact continuity",
+      "path": "special_function_discovery_v1.1/new_results/dilation_type.md",
+      "archive": "Komorebi_Special_Function_Discovery_v1.1_Source.zip",
+      "sha256": "4a438fa513b06cc729d8317c565bc2a45dc9da253964d3d9ce406a5ac6f97494"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "sf-coefficient-residue-packets",
+      "source_id": "sf-arithmetic_core",
+      "section": "Coefficient packets and ordered differential transport",
+      "summary": "Residue decomposition, cyclic differential transport, and finite analysis/synthesis",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.signals.polyphase.polyphase_analyze",
+        "komorebi_math.signals.polyphase.polyphase_synthesize",
+        "komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem",
+        "komorebi_math.analytic.sections.CyclicSectionFamily"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_coordinates_exact.py",
+        "tests/test_analytic_cyclic_reciprocal.py"
+      ],
+      "boundaries": [
+        "Finite exact or numerical carrier domains remain those of each existing API."
+      ]
+    },
+    {
+      "key": "sf-bernoulli-hurwitz",
+      "source_id": "sf-arithmetic_core",
+      "section": "Bernoulli–Hurwitz refinement",
+      "summary": "Entire-order Hurwitz family and exact integer residue samples",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.special_functions.bernoulli.bernoulli_hurwitz",
+        "komorebi_math.special_functions.bernoulli.bernoulli_hurwitz_packet",
+        "komorebi_math.special_functions.bernoulli.bernoulli_packet_integer"
+      ],
+      "tests": [
+        "tests/test_special_functions_bernoulli.py"
+      ],
+      "boundaries": [
+        "Complex-order interpolation requires positive real translation.",
+        "Numerical scalar evaluation is not an interval enclosure.",
+        "Tiny nonzero orders retain the pole-cancelled value; no zero-order shortcut."
+      ]
+    },
+    {
+      "key": "sf-stieltjes-cyclotomic-germs",
+      "source_id": "sf-arithmetic_core",
+      "section": "Bernoulli–Hurwitz refinement",
+      "summary": "Cyclotomic detail derivatives from Stieltjes germs and primitive packet resultants",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Residue samples and generic finite transforms exist.",
+        "A dedicated Stieltjes derivative/resultant API is not integrated.",
+        "Historical translated-child formula must respect correction C01."
+      ]
+    },
+    {
+      "key": "sf-positive-arithmetic-energy",
+      "source_id": "sf-arithmetic_core",
+      "section": "Signed arithmetic transfer and positive energy; Energy asymptotics and the all-moment bridge",
+      "summary": "Infinite squarefree energy, gamma scaling, and Hankel asymptotics",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Finite AtomicMeasure and generic Lanczos do not implement this infinite arithmetic family.",
+        "No truncated arithmetic sum is presented as the exact infinite theorem."
+      ]
+    },
+    {
+      "key": "sf-arithmetic-lanczos",
+      "source_id": "sf-arithmetic_core",
+      "section": "Laguerre and finite spectral realizations",
+      "summary": "Finite Hermitian Lanczos and projected resolvent components",
+      "status": "partially_implemented",
+      "api": [
+        "komorebi_math.algorithms.krylov.lanczos_tridiagonal",
+        "komorebi_math.integration.measures.AtomicMeasure"
+      ],
+      "tests": [
+        "tests/test_algorithms_krylov.py"
+      ],
+      "boundaries": [
+        "Generic finite numerical machinery exists.",
+        "The squarefree measure builder, infinite limit, and dedicated Christoffel/Gauss family are not integrated."
+      ]
+    },
+    {
+      "key": "sf-signed-pade",
+      "source_id": "sf-corrections",
+      "section": "Signed rational models",
+      "summary": "Signed Padé models and conditional nonsingularity",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Correction C05/C06 excludes unconditional real simple poles and positive weights."
+      ]
+    },
+    {
+      "key": "sf-signed-arithmetic-obstruction",
+      "source_id": "sf-arithmetic_core",
+      "section": "The remaining signed arithmetic estimate",
+      "summary": "Unresolved signed arithmetic error bound",
+      "status": "research_boundary",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Not a closed theorem or a runtime recovery certificate."
+      ]
+    },
+    {
+      "key": "sf-gamma-window",
+      "source_id": "sf-shape_core",
+      "section": "One window and its exact phase-space kernel",
+      "summary": "Normalized log-Gamma window and negative-sign unitary Fourier transform",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.special_functions.shape.log_gamma_window",
+        "komorebi_math.special_functions.shape.log_gamma_fourier"
+      ],
+      "tests": [
+        "tests/test_special_functions_shape.py"
+      ],
+      "boundaries": [
+        "Positive finite real shape.",
+        "mpmath scalar computation at requested precision; no directed enclosure."
+      ]
+    },
+    {
+      "key": "sf-cross-shape-ambiguity",
+      "source_id": "sf-shape_core",
+      "section": "One window and its exact phase-space kernel; Fourier density and additive shape",
+      "summary": "Cross-shape Gamma–sech kernel and density factorization",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.special_functions.shape.gamma_sech_ambiguity",
+        "komorebi_math.special_functions.shape.shape_affinity",
+        "komorebi_math.special_functions.shape.beta_logit_density",
+        "komorebi_math.special_functions.shape.meixner_density",
+        "komorebi_math.special_functions.shape.meixner_characteristic"
+      ],
+      "tests": [
+        "tests/test_special_functions_shape.py"
+      ],
+      "boundaries": [
+        "Positive shape parameters.",
+        "Centered ambiguity uses positive frequency sign."
+      ]
+    },
+    {
+      "key": "sf-shape-refinement",
+      "source_id": "sf-shape_core",
+      "section": "Polynomial refinement and the common ladder; Shape transfer and its exact contraction spectrum",
+      "summary": "Normalized Meixner–Pollaczek recurrence, shape addition, and transfer singular values",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.special_functions.shape.meixner_pollaczek",
+        "komorebi_math.special_functions.shape.beta_binomial_refinement",
+        "komorebi_math.special_functions.shape.shape_refinement_coefficient",
+        "komorebi_math.special_functions.shape.shape_transfer_singular_value"
+      ],
+      "tests": [
+        "tests/test_special_functions_shape.py"
+      ],
+      "boundaries": [
+        "Numerical evaluations with isolated working precision.",
+        "Transfer increment must be strictly positive."
+      ]
+    },
+    {
+      "key": "sf-levy-berezin",
+      "source_id": "sf-shape_core",
+      "section": "Fourier density and additive shape; Coherent smoothing and its Gaussian limit",
+      "summary": "Lévy generator, even cumulants, Berezin kernel/multiplier, and Gaussian limits",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Meixner density and characteristic functions are integrated.",
+        "Dedicated generator, cumulant, and Berezin APIs are not integrated."
+      ]
+    },
+    {
+      "key": "sf-laguerre-window",
+      "source_id": "sf-shape_core",
+      "section": "The arithmetic seed and its positive lift; One window and its exact phase-space kernel",
+      "summary": "Laguerre packets and their Fourier transform",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Existing generic Laguerre polynomials do not supply the source normalized packet window/transform."
+      ]
+    },
+    {
+      "key": "sf-classical-casimir-recoupling",
+      "source_id": "sf-recoupling_core",
+      "section": "Excitation reduction and the two-factor seed; Atlases, recoupling, and recurrence gauges",
+      "summary": "Classical positive discrete-series lowering/Casimir and three-body recoupling",
+      "status": "external_research_companion",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Historical standalone research sources remain available.",
+        "No production matrix recoupling API is claimed by scalar Racah evaluation."
+      ]
+    },
+    {
+      "key": "sf-q-casimir-recoupling",
+      "source_id": "sf-recoupling_core",
+      "section": "A single ladder and coproduct convention; An exact two-channel deformation",
+      "summary": "q coproduct, finite multiplicity frames, and q recoupling",
+      "status": "external_research_companion",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "q coproduct ordering is part of the mathematical contract.",
+        "No scalar-to-matrix gauge/weight equivalence is claimed."
+      ]
+    },
+    {
+      "key": "sf-tree-overlap-compilation",
+      "source_id": "sf-recoupling_core",
+      "section": "Tree overlaps, loop closure, and compilation",
+      "summary": "Coupling-tree bases, finite pentagon closure, and Givens compilation",
+      "status": "external_research_companion",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Closure of complete basis overlaps does not authenticate a universal category-level associator.",
+        "Source standalone implementations are not imported for their plotting side effects."
+      ]
+    },
+    {
+      "key": "sf-scalar-racah",
+      "source_id": "sf-recoupling_core",
+      "section": "Scalar bridge and its remaining comparison; correction C11",
+      "summary": "Exact terminating scalar Racah and q-Racah sums",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.special_functions.terminating.q_pochhammer",
+        "komorebi_math.special_functions.terminating.q_racah_lattice",
+        "komorebi_math.special_functions.terminating.q_racah_scalar",
+        "komorebi_math.special_functions.terminating.racah_scalar"
+      ],
+      "tests": [
+        "tests/test_special_functions_terminating.py"
+      ],
+      "boundaries": [
+        "Nonzero denominators of retained terms are checked before cancellation.",
+        "Repeated lattice C11 witness prevents inference of positive orthogonality.",
+        "No full matrix recoupling identification."
+      ]
+    },
+    {
+      "key": "sf-feedback-exact-recurrence",
+      "source_id": "sf-feedback-lab",
+      "section": "Appendix E; feedback_odd_derivatives",
+      "summary": "Exact scalar multi-channel and asymmetric feedback derivative arrays",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.feedback_odd_derivatives",
+        "komorebi_math.special_functions.paper_machinery.asymmetric_odd_derivatives"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Arbitrary rational parameters are formal data.",
+        "Empty channels give F=z.",
+        "Entire-growth claims require the source positive contraction hypotheses."
+      ]
+    },
+    {
+      "key": "sf-feedback-phase-transport",
+      "source_id": "sf-feedback-lab",
+      "section": "Appendix E; sections, phase lanes, taps and Hurwitz product",
+      "summary": "Finite derivative arrays pass through existing residue, polyphase/tap, and binomial-product machinery",
+      "status": "implemented_existing",
+      "api": [
+        "komorebi_math.signals.polyphase.polyphase_convolution",
+        "komorebi_math.arithmetic.hurwitz.hurwitz_product",
+        "komorebi_math.refinement.residue.residue_analyze",
+        "komorebi_math.refinement.residue.residue_synthesize"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_arithmetic_hurwitz_windows.py",
+        "tests/test_residue_crt.py"
+      ],
+      "boundaries": [
+        "Insert zero even entries before phase decomposition.",
+        "Ordinary taps differ from binomial EGF multiplication."
+      ]
+    },
+    {
+      "key": "sf-feedback-type-radius",
+      "source_id": "sf-dilation-type",
+      "section": "Theorem 1; compact continuity; resolution atlas RA-3",
+      "summary": "Global feedback type constants and sufficient separating radius",
+      "status": "partially_implemented",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.weak_tap_disk_bound"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Compact weak-tap bound is implemented exactly.",
+        "General transcendental lower/upper type constants and sufficient-radius evaluation remain in the source proof/laboratory.",
+        "A sufficient radius is not an optimal first-visible radius."
+      ]
+    },
+    {
+      "key": "sf-arithmetic-depth-exact-inverse",
+      "source_id": "sf-arithmetic-inverse",
+      "section": "Theorems AI-1/AI-2; ordered atom extraction and character resolution",
+      "summary": "Arithmetic germ inverse and conditional negative-depth extraction",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Exact uniqueness from the full germ is not stable finite precision recovery.",
+        "No generic arithmetic atom extraction API is integrated."
+      ]
+    },
+    {
+      "key": "sf-prime-disk-resolution",
+      "source_id": "sf-resolution-atlas",
+      "section": "RA-4/RA-5; integer disk and derivative bounds",
+      "summary": "Exact excluded-prime rational disk envelope",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.prime_exclusion_disk_bound"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Specialized to a=beta=2 and integer nonnegative R,k.",
+        "Prime must be validated; no infinite sum is truncated.",
+        "Negativedepth crossing/cancellation displays remain source formulas."
+      ]
+    },
+    {
+      "key": "sf-multi-prime-sieve",
+      "source_id": "sf-multi-prime",
+      "section": "Theorems 1–3; multiplicative sieve strengths",
+      "summary": "All-prime multiplicative positivity domain and generalized definite-pencil fibers",
+      "status": "partially_implemented",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.sieve_interpolation_certificate",
+        "komorebi_math.special_functions.paper_machinery.sieve_negative_detector"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Implemented atlas subset has one negative prime shelf and unit strengths elsewhere.",
+        "General finite-prime strength polynomials and generalized eigenvalue fibers remain external research machinery.",
+        "Passing a finite Hankel test does not certify the true all-prime positivity domain."
+      ]
+    },
+    {
+      "key": "sf-sieve-low-degree-resolution",
+      "source_id": "sf-resolution-atlas",
+      "section": "Interpolation controls the whole polynomial space; RA low-degree certificate",
+      "summary": "Exact Lagrange constant and sufficient positivity of every polynomial through the selected degree",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.sieve_interpolation_certificate"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Distinct positive prime-free squarefree labels.",
+        "Strictly positive margin certifies positivity; zero/negative margins are inconclusive.",
+        "At delta=1e-12, degree<=4 is certified; degrees5 and6 are undecided."
+      ]
+    },
+    {
+      "key": "sf-sieve-negative-detector",
+      "source_id": "sf-resolution-atlas",
+      "section": "Tailored detector bound; initial-segment correction",
+      "summary": "Normalized rational detector and rigorous entire positive-tail upper bound",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.sieve_negative_detector"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Killed labels must be the complete ordered initial segment.",
+        "Only upper_bound<0 detects negativity.",
+        "Degree7 witness does not prove minimal detecting degree."
+      ]
+    },
+    {
+      "key": "sf-orbit-spectral-zeta",
+      "source_id": "sf-spectral-continuation",
+      "section": "Mellin representation, meromorphic continuation, trace zeros, and regularized product",
+      "summary": "Orbit spectral-zeta analytic continuation and exact special values",
+      "status": "paper_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The generic finite sequence and zero APIs do not implement this continuation.",
+        "No branch-sensitive infinite spectral sum is approximated as an exact continuation."
+      ]
+    },
+    {
+      "key": "sf-coupled-derivative-recurrence",
+      "source_id": "sf-coupled-lab",
+      "section": "Appendix J; coupled_odd_derivatives",
+      "summary": "Labeled coupled exact derivative arrays and denominator clearing",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.coupled_odd_derivatives",
+        "komorebi_math.special_functions.paper_machinery.coupled_cleared_derivatives"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Strict rational inputs.",
+        "Derivatives and ordinary Taylor coefficients use different factorial normalizations.",
+        "Clearing factor is sufficient, not necessarily minimal.",
+        "Formal parameters outside contractions carry no analytic guarantee."
+      ]
+    },
+    {
+      "key": "sf-coupled-disk-tail",
+      "source_id": "sf-coupled-lab",
+      "section": "Appendix J.3; disk_majorant and certified_evaluation",
+      "summary": "Exact disk majorant and real rational enclosures with uniform complex tail bound",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.coupled_disk_majorant",
+        "komorebi_math.special_functions.paper_machinery.coupled_certified_evaluation"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "All four scales lie in (0,1).",
+        "Real x>=0 and outer S>x.",
+        "Bounds are rational; float conversion is not a directed enclosure.",
+        "Resource exhaustion raises."
+      ]
+    },
+    {
+      "key": "sf-coupled-growth-anchor",
+      "source_id": "sf-coupled-growth",
+      "section": "Characteristic exponent and positive Perron vector; Theorems2/3",
+      "summary": "Exact characteristic identity and Perron proportions at integer-order anchors",
+      "status": "partially_implemented",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.coupled_integer_growth_anchor"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Verifies supplied positive integer exponent exactly.",
+        "General real-order solver and global type constants remain in the source.",
+        "Ordinary type-limit existence is open."
+      ]
+    },
+    {
+      "key": "sf-coupled-reduction",
+      "source_id": "sf-coupled-identifiability",
+      "section": "Section1 exact component rescaling classification",
+      "summary": "Exact discriminant for two reduction surfaces",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.coupled_reduction_discriminant"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "Positive strict contraction domain.",
+        "Zero set is q=b or qb=ar.",
+        "Scalar reduction of a particular solution is distinct from operator decoupling."
+      ]
+    },
+    {
+      "key": "sf-coupled-degree-seven-inverse",
+      "source_id": "sf-coupled-inverse",
+      "section": "recover_squared_scales/recover_rational_scales; Appendix I",
+      "summary": "Exact labeled coefficient inverse through degree seven",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.recover_coupled_squared_scales",
+        "komorebi_math.special_functions.paper_machinery.recover_coupled_rational_scales"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "D!=0 required.",
+        "Six ordinary coefficients are exact rationals.",
+        "Implemented domain has rational quadratic candidates; rational-scale wrapper also needs rational roots.",
+        "Inconsistent jets and noisy perturbations rejected.",
+        "No uniform finite-precision stability claim near reduction."
+      ]
+    },
+    {
+      "key": "sf-weak-tap-compact-bound",
+      "source_id": "sf-resolution-atlas",
+      "section": "RA-1/RA-2; exact unit-disk error certificate",
+      "summary": "Exact weak-feedback compact envelope with rational omitted-tail bound",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.weak_tap_disk_bound"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "0<=epsilon<=1 and rational0<=R<=1.",
+        "Finite index must satisfy the monotone-tail guard.",
+        "Compact closeness does not preserve the global entire order."
+      ]
+    },
+    {
+      "key": "sf-resource-guards",
+      "source_id": "sf-coupled-lab",
+      "section": "Resource-guarded exact laboratory",
+      "summary": "Explicit finite resource budgets across production exact machinery",
+      "status": "implemented_new",
+      "api": [
+        "komorebi_math.special_functions.paper_machinery.PaperMachineryBudget",
+        "komorebi_math.audit.special_function_checks.special_function_checks"
+      ],
+      "tests": [
+        "tests/test_special_functions_paper_machinery.py"
+      ],
+      "boundaries": [
+        "No silent truncation.",
+        "Conservative limits are not a uniform wall-clock or memory guarantee.",
+        "Derived interpolation threshold and later margin inputs/outputs retain the builder bit budget."
+      ]
+    }
+  ],
+  "implementation_files": [
+    "src/komorebi_math/special_functions/paper_machinery.py",
+    "tests/test_special_functions_paper_machinery.py",
+    "docs/special_functions_paper_machinery.md",
+    "src/komorebi_math/audit/special_function_checks.py"
+  ],
+  "new_exact_suite": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_special_functions_paper_machinery.py",
+    "passed": 302,
+    "arithmetic": "fractions.Fraction and integers",
+    "bounds": {
+      "inverse_rational_grid_points": 256,
+      "inverse_degree": 7,
+      "dense_picard_degree": 15,
+      "max_known_sinh_odd_index": 20,
+      "max_comparison_odd_index": 40,
+      "detector_finite_norm_cutoff": 100
+    },
+    "non_claims": [
+      "Bounded testing does not prove universal analytic statements.",
+      "Paper-only and external-companion rows are not claimed as integrated runtime machinery."
+    ],
+    "independent_review": {
+      "ordinary_recurrence_cases": 81,
+      "inverse_recoveries": 42,
+      "inconsistent_degree7_jets_rejected": 42,
+      "reduction_jets_rejected": 39,
+      "longer_series_tail_comparisons": 16,
+      "perron_row_identities": 4,
+      "general_prime_detector_controls": 9,
+      "finding": "Derived sieve threshold/margin budget propagation gap fixed and independently replayed.",
+      "remaining_concrete_defects": 0,
+      "limits": "Finite checks and reviewed formula implications; not a universal proof of all paper statements."
+    }
+  },
+  "correction_controls": {
+    "C01": "Bernoulli child translation normalization retained",
+    "C11": "Repeated q-Racah lattice shows termination does not imply positive orthogonality",
+    "resolution_initial_segment": "Incomplete killed-label lists are rejected"
+  },
+  "implementation_sha256": {
+    "src/komorebi_math/special_functions/paper_machinery.py": "03ba1b89286381d6014a45aaf35904d99e9cfb7c42bb30498ef221d76c4bd15a",
+    "tests/test_special_functions_paper_machinery.py": "b0568a77f78ca235ab11797316b5536fbb4e985df80c78a1ba6bf2ef1c0418e6",
+    "docs/special_functions_paper_machinery.md": "e64afc2e04eb10e5b959c8e4231c613c48b22f80492181fb59fed63abfccf833",
+    "src/komorebi_math/audit/special_function_checks.py": "8878d939cf0502aecd46a18a1e053eea01f6021bb6c39467d2fd82f52c1cabed"
+  },
+  "installed_stress_factory": {
+    "api": "komorebi_math.audit.special_function_checks.special_function_checks",
+    "exact_checks": 4,
+    "isolated_run_status": "passed",
+    "samples": 8,
+    "seed": 20261009,
+    "evidence": "verification/paper_coverage/special_functions_stress.json",
+    "configuration_failure": "Initial stdin driver could not be re-imported by multiprocessing spawn; corrected with a real-file driver. No check passed during the failed attempt."
+  }
+}

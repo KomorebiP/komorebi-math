@@ -1,7 +1,8 @@
 from pathlib import Path
 import subprocess
 import pytest
-from verification.release_artifact_gate import require_identical_wheels, validate_options, checked_run, qualify
+from verification.release_artifact_gate import require_identical_wheels, validate_options, checked_run, qualify, require_installed_math_campaign
+from verification.release_artifact_gate import INSTALLED_MATH_CHECKS
 
 
 def test_rebuilt_wheel_difference_is_failure(tmp_path: Path) -> None:
@@ -37,6 +38,55 @@ def test_timeout_is_recorded(tmp_path: Path,monkeypatch) -> None:
     row=report['commands'][0]
     assert row['timed_out'] and row['returncode'] is None
     assert row['stdout']=='partial output'
+
+
+def mathematical_campaign():
+    return {
+        'kind': 'finite_mathematical_stress_report', 'status': 'passed', 'stress_status': 'passed',
+        'seed': 20261010, 'source_inputs_unchanged': True,
+        'counts': {'passed': len(INSTALLED_MATH_CHECKS), 'failed': 0, 'error': 0, 'skipped': 0, 'timeout': 0, 'not_run': 0},
+        'checks': [{'identifier': identifier, 'status': 'passed'} for identifier in sorted(INSTALLED_MATH_CHECKS)],
+        'resource_limits': {'per_check_wall_seconds': 30, 'total_wall_seconds': 180},
+        'paper_coverage': {'valid': True, 'api_links_checked': True,
+                           'all_catalogued_mechanisms_implemented': False},
+    }
+
+
+def test_partial_installed_catalog_with_every_executed_check_can_qualify():
+    require_installed_math_campaign(mathematical_campaign())
+
+
+@pytest.mark.parametrize('outcome', ['failed', 'error', 'skipped', 'timeout', 'not_run'])
+def test_nonpassing_installed_check_cannot_hide_under_passing_summary(outcome):
+    result = mathematical_campaign()
+    result['checks'][0]['status'] = outcome
+    with pytest.raises(RuntimeError, match='nonpassing check evidence'):
+        require_installed_math_campaign(result)
+    result = mathematical_campaign()
+    result['counts']['passed'] = len(INSTALLED_MATH_CHECKS) - 1
+    result['counts'][outcome] = 1
+    with pytest.raises(RuntimeError, match='all 26 checks'):
+        require_installed_math_campaign(result)
+
+
+@pytest.mark.parametrize('mutation', [
+    lambda report: report['checks'].pop(),
+    lambda report: report['checks'][0].update(identifier=report['checks'][1]['identifier']),
+    lambda report: report['checks'][0].update(identifier='forged-unrequested-check'),
+    lambda report: report['counts'].update(error=False),
+    lambda report: report['counts'].update(failed=0.0),
+    lambda report: report.update(seed=0),
+    lambda report: report.update(source_inputs_unchanged=False),
+    lambda report: report.update(paper_coverage=None),
+    lambda report: report['paper_coverage'].update(valid=False),
+    lambda report: report['paper_coverage'].update(api_links_checked=False),
+    lambda report: report['resource_limits'].update(total_wall_seconds=None),
+])
+def test_omitted_or_unverified_installed_campaign_is_failure(mutation):
+    result = mathematical_campaign()
+    mutation(result)
+    with pytest.raises(RuntimeError):
+        require_installed_math_campaign(result)
 
 
 def test_publication_gate_conflicting_doc_options() -> None:

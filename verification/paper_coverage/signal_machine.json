@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "audit_scope": "Mathematical finite LSM machinery only; agent/training implementations excluded by user scope",
+  "sources": [
+    {
+      "id": "lsm_foundations_0_8",
+      "title": "Komorebi Large Signal Model Foundations 0.8.0",
+      "path": "Komorebi_Large_Signal_Model_Foundations_0.8.0.md",
+      "sha256": "3072959c4c7bcba82be8591e0c431a1043ff66e01a359fa439c6e523705866b1",
+      "fully_read": true,
+      "scope": "87 written propositions; finite worked calculations are not a universal proof or new Lean verification"
+    },
+    {
+      "id": "lsm_reference_archive_0_8",
+      "title": "Komorebi Large Signal Model Foundations 0.8.0",
+      "path": "Komorebi_Large_Signal_Model_Foundations_0.8.0.zip",
+      "sha256": "e1b2af7e2d2c3d5c28d6eead90802edf4bdc23e0a4034066a66d3b6226407f8f",
+      "fully_read": false,
+      "scope": "87 written propositions; finite worked calculations are not a universal proof or new Lean verification"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "linear_compression_obstruction",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section5.1, Proposition7",
+      "summary": "Exact PLQ and lost return path PLQMP",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.signals.foundations.compression_closure"
+      ],
+      "tests": [
+        "tests/test_signals_foundations.py"
+      ],
+      "boundaries": [
+        "Exact supplied rational operators and orthogonal projection. Identity certificate does not approve nonzero closure defect. No unknown-process claim."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "minimal_predictive_completion",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section6, Proposition8",
+      "summary": "Smallest common operator-invariant row space containing initial observables",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.signals.foundations.minimal_predictive_completion"
+      ],
+      "tests": [
+        "tests/test_signals_foundations.py"
+      ],
+      "boundaries": [
+        "Bounded exact row refinement; incomplete round caps withhold approval. Operators and augmented observables must be available."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "exact_projected_memory",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section8, Proposition10",
+      "summary": "Finite discrete projection memory BD^kC with initial forcing BD^tq0",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.signals.foundations.projected_memory"
+      ],
+      "tests": [
+        "tests/test_signals_foundations.py"
+      ],
+      "boundaries": [
+        "Finite stated horizon and exact history. Geometric tail and stable recursive truncation conditions are not certified by this primitive."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "true_operator_delay_closure",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section15, Proposition14",
+      "summary": "Exact known-observation-map rank criterion and delay factorization",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.signals.foundations.delay_closure"
+      ],
+      "tests": [
+        "tests/test_signals_foundations.py"
+      ],
+      "boundaries": [
+        "Autonomous known finite operator. A sampled data rank plateau does not establish true closure. Transition unique only on im O_h."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "data_span_identification",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section16, Proposition15",
+      "summary": "Consistency, observed-span closure and unknown global coverage separated",
+      "status": "integrated_finite",
+      "api": [
+        "komorebi_math.signals.foundations.identify_data_span"
+      ],
+      "tests": [
+        "tests/test_signals_foundations.py"
+      ],
+      "boundaries": [
+        "Sample fit and full supplied ambient span cannot authenticate an unknown larger realizable space. global_coverage remains not_established."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "packet_refinement_and_linear_transfer",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections4.1-4.2, Propositions3-4",
+      "summary": "Complete finite packet reconstruction, transfer blocks, composition and refinement",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.operators.PacketOperator",
+        "komorebi_math.signals.wavelets.HaarPacketTree",
+        "komorebi_math.signals.wavelets.best_basis"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Existing exact/numerical backends retain their own contracts. Atlas-wide coherence is not supplied by packet reconstruction alone."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "nonlinear_packet_interactions",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections4.3 and21, Propositions5 and20",
+      "summary": "Multilinear packet jet interactions and finite polynomial/Taylor reconstruction",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.nonlinear.jets.PacketJetFamily",
+        "komorebi_math.nonlinear.jets.packet_taylor",
+        "komorebi_math.nonlinear.derivatives.PolynomialDerivativeProvider"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Restricted multilinear norms and omitted interaction bounds require declared hypotheses. No unrestricted invariant nonlinear dictionary discovery."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "bayesian_coarsening",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section10, Proposition12",
+      "summary": "Finite Bayesian aggregation and sufficient likelihood partitions",
+      "status": "existing_related",
+      "api": [
+        "komorebi_math.dynamics.bayes.BayesianPartition",
+        "komorebi_math.dynamics.bayes.coarsest_sufficient_partition"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Existing implementation numerical; two-or-more-block necessity boundary must be retained. Joint transition/likelihood lumpability is not claimed implemented here."
+      ],
+      "separate_reference_paths": []
+    },
+    {
+      "key": "atlas_coherence_and_reconciliation",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections2-3 and22, Propositions1-2 and21",
+      "summary": "Lossless redundant atlases and coherent object-space reconciliation",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Matrix realization primitives exist but no complete library atlas/coherence reconciliation API was verified in this extraction."
+      ],
+      "separate_reference_paths": [
+        "checks/exact_foundation_checks.py",
+        "checks/learning_stability_checks.py"
+      ]
+    },
+    {
+      "key": "joint_finite_stochastic_refinement",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Section7, Proposition9",
+      "summary": "Coarsest joint transition and observation-likelihood closure",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Known finite row-stochastic model and positive likelihoods. Not implemented by the likelihood-only existing partition helper."
+      ],
+      "separate_reference_paths": [
+        "checks/exact_foundation_checks.py"
+      ]
+    },
+    {
+      "key": "identification_and_recursive_stability_bounds",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections16.1,19-20 and25, Propositions16,18-19 and25",
+      "summary": "Perturbation, defect propagation and stable finite-memory bounds",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Finite data coverage and true-model, norm, noise and contraction hypotheses remain conditional. Existing continuous-time MemoryKernel is a related but different API."
+      ],
+      "separate_reference_paths": [
+        "checks/learning_stability_checks.py"
+      ]
+    },
+    {
+      "key": "finite_stochastic_observable_realization",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections27-40, Propositions26-37",
+      "summary": "Controlled instruments, table reconstruction, positivity, normalization and reset sampling",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Full behavior-rank upper bound and experiment coverage not inferred from finite table invertibility. No unrestricted model identification."
+      ],
+      "separate_reference_paths": [
+        "checks/stochastic_reference.py",
+        "checks/controlled_stochastic_checks.py",
+        "checks/stochastic_generator.py"
+      ]
+    },
+    {
+      "key": "finite_positive_lift_probability_domains",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections41-55, Propositions38-49",
+      "summary": "Finite cone/lift witnesses, robust vertices, correction and observation-law bounds",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Existential finite witness versus robust quantified certificate distinct. Search failure is inconclusive; some valid finite-rank processes have no polyhedral certificate."
+      ],
+      "separate_reference_paths": [
+        "checks/cone_reference.py",
+        "checks/certified_domain_checks.py"
+      ]
+    },
+    {
+      "key": "curved_matrix_and_continuous_gram_domains",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections56-69, Propositions50-61",
+      "summary": "Matrix embedding, polynomial Gram positivity, continuous operator densities and moment reconstruction",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Explicit embedding, observation interval and reference measure. Finite degree/rank hypotheses and exact population event tables required. No generic SDP solver."
+      ],
+      "separate_reference_paths": [
+        "checks/continuous_reference.py",
+        "checks/curved_continuous_checks.py"
+      ]
+    },
+    {
+      "key": "quadratic_domains_and_positive_approximation",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections70-79, Propositions62-70",
+      "summary": "Oriented quadratic certificates, restricted geometry discovery, positive approximation and predictable residuals",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Restricted exact template-free proposals; no general noisy geometry discovery. Statistical nonrejection is not an upper adequacy guarantee."
+      ],
+      "separate_reference_paths": [
+        "checks/quadratic_reference.py",
+        "checks/sequential_reference.py",
+        "checks/discovery_evidence_checks.py"
+      ]
+    },
+    {
+      "key": "robust_curved_and_repair_witnesses",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections80-91, Propositions71-80",
+      "summary": "Rational semicircle and complete Bernstein subdivision proofs, coefficient boxes and repair brackets",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Deterministic repaired-family uncertainty is not a statistically covered set for the original process. Nominal validity, comparison domain and law error remain separate."
+      ],
+      "separate_reference_paths": [
+        "checks/robust_reference.py",
+        "checks/robust_curved_checks.py",
+        "examples/reduced_repair_example.py"
+      ]
+    },
+    {
+      "key": "dependent_observable_structured_confidence",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections92-98, Propositions81-87",
+      "summary": "Self-normalized regression, fixed observable moment states, rational whole-box confidence and marginal bounds",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Declared accessible dictionary/state, fixed parameters, conditional noise and reference measure. Saved five-node path is not continuous data. No coverage-rate claim from one seeded path."
+      ],
+      "separate_reference_paths": [
+        "checks/data_certificate_reference.py",
+        "checks/data_supported_checks.py",
+        "examples/dependent_data_certificate.py"
+      ]
+    },
+    {
+      "key": "infinite_and_unrestricted_extensions",
+      "source_id": "lsm_foundations_0_8",
+      "section": "Sections9,12,17,23-24 and99-100, Propositions11,13,17,22-24",
+      "summary": "Conditional expectation refinement, strong fixed-horizon limits and information/grammar boundaries",
+      "status": "theory_boundary",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Infinite-dimensional convergence and general unknown dictionary/geometry discovery remain mathematical hypotheses or research directions, not unrestricted executable APIs."
+      ],
+      "separate_reference_paths": []
+    }
+  ],
+  "validation": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_signals_foundations.py",
+    "result": "130 passed",
+    "independent_controls": "All81 matrices in {-1,0,1}^{2x2}; independent Krylov rank, direct full-state recurrence comparisons for5 projections, malformed/float/mutation/resource controls, allocation sentinels for oversized nested inputs and ndarray list copies",
+    "worked_example": "PYTHONPATH=src python examples/finite_predictive_foundations.py",
+    "non_claims": [
+      "Does not implement all87 propositions as Python APIs",
+      "Does not replace separate0.8 reference package",
+      "Does not prove unrestricted identification or universal correctness from finite tests"
+    ],
+    "independent_peer_review": {
+      "compression_identities": 32,
+      "word_span_completions": 32,
+      "memory_direct_evolution_steps": 192,
+      "kernel_delay_criteria": 80,
+      "data_fits": 32,
+      "controls": "Rotated projectors, negative arithmetic, immutability and unknown global coverage",
+      "finding": "Oversized inputs reached SymPy allocation before entry-limit validation",
+      "correction": "Rectangular dimensions and entry counts checked before allocation; shaped arrays checked before tolist; sentinel regressions pass",
+      "result": "Mathematical controls passed; resource-order finding corrected"
+    },
+    "additional_delay_audit": {
+      "count": 100,
+      "seed": 190,
+      "dimensions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "matrices_per_dimension": 10,
+      "matrix_entries": [
+        -1,
+        0,
+        1
+      ],
+      "delay_range": "1..ambient dimension",
+      "independent_check": "ker(O_h) subset ker(O_h L) compared to computed rank closure",
+      "result": "passed"
+    }
+  }
+}

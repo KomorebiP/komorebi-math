@@ -93,6 +93,12 @@
     "test_stress_exact_arithmetic.py",
     "test_stress_numerical.py",
     "test_stress_autodiff_contracts.py",
-    "test_release_closeout_contracts.py"
+    "test_release_closeout_contracts.py",
+    "test_avoc_boolean.py",
+    "test_avoc_decisions.py",
+    "test_tikhonov_certificates.py",
+    "test_residual_modules.py",
+    "test_lehmer_shells.py",
+    "test_exact_scalar_ownership.py"
   ]
 }

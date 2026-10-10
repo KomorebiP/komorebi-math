@@ -1,0 +1,927 @@
+{
+  "schema": "komorebi-math.paper-machinery-crosswalk.fragment.v1",
+  "scope": "Papers IX-XII finite computational machinery, with separate Euler companion and explicit theoretical/external boundaries",
+  "sources": [
+    {
+      "id": "paper_ix",
+      "title": "Arithmetic Packets, Dyadic Towers, and Local Polynomial Deformation",
+      "path": "Paper_IX_Traditional_Final.pdf",
+      "sha256": "bbfaaaf5f588682941ad5e36d8cbae100f6f78f5125ed3ff764d85dbc130ce0e"
+    },
+    {
+      "id": "paper_ix_euler",
+      "title": "Euler Congruences: completion, factorial strengthening, and sharp dyadic geometry",
+      "path": "Paper_IX_Euler_Main_Final.pdf",
+      "sha256": "1e92732a4c3aab4d3579b2d67130f21e7c4514e438afdc7d88a948a9e8e1b6b0"
+    },
+    {
+      "id": "paper_x",
+      "title": "Universal Residual Seeds",
+      "path": "Paper_X_Traditional_Final.pdf",
+      "sha256": "f505dea114b8b0d3a19a6cd45ca49235b29566b42b14a8a64688c7ca83a8b251"
+    },
+    {
+      "id": "paper_xi",
+      "title": "Tame and Wild Packet Geometry",
+      "path": "Paper_XI_Traditional_Final.pdf",
+      "sha256": "47bff775e41076ddee9928a5ff7b833ef0ca66407588a118c9b5ffa9bca8b694"
+    },
+    {
+      "id": "paper_xii",
+      "title": "Patching Support and Hecke Packets",
+      "path": "Paper_XII_Traditional_Final.pdf",
+      "sha256": "72b4b56849491fe40cbabb04917717dede335b9e76c0d318e3bf9b1de087e381"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "ix_residue_hurwitz",
+      "source_id": "paper_ix",
+      "section": "2.1-2.3",
+      "summary": "Exact residue selection, divided-power convolution, finite inversion, and coefficient transport.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.polyphase.ArithmeticPolyphase",
+        "komorebi_math.arithmetic.polyphase.polyphase_analyze",
+        "komorebi_math.arithmetic.polyphase.polyphase_synthesize",
+        "komorebi_math.arithmetic.hurwitz.HurwitzSeries"
+      ],
+      "tests": [
+        "tests/test_arithmetic_hurwitz_windows.py"
+      ],
+      "boundaries": [
+        "Finite supplied coefficient range; infinite analytic convergence is separate."
+      ]
+    },
+    {
+      "key": "ix_mahler_affine",
+      "source_id": "paper_ix",
+      "section": "2.4, 2.7",
+      "summary": "Finite Mahler reconstruction, differences, affine transfers, kernel composition and prime-power residual sparsity.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.mahler.MahlerSeries",
+        "komorebi_math.arithmetic.mahler.affine_mahler_kernel",
+        "komorebi_math.arithmetic.mahler.affine_kernel_composition_certificate",
+        "komorebi_math.arithmetic.mahler.prime_power_kernel_certificate"
+      ],
+      "tests": [
+        "tests/test_arithmetic_mahler_polyphase.py"
+      ],
+      "boundaries": [
+        "Finite exact rational/integer prefix; unrestricted infinite analytic extensions are not inferred."
+      ]
+    },
+    {
+      "key": "ix_local_unit_modes",
+      "source_id": "paper_ix",
+      "section": "2.5",
+      "summary": "Carmichael unit jumps and simultaneous finite valuation gains, including the dyadic branch.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.local_modes.unit_mode_for_precision",
+        "komorebi_math.arithmetic.local_modes.simultaneous_unit_difference",
+        "komorebi_math.arithmetic.valuation.carmichael_exponent_prime_power"
+      ],
+      "tests": [
+        "tests/test_arithmetic_domains_valuation.py",
+        "src/komorebi_math/verify/arithmetic.py"
+      ],
+      "boundaries": [
+        "Exact sampled integer unit modes, not arbitrary p-adic functions."
+      ]
+    },
+    {
+      "key": "ix_recurrence_crt",
+      "source_id": "paper_ix",
+      "section": "2.6",
+      "summary": "Exact companion jumps, residue recurrence packets, modular orbit search and dyadic-odd factorization.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.recurrence.LinearRecurrence",
+        "komorebi_math.arithmetic.recurrence.RecurrencePacket",
+        "komorebi_math.refinement.crt.dyadic_odd_factor"
+      ],
+      "tests": [
+        "tests/test_arithmetic_recurrence.py"
+      ],
+      "boundaries": [
+        "Orbit search and recurrence detection remain bounded; rational matrix arithmetic is distinct from floating-point backend models."
+      ]
+    },
+    {
+      "key": "ix_full_address_euler",
+      "source_id": "paper_ix",
+      "section": "3.1, Definition 3.1 and Proposition 3.2",
+      "summary": "All-address normalized Euler reciprocal coefficients, original coefficient normalization and denominator-clearing checks.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.analytic.appell.congruential_inverse",
+        "komorebi_math.analytic.appell.congruential_reciprocal_coefficients"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Output C[N,j](n) is normalized; original coefficient U[N,j](n)=j!*C[N,j](n); degree N*n differs from packet row n.",
+        "Independent all-address recurrence comparisons run through row 16 at widths 1 through 8."
+      ]
+    },
+    {
+      "key": "ix_standard_window",
+      "source_id": "paper_ix",
+      "section": "3.2",
+      "summary": "Residual standard-window inverse and common address reduction.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.standard_windows.StandardWindow",
+        "komorebi_math.arithmetic.standard_windows.standard_window_inverse",
+        "komorebi_math.arithmetic.standard_windows.subgroup_standard_window_inverse"
+      ],
+      "tests": [
+        "tests/test_arithmetic_hurwitz_windows.py"
+      ],
+      "boundaries": [
+        "Finite modular coefficients and the declared standard-address range, not every integral local-field implementation."
+      ]
+    },
+    {
+      "key": "ix_nishibuchi_and_four_address",
+      "source_id": "paper_ix",
+      "section": "3.3-3.5",
+      "summary": "Executable exact packet values and bounded checks of Nishibuchi degree displacements, four-address higher differences, exact displacement valuations and least-period formulas.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.analytic.appell.congruential_inverse",
+        "komorebi_math.arithmetic.packet_differences.rational_mixed_difference",
+        "komorebi_math.arithmetic.packet_differences.certify_packet_difference"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Finite exact controls do not reprove the inherited universal Lean theorem.",
+        "Generic rational stencil checks one declared bound; theorem-level start-index and period rules remain source mathematics."
+      ]
+    },
+    {
+      "key": "ix_classical_local_reconstruction",
+      "source_id": "paper_ix",
+      "section": "3.6-3.7",
+      "summary": "Odd and dyadic classical signed Euler transfer, inverse reconstruction, row weights and truncation congruences.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.euler.EulerLocalCoordinates",
+        "komorebi_math.arithmetic.euler.EulerTruncation",
+        "komorebi_math.arithmetic.euler.dyadic_kernel",
+        "komorebi_math.arithmetic.euler.dyadic_row_weight"
+      ],
+      "tests": [
+        "tests/test_arithmetic_euler.py",
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Classical N=2,j=0 family is separate from congruential width-four packets.",
+        "Exact finite arithmetic and declared local congruence; no arbitrary-precision p-adic endpoint object."
+      ]
+    },
+    {
+      "key": "ix_dyadic_isometric_continuation",
+      "source_id": "paper_ix",
+      "section": "3.8",
+      "summary": "Isometric continuation and exact infinite image of four dyadic packets.",
+      "status": "theory_only",
+      "api": [
+        "komorebi_math.arithmetic.mahler.MahlerSeries"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Finite Mahler polynomials do not construct the complete infinite interpolation or certify its image."
+      ]
+    },
+    {
+      "key": "ix_polynomial_prime_correction",
+      "source_id": "paper_ix",
+      "section": "4.1, Theorem 4.2; 4.3, Theorem 4.7",
+      "summary": "Exact positive-depth prime-field polynomial Jacobian correction, obstruction, torsor, full kernel basis and residue-lift count.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
+        "komorebi_math.arithmetic.polynomial_lifting.PolynomialLiftFiber"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Integer coefficients; prime p; positive depth; finite next residue only.",
+        "General composite q statement is separately partial.",
+        "Enumeration requires max_count; count itself avoids enumeration."
+      ]
+    },
+    {
+      "key": "ix_polynomial_composite_correction",
+      "source_id": "paper_ix",
+      "section": "4.1-4.3, general composite residue-ring statements",
+      "summary": "General finite polynomial obstruction over composite residue rings.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.refinement.smith.SmithCongruenceProblem",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Smith solves supplied linear congruence systems; automatic polynomial Taylor/residual adapter is implemented only for prime fields.",
+        "Prime-field rank-nullity counts cannot be reused over composite q."
+      ]
+    },
+    {
+      "key": "ix_simultaneous_polynomial_correction",
+      "source_id": "paper_ix",
+      "section": "4.2, Corollary 4.6",
+      "summary": "Exact simultaneous correction by stacking polynomial equation lists.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.stack",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.lift_fiber"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Finite prime-field existence test; abstract common quotient labels and their universal property are not implemented.",
+        "Separate nonempty fibers can have empty intersection."
+      ]
+    },
+    {
+      "key": "ix_finite_polynomial_towers",
+      "source_id": "paper_ix",
+      "section": "4.4, Theorem 4.8 finite execution",
+      "summary": "Choose canonical free digits to construct compatible finite polynomial residue towers.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.finite_tower"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Explicit target_depth and max_steps; later singular obstruction raises.",
+        "Finite successful output does not imply an infinite singular path or arbitrary p-adic limit."
+      ]
+    },
+    {
+      "key": "ix_padic_limits_and_charts",
+      "source_id": "paper_ix",
+      "section": "4.4-4.5, Theorems 4.9 and 4.12",
+      "summary": "P-adic endpoint completion, root uniqueness, coefficient stability, and continuous local parameter charts.",
+      "status": "theory_only",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.finite_tower"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "No complete p-adic endpoint, topology, local homeomorphism or arbitrary p-adic coefficient type is supplied by finite residue towers."
+      ]
+    },
+    {
+      "key": "ix_prescribed_parameter_digits",
+      "source_id": "paper_ix",
+      "section": "4.6, Theorem 4.13 finite execution",
+      "summary": "Exact correction fiber after fixing selected next parameter digits, with solved-block rank and cokernel/count data.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem.lift_fiber"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Prime fields and a finite next level; fixed_digits refers to next base-p digits, not arbitrary endpoint parameters.",
+        "Full-Jacobian surjectivity does not make every prescribed solved-block fiber nonempty."
+      ]
+    },
+    {
+      "key": "ix_weighted_root_motion",
+      "source_id": "paper_ix",
+      "section": "4.7-4.8, Theorems 4.16, 4.18, 4.19",
+      "summary": "Weighted nonunit-Jacobian lifting and quantitative coefficient/parameter root motion.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No automatic exact inverse-Jacobian valuation certificate or normalized contraction compiler is yet implemented.",
+        "The strict r>2s/M>2s hypotheses must not be dropped."
+      ]
+    },
+    {
+      "key": "ix_analytic_root_graphs",
+      "source_id": "paper_ix",
+      "section": "5; Euler companion 11",
+      "summary": "Strict derivatives and analytic implicit root graphs.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Uses stated analytic inverse-function inputs and complete local fields; finite numerical nonlinear correction does not implement this theorem."
+      ]
+    },
+    {
+      "key": "ix_native_open_questions",
+      "source_id": "paper_ix",
+      "section": "6; Euler companion 12",
+      "summary": "Singular persistence, presentation invariance, finite compatibility completion and descent.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Retain open/conditional source status; one finite obstruction calculation is not a universal solution."
+      ]
+    },
+    {
+      "key": "ix_euler_mixed_prime_power_transfer",
+      "source_id": "paper_ix_euler",
+      "section": "4, Theorem 4.4 and Corollary 4.5",
+      "summary": "Exact rational signed prime-power mixed stencils and finite valuation controls.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.analytic.appell.congruential_inverse",
+        "komorebi_math.arithmetic.packet_differences.rational_mixed_difference",
+        "komorebi_math.arithmetic.packet_differences.certify_packet_difference"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Signed convention A(n)=(-1)^n*C(n) matters at odd primes; ordinary first difference is a unit in the zero address.",
+        "No compiled universal charged Hurwitz proof object."
+      ]
+    },
+    {
+      "key": "ix_euler_factorial_precision",
+      "source_id": "paper_ix_euler",
+      "section": "5-6, Theorems 5.1, 6.1 and 6.3",
+      "summary": "Finite exact checks of factorial gains, mixed cancellation class, homogeneous exact families, and address-two power orders.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.analytic.appell.congruential_inverse",
+        "komorebi_math.arithmetic.packet_differences.rational_mixed_difference",
+        "komorebi_math.arithmetic.packet_differences.certify_packet_difference"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Finite samples are bounded evidence.",
+        "Cancellation class can gain more than one bit; no complete deeper-valuation law asserted there.",
+        "Source ordinary proofs do not become new Lean certificates through Python tests."
+      ]
+    },
+    {
+      "key": "ix_euler_all_rank_and_radii",
+      "source_id": "paper_ix_euler",
+      "section": "7-8 and Appendix A",
+      "summary": "All-rank first-difference families, exact dyadic images, Taylor radii, and the remaining ordinary Euler-tail simplicity problem.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.analytic.appell.congruential_inverse",
+        "komorebi_math.arithmetic.mahler.MahlerSeries"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Upper-half counterexamples at (16,9),(32,18),(32,19) retained.",
+        "Infinite exact radii and tail discriminant/simplicity results are source mathematics; finite coefficient tools do not prove them."
+      ]
+    },
+    {
+      "key": "x_lift_forests",
+      "source_id": "paper_x",
+      "section": "2-3, 8; Appendix A.1 and A.3",
+      "summary": "Finite residual partition, lift branches, finite stable cores and companion forests tied to a supplied spine.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.forests.FiniteLiftForest",
+        "komorebi_math.deformation.forests.residue_forest",
+        "komorebi_math.deformation.companions.CompanionForest",
+        "komorebi_math.deformation.companions.FrobeniusSpine"
+      ],
+      "tests": [
+        "tests/test_deformation_forests_visibility_counting.py"
+      ],
+      "boundaries": [
+        "Only supplied finite levels are represented; neither infinite nonemptiness nor missing residual companions are created."
+      ]
+    },
+    {
+      "key": "x_cohomology_packets",
+      "source_id": "paper_x",
+      "section": "4; Appendix A.4",
+      "summary": "Exact finite cochain identities, cohomology dimensions and compatible projector decomposition over prime fields.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.complexes.FiniteCochainComplex",
+        "komorebi_math.deformation.complexes.row_rank_mod"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Supplied finite complexes/projectors; not arbitrary Galois cohomology or integral dyadic Maurer-Cartan equations."
+      ]
+    },
+    {
+      "key": "x_dyadic_visibility",
+      "source_id": "paper_x",
+      "section": "5",
+      "summary": "Exact rational visibility depths and finite cluster refinement.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.visibility.VisibilityTree"
+      ],
+      "tests": [
+        "tests/test_deformation_forests_visibility_counting.py"
+      ],
+      "boundaries": [
+        "Finite exact rational coordinates; arbitrary local-field packet realizations are not inferred."
+      ]
+    },
+    {
+      "key": "x_counting_zeta",
+      "source_id": "paper_x",
+      "section": "3.4, 5.3, 6",
+      "summary": "Smooth, weighted and singular finite-chart counts and rational counting series.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.counting.smooth_chart_count",
+        "komorebi_math.deformation.counting.weighted_chart_count",
+        "komorebi_math.deformation.counting.nilpotent_chart_count",
+        "komorebi_math.deformation.counting.normal_crossing_count",
+        "komorebi_math.deformation.counting.RationalCountingSeries"
+      ],
+      "tests": [
+        "tests/test_deformation_forests_visibility_counting.py"
+      ],
+      "boundaries": [
+        "Declared chart models; counting exponent need not equal dimension/cardinality of infinite compatible branches."
+      ]
+    },
+    {
+      "key": "x_directed_seed_rank",
+      "source_id": "paper_x",
+      "section": "7; Appendix A.2",
+      "summary": "Finite support transport condensation and minimum source-component seeds.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.core.graphs.SupportPreorder"
+      ],
+      "tests": [
+        "tests/test_graphs.py"
+      ],
+      "boundaries": [
+        "Finite directed graphs; admissibility and arithmetic occupancy propagation on edges are inputs."
+      ]
+    },
+    {
+      "key": "x_frobenius_separation_carrier",
+      "source_id": "paper_x",
+      "section": "9",
+      "summary": "Exact finite trace-table rank selection, multiplicity recovery and supplied compatible-carrier capacity selection.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.companions.finite_frobenius_separator",
+        "komorebi_math.deformation.companions.CompatibleCarrier"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "No automatic arithmetic Chebotarev coverage or universal carrier construction; only supplied separating trace tables."
+      ]
+    },
+    {
+      "key": "x_finite_occupancy",
+      "source_id": "paper_x",
+      "section": "10; Appendix A.5",
+      "summary": "Supplied finite projector occupancy and numerical finite column-space intersection.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.support.nested_subspace_occupancy",
+        "komorebi_math.langlands.global_.hecke.FiniteHeckePackets"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py",
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Column-space method repaired from unpivoted QR to SVD.",
+        "stabilized_at applies only to the final constant run of the supplied prefix; no future-level stability implied.",
+        "FiniteHeckePackets is numerical and caller-projector driven; exact joint projector construction is a broader primitive."
+      ]
+    },
+    {
+      "key": "x_system_completion",
+      "source_id": "paper_x",
+      "section": "8,11; Appendix D",
+      "summary": "Conditional occupied-system completion and separation of residual, higher-depth and global occupancy inputs.",
+      "status": "theory_only",
+      "api": [
+        "komorebi_math.deformation.companions.FrobeniusSpine",
+        "komorebi_math.deformation.companions.CompanionForest"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Universal companions, local-closure hypotheses and global occupancy remain actual mathematical/external inputs; finite forest data do not supply them."
+      ]
+    },
+    {
+      "key": "x_number_field_counting",
+      "source_id": "paper_x",
+      "section": "Appendix C",
+      "summary": "Actual ideal residue lattice discrepancy and norm-character cancellation attachments.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No generic number-field ideal/lattice counting engine in the Python library; retain exact arithmetic witness/external hypotheses from the source."
+      ]
+    },
+    {
+      "key": "xi_monodromy_convention",
+      "source_id": "paper_xi",
+      "section": "2, especially Proposition 2.4",
+      "summary": "Numerical finite monodromy chain and nilpotence checks.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.local.tame.SpecialMonodromyBlock"
+      ],
+      "tests": [
+        "tests/test_langlands_local_fields_tame_gauss.py"
+      ],
+      "boundaries": [
+        "Latest source uses geometric Frobenius diag(1,q,...), conjugacy scale q^-1.",
+        "Existing q argument denotes a general conjugacy scale; pass inverse residue cardinality to match the source.",
+        "Exact convention-aware rational constructor is not yet supplied."
+      ]
+    },
+    {
+      "key": "xi_tame_orbits",
+      "source_id": "paper_xi",
+      "section": "3 and 4.4",
+      "summary": "Exact tame exponent orbits, regular counts, dual orbit data and numerical Frobenius cycle matrices.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.local.tame.FrobeniusOrbit",
+        "komorebi_math.langlands.local.tame.regular_orbit_count",
+        "komorebi_math.langlands.local.tame.TameWeilPacket"
+      ],
+      "tests": [
+        "tests/test_langlands_local_fields_tame_gauss.py"
+      ],
+      "boundaries": [
+        "Orbit combinatorics exact; matrix roots numerical and existing conjugacy matrix uses inverse Frobenius convention.",
+        "Actual local-field induction/type assignment not constructed."
+      ]
+    },
+    {
+      "key": "xi_cuspidal_projectors",
+      "source_id": "paper_xi",
+      "section": "4",
+      "summary": "Finite-field cuspidal primitive central projectors and depth-zero reconstruction.",
+      "status": "external",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Deligne-Lusztig cuspidal character construction, GL_n finite group/type pipeline and compact induction are not implemented.",
+        "Generic finite group data are not a substitute for these supplied arithmetic/representation inputs."
+      ]
+    },
+    {
+      "key": "xi_tame_tensor_actual_exponents",
+      "source_id": "paper_xi",
+      "section": "5.1-5.3, Propositions 5.3-5.8",
+      "summary": "Exact norm-lift character exponents, actual simultaneous-translation cycle pairs, rational closing scalars, local polynomials, fixed dimensions and tame Artin conductor.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.langlands.local.tame_tensor.ExactTameTensorPacket",
+        "komorebi_math.langlands.local.tame_tensor.ExactTameTensorRefinement",
+        "komorebi_math.langlands.local.tame_tensor.tame_tensor_character_packets"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Common prime-power q; regular input orbits; exact nonzero rational closing scalars; explicit dimension/modulus-bit/cardinality caps.",
+        "Interaction packets can be reducible and are not asserted irreducible.",
+        "Forward orbit cycle closing convention is explicit; actual arithmetic attachment and normalized wild pair factors remain separate.",
+        "Independent tensor permutation determinants/ranks and edge-product controls cover q=2,3,4 and all degree pairs1..4."
+      ]
+    },
+    {
+      "key": "xi_fields_gauss",
+      "source_id": "paper_xi",
+      "section": "6",
+      "summary": "Exact finite field arithmetic and numerical finite Gauss sums/phases.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.langlands.local.finite_fields.FiniteField",
+        "komorebi_math.langlands.local.finite_fields.is_irreducible_polynomial",
+        "komorebi_math.langlands.local.gauss.gauss_sum"
+      ],
+      "tests": [
+        "tests/test_langlands_local_fields_tame_gauss.py"
+      ],
+      "boundaries": [
+        "Fields exact; complex Gauss phases numerical.",
+        "Full wild epsilon factors and Hasse-Davenport normalization not automatically certified."
+      ]
+    },
+    {
+      "key": "xi_heisenberg_forms",
+      "source_id": "paper_xi",
+      "section": "7-8",
+      "summary": "Finite Heisenberg model, central commutator data, alternating form/radical and projective intertwiner envelope.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.langlands.local.heisenberg.HeisenbergModel",
+        "komorebi_math.langlands.local.symplectic.AlternatingForm",
+        "komorebi_math.langlands.local.envelopes.ProjectiveIntertwinerEnvelope"
+      ],
+      "tests": [
+        "tests/test_langlands_local_heisenberg_symplectic.py"
+      ],
+      "boundaries": [
+        "Declared finite algebraic data; matrix phase recovery uses numerical tolerances, not construction of an arbitrary wild arithmetic envelope."
+      ]
+    },
+    {
+      "key": "xi_restricted_bridge",
+      "source_id": "paper_xi",
+      "section": "9-11",
+      "summary": "Restricted finite Galois/type symplectic bridge after a declared identification.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.local.bridge.SymplecticBridge",
+        "komorebi_math.langlands.local.bridge.LocalPacketBridge"
+      ],
+      "tests": [
+        "tests/test_langlands_local_heisenberg_symplectic.py"
+      ],
+      "boundaries": [
+        "Finite checks require supplied symplectic/type data and phase normalization; no automatic local-field/type extraction."
+      ]
+    },
+    {
+      "key": "xi_odd_dyadic_phases",
+      "source_id": "paper_xi",
+      "section": "12-13",
+      "summary": "Declared phase envelopes and exact dyadic quadratic refinements/Arf data.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.local.symplectic.QuadraticRefinement",
+        "komorebi_math.langlands.ramification.towers.ProjectiveMultiplicityPacket"
+      ],
+      "tests": [
+        "tests/test_langlands_local_heisenberg_symplectic.py"
+      ],
+      "boundaries": [
+        "Alternating form alone does not determine dyadic phase; quadratic refinement required.",
+        "No complete canonical beta-extension normalization or odd finite Weil-representation constructor."
+      ]
+    },
+    {
+      "key": "xi_holonomy_assembly",
+      "source_id": "paper_xi",
+      "section": "14-15",
+      "summary": "Finite matrix transport, holonomy and declared ramification stage assembly.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.holonomy.TransportGraph",
+        "komorebi_math.langlands.ramification.towers.RamificationCliffordTower"
+      ],
+      "tests": [
+        "tests/test_holonomy.py",
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "Generic finite gluing is executable; actual ramification groups, increasing breaks and arithmetic attachment are supplied.",
+        "Integer break labels and numerical matrix transport do not construct arbitrary actual local fields."
+      ]
+    },
+    {
+      "key": "xi_realization_boundary",
+      "source_id": "paper_xi",
+      "section": "16,19; Conjecture 66; Appendices A-O",
+      "summary": "Restricted odd/dyadic arithmetic synthesis and enlarged carrier constructions; remaining general realization and pair-factor comparison.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Actual Artin-Schreier fields, arithmetic inducing characters, finite-cover descent, enlarged rank-two/rank-four carriers and exact recovery contracts are not generic Python constructors.",
+        "Retain Conjecture 66 and complete pair local-factor comparison as open/conditional.",
+        "Do not promote finite envelope or phase checks to a proof of general correspondence."
+      ]
+    },
+    {
+      "key": "xii_local_quotients",
+      "source_id": "paper_xii",
+      "section": "2-3",
+      "summary": "Completed tensor quotient local-condition construction and continuous point factorization.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No general completed Noetherian ring/tensor/topological quotient representation in Python.",
+        "Actual representability remains external."
+      ]
+    },
+    {
+      "key": "xii_adequacy",
+      "source_id": "paper_xii",
+      "section": "4",
+      "summary": "Adequacy and the stated S3 over F7 certificate.",
+      "status": "external",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.symmetric_group",
+        "komorebi_math.deformation.complexes.FiniteCochainComplex"
+      ],
+      "tests": [],
+      "boundaries": [
+        "Generic finite groups/complexes do not automatically compute group cohomology/adequacy for arbitrary residual images.",
+        "Actual automorphy-lifting image hypotheses are external."
+      ]
+    },
+    {
+      "key": "xii_augmentation",
+      "source_id": "paper_xii",
+      "section": "5,11",
+      "summary": "General p-group augmentation/coinvariant structure and coefficient-two residual sign example.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.global_.dyadic.dyadic_sign_diagnostic"
+      ],
+      "tests": [
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "Only the C2 over F2 diagnostic is directly implemented; general finite group algebra transfer/truncated augmentation/Iwasawa limit absent.",
+        "No dyadic adequacy or classicality theorem supplied."
+      ]
+    },
+    {
+      "key": "xii_fitting_fibers",
+      "source_id": "paper_xii",
+      "section": "6.2-6.5,7.4",
+      "summary": "Finite presentation minors, higher Fitting generators, evaluated fibers and point support test.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.support.PresentedModule",
+        "komorebi_math.deformation.support.FittingGenerators"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Supplied finite presentation and exact evaluated points; generic prime-spectrum, nilradical and completed support descent are broader than this implementation."
+      ]
+    },
+    {
+      "key": "xii_patching_support",
+      "source_id": "paper_xii",
+      "section": "6.7-6.19,7",
+      "summary": "Near-faithfulness, ordinary/derived quotient support and ring comparison transport.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.global_.patching.PatchingSupportReport",
+        "komorebi_math.langlands.global_.hecke.SupportComparison"
+      ],
+      "tests": [
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "Existing reports check supplied booleans/component label sets. They do not construct patched modules, support schemes, tensor quotient rings or derived control maps.",
+        "Do not label finite set comparison as a complete scheme-theoretic implementation."
+      ]
+    },
+    {
+      "key": "xii_artin_hecke_packets",
+      "source_id": "paper_xii",
+      "section": "8.1-8.4",
+      "summary": "Supplied finite Hecke idempotents and numerical centrality/rank checks.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.global_.hecke.FiniteHeckePackets",
+        "komorebi_math.langlands.global_.hecke.HeckePacket"
+      ],
+      "tests": [
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "No general canonical multivariate Artin-local decomposition from commuting operators; caller supplies projectors.",
+        "Nonsemisimple packets are broader than semisimple eigenvector selection.",
+        "Positive-characteristic trace can vanish on a nonzero packet."
+      ]
+    },
+    {
+      "key": "xii_finite_and_changing_occupancy",
+      "source_id": "paper_xii",
+      "section": "8.7-8.12",
+      "summary": "Finite numerical intersections and supplied finite set stable cores.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.support.nested_subspace_occupancy",
+        "komorebi_math.deformation.forests.FiniteLiftForest"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "Numerical prefix stabilization repaired; no unseen-level guarantee.",
+        "Changing vector-space carrier stable-core linear system is not yet a named generic API."
+      ]
+    },
+    {
+      "key": "xii_companions",
+      "source_id": "paper_xii",
+      "section": "10.2-10.5",
+      "summary": "Finite supplied companion forests and empty-level diagnostics.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.companions.CompanionForest",
+        "komorebi_math.deformation.forests.FiniteLiftForest"
+      ],
+      "tests": [
+        "tests/test_deformation_forests_visibility_counting.py"
+      ],
+      "boundaries": [
+        "Compatible conjugacy representatives, continuity, integral Frobenius spine reconstruction and arbitrary polynomial quotient survival remain source-theorem constructions.",
+        "No missing arithmetic companion produced."
+      ]
+    },
+    {
+      "key": "xii_frobenius_separator",
+      "source_id": "paper_xii",
+      "section": "10.9",
+      "summary": "Exact rank-based finite Frobenius trace separator.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.deformation.companions.finite_frobenius_separator"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Requires supplied trace table; no Chebotarev sampling oracle or infinite density evidence."
+      ]
+    },
+    {
+      "key": "xii_pointwise_and_system_completion",
+      "source_id": "paper_xii",
+      "section": "9,10.7,12",
+      "summary": "Explicit conditional five-gate and one-member propagation reports.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.completion.gates.AutomorphicCompletionReport",
+        "komorebi_math.langlands.completion.gates.CompatiblePropagationReport",
+        "komorebi_math.langlands.completion.gates.CompletionGate",
+        "komorebi_math.langlands.completion.gates.GateStatus"
+      ],
+      "tests": [
+        "tests/test_langlands_ramification_global_completion.py"
+      ],
+      "boundaries": [
+        "Caller-supplied truth values retain external assumptions; they do not verify automorphy lifting, classicality, actual nonzero fibers, attached representations or Brauer-Nesbitt/Chebotarev.",
+        "Propagation assumes the compatible systems already exist; Conjecture XI66 is not closed."
+      ]
+    }
+  ],
+  "audit": {
+    "pdf_extraction": "all pages extracted; statements/constructions inventoried; selected executable proofs examined",
+    "not_claimed": [
+      "independent proof audit of every appendix",
+      "new Lean compilation",
+      "all paper mathematics implemented",
+      "universal validity from bounded tests"
+    ],
+    "new_modules": [
+      "src/komorebi_math/arithmetic/polynomial_lifting.py",
+      "src/komorebi_math/arithmetic/packet_differences.py",
+      "src/komorebi_math/langlands/local/tame_tensor.py"
+    ],
+    "repair": "src/komorebi_math/deformation/support.py"
+  },
+  "validation": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_paper_late_machinery.py tests/test_deformation*.py tests/test_arithmetic*.py tests/test_analytic*.py tests/test_langlands*.py",
+    "result": "131 passed",
+    "seconds": 6.51
+  }
+}

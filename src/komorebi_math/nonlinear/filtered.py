@@ -1,6 +1,7 @@
 """Finite filtered obstructions, lift completion, and spectral-sequence records.
 
-The executable layer works over explicit prime fields.  Infinite inverse-limit
+The executable layer works over explicit prime fields, storing Python integers
+in object arrays so every product is exact before modular reduction.  Infinite inverse-limit
 completion remains conditional and is represented by :class:`ConditionalResult`
 with all completeness and continuity assumptions visible.
 """
@@ -24,7 +25,7 @@ def _mod_matrix(value: Any, prime: int, *, name: str = "matrix") -> np.ndarray:
     array = np.asarray(value, dtype=object)
     if array.ndim != 2:
         raise DimensionError(f"{name} must be two dimensional")
-    output = np.empty(array.shape, dtype=int)
+    output = np.empty(array.shape, dtype=object)
     for index, entry in np.ndenumerate(array):
         integer = int(entry)
         if integer != entry:
@@ -39,7 +40,7 @@ def _mod_vector(value: Any, prime: int, dimension: int, *, name: str = "vector")
         array = array.reshape(-1)
     if array.ndim != 1 or array.shape[0] != dimension:
         raise DimensionError(f"{name} must have dimension {dimension}")
-    output = np.empty(array.shape, dtype=int)
+    output = np.empty(array.shape, dtype=object)
     for index, entry in np.ndenumerate(array):
         integer = int(entry)
         if integer != entry:
@@ -49,7 +50,9 @@ def _mod_vector(value: Any, prime: int, dimension: int, *, name: str = "vector")
 
 
 def _rref(matrix: np.ndarray, prime: int) -> tuple[np.ndarray, tuple[int, ...]]:
-    value = np.asarray(matrix, dtype=int).copy() % prime
+    # Native integer arrays overflow before the modular reduction. Keep the
+    # row operations in Python integers even when the prime fits in int64.
+    value = _mod_matrix(matrix, prime).copy()
     rows, columns = value.shape
     pivots: list[int] = []
     row = 0
@@ -79,22 +82,22 @@ def _rank(matrix: np.ndarray, prime: int) -> int:
 
 
 def _column_basis(matrix: np.ndarray, prime: int) -> np.ndarray:
-    value = np.asarray(matrix, dtype=int) % prime
+    value = np.asarray(matrix, dtype=object) % prime
     rows, columns = value.shape
     if columns == 0:
-        return np.zeros((rows, 0), dtype=int)
+        return np.zeros((rows, 0), dtype=object)
     _, pivots = _rref(value, prime)
-    return value[:, pivots] if pivots else np.zeros((rows, 0), dtype=int)
+    return value[:, pivots] if pivots else np.zeros((rows, 0), dtype=object)
 
 
 def _nullspace(matrix: np.ndarray, prime: int) -> np.ndarray:
-    value = np.asarray(matrix, dtype=int) % prime
+    value = np.asarray(matrix, dtype=object) % prime
     rows, columns = value.shape
     reduced, pivots = _rref(value, prime)
     free = [column for column in range(columns) if column not in pivots]
     if not free:
-        return np.zeros((columns, 0), dtype=int)
-    basis = np.zeros((columns, len(free)), dtype=int)
+        return np.zeros((columns, 0), dtype=object)
+    basis = np.zeros((columns, len(free)), dtype=object)
     for basis_index, free_column in enumerate(free):
         basis[free_column, basis_index] = 1
         for row, pivot_column in enumerate(pivots):
@@ -103,12 +106,12 @@ def _nullspace(matrix: np.ndarray, prime: int) -> np.ndarray:
 
 
 def _span(*bases: np.ndarray, prime: int, ambient_dimension: int | None = None) -> np.ndarray:
-    nonempty = [np.asarray(basis, dtype=int) for basis in bases if basis.shape[1] > 0]
+    nonempty = [np.asarray(basis, dtype=object) for basis in bases if basis.shape[1] > 0]
     if nonempty:
         return _column_basis(np.column_stack(nonempty), prime)
     if ambient_dimension is None:
         ambient_dimension = bases[0].shape[0] if bases else 0
-    return np.zeros((ambient_dimension, 0), dtype=int)
+    return np.zeros((ambient_dimension, 0), dtype=object)
 
 
 def _is_subspace(child: np.ndarray, parent: np.ndarray, prime: int) -> bool:
@@ -119,7 +122,7 @@ def _coordinates(basis: np.ndarray, vector: np.ndarray, prime: int) -> np.ndarra
     solution = solve_mod_prime(basis, vector, prime)
     if not solution.solvable or solution.particular is None:
         raise ValidationError("vector does not lie in the declared subspace")
-    return np.asarray(solution.particular, dtype=int) % prime
+    return np.asarray(solution.particular, dtype=object) % prime
 
 
 def _intersection(left: np.ndarray, right: np.ndarray, prime: int) -> np.ndarray:
@@ -127,18 +130,18 @@ def _intersection(left: np.ndarray, right: np.ndarray, prime: int) -> np.ndarray
     if right.shape[0] != ambient:
         raise DimensionError("subspace ambient dimensions do not match")
     if left.shape[1] == 0 or right.shape[1] == 0:
-        return np.zeros((ambient, 0), dtype=int)
+        return np.zeros((ambient, 0), dtype=object)
     system = np.column_stack((left, (-right) % prime)) % prime
     null = _nullspace(system, prime)
     if null.shape[1] == 0:
-        return np.zeros((ambient, 0), dtype=int)
+        return np.zeros((ambient, 0), dtype=object)
     left_coefficients = null[: left.shape[1], :]
     return _column_basis((left @ left_coefficients) % prime, prime)
 
 
 def _image(matrix: np.ndarray, subspace: np.ndarray, prime: int) -> np.ndarray:
     if subspace.shape[1] == 0:
-        return np.zeros((matrix.shape[0], 0), dtype=int)
+        return np.zeros((matrix.shape[0], 0), dtype=object)
     return _column_basis((matrix @ subspace) % prime, prime)
 
 
@@ -150,11 +153,11 @@ def _preimage_within(
 ) -> np.ndarray:
     ambient_source = source_subspace.shape[0]
     if source_subspace.shape[1] == 0:
-        return np.zeros((ambient_source, 0), dtype=int)
+        return np.zeros((ambient_source, 0), dtype=object)
     system = np.column_stack(((matrix @ source_subspace) % prime, (-target_subspace) % prime))
     null = _nullspace(system, prime)
     if null.shape[1] == 0:
-        return np.zeros((ambient_source, 0), dtype=int)
+        return np.zeros((ambient_source, 0), dtype=object)
     coefficients = null[: source_subspace.shape[1], :]
     return _column_basis((source_subspace @ coefficients) % prime, prime)
 
@@ -172,7 +175,7 @@ def _quotient_complement(space: np.ndarray, subspace: np.ndarray, prime: int) ->
             additions.append(column)
             current = candidate
             current_rank += 1
-    return _column_basis(np.column_stack(additions), prime) if additions else np.zeros((space.shape[0], 0), dtype=int)
+    return _column_basis(np.column_stack(additions), prime) if additions else np.zeros((space.shape[0], 0), dtype=object)
 
 
 @documented(
@@ -235,11 +238,11 @@ class FilteredVectorSpace:
         levels: dict[int, np.ndarray] = {}
         for depth in range(terminal + 1):
             columns = [
-                np.eye(dimension, dtype=int)[:, index]
+                np.eye(dimension, dtype=object)[:, index]
                 for index, weight in enumerate(normalized)
                 if weight >= depth
             ]
-            levels[depth] = np.column_stack(columns) if columns else np.zeros((dimension, 0), dtype=int)
+            levels[depth] = np.column_stack(columns) if columns else np.zeros((dimension, 0), dtype=object)
         return cls(dimension, levels, prime=prime)
 
     def basis(self, depth: int) -> np.ndarray:
@@ -247,7 +250,7 @@ class FilteredVectorSpace:
         if p <= 0:
             return self.levels[0].copy()
         if p >= self.terminal_depth:
-            return np.zeros((self.dimension, 0), dtype=int)
+            return np.zeros((self.dimension, 0), dtype=object)
         return self.levels[p].copy()
 
     def dimension_at(self, depth: int) -> int:
@@ -260,7 +263,7 @@ class FilteredVectorSpace:
     def graded_basis(self, depth: int) -> np.ndarray:
         p = int(depth)
         if p < 0 or p >= self.terminal_depth:
-            return np.zeros((self.dimension, 0), dtype=int)
+            return np.zeros((self.dimension, 0), dtype=object)
         return _quotient_complement(self.basis(p), self.basis(p + 1), self.prime)
 
     def graded_dimension(self, depth: int) -> int:
@@ -369,7 +372,7 @@ class FilteredCorrectionProblem:
             image = (self.correction_map @ source_basis[:, index]) % self.prime
             coordinates = _coordinates(combined, image, self.prime)
             columns.append(coordinates[: target_basis.shape[1]])
-        return np.column_stack(columns) if columns else np.zeros((target_basis.shape[1], 0), dtype=int)
+        return np.column_stack(columns) if columns else np.zeros((target_basis.shape[1], 0), dtype=object)
 
     def solve(self, *, enumerate_limit: int = 100_000) -> DepthObstructionResult:
         if not self.target.contains(self.defect, self.depth):
@@ -384,7 +387,7 @@ class FilteredCorrectionProblem:
         )
         valid = True
         for representative in representatives:
-            corrected = (self.defect + self.correction_map @ np.asarray(representative, dtype=int)) % self.prime
+            corrected = (self.defect + self.correction_map @ np.asarray(representative, dtype=object)) % self.prime
             if not self.target.contains(corrected, self.depth + 1):
                 valid = False
                 break
@@ -460,8 +463,8 @@ def verify_finite_filtered_branch(
         if not target.contains(defect, depth):
             defect_failures += 1
         if offset:
-            previous = np.asarray(points[offset - 1], dtype=int)
-            difference = (np.asarray(point, dtype=int) - previous) % source.prime
+            previous = np.asarray(points[offset - 1], dtype=object)
+            difference = (np.asarray(point, dtype=object) - previous) % source.prime
             if not source.contains(difference, depth - 1):
                 compatibility_failures += 1
     limit = points[-1]
@@ -667,12 +670,12 @@ class FiniteFilteredCochainComplex:
     def differential(self, degree: int) -> np.ndarray:
         source = self.dimensions.get(int(degree), 0)
         target = self.dimensions.get(int(degree) + 1, 0)
-        return self.differentials.get(int(degree), np.zeros((target, source), dtype=int)).copy()
+        return self.differentials.get(int(degree), np.zeros((target, source), dtype=object)).copy()
 
     def _f(self, degree: int, filtration_degree: int) -> np.ndarray:
         dimension = self.dimensions.get(degree, 0)
         if degree not in self.filtrations:
-            return np.zeros((dimension, 0), dtype=int)
+            return np.zeros((dimension, 0), dtype=object)
         return self.filtrations[degree].basis(filtration_degree)
 
     def _z(self, page: int, filtration_degree: int, total_degree: int) -> np.ndarray:
