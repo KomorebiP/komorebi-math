@@ -34,10 +34,16 @@ def main(argv: list[str] | None = None) -> int:
     try:
         checks = builtin_checks(suites=args.suite, samples=args.samples)
         if args.papers:
+            from .continuation_checks import continuation_checks
             from .paper_suites import paper_checks
             from .special_function_checks import special_function_checks
 
-            checks = (*checks, *paper_checks(args.samples), *special_function_checks(args.samples))
+            checks = (
+                *checks,
+                *paper_checks(args.samples),
+                *special_function_checks(args.samples),
+                *continuation_checks(args.samples),
+            )
         report = run_stress(
             checks, seed=args.seed, timeout_seconds=args.timeout, total_timeout_seconds=args.total_timeout
         )

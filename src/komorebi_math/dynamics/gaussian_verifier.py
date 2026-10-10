@@ -65,7 +65,9 @@ def _rational(value: Any, name: str, budget: GaussianBudget) -> Fraction:
         raise ValidationError(
             f"{name} must be an exact rational; floats, strings and symbols are not promoted"
         )
-    return _check(Fraction(value), budget)
+    # Fraction(value) can retain fixed-width Integral numerator/denominator
+    # components. Own them before bit checks or exact matrix arithmetic.
+    return _check(Fraction(int(value.numerator), int(value.denominator)), budget)
 
 
 def _shape_guard(

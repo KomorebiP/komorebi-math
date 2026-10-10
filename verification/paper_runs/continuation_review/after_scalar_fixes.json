@@ -1,0 +1,110 @@
+{
+  "checks": {
+    "avoc_decisions": {
+      "exhaustive_markov_policies": 64,
+      "horizon": 3,
+      "nan_label_defect_rejected": true,
+      "oracle": "complete policies, frozen quote endpoint Q/value/regret checks and complete channel policies",
+      "quote_endpoint_realizations": 64,
+      "quote_graph_states": 18,
+      "quote_horizons": [
+        0,
+        4
+      ],
+      "states": 2,
+      "status": "passed"
+    },
+    "boolean_synthesis": {
+      "maximum_attained_node_cost": 10,
+      "oracle": "node-cost indexed DP on ordinary eight-Boolean tuples",
+      "status": "passed",
+      "truth_signatures": 256
+    },
+    "lehmer_shells": {
+      "independent_five_coordinate_indices": [
+        1,
+        12
+      ],
+      "indices": [
+        1,
+        30
+      ],
+      "infinite_constructor_input_rejected": true,
+      "oracle": "logarithmic derivative tau recurrence and full five-coordinate product",
+      "status": "passed"
+    },
+    "residual_modules": {
+      "alphabet_size": 2,
+      "cases": 18,
+      "oracle": "additive closure and independently closed dual output functionals",
+      "prime_exponent_dimension": [
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          2,
+          3,
+          1
+        ]
+      ],
+      "status": "passed",
+      "word_length": 5
+    },
+    "tikhonov": {
+      "forged_measurement_operator_source_coercivity_controls": true,
+      "independent_diagonal_cases": 12,
+      "nonorthogonal_rank_deficient_case": true,
+      "oracle": "closed-form scalar inverses, exact radical roots and all principal minors in dimensions at most two",
+      "rational_and_irrational_root_controls": true,
+      "sensitivity_cases": 2,
+      "status": "passed",
+      "whole_map_principal_minor_cases": 5
+    }
+  },
+  "defect_corrections_rechecked": [
+    "AVOC-reflexive-label-total-decoder",
+    "Lehmer-finite-shell-input-ownership"
+  ],
+  "inputs_unchanged": true,
+  "nonclaims": [
+    "universal nonvanishing of tau",
+    "correctness of arbitrary infinite-dimensional instances",
+    "truth of supplied data-noise allowances",
+    "exact robust minimax planning",
+    "optional backend or cross-platform qualification"
+  ],
+  "reviewed_input_sha256_after": {
+    "src/komorebi_math/algorithms/boolean_synthesis.py": "bb59973fc2b48ee20b341f59516fbe5b6cbd3ceefa3d766dc7b45d507cb706cc",
+    "src/komorebi_math/arithmetic/lehmer_shells.py": "ecd40d0446b4d9138f4a232fbf7d6641a14cb02f494047b601012c915feab852",
+    "src/komorebi_math/decision/avoc.py": "d516e61e8b1192f72e1fe76fbaaabbc087602ca509b6c6aef88a1ff5ab463220",
+    "src/komorebi_math/generating/residual_modules.py": "d9a8ac7570c4d1957b7388fa922a0b9d6a21bbd15beb0d87dcc8aba62477bad6",
+    "src/komorebi_math/signals/tikhonov.py": "9e304d78cae3a1a2974287fc4823baa1948325d5f6af67c32b64b730f7ea5c28",
+    "verification/check_paper_continuation_review.py": "064735ee71411237d722750275a53e24f467f3b4e5e7f5a532948a47fc757e89"
+  },
+  "reviewed_input_sha256_before": {
+    "src/komorebi_math/algorithms/boolean_synthesis.py": "bb59973fc2b48ee20b341f59516fbe5b6cbd3ceefa3d766dc7b45d507cb706cc",
+    "src/komorebi_math/arithmetic/lehmer_shells.py": "ecd40d0446b4d9138f4a232fbf7d6641a14cb02f494047b601012c915feab852",
+    "src/komorebi_math/decision/avoc.py": "d516e61e8b1192f72e1fe76fbaaabbc087602ca509b6c6aef88a1ff5ab463220",
+    "src/komorebi_math/generating/residual_modules.py": "d9a8ac7570c4d1957b7388fa922a0b9d6a21bbd15beb0d87dcc8aba62477bad6",
+    "src/komorebi_math/signals/tikhonov.py": "9e304d78cae3a1a2974287fc4823baa1948325d5f6af67c32b64b730f7ea5c28",
+    "verification/check_paper_continuation_review.py": "064735ee71411237d722750275a53e24f467f3b4e5e7f5a532948a47fc757e89"
+  },
+  "schema": "komorebi-independent-continuation-review/v1",
+  "seed": 68309,
+  "source_contract_notes": [
+    "SR-47 small-data zero acceptance does not establish the separate true-noise or range-feasibility premise"
+  ],
+  "status": "passed",
+  "versions": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "sympy": "1.14.0"
+  }
+}

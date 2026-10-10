@@ -1,0 +1,163 @@
+{
+  "ci_corrections": "verification/PAPER_MACHINERY_CI_CORRECTIONS.json",
+  "corrected_failures": [
+    "Fresh review found nonreflexive AVOC labels that declared sufficiency but failed decoding; accepted labels now require consistent reflexive scalar equality.",
+    "A direct shell constructor could consume an unbounded iterator; it now requires and bounds a finite sequence before copying.",
+    "Fixed-width NumPy components inside exact inputs caused overflow, zero products, bit_length failures and allocation-cap bypasses; accepted arithmetic inputs now own Python integer components.",
+    "Previous PR CI failed Windows mode/path assumptions, a stale manual example count, numeric stress-count parsing and a worker teardown race. Local regression tests cover the corrections; original campaign deadlines remain unchanged.",
+    "Seven first manual example replays failed because SymPy/mpmath had disappeared from the interpreter. Restoring declared dependencies yielded 64 passing examples, repeated on final guide bytes.",
+    "The existing Ruff0.17.0 process segfaulted even on --version; Ruff0.15.6 was installed and completed lint checks.",
+    "The cached special-functions source archive was truncated. The original archive was recovered and its recorded SHA256 and ZIP CRC verified before coverage validation. Expected hashes were preserved.",
+    "An initial recovery-helper invocation lacked its companion module; fetching the current companion allowed recovery to complete."
+  ],
+  "coverage": {
+    "all_catalogued_mechanisms_implemented": false,
+    "canonical_catalog_sha256": "92868eeda040165935089c5c110d55a33fbf09c316e0b5462c12fa430d700ea6",
+    "checked_api_references": 705,
+    "digest_convention": "Canonical catalog digest uses sorted keys and compact JSON; raw digest hashes the indented file bytes.",
+    "installed_checks_original_source_bytes": false,
+    "local_original_source_bytes_checked": true,
+    "mechanism_count": 528,
+    "raw_catalog_file_sha256": "bf64b0c8e05c88e246a724053b0db6f120a5c6b856bdee398459c2fb159080f9",
+    "source_count": 55,
+    "status_counts": {
+      "external": 70,
+      "implemented": 169,
+      "missing": 22,
+      "partial": 181,
+      "separate_reference": 21,
+      "theory_only": 65
+    }
+  },
+  "docs": {
+    "manual_examples_passed": 64,
+    "manual_report": "verification/paper_runs/continuation_docs/manual.json",
+    "math_expressions": 467,
+    "math_pages": 36,
+    "math_report": "verification/paper_runs/continuation_docs/math.json",
+    "strict_mkdocs_passed": true,
+    "worked_example_passed": true
+  },
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "scientific_dependencies": {
+      "Python": "3.12.14",
+      "komorebi-math": "1.0.0b4",
+      "mpmath": "1.3.0",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "sympy": "1.14.0"
+    }
+  },
+  "full_source_tests": {
+    "failed": 0,
+    "log": "verification/PAPER_MACHINERY_CONTINUATION_PYTEST.txt",
+    "passed": 3805,
+    "skip_reason": "JAX and PyTorch are not installed in this interpreter.",
+    "skipped": 7,
+    "warnings": 6
+  },
+  "independent_review": "verification/paper_runs/continuation_review/after_scalar_fixes.json",
+  "installed_gate": {
+    "artifacts": {
+      "installed_sdist_rebuilt_wheel": {
+        "math_counts": {
+          "error": 0,
+          "failed": 0,
+          "not_run": 0,
+          "passed": 26,
+          "skipped": 0,
+          "timeout": 0
+        },
+        "math_samples_per_check": 1,
+        "module_import_audit_passed": true,
+        "runtime_counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1906
+        },
+        "test_files": 97
+      },
+      "installed_wheel": {
+        "math_counts": {
+          "error": 0,
+          "failed": 0,
+          "not_run": 0,
+          "passed": 26,
+          "skipped": 0,
+          "timeout": 0
+        },
+        "math_samples_per_check": 1,
+        "module_import_audit_passed": true,
+        "runtime_counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1906
+        },
+        "test_files": 97
+      }
+    },
+    "dependencies_inherited": false,
+    "dependency_isolated": true,
+    "direct_wheel_sha256": "19aa31e3e9162099beadbcc0dd21ff695d15804440491b7f21a2635becc4737c",
+    "network_used": false,
+    "passed": true,
+    "raw_report_sha256": "709583319bdfeab7f5475ddcbbc84005779ff5a495504990339fc8eabafb12de",
+    "report": "verification/paper_runs/continuation_installed/artifact_gate.json",
+    "sdist_rebuilt_wheel_byte_identical": true,
+    "sdist_rebuilt_wheel_sha256": "19aa31e3e9162099beadbcc0dd21ff695d15804440491b7f21a2635becc4737c"
+  },
+  "interpretation": "Bounded Linux CPython evidence for five further finite mathematical modules and exactness/CI repairs. Catalog validation is not complete mathematical coverage.",
+  "new_python_ruff_passed": true,
+  "non_claims": [
+    "No universal theorem or conjecture proof.",
+    "No fresh Lean compiler run.",
+    "No fresh Windows/GPU/JAX/PyTorch qualification.",
+    "Twenty-two catalogued constructions remain missing; partial entries retain domain restrictions.",
+    "Recorded source editions are covered; later paper revisions require separate comparison."
+  ],
+  "package_version": "1.0.0b4",
+  "packaging": {
+    "artifact_hashes_unchanged_during_full_regression_and_install_gate": true,
+    "byte_reproducible_rebuild": true,
+    "final_support_snapshot_note": "Final source archive additionally retains these reports; publication parity is rerun after rebuilding. The mathematical wheel must remain byte-identical to the qualified wheel.",
+    "initial_build_report": "verification/paper_runs/continuation_build/initial.json",
+    "note": "No tagged release, merge or complete runtime approval.",
+    "qualified_artifact_hashes": {
+      "komorebi_math-1.0.0b4-4b21-py3-none-any.whl": "19aa31e3e9162099beadbcc0dd21ff695d15804440491b7f21a2635becc4737c",
+      "komorebi_math-1.0.0b4.tar.gz": "ccb659b9a24761e292a5d39bdd02c062059a414e9ca2d145e4543638638187e1"
+    }
+  },
+  "remote_parent": "5ef999f2618958e0e2691cfbd677e1083c0364b2",
+  "schema": "komorebi.paper-machinery-continuation-qualification.v1",
+  "stress": {
+    "pinned_execution_inputs": 432,
+    "replay_digest": "21c4c4bebb4266f695d9d3722a67e6dc504a8a1bbf98e746aa6f4261ba10d50a",
+    "same_source_and_wheel_scientific_digest": true,
+    "samples_per_check": 16,
+    "seed": 20261010,
+    "source_counts": {
+      "error": 0,
+      "failed": 0,
+      "not_run": 0,
+      "passed": 26,
+      "skipped": 0,
+      "timeout": 0
+    },
+    "source_inputs_unchanged": true,
+    "source_manifest": "verification/paper_runs/continuation_source/manifest.json",
+    "wheel_counts": {
+      "error": 0,
+      "failed": 0,
+      "not_run": 0,
+      "passed": 26,
+      "skipped": 0,
+      "timeout": 0
+    },
+    "wheel_inputs_unchanged": true,
+    "wheel_report": "verification/paper_runs/continuation_wheel/result.json"
+  }
+}

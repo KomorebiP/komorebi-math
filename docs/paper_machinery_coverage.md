@@ -8,18 +8,18 @@ a proof audit or a declaration that the entire paper program is implemented.
 The installed inventory is
 `komorebi_math/data/paper_machinery_coverage.json`. Each source has a SHA-256
 digest. Each mechanism names its source section, status, APIs, tests, and
-remaining mathematical boundary. Archive members have their own hashes and
+remaining mathematical boundary. Coverage applies to the listed editions and hashes; later source revisions require a new comparison. Archive members have their own hashes and
 are read as data, never executed by the inventory validator.
 
 The audited snapshot contains 55 source objects (including archive members),
-528 mechanism records and 646 distinct API references. Metadata, API links,
+528 mechanism records and 705 distinct API references. Metadata, API links,
 repository test paths and original source bytes were checked together.
 
 | Snapshot status | Mechanisms |
 | --- | ---: |
-| Implemented finite scope | 159 |
-| Partial | 177 |
-| Missing finite construction | 36 |
+| Implemented finite scope | 169 |
+| Partial | 181 |
+| Missing finite construction | 22 |
 | Theory only | 65 |
 | External objects or research boundary | 70 |
 | Separate reference/formal machinery | 21 |
@@ -104,6 +104,11 @@ root API or declare a new release.
 | `generating.cartier_prime_power` | Rational-mask denominator-layer transitions modulo prime powers |
 | `signals.foundations` | Exact finite predictive completion, memory and delay-factor criteria |
 | `special_functions.paper_machinery` | Scalar/coupled coefficient recurrences, exact inverse and finite growth/prime/sieve controls |
+| `decision.avoc` | Finite task fibers, rational channels, guarded Bellman values and frozen quote bounds |
+| `algorithms.boolean_synthesis` | Three-input eager Boolean trees, budgeted synthesis and checked 256-signature minimum bank |
+| `signals.tikhonov` | Rational regularization, actual residual correction and certified discrepancy intervals |
+| `generating.residual_modules` | Finite ring spans, actual nonfree reachable-observable quotients and complete word comparison |
+| `arithmetic.lehmer_shells` | Complete signed five-core shells, gcd sectors, Möbius transforms and auxiliary polynomials |
 
 Existing machinery was reused when it already matched the source, including
 congruential Appell/Euler inverses and probabilists' Hermite coordinates.
@@ -142,8 +147,9 @@ and the source-group worked examples above.
 ## Remaining mathematical work
 
 The catalog exposes absent finite constructions as well as theorem boundaries.
-Examples include guarded AVOC Bellman planning and calibration, canonical
-reachable/observable modules over nonfree residue rings, general route and
+Examples include AVOC grid calibration, affine fusion-width witnesses and recorder/recovery reducers,
+automatic adapters from large Cartier representations to bounded residual
+modules, general route and
 quotient explorers, dedicated quantum arithmetic coordinates, and specialized
 arithmetic/conjecture evaluators. Partial runtime coverage must not be promoted
 to completion because a related generic packet API exists.

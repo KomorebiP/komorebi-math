@@ -29,7 +29,14 @@ def _integer(value: int, name: str) -> int:
 def _rational(value: int | Fraction, name: str) -> Fraction:
     if isinstance(value, bool) or not isinstance(value, (Integral, Fraction)):
         raise ValidationError(f"{name} must be an integer or Fraction")
-    return Fraction(int(value)) if isinstance(value, Integral) else value
+    # Fraction accepts Integral subclasses without owning their components.
+    # Rebuild those components before arithmetic can dispatch to fixed-width
+    # NumPy scalars instead of Python's arbitrary-precision integers.
+    return (
+        Fraction(int(value))
+        if isinstance(value, Integral)
+        else Fraction(int(value.numerator), int(value.denominator))
+    )
 
 
 def _trim(values: Iterable[Fraction]) -> Polynomial:
@@ -68,10 +75,11 @@ def gaussian_polynomial_inner_product(
     max_degree: int = 256,
 ) -> Fraction:
     """Integrate the product of two real rational polynomials against N(0,1)."""
-    first, second = _polynomial(left, max_degree), _polynomial(right, max_degree)
+    maximum = _integer(max_degree, "max_degree")
+    first, second = _polynomial(left, maximum), _polynomial(right, maximum)
     return sum(
         (
-            a * b * gaussian_moment(i + j, max_order=2 * max_degree)
+            a * b * gaussian_moment(i + j, max_order=2 * maximum)
             for i, a in enumerate(first)
             for j, b in enumerate(second)
         ),

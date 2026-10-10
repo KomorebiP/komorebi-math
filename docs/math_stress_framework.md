@@ -77,8 +77,9 @@ to identify further tests needed for a particular mathematical claim.
 
 ## Python use and custom exact oracle
 
-`--papers` appends ten finite paper-machinery checks and the four added
-special-function checks. These audit prime-field mapping cones, rational primary
+`--papers` appends ten initial finite paper-machinery checks, four
+special-function checks and five continuation checks, for 26 checks with all
+seven base families. These audit prime-field mapping cones, rational primary
 projectors, exact compiler decisions, Gaussian/Hermite polynomial transfer,
 polynomial lift fibers and rational stencils, tame tensor cycles, Collatz word
 cylinders, exact predictive signal closure, factor-coded Gaussian gain and
@@ -87,14 +88,19 @@ Gaussian controls compare the Joseph law with an independent Schur complement,
 and Cartier controls compare arbitrary states with rational-series inversion
 including noncanonical mask lifts. The appended special-function
 controls cover coupled rational inverses, exact tail anchors, sieve detectors
-and compact resolution bounds. Each record states its finite ranges and any
+and compact resolution bounds. The continuation independently enumerates
+channel and guarded policies, computes Boolean minimum costs by node count,
+checks diagonal inverse problems and discrepancy endpoint signs, constructs
+ring spans and future-word classes, and compares signed arithmetic shells
+with a directly multiplied q-product. Each record states its finite ranges and any
 external analytic assumptions. No completion of the source papers follows.
 
-Rational projectors and predictive signal foundations require the `exact`
+Rational projectors, predictive signal foundations and Tikhonov controls require the `exact`
 SymPy extra. If it is absent, those checks are explicitly skipped and the run
 exits nonzero. The base seven suites keep their NumPy-only dependency contract.
 Python callers can append `paper_checks(samples=...)` and
-`special_function_checks(samples=...)` explicitly. The complete installed
+`special_function_checks(samples=...)` and `continuation_checks(samples=...)`
+explicitly. The complete installed
 worked example is `examples/paper_machinery_stress.py`.
 
 ```python

@@ -24,9 +24,9 @@ that the source has no implementation in its separate archives.
 | Source | Present computational sector | Material gap |
 | --- | --- | --- |
 | Finite Integration | Rational polynomial moments, affine pushforward including singular maps, basis covectors, homogeneous-product Fubini, signed quadrature degree prefixes and matched rational Simpson bounds | Mixed atomic/interval iterated Fubini; a dedicated quadrature defect-row/kernel producer |
-| Cartier | Finite normalized series, custom coefficient rules, digit kernels/Bell reductions, finite carry plans, rational masks modulo a prime or fixed prime power, prime-power unit/kernel residues and cyclotomic collapse | Chapter 24 canonical reachable-observable ring modules and finite-word comparison |
-| Sufficient Resolution | Exact finite redundant frame algebra, rational predictive row-space closure, finite projected memory, numerical Feshbach/semigroup/SVD machinery | An integrated arbitrary-split closure certificate, globalization geometry, Tikhonov/discrepancy and calibration allowance contracts |
-| AVOC | Numerical Bayesian/lumping pieces and exact rational affine coefficients/linear expression normalization | Rational utility channels, guarded adaptive Bellman evaluation, exact grid calibration, Boolean closure banks and recorder/recovery reducers |
+| Cartier | Finite normalized series, custom coefficient rules, digit kernels/Bell reductions, finite carry plans, rational masks modulo a prime or fixed prime power, prime-power unit/kernel residues and cyclotomic collapse | Automatic adapters from large compiled states to the bounded Chapter 24 quotient; cross-precision and arbitrary abstract-module inputs |
+| Sufficient Resolution | Exact finite frames, predictive closure and memory, rational Tikhonov inverses, whole-map/source bounds, discrepancy brackets and actual squared residual certificates | Arbitrary-split/globalization geometry, exact real parameter extraction, true noise/model allowances and infinite-family limits |
+| AVOC | Exact task fibers, rational utility channels, guarded Bellman values, conservative frozen-quote planning, Boolean ASTs and complete minimum banks | Exact grid calibration, affine fusion-width witnesses, artifact admission and recorder/recovery reducers |
 
 Several neighboring APIs solve different problems. Matrix-chain planning
 optimizes multiplication parenthesizations, not AVOC adaptive observation trees.
@@ -85,7 +85,7 @@ rectangle has 42 coefficient slots; that is an ambient representation size, not
 a minimal automaton claim. The implementation also checks arbitrary-state
 section identities against independently expanded `sum(P_l/B**l)*F`, validates
 large-index rational collapses by a binomial closed form, and compares pruned
-and unpruned branches. No nonfree ring-module minimizer has been added.
+and unpruned branches. The continuation now supplies a bounded actual nonfree ring-module quotient in [residual modules](residual_modules.md); this is distinct from minimum deterministic automata.
 
 Resource controls validate raw state coefficient sizes before residue reduction
 and check actual base-prime word lengths before any transition. A large custom
@@ -93,21 +93,29 @@ word allowance does not trigger exponentiation of that allowance. Polynomial
 powering omits the unused final square, keeping its work inside the compiler's
 checked degree bound. Regression sentinels cover all three cases.
 
-The next useful finite constructions are, in priority order:
+The continuation fills the finite decision, Boolean and residual-module gaps and
+adds dedicated inverse-problem machinery:
 
-1. Sufficient Resolution SR-37–40 and SR-49–52: a rational Tikhonov constructor
-   plus squared normal-residual and protected discrepancy checks. True noise
-   allowances must remain separate inputs.
-2. AVOC §§9–11: a rational guarded finite-horizon planner and grid-band builder,
-   tested by complete small policy enumeration and exact binomial failure sums.
-3. Sufficient Resolution SR-07–08: arbitrary rational split compression and its
-   complete hidden-dimension moment certificate, including delayed-return and
-   prepared-versus-arbitrary-initialization controls.
-4. Cartier Chapter 24: nonfree finite-ring reachable/observable quotients. This
-   requires ring-module machinery and should not be implemented using a field
-   rank routine.
+| Construction | Worked contract |
+| --- | --- |
+| [AVOC decisions](avoc_decisions.md) | Fiber decoders, exact channel value, guarded policies and compatible frozen quote bounds |
+| [Boolean synthesis](avoc_boolean.md) | Eight valuations, eager tree-node tariffs and independently checked 256-signature minimum bank |
+| [Residual modules](residual_modules.md) | Source example cardinalities 16/8/2, actual nonfree quotient and complete word witnesses |
+| [Tikhonov certificates](tikhonov_certificates.md) | Positive normal inverse, whole-map bounds, rational root intervals and recomputed squared protection margins |
 
-Fresh validation ran 13 relevant source-test modules: **447 passed in 37.98s**;
+Remaining useful finite work includes the AVOC grid-band constructor and
+admission/recovery reducers, SR arbitrary-split moment certificates and
+whole-operator uncertainty/discrepancy transport. The exact-real selector,
+true-data noise allowance and infinite-family consistency retain their source
+hypotheses; a computed fitting residual does not establish them.
+
+## Initial Cartier campaign
+
+The following counts describe the initial Cartier campaign, before this
+continuation. The current combined campaign is recorded separately in the
+qualification evidence.
+
+Initial validation ran 13 relevant source-test modules: **447 passed in 37.98s**;
 the prime-power controls include unit denominator constants other than one and
 the three resource regressions. A combined compatibility run with existing
 Cartier/p-adic, coefficient-domain and generating tests passed **158 tests in

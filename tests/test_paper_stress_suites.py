@@ -137,6 +137,6 @@ def test_isolated_installed_cli_appends_paper_and_special_function_controls(tmp_
     assert result.returncode == 0, result.stderr
     report = json.loads(target.read_text())
     assert report == json.loads(result.stdout)
-    assert report["counts"]["passed"] == 15
+    assert report["counts"]["passed"] == 20
     assert report["counts"]["skipped"] == report["counts"]["error"] == 0
     assert any(row["suite"] == "paper_special_functions" for row in report["checks"])

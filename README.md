@@ -19,6 +19,10 @@ source sections to APIs, tests, and explicit remaining gaps. It adds exact
 finite mapping cones, rational primary projectors, polynomial lift fibers,
 tame tensor packets, Gaussian transfer/verifiers, prime-power Cartier masks,
 Collatz words, predictive closure, and coupled special-function machinery.
+The continuation adds exact finite AVOC decisions and Boolean synthesis,
+Tikhonov discrepancy certificates, actual nonfree residual modules, and
+complete signed five-core arithmetic shells. The installed campaign has
+26 independent checks; supported domains remain explicit in the crosswalk.
 Run the installed independent stress suites with
 `python -m komorebi_math.audit --papers --coverage --samples 16`.
 Passing this bounded run does not assert that every paper mechanism or proof

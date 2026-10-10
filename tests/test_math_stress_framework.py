@@ -54,6 +54,13 @@ def _sleep(context):
     return True
 
 
+def _slow_interpreter_teardown(context):
+    from multiprocessing.util import Finalize
+
+    Finalize(None, time.sleep, args=(0.4,), exitpriority=0)
+    return True
+
+
 def _crash(context):
     os._exit(23)
 
@@ -166,6 +173,84 @@ def test_isolated_success_matches_inprocess_scientific_result():
     b = run_stress([check(_true)], seed=73, timeout_seconds=10)
     assert b.passed
     assert a.replay_digest == b.replay_digest
+
+
+@pytest.mark.parametrize(
+    "teardown,exit_status,expected",
+    [(0.5, 0, "passed"), (2.0, 0, "timeout"), (0.5, 23, "error")],
+)
+def test_isolated_teardown_uses_original_deadline(monkeypatch, teardown, exit_status, expected):
+    from komorebi_math.audit import runner
+
+    clock = [0.0]
+    joins = []
+
+    class Connection:
+        def close(self):
+            pass
+
+        def poll(self, timeout):
+            assert timeout == pytest.approx(0.9)
+            clock[0] += 0.1
+            return True
+
+        def recv(self):
+            return {"status": "passed", "detail": "", "evidence": {"n": 1}}
+
+    class Process:
+        pid = None
+        exitcode = None
+
+        def start(self):
+            self.pid = 123
+            clock[0] += 0.1
+            self.finished_at = clock[0] + 0.1 + teardown
+
+        def is_alive(self):
+            return self.pid is not None and self.exitcode is None
+
+        def join(self, timeout=None):
+            joins.append(timeout)
+            if self.exitcode is None:
+                clock[0] = min(clock[0] + timeout, self.finished_at)
+                if clock[0] >= self.finished_at:
+                    self.exitcode = exit_status
+
+        def terminate(self):
+            self.exitcode = -15
+
+        def kill(self):
+            self.exitcode = -9
+
+    process = Process()
+
+    class Context:
+        def Pipe(self, duplex):
+            assert duplex is False
+            return Connection(), Connection()
+
+        def Process(self, **kwargs):
+            return process
+
+    monkeypatch.setattr(runner.multiprocessing, "get_context", lambda _: Context())
+    monkeypatch.setattr(runner.time, "monotonic", lambda: clock[0])
+    result = runner._isolated(check(_true), 57, 1.0)
+    assert result["status"] == expected
+    assert joins[0] == pytest.approx(0.8)
+    if expected == "passed":
+        assert result["evidence"] == {"n": 1}
+        assert process.exitcode == 0
+    elif expected == "timeout":
+        assert "wall-time budget" in result["detail"]
+        assert process.exitcode == -15
+    else:
+        assert result["detail"] == "worker exit status 23"
+
+
+def test_spawned_worker_can_finish_slow_teardown_inside_check_budget():
+    report = run_stress([check(_slow_interpreter_teardown)], timeout_seconds=10)
+    assert report.passed, report.to_dict()["checks"]
+    assert report.to_dict()["checks"][0]["runtime_seconds"] >= 0.4
 
 
 def test_spawn_rejects_child_optimization_inherited_after_parent_start(monkeypatch):

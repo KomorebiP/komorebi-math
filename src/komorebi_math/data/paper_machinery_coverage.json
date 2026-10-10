@@ -9,7 +9,7 @@
     {
       "path": "verification/paper_coverage/companion_calculus.json",
       "scope": "Selected computational mechanism statements and surrounding arguments from the four complete materialized traditional PDFs; runtime/source-test crosswalk, not an independent full proof audit or Lean replay. Every chapter is inventoried; selected theorem groups are mapped explicitly.",
-      "sha256": "b7d594eca35c6021ce53598d0d367d62328edebac39a9c34ac6fda77602ca8f4"
+      "sha256": "f4c2993272f1354f47c8e40be41ff762103eb1e23ac87faa72ab7356343b2f62"
     },
     {
       "path": "verification/paper_coverage/companion_dynamics.json",
@@ -19,7 +19,7 @@
     {
       "path": "verification/paper_coverage/conjecture_arithmetic.json",
       "scope": "Coverage-only inventory of the three current conjecture arithmetic reader PDFs against finite Komorebi runtime machinery. Source result extraction and API/test-link verification, not a proof audit, paper-program replay or conjecture closure.",
-      "sha256": "f452ed8a65b2aef8f3006b3e07d4a07929b2e6406158e6fe7c34e8bffa8890a9"
+      "sha256": "5487ec7bf89d2dd7ea6c86cf3beb9e27cf13449a37bca2204e4151f2c605fc00"
     },
     {
       "path": "verification/paper_coverage/conjecture_dynamics.json",
@@ -112,30 +112,48 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.algorithms.boolean_synthesis.BooleanExpr",
+        "komorebi_math.algorithms.boolean_synthesis.evaluate_boolean",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_signature",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_node_count",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_equivalent",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_grammar_layer",
+        "komorebi_math.algorithms.boolean_synthesis.bounded_boolean_search",
+        "komorebi_math.algorithms.boolean_synthesis.compact_boolean_entries",
+        "komorebi_math.algorithms.boolean_synthesis.compacted_boolean_layer"
+      ],
       "boundaries": [
-        "OperatorGrammar is typed linear syntax, not the three-input Boolean AST or eager node-meter backend."
+        "Exact three-input tree grammar and eager node tariff only; full syntax materialization is resource bounded, and incomplete affordable search prefixes certify only their examined prefix. Compaction counts one declared semantic-index lookup per candidate; host allocation and hardware timing are excluded."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.boolean_synthesis",
       "section": "§6.1–6.3; Theorem 6.1, Proposition 6.3",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Eight-bit complete Boolean semantics, bounded grammar search and cost-preserving compaction.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_boolean.py"
+      ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.decision.avoc.FiniteChannel",
+        "komorebi_math.decision.avoc.ChannelDecision"
+      ],
       "boundaries": [
-        "Numerical Markov/Bayesian objects do not implement the rational utility and decision-value contract."
+        "Finite rational row-stochastic channels, normalized nonnegative rational priors and finite nonempty action menus. The source also allows arbitrary rational weights for some structural identities; this API deliberately validates probability priors.",
+        "Exact observation/action scores include impossible observations without division by predictive mass. Scientific bounds concern the declared channel/utility table, not estimated probabilities or physical evidence."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.channel_value",
       "section": "§3.1; Definitions 3.1, 3.3, Theorems 3.2, 3.4",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Exact rational observation channels, garbling and finite policy-value maximization.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ]
     },
     {
       "api": [
@@ -170,17 +188,24 @@
       "tests": []
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.algorithms.boolean_synthesis.BooleanClosureBank",
+        "komorebi_math.algorithms.boolean_synthesis.build_boolean_closure_bank",
+        "komorebi_math.algorithms.boolean_synthesis.audit_boolean_closure_bank",
+        "komorebi_math.algorithms.boolean_synthesis.globally_minimal_boolean"
+      ],
       "boundaries": [
-        "No Boolean closure-bank validator or witness bank exists in the runtime."
+        "All 256 exact witnesses and all 196608 ordered binary plus 256 unary constructor inequalities are checked. By AVOC Theorem 6.4 an accepted bank attains global minima over all finite trees in the declared three-input grammar and eager node tariff; arbitrary programs, shared circuit DAGs and physical runtime are outside scope. Proposed or incomplete banks are untrusted until fresh exhaustive validation."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.global_boolean_minimum",
       "section": "§6.4; Theorem 6.4",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Attained lower-cost certificate bank for all 256 Boolean signatures.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_boolean.py"
+      ]
     },
     {
       "api": [],
@@ -196,17 +221,27 @@
       "tests": []
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.decision.avoc.GuardedAction",
+        "komorebi_math.decision.avoc.FiniteGuardedSystem",
+        "komorebi_math.decision.avoc.BellmanResult",
+        "komorebi_math.decision.avoc.ArtifactState",
+        "komorebi_math.decision.avoc.FrozenQuotePlanner"
+      ],
       "boundaries": [
-        "Finite actions/observations do not require a finite state space in the paper; no guarded rational evaluator or staged workflow reducer is present."
+        "Exhaustive finite state tables with nonempty state-dependent action lists and a common finite observation alphabet. The paper permits an infinite state space; this implementation does not expose that general evaluator.",
+        "Exact horizon tables are bounded by preflight update/output caps and intermediate rational-bit limits; exceeded limits raise ResourceLimitError. All successors are validated, including zero-probability branches. The staged workflow starts both artifact kinds untried and reserves upper setup after either acquisition outcome.",
+        "Logical state, mathematical rewards and declared probabilities do not establish physical provider cost, artifact admission, execution timing or durable recovery."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.guarded_bellman",
       "section": "§9; Definition 9.1, Theorem 9.2",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Exact finite-horizon adaptive planning with state-dependent admissibility and staged acquisition.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ]
     },
     {
       "api": [],
@@ -248,30 +283,48 @@
       "tests": []
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.decision.avoc.QuoteBand",
+        "komorebi_math.decision.avoc.QuoteRealization",
+        "komorebi_math.decision.avoc.FrozenQuoteBounds",
+        "komorebi_math.decision.avoc.FrozenQuotePlanner",
+        "komorebi_math.decision.avoc.FrozenPolicyResult"
+      ],
       "boundaries": [
-        "Lower-Q is a certified surrogate, not generally exact minimax; conservative action guards and expectation-level regret are part of the source contract."
+        "Frozen two-kind setup/gross/success bands with natural setup endpoints and exact rational rewards/probabilities. All compatible realizations share nominal upper-setup reservation guards and successor indices; a smaller realized setup never enlarges the action menu.",
+        "Value/local-Q enclosures, distinct-competitor dominance and expected adaptive lower-Q policy regret implement Sections 10.1-10.5. Lower-Q maximization is a conservative certified surrogate, not exact minimax; regret is an expected policy-value gap, not a bound on each realized branch.",
+        "Protected quote identity admission, artifact-backed gross-saving witnesses, finite-grid calibration and source-generative recorder/recovery certificates remain separate and are not inferred from these bands."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.robust_quotes",
       "section": "§10; Theorem 10.2, Proposition 10.3, Theorem 10.5",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Frozen quote bands transport value/Q bounds, dominance and whole-policy expected regret.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.decision.avoc.task_fibers",
+        "komorebi_math.decision.avoc.TaskFibers",
+        "komorebi_math.decision.avoc.joint_task",
+        "komorebi_math.decision.avoc.information_equivalent"
+      ],
       "boundaries": [
-        "No general finite table decoder/fiber-collision checker was found; future-word linear reduction is a distinct restricted construction."
+        "Exhaustive aligned finite tables and finite query families, with hashable labels whose equality is reflexive and returns a scalar Python bool; NaN and ambiguous equality are rejected. A sampled table establishes only sample-domain sufficiency. Explicit default_target declares a nonempty target-codomain member on an empty raw domain or unreachable observations.",
+        "Information equivalence compares retained distinctions, not shortest encoding, acquisition cost or efficient decoder complexity."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "AVOC.task_fibers",
       "section": "§2; Definition 2.1, Theorem 2.2, Proposition 2.3",
       "source_id": "avoc",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Fiber-constant task sufficiency, decoders, joint queries and finite information ordering.",
-      "tests": []
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ]
     },
     {
       "api": [
@@ -477,17 +530,24 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.generating.residual_modules.RingLinearRealization",
+        "komorebi_math.generating.residual_modules.CanonicalResidualModule",
+        "komorebi_math.generating.residual_modules.canonical_residual_module"
+      ],
       "boundaries": [
-        "Deterministic automaton minimization is present, but no general Z/p^rZ reachable-module/unobservable-quotient minimizer exists. Quotients may be nonfree; vector-space dimension cannot replace module cardinality."
+        "Bounded complete enumeration over finite free Z/p**r Z ambient presentations; the actual reachable/unobservable quotient has explicit additive/scalar/action laws and may be nonfree. Complete future behavior is computed by stable partition refinement.",
+        "No vector-space dimension surrogate, polynomial complexity, abstract infinite module input, canonical coordinate basis, cross-precision maps, automatic adapter for every external Cartier representation, or minimum deterministic automaton claim. Input/enumeration/table/work caps refuse unsupported sizes explicitly."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "CC.canonical_ring_modules",
       "section": "§24; Theorem 24.1, Corollary 24.2, Example 24.4",
       "source_id": "cartier",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Reachable-observable residual module and canonical linear-carrier reduction over nonfields.",
-      "tests": []
+      "tests": [
+        "tests/test_residual_modules.py"
+      ]
     },
     {
       "api": [
@@ -618,17 +678,23 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.generating.residual_modules.finite_word_comparison",
+        "komorebi_math.generating.residual_modules.WordComparison"
+      ],
       "boundaries": [
-        "No general finite-ring realization comparator over all short noncommuting words is exposed; equality of selected integer-index outputs is a different test set."
+        "Complete product-orbit comparison over the same prime-power ring and finite ordered alphabet for free realizations and their explicit nonfree residual quotients; exact additive cardinalities determine the strict b+c word-length horizon and a mismatch returns a shortest distinguishing word.",
+        "No infinite alphabet input, arbitrary externally supplied abstract module table adapter, field-rank shortcut, selected-integer-only equivalence, or polynomial bit complexity. Product carrier and estimated work are preflighted; a refusal is never equality."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "CC.finite_word_comparison",
       "section": "§24.3; Theorem 24.5",
       "source_id": "cartier",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Finite word-length complete comparison for finite additive p-group carriers.",
-      "tests": []
+      "tests": [
+        "tests/test_residual_modules.py"
+      ]
     },
     {
       "api": [
@@ -2545,17 +2611,25 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.signals.tikhonov.candidate_noise_acceptance",
+        "komorebi_math.signals.tikhonov.candidate_norm_domination",
+        "komorebi_math.signals.tikhonov.candidate_relative_feasibility"
+      ],
       "boundaries": [
-        "Acceptance has no supplied source cap, but existence retains truth/relative-feasibility conditions. Source’s raw selected witness is noncomputable; no extracted general selector should be claimed."
+        "Finite cap-free candidate acceptance, exact nonsquare-norm comparisons, actual normal-source verification, feasible-comparison norm domination, strict relative scalar margin and the zero-model negative control are implemented.",
+        "Truth/operator bounds remain separate premises; the module does not bind a true and available operator to the conditional existence/consistency chain or extract the source's noncomputable selected family.",
+        "A small fitting residual or an upper candidate-noise inequality alone cannot qualify an approximate source as the actual regularized candidate."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "SR.candidate_noise",
       "section": "§16; Theorems 16.1–16.4 (SR-57–60)",
       "source_id": "sufficient_resolution",
-      "status": "missing",
+      "status": "partial",
       "summary": "Candidate-dependent acceptance, feasibility margin and zero-model negative control.",
-      "tests": []
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ]
     },
     {
       "api": [
@@ -2619,17 +2693,24 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.signals.tikhonov.bracket_discrepancy",
+        "komorebi_math.signals.tikhonov.select_discrepancy"
+      ],
       "boundaries": [
-        "No discrepancy root/acceptance interface; numerical roots would need residual enclosures and explicit strict attainable-floor hypotheses."
+        "Finite exact residual evaluation, full attainable-floor computation, strict root endpoints and rational root brackets are implemented; the total finite selector returns zero or an actual rational source inside the accepted band.",
+        "A real root such as 1+sqrt(2) is only bracketed; the paper's exact noncomputable upper-edge selected witness is not claimed as a rational algorithm output.",
+        "The positive selector checks finite floor<=eta; the small-data branch checks its defining inequality only. Neither authenticates true data noise or proves infinite-family consistency."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "SR.discrepancy_selection",
       "section": "§13; Theorems 13.1–13.4 (SR-45–48)",
       "source_id": "sufficient_resolution",
-      "status": "missing",
+      "status": "partial",
       "summary": "Actual residual curve, unique interior discrepancy parameter and total small-data acceptance.",
-      "tests": []
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ]
     },
     {
       "api": [
@@ -2726,17 +2807,25 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.signals.tikhonov.normal_residual_correction",
+        "komorebi_math.signals.tikhonov.protected_discrepancy_window",
+        "komorebi_math.signals.tikhonov.certify_squared_discrepancy"
+      ],
       "boundaries": [
-        "No bound record reconstructs the actual rational squared norms and verifies every signed/nonnegative margin; solver residuals alone do not establish true data-noise allowances."
+        "Finite rational pointwise sector: actual normal residual, distinct source/image correction scales, protected scalar window and every signed/nonnegative squared SR-52 premise are recomputed.",
+        "Solver-reported squared norms are not accepted in place of actual matrix expressions; a false zero residual or incorrect evaluation enclosure invalidates the record.",
+        "The record leaves genuine true-data allowances and infinite-family convergence premises unchecked. It does not replay source Lean structures or authenticate measurement truth."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "SR.inexact_discrepancy",
       "section": "§14; Theorems 14.1–14.4 (SR-49–52)",
       "source_id": "sufficient_resolution",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Actual normal residual, source/image correction scales and squared protected discrepancy certificates.",
-      "tests": []
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ]
     },
     {
       "api": [
@@ -2808,17 +2897,31 @@
       "tests": []
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.signals.tikhonov.tikhonov_system",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.solve",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.objective_increment",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.whole_map_bounds",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.bias_noise",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.source_condition_bias",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.conditioned_bias_noise",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.resolvent_difference",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.operator_sensitivity"
+      ],
       "boundaries": [
-        "Generic exact matrix solves exist, but no Tikhonov constructor binds A,lambda,v to these contracts and residual controls. A dedicated finite rational implementation is a useful next priority."
+        "Exact positive normal inverse, objective increment, whole-map bounds, kernel bias/noise split, checked source coercivity/source condition and checked two-operator sensitivity are implemented in finite rational Euclidean spaces.",
+        "SR-40's intrinsic globalization obstruction/inconsistency decomposition and a dedicated canonical-inverse bias interface are not implemented here; infinite Hilbert constructors and strong limits remain outside this finite API.",
+        "Nonorthogonal or redundant coordinate metrics must be transported before this Euclidean interface applies; no metric is inferred from raw coordinates."
       ],
       "fragment": "verification/paper_coverage/companion_calculus.json",
       "key": "SR.tikhonov",
       "section": "§11; Theorems 11.1–11.4 (SR-37–40)",
       "source_id": "sufficient_resolution",
-      "status": "missing",
+      "status": "partial",
       "summary": "Positive normal inverse, objective increment, bias/noise/kernel and parameter/operator sensitivity.",
-      "tests": []
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ]
     },
     {
       "api": [],
@@ -5182,12 +5285,14 @@
       "api": [
         "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial",
         "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
-        "komorebi_math.arithmetic.valuation.padic_valuation"
+        "komorebi_math.arithmetic.valuation.padic_valuation",
+        "komorebi_math.arithmetic.lehmer_shells.auxiliary_shell_polynomial",
+        "komorebi_math.arithmetic.lehmer_shells.ShellPolynomial"
       ],
       "boundaries": [
-        "The generic polynomial and lift interfaces can analyze supplied integer coefficients; they do not enumerate the shell or build P_n and G_n.",
-        "The source simple root at shell 499 and nonlifting double root at 16249 are not package fixtures.",
-        "A fixed shell polynomial does not interpolate prime index; valuation formulas permit exact zero."
+        "Complete finite shells now construct P_n(T), exact 5-adic content mu_n and normalized integral G_n(U); source coefficients and the simple residue root at499 are replayed exactly.",
+        "The nonlifting double root at16249 is not a package fixture; universal p-adic branch laws are not certified from the finite499 replay.",
+        "The variable T is auxiliary for one fixed shell and does not interpolate prime index. Normalization permits exact zeros and supplies no universal nonvanishing claim."
       ],
       "fragment": "verification/paper_coverage/conjecture_arithmetic.json",
       "key": "lehmer_auxiliary_shell_polynomial",
@@ -5197,7 +5302,8 @@
       "summary": "Degree-at-most-ten shell polynomial P_n, 5-adic content normalization G_n and simple/double local branch counterexamples.",
       "tests": [
         "tests/test_paper_late_machinery.py",
-        "tests/test_arithmetic_domains_valuation.py"
+        "tests/test_arithmetic_domains_valuation.py",
+        "tests/test_lehmer_shells.py"
       ]
     },
     {
@@ -5237,19 +5343,28 @@
       ]
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.arithmetic.lehmer_shells.enumerate_five_core_shell",
+        "komorebi_math.arithmetic.lehmer_shells.LehmerPacket",
+        "komorebi_math.arithmetic.lehmer_shells.FiveCoreShell",
+        "komorebi_math.arithmetic.lehmer_shells.five_core_packet_count",
+        "komorebi_math.arithmetic.lehmer_shells.tau_from_q_product"
+      ],
       "boundaries": [
-        "No constructor enumerates v_i congruent to i modulo 5 with zero sum and squared norm 10n, or returns the exact Vandermonde shell weights.",
-        "Generic packet containers do not ensure the shell is complete or arithmetic weights are correct.",
-        "The source prime-unit property is termwise; opposite signs can cancel."
+        "Complete finite integer shells are constructed subject to declared candidate/output/bit preflight limits; resource refusal never returns a partial shell.",
+        "Independent four-coordinate comparison through32 and signed q-product/logarithmic recurrence comparison through128 are bounded implementation evidence, not universal nonvanishing.",
+        "Index-prime unit certificates require the source prime hypothesis p>20. Termwise units do not exclude signed cancellation; the2411 fixture has2412 unit weights and a sum divisible by2411.",
+        "The five-core/tau identity and divisor count are source mathematical inputs; no modular-form proof or Lehmer conjecture certificate is emitted."
       ],
       "fragment": "verification/paper_coverage/conjecture_arithmetic.json",
       "key": "lehmer_five_core_shell_packets",
       "section": "6.1-6.7",
       "source_id": "conjecture_lehmer_tau_v1_0",
-      "status": "missing",
+      "status": "implemented",
       "summary": "Complete V-coded five-core shell enumeration, Vandermonde/288 weights, integral signs and prime-index unit weights.",
-      "tests": []
+      "tests": [
+        "tests/test_lehmer_shells.py"
+      ]
     },
     {
       "api": [],
@@ -5329,18 +5444,27 @@
       "tests": []
     },
     {
-      "api": [],
+      "api": [
+        "komorebi_math.arithmetic.lehmer_shells.LehmerPacket",
+        "komorebi_math.arithmetic.lehmer_shells.FiveCoreShell",
+        "komorebi_math.arithmetic.lehmer_shells.primitive_residuals_from_tau",
+        "komorebi_math.arithmetic.lehmer_shells.tau_from_primitive_residuals"
+      ],
       "boundaries": [
-        "There is no source primitive-content R(n), complete shell Mobius decomposition or universal content-preservation certificate API.",
-        "Generic divisor transforms cannot provide the arithmetic shell decomposition or exclude a primitive exact zero."
+        "Finite exact gcd sectors, source residue restoration, signed chi5(g)g^10 scaling and square-supported Mobius/inverse transforms are installed.",
+        "Complete shell primitive residuals and transforms are independently compared through128; the121 opposed-content masses are exact fixtures.",
+        "Universal conservation under all symmetric null polynomials and the source odd-prime zero-equivalence theorem are not runtime proof certificates.",
+        "At a prime shell R(p)=tau(p); finite primitive extraction does not establish universal nonvanishing."
       ],
       "fragment": "verification/paper_coverage/conjecture_arithmetic.json",
       "key": "lehmer_primitive_content",
       "section": "13; 16-18",
       "source_id": "conjecture_lehmer_tau_v1_0",
-      "status": "missing",
+      "status": "partial",
       "summary": "Primitive content, gcd and Mobius inversion, composite obstructions, odd-prime zero equivalence and conservation under all finite symmetric homogeneous nulls.",
-      "tests": []
+      "tests": [
+        "tests/test_lehmer_shells.py"
+      ]
     },
     {
       "api": [],

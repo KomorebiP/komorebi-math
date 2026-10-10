@@ -31,7 +31,11 @@ def _prime_power(value: int) -> bool:
 def _scalar(value: int | Fraction) -> Fraction:
     if isinstance(value, bool) or not isinstance(value, (Integral, Fraction)):
         raise ValidationError("closing scalars must be exact integers or Fractions")
-    result = Fraction(int(value)) if isinstance(value, Integral) else value
+    result = (
+        Fraction(int(value))
+        if isinstance(value, Integral)
+        else Fraction(int(value.numerator), int(value.denominator))
+    )
     if not result:
         raise ValidationError("Frobenius closing scalars must be nonzero")
     return result

@@ -33,7 +33,11 @@ def _difference_data(
     for value in values:
         if isinstance(value, bool) or not isinstance(value, (Integral, Fraction)):
             raise ValidationError("packet differences require exact integer or Fraction coefficients")
-        normalized.append(Fraction(int(value)) if isinstance(value, Integral) else value)
+        normalized.append(
+            Fraction(int(value))
+            if isinstance(value, Integral)
+            else Fraction(int(value.numerator), int(value.denominator))
+        )
     if start >= len(normalized):
         raise ValidationError("starting row is outside the supplied finite packet prefix")
     displacements = tuple(require_integer(step, name="step") for step in steps)

@@ -238,20 +238,27 @@ def _isolated(check: StressCheck, seed: int, timeout: float) -> dict[str, Any]:
     context = multiprocessing.get_context("spawn")
     receiver, sender = context.Pipe(duplex=False)
     process = context.Process(target=_worker, args=(sender, check, seed))
+    deadline = time.monotonic() + timeout
     try:
         # Fail visibly before trying to start an unpickleable interactive closure.
         pickle.dumps(check)
         process.start()
         sender.close()
-        if receiver.poll(timeout):
+        if receiver.poll(max(0.0, deadline - time.monotonic())):
             try:
                 result = receiver.recv()
             except EOFError:
                 result = {"status": "error", "detail": "worker exited without a result", "evidence": {}}
         else:
             result = {"status": "timeout", "detail": "wall-time budget exhausted", "evidence": {}}
-        process.join(timeout=0.2)
+        # Receiving a result does not mean interpreter shutdown has completed.
+        # Windows and scientific imports can need more than 0.2 seconds here.
+        # Keep teardown inside the same declared check deadline, rather than
+        # terminate a successful worker early and report our own signal as an
+        # unexplained mathematical execution error.
+        process.join(timeout=max(0.0, deadline - time.monotonic()))
         if process.is_alive():
+            result = {"status": "timeout", "detail": "worker did not exit within wall-time budget", "evidence": {}}
             process.terminate()
             process.join(timeout=1.0)
             if process.is_alive():

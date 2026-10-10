@@ -35,31 +35,45 @@
     {
       "key": "AVOC.task_fibers",
       "source_id": "avoc",
-      "section": "\u00a72; Definition 2.1, Theorem 2.2, Proposition 2.3",
+      "section": "§2; Definition 2.1, Theorem 2.2, Proposition 2.3",
       "summary": "Fiber-constant task sufficiency, decoders, joint queries and finite information ordering.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.decision.avoc.task_fibers",
+        "komorebi_math.decision.avoc.TaskFibers",
+        "komorebi_math.decision.avoc.joint_task",
+        "komorebi_math.decision.avoc.information_equivalent"
+      ],
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ],
       "boundaries": [
-        "No general finite table decoder/fiber-collision checker was found; future-word linear reduction is a distinct restricted construction."
+        "Exhaustive aligned finite tables and finite query families, with hashable labels whose equality is reflexive and returns a scalar Python bool; NaN and ambiguous equality are rejected. A sampled table establishes only sample-domain sufficiency. Explicit default_target declares a nonempty target-codomain member on an empty raw domain or unreachable observations.",
+        "Information equivalence compares retained distinctions, not shortest encoding, acquisition cost or efficient decoder complexity."
       ]
     },
     {
       "key": "AVOC.channel_value",
       "source_id": "avoc",
-      "section": "\u00a73.1; Definitions 3.1, 3.3, Theorems 3.2, 3.4",
+      "section": "§3.1; Definitions 3.1, 3.3, Theorems 3.2, 3.4",
       "summary": "Exact rational observation channels, garbling and finite policy-value maximization.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.decision.avoc.FiniteChannel",
+        "komorebi_math.decision.avoc.ChannelDecision"
+      ],
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ],
       "boundaries": [
-        "Numerical Markov/Bayesian objects do not implement the rational utility and decision-value contract."
+        "Finite rational row-stochastic channels, normalized nonnegative rational priors and finite nonempty action menus. The source also allows arbitrary rational weights for some structural identities; this API deliberately validates probability priors.",
+        "Exact observation/action scores include impossible observations without division by predictive mass. Scientific bounds concern the declared channel/utility table, not estimated probabilities or physical evidence."
       ]
     },
     {
       "key": "AVOC.bayesian_compression",
       "source_id": "avoc",
-      "section": "\u00a7\u00a73.2\u20133.3; Theorem 3.6",
+      "section": "§§3.2–3.3; Theorem 3.6",
       "summary": "Bayesian conditioning and likelihood-preserving compression.",
       "status": "partial",
       "api": [
@@ -77,7 +91,7 @@
     {
       "key": "AVOC.control_sufficiency",
       "source_id": "avoc",
-      "section": "\u00a74; Definitions 4.1, 4.4, Theorems 4.2, 4.5",
+      "section": "§4; Definitions 4.1, 4.4, Theorems 4.2, 4.5",
       "summary": "Transition-closed state quotients preserve every finite controlled Bellman value.",
       "status": "partial",
       "api": [
@@ -95,7 +109,7 @@
     {
       "key": "AVOC.propositional_admission",
       "source_id": "avoc",
-      "section": "\u00a75; Theorem 5.1, Definition 5.2",
+      "section": "§5; Theorem 5.1, Definition 5.2",
       "summary": "Data-only propositional derivations and exact generation-bound artifact admission.",
       "status": "external",
       "api": [],
@@ -107,31 +121,50 @@
     {
       "key": "AVOC.boolean_synthesis",
       "source_id": "avoc",
-      "section": "\u00a76.1\u20136.3; Theorem 6.1, Proposition 6.3",
+      "section": "§6.1–6.3; Theorem 6.1, Proposition 6.3",
       "summary": "Eight-bit complete Boolean semantics, bounded grammar search and cost-preserving compaction.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.boolean_synthesis.BooleanExpr",
+        "komorebi_math.algorithms.boolean_synthesis.evaluate_boolean",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_signature",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_node_count",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_equivalent",
+        "komorebi_math.algorithms.boolean_synthesis.boolean_grammar_layer",
+        "komorebi_math.algorithms.boolean_synthesis.bounded_boolean_search",
+        "komorebi_math.algorithms.boolean_synthesis.compact_boolean_entries",
+        "komorebi_math.algorithms.boolean_synthesis.compacted_boolean_layer"
+      ],
+      "tests": [
+        "tests/test_avoc_boolean.py"
+      ],
       "boundaries": [
-        "OperatorGrammar is typed linear syntax, not the three-input Boolean AST or eager node-meter backend."
+        "Exact three-input tree grammar and eager node tariff only; full syntax materialization is resource bounded, and incomplete affordable search prefixes certify only their examined prefix. Compaction counts one declared semantic-index lookup per candidate; host allocation and hardware timing are excluded."
       ]
     },
     {
       "key": "AVOC.global_boolean_minimum",
       "source_id": "avoc",
-      "section": "\u00a76.4; Theorem 6.4",
+      "section": "§6.4; Theorem 6.4",
       "summary": "Attained lower-cost certificate bank for all 256 Boolean signatures.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.boolean_synthesis.BooleanClosureBank",
+        "komorebi_math.algorithms.boolean_synthesis.build_boolean_closure_bank",
+        "komorebi_math.algorithms.boolean_synthesis.audit_boolean_closure_bank",
+        "komorebi_math.algorithms.boolean_synthesis.globally_minimal_boolean"
+      ],
+      "tests": [
+        "tests/test_avoc_boolean.py"
+      ],
       "boundaries": [
-        "No Boolean closure-bank validator or witness bank exists in the runtime."
+        "All 256 exact witnesses and all 196608 ordered binary plus 256 unary constructor inequalities are checked. By AVOC Theorem 6.4 an accepted bank attains global minima over all finite trees in the declared three-input grammar and eager node tariff; arbitrary programs, shared circuit DAGs and physical runtime are outside scope. Proposed or incomplete banks are untrusted until fresh exhaustive validation."
       ]
     },
     {
       "key": "AVOC.affine_coefficients",
       "source_id": "avoc",
-      "section": "\u00a77; Definition 7.1, Theorem 7.2",
+      "section": "§7; Definition 7.1, Theorem 7.2",
       "summary": "Dimensioned exact affine coefficients, composition and zero-and-basis completeness.",
       "status": "partial",
       "api": [
@@ -150,7 +183,7 @@
     {
       "key": "AVOC.fusion_width_reuse",
       "source_id": "avoc",
-      "section": "\u00a78; Theorem 8.2 and \u00a7\u00a78.1, 8.3",
+      "section": "§8; Theorem 8.2 and §§8.1, 8.3",
       "summary": "Fusion tariffs, certified minimum-width affine factorization with LAH=I and offset retargeting.",
       "status": "missing",
       "api": [],
@@ -162,43 +195,63 @@
     {
       "key": "AVOC.guarded_bellman",
       "source_id": "avoc",
-      "section": "\u00a79; Definition 9.1, Theorem 9.2",
+      "section": "§9; Definition 9.1, Theorem 9.2",
       "summary": "Exact finite-horizon adaptive planning with state-dependent admissibility and staged acquisition.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.decision.avoc.GuardedAction",
+        "komorebi_math.decision.avoc.FiniteGuardedSystem",
+        "komorebi_math.decision.avoc.BellmanResult",
+        "komorebi_math.decision.avoc.ArtifactState",
+        "komorebi_math.decision.avoc.FrozenQuotePlanner"
+      ],
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ],
       "boundaries": [
-        "Finite actions/observations do not require a finite state space in the paper; no guarded rational evaluator or staged workflow reducer is present."
+        "Exhaustive finite state tables with nonempty state-dependent action lists and a common finite observation alphabet. The paper permits an infinite state space; this implementation does not expose that general evaluator.",
+        "Exact horizon tables are bounded by preflight update/output caps and intermediate rational-bit limits; exceeded limits raise ResourceLimitError. All successors are validated, including zero-probability branches. The staged workflow starts both artifact kinds untried and reserves upper setup after either acquisition outcome.",
+        "Logical state, mathematical rewards and declared probabilities do not establish physical provider cost, artifact admission, execution timing or durable recovery."
       ]
     },
     {
       "key": "AVOC.robust_quotes",
       "source_id": "avoc",
-      "section": "\u00a710; Theorem 10.2, Proposition 10.3, Theorem 10.5",
+      "section": "§10; Theorem 10.2, Proposition 10.3, Theorem 10.5",
       "summary": "Frozen quote bands transport value/Q bounds, dominance and whole-policy expected regret.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.decision.avoc.QuoteBand",
+        "komorebi_math.decision.avoc.QuoteRealization",
+        "komorebi_math.decision.avoc.FrozenQuoteBounds",
+        "komorebi_math.decision.avoc.FrozenQuotePlanner",
+        "komorebi_math.decision.avoc.FrozenPolicyResult"
+      ],
+      "tests": [
+        "tests/test_avoc_decisions.py"
+      ],
       "boundaries": [
-        "Lower-Q is a certified surrogate, not generally exact minimax; conservative action guards and expectation-level regret are part of the source contract."
+        "Frozen two-kind setup/gross/success bands with natural setup endpoints and exact rational rewards/probabilities. All compatible realizations share nominal upper-setup reservation guards and successor indices; a smaller realized setup never enlarges the action menu.",
+        "Value/local-Q enclosures, distinct-competitor dominance and expected adaptive lower-Q policy regret implement Sections 10.1-10.5. Lower-Q maximization is a conservative certified surrogate, not exact minimax; regret is an expected policy-value gap, not a bound on each realized branch.",
+        "Protected quote identity admission, artifact-backed gross-saving witnesses, finite-grid calibration and source-generative recorder/recovery certificates remain separate and are not inferred from these bands."
       ]
     },
     {
       "key": "AVOC.grid_calibration",
       "source_id": "avoc",
-      "section": "\u00a711; Theorems 11.1, 11.3",
+      "section": "§11; Theorems 11.1, 11.3",
       "summary": "Exact rational binomial cell envelopes and predetermined scheduled selection bounds.",
       "status": "missing",
       "api": [],
       "tests": [],
       "boundaries": [
-        "No grid-band constructor exists; this algorithm is not Clopper\u2013Pearson or unrestricted anytime calibration."
+        "No grid-band constructor exists; this algorithm is not Clopper–Pearson or unrestricted anytime calibration."
       ]
     },
     {
       "key": "AVOC.recorder",
       "source_id": "avoc",
-      "section": "\u00a712; Theorem 12.1 and \u00a712.2",
+      "section": "§12; Theorem 12.1 and §12.2",
       "summary": "Immutable terminal events, pending intents and source-generative prefix refinement.",
       "status": "missing",
       "api": [],
@@ -210,7 +263,7 @@
     {
       "key": "AVOC.bad_issuance",
       "source_id": "avoc",
-      "section": "\u00a713; Theorem 13.1 and \u00a7\u00a713.1\u201313.2",
+      "section": "§13; Theorem 13.1 and §§13.1–13.2",
       "summary": "Unconditional bad-issuance bound and censoring/completion-order negative examples.",
       "status": "theory_only",
       "api": [],
@@ -222,7 +275,7 @@
     {
       "key": "AVOC.recovery_accounting",
       "source_id": "avoc",
-      "section": "\u00a714; Proposition 14.1 and \u00a714.1",
+      "section": "§14; Proposition 14.1 and §14.1",
       "summary": "Checked acknowledgment replay and prepaid durable-upgrade accounting.",
       "status": "missing",
       "api": [],
@@ -234,7 +287,7 @@
     {
       "key": "FI.moment_contraction",
       "source_id": "finite_integration",
-      "section": "\u00a72.1; Proposition 2.1",
+      "section": "§2.1; Proposition 2.1",
       "summary": "Finite rational polynomial moment contraction for atomic/interval/product measures.",
       "status": "implemented",
       "api": [
@@ -254,7 +307,7 @@
     {
       "key": "FI.affine_pushforward",
       "source_id": "finite_integration",
-      "section": "\u00a72.2; Propositions 2.2\u20132.3",
+      "section": "§2.2; Propositions 2.2–2.3",
       "summary": "Rectangular/singular affine pullback, mass-preserving pushforward, reflection and zero collapse.",
       "status": "implemented",
       "api": [
@@ -273,7 +326,7 @@
     {
       "key": "FI.covectors",
       "source_id": "finite_integration",
-      "section": "\u00a72.3; Proposition 2.4",
+      "section": "§2.3; Proposition 2.4",
       "summary": "Basis-witnessed integration rows and contragredient coordinate transport.",
       "status": "implemented",
       "api": [
@@ -290,7 +343,7 @@
     {
       "key": "FI.calculus",
       "source_id": "finite_integration",
-      "section": "\u00a72.3; Proposition 2.5",
+      "section": "§2.3; Proposition 2.5",
       "summary": "Coordinate/scalar fundamental theorem and boundary-retaining integration by parts.",
       "status": "implemented",
       "api": [
@@ -309,7 +362,7 @@
     {
       "key": "FI.fubini",
       "source_id": "finite_integration",
-      "section": "\u00a72.4; Proposition 2.6",
+      "section": "§2.4; Proposition 2.6",
       "summary": "Independent exact direct and iterated product integration in every permitted order.",
       "status": "implemented",
       "api": [
@@ -326,7 +379,7 @@
     {
       "key": "FI.quadrature_prefix",
       "source_id": "finite_integration",
-      "section": "\u00a72.5; Proposition 2.7",
+      "section": "§2.5; Proposition 2.7",
       "summary": "Signed quadrature functionals with exact consecutive-degree target matching.",
       "status": "implemented",
       "api": [
@@ -344,7 +397,7 @@
     {
       "key": "FI.simpson",
       "source_id": "finite_integration",
-      "section": "\u00a72.6; Proposition 2.8 and \u00a75",
+      "section": "§2.6; Proposition 2.8 and §5",
       "summary": "Matched exact polynomial/interval derivative envelope and rational Simpson target-error enclosure.",
       "status": "implemented",
       "api": [
@@ -362,7 +415,7 @@
     {
       "key": "FI.quadrature_dual_defect",
       "source_id": "finite_integration",
-      "section": "\u00a74; Proposition 4.1",
+      "section": "§4; Proposition 4.1",
       "summary": "Basis-covariant finite quadrature defect row and its exactness kernel.",
       "status": "partial",
       "api": [
@@ -380,7 +433,7 @@
     {
       "key": "FI.adapters",
       "source_id": "finite_integration",
-      "section": "\u00a7\u00a73.4\u20133.5, 6.2",
+      "section": "§§3.4–3.5, 6.2",
       "summary": "Polynomial/formal-series adapters and analysis-synthesis integration compatibility.",
       "status": "implemented",
       "api": [
@@ -399,7 +452,7 @@
     {
       "key": "FI.verification",
       "source_id": "finite_integration",
-      "section": "\u00a7\u00a76\u20137",
+      "section": "§§6–7",
       "summary": "Replayable exact examples, negative controls and native integration verifier.",
       "status": "partial",
       "api": [
@@ -409,13 +462,13 @@
         "tests/test_block19_integration.py"
       ],
       "boundaries": [
-        "Repo tests/native verifier are callable; the publication\u2019s 6,866-check archived adversarial script and Lean source execution were not materialized/replayed by this audit."
+        "Repo tests/native verifier are callable; the publication’s 6,866-check archived adversarial script and Lean source execution were not materialized/replayed by this audit."
       ]
     },
     {
       "key": "CC.normalized_algebra",
       "source_id": "cartier",
-      "section": "\u00a72; Theorem 2.1, Definitions 2.2, Proposition 2.3",
+      "section": "§2; Theorem 2.1, Definitions 2.2, Proposition 2.3",
       "summary": "Normalization kernels, lowering, scalar products and coefficient-domain arithmetic.",
       "status": "implemented",
       "api": [
@@ -437,7 +490,7 @@
     {
       "key": "CC.sections",
       "source_id": "cartier",
-      "section": "\u00a72; Theorem 2.5, Proposition 2.6",
+      "section": "§2; Theorem 2.5, Proposition 2.6",
       "summary": "Residue sections and exact normalization-weighted packet transfer.",
       "status": "implemented",
       "api": [
@@ -457,7 +510,7 @@
     {
       "key": "CC.custom_functions",
       "source_id": "cartier",
-      "section": "\u00a73; Proposition 3.1 and \u00a7\u00a73.1\u20133.5",
+      "section": "§3; Proposition 3.1 and §§3.1–3.5",
       "summary": "Construct coefficient windows from recurrence, rational, implicit algebraic and Euler-product rules.",
       "status": "implemented",
       "api": [
@@ -478,7 +531,7 @@
     {
       "key": "CC.recognition",
       "source_id": "cartier",
-      "section": "\u00a74.1",
+      "section": "§4.1",
       "summary": "Bounded exact recurrence/algebraic/P-recursive inference and held-out finite checking.",
       "status": "partial",
       "api": [
@@ -499,7 +552,7 @@
     {
       "key": "CC.digit_kernel",
       "source_id": "cartier",
-      "section": "\u00a75; Definition 5.1, Theorem 5.2, Corollary 5.3",
+      "section": "§5; Definition 5.1, Theorem 5.2, Corollary 5.3",
       "summary": "No-borrow digit-local normalized convolution.",
       "status": "implemented",
       "api": [
@@ -519,7 +572,7 @@
     {
       "key": "CC.bell",
       "source_id": "cartier",
-      "section": "\u00a7\u00a76\u20137; Theorems 6.1\u20136.2, 7.2, Corollaries 7.3\u20137.4, Theorem 7.5",
+      "section": "§§6–7; Theorems 6.1–6.2, 7.2, Corollaries 7.3–7.4, Theorem 7.5",
       "summary": "Integral weighted factorial-power Bell families, digit reduction, parity and bounded-period automata.",
       "status": "implemented",
       "api": [
@@ -540,7 +593,7 @@
     {
       "key": "CC.mask_isomorphism",
       "source_id": "cartier",
-      "section": "\u00a78; Theorem 8.1",
+      "section": "§8; Theorem 8.1",
       "summary": "Unit-series mask construction/inverse and defining Mahler equation replay.",
       "status": "implemented",
       "api": [
@@ -560,7 +613,7 @@
     {
       "key": "CC.analytic_masks",
       "source_id": "cartier",
-      "section": "\u00a78; Theorem 8.2",
+      "section": "§8; Theorem 8.2",
       "summary": "Analytic local-mask products under explicit convergence assumptions.",
       "status": "partial",
       "api": [
@@ -578,7 +631,7 @@
     {
       "key": "CC.finite_carry",
       "source_id": "cartier",
-      "section": "\u00a79; Theorem 9.1 and \u00a710; Theorem 10.1",
+      "section": "§9; Theorem 9.1 and §10; Theorem 10.1",
       "summary": "Finite-mask carry matrices and closure of ordinary digit Cauchy products.",
       "status": "implemented",
       "api": [
@@ -597,7 +650,7 @@
     {
       "key": "CC.kummer_layers",
       "source_id": "cartier",
-      "section": "\u00a711; Theorem 11.1, Corollaries 11.2\u201311.3 and \u00a711.2",
+      "section": "§11; Theorem 11.1, Corollaries 11.2–11.3 and §11.2",
       "summary": "Carry-layer support counting and prime-power factorial-kernel convolution layers.",
       "status": "implemented",
       "api": [
@@ -618,7 +671,7 @@
     {
       "key": "CC.frobenius_lift",
       "source_id": "cartier",
-      "section": "\u00a712; Theorem 12.1",
+      "section": "§12; Theorem 12.1",
       "summary": "Frobenius-defect masks and first p-adic correction.",
       "status": "partial",
       "api": [
@@ -637,7 +690,7 @@
     {
       "key": "CC.coboundary",
       "source_id": "cartier",
-      "section": "\u00a713; Proposition 13.1, Theorem 13.2 and \u00a718; Theorem 18.1",
+      "section": "§13; Proposition 13.1, Theorem 13.2 and §18; Theorem 18.1",
       "summary": "Polynomial/Euler/cyclotomic coboundary and finite orbit-collapse tests.",
       "status": "implemented",
       "api": [
@@ -659,7 +712,7 @@
     {
       "key": "CC.cartier_prime",
       "source_id": "cartier",
-      "section": "\u00a714; Theorems 14.1\u201314.4",
+      "section": "§14; Theorems 14.1–14.4",
       "summary": "Rational-mask denominator-stabilized Cartier matrices, finite automata and carry equality.",
       "status": "implemented",
       "api": [
@@ -681,7 +734,7 @@
     {
       "key": "CC.prime_power_units",
       "source_id": "cartier",
-      "section": "\u00a715; Theorems 15.1\u201315.2",
+      "section": "§15; Theorems 15.1–15.2",
       "summary": "Recursive unit factorial and exact binomial/kernel residues modulo p^r.",
       "status": "implemented",
       "api": [
@@ -698,7 +751,7 @@
     {
       "key": "CC.carry_classification",
       "source_id": "cartier",
-      "section": "\u00a716; Theorems 16.1\u201316.2",
+      "section": "§16; Theorems 16.1–16.2",
       "summary": "Carry-linear valuation profiles and digit-unit normalization.",
       "status": "partial",
       "api": [
@@ -716,7 +769,7 @@
     {
       "key": "CC.gaussian_kummer",
       "source_id": "cartier",
-      "section": "\u00a717; Lemma 17.1, Theorem 17.3, Corollary 17.4",
+      "section": "§17; Lemma 17.1, Theorem 17.3, Corollary 17.4",
       "summary": "Mixed-radix Gaussian-binomial valuations and prime-power support.",
       "status": "implemented",
       "api": [
@@ -734,7 +787,7 @@
     {
       "key": "CC.polyphase",
       "source_id": "cartier",
-      "section": "\u00a720; Equation 20.1 and normalized packet formula",
+      "section": "§20; Equation 20.1 and normalized packet formula",
       "summary": "Residue/polyphase coordinates and normalization-aware signal transfer.",
       "status": "implemented",
       "api": [
@@ -755,7 +808,7 @@
     {
       "key": "CC.prime_power_cartier",
       "source_id": "cartier",
-      "section": "\u00a723; Lemma 23.1, Theorems 23.2\u201323.4, Corollary 23.5",
+      "section": "§23; Lemma 23.1, Theorems 23.2–23.4, Corollary 23.5",
       "summary": "Exact nilpotent denominator-layer rational-mask transitions modulo p^r.",
       "status": "implemented",
       "api": [
@@ -773,31 +826,44 @@
     {
       "key": "CC.canonical_ring_modules",
       "source_id": "cartier",
-      "section": "\u00a724; Theorem 24.1, Corollary 24.2, Example 24.4",
+      "section": "§24; Theorem 24.1, Corollary 24.2, Example 24.4",
       "summary": "Reachable-observable residual module and canonical linear-carrier reduction over nonfields.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.generating.residual_modules.RingLinearRealization",
+        "komorebi_math.generating.residual_modules.CanonicalResidualModule",
+        "komorebi_math.generating.residual_modules.canonical_residual_module"
+      ],
+      "tests": [
+        "tests/test_residual_modules.py"
+      ],
       "boundaries": [
-        "Deterministic automaton minimization is present, but no general Z/p^rZ reachable-module/unobservable-quotient minimizer exists. Quotients may be nonfree; vector-space dimension cannot replace module cardinality."
+        "Bounded complete enumeration over finite free Z/p**r Z ambient presentations; the actual reachable/unobservable quotient has explicit additive/scalar/action laws and may be nonfree. Complete future behavior is computed by stable partition refinement.",
+        "No vector-space dimension surrogate, polynomial complexity, abstract infinite module input, canonical coordinate basis, cross-precision maps, automatic adapter for every external Cartier representation, or minimum deterministic automaton claim. Input/enumeration/table/work caps refuse unsupported sizes explicitly."
       ]
     },
     {
       "key": "CC.finite_word_comparison",
       "source_id": "cartier",
-      "section": "\u00a724.3; Theorem 24.5",
+      "section": "§24.3; Theorem 24.5",
       "summary": "Finite word-length complete comparison for finite additive p-group carriers.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.generating.residual_modules.finite_word_comparison",
+        "komorebi_math.generating.residual_modules.WordComparison"
+      ],
+      "tests": [
+        "tests/test_residual_modules.py"
+      ],
       "boundaries": [
-        "No general finite-ring realization comparator over all short noncommuting words is exposed; equality of selected integer-index outputs is a different test set."
+        "Complete product-orbit comparison over the same prime-power ring and finite ordered alphabet for free realizations and their explicit nonfree residual quotients; exact additive cardinalities determine the strict b+c word-length horizon and a mismatch returns a shortest distinguishing word.",
+        "No infinite alphabet input, arbitrary externally supplied abstract module table adapter, field-rank shortcut, selected-integer-only equivalence, or polynomial bit complexity. Product carrier and estimated work are preflighted; a refusal is never equality."
       ]
     },
     {
       "key": "SR.redundant_resolution",
       "source_id": "sufficient_resolution",
-      "section": "\u00a72; Theorem 2.1 (SR-01)",
+      "section": "§2; Theorem 2.1 (SR-01)",
       "summary": "Split analysis/synthesis, compatible kernels and exact encode/decode composition.",
       "status": "implemented",
       "api": [
@@ -814,7 +880,7 @@
     {
       "key": "SR.hidden_defect",
       "source_id": "sufficient_resolution",
-      "section": "\u00a72; Theorem 2.3 (SR-02)",
+      "section": "§2; Theorem 2.3 (SR-02)",
       "summary": "Hidden-return compression defect and two-stage coherence.",
       "status": "partial",
       "api": [
@@ -832,7 +898,7 @@
     {
       "key": "SR.globalization",
       "source_id": "sufficient_resolution",
-      "section": "\u00a72; Theorem 2.4 (SR-03)",
+      "section": "§2; Theorem 2.4 (SR-03)",
       "summary": "Compatibility kernel modulo actual source range, realization and quotient transport.",
       "status": "partial",
       "api": [
@@ -849,7 +915,7 @@
     {
       "key": "SR.discrete_memory",
       "source_id": "sufficient_resolution",
-      "section": "\u00a73; Theorems 3.1\u20133.2 (SR-05\u201306)",
+      "section": "§3; Theorems 3.1–3.2 (SR-05–06)",
       "summary": "Exact hidden-state memory and initial hidden forcing derived from actual powers.",
       "status": "implemented",
       "api": [
@@ -866,7 +932,7 @@
     {
       "key": "SR.finite_closure",
       "source_id": "sufficient_resolution",
-      "section": "\u00a73; Theorems 3.3\u20133.4 (SR-07\u201308)",
+      "section": "§3; Theorems 3.3–3.4 (SR-07–08)",
       "summary": "Finite hidden moments decide all-depth prepared closure.",
       "status": "partial",
       "api": [
@@ -885,7 +951,7 @@
     {
       "key": "SR.behavioral_quotient",
       "source_id": "sufficient_resolution",
-      "section": "\u00a72; SR-04 and \u00a74; Theorems 4.1\u20134.4 (SR-09\u201312)",
+      "section": "§2; SR-04 and §4; Theorems 4.1–4.4 (SR-09–12)",
       "summary": "All-future invisible state, plateau certificates and minimum exact behavioral coordinates.",
       "status": "implemented",
       "api": [
@@ -905,7 +971,7 @@
     {
       "key": "SR.discrete_error",
       "source_id": "sufficient_resolution",
-      "section": "\u00a75; Theorems 5.1\u20135.4 (SR-13\u201316)",
+      "section": "§5; Theorems 5.1–5.4 (SR-13–16)",
       "summary": "Word-defect transport and heterogeneous/two-rate continuation error budgets.",
       "status": "partial",
       "api": [
@@ -917,13 +983,13 @@
         "tests/test_operators_transfer.py"
       ],
       "boundaries": [
-        "Single-matrix power bounds and operator transfer pieces exist; no complete multi-letter q/intertwining budget constructor for all SR-13\u201316 contracts."
+        "Single-matrix power bounds and operator transfer pieces exist; no complete multi-letter q/intertwining budget constructor for all SR-13–16 contracts."
       ]
     },
     {
       "key": "SR.continuous_memory",
       "source_id": "sufficient_resolution",
-      "section": "\u00a76; Theorems 6.1\u20136.4 (SR-17\u201320)",
+      "section": "§6; Theorems 6.1–6.4 (SR-17–20)",
       "summary": "Bounded flow variation-of-constants, exact hidden memory and finite jets.",
       "status": "partial",
       "api": [
@@ -944,7 +1010,7 @@
     {
       "key": "SR.continuous_error",
       "source_id": "sufficient_resolution",
-      "section": "\u00a77; Theorems 7.1\u20137.4 (SR-21\u201324)",
+      "section": "§7; Theorems 7.1–7.4 (SR-21–24)",
       "summary": "Duhamel generator-defect transport and response/stability bounds.",
       "status": "partial",
       "api": [
@@ -963,7 +1029,7 @@
     {
       "key": "SR.orthogonal_globalization",
       "source_id": "sufficient_resolution",
-      "section": "\u00a78; Theorems 8.1\u20138.4 (SR-25\u201328)",
+      "section": "§8; Theorems 8.1–8.4 (SR-25–28)",
       "summary": "Three-way realized/compatible-obstruction/incompatible decomposition with conditioning.",
       "status": "partial",
       "api": [
@@ -981,7 +1047,7 @@
     {
       "key": "SR.canonical_inverse",
       "source_id": "sufficient_resolution",
-      "section": "\u00a79; Theorems 9.1\u20139.4 (SR-29\u201332)",
+      "section": "§9; Theorems 9.1–9.4 (SR-29–32)",
       "summary": "Canonical minimum-norm source, source/kernel ambiguity and closed-range conditioning.",
       "status": "partial",
       "api": [
@@ -999,7 +1065,7 @@
     {
       "key": "SR.metric_quotients",
       "source_id": "sufficient_resolution",
-      "section": "\u00a710; Theorems 10.1\u201310.4 (SR-33\u201336)",
+      "section": "§10; Theorems 10.1–10.4 (SR-33–36)",
       "summary": "Native quotient norm/harmonic isometry, minimum representatives and metric refinement.",
       "status": "partial",
       "api": [
@@ -1017,19 +1083,33 @@
     {
       "key": "SR.tikhonov",
       "source_id": "sufficient_resolution",
-      "section": "\u00a711; Theorems 11.1\u201311.4 (SR-37\u201340)",
+      "section": "§11; Theorems 11.1–11.4 (SR-37–40)",
       "summary": "Positive normal inverse, objective increment, bias/noise/kernel and parameter/operator sensitivity.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.tikhonov.tikhonov_system",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.solve",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.objective_increment",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.whole_map_bounds",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.bias_noise",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.source_condition_bias",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.conditioned_bias_noise",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.resolvent_difference",
+        "komorebi_math.signals.tikhonov.TikhonovSystem.operator_sensitivity"
+      ],
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ],
       "boundaries": [
-        "Generic exact matrix solves exist, but no Tikhonov constructor binds A,lambda,v to these contracts and residual controls. A dedicated finite rational implementation is a useful next priority."
+        "Exact positive normal inverse, objective increment, whole-map bounds, kernel bias/noise split, checked source coercivity/source condition and checked two-operator sensitivity are implemented in finite rational Euclidean spaces.",
+        "SR-40's intrinsic globalization obstruction/inconsistency decomposition and a dedicated canonical-inverse bias interface are not implemented here; infinite Hilbert constructors and strong limits remain outside this finite API.",
+        "Nonorthogonal or redundant coordinate metrics must be transported before this Euclidean interface applies; no metric is inferred from raw coordinates."
       ]
     },
     {
       "key": "SR.strong_limits",
       "source_id": "sufficient_resolution",
-      "section": "\u00a712; Theorems 12.1\u201312.4 (SR-41\u201344)",
+      "section": "§12; Theorems 12.1–12.4 (SR-41–44)",
       "summary": "Strong identifiable-source limits and the closed-range uniform boundary.",
       "status": "theory_only",
       "api": [],
@@ -1041,31 +1121,46 @@
     {
       "key": "SR.discrepancy_selection",
       "source_id": "sufficient_resolution",
-      "section": "\u00a713; Theorems 13.1\u201313.4 (SR-45\u201348)",
+      "section": "§13; Theorems 13.1–13.4 (SR-45–48)",
       "summary": "Actual residual curve, unique interior discrepancy parameter and total small-data acceptance.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.tikhonov.bracket_discrepancy",
+        "komorebi_math.signals.tikhonov.select_discrepancy"
+      ],
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ],
       "boundaries": [
-        "No discrepancy root/acceptance interface; numerical roots would need residual enclosures and explicit strict attainable-floor hypotheses."
+        "Finite exact residual evaluation, full attainable-floor computation, strict root endpoints and rational root brackets are implemented; the total finite selector returns zero or an actual rational source inside the accepted band.",
+        "A real root such as 1+sqrt(2) is only bracketed; the paper's exact noncomputable upper-edge selected witness is not claimed as a rational algorithm output.",
+        "The positive selector checks finite floor<=eta; the small-data branch checks its defining inequality only. Neither authenticates true data noise or proves infinite-family consistency."
       ]
     },
     {
       "key": "SR.inexact_discrepancy",
       "source_id": "sufficient_resolution",
-      "section": "\u00a714; Theorems 14.1\u201314.4 (SR-49\u201352)",
+      "section": "§14; Theorems 14.1–14.4 (SR-49–52)",
       "summary": "Actual normal residual, source/image correction scales and squared protected discrepancy certificates.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.tikhonov.normal_residual_correction",
+        "komorebi_math.signals.tikhonov.protected_discrepancy_window",
+        "komorebi_math.signals.tikhonov.certify_squared_discrepancy"
+      ],
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ],
       "boundaries": [
-        "No bound record reconstructs the actual rational squared norms and verifies every signed/nonnegative margin; solver residuals alone do not establish true data-noise allowances."
+        "Finite rational pointwise sector: actual normal residual, distinct source/image correction scales, protected scalar window and every signed/nonnegative squared SR-52 premise are recomputed.",
+        "Solver-reported squared norms are not accepted in place of actual matrix expressions; a false zero residual or incorrect evaluation enclosure invalidates the record.",
+        "The record leaves genuine true-data allowances and infinite-family convergence premises unchecked. It does not replay source Lean structures or authenticate measurement truth."
       ]
     },
     {
       "key": "SR.uncertain_operators",
       "source_id": "sufficient_resolution",
-      "section": "\u00a715; Theorems 15.1\u201315.4 (SR-53\u201356)",
+      "section": "§15; Theorems 15.1–15.4 (SR-53–56)",
       "summary": "Whole-operator model allowance, transported normal residuals and changing-kernel consistency.",
       "status": "missing",
       "api": [],
@@ -1077,19 +1172,27 @@
     {
       "key": "SR.candidate_noise",
       "source_id": "sufficient_resolution",
-      "section": "\u00a716; Theorems 16.1\u201316.4 (SR-57\u201360)",
+      "section": "§16; Theorems 16.1–16.4 (SR-57–60)",
       "summary": "Candidate-dependent acceptance, feasibility margin and zero-model negative control.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.tikhonov.candidate_noise_acceptance",
+        "komorebi_math.signals.tikhonov.candidate_norm_domination",
+        "komorebi_math.signals.tikhonov.candidate_relative_feasibility"
+      ],
+      "tests": [
+        "tests/test_tikhonov_certificates.py"
+      ],
       "boundaries": [
-        "Acceptance has no supplied source cap, but existence retains truth/relative-feasibility conditions. Source\u2019s raw selected witness is noncomputable; no extracted general selector should be claimed."
+        "Finite cap-free candidate acceptance, exact nonsquare-norm comparisons, actual normal-source verification, feasible-comparison norm domination, strict relative scalar margin and the zero-model negative control are implemented.",
+        "Truth/operator bounds remain separate premises; the module does not bind a true and available operator to the conditional existence/consistency chain or extract the source's noncomputable selected family.",
+        "A small fitting residual or an upper candidate-noise inequality alone cannot qualify an approximate source as the actual regularized candidate."
       ]
     },
     {
       "key": "SR.calibration_allowance",
       "source_id": "sufficient_resolution",
-      "section": "\u00a717; Theorems 17.1\u201317.4 (SR-61\u201364)",
+      "section": "§17; Theorems 17.1–17.4 (SR-61–64)",
       "summary": "Split/hierarchical/approximate calibration frames generate whole-operator allowances.",
       "status": "partial",
       "api": [

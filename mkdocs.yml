@@ -8,6 +8,7 @@ nav:
   - New Machinery Guide: NEW_MACHINERY_GUIDE.md
   - Paper Machinery Coverage: paper_machinery_coverage.md
   - Paper Machinery Validation: PAPER_MACHINERY_QUALIFICATION.md
+  - Mathematical Machinery Continuation: PAPER_MACHINERY_CONTINUATION.md
   - Mathematical Stress Framework: math_stress_framework.md
   - Papers I–IV Coverage: paper_core_coverage.md
   - Papers V–VIII Coverage: paper_middle_coverage.md
@@ -16,6 +17,11 @@ nav:
   - Exact Predictive Foundations: finite_predictive_foundations.md
   - Exact Gaussian Verifier: finite_gaussian_verifier.md
   - Exact Collatz Words: collatz_words.md
+  - Exact AVOC Decisions: avoc_decisions.md
+  - Boolean Synthesis and Minimum Banks: avoc_boolean.md
+  - Tikhonov Discrepancy Certificates: tikhonov_certificates.md
+  - Nonfree Residual Modules: residual_modules.md
+  - Five-Core Arithmetic Shells: lehmer_shells.md
   - Companion Calculus Coverage: companion_calculus_coverage.md
   - Companion Dynamics Coverage: companion_dynamics_coverage.md
   - Companion Arithmetic Coverage: companion_arithmetic_coverage.md

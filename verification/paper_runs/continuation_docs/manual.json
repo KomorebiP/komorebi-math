@@ -1,0 +1,793 @@
+{
+  "example_count": 64,
+  "examples": [
+    {
+      "example": 1,
+      "line": 130,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "e3131529589297143f5cd126ba0623c1f6d07f9d080605eee6186dc33d9311cd",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 220,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "f851debf17b4388e0059a06c1027e6cc59a8b2ec550ce8b1881e696512f3c1e5",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 3,
+      "line": 264,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "9535bf005a52ddb306526a8c62801dc06e88ec539fb231e58269f809ce16f8d8",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 5,
+      "line": 345,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "4fcc80d46b79b582beab459f3cd9312f7649d21f45a2730881d912e731408587",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 6,
+      "line": 390,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "7cbb325955304b4fc3b0ff99841f281b7ce4c2ede2dfe3c6a23d8a9afccb7c33",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 7,
+      "line": 437,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "d8c9a6aa2028b2321fd624b54b50adee3c4b950911ab9720183e1ac0653fadb0",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 8,
+      "line": 449,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "d16dea01d47522e875b5e20227dc745cd53d715d492a441c36397402309348ec",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 9,
+      "line": 464,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "8f453b90457be2c05d56b3010029aa779a5981bd0c301caf07390caaa2719d6e",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 10,
+      "line": 484,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "727a95667615118b0161eb550463328c03694b5d7c43c932890a4ade8bc49093",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 11,
+      "line": 508,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "786416fded5a719c6aeecc60780ea1f41eec98515a667f150c6286a7cccb607f",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 12,
+      "line": 528,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "c2b4405efcb2cd7ae4bc51234fd94472bf0cfcf42dcd65403600d9cfa4d323a3",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 13,
+      "line": 543,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "a30b0af0ed6d69feb36d368ecb0a8d1f124953e07b8ab260fef62b86a594257d",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 14,
+      "line": 563,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "e650ca6779b471607e06ba617c4489ad0154994d9789e3acb8523152858331e8",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 15,
+      "line": 582,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "96b24df1b2246683f51ba7fd85beb696272e297083cd4c6db9071645a17f9f7b",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 16,
+      "line": 594,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "8c754a299de7c8a69fd9bbe71b5bc4bc054881cb2c77b13ffb434da98aca8755",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": "8804179016755/231 2048\n"
+    },
+    {
+      "example": 17,
+      "line": 611,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "3f84a4bfc60010b2d903eec11116adb8d27b11d9baeaee90d9e48a4909942c60",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": "3\n"
+    },
+    {
+      "example": 18,
+      "line": 626,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "a586cf632575a19e91198d6d2e55b055d3ab5d83eb6387e4ec3c535df9c1bb14",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": "Fibonacci declared linear recurrence (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)\nThue Morse declared finite automaton (0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1)\nApery declared holonomic recurrence (Fraction(1, 1), Fraction(5, 1), Fraction(73, 1), Fraction(1445, 1), Fraction(33001, 1), Fraction(819005, 1), Fraction(21460825, 1), Fraction(584307365, 1), Fraction(16367912425, 1), Fraction(468690849005, 1), Fraction(13657436403073, 1), Fraction(403676083788125, 1))\n"
+    },
+    {
+      "example": 20,
+      "line": 773,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "9e71c0f87f48242ce32e38f12ac7c53212e915af7b39ff332422a0c9d9c75dad",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 21,
+      "line": 797,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "3c261f76309ea33bb8af47026723f299232520dfc679de5f491aee5779a4e9d1",
+      "source": "README.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 7,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "e3131529589297143f5cd126ba0623c1f6d07f9d080605eee6186dc33d9311cd",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 32,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "2a8bdc5140a8f2965f9ce5f821992d0d2c43368bac8d9f55717eabc23e8559a0",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 3,
+      "line": 63,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "1d8d26c7c4768def58faa504929a5d9655fc617cb3c702687f6681a8ea781f4b",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 4,
+      "line": 95,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "88eeff66acb43727dfab86ca1035c41a7608091a53c2ea383dc5e3200ae833fd",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 5,
+      "line": 112,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "05dd37a0930787da41474afc309a15b2b8d0e5ac25093b3ca7f9b3cdde222c2f",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 6,
+      "line": 127,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "69f9925bc0cd2e64135b436f0d07a046911382f053775811430e7f97c4575643",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 7,
+      "line": 144,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "6f1acdf9596545f137c8c9e25777a9ca5337e403ea03724908fe597307e1db07",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 8,
+      "line": 164,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "33821a6c5b47244f7897c349ac1c849f1778f7a200847601fb5f2f87ef1d6afc",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 9,
+      "line": 183,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "cacfd21484a8a8f199677c5a5e9d2296772b19f9be553e3f30570076b58a89f1",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 10,
+      "line": 207,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "edf254f084e98ad4465918f6681f5f36f5ca88e6caf0d8ef0e3d4abd5cdeb244",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 11,
+      "line": 240,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "448ca65c7cc7b88b6a5b43e035e27232b44b51022ded96fe8373a70e66ad5f2a",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 12,
+      "line": 264,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "dd15dabea99d0d26138dfafdd80e85d3814f357c8306eb3e127918318724cd98",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 13,
+      "line": 288,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "1433f49a299ffbd275038b000a6231446d191b46f827a8c1294b9ead154574aa",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 16,
+      "line": 329,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "5a0c9843243458f52983ddbb5655a8c54a87dc8cb4381ae0d50e717c555bf14c",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 30,
+      "line": 775,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "1a7c60a12b26c8ae6247b87cda9ba5b39d096d31e213d7807f87ce5491597a9f",
+      "source": "docs/PUBLIC_API.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 138,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "63b143c3ef0f519510f855097e37da30c8848fc6b3ebf5587dc572a288eb94dd",
+      "source": "docs/USER_GUIDE.md",
+      "stderr": "",
+      "stdout": "[2.0, 3.0]\n{'idempotence': 0.0, 'annihilation': 0.0, 'completeness': 0.0}\n"
+    },
+    {
+      "example": 2,
+      "line": 175,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "79c322fbf8e2ba0050d36035ae6f7824a2f3dffb78844f22d3c7ccef53f3fc64",
+      "source": "docs/USER_GUIDE.md",
+      "stderr": "",
+      "stdout": "(Fraction(7, 2), Fraction(3, 1))\n"
+    },
+    {
+      "example": 3,
+      "line": 231,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "ecaf9ea4eddcaa30c54a49846111e70fe598c08e2fc868fde4a91b848351bc7f",
+      "source": "docs/USER_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 4,
+      "line": 316,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "32c79f5bd08b8e79dd4de425a703ec11a58ce647052241754026f655b11e2450",
+      "source": "docs/USER_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 96,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "aae5f0b57897760d1ae774076b4fa3ee4cbbd722a5357db5dfe6259e6d6730d8",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 136,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "3690e4bd9ce972a85ff6db6570b6985a6d3c7fb93b223813a87f94cfca9d2693",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 3,
+      "line": 229,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "864c310424a4b4f3d792aaed78021b59176d78938d7ed58c83cbda9a01a0b9a1",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 4,
+      "line": 260,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "6d3d708517b7dac6415b49462edcdf2b50b7c9cbce1fb1e26727bdeb0971d026",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 5,
+      "line": 357,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "25c1e2ec8ed1aaf0429ac3abfdd64e2296e5ad5b8be7bab358dff4442b176d72",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 6,
+      "line": 398,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "d209eff9de762435fdf80fd71c04dc2275cfadbf504061a87cb4c55d526978e0",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 7,
+      "line": 478,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "ff33a2a11e5dccc3aa4d59e8b6842d4d488b1299651dc3b82028c08358b27d8f",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 8,
+      "line": 508,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "6e4409b65230d9c5ee2e6def35be96636f74305cb4c0fd34da2ff6774b86323a",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 9,
+      "line": 570,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "febbf5479f0322222f6062ae983212929d942261322311a8c4524737221c86fd",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 10,
+      "line": 596,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "dd55d9c8ad1d5d605692aa9bb3fb3a297a671dd707e9b768d124bcea82483d82",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 11,
+      "line": 661,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "8217173213fd73b36229e9836ecae9512cb7a696e2710b66e18eea55a748eb36",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 12,
+      "line": 687,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "1fdd62a59cd66f576f8ac4ecccee9da76ce7cb5aebf6c5f023acdebe00f77a74",
+      "source": "docs/NEW_MACHINERY_GUIDE.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 26,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "6ba12cc9d098223ef9fc802ba17228912e162865ffe92b61e5aa13451a81bec9",
+      "source": "docs/sequences_oeis.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 63,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "da51f3c16932d37388627307cf4af19c2f7638dd634e1e7902a97d50dfc6f44c",
+      "source": "docs/sequences_oeis.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 23,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "9ddc0efc5ef11680d3764e170a44e19e912d98bfe92d508469c7961f80c2fcf2",
+      "source": "docs/fourier_recovery.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 7,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "9980a530ae6f669f98c473c274cfab41a9a579dc8f144a95a6f6a9534a355219",
+      "source": "docs/finite_join_semilattice.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 29,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "29beb8986ddd3a511583e9f027f807ee82a6f7bd62f9fbc2744548aa509b1553",
+      "source": "docs/quadratic_forms.md",
+      "stderr": "",
+      "stdout": "[-11.379994073937244045891910859107355151881484067067, -11.379994073917953966190851579337974797138846603499]\n"
+    },
+    {
+      "example": 2,
+      "line": 89,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "90c9b57d4a7ec33a8135fd64debad87c1e9c5adc3698449fe56db6d12edb3bf9",
+      "source": "docs/quadratic_forms.md",
+      "stderr": "",
+      "stdout": "('6.25', '4', '2.25', '1') ('6.25', '4', '2.25', '1')\n"
+    },
+    {
+      "example": 1,
+      "line": 10,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "ba2634fa880f5b875538a2bcc270727873c3b26848736b94a0950da0b9fb101e",
+      "source": "docs/special_functions.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 7,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "ed2f223f6572e80e5fe2df22a50a4e594f65114938d427a7a7f87d372452fdf2",
+      "source": "docs/dirac_modes.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 28,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "74cbad0c1af3e684020aa8d50ae953aae1b519d866722c17200a82cab2877cf0",
+      "source": "docs/NORMALIZED_GENERATING_FUNCTIONS.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 68,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "a67fbed3db8b464bba6ad7ecf53570b7b45c9cb800204a28b595f7af90c5d7fa",
+      "source": "docs/NORMALIZED_GENERATING_FUNCTIONS.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 3,
+      "line": 116,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "29e8b8112b9d4d243907ad93cae8ab9a9837a8a92795ae7566633abf93eadf7a",
+      "source": "docs/NORMALIZED_GENERATING_FUNCTIONS.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 4,
+      "line": 136,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "ef2f88f6fc5a1475b13b9c482d0056cbb335d9971c553bbf731a51ec9175d45b",
+      "source": "docs/NORMALIZED_GENERATING_FUNCTIONS.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 1,
+      "line": 110,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "999b9fde2bbd208fbd8b7e3487c0c0396e774494b97d7765e2acc01ddfa1351c",
+      "source": "docs/PERSISTENCE_SCHEMAS.md",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "example": 2,
+      "line": 141,
+      "passed": true,
+      "returncode": 0,
+      "sha256": "537f1b837e510e75356e930a4b479bf2f2e6e36e1480aa7ab4264864b0a983d7",
+      "source": "docs/PERSISTENCE_SCHEMAS.md",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "excluded_examples": [
+    {
+      "example": 4,
+      "line": 304,
+      "reason": "Contextual stream lifecycle fragment requiring previously constructed jet and directions.",
+      "sha256": "8c12f3364c8a789b542babbec570f08a438607290c66b363798faf1b799b7150",
+      "source": "README.md"
+    },
+    {
+      "example": 19,
+      "line": 644,
+      "reason": "Complete PDF example requires external LaTeX; validate separately when LaTeX is available.",
+      "sha256": "88ed6a3c963d39507271d8ec45f3fd1cec22759faab954e6a90791764368469e",
+      "source": "README.md"
+    },
+    {
+      "example": 14,
+      "line": 303,
+      "reason": "Certificate attribute reference requiring a previously constructed certificate object.",
+      "sha256": "3a4e662fffa7142170e177c1b4785abebbc5b5e7cfc8c99d5365f7cbe2db3c0b",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 15,
+      "line": 318,
+      "reason": "Configuration template with an intentional ellipsis placeholder.",
+      "sha256": "7fcfb51b67b47f2f1c96d455130fdc92638973b210c75efb8746d46e0c6548ff",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 17,
+      "line": 389,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "6138f12455b4be99fda6b2234f8584dbebbe03feeab3cb523e74f226f7ee952e",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 18,
+      "line": 400,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "bf9bcca3457eea2238e00ea1ca7201b531c7fbf694bad0f274be8f09091061c2",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 19,
+      "line": 416,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "407da21d0890f7b11b2fe93a5ffd0146d61bfefea0c6def327c6e46c2da75782",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 20,
+      "line": 434,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "e7fd6eb19701db16994b1f18e6a799cde541ff9bf7252ea3d48d1b688be83748",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 21,
+      "line": 452,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "2f1d5fbfbb16f98a865c0c9d7e5eff133889f1f4bc9b39386a5e1aa3a1935d25",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 22,
+      "line": 467,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "4e74a2e17a1cb93ab84246920b9d1a0897d458900fd5f2a0aabe03d26b835c15",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 23,
+      "line": 479,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "a36020942583180b1c198796ce1c4081b3c1ea3ee8d0336d1b2aa1d2ac915a66",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 24,
+      "line": 491,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "007e07e06bb1236f4297726a4a0c3ef09e89e6f3dfdf02d736a81024fd2454e3",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 25,
+      "line": 518,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "d40ce6626fa505c3d0ac0377d76b6abfcfd4eb88dde6127d7a1acd2e7c399e80",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 26,
+      "line": 540,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "db1436aca106f5e8a0cda721f9bd1acba5331d432f1db6f049897e5b74f37e39",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 27,
+      "line": 559,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "ef74d69cbd7e26c98297e72dc5f992038ff42ad264885594a3d06bafde3ce570",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 28,
+      "line": 580,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "aadadf8e253767e6f3cfcb01dfb0d4c78fa7fb3355e28648c3c8965b8bb440bf",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 29,
+      "line": 596,
+      "reason": "API name/signature reference, not an executable program.",
+      "sha256": "54e8d03bd8b8089bf69ee1e1cdc695d5fc4c505e03077b57dfd1210291ac14f2",
+      "source": "docs/PUBLIC_API.md"
+    },
+    {
+      "example": 2,
+      "line": 60,
+      "reason": "Conditional known-order continuation of the preceding standalone reconstruction example; measurements and model declarations are established there.",
+      "sha256": "59e900efecaf8c4ed2f53037b153ddeec2f04545da95fd29078fa2506a94b565",
+      "source": "docs/fourier_recovery.md"
+    }
+  ],
+  "passed": true,
+  "profile_sha256": "ae2c18027f7412bdd405ef833093472d5963a9abbb2e80c75829eb8c062e6bb1",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "schema": "komorebi-math.release-manual-examples",
+  "schema_version": 1,
+  "scope": "Each selected fenced Python example runs in a fresh interpreter and temporary directory. Explicit exclusions identify reference fragments and separate optional-runtime checks. Installation commands and optional hardware are covered separately.",
+  "source_sha256": {
+    "README.md": "61a67a44e8e407ab4ee010f1a42f6087811fb07889071bd5ba4a5c6fd6b4537a",
+    "docs/NEW_MACHINERY_GUIDE.md": "35d93cd1bf7da5e7ab0a473b48c0add06c3e480789345d7c806d1c5498152892",
+    "docs/NORMALIZED_GENERATING_FUNCTIONS.md": "a9c10436e0194d76f6e8b48b3a178e97f534f7af76cb537ab88cb0c995629d7b",
+    "docs/PERSISTENCE_SCHEMAS.md": "2d7aec473e40ad94b32ac831562b07f1c4f53144630f5d51c4e436112a696dcb",
+    "docs/PUBLIC_API.md": "d8559c6df939ff1aec9646b0d526b0fbb8c496cc075c5672e4062139ed730168",
+    "docs/USER_GUIDE.md": "1bccd161ee5fcd0a6acbc2fbb33ad5f03c879d022187d75bc2d4a97950e0051d",
+    "docs/dirac_modes.md": "05a9c1d10b2e4b200a3186bb935fc64cd032b7489272f1c7a57d8090a64cb43d",
+    "docs/finite_join_semilattice.md": "e2d3bf7b721cda2701a2c0efc77b19dd516895dd2d826c904a6f9ae597c8a460",
+    "docs/fourier_recovery.md": "ceaac556f0f93c1aa8dce9891876e3e6cd62db7dbcf0071bce25d11b1027ab68",
+    "docs/quadratic_forms.md": "6f9887766b7765d90b559f868e44fb6ec294c6f0111734cae83dc92f41dbf617",
+    "docs/sequences_oeis.md": "ef2b85fa5930741db68dfb45aad745993c721179785ca0248256cd0fe02b7b25",
+    "docs/special_functions.md": "c3bccb3e79b8ae74a2bcb530ec9c77beca421fae55450d821c1bd7bbe9f32ce3"
+  }
+}

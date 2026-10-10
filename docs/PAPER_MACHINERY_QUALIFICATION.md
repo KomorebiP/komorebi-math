@@ -1,5 +1,10 @@
 # Paper machinery validation
 
+This page records the initial mathematical snapshot published at
+`5ef999f2618958e0e2691cfbd677e1083c0364b2`. Its counts and artifact hashes
+are historical. See [the continuation](PAPER_MACHINERY_CONTINUATION.md)
+for the additional constructions and their separate qualification records.
+
 The mathematical patch passed **3,414 source tests**, with seven optional
 JAX/PyTorch checks skipped because those backends were unavailable. Six
 warnings came from deliberately nonfinite negative controls. No test failed

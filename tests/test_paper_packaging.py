@@ -30,12 +30,14 @@ def test_manifest_excludes_transients_after_all_support_includes():
         "verification/.rsync-tmp/report.json",
     }
     manifest = FileList()
-    manifest.allfiles = sorted(legitimate | transients)
+    # FileList consumes native filenames and translates manifest glob patterns
+    # to that platform's separator; fake POSIX paths fail to match on Windows.
+    manifest.allfiles = sorted(str(Path(name)) for name in legitimate | transients)
     for raw_line in (ROOT / "MANIFEST.in").read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if line and not line.startswith("#"):
             manifest.process_template_line(line)
-    included = set(manifest.files)
+    included = {Path(name).as_posix() for name in manifest.files}
     assert legitimate <= included
     assert not transients & included
 

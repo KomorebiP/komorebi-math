@@ -1,0 +1,116 @@
+{
+  "schema": "komorebi-math.paper-machinery-ci-corrections",
+  "schema_version": 1,
+  "observed_failure": {
+    "repository": "KomorebiP/komorebi-math",
+    "pull_request": 3,
+    "head": "5ef999f2618958e0e2691cfbd677e1083c0364b2",
+    "workflow_run_id": 38016168309,
+    "url": "https://github.com/KomorebiP/komorebi-math/actions/runs/38016168309",
+    "status": "completed",
+    "conclusion": "failure"
+  },
+  "causes": [
+    {
+      "identifier": "windows-native-packaging-fixtures",
+      "jobs": [
+        114106797080,
+        114106797111,
+        114106797231
+      ],
+      "failure": "Both packaging tests failed on every Windows Python 3.11/3.12/3.13 source job; 3407 passed, 2 failed, 12 skipped in each.",
+      "details": [
+        "A synthetic chmod(0o755) fixture was compared against hardcoded POSIX permissions although Windows reported 0o666.",
+        "Synthetic FileList filenames used slash separators while setuptools translates MANIFEST.in patterns to Windows-native separators."
+      ],
+      "correction": "Compare snapshot mode to observed source mode and additionally require 0o755 on POSIX; build FileList fixtures with native paths and normalize selected paths for comparison.",
+      "paths": [
+        "tests/test_block21_distribution_builder.py",
+        "tests/test_paper_packaging.py"
+      ]
+    },
+    {
+      "identifier": "manual-profile-fence-drift",
+      "jobs": [
+        114106797124
+      ],
+      "failure": "ValueError: Python-fence count changed in docs/fourier_recovery.md; review the profile",
+      "correction": "Review and register the two actual Python fences. Record fence 2 as a contextual continuation using variables from fence 1, consistent with the independently executed manual-example contract.",
+      "paths": [
+        "verification/release_manual_profile.json"
+      ],
+      "boundary": "The conditional known-order API is exercised by existing Fourier regressions; the contextual fence is explicitly excluded from standalone manual replay."
+    },
+    {
+      "identifier": "numeric-pass-count-misread",
+      "jobs": [
+        114106887248,
+        114106887253,
+        114106887263,
+        114106887282,
+        114106887304
+      ],
+      "failure": "ValueError: nested qualification result failed",
+      "details": "Each installed artifact gate passed, including all 21 old mathematical checks in both wheels. The CPU evidence validator recursively interpreted mathematical_campaign.counts.passed=21 as a Boolean result certificate.",
+      "correction": "Recognize nonnegative integer pass counters only in finite mathematical stress report counts; continue requiring actual True for Boolean result fields. CPU evidence also revalidates the complete required campaign in both direct and rebuilt installed artifacts.",
+      "paths": [
+        "verification/candidate_evidence.py",
+        "tests/test_candidate_evidence.py"
+      ],
+      "required_campaign": "The current gate declares 26 exact required identifiers; checks may not be omitted, forged, skipped or replaced by a passing summary."
+    },
+    {
+      "identifier": "post-result-worker-teardown-race",
+      "jobs": [
+        114106887309
+      ],
+      "failure": "The rebuilt installed wheel mathematical campaign returned 20 passed and 1 error: paper.core.rational-packets, worker exit status -15, runtime 2.047 seconds.",
+      "details": "The parent received the result, allowed only 0.2 seconds for child interpreter teardown, terminated the still-alive worker, then converted its own termination signal into an execution error. The declared per-check budget was 30 seconds.",
+      "correction": "Wait for worker exit through the remaining original deadline. An actual teardown overrun remains a timeout, and a natural abnormal child exit remains an error. No execution bounds were increased.",
+      "paths": [
+        "src/komorebi_math/audit/runner.py",
+        "tests/test_math_stress_framework.py"
+      ]
+    }
+  ],
+  "local_validation": {
+    "focused": {
+      "command": "PYTHONPATH=src python -m pytest -q tests/test_math_stress_framework.py tests/test_candidate_evidence.py tests/test_paper_packaging.py tests/test_block21_distribution_builder.py tests/test_artifact_gate_hardening.py",
+      "python": "3.12.14",
+      "passed": 119,
+      "failed": 0,
+      "seconds": 15.7,
+      "scope": [
+        "Deterministic delayed teardown, actual deadline overrun and abnormal natural exit controls.",
+        "An actual spawned worker with a 0.4-second interpreter finalizer passes within its existing 10-second test budget.",
+        "Missing, forged and skipped campaigns in either artifact are rejected.",
+        "Unknown counts dictionaries cannot bypass Boolean result checks.",
+        "Packaging fixtures retain source bytes, observed modes and synchronization exclusions."
+      ]
+    },
+    "manual": {
+      "command": "PYTHONPATH=src python verification/check_release_manual.py --profile verification/release_manual_profile.json",
+      "status": "failed_environment",
+      "examples": 64,
+      "passed": 57,
+      "failed": 7,
+      "cause": "SymPy and mpmath are absent from the current local Python environment; child imports fail. The stale profile count failure is resolved. This is not a manual qualification."
+    },
+    "syntax": {
+      "command": "python -m py_compile src/komorebi_math/audit/runner.py verification/candidate_evidence.py tests/test_math_stress_framework.py tests/test_candidate_evidence.py tests/test_paper_packaging.py tests/test_block21_distribution_builder.py",
+      "status": "passed"
+    },
+    "lint": {
+      "command": "python -m ruff check src/komorebi_math/audit/runner.py tests/test_math_stress_framework.py tests/test_candidate_evidence.py tests/test_paper_packaging.py tests/test_block21_distribution_builder.py",
+      "status": "failed_environment",
+      "exit_code": 139,
+      "cause": "The local Ruff executable exits 139 even for python -m ruff --version, without a diagnostic. This run supplies no lint qualification."
+    }
+  },
+  "limits": [
+    "This record diagnoses the failed historical workflow and records local corrections; it does not claim a successful fresh GitHub Actions run.",
+    "Windows corrections are based on observed Windows logs and portable fixture semantics; the edited source was locally tested on Linux only.",
+    "Fresh complete source, installed-wheel and CI qualification must follow the final mathematical additions and regenerated catalog.",
+    "Finite mathematical stress checks do not prove universal mathematical statements."
+  ]
+}

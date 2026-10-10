@@ -2,6 +2,7 @@
 
 import io
 import json
+import os
 import stat
 import tarfile
 import zipfile
@@ -95,10 +96,13 @@ def test_source_snapshot_preserves_inputs_and_modes_without_generated_trees(tmp_
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(relative.encode())
     (root / "verify.sh").chmod(0o755)
+    source_mode = stat.S_IMODE((root / "verify.sh").stat().st_mode)
     snapshot = _snapshot_source(root, tmp_path / "private" / "source", VERSION)
     assert all((snapshot / name).read_bytes() == name.encode() for name in legitimate)
     assert not any((snapshot / name).exists() for name in excluded)
-    assert stat.S_IMODE((snapshot / "verify.sh").stat().st_mode) == 0o755
+    assert stat.S_IMODE((snapshot / "verify.sh").stat().st_mode) == source_mode
+    if os.name == "posix":
+        assert source_mode == 0o755
     (root / "src/komorebi_math/core.py").write_bytes(b"changed after snapshot")
     assert (snapshot / "src/komorebi_math/core.py").read_bytes() == b"src/komorebi_math/core.py"
     with pytest.raises(SystemExit, match="outside the original checkout"):

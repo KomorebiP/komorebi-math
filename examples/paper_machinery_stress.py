@@ -6,7 +6,14 @@ extra is recorded as a skipped check and yields nonzero exit status.
 
 from fractions import Fraction
 
-from komorebi_math.audit import CheckOutcome, SkipCheck, StressCheck, paper_checks, run_stress
+from komorebi_math.audit import (
+    CheckOutcome,
+    SkipCheck,
+    StressCheck,
+    continuation_checks,
+    paper_checks,
+    run_stress,
+)
 from komorebi_math.audit.special_function_checks import special_function_checks
 from komorebi_math.certificates import Exactness
 
@@ -43,7 +50,7 @@ def main():
         {"ambient_dimension": 3, "observed_dimension": 1, "delay": 2},
     )
     report = run_stress(
-        (*paper_checks(8), *special_function_checks(8), worked),
+        (*paper_checks(8), *special_function_checks(8), *continuation_checks(8), worked),
         seed=20261010,
         timeout_seconds=30,
         total_timeout_seconds=180,

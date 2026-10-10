@@ -545,13 +545,22 @@
       "source_id": "conjecture_lehmer_tau_v1_0",
       "section": "6.1-6.7",
       "summary": "Complete V-coded five-core shell enumeration, Vandermonde/288 weights, integral signs and prime-index unit weights.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.lehmer_shells.enumerate_five_core_shell",
+        "komorebi_math.arithmetic.lehmer_shells.LehmerPacket",
+        "komorebi_math.arithmetic.lehmer_shells.FiveCoreShell",
+        "komorebi_math.arithmetic.lehmer_shells.five_core_packet_count",
+        "komorebi_math.arithmetic.lehmer_shells.tau_from_q_product"
+      ],
+      "tests": [
+        "tests/test_lehmer_shells.py"
+      ],
       "boundaries": [
-        "No constructor enumerates v_i congruent to i modulo 5 with zero sum and squared norm 10n, or returns the exact Vandermonde shell weights.",
-        "Generic packet containers do not ensure the shell is complete or arithmetic weights are correct.",
-        "The source prime-unit property is termwise; opposite signs can cancel."
+        "Complete finite integer shells are constructed subject to declared candidate/output/bit preflight limits; resource refusal never returns a partial shell.",
+        "Independent four-coordinate comparison through32 and signed q-product/logarithmic recurrence comparison through128 are bounded implementation evidence, not universal nonvanishing.",
+        "Index-prime unit certificates require the source prime hypothesis p>20. Termwise units do not exclude signed cancellation; the2411 fixture has2412 unit weights and a sum divisible by2411.",
+        "The five-core/tau identity and divisor count are source mathematical inputs; no modular-form proof or Lehmer conjecture certificate is emitted."
       ]
     },
     {
@@ -563,16 +572,19 @@
       "api": [
         "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial",
         "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
-        "komorebi_math.arithmetic.valuation.padic_valuation"
+        "komorebi_math.arithmetic.valuation.padic_valuation",
+        "komorebi_math.arithmetic.lehmer_shells.auxiliary_shell_polynomial",
+        "komorebi_math.arithmetic.lehmer_shells.ShellPolynomial"
       ],
       "tests": [
         "tests/test_paper_late_machinery.py",
-        "tests/test_arithmetic_domains_valuation.py"
+        "tests/test_arithmetic_domains_valuation.py",
+        "tests/test_lehmer_shells.py"
       ],
       "boundaries": [
-        "The generic polynomial and lift interfaces can analyze supplied integer coefficients; they do not enumerate the shell or build P_n and G_n.",
-        "The source simple root at shell 499 and nonlifting double root at 16249 are not package fixtures.",
-        "A fixed shell polynomial does not interpolate prime index; valuation formulas permit exact zero."
+        "Complete finite shells now construct P_n(T), exact 5-adic content mu_n and normalized integral G_n(U); source coefficients and the simple residue root at499 are replayed exactly.",
+        "The nonlifting double root at16249 is not a package fixture; universal p-adic branch laws are not certified from the finite499 replay.",
+        "The variable T is auxiliary for one fixed shell and does not interpolate prime index. Normalization permits exact zeros and supplies no universal nonvanishing claim."
       ]
     },
     {
@@ -613,12 +625,21 @@
       "source_id": "conjecture_lehmer_tau_v1_0",
       "section": "13; 16-18",
       "summary": "Primitive content, gcd and Mobius inversion, composite obstructions, odd-prime zero equivalence and conservation under all finite symmetric homogeneous nulls.",
-      "status": "missing",
-      "api": [],
-      "tests": [],
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.lehmer_shells.LehmerPacket",
+        "komorebi_math.arithmetic.lehmer_shells.FiveCoreShell",
+        "komorebi_math.arithmetic.lehmer_shells.primitive_residuals_from_tau",
+        "komorebi_math.arithmetic.lehmer_shells.tau_from_primitive_residuals"
+      ],
+      "tests": [
+        "tests/test_lehmer_shells.py"
+      ],
       "boundaries": [
-        "There is no source primitive-content R(n), complete shell Mobius decomposition or universal content-preservation certificate API.",
-        "Generic divisor transforms cannot provide the arithmetic shell decomposition or exclude a primitive exact zero."
+        "Finite exact gcd sectors, source residue restoration, signed chi5(g)g^10 scaling and square-supported Mobius/inverse transforms are installed.",
+        "Complete shell primitive residuals and transforms are independently compared through128; the121 opposed-content masses are exact fixtures.",
+        "Universal conservation under all symmetric null polynomials and the source odd-prime zero-equivalence theorem are not runtime proof certificates.",
+        "At a prime shell R(p)=tau(p); finite primitive extraction does not establish universal nonvanishing."
       ]
     },
     {

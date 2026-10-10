@@ -55,7 +55,10 @@ def _check(value: Fraction, budget: PaperMachineryBudget) -> Fraction:
 
 
 def _rat(value, name, budget):
-    return _check(rational(value, name), budget)
+    parsed = rational(value, name)
+    # The shared parser preserves its accepted string/integer/Fraction domain.
+    # Own Fraction components before bit checks and recurrence arithmetic.
+    return _check(Fraction(int(parsed.numerator), int(parsed.denominator)), budget)
 
 
 def _index(value, budget):

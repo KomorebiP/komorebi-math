@@ -48,7 +48,9 @@ def _matrix(value: Any, name: str, *, max_entries: int = 65_536) -> Any:
             or any(not isinstance(size, Integral) or isinstance(size, bool) or size <= 0 for size in shape)
         ):
             raise DimensionError(f"{name} must be a matrix with positive dimensions")
-        shaped_rows, shaped_cols = (shape[0], 1) if len(shape) == 1 else shape
+        # Own accepted dimension scalars before multiplication: np.int64
+        # dimensions can otherwise wrap and bypass the pre-copy entry cap.
+        shaped_rows, shaped_cols = tuple(int(size) for size in shape) if len(shape) == 2 else (int(shape[0]), 1)
         if shaped_rows * shaped_cols > max_entries:
             raise ResourceLimitError(f"{name} exceeds the {max_entries}-entry exact matrix limit")
     raw = value.tolist() if hasattr(value, "tolist") else value
