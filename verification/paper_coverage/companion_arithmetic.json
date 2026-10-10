@@ -1,0 +1,1349 @@
+{
+  "schema": "komorebi-math.paper-machinery-crosswalk.fragment.v1",
+  "audit": {
+    "scope": "Coverage-only current companion PDF construction-to-runtime audit",
+    "source_acquisition": "Authorized local current PDF copies; complete text extraction and targeted construction/definition reading",
+    "claim_boundary": "Finite/runtime contracts only; no complete mathematical proof audit or new theorem/Lean/research replay",
+    "not_claimed": [
+      "all companion machinery integrated",
+      "general Hilbert12 solution",
+      "closed stratified continuum",
+      "fresh replay of external research/source bundles",
+      "full independent proof audit",
+      "Lean kernel certification of Python"
+    ],
+    "discovery_aids": [
+      "/workspace/scratch/99279ee62f30/audit_package/domain_evidence/other_machinery/crosswalk.json",
+      "/workspace/scratch/99279ee62f30/audit_package/qualification/kcos/INTEGRATION_PROVENANCE.json"
+    ],
+    "current_source_discovery_boundary": [
+      "The current Stratified v2.0.0 PDF contains no semilattice, matroid, Cech, distributive packet or extension-gauge sections.",
+      "core.semilattice and the old Block17-26 scripts are related research machinery with their own provenance. Do not attribute their coverage to nonexistent sections of the current Stratified manuscript.",
+      "H12 evaluator/exact-check scripts remain external theorem-specific research. This task does not claim gamma/algebraic-unit equality, directed rounding, H12 completion, or coverage beyond the parent-owned H12 divisor audit."
+    ]
+  },
+  "sources": [
+    {
+      "id": "Quadratic_Form_KCOS",
+      "title": "Quadratic-Form Engine and K-COS",
+      "path": "Quadratic_Form_KCOS_Traditional.pdf",
+      "sha256": "f7902a52edc62de93bd2336ec383f25e358133b171964d1c5fead0f4990bcc92",
+      "pages": 86,
+      "version": "Standardized publication edition / 8 October 2026"
+    },
+    {
+      "id": "H12_Cubic_Divisor",
+      "title": "Cubic Divisor Transport and Reconstruction \u2014 Hilbert 12",
+      "path": "H12_Cubic_Divisor_Traditional.pdf",
+      "sha256": "5e15d62af13ee5a10cbe5f317bf6972bef44ebbc4229e3090ec528b4916cafbe",
+      "pages": 45,
+      "version": "Standardized publication edition / 8 October 2026"
+    },
+    {
+      "id": "Stratified_Universality",
+      "path": "Stratified_Universality_Traditional.pdf",
+      "title": "Stratified Universality for Resolved Representations",
+      "subtitle": "Profiled lane transport, semantic quotients, carrier change, and certified descent",
+      "version": "Mathematical base 2.0.0, 23 September 2026; standardized publication edition 8 October 2026",
+      "pages": 262,
+      "sha256": "6cde7ecdefa77b2ad49729b6dcdaef796c276478a4727f816d556148bf52890d"
+    },
+    {
+      "id": "Signal_Reconstruction",
+      "path": "Signal_Reconstruction_Traditional.pdf",
+      "title": "Signal Reconstruction",
+      "subtitle": "Polyphase sampling, unknown edges, and self-calibration",
+      "version": "Standardized publication edition 8 October 2026; no separate semantic version printed in the front matter",
+      "pages": 31,
+      "sha256": "0a121ec7d4948acbfb8538270d61b742e3e54330fdc2f1dbdde9ea14a341706e"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "qf_positive_central_law",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a72.1, Proposition 2.1; \u00a7\u00a74\u20135",
+      "summary": "Positive central law supplied as an exact decimal spectrum, with tilted COS tail enclosure.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.interval_positive_logsf",
+        "komorebi_math.quadratic_forms.certified_positive_logsf"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Independent standard normals; strictly positive exact supplied decimal coefficients; integrated omitted-mode bound requires rank > 2.",
+        "Automatic design requires threshold strictly above exact decimal spectral mean; explicit evaluator accepts nonnegative threshold with valid parameters.",
+        "Strings/Decimal express exact decimal intent; float input means its str decimal, not its exact binary fraction."
+      ]
+    },
+    {
+      "key": "qf_signed_reduction_and_tail",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a72.2, Theorem 2.2; \u00a7\u00a73, 30",
+      "summary": "Central signed Gaussian reduction, mixed-sign and finite-endpoint tail engines.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Final manuscript and external historical signed engine; no signed quadratic-form tail API in current generic runtime.",
+        "Positive backend rejects zero/negative coefficients; numerical spectral decomposition alone does not execute the signed tail certificate.",
+        "Source signed binary64 ledgers bound analytic approximation and do not enclose rounding."
+      ]
+    },
+    {
+      "key": "qf_noncentral_reduction_and_tail",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a72.3, Theorem 2.3; \u00a730",
+      "summary": "Reduction of an affine Gaussian form to deterministic shift and noncentral positive components.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Noncentral weights/means are not accepted by the integrated positive central API.",
+        "External source engine and archived noncentral controls are distinct from runtime or fresh replay."
+      ]
+    },
+    {
+      "key": "qf_directed_support_alias_modes",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a7\u00a74.1\u20134.5, final enclosure; \u00a74.8",
+      "summary": "Directed finite transform plus support/periodization and infinite omitted-mode bounds.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.interval_positive_logsf"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "mpmath==1.3.0 interval arithmetic/transcendentals and Python/Decimal endpoint operations remain the software trust base.",
+        "0 < theta < eta < 1/(2*lambda_max), upper > threshold >= 0, K >= 1, rank > 2.",
+        "A positive lower tilted-sum endpoint is required to take the log; passed_positive_sum does not prove a requested multiplicative tolerance."
+      ]
+    },
+    {
+      "key": "qf_accuracy_controller",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a75, Theorem 5.1; \u00a7\u00a75.1\u20135.5",
+      "summary": "Accuracy-driven K/support/precision refinement and directed multiplicative acceptance.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.certified_positive_logsf",
+        "komorebi_math.quadratic_forms.design_positive_tail_parameters",
+        "komorebi_math.quadratic_forms.directed_relative_accuracy"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Acceptance uses outward literal log10 endpoints; float summaries are display-only.",
+        "Exhausted valid max_K/max_L/max_interval_dps caps fail closed; caps bound each attempted transform, not elapsed time or total work.",
+        "Public whole-operation lock restores point and interval precision; arbitrary external concurrent mpmath context mutation is outside contract."
+      ]
+    },
+    {
+      "key": "qf_independent_erlang_control",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a74.6; \u00a75.3",
+      "summary": "Independent even-degree scaled chi-square finite Erlang tail.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.even_df_scaled_chi_square_logsf_interval"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Positive coefficient, nonnegative threshold, positive even degrees of freedom.",
+        "Fresh targeted tests cover ranks 4,6,8,12,80 and named ordinary/deep controls; source 10^-5000 benchmark is not replayed by this coverage task."
+      ]
+    },
+    {
+      "key": "qf_stored_factor_spectrum",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a76, Theorem 6.1",
+      "summary": "Post-certify candidate eigensystems by directed orthogonality and reconstruction residual bounds.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.certify_float64_factor_spectrum"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Exact target is A*A.T for the real entries after conversion to stored binary64 dyadics.",
+        "Dense full-basis eigensystem intended for modest dimensions; no scalable out-of-core verified eigensolver.",
+        "Input model/preprocessing/real matrix before conversion is outside contract; complex/nonfinite/ragged inputs rejected.",
+        "Reported rank counts coefficient intervals, including zero eigenvalues; candidate eigensolver is not the certificate trust base."
+      ]
+    },
+    {
+      "key": "qf_monotone_matrix_tail_bridge",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a7\u00a76.3\u20136.6; \u00a722.3",
+      "summary": "Propagate coefficient intervals monotonically and accept the whole outer tail bracket.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quadratic_forms.certified_float64_factor_logsf"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "At least three strictly positive lower coefficient bounds and above-exact-stored-trace threshold required by automatic bridge.",
+        "Candidate/interval/tail caps preserved; conservative unresolved spectral comparison can return uncertified or domain errors."
+      ]
+    },
+    {
+      "key": "qf_streamed_factor_actions",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a7\u00a77\u201313, Theorems 8.1, 9.1, 10.1\u201310.2, 11.1, 12.1, 13.1",
+      "summary": "Residualized weighted Gram, streamed forward/adjoint/dual actions, tiling, exact storage refinement.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.structured.StructuredOperator",
+        "komorebi_math.algorithms.krylov.krylov_basis",
+        "komorebi_math.algorithms.krylov.lanczos_tridiagonal"
+      ],
+      "tests": [
+        "tests/test_algorithms_structured.py",
+        "tests/test_algorithms_krylov.py"
+      ],
+      "boundaries": [
+        "Generic finite operators and matrix-free callable Krylov actions exist.",
+        "No general KCOS reader-backed residualized raw feature/variant streaming, two-pass sample/variant tiler, or Golub\u2013Kahan implementation.",
+        "Existing NumPy arithmetic is numerical; exact-arithmetic storage invariance theorem does not imply bitwise equal floating sums."
+      ]
+    },
+    {
+      "key": "qf_exact_phase_light_cone",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a714, Theorems 14.1\u201314.2; \u00a729.1",
+      "summary": "Finite projector/path light-cone mechanism and fixed phase partition under storage refinement.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.core.graphs.TransferGraph",
+        "komorebi_math.core.transfer.block_from_paths",
+        "komorebi_math.core.operators.PacketOperator"
+      ],
+      "tests": [
+        "tests/test_operators_transfer.py",
+        "tests/test_graphs.py"
+      ],
+      "boundaries": [
+        "Finite supplied packet matrices and paths are executable.",
+        "No KCOS active-frontier-to-physical-I/O scheduler or reader-specific storage phase orchestration.",
+        "A tolerance-thresholded numerical support graph does not establish exact zero phase couplings."
+      ]
+    },
+    {
+      "key": "qf_approximate_light_cones",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a715, Theorems 15.1\u201315.5",
+      "summary": "Phasewise block-norm transfer envelope, thresholded telescoping powers and polynomial leakage.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.krylov.power_perturbation_bound"
+      ],
+      "tests": [
+        "tests/test_algorithms_krylov.py"
+      ],
+      "boundaries": [
+        "Only the reusable scalar induced-norm power perturbation bound is currently exposed.",
+        "No generic nonnegative phase-envelope B, phasewise telescoping matrix, or query-weighted polynomial leakage wrapper.",
+        "Float bound arithmetic is not a directed enclosure."
+      ]
+    },
+    {
+      "key": "qf_budget_phase_scheduling",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a716, Theorems 16.1, 16.4; \u00a717, Proposition 17.1",
+      "summary": "Edge-risk pruning, equal-cost optimal cardinality, unequal-cost knapsack and double-buffer schedule.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These source-specific edge-risk scheduling mechanisms are not the existing tree partition compiler.",
+        "No KCOS phase edge-risk scheduler or asynchronous accelerator buffer executor integrated.",
+        "Ideal transfer/compute-overlap time is a model, not a measured hardware guarantee."
+      ]
+    },
+    {
+      "key": "qf_phase_rank_and_qr_core",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a7\u00a718\u201321, Theorems 18.1, 20.1, 21.1",
+      "summary": "Phase-local minimal width, interface low-rank messages, QR-core and range-core compression.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.low_rank.LowRankOperator",
+        "komorebi_math.algorithms.low_rank.recompress_core",
+        "komorebi_math.algorithms.low_rank.recompress_factors"
+      ],
+      "tests": [
+        "tests/test_algorithms_low_rank.py"
+      ],
+      "boundaries": [
+        "Numerical finite two-factor/small-core recompression and low-rank block operations exist.",
+        "No dedicated incremental streamed residual-basis QR-core update or range-core passport matching the full KCOS construction.",
+        "Recompression tolerance checks do not enclose floating rounding."
+      ]
+    },
+    {
+      "key": "qf_pruning_spectral_uncertainty",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a722, Theorems 22.1\u201322.4",
+      "summary": "Block-norm domination, Weyl intervals and monotone tail bounds after phase pruning.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quadratic_forms.certify_float64_factor_spectrum",
+        "komorebi_math.quadratic_forms.certified_float64_factor_logsf"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Dense stored-factor spectrum certificate and monotone tail bridge exist.",
+        "No generic phase-pruning block-norm uncertainty-to-spectral interval adapter.",
+        "The manuscript preserves an incomplete-range example whose bracket stays unusably wide; no useful width guarantee follows solely from a small captured core."
+      ]
+    },
+    {
+      "key": "qf_residual_moments_completion",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a723, Theorems 23.1\u201323.5",
+      "summary": "PSD core/residual split, trace/Frobenius/cap MGF, rank bracket and exact residual completion.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No current API for residual moment upper-MGF envelope, optimized Chernoff bracket, residual rank certificate or streamed exact residual completion.",
+        "Existing small-core SVD operations are reusable building blocks, not the complete source framework."
+      ]
+    },
+    {
+      "key": "qf_centered_spectral_packets",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a726.2, Theorem 26.2; \u00a7\u00a726.4,26.7\u201326.9",
+      "summary": "Query-grid centered spectral moments, log-CGF remainder and adaptive packet/support/mode passport.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The positive directed backend deliberately uses exact supplied spectra, with exact multiplicity grouping only.",
+        "No arbitrary centered spectral packet compiler or packet remainder-to-tail ledger in generic runtime.",
+        "Source packet prototype is binary64 analytic-ledger evidence; it is not a directed probability enclosure."
+      ]
+    },
+    {
+      "key": "qf_stronger_folded_cos_bound",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a7\u00a726.5\u201326.6, Lemma 26.6, Theorem 26.10",
+      "summary": "Folded cosine identity and frequency-dependent beta decay omitted-mode certificate.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quadratic_forms.interval_positive_logsf"
+      ],
+      "tests": [
+        "tests/test_quadratic_forms.py",
+        "tests/test_quadratic_forms_source.py"
+      ],
+      "boundaries": [
+        "Integrated backend uses its earlier rank>2 power-envelope remainder (\u00a74.4).",
+        "The stronger source \u00a726 frequency-dependent beta_N omitted-mode formula and rank>=1 analytic theorem are not the integrated cap contract."
+      ]
+    },
+    {
+      "key": "qf_production_reference_replay",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "\u00a73.1; \u00a7\u00a724\u201328; Appendix C",
+      "summary": "Independent Imhof inversion, production spectra, rare-variant application and fresh edition benchmarks.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Source reports are dated archived September or fresh October7 evidence according to the manuscript.",
+        "This coverage task freshly runs the current Python regression files; it does not replay archived genotype/LD production data or full 10^-5000 benchmark.",
+        "No application-specific statistical validity or hardware speedup is inferred."
+      ]
+    },
+    {
+      "key": "qf_formal_companion",
+      "source_id": "Quadratic_Form_KCOS",
+      "section": "Final-edition contract; Appendix D, Lean claim-coverage contract",
+      "summary": "Focused Lean finite algebra and certificate-composition companion.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Current Python functions do not inherit kernel certification from a separate Lean project.",
+        "No Lean compilation in this coverage task; source formal subset excludes Gaussian law/COS inversion/interval library correctness."
+      ]
+    },
+    {
+      "key": "h12_analytic_conventions",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a71, equations (1)\u2013(4); \u00a71.1",
+      "summary": "Fixed pure cubic embedding, additive elliptic gamma/theta products and independent algebraic candidate.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No elliptic-gamma/fifth-smoothed theta specialization or 18-dimensional ray-field candidate constructor in generic runtime.",
+        "Negative first-period continuation and distinct beta/Gauss branches are essential fixed data.",
+        "Current source establishes a fixed analytic reconstruction and modulus comparison, not U_gamma=U_alg."
+      ]
+    },
+    {
+      "key": "h12_fifth_torsion_normalization",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a72.1\u20132.6, equations N1.1\u2013N6.2",
+      "summary": "Coprime norm scalar recovery, exact fifth-torsion ordinate/division identities and canonical rational elliptic normal form.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Computable rational identities and source-specific symbolic/replay checks remain in the external companion.",
+        "No current generic elliptic torsion coordinate, Weierstrass, fifth-isogeny or theta normalizer API.",
+        "Coprime scalar exponents determine a scalar within a fixed divisor class; they do not determine an arbitrary function from two norms.",
+        "Rational normal form does not imply its cubic-period parameter is algebraic."
+      ]
+    },
+    {
+      "key": "h12_chart_and_signed_carries",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a72.7\u20132.8, equations N7.1\u2013N8.2",
+      "summary": "Homothetic chart covariance and rational formulas retaining all signed unit-carry constants.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No source-specific return-channel/theta carry builder integrated.",
+        "Covariance is between two homothetic lattices, not an endomorphism of one elliptic lattice.",
+        "Normalization change does not upgrade first-order cancellation rates or identify return limits in the ray field."
+      ]
+    },
+    {
+      "key": "h12_finite_norm_transport",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a73.1\u20133.2, Proposition 3.1",
+      "summary": "All finite elliptic multiplication norms and residue-ten integral projector deleting one divisor component.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No current elliptic norm/coboundary/divisor-class adapter or source residue-ten norm matrix API.",
+        "Generic finite matrices and residue arithmetic can reproduce finite coefficient calculations only after callers supply this specialization.",
+        "Even norm loses a nonzero kernel class; norm data alone cannot restore the deleted phase component."
+      ]
+    },
+    {
+      "key": "h12_isogeny_differential",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a73.3, equation (6)",
+      "summary": "Degree-five isogeny differential with explicit additive constant.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Source ordinary analytic identity; no generic isogeny or elliptic logarithmic-differential construction.",
+        "Does not identify cubic-period elliptic curve with the separate equianharmonic CM curve."
+      ]
+    },
+    {
+      "key": "h12_conductors_artin_cm_modulus",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a74.1\u20134.8, equations A1.1\u2013A8; \u00a71.1",
+      "summary": "Artin induction, exact ray conductors, six-class Fourier/Dirichlet sums, Epstein normalization and CM unit modulus.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Existing finite-image induction/character APIs do not construct the specified number fields, ideals, ray conductors or analytic L-values.",
+        "CM branch, primitive versus imprimitive conductor and factor-of-two normalization are source-specific inputs.",
+        "No generic ray-class ideal/Epstein/Siegel-product/modulus comparison API or fresh arithmetic replay here."
+      ]
+    },
+    {
+      "key": "h12_principal_lattice_and_ceiling_divisor",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a75.1\u20135.2, Theorems 5.1\u20135.2, equations (7)\u2013(12)",
+      "summary": "Principal-seven product, cubic integer lattice lift and exact signed ceiling divisor coefficients.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No current H12 N5/ceiling/order API; source finite checker and formal integer algebra remain outside generic runtime.",
+        "ceil((3*c-2*b)/7), signed steps and fifth-smoothing weights must handle negative coordinates exactly.",
+        "Finite integer coefficient verification is separate from complete complex divisor interpretation and locally finite support."
+      ]
+    },
+    {
+      "key": "h12_transitions_anchor_conjugation",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a75.3\u20135.4, Theorems 5.3\u20135.4",
+      "summary": "All theta transitions, universal carries, gamma-free scalar anchor and unmatched conjugation divisor.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No current source-specific theta-transition/anchor evaluator.",
+        "Nondiscrete periods give analytic uniqueness after transitions and anchor, not arithmetic evaluation at one third.",
+        "Naive conjugation quotient retains an order-four divisor at tau and is not a holomorphic-unit gauge."
+      ]
+    },
+    {
+      "key": "h12_cubic_growth_finite_theta_obstruction",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a76.1\u20136.3, Theorems 6.1\u20136.2",
+      "summary": "Explicit zero/pole cube families and narrowly scoped fixed-affine finite-theta obstruction.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Bounded family enumeration can stress exact formulas but does not prove infinite counting by itself.",
+        "Obstruction allows one global nowhere-zero entire factor outside finite sums; moving arbitrary units inside sums changes the grammar.",
+        "Fixed finite dimensions/affine restrictions; infinite products, nonlinear arguments, changing period matrices and special-value identities are outside this obstruction."
+      ]
+    },
+    {
+      "key": "h12_genus_three_regularizer",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a76.4\u20136.5, Theorems 6.3,6.5, Proposition 6.4",
+      "summary": "Ungrouped absolute genus-three product, explicit tail and fourth-log cubic-exponential reconstruction.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No generic infinite divisor canonical-product builder or evaluated WD(1/3) enclosure integrated.",
+        "Tail 2*A*|z|^4/T is conditional on a genuine all-radius counting constant and cutoff; finite search does not certify that hypothesis.",
+        "Genus three minimality is for ungrouped absolute construction, leaving specially grouped signed cancellation outside.",
+        "Divisor matching alone leaves an arbitrary entire logarithm; fourth-log identity is the additional analytic statement."
+      ]
+    },
+    {
+      "key": "h12_branch_free_special_cube",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a76.6\u20136.8, Theorem 6.6, equations (24)\u2013(29)",
+      "summary": "Reflection quadratic coefficient, period-one cubic coefficient and branch-free special cube.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Combined O(|lambda|^-4) summands must remain combined; separately divergent lower-power sums cannot be substituted.",
+        "Infinite transcendental products and sums are not evaluated by current runtime.",
+        "Canonical scalar-plane conjugation divisor repair does not establish torus descent, based arithmetic identification or principal norm equation."
+      ]
+    },
+    {
+      "key": "h12_exact_line_norms_polarization",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a77.1\u20137.4, equations Q1\u2013Q7",
+      "summary": "Four C3-squared subgroup norms, 18-dimensional rational candidate reduction and exact polarized algebraic phase.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Source external exact quotient/Groebner and focused Lean certificates; no specialized arithmetic candidate/line-norm constructor here.",
+        "Arithmetic involution iota differs from actual complex conjugation kappa; they cannot be interchanged.",
+        "Verified naive complex lift fails the sixth-root control; it is not a statement excluding roots of every possible order."
+      ]
+    },
+    {
+      "key": "h12_principal_norm_rigidity",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a7\u00a78.1\u20138.3, Theorem 8.1",
+      "summary": "Two commuting integer torus actions, transfer coefficient recursion and conditional smooth/holomorphic rigidity.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Finite Laurent recurrence can be computed when supplied coefficients/support are given, but no specialized generic API integrated.",
+        "The supplied smooth relative multiplier, based identification with gamma/algebraic ratio and norm equation are separate unproved application inputs.",
+        "Finite scalar-plane divisor repair does not create those torus hypotheses."
+      ]
+    },
+    {
+      "key": "h12_remaining_phase",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a77.5; \u00a79, equation (31)",
+      "summary": "Remaining exact reality assertion Im(C_pol*U_gamma^3)=0 and conditional branch selection.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Explicitly open in current source; no claim of a general Hilbert12 theorem or gamma/class-field equality.",
+        "An interval containing zero, however narrow, is not exact reality.",
+        "Positive-real-part and independent branch enclosure plus exact modulus/reality are separate hypotheses; formal implication does not supply reality."
+      ]
+    },
+    {
+      "key": "h12_formal_and_replay_boundaries",
+      "source_id": "H12_Cubic_Divisor",
+      "section": "\u00a710.1\u201310.3; Appendix B",
+      "summary": "Current 25 integer Lean declarations, inherited declaration audits and bounded exact/floating replay.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Fresh current edition evidence is reported by the source; this task does not rerun the source bundles or Lean.",
+        "Current formal integer subset excludes complex orders, analytic counting, convergence, products, reconstruction and gamma arithmetic.",
+        "Inherited module/declaration checks are distinct from the incomplete combined all-import process under the recorded memory limit.",
+        "Old deep-audit paths are discovery evidence only; the current PDF defines the current coverage contract."
+      ]
+    },
+    {
+      "key": "stratified_resolved_signature",
+      "source_id": "Stratified_Universality",
+      "section": "3.1; Definitions 3.1-3.2",
+      "summary": "Finite typed operator grammar, path relations and matrix realizations.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.core.grammar.OperatorGrammar",
+        "komorebi_math.core.realization.OperatorRealization",
+        "komorebi_math.core.realization.OperatorRealization.relation_certificate"
+      ],
+      "tests": [
+        "tests/test_grammar_realization.py"
+      ],
+      "boundaries": [
+        "Finite supplied matrix realizations.",
+        "The universal additive-Karoubi envelope and arbitrary categorical realization functors are not constructed by this interface."
+      ]
+    },
+    {
+      "key": "stratified_packet_lane_transport",
+      "source_id": "Stratified_Universality",
+      "section": "3.2; Definitions 3.6-3.7, 3.11; 20.1-20.5, Theorem 20.3",
+      "summary": "Complete split packets, analysis/synthesis, transfer reconstruction, block composition and finite lane coordinates.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.operators.PacketOperator",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisSystem",
+        "komorebi_math.coordinates.frame_algebra.ExactAnalysisSynthesisMap",
+        "komorebi_math.coordinates.frame_algebra.AnalysisSynthesisCoefficientBlocks"
+      ],
+      "tests": [
+        "tests/test_packets.py",
+        "tests/test_operators_transfer.py",
+        "tests/test_block18_frame_algebra.py",
+        "tests/test_stress_certificates.py"
+      ],
+      "boundaries": [
+        "Finite matrix and exact rational specializations.",
+        "No general additive-category implementation or automatic theorem about arbitrary infinite lanes."
+      ]
+    },
+    {
+      "key": "stratified_refinement_selected_residual",
+      "source_id": "Stratified_Universality",
+      "section": "3.3; 20.3; 20.6",
+      "summary": "Finite packet refinement, aggregation, selected support and named represented residuals.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.refinement.towers.PacketRefinement",
+        "komorebi_math.refinement.towers.RefinementTower",
+        "komorebi_math.refinement.defects.LinearRefinementDefect",
+        "komorebi_math.refinement.polyphase.PolyphaseRefinementTower",
+        "komorebi_math.core.packets.PacketSystem.aggregate"
+      ],
+      "tests": [
+        "tests/test_refinement_towers.py",
+        "tests/test_block15_polyphase_refinement.py",
+        "tests/test_block16_analysis_synthesis.py"
+      ],
+      "boundaries": [
+        "Finite declared refinement data.",
+        "Noninjective folds lose distinctions and do not become invertible merely through aggregation.",
+        "Infinite completed and nonsplit resolutions require separate exactness and convergence doctrines."
+      ]
+    },
+    {
+      "key": "stratified_profiled_atlas_and_descent",
+      "source_id": "Stratified_Universality",
+      "section": "4.1-4.5; Definitions 4.1-4.3, 4.8, 4.10; 6.1-6.2",
+      "summary": "Profiled stratum passports, normalization witnesses, typed bridge passports, reversible overlaps and finite effective descent.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.basis.CoordinateAtlas",
+        "komorebi_math.coordinates.basis.CoordinateAtlas.compare_paths",
+        "komorebi_math.core.morphisms.OperatorMorphism"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_basis.py",
+        "tests/test_morphisms.py"
+      ],
+      "boundaries": [
+        "Existing atlas records finite coordinate systems and transforms.",
+        "No general API representing all semantic categories, preservation profiles, normalization functors, overlap categories, higher coherence and object descent.",
+        "A commuting finite matrix diagram is not unrestricted heterogeneous effective descent."
+      ]
+    },
+    {
+      "key": "stratified_cfinite_chart_bridges",
+      "source_id": "Stratified_Universality",
+      "section": "8.1-8.7",
+      "summary": "Recurrence, rational generating-function and finite state-realization charts.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.recurrence.LinearRecurrence",
+        "komorebi_math.sequences.compiler.recurrence_generating_function",
+        "komorebi_math.coordinates.realization.LinearRealization",
+        "komorebi_math.coordinates.realization.recover_initial_state",
+        "komorebi_math.coordinates.state_space.StateSpaceModel"
+      ],
+      "tests": [
+        "tests/test_sequences_models.py",
+        "tests/test_coordinates_realization.py",
+        "tests/test_coordinates_general_families_state.py"
+      ],
+      "boundaries": [
+        "Supplied models and finite coefficient/observability calculations are executable.",
+        "Finite-prefix recurrence detection does not prove an unseen sequence obeys that recurrence.",
+        "No single complete normalized three-chart atlas record with its entire minimality and torsion-Fourier invariant descent."
+      ]
+    },
+    {
+      "key": "stratified_rational_mask_digital",
+      "source_id": "Stratified_Universality",
+      "section": "9; 10.1-10.9",
+      "summary": "Finite mask carries, Cartier automata and linear representations, rational-collapse checks.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.generating.cartier.compile_rational_mask_automaton",
+        "komorebi_math.generating.cartier.minimize_cartier_automaton",
+        "komorebi_math.generating.cartier.compile_cartier_linear_representation",
+        "komorebi_math.generating.cartier.certify_cartier_carry_equivalence",
+        "komorebi_math.generating.masks.compile_finite_mask_carry_plan",
+        "komorebi_math.generating.masks.solve_polynomial_coboundary",
+        "komorebi_math.generating.cyclotomic.cyclotomic_coboundary"
+      ],
+      "tests": [
+        "tests/test_generating_cartier_padic.py",
+        "tests/test_generating_block13.py"
+      ],
+      "boundaries": [
+        "Declared prime-field masks, finite carries and bounded polynomial/cyclotomic checks.",
+        "No general automatic reconstruction of every characteristic-zero normalized rational-mask atlas and all its coherence data."
+      ]
+    },
+    {
+      "key": "stratified_fixed_radix_normalization",
+      "source_id": "Stratified_Universality",
+      "section": "11.1-11.6",
+      "summary": "Fixed-radix kernels, word-Hankel minimal dimension, strict shortlex normalization and automatic finite-orbit subatlas.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.automatic.AutomaticSequence",
+        "komorebi_math.sequences.automatic.AutomaticSequence.residue_model",
+        "komorebi_math.generating.cartier.CartierLinearRepresentation",
+        "komorebi_math.generating.cartier.minimize_cartier_automaton"
+      ],
+      "tests": [
+        "tests/test_sequences_models.py",
+        "tests/test_generating_cartier_padic.py"
+      ],
+      "boundaries": [
+        "Supplied finite automata and mask-derived digit-linear representations are executable.",
+        "Generic word-Hankel minimal realization and the manuscript's strict shortlex canonical regular normalizer are absent.",
+        "No cross-radix or all-ring normal-form claim."
+      ]
+    },
+    {
+      "key": "stratified_integral_smith_fitting",
+      "source_id": "Stratified_Universality",
+      "section": "12.1-12.7",
+      "summary": "Raw/saturated integral lattices, Smith and Fitting defects, finite reduction and precision loss.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.refinement.lattices.LatticePacketData",
+        "komorebi_math.refinement.smith.smith_decomposition",
+        "komorebi_math.refinement.smith.SmithCongruenceProblem",
+        "komorebi_math.deformation.support.PresentedModule"
+      ],
+      "tests": [
+        "tests/test_lattice_smith.py",
+        "tests/test_deformation_complex_support_companions.py"
+      ],
+      "boundaries": [
+        "Supplied lattice/presentation data and finite residue calculations.",
+        "No generic constructor of the canonical integral raw-section lattice and its saturation from every regular representation.",
+        "Finite modulo-p^k records do not construct profinite or p-adic completions."
+      ]
+    },
+    {
+      "key": "stratified_euler_divisor_ghost",
+      "source_id": "Stratified_Universality",
+      "section": "13.1-13.9",
+      "summary": "Finite Euler-product coefficients, logarithmic derivative recurrence, divisor transforms and multiplicative convolution.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.generating.functions.euler_product_function",
+        "komorebi_math.generating.series.FormalSeries",
+        "komorebi_math.generating.monoid.dirichlet_convolution",
+        "komorebi_math.generating.monoid.prime_valuation_packets",
+        "komorebi_math.coordinates.combinatorial.divisor_zeta_transform"
+      ],
+      "tests": [
+        "tests/test_generating_foundation.py",
+        "tests/test_coordinates_general_combinatorial.py"
+      ],
+      "boundaries": [
+        "Finite coefficients and declared exponent/prime-power data.",
+        "No integrated canonical inverse Euler-coordinate/ghost atlas and complete restricted cross-stratum passport.",
+        "Ordinary Cauchy and Dirichlet products retain different contracts.",
+        "Prime-power seeds classify an arithmetic function only with multiplicativity."
+      ]
+    },
+    {
+      "key": "stratified_local_mahler",
+      "source_id": "Stratified_Universality",
+      "section": "7; 14.1-14.8",
+      "summary": "Finite Newton-Mahler coefficients, affine kernels, mixed-radix coherence, valuation ledgers and unit-mode precision gains.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.mahler.MahlerSeries",
+        "komorebi_math.arithmetic.mahler.affine_mahler_kernel",
+        "komorebi_math.arithmetic.mahler.affine_kernel_composition_certificate",
+        "komorebi_math.arithmetic.mahler.UnitModeMahler",
+        "komorebi_math.arithmetic.polyphase.mahler_polyphase"
+      ],
+      "tests": [
+        "tests/test_arithmetic_mahler_polyphase.py"
+      ],
+      "boundaries": [
+        "Finite exact rational polynomial/prefix interfaces.",
+        "The actual continuous C(Z_p) atlas, infinite decaying coefficient families, clopen synthesis and endpoint convergence are not implemented by finite MahlerSeries.",
+        "Functional-Mahler masks and Newton-Mahler interpolation are not unrestrictedly equivalent."
+      ]
+    },
+    {
+      "key": "stratified_holonomic_ore_fuchsian",
+      "source_id": "Stratified_Universality",
+      "section": "15.1-15.10",
+      "summary": "Ore annihilator charts, coefficient bridges, arithmetic multisection, marked Fuchsian packet exponents and monodromy.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.sequences.holonomic.HolonomicRecurrence",
+        "komorebi_math.generating.closed_forms.guess_p_recursive",
+        "komorebi_math.arithmetic.polyphase.ArithmeticPolyphase"
+      ],
+      "tests": [
+        "tests/test_sequences_models.py",
+        "tests/test_generating_foundation.py"
+      ],
+      "boundaries": [
+        "Exact execution of a supplied polynomial-coefficient recurrence where its executed leading coefficients do not vanish.",
+        "Finite guesses are not globally certified annihilators.",
+        "No general Ore differential-operator compiler, Fuchsian singularity/exponent atlas, monodromy packet or apparent-singularity remover."
+      ]
+    },
+    {
+      "key": "stratified_selected_algebraic_branches",
+      "source_id": "Stratified_Universality",
+      "section": "16.1-16.9",
+      "summary": "Selected algebraic branches, residue-packet polynomial compilation, Weil restriction and tuple collisions.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.generating.functions.algebraic_function",
+        "komorebi_math.generating.closed_forms.guess_algebraic_gf"
+      ],
+      "tests": [
+        "tests/test_generating_foundation.py"
+      ],
+      "boundaries": [
+        "Finite coefficients of a supplied nonsingular formal implicit branch.",
+        "No general branch-selection/resultant-factor compiler, packet Weil restriction degree engine or tuple-collision invariant.",
+        "An algebraic guess does not establish the intended branch or global minimal polynomial."
+      ]
+    },
+    {
+      "key": "stratified_nonlinear_packet_fixed_points",
+      "source_id": "Stratified_Universality",
+      "section": "17.1-17.8",
+      "summary": "Marked polynomial fixed points, packet jets, compressed composition and finite tree expansions.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.trees.PolynomialFixedPointProblem",
+        "komorebi_math.nonlinear.trees.packet_tree_reconstruction",
+        "komorebi_math.nonlinear.composition.packet_faa_di_bruno",
+        "komorebi_math.nonlinear.jets.PacketJet",
+        "komorebi_math.nonlinear.trees.majorant_convergence"
+      ],
+      "tests": [
+        "tests/test_nonlinear_trees.py",
+        "tests/test_nonlinear_jets_composition.py",
+        "tests/test_repair_r4_block1.py"
+      ],
+      "boundaries": [
+        "Finite expansions and supplied contraction/majorant hypotheses.",
+        "No complete compiler of the manuscript's dominant singularity orbit and sharp simply-generated-tree residue signature.",
+        "A finite tree expansion alone does not prove convergence."
+      ]
+    },
+    {
+      "key": "stratified_finite_galois_and_descent",
+      "source_id": "Stratified_Universality",
+      "section": "18.1-18.10",
+      "summary": "Finite groups, subgroups, double-coset transition packets and finite averaging primitives.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.langlands.finite_image.groups.FiniteGroup",
+        "komorebi_math.langlands.finite_image.groups.FiniteSubgroup",
+        "komorebi_math.langlands.finite_image.mackey.mackey_tensor_packets",
+        "komorebi_math.quantum.symmetry.finite_group_projector"
+      ],
+      "tests": [
+        "tests/test_langlands_finite_image.py",
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Finite supplied group/representation models.",
+        "No generic fixed-field construction, semilinear Hilbert-90 descent solver, Brauer obstruction classifier or neutral Tannakian reconstruction.",
+        "Finite representation matrices do not construct a profinite Galois group or arbitrary ramification tower."
+      ]
+    },
+    {
+      "key": "stratified_global_tagged_invariant",
+      "source_id": "Stratified_Universality",
+      "section": "19.1-19.12",
+      "summary": "Authoritative bridge matrix, certified component tags and complete invariant descent on the five declared components.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No runtime compiler of this manuscript's global tagged invariant and all component-specific normalization/coherence certificates.",
+        "Native APIs from different domains do not establish missing bridges or connect the five components reversibly."
+      ]
+    },
+    {
+      "key": "stratified_holonomy_twisted_lanes",
+      "source_id": "Stratified_Universality",
+      "section": "4.6; 21.1-21.6",
+      "summary": "Finite transport holonomy and intertwining, with address-permutation/orbit lane descent.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.holonomy.TransportGraph",
+        "komorebi_math.nonlinear.holonomy.TransportGraph.fundamental_holonomies",
+        "komorebi_math.nonlinear.holonomy.TransportGraph.gluing_certificate",
+        "komorebi_math.nonlinear.holonomy.TransportGraph.intertwine"
+      ],
+      "tests": [
+        "tests/test_repair_r4_block2.py",
+        "tests/test_repair_r4_block8.py"
+      ],
+      "boundaries": [
+        "Finite matrix graph and supplied edge transports.",
+        "No dedicated address-monodromy orbit compiler, pair-orbit selector algebra or complete matrix-local-system lane descent API."
+      ]
+    },
+    {
+      "key": "stratified_task_relative_behavioral_quotient",
+      "source_id": "Stratified_Universality",
+      "section": "22.1-22.4; Definitions 22.1-22.2, Theorem 22.4",
+      "summary": "Continuation-stable observational equivalence, greatest fixed point and coarsest task-relative behavioral representation.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.provenance_packets.FiniteProvenanceObserver",
+        "komorebi_math.nonlinear.provenance_packets.FiniteProvenanceObserver.minimize"
+      ],
+      "tests": [
+        "tests/test_r4_block13_provenance_packets.py"
+      ],
+      "boundaries": [
+        "Finite deterministic observer/Moore minimization.",
+        "No general semantic-slice API over arbitrary carrier doctrines, modules or infinite continuation grammars.",
+        "The unrelated finite join-congruence primitive is not a replacement for observational future equivalence."
+      ]
+    },
+    {
+      "key": "stratified_task_diamond_and_bridge_loss",
+      "source_id": "Stratified_Universality",
+      "section": "22.5-22.7; 23.2, Theorem 23.5",
+      "summary": "Joint task quotient, common coarsening, exact task changes, bridge kernel loss and essential-image obstruction.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Exact matrix/nullspace primitives can support particular calculations.",
+        "No dedicated general semantic-diamond or bridge-loss exact-sequence result object validates the manuscript's complete task-compatible construction."
+      ]
+    },
+    {
+      "key": "stratified_carrier_factorization",
+      "source_id": "Stratified_Universality",
+      "section": "23.1; Theorem 23.1, Definition 23.2",
+      "summary": "Kernel-pair factorization gate, finite obstruction witness and joint semantic image.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.core.carrier_change.finite_factorization_audit",
+        "komorebi_math.core.carrier_change.SignedMassPacket",
+        "komorebi_math.core.carrier_change.TropicalResidualPacket"
+      ],
+      "tests": [
+        "tests/test_r4_block15_carrier_change.py"
+      ],
+      "boundaries": [
+        "Factorization audit checks equality fibers only on the supplied finite sample.",
+        "It does not verify all primitive operations of a carrier homomorphism or prove factorization on an unseen domain.",
+        "Signed, Boolean and tropical carriers retain different semantics."
+      ]
+    },
+    {
+      "key": "stratified_observer_convex_and_relation_module",
+      "source_id": "Stratified_Universality",
+      "section": "23.3-23.6; Theorem 23.13",
+      "summary": "Finite provenance observers, observer-conditioned convex packets and the relation module created by linearization.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.provenance_packets.observer_convex_packet",
+        "komorebi_math.nonlinear.provenance_packets.compile_observer_convex_packet",
+        "komorebi_math.nonlinear.provenance_packets.compile_policy_packet",
+        "komorebi_math.nonlinear.convex_packets.PolyhedralSupportPacket",
+        "komorebi_math.signals.route_packets.polyphase_route_packet"
+      ],
+      "tests": [
+        "tests/test_r4_block13_provenance_packets.py",
+        "tests/test_r4_block12_support_packets.py",
+        "tests/test_r4_block14_polyphase_route_packets.py"
+      ],
+      "boundaries": [
+        "Finite atoms, finite observer states and supplied continuation operators.",
+        "No dedicated Rel_K(E) constructor/observer-base-change exact-sequence API.",
+        "Discrete residual equality and the linear span are not automatically interchangeable."
+      ]
+    },
+    {
+      "key": "stratified_metric_and_convex_obstruction",
+      "source_id": "Stratified_Universality",
+      "section": "24.1-24.4; Propositions 24.5, 24.8, Theorems 24.6-24.7",
+      "summary": "Finite metric distortion, coordinate covariance, composition bounds, convex-versus-quadratic comparison and escape examples.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.distortion.metric_distortion_packet",
+        "komorebi_math.nonlinear.distortion.determinant_normalized",
+        "komorebi_math.nonlinear.distortion.spectral_distortion_lower_bound",
+        "komorebi_math.nonlinear.convex_packets.parallelotope_norm_packet",
+        "komorebi_math.nonlinear.holonomy.TransportGraph.metric_gluing_certificate"
+      ],
+      "tests": [
+        "tests/test_r4_block9_frame_metric_packet.py",
+        "tests/test_r4_block10_distortion_cocycle.py",
+        "tests/test_r4_block11_convex_packets.py"
+      ],
+      "boundaries": [
+        "Finite numerical matrix and convex-packet diagnostics.",
+        "No general optimizer over an admissible realization class or algorithm deciding relative compactness/unitarizability of an arbitrary generated holonomy group.",
+        "A small sampled defect does not prove attainment of a zero infimum."
+      ]
+    },
+    {
+      "key": "stratified_enrichment_and_continuum_boundary",
+      "source_id": "Stratified_Universality",
+      "section": "24.5-24.6; Proposition 24.9; 25.2; Appendices D-E",
+      "summary": "Forgetful descent, enhancement lifting, higher doctrine comparison and explicit infinite/continuum obligations.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No automatic enrichment lift, unrestricted heterogeneous stack or observer-independent global minimum.",
+        "Infinite, completed, nonsplit, noninvertible and nonadditive resolutions remain outside finite matrix coverage without their declared convergence/exactness/coherence data.",
+        "The current manuscript explicitly reports no Lean source/build project in its supplied v2.0.0 source tree."
+      ]
+    },
+    {
+      "key": "signal_packet_transfer_and_refinement",
+      "source_id": "Signal_Reconstruction",
+      "section": "2; SG-01-SG-04",
+      "summary": "Finite complete packet analysis, transfer multiplication, exact refinement and pulled-back transform packets.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.operators.PacketOperator",
+        "komorebi_math.coordinates.analysis_synthesis.AnalysisSynthesisSystem",
+        "komorebi_math.refinement.towers.PacketRefinement"
+      ],
+      "tests": [
+        "tests/test_packets.py",
+        "tests/test_operators_transfer.py",
+        "tests/test_refinement_towers.py",
+        "tests/test_block16_analysis_synthesis.py"
+      ],
+      "boundaries": [
+        "Finite-dimensional supplied models.",
+        "Energy preservation needs the separately checked Hilbert/unitary profile."
+      ]
+    },
+    {
+      "key": "signal_polyphase_transfer_kernels",
+      "source_id": "Signal_Reconstruction",
+      "section": "2; SG-05",
+      "summary": "Residue channel analysis/interleaving and convolution transfer kernels.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.polyphase.polyphase_analyze",
+        "komorebi_math.signals.polyphase.polyphase_synthesize",
+        "komorebi_math.signals.polyphase.polyphase_filter_kernels",
+        "komorebi_math.signals.polyphase.polyphase_convolution",
+        "komorebi_math.signals.convolution.finite_polyphase_blocks"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_signals_extended.py",
+        "tests/test_block15_polyphase_refinement.py"
+      ],
+      "boundaries": [
+        "Finite arrays and supplied finite kernels.",
+        "Infinite absolutely summable regrouping remains the manuscript's mathematical hypothesis."
+      ]
+    },
+    {
+      "key": "signal_alias_identifiability_boundary",
+      "source_id": "Signal_Reconstruction",
+      "section": "2-3; SG-06-SG-08",
+      "summary": "GCD/Bezout alias ambiguity and the impossibility of uniform unseparated location recovery.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [
+        "tests/test_fourier_recovery.py"
+      ],
+      "boundaries": [
+        "The close-jump test is a finite negative control, not an implementation of the general impossibility theorem.",
+        "No dedicated power-data alias-fiber/Bezout de-aliasing API.",
+        "Matching common coefficient progressions and resolving aliased collisions cannot be replaced by a gcd calculation."
+      ]
+    },
+    {
+      "key": "signal_known_packet_synthesis",
+      "source_id": "Signal_Reconstruction",
+      "section": "4; SG-09-SG-11",
+      "summary": "Known-edge subtraction, smooth approximation and exact restoration of the supplied singular packet.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.singular_packets.SingularPacket1D",
+        "komorebi_math.signals.singular_packets.retained_packet_reconstruct",
+        "komorebi_math.signals.singular_packets.retained_packet_reconstruction",
+        "komorebi_math.signals.approximation.fft_lowpass_1d"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py"
+      ],
+      "boundaries": [
+        "Finite supplied edge data and approximation operators.",
+        "No dedicated out-of-band matched identification functional or analytic Fourier-tail certificate for SG-09/SG-11.",
+        "Known-packet synthesis does not discover an unknown packet."
+      ]
+    },
+    {
+      "key": "signal_gibbs_and_positive_averaging",
+      "source_id": "Signal_Reconstruction",
+      "section": "4; SG-12-SG-13",
+      "summary": "Scaled Gibbs edge profile and Fejer averaging range preservation.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.approximation.fft_lowpass_1d"
+      ],
+      "tests": [
+        "tests/test_deep_signal_spectral_tf.py"
+      ],
+      "boundaries": [
+        "Discrete Fourier truncation is available.",
+        "No dedicated Gibbs-limit or Fejer-mean implementation/certificate corresponding to these manuscript results.",
+        "A finite discrete reconstruction is not a proof of the continuum asymptotic profile."
+      ]
+    },
+    {
+      "key": "signal_residualized_dictionary_discovery",
+      "source_id": "Signal_Reconstruction",
+      "section": "5; SG-14-SG-17",
+      "summary": "Background residualization, restricted sparse injectivity, noise/support thresholding and positive-ray packet discovery.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.singular_packets.scalar_region_error",
+        "komorebi_math.signals.singular_packets.overlap_matrix_error",
+        "komorebi_math.signals.approximation.estimate_positive_packet_1d"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_deep_signal_spectral_tf.py"
+      ],
+      "boundaries": [
+        "Region/mask error calculations and an explicitly heuristic positive-contrast estimator are available.",
+        "No general residualized dictionary API, restricted-singular-value certification, sparse secant test or nearest-positive-ray finite search implementing SG-14-SG-16.",
+        "Paper-specific rank-aware dictionary scripts remain external to the generic package."
+      ]
+    },
+    {
+      "key": "signal_consecutive_fourier_prony",
+      "source_id": "Signal_Reconstruction",
+      "section": "6; SG-18-SG-22",
+      "summary": "Differentiated Fourier moments, Hankel order estimate, annihilator roots, Vandermonde amplitudes and periodic mean-zero right-continuous synthesis.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.fourier_recovery.edge_moments_from_fourier",
+        "komorebi_math.signals.fourier_recovery.hankel_moment_matrix",
+        "komorebi_math.signals.fourier_recovery.recover_fourier_jumps",
+        "komorebi_math.signals.fourier_recovery.PeriodicJumpPacket"
+      ],
+      "tests": [
+        "tests/test_fourier_recovery.py"
+      ],
+      "boundaries": [
+        "Floating-point implementation of the exact manuscript recovery chain.",
+        "Automatically inferred order is candidate-only even when the finite fit passes.",
+        "Declared order must agree with numerical rank; approval remains conditional on the supplied model/count and suitable noise/conditioning.",
+        "Arbitrarily close active jumps may remain unresolved."
+      ]
+    },
+    {
+      "key": "signal_noisy_rank_and_root_contracts",
+      "source_id": "Signal_Reconstruction",
+      "section": "7; SG-23-SG-26; 8, SG-28",
+      "summary": "Hankel perturbation, annihilator inverse bound, conditional Rouche root disks, Vandermonde amplitude stability and supplied-threshold rank gate.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.fourier_recovery.recover_fourier_jumps",
+        "komorebi_math.signals.fourier_recovery.FourierJumpRecovery"
+      ],
+      "tests": [
+        "tests/test_fourier_recovery.py"
+      ],
+      "boundaries": [
+        "Runtime exposes numerical ranks, conditions and fit residuals.",
+        "No validated data-only root-enclosure API or complete supplied true-error/gap perturbation certificate.",
+        "A fitted model's condition number does not certify that hidden close edges were resolved.",
+        "The conditional root theorem uses true centers and coefficient errors unavailable from arbitrary noisy data alone."
+      ]
+    },
+    {
+      "key": "signal_polyphase_self_calibration",
+      "source_id": "Signal_Reconstruction",
+      "section": "8; SG-27-SG-35",
+      "summary": "Shared aliased nodes, matched offset coefficients, adjacent-product phase recovery, strict branch selection and the 3Lmax+1 budget.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Paper-bundle implementations and replay evidence are not callable generic komorebi_math APIs.",
+        "No package pipeline for matched multi-offset Prony, phase-progressions, branch-margin checks and calibrated lifting.",
+        "Noncolliding decimation and uniform inverse/rank/branch hypotheses remain essential.",
+        "The consecutive Fourier recovery API rejects aliased subsets as substitutes for its consecutive sample contract."
+      ]
+    },
+    {
+      "key": "signal_native_synthesis_error_identity",
+      "source_id": "Signal_Reconstruction",
+      "section": "9; SG-36",
+      "summary": "Finite identity separating smooth approximation error from estimated-packet error.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.singular_packets.retained_packet_reconstruction",
+        "komorebi_math.signals.singular_packets.estimated_packet_reconstruct"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py"
+      ],
+      "boundaries": [
+        "Finite linear approximation matrix and declared supplied components.",
+        "Clipping is nonlinear and does not satisfy this linear synthesis contract."
+      ]
+    },
+    {
+      "key": "signal_periodic_jump_l1_control",
+      "source_id": "Signal_Reconstruction",
+      "section": "9; SG-37-SG-38",
+      "summary": "Corrected mean-zero periodic sawtooth L1 perturbation bound and conditional reconstruction rate.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "PeriodicJumpPacket provides the canonical synthesis primitive.",
+        "No dedicated corrected periodic bound T/4 times amplitude error plus 2|ahat|d(1-d/T), or conditional-rate certificate.",
+        "Nonperiodic step_location_lp_error is a different contract and must not be cited as implementation of SG-37."
+      ]
+    },
+    {
+      "key": "signal_shared_edges_and_confluent_jets",
+      "source_id": "Signal_Reconstruction",
+      "section": "10; SG-39-SG-41",
+      "summary": "Shared-location multichannel annihilation, polynomial-exponential confluent terms and dictionary model-mismatch bounds.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.singular_packets.TruncatedPowerTerm",
+        "komorebi_math.signals.singular_packets.SingularPacket1D",
+        "komorebi_math.signals.recovery.detect_piecewise_polynomial_breaks"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_signals_recovery.py"
+      ],
+      "boundaries": [
+        "Finite truncated-power evaluation and sample-domain breakpoint bands.",
+        "No shared-location stacked Fourier Prony or confluent Fourier-recovery API.",
+        "Simple-root perturbation guarantees do not transfer to repeated roots.",
+        "No generic sparse geometric-dictionary mismatch certification."
+      ]
+    },
+    {
+      "key": "signal_adaptive_image_and_continuum_grammar",
+      "source_id": "Signal_Reconstruction",
+      "section": "10.1; 11; SG-42-SG-46",
+      "summary": "Finite geometric image experiments, projection/refitting, positive ridge, clipping, complete residual archives and dense-core extension.",
+      "status": "external",
+      "api": [
+        "komorebi_math.signals.approximation.fft_lowpass_2d"
+      ],
+      "tests": [
+        "tests/test_deep_signal_spectral_tf.py"
+      ],
+      "boundaries": [
+        "FFT image approximation is present, but the paper's adaptive packet image reconstructor is not a generic package API.",
+        "Paper-bundle finite capped stores and benchmarks are external evidence.",
+        "No unbounded continuous geometric atlas or universal sparse adaptive selection/convergence theorem.",
+        "Positive ridge obeys M^T r=lambda*c, not exact projection orthogonality.",
+        "Retaining the truth residual proves faithful storage, not recovery from fewer measurements."
+      ]
+    },
+    {
+      "key": "signal_formal_and_evidence_boundary",
+      "source_id": "Signal_Reconstruction",
+      "section": "12-13; Appendix A",
+      "summary": "Closed four-jump calculation and separation of current finite numerical checks from related Paper V Lean infrastructure.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.fourier_recovery.PeriodicJumpPacket",
+        "komorebi_math.signals.fourier_recovery.recover_fourier_jumps"
+      ],
+      "tests": [
+        "tests/test_fourier_recovery.py"
+      ],
+      "boundaries": [
+        "Runtime can instantiate the stated finite example under its numerical contract.",
+        "The paper's 288 recorded/281 distinct checks are inherited paper evidence, not the current package test count.",
+        "Related Paper V Lean infrastructure does not certify the new unknown-edge or self-calibration recovery chain.",
+        "No Signal-specific Lean build or proof audit was run for this coverage task."
+      ]
+    }
+  ],
+  "validation": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_quadratic_forms.py tests/test_quadratic_forms_source.py tests/test_algorithms_structured.py tests/test_algorithms_low_rank.py tests/test_algorithms_krylov.py",
+    "result": "84 passed",
+    "seconds": 3.35,
+    "scope": "Current checkout existing integrated quadratic-form and related finite numerical operator tests; external H12/Lean/source experiments not replayed",
+    "crosswalk_checks": {
+      "all_named_api_references_resolve": true,
+      "all_cited_repo_test_files_exist": true,
+      "source_sha256_matches_current_pdfs": true,
+      "note": "API imports and file existence are distinct from test execution; Stratified/Signal suites were mapped, not rerun by this coverage-only subtask."
+    }
+  }
+}

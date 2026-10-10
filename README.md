@@ -14,6 +14,16 @@ offline Windows CUDA handoff with source and artifact identity checks.
 
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
+The [paper machinery crosswalk](docs/paper_machinery_coverage.md) maps current
+source sections to APIs, tests, and explicit remaining gaps. It adds exact
+finite mapping cones, rational primary projectors, polynomial lift fibers,
+tame tensor packets, Gaussian transfer/verifiers, prime-power Cartier masks,
+Collatz words, predictive closure, and coupled special-function machinery.
+Run the installed independent stress suites with
+`python -m komorebi_math.audit --papers --coverage --samples 16`.
+Passing this bounded run does not assert that every paper mechanism or proof
+has been integrated.
+
 
 `komorebi-math` is the executable Python package for the Komorebi Math research program. It implements the mathematical constructions as reusable objects, functions, certificates, and command line checks. The installed wheel does not contain article PDFs, LaTeX manuscripts, or paper figures.
 

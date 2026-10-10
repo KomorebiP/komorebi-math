@@ -1,0 +1,1227 @@
+{
+  "schema": "komorebi.paper_coverage.fragment.v1",
+  "audit_scope": "Papers V\u2013VIII traditional editions; executable finite machinery and explicit runtime boundaries, not a proof audit",
+  "sources": [
+    {
+      "id": "psc-v",
+      "title": "Paper V: Multiresolution Signal Calculus",
+      "path": "Paper_V_Traditional_Final.pdf",
+      "sha256": "59110c60fcc01564a2c310dd7f5c0b49c50f89181fe84286ca9bb79d7ca251a5"
+    },
+    {
+      "id": "psc-vi",
+      "title": "Paper VI: Transfer Semigroups and Memory",
+      "path": "Paper_VI_Traditional_Final.pdf",
+      "sha256": "c175aea8db4809483d281a9712b1a988489446a6bac7380ab9c95d07610ea52a"
+    },
+    {
+      "id": "psc-vii",
+      "title": "Paper VII: Quantum Seeds and Effective Dynamics",
+      "path": "Paper_VII_Traditional_Final.pdf",
+      "sha256": "b9b90e811e5de67908b8df8410e0efc20daf620155cbe3dfb2bbed35aa32178a"
+    },
+    {
+      "id": "psc-viii",
+      "title": "Paper VIII: Packet Operator Algorithms",
+      "path": "Paper_VIII_Traditional_Final.pdf",
+      "sha256": "a13bdaddb95ef19b62c50c5453268bcf11f234abcd0c6ad7e3666dccafa58730"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "v.residue-refinement",
+      "source_id": "psc-v",
+      "section": "Part I \u00a7\u00a72\u20133; E3.1\u2013E3.4; E4.1\u2013E4.5",
+      "summary": "Residue coordinates, refinement addresses, and FIR transfer reindexing",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.polyphase.PolyphaseSystem",
+        "komorebi_math.signals.polyphase.polyphase_analyze",
+        "komorebi_math.signals.polyphase.polyphase_synthesize",
+        "komorebi_math.signals.polyphase.refinement_children",
+        "komorebi_math.signals.polyphase.polyphase_filter_kernels",
+        "komorebi_math.signals.route_packets.polyphase_route_packet"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_r4_block14_polyphase_route_packets.py"
+      ],
+      "boundaries": [
+        "Finite arrays/FIR kernels; boundary modes must be specified. Bilateral infinite sequence and Hilbert-space convergence claims remain mathematical theorems."
+      ]
+    },
+    {
+      "key": "v.general-sublattice",
+      "source_id": "psc-v",
+      "section": "E3: finite-index sublattices",
+      "summary": "General integer-matrix sublattice cosets and polyphase transfer",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.polyphase.lattice_polyphase_analyze",
+        "komorebi_math.signals.polyphase.lattice_polyphase_synthesize"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py"
+      ],
+      "boundaries": [
+        "Runtime lattice phases are rectangular axiswise decimations. Arbitrary B Z^d coset representatives and nested matrix-lattice transfers are absent."
+      ]
+    },
+    {
+      "key": "v.bank-lifting",
+      "source_id": "psc-v",
+      "section": "Part I \u00a74; E5.1\u2013E5.7",
+      "summary": "Finite filter-bank reconstruction and predict/update lifting",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.filterbanks.PeriodicFilterBank",
+        "komorebi_math.signals.filterbanks.FiniteFilterBank",
+        "komorebi_math.signals.filterbanks.HaarFilterBank",
+        "komorebi_math.signals.filterbanks.PeriodicLiftingScheme",
+        "komorebi_math.signals.filterbanks.periodic_five_three_lifting"
+      ],
+      "tests": [
+        "tests/test_signals_polyphase_filterbanks.py",
+        "tests/test_deep_signal_states_and_frames.py"
+      ],
+      "boundaries": [
+        "Finite and periodic boundary contracts; NumPy reconstruction residuals use tolerance."
+      ]
+    },
+    {
+      "key": "v.frequency-frame-bounds",
+      "source_id": "psc-v",
+      "section": "E5: frequency-symbol frame and perturbation bounds",
+      "summary": "Uniform symbol bounds and stable perturbed synthesis",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.filterbanks.FiniteFilterBank",
+        "komorebi_math.signals.filterbanks.PeriodicFilterBank"
+      ],
+      "tests": [
+        "tests/test_deep_signal_states_and_frames.py"
+      ],
+      "boundaries": [
+        "Finite matrix checks do not certify essential infimum/supremum over the full frequency circle. No general Laurent-symbol uniform frame-bound verifier."
+      ]
+    },
+    {
+      "key": "v.wavelet-trees",
+      "source_id": "psc-v",
+      "section": "Part I \u00a7\u00a75,11; E6",
+      "summary": "Haar packet reconstruction and additive admissible best bases",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.wavelets.HaarPacketTree",
+        "komorebi_math.signals.wavelets.PrunedPacketCoefficients",
+        "komorebi_math.signals.wavelets.best_basis",
+        "komorebi_math.signals.wavelets.entropy_cost",
+        "komorebi_math.signals.wavelets.lp_cost"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py"
+      ],
+      "boundaries": [
+        "Finite dyadic Haar trees and additive supplied leaf costs; no unrestricted basis discovery."
+      ]
+    },
+    {
+      "key": "v.pruning-stability",
+      "source_id": "psc-v",
+      "section": "Part I 11.3\u201311.5; E6.6\u2013E6.7",
+      "summary": "Optimal pruning gap and local error envelope",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.wavelets.best_basis",
+        "komorebi_math.algorithms.compiler.decision_margins",
+        "komorebi_math.algorithms.compiler_audit.enumerate_tree_prunings"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_paper_middle_machinery.py"
+      ],
+      "boundaries": [
+        "No dedicated arbitrary-objective perturbation/error-envelope API. Compiler decision gaps concern solved child scores and finite additive models."
+      ]
+    },
+    {
+      "key": "v.known-singular-packet",
+      "source_id": "psc-v",
+      "section": "Part I \u00a76; E7.1\u2013E7.3",
+      "summary": "Retained singular packets and cancellation of supplied jumps",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.singular_packets.TruncatedPowerTerm",
+        "komorebi_math.signals.singular_packets.SingularPacket1D",
+        "komorebi_math.signals.singular_packets.retained_packet_reconstruct",
+        "komorebi_math.signals.singular_packets.estimated_packet_reconstruct"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_signals_extended.py"
+      ],
+      "boundaries": [
+        "Supplied traces/jumps and approximation operator. Encoding them does not verify Sobolev membership or discover all singularities of an arbitrary function."
+      ]
+    },
+    {
+      "key": "v.mask-overlap-errors",
+      "source_id": "psc-v",
+      "section": "Part I \u00a77; E8.1\u2013E8.8",
+      "summary": "Mask, amplitude, overlap-matrix, and location error formulas",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.singular_packets.scalar_region_lp_error",
+        "komorebi_math.signals.singular_packets.overlap_partition_lp_error",
+        "komorebi_math.signals.singular_packets.step_location_lp_error",
+        "komorebi_math.signals.singular_packets.overlap_matrix_error"
+      ],
+      "tests": [
+        "tests/test_signals_extended.py",
+        "tests/test_signals_wavelets_singular.py"
+      ],
+      "boundaries": [
+        "Uses supplied measures and amplitudes. Geometry/tube hypotheses remain unchecked; TruncatedPowerTerm location bound is coarser than the sharp integrated E8.3 formula."
+      ]
+    },
+    {
+      "key": "v.separated-jump-recovery",
+      "source_id": "psc-v",
+      "section": "E9; E10",
+      "summary": "Conditional recovery of separated jumps, Haar localization, and annihilating differences",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.edge_recovery.recover_jumps",
+        "komorebi_math.signals.edge_recovery.recover_jumps_subgaussian",
+        "komorebi_math.signals.edge_recovery.smooth_haar_coefficient_bound",
+        "komorebi_math.signals.edge_recovery.half_shift_distance",
+        "komorebi_math.signals.recovery.detect_piecewise_polynomial_breaks",
+        "komorebi_math.signals.singular_packets.difference_noise_bound"
+      ],
+      "tests": [
+        "tests/test_signals_recovery.py",
+        "tests/test_signals_extended.py"
+      ],
+      "boundaries": [
+        "Lipschitz, jump separation, amplitude, and noise hypotheses are model inputs. Subgaussian probability uses the declared noise model; sample output alone does not prove it."
+      ]
+    },
+    {
+      "key": "v.packet-approximation-study",
+      "source_id": "psc-v",
+      "section": "Part I \u00a7\u00a78\u201310; E11, E13",
+      "summary": "Finite retained-edge versus Fourier approximation and data-driven packet estimates",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.approximation.fft_lowpass_1d",
+        "komorebi_math.signals.approximation.fft_lowpass_2d",
+        "komorebi_math.signals.approximation.estimate_positive_packet_1d"
+      ],
+      "tests": [
+        "tests/test_signals_wavelets_singular.py",
+        "tests/test_signals_extended.py"
+      ],
+      "boundaries": [
+        "Finite examples and threshold estimator are not universal two-dimensional edge recovery or statistical consistency."
+      ]
+    },
+    {
+      "key": "v.nonlinear-residue",
+      "source_id": "psc-v",
+      "section": "Part I \u00a712; E12",
+      "summary": "Residue convolution of nonlinear products and shifted filters",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.signals.nonlinear.packet_product",
+        "komorebi_math.signals.nonlinear.nonlinear_shift_filter"
+      ],
+      "tests": [
+        "tests/test_signals_extended.py"
+      ],
+      "boundaries": [
+        "Finite coefficient/channel model; formal and infinite Cauchy products require the paper hypotheses."
+      ]
+    },
+    {
+      "key": "v.cayley-projective",
+      "source_id": "psc-v",
+      "section": "Part I \u00a7\u00a713\u201314; E14",
+      "summary": "Cayley/Smith cyclic phase coordinates and sensitivity",
+      "status": "partial",
+      "api": [
+        "komorebi_math.signals.smith.gamma_from_impedance",
+        "komorebi_math.signals.smith.impedance_from_gamma",
+        "komorebi_math.signals.smith.phase_mobius",
+        "komorebi_math.signals.smith.smith_sensitivity",
+        "komorebi_math.signals.polyphase.mixed_radix_address"
+      ],
+      "tests": [
+        "tests/test_signals_extended.py",
+        "tests/test_smith_certificate_soundness.py"
+      ],
+      "boundaries": [
+        "Finite affine charts only; projective infinity, homogeneous-pair equality, and boundary singularities are not represented by these numerical chart functions."
+      ]
+    },
+    {
+      "key": "v.open-recovery",
+      "source_id": "psc-v",
+      "section": "Part I conjectures 7.2 and \u00a711; E15",
+      "summary": "Universal stable edge recovery and adaptive statistical consistency",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper identifies conjectural extensions. A finite test framework cannot implement a proof of them."
+      ]
+    },
+    {
+      "key": "vi.packet-semigroup",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a72; E2; R1.1\u2013R1.3",
+      "summary": "Matrix evolution, packet block convolution, resolvents, and minimum transfer order",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.semigroups.MatrixSemigroup",
+        "komorebi_math.dynamics.semigroups.PacketSemigroup",
+        "komorebi_math.dynamics.semigroups.PacketSemigroup.minimum_transfer_order"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Finite numerical matrix exponentials/resolvents. No general Dyson path-simplex executor; MatrixSemigroup.at accepts nonnegative time only."
+      ]
+    },
+    {
+      "key": "vi.duhamel-refinement",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a73; E3; R1.4\u2013R1.5",
+      "summary": "Generator, semigroup, and resolvent refinement defects",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement",
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.duhamel",
+        "komorebi_math.dynamics.semigroups.SemigroupRefinement.resolvent_defect",
+        "komorebi_math.dynamics.semigroups.FiniteSemigroupTower"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Duhamel evaluation uses numerical Gauss-Legendre quadrature. Finite generator residuals do not establish infinite defect summability or a projective-limit semigroup."
+      ]
+    },
+    {
+      "key": "vi.infinite-tower",
+      "source_id": "psc-vi",
+      "section": "E4; R1.6\u2013R1.8",
+      "summary": "Weighted reconstruction, range closure, projective limits, and generator domains",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.semigroups.FiniteSemigroupTower"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Runtime records a finite prefix only. Infinite tail control, closed reconstruction range, and compatible generator-domain conditions remain external mathematics. Summed finite defects alone do not prove a limit."
+      ]
+    },
+    {
+      "key": "vi.markov-lumping",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a7\u00a74\u20135; E5; R2",
+      "summary": "Stochastic operators, exact lumpability, finite-horizon errors and reversible coarse dynamics",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.markov.FiniteMarkovChain",
+        "komorebi_math.dynamics.markov.ContinuousTimeMarkovChain",
+        "komorebi_math.dynamics.markov.AggregationMap",
+        "komorebi_math.dynamics.markov.MarkovLumping",
+        "komorebi_math.dynamics.markov.coordinate_lumpability_residual"
+      ],
+      "tests": [
+        "tests/test_dynamics_semigroups_markov.py"
+      ],
+      "boundaries": [
+        "Finite numerical matrices with explicit row/column convention. Reversibility descent/Dirichlet-form identities can be checked from matrices but have no dedicated general theorem API."
+      ]
+    },
+    {
+      "key": "vi.conditional-martingale",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a76; E6",
+      "summary": "Weighted conditional expectation, tower laws, and martingale energy packets",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.martingales.ConditionalExpectation",
+        "komorebi_math.dynamics.martingales.MartingaleTower",
+        "komorebi_math.dynamics.martingales.ConditionalExpectationTower"
+      ],
+      "tests": [
+        "tests/test_dynamics_bayes_martingales.py"
+      ],
+      "boundaries": [
+        "Finite partitions and weights; does not construct infinite filtrations or establish their convergence."
+      ]
+    },
+    {
+      "key": "vi.hermite-gaussian",
+      "source_id": "psc-vi",
+      "section": "E7.1\u2013E7.4",
+      "summary": "Exact rational Gaussian moments, OU generator and polynomial transfer",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.classical.hermite_probabilists_polynomial",
+        "komorebi_math.dynamics.hermite.gaussian_moment",
+        "komorebi_math.dynamics.hermite.gaussian_polynomial_inner_product",
+        "komorebi_math.dynamics.hermite.ornstein_uhlenbeck_generator",
+        "komorebi_math.dynamics.hermite.gaussian_transfer_polynomial",
+        "komorebi_math.dynamics.hermite.gaussian_polynomial_variance"
+      ],
+      "tests": [
+        "tests/test_paper_middle_machinery.py",
+        "tests/test_coordinates_general_classical.py"
+      ],
+      "boundaries": [
+        "New exact real-rational finite polynomial machinery. Correlation rho is rational in [0,1]; rho=e^-t is a convention, not an exact evaluation for arbitrary t. Degree/order caps raise without truncation. Infinite Lp positivity, Hermite completeness and strong reconstruction remain theorems."
+      ]
+    },
+    {
+      "key": "vi.fractional-hermite",
+      "source_id": "psc-vi",
+      "section": "E7.5",
+      "summary": "Fractional OU number-operator transfer on infinite Hermite packets",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.fractional.fractional_semigroup",
+        "komorebi_math.coordinates.classical.hermite_probabilists_polynomial"
+      ],
+      "tests": [
+        "tests/test_dynamics_fractional_green_feynman_survival.py",
+        "tests/test_paper_middle_machinery.py"
+      ],
+      "boundaries": [
+        "A finite diagonal multiplier can be supplied to the matrix API; there is no infinite Hermite-series convergence or fractional Gaussian-function evaluator."
+      ]
+    },
+    {
+      "key": "vi.bayes-reconstruction",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a7\u00a77\u20138; E8\u2013E9; R3.1\u2013R3.4",
+      "summary": "Bayesian packet reconstruction, sufficiency, distortion, and information decomposition",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.bayes.BayesianUpdate",
+        "komorebi_math.dynamics.bayes.BayesianPartition",
+        "komorebi_math.dynamics.bayes.coarsest_sufficient_partition",
+        "komorebi_math.dynamics.bayes.approximate_likelihood_partition",
+        "komorebi_math.dynamics.bayes.relative_entropy_decomposition"
+      ],
+      "tests": [
+        "tests/test_dynamics_bayes_martingales.py"
+      ],
+      "boundaries": [
+        "Exact profile equality and approximate clustering are separate. Part I mass-only criterion requires at least two blocks; E9.2 additionally preserves within-block conditional distributions, so its one-block case is stronger. Finite floating likelihoods and positive-evidence contracts."
+      ]
+    },
+    {
+      "key": "vi.bayes-flow-filter",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a79; E10; R3.5\u2013R3.7",
+      "summary": "Replicator/evidence flow and hidden-Markov filtering",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.bayes.BayesianFlow",
+        "komorebi_math.dynamics.bayes.HiddenMarkovFilter"
+      ],
+      "tests": [
+        "tests/test_dynamics_bayes_martingales.py"
+      ],
+      "boundaries": [
+        "Finite state space. Uniform likelihood bounds and exact lumpability are hypotheses; numerical finite recursion is not universal filtering consistency."
+      ]
+    },
+    {
+      "key": "vi.fractional-gap",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a710; E11.1\u2013E11.5",
+      "summary": "Self-adjoint fractional powers, naturality and common-positive-gap defect bounds",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.fractional.fractional_power",
+        "komorebi_math.dynamics.fractional.fractional_semigroup",
+        "komorebi_math.dynamics.fractional.fractional_naturality_certificate",
+        "komorebi_math.dynamics.fractional.fractional_defect"
+      ],
+      "tests": [
+        "tests/test_dynamics_fractional_green_feynman_survival.py"
+      ],
+      "boundaries": [
+        "Hermitian positive finite matrices and numerical eigendecomposition. fractional_defect requires a common strictly positive gap for the Lipschitz bound; it does not implement the main-text gapless Holder estimate."
+      ]
+    },
+    {
+      "key": "vi.fractional-gapless-subordination",
+      "source_id": "psc-vi",
+      "section": "Part I 10.3; E11.6\u2013E11.8",
+      "summary": "Gapless Holder estimate and stable/Poisson subordination measures",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No executable general gapless Holder-bound helper or stable subordination-measure/quadrature implementation. Sectorial/nonnormal domain control is external."
+      ]
+    },
+    {
+      "key": "vi.green",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a711; E12; R4.1",
+      "summary": "One-dimensional Dirichlet Green reconstruction and low-mode control",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.green.DirichletGreen1D"
+      ],
+      "tests": [
+        "tests/test_dynamics_fractional_green_feynman_survival.py"
+      ],
+      "boundaries": [
+        "Specific uniform interval grid; smoothness/fourth-derivative bounds supplied. It is not a general-domain elliptic Green solver."
+      ]
+    },
+    {
+      "key": "vi.feynman-kac",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a712; E13; R4.2\u2013R4.3",
+      "summary": "Finite Feynman-Kac path weights, propagation/killing and coarse transfer",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.feynman_kac.FiniteFeynmanKac"
+      ],
+      "tests": [
+        "tests/test_dynamics_fractional_green_feynman_survival.py"
+      ],
+      "boundaries": [
+        "Column stochastic forward state convention: backward generator Q.T-diag(V), discrete operator diag(exp(-V))@P.T with killing at current states. No arbitrary process/domain path-integral construction."
+      ]
+    },
+    {
+      "key": "vi.feshbach",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a713; E14",
+      "summary": "Schur-Feshbach reduction, self energy, memory, and finite closure moments",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.dynamics.feshbach.FeshbachReduction",
+        "komorebi_math.dynamics.feshbach.FeshbachReduction.closure_moments",
+        "komorebi_math.dynamics.feshbach.FeshbachReduction.local_closure_certificate"
+      ],
+      "tests": [
+        "tests/test_dynamics_feshbach.py",
+        "tests/test_memory_laplace_domains.py"
+      ],
+      "boundaries": [
+        "Finite block systems with invertibility/Laplace-domain guards. Closure uses all hidden-dimensional moments, not only the leading coupling product. Numerical certificates are not exact rational identities."
+      ]
+    },
+    {
+      "key": "vi.rational-memory",
+      "source_id": "psc-vi",
+      "section": "E15.5; R5.2\u2013R5.3",
+      "summary": "Finite auxiliary realization of supplied B exp(tD) C kernels",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.memory.MemoryKernel",
+        "komorebi_math.dynamics.memory.RationalMemoryRealization"
+      ],
+      "tests": [
+        "tests/test_dynamics_feshbach.py",
+        "tests/test_memory_laplace_domains.py"
+      ],
+      "boundaries": [
+        "Accepts supplied realization matrices, including Jordan blocks. Does not synthesize a realization from an arbitrary strictly proper rational matrix function."
+      ]
+    },
+    {
+      "key": "vi.jordan-modal-compression",
+      "source_id": "psc-vi",
+      "section": "E15.1\u2013E15.4, E15.7",
+      "summary": "Primary Jordan memory modes and optimal selection for certified modal bound",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No primary spectral projector/Jordan coefficient extraction or largest-weight modal selector. Largest certified-bound weights need not minimize actual kernel error when modes cancel. Existing matrix exponentials can evaluate supplied Jordan models."
+      ]
+    },
+    {
+      "key": "vi.volterra-stability",
+      "source_id": "psc-vi",
+      "section": "E15.6; R5.1",
+      "summary": "Memory-kernel L1 error and trajectory perturbation bounds",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.memory.kernel_l1_error",
+        "komorebi_math.dynamics.memory.memory_kernel_error_bound",
+        "komorebi_math.dynamics.memory.volterra_trajectory_bound"
+      ],
+      "tests": [
+        "tests/test_dynamics_feshbach.py"
+      ],
+      "boundaries": [
+        "Finite rational kernels obtain explicit bounds. Arbitrary callable quadrature needs an independently supplied rigorous integration bound; trajectory norm and mild-solution hypotheses are not inferred."
+      ]
+    },
+    {
+      "key": "vi.survival",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a714; E16; R5.4\u2013R5.5",
+      "summary": "Phase-type survival, hazard, moments, residual life and competing risks",
+      "status": "partial",
+      "api": [
+        "komorebi_math.dynamics.survival.PhaseTypeSurvival"
+      ],
+      "tests": [
+        "tests/test_dynamics_fractional_green_feynman_survival.py"
+      ],
+      "boundaries": [
+        "Runtime requires strictly stable transient subgenerator. The paper also permits killed nontransient chains before imposing almost-sure absorption. No monotone-hazard claim."
+      ]
+    },
+    {
+      "key": "vi.holomorphic-jet",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a715; E3.4; R7.2",
+      "summary": "Canonical finite Taylor-jet functional calculus and bounded holomorphic reciprocal substitution",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Exponentials, resolvents, and self-adjoint fractional powers are special cases. No general canonical-jet/contour executor with zero-free domain and logarithm-branch validation. Scalar reciprocal APIs in Paper IV are not the operator theorem."
+      ]
+    },
+    {
+      "key": "vi.open-extensions",
+      "source_id": "psc-vi",
+      "section": "Part I \u00a717; E18",
+      "summary": "Unbounded/continuum evolution and nonrational infinite memory extensions",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Finite tests do not establish domains, infinite reconstruction, universal memory approximation, or continuum convergence."
+      ]
+    },
+    {
+      "key": "vii.seed-ranks",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a7\u00a71\u20132; II.2",
+      "summary": "Quantum grammars, local orbit dimensions, Schmidt and observable seed ranks",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.seeds.QuantumSeedSystem",
+        "komorebi_math.quantum.seeds.local_orbit_dimension",
+        "komorebi_math.quantum.seeds.schmidt_rank",
+        "komorebi_math.quantum.seeds.observable_seed_rank",
+        "komorebi_math.quantum.seeds.computational_basis_generation"
+      ],
+      "tests": [
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Finite numerical ranks require tolerance and supplied operator grammar. Not an arbitrary infinite algebra module classification."
+      ]
+    },
+    {
+      "key": "vii.symmetry",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a7\u00a73\u20134; II.3\u2013II.4",
+      "summary": "Finite-group central projectors, cyclic charges and selection rules",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.symmetry.finite_group_projector",
+        "komorebi_math.quantum.symmetry.cyclic_symmetry_projectors",
+        "komorebi_math.quantum.symmetry.charge_selection_certificate",
+        "komorebi_math.quantum.symmetry.total_charge_packets",
+        "komorebi_math.quantum.symmetry.symmetry_projector_certificate"
+      ],
+      "tests": [
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Supplied representation/characters are mathematical inputs; finite consistency checks use tolerance."
+      ]
+    },
+    {
+      "key": "vii.nonabelian-units-fusion",
+      "source_id": "psc-vii",
+      "section": "II.3.2; II.4",
+      "summary": "Representation matrix units and nonabelian fusion intertwiners",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Central projectors do not construct irreducible E_lambda_ij matrix units. Coordinate E_ij utilities are a different object. Clebsch-Gordan/fusion intertwiners are not supplied by a general API."
+      ]
+    },
+    {
+      "key": "vii.circuit-paths",
+      "source_id": "psc-vii",
+      "section": "II.5",
+      "summary": "Coherent packet-path circuit expansion and interference",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.circuits.CircuitPacketExpansion"
+      ],
+      "tests": [
+        "tests/test_quantum_symmetry_circuits.py"
+      ],
+      "boundaries": [
+        "Finite circuit and packet family. Amplitudes must be coherently summed before probabilities; finite paths do not provide infinite circuit convergence."
+      ]
+    },
+    {
+      "key": "vii.kato-leakage",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a75; II.6.1\u2013II.6.6",
+      "summary": "Moving packets, direct rotations, Kato transport and leakage bounds",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.transport.MovingPacketSystem",
+        "komorebi_math.nonlinear.transport.KatoTransport",
+        "komorebi_math.nonlinear.transport.direct_packet_rotation",
+        "komorebi_math.quantum.leakage.fixed_packet_leakage",
+        "komorebi_math.quantum.leakage.moving_geometric_coupling",
+        "komorebi_math.quantum.leakage.moving_packet_leakage_bound"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py",
+        "tests/test_nonlinear_transport.py"
+      ],
+      "boundaries": [
+        "Numerical one-parameter transport; sampled leakage integration requires quadrature error control. Endpoint projectors do not establish a differentiable path."
+      ]
+    },
+    {
+      "key": "vii.curvature-bundle",
+      "source_id": "psc-vii",
+      "section": "II.6.7\u2013II.6.10",
+      "summary": "Frame connection, curvature two-form, gauge changes and Chern integral",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "One-parameter Kato transport is not a general multiparameter curvature or bundle-topology implementation. No explicit Bloch-sphere Chern-integral API."
+      ]
+    },
+    {
+      "key": "vii.channels-lindblad",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a76; II.7",
+      "summary": "Operator packet blocks, Kraus/Choi channels and Lindblad coherence",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.channels.operator_packets",
+        "komorebi_math.quantum.channels.reconstruct_operator_packets",
+        "komorebi_math.quantum.channels.dephase",
+        "komorebi_math.quantum.channels.QuantumChannel",
+        "komorebi_math.quantum.lindblad.LindbladGenerator"
+      ],
+      "tests": [
+        "tests/test_quantum_channels_qec.py",
+        "tests/test_r4_block17_quantum_kraus_gauge.py",
+        "tests/test_r4_block18_lindblad_gauge.py"
+      ],
+      "boundaries": [
+        "Finite matrices with numerical CP/TP and covariance checks; no infinite channel or unbounded Lindblad generator. Coherence sectors can be inspected but there is no dedicated general coherence-order projector factory."
+      ]
+    },
+    {
+      "key": "vii.qec",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a77; II.8.1\u2013II.8.8",
+      "summary": "Knill-Laflamme obstruction, syndrome construction and finite recovery channels",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quantum.error_correction.QuantumCode",
+        "komorebi_math.quantum.error_correction.QuantumCode.knill_laflamme_report",
+        "komorebi_math.quantum.error_correction.QuantumCode.recovery_channel",
+        "komorebi_math.quantum.error_correction.QuantumCode.recovered_channel_certificate"
+      ],
+      "tests": [
+        "tests/test_quantum_channels_qec.py",
+        "tests/test_quantum_numerics_adversarial.py"
+      ],
+      "boundaries": [
+        "Exact-correctability theorem is represented by finite numerical error-span invariant checks. Trace scalar representatives/obstruction norms do not calculate the general infimum-over-scalars approximate-correctability distance or prove arbitrary approximate recovery guarantees."
+      ]
+    },
+    {
+      "key": "vii.observable-algebra-qec",
+      "source_id": "psc-vii",
+      "section": "Standard Fact II.8.9",
+      "summary": "Correctable observable algebras and commutant criterion",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "QuantumCode implements subspace scalar KL correction, not an arbitrary observable-algebra correctability constructor."
+      ]
+    },
+    {
+      "key": "vii.feshbach",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a78; II.9.1\u2013II.9.4, II.9.7\u2013II.9.11",
+      "summary": "Finite effective Hamiltonians, projected resolvents and oscillatory memory",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.effective.QuantumFeshbachReduction",
+        "komorebi_math.quantum.effective.QuantumFeshbachReduction.upper_half_plane_sign_certificate",
+        "komorebi_math.quantum.effective.QuantumFeshbachReduction.memory_kernel",
+        "komorebi_math.quantum.effective.QuantumFeshbachReduction.bare_closure_certificate"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py",
+        "tests/test_quantum_numerics_adversarial.py"
+      ],
+      "boundaries": [
+        "Numerical finite Hermitian blocks and guarded spectral parameters. Runtime memory kernel is -B exp(-itD) B* in psi_dot=-iHpsi form; manuscript positive oscillatory kernel is written in i dpsi/dt form. These conventions must be translated."
+      ]
+    },
+    {
+      "key": "vii.feshbach-uniform-bounds",
+      "source_id": "psc-vii",
+      "section": "II.9.5\u2013II.9.6; II.9.9; II.9.12",
+      "summary": "Uniform-gap effective/self-energy bounds and positive memory-kernel Gram structure",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quantum.effective.QuantumFeshbachReduction"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py"
+      ],
+      "boundaries": [
+        "Pointwise evaluations do not certify cutoff-independent gaps or full parameter intervals. No named uniform-gap/stability-bound utilities or positive oscillatory-memory Gram constructor."
+      ]
+    },
+    {
+      "key": "vii.euclidean",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a7\u00a79\u201310; II.10",
+      "summary": "Positive transfer, logarithmic generator and finite reflection positivity",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.quantum.euclidean.EuclideanTransfer"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py"
+      ],
+      "boundaries": [
+        "Finite positive-definite contraction transfer and finite Gram matrices. Does not establish Osterwalder-Schrader regularity, covariance, locality, clustering or field reconstruction."
+      ]
+    },
+    {
+      "key": "vii.lattice-spectral",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a711; II.11",
+      "summary": "Finite lattice Laplacians, heat traces, spectral dimension and low-mode bounds",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quantum.spectral.periodic_lattice_eigenvalues",
+        "komorebi_math.quantum.spectral.periodic_laplacian",
+        "komorebi_math.quantum.spectral.heat_trace",
+        "komorebi_math.quantum.spectral.spectral_dimension",
+        "komorebi_math.quantum.spectral.low_mode_dispersion_bound"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py",
+        "tests/test_quantum_numerics_adversarial.py"
+      ],
+      "boundaries": [
+        "Finite lattice curves and low-mode estimates. A spectral-dimension plateau is neither continuum heat-trace convergence nor a physical Einstein/spin-two theorem."
+      ]
+    },
+    {
+      "key": "vii.constraint-quotient",
+      "source_id": "psc-vii",
+      "section": "II.12; III.5.1",
+      "summary": "Constraint commutator closure, quotient obstruction and transported defects",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quantum.constraints.constraint_closure",
+        "komorebi_math.quantum.constraints.transported_constraint_defect"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py"
+      ],
+      "boundaries": [
+        "Checks finite operator-span closure. Common-kernel compression may kill an obstruction without proving operator-span closure; no general unbounded-domain constraint verifier."
+      ]
+    },
+    {
+      "key": "vii.bounded-towers",
+      "source_id": "psc-vii",
+      "section": "II.13.1\u2013II.13.7",
+      "summary": "Finite Hamiltonian variation reports and bounded direct-limit criteria",
+      "status": "partial",
+      "api": [
+        "komorebi_math.quantum.towers.BoundedHamiltonianTower"
+      ],
+      "tests": [
+        "tests/test_quantum_transport_effective_spectral.py"
+      ],
+      "boundaries": [
+        "Runtime uses finitely many Hamiltonians in one common Hilbert space. Increasing-space isometric embeddings, infinite variation tails, trace-norm state limits and limit positivity require external hypotheses."
+      ]
+    },
+    {
+      "key": "vii.quantum-spacetime",
+      "source_id": "psc-vii",
+      "section": "Part I \u00a712; II.14",
+      "summary": "Continuum constraints, Euclidean fields, Lorentzian theory and Einstein/spin-two criteria",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These are separately stated milestones/criteria or conjectures, not results implied by finite symmetry, heat traces, reflection-positive Gram matrices, or packet towers."
+      ]
+    },
+    {
+      "key": "viii.packet-ir",
+      "source_id": "psc-viii",
+      "section": "\u00a72",
+      "summary": "Finite packet layout and intermediate representation semantics",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.layout.PacketLayout",
+        "komorebi_math.algorithms.ir.PacketIR"
+      ],
+      "tests": [
+        "tests/test_algorithms_layout_ir.py"
+      ],
+      "boundaries": [
+        "Finite supplied active blocks; inactive block support and output contracts must be explicit. NumPy arithmetic is numerical."
+      ]
+    },
+    {
+      "key": "viii.cost-model",
+      "source_id": "psc-viii",
+      "section": "\u00a73",
+      "summary": "Arithmetic, storage, streaming and roofline model",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.complexity.packet_apply_flops",
+        "komorebi_math.algorithms.complexity.packet_dense_storage_entries",
+        "komorebi_math.algorithms.complexity.packet_streaming_bytes",
+        "komorebi_math.algorithms.complexity.arithmetic_intensity",
+        "komorebi_math.algorithms.complexity.roofline_time_lower_bound"
+      ],
+      "tests": [
+        "tests/test_algorithms_complexity_benchmarks.py"
+      ],
+      "boundaries": [
+        "Exact counts/bounds for the declared model, not measured execution or proof of a specific hardware cache/communication schedule."
+      ]
+    },
+    {
+      "key": "viii.structured-primitives",
+      "source_id": "psc-viii",
+      "section": "\u00a74",
+      "summary": "Dense, diagonal, block, circulant, Toeplitz, Kronecker and Walsh primitives",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.structured.DenseOperator",
+        "komorebi_math.algorithms.structured.DiagonalOperator",
+        "komorebi_math.algorithms.structured.BlockDiagonalOperator",
+        "komorebi_math.algorithms.structured.CirculantOperator",
+        "komorebi_math.algorithms.structured.ToeplitzOperator",
+        "komorebi_math.algorithms.structured.KroneckerOperator",
+        "komorebi_math.algorithms.structured.WalshHadamardOperator"
+      ],
+      "tests": [
+        "tests/test_algorithms_structured.py"
+      ],
+      "boundaries": [
+        "Finite numerical operators and explicit transform normalization; generic higher tensor products can be composed from binary factors."
+      ]
+    },
+    {
+      "key": "viii.low-rank",
+      "source_id": "psc-viii",
+      "section": "\u00a75.1\u2013\u00a75.4",
+      "summary": "Thin-factor/BDLR application, product and Woodbury solve",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.low_rank.LowRankOperator",
+        "komorebi_math.algorithms.low_rank.BlockDiagonalLowRankOperator"
+      ],
+      "tests": [
+        "tests/test_algorithms_low_rank.py"
+      ],
+      "boundaries": [
+        "Finite factors; inverse requires guarded local/core invertibility. Exact algebraic identity is evaluated numerically."
+      ]
+    },
+    {
+      "key": "viii.recompression",
+      "source_id": "psc-viii",
+      "section": "\u00a75.5\u2013\u00a75.7",
+      "summary": "Small-core QR/SVD recompression and accumulated error bounds",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.low_rank.recompress_core",
+        "komorebi_math.algorithms.low_rank.recompress_factors",
+        "komorebi_math.algorithms.low_rank.product_chain_error_bound",
+        "komorebi_math.algorithms.low_rank.accumulated_recompression_bound"
+      ],
+      "tests": [
+        "tests/test_algorithms_low_rank.py"
+      ],
+      "boundaries": [
+        "Numerical ordered SVD with residuals, not a newly compiled formal proof of SVD existence or a universal rank-discovery algorithm."
+      ]
+    },
+    {
+      "key": "viii.support-graphs",
+      "source_id": "psc-viii",
+      "section": "\u00a76.1\u2013\u00a76.3",
+      "summary": "Boolean support products, powers, path closure and Schur-fill inclusion",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.support.support_product",
+        "komorebi_math.algorithms.support.support_power",
+        "komorebi_math.algorithms.support.support_polynomial",
+        "komorebi_math.algorithms.support.transitive_closure",
+        "komorebi_math.algorithms.support.inverse_support_if_acyclic",
+        "komorebi_math.algorithms.support.schur_fill_support"
+      ],
+      "tests": [
+        "tests/test_algorithms_support.py"
+      ],
+      "boundaries": [
+        "Support predicts possible nonzeros; cancellation can remove entries. Inverse helper requires acyclic unit-diagonal support; closure alone does not produce inverse values."
+      ]
+    },
+    {
+      "key": "viii.triangular-stages",
+      "source_id": "psc-viii",
+      "section": "\u00a76.4; Appendix E.2",
+      "summary": "Topological triangular stage schedule and forward block solve",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.support.topological_levels",
+        "komorebi_math.algorithms.support.longest_path_vertices",
+        "komorebi_math.algorithms.scheduling.schedule_unlimited"
+      ],
+      "tests": [
+        "tests/test_algorithms_support.py",
+        "tests/test_algorithms_scheduling.py"
+      ],
+      "boundaries": [
+        "Graph stage counts are implemented. No dedicated stagewise block-triangular forward-solve executor from Appendix E.2. Unlimited parallelism/stage model is explicit."
+      ]
+    },
+    {
+      "key": "viii.krylov-precondition",
+      "source_id": "psc-viii",
+      "section": "\u00a77",
+      "summary": "Krylov, CG/Lanczos, block-Jacobi and perturbation estimates",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.krylov.krylov_basis",
+        "komorebi_math.algorithms.krylov.conjugate_gradient",
+        "komorebi_math.algorithms.krylov.lanczos_tridiagonal",
+        "komorebi_math.algorithms.krylov.block_jacobi_certificate",
+        "komorebi_math.algorithms.krylov.block_jacobi_preconditioner",
+        "komorebi_math.algorithms.krylov.power_perturbation_bound"
+      ],
+      "tests": [
+        "tests/test_algorithms_krylov.py"
+      ],
+      "boundaries": [
+        "Generated curvature checks do not establish global SPD of an arbitrary callable. Conditioning/gap inputs and numerical tolerance remain visible."
+      ]
+    },
+    {
+      "key": "viii.mixed-precision",
+      "source_id": "psc-viii",
+      "section": "\u00a78",
+      "summary": "Sensitivity bounds, continuous allocation and discrete precision dynamic program",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.precision.packet_error_bound",
+        "komorebi_math.algorithms.precision.optimal_precision_tolerances",
+        "komorebi_math.algorithms.precision.clipped_precision_allocation",
+        "komorebi_math.algorithms.precision.assign_discrete_precisions",
+        "komorebi_math.algorithms.precision.precision_certificate"
+      ],
+      "tests": [
+        "tests/test_algorithms_precision.py"
+      ],
+      "boundaries": [
+        "Optimal for supplied sensitivity/cost/options and quantized weights. Does not infer overflow, underflow, accumulation precision, or device kernel availability."
+      ]
+    },
+    {
+      "key": "viii.discovery",
+      "source_id": "psc-viii",
+      "section": "\u00a79.1",
+      "summary": "Proposed-layout residual and BDLR discovery",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.discovery.discover_packet_support",
+        "komorebi_math.algorithms.discovery.discover_block_diagonal_low_rank"
+      ],
+      "tests": [
+        "tests/test_algorithms_discovery_gpu.py"
+      ],
+      "boundaries": [
+        "Threshold support discovery and SVD approximation in a supplied layout. No arbitrary simultaneous commuting-normal joint-eigenspace discovery API or universal profitable-layout search."
+      ]
+    },
+    {
+      "key": "viii.tree-compilation",
+      "source_id": "psc-viii",
+      "section": "\u00a79.2\u2013\u00a79.3, 9.4\u20139.9",
+      "summary": "Finite additive Lagrangian and quantized-budget tree optimization",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.compiler.TreeNode",
+        "komorebi_math.algorithms.compiler.compile_tree_lagrangian",
+        "komorebi_math.algorithms.compiler.compile_tree_budget",
+        "komorebi_math.algorithms.compiler.pareto_frontier",
+        "komorebi_math.algorithms.compiler.combine_tree_objectives"
+      ],
+      "tests": [
+        "tests/test_algorithms_compiler.py",
+        "tests/test_paper_middle_machinery.py"
+      ],
+      "boundaries": [
+        "Finite candidate tree with additive costs/errors/overheads. Budget quantizes each retained leaf independently. No general optimality for overlaps, global rank coupling or nonlocal costs."
+      ]
+    },
+    {
+      "key": "viii.compiler-exhaustive-audit",
+      "source_id": "psc-viii",
+      "section": "Definition 9.3; Theorems 9.4 and 9.8; Corollary 9.7",
+      "summary": "Independent bounded exact enumeration of complete admissible prunings",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.compiler_audit.ExactPruning",
+        "komorebi_math.algorithms.compiler_audit.enumerate_tree_prunings",
+        "komorebi_math.algorithms.compiler_audit.audit_tree_lagrangian",
+        "komorebi_math.algorithms.compiler_audit.audit_tree_budget"
+      ],
+      "tests": [
+        "tests/test_paper_middle_machinery.py"
+      ],
+      "boundaries": [
+        "New rational oracle enumerates every pruning and never runs the optimized recurrence. Exactness refers to the supplied dyadic float model. Node/depth/pruning caps raise instead of reporting a partial optimum. It independently verifies plan metadata and ignores attached certificates; it cannot prove behavior on unenumerated trees."
+      ]
+    },
+    {
+      "key": "viii.decision-stability",
+      "source_id": "psc-viii",
+      "section": "\u00a79.4, 9.10\u20139.11",
+      "summary": "Solved keep/split decision gaps",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.compiler.decision_margins"
+      ],
+      "tests": [
+        "tests/test_algorithms_compiler.py"
+      ],
+      "boundaries": [
+        "Margin reporter uses floating scores; optimized compiler comparisons use exact dyadic arithmetic. Strict gap interpretation near floating ties needs care. Perturbation is of solved scores, not arbitrary raw leaf inputs."
+      ]
+    },
+    {
+      "key": "viii.cached-local-recompile",
+      "source_id": "psc-viii",
+      "section": "Theorem 9.12",
+      "summary": "Cached subtree/ancestor-only recompilation",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.compiler.replace_tree_nodes",
+        "komorebi_math.algorithms.compiler.compile_tree_lagrangian"
+      ],
+      "tests": [
+        "tests/test_algorithms_compiler.py"
+      ],
+      "boundaries": [
+        "Replacing nodes and recompiling the whole tree is available. Dedicated cached sibling values and ancestor-only updater are absent."
+      ]
+    },
+    {
+      "key": "viii.scheduling",
+      "source_id": "psc-viii",
+      "section": "\u00a710.1\u2013\u00a710.3",
+      "summary": "Shape classes, acyclic unlimited schedules and amortization thresholds",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.scheduling.shape_classes",
+        "komorebi_math.algorithms.scheduling.batched_launch_count",
+        "komorebi_math.algorithms.scheduling.schedule_unlimited",
+        "komorebi_math.algorithms.scheduling.amortization_threshold",
+        "komorebi_math.algorithms.scheduling.break_even_analysis",
+        "komorebi_math.algorithms.scheduling.verify_schedule"
+      ],
+      "tests": [
+        "tests/test_algorithms_scheduling.py"
+      ],
+      "boundaries": [
+        "Backend batching availability and measured per-use/setup costs are supplied. Unlimited-resource critical path is not a finite-device optimal scheduling theorem."
+      ]
+    },
+    {
+      "key": "viii.benchmark-contract",
+      "source_id": "psc-viii",
+      "section": "\u00a711\u2013\u00a712",
+      "summary": "Matched case/output/reference/timing contracts and retained negative outcomes",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.algorithms.benchmarks.BenchmarkContract",
+        "komorebi_math.algorithms.benchmarks.TimingScope",
+        "komorebi_math.algorithms.benchmarks.benchmark_callable",
+        "komorebi_math.algorithms.benchmarks.compare_benchmarks"
+      ],
+      "tests": [
+        "tests/test_algorithms_complexity_benchmarks.py"
+      ],
+      "boundaries": [
+        "Historical paper CPU/GPU corpus is source evidence, not rerun here. No fresh GPU throughput claim; timing conclusions require matched scopes and environments."
+      ]
+    },
+    {
+      "key": "viii.device-executor",
+      "source_id": "psc-viii",
+      "section": "\u00a713",
+      "summary": "NumPy/CuPy packet execution and backend qualification",
+      "status": "partial",
+      "api": [
+        "komorebi_math.algorithms.gpu.NumpyPacketExecutor",
+        "komorebi_math.algorithms.gpu.CupyPacketExecutor",
+        "komorebi_math.algorithms.gpu.packet_executor"
+      ],
+      "tests": [
+        "tests/test_algorithms_discovery_gpu.py"
+      ],
+      "boundaries": [
+        "CuPy is optional. CPU test success does not establish a GPU is present or qualify a hardware performance claim."
+      ]
+    },
+    {
+      "key": "viii.open-compilation",
+      "source_id": "psc-viii",
+      "section": "\u00a714; Remark 9.13",
+      "summary": "Unrestricted structure discovery, nonadditive compilation and packet-native architecture",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper does not prove universal approximation guarantees or universal communication improvements for these broader problems."
+      ]
+    }
+  ]
+}

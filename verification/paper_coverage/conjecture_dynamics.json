@@ -1,0 +1,592 @@
+{
+  "schema": "komorebi.paper-machinery-coverage.v1",
+  "scope": "Coverage-only audit of Collatz and Riemann reader editions 1.1; no new API, conjecture closure or fresh formal build.",
+  "sources": [
+    {
+      "id": "conjecture_collatz_v1_1",
+      "title": "Collatz: Exact descent, residue families, and the remaining global obstruction",
+      "path": "Komorebi_Collatz_Conjecture_Piece_v1.1.pdf",
+      "sha256": "5ac6e27d5f5179ed0b3b82191de392cc8680cfa7597bf3c4580fb6f069951048"
+    },
+    {
+      "id": "conjecture_riemann_v1_1",
+      "title": "Riemann: Heat growth, prime coherence, and the remaining cancellation estimate",
+      "path": "Komorebi_Riemann_Conjecture_Piece_v1.1.pdf",
+      "sha256": "d486d21a24a336a1596e6a4f9a028a4ed6f7e14f3390ea0b64452553ff0e0495"
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "collatz_odd_map",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "1, Definition 1.1",
+      "summary": "Exact positive odd acceleration and valuation of 3n+1.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.odd_collatz_step"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Only the accelerated odd map is a named API; each call is finite exact integer arithmetic."
+      ]
+    },
+    {
+      "key": "collatz_map_clocks",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "1; 5; Appendix A",
+      "summary": "Accelerated, shortcut and classical word clocks: k, S and S+k.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Word length/depth and the two-step clocks are tested; separate classical/shortcut orbit evaluators and the complete Appendix A table are not shipped."
+      ]
+    },
+    {
+      "key": "collatz_affine_word",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "2, Definition 2.1 and Theorem 2.2",
+      "summary": "Owned valuation words, depths/offsets, exact rational affine maps and direct endpoint replay.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord",
+        "komorebi_math.arithmetic.collatz.CollatzWord.affine_value",
+        "komorebi_math.arithmetic.collatz.CollatzWord.orbit"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Construction respects max_steps/max_depth; an affine value outside the realizing cylinder is not an actual orbit endpoint."
+      ]
+    },
+    {
+      "key": "collatz_exact_cylinder",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "2, Theorem 2.3; 2.1-2.2",
+      "summary": "Exact integer realization class modulo 2^(S+1), including the terminal parity bit.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord.realizes",
+        "komorebi_math.arithmetic.collatz.CollatzWord.apply",
+        "komorebi_math.arithmetic.collatz.CollatzWord.realization_certificate"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "The extra terminal parity bit is mandatory; the empty word separately represents identity on positive odd integers.",
+        "A successful finite realization certificate does not establish eventual descent or convergence."
+      ]
+    },
+    {
+      "key": "collatz_cylinder_density",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "2.3",
+      "summary": "Arithmetic cylinder density and the all-word relative odd density identity.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named density summation or infinite word partition API; finite cylinder density does not establish an independent random law along one orbit."
+      ]
+    },
+    {
+      "key": "collatz_word_composition",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "3, Proposition 3.1; 3.3",
+      "summary": "Concatenation with offset 3^ell*C+2^S*D and exact realization.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord.concatenate"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Applied to realizing sources, with construction limits inherited from the first word; rational affine composition alone does not certify admissibility."
+      ]
+    },
+    {
+      "key": "collatz_offset_descent",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "3, Theorem 3.2; 3.1-3.2",
+      "summary": "Strict original-source descent, coefficient gap, threshold and first descending cylinder member.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord.descends",
+        "komorebi_math.arithmetic.collatz.CollatzWord"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Checks (2^S-3^k)*n>C, not merely coefficient contraction; source 165 and the terminal fixed point are tested.",
+        "uniform_descent_start concerns the endpoint of one fixed word, not a global or first-prefix descent theorem."
+      ]
+    },
+    {
+      "key": "collatz_bounded_first_descent",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "9.1; 5",
+      "summary": "Bounded exact first-descent search with prefix replay and explicit inconclusive records.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.arithmetic.collatz.first_odd_descent",
+        "komorebi_math.arithmetic.collatz.FirstDescentResult"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Step exhaustion returns inconclusive with an invalid certificate; bit/depth resource violations raise ResourceLimitError.",
+        "Finite descent or initial seed one is certified; universal termination of search is not established."
+      ]
+    },
+    {
+      "key": "collatz_source_27_coordinates",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "5; Appendix A",
+      "summary": "Source 27, first descent at odd time 37 and its complete termination table.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.first_odd_descent",
+        "komorebi_math.arithmetic.collatz.CollatzWord.orbit"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Bounded search and supplied-word replay are available; shipped tests exercise descent from 27 but do not reproduce every Appendix A row or all complete clocks."
+      ]
+    },
+    {
+      "key": "collatz_growing_run_exit",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "6, Lemma 6.1 and Theorems 6.2-6.3",
+      "summary": "Unit-valuation runs, compressed exits and the universal fixed-horizon obstruction.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord",
+        "komorebi_math.arithmetic.collatz.first_odd_descent"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Supplied finite runs can be replayed; no named symbolic run/exit constructor or formal fixed-horizon obstruction is implemented.",
+        "The obstruction concerns finite lists of fixed-depth rules, not every finite adaptive algorithm."
+      ]
+    },
+    {
+      "key": "collatz_delayed_terminating_family",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "6.1, Lemma 6.4 and Theorem 6.5",
+      "summary": "Family q_j=(2^(3^j)+1)/3^(j+1) with unbounded first-descent delay.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord",
+        "komorebi_math.arithmetic.collatz.first_odd_descent"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Generic finite replay supports a supplied member; no named bounded family constructor or divisibility induction is shipped.",
+        "The j=2 progression control is not a test or proof of every family parameter."
+      ]
+    },
+    {
+      "key": "collatz_uniform_run_lifts",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "6.2-6.3, Theorem 6.6",
+      "summary": "Progression lifts including 151+8192s to 1+54s.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord",
+        "komorebi_math.arithmetic.collatz.first_odd_descent"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "The declared word (1,1,10), cylinder and several large representatives are tested exactly.",
+        "No symbolic lift builder proves all base/slope hypotheses; descent does not establish termination of every lifted exit."
+      ]
+    },
+    {
+      "key": "collatz_coarse_residue_atlas",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "7, Example 7.1",
+      "summary": "Coarse odd-part progression rules and historical 1804/2048 residue coverage.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The partial atlas, historical uniform rules and residual classes are not reconstructed by arithmetic.collatz.",
+        "Exact final-word realization is stricter than an odd-part upper bound; coverage is not a percentage of Collatz proved."
+      ]
+    },
+    {
+      "key": "collatz_noncrossing_prefix",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "8, Definition 8.1 and Lemmas 8.2-8.3",
+      "summary": "Coefficient ratios, deficits, normalized offsets and noncrossing injectivity.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Finite slope/depth/offset data are available; no named exact deficit or normalized-height API.",
+        "Finite observations cannot establish permanent noncrossing, infinite-orbit injectivity or the source-floor hypothesis."
+      ]
+    },
+    {
+      "key": "collatz_bounded_deficit_packing",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "8, Theorem 8.4; 8.1-8.2",
+      "summary": "Cylinder capacities, geometric rarity and an infinite-orbit height envelope exclude eventually bounded deficit strips.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named packing/capacity or strip-exclusion implementation; the infinite-orbit proof remains source mathematics.",
+        "Unbounded deficit on every tail is not convergence to infinity and does not exclude the entire noncrossing branch."
+      ]
+    },
+    {
+      "key": "collatz_merger_cycle_constraints",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "9.1, Proposition 9.2",
+      "summary": "Same-word merger divisibility and the exact positive-cycle affine equation.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.collatz.CollatzWord"
+      ],
+      "tests": [
+        "tests/test_collatz_words.py"
+      ],
+      "boundaries": [
+        "Word multiplier, denominator and offset support evaluating supplied equations; no merger-search or cycle-exclusion API/tests.",
+        "Existence of a smaller realizing alternative and exclusion of every positive cycle remain separate obligations."
+      ]
+    },
+    {
+      "key": "collatz_universal_descent",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "4, Theorem 4.1; 9, Conjecture 9.1",
+      "summary": "Universal descent equivalence and open adaptive completeness.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Global packet descent remains open; finite sound verification and bounded search do not supply universal certificate production.",
+        "Crossing with a positive offset and permanent noncrossing both remain global obligations."
+      ]
+    },
+    {
+      "key": "collatz_historical_formal_closure",
+      "source_id": "conjecture_collatz_v1_1",
+      "section": "10; References 1-10",
+      "summary": "Frozen Lean closures, axiom audits and historical source counts.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No fresh Lean execution, authentication of every receipt or certification of later manuscripts from earlier source counts is claimed."
+      ]
+    },
+    {
+      "key": "riemann_completed_zeta",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "2-2.1",
+      "summary": "Completed zeta normalization, actual zero multiset and reflection/conjugation symmetry.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Classical analytic source facts and third-party evaluators are not a named completed-zeta runtime API here.",
+        "analytic.positive_zero_string and analytic.reduced_zero_zeta address another special-function zero family, not Riemann zeros."
+      ]
+    },
+    {
+      "key": "riemann_zero_heat_packet",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "3, Definition 3.1",
+      "summary": "Multiplicity-aware centered-zero heat packet and finite diagnostic truncations.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named evaluator accepts actual Riemann zeros, multiplicities, heat time and translation with a rigorous omitted-zero error contract.",
+        "Hypothetical shifted modes are diagnostics, not observed off-line zeros; t=0 is outside the positive heat domain."
+      ]
+    },
+    {
+      "key": "riemann_heat_growth_criteria",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "3.1-3.2, Theorem 3.2",
+      "summary": "Normal convergence, heat equation, Laplace residues and the all-translation criterion.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Finite zero lists or determinant tests cannot establish the all-translation criterion or authenticate all zero residues.",
+        "Meromorphic continuation, zero counting, multiplicities and compact positive-time domination remain analytic proof obligations."
+      ]
+    },
+    {
+      "key": "riemann_prime_power_heat_packet",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "4-4.2, equations 4.1-4.4",
+      "summary": "Normalized von Mangoldt Gaussian packet, archimedean/pole channels and exact explicit formula.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named prime-power heat-sum/digamma-integral API with a truncation enclosure or complete explicit-formula interface.",
+        "Prime powers and normalization constants/signs must be retained; a primes-only or finite unbounded-tail sum changes the object."
+      ]
+    },
+    {
+      "key": "riemann_pole_annihilator",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "4, Definition 4.1",
+      "summary": "L=1/4-d_u^2 removes the pole channel and retains nonzero rho*(1-rho) zero weights.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Generic polynomial/differential facilities do not implement this normalized analytic heat-packet interface.",
+        "Transformed Gaussian factors have both signs; removing an unknown nontrivial zero mode destroys the preserved obstruction."
+      ]
+    },
+    {
+      "key": "riemann_local_energy",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "4.2-4.3, Theorem 4.2",
+      "summary": "Unit translation-band energy on a fixed positive heat strip and the universal subexponential bound.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No continuum Bochner/Laplace or all-band energy certificate; finite quadrature is not the universal energy estimate.",
+        "Archimedean bounded-energy removal is analytic; the remaining transformed prime estimate stays open."
+      ]
+    },
+    {
+      "key": "riemann_finite_hermite_polynomials",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "5, equations 5.1-5.5",
+      "summary": "Hermite polynomial factors for the scaled physical Gaussian basis.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.classical.hermite_physicists_polynomial",
+        "komorebi_math.coordinates.classical.hermite_probabilists_polynomial"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_classical.py",
+        "tests/test_paper_middle_machinery.py"
+      ],
+      "boundaries": [
+        "Exact finite polynomial constructors are present; normalized translated Gaussians, physical du Gram matrices and coherent projections are not.",
+        "dynamics.hermite uses standard Gaussian probability measure and must not be equated with translated physical L2(du) compression."
+      ]
+    },
+    {
+      "key": "riemann_coherent_poisson_compression",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "5.2, equations 5.3-5.6",
+      "summary": "Coherent coefficients, squared Poisson tail, shell cutoff and aggregate error.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named coherent coefficient/tail/shell-cutoff API or rigorous Poisson-tail enclosure.",
+        "The cutoff includes 0 through R; squared error and norm error differ by a square root. Stability does not bound retained arithmetic coefficients."
+      ]
+    },
+    {
+      "key": "riemann_ground_channel_front",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "5.2, equation 5.7",
+      "summary": "Gaussian ground pairing gives K_s times the same field at heat time t+s.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No actual-zero packet/ground-pairing API; infinite sum/integral interchange is not supplied by polynomial orthogonality tests.",
+        "Discarding the ground coefficient requires an independent exact recovery estimate."
+      ]
+    },
+    {
+      "key": "riemann_mobius_integer",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "6, definition preceding equation 6.1",
+      "summary": "Exact integer Möbius sign and squarefree indicator mu(n)^2.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.coordinates.combinatorial.mobius_integer"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_combinatorial.py"
+      ],
+      "boundaries": [
+        "Finite integer arithmetic tested through divisibility-poset inversion; no Möbius cancellation or asymptotic bound."
+      ]
+    },
+    {
+      "key": "riemann_baez_duarte_coefficients",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "6-6.1, equations 6.1-6.3 and Theorem 6.1",
+      "summary": "w_K, signed c_K, finite reciprocal-zeta expression and direct-series truncation bound.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named c_K evaluator with a verified tail/stability contract or even-zeta coefficient interface.",
+        "The external classical RH equivalence is cited by the source, not reverified here; alternating sums can lose precision and a 1/N tail bound does not supply the asymptotic criterion."
+      ]
+    },
+    {
+      "key": "riemann_prime_cube_grouping",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "6.1-6.2, Proposition 6.2",
+      "summary": "Signed divisor cubes and coprime-base regrouping.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.combinatorial.mobius_integer",
+        "komorebi_math.coordinates.combinatorial.divisor_zeta_transform",
+        "komorebi_math.coordinates.combinatorial.subset_zeta_transform"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_combinatorial.py"
+      ],
+      "boundaries": [
+        "Finite sign primitives are reusable; the actual w_K cube/coprime regrouping are not named APIs or directly tested by generic transform regressions.",
+        "A finite truncation must preserve the bm cutoff; truncating every base at N does not give the original n<=N sum."
+      ]
+    },
+    {
+      "key": "riemann_squarefree_coprime_support",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "7.1-7.2, Lemma 7.2",
+      "summary": "Squarefree support, coprime inclusion/exclusion and interval counts.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.combinatorial.mobius_integer",
+        "komorebi_math.coordinates.combinatorial.divisor_zeta_transform"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_combinatorial.py"
+      ],
+      "boundaries": [
+        "Möbius values expose support; no named interval counter or uniform dimension-dependent remainder estimator.",
+        "Nonsquarefree bases have zero contribution even when their cube value is nonzero; all-coprime counts overstate majorant support."
+      ]
+    },
+    {
+      "key": "riemann_absolute_cube_barrier",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "7, Lemmas 7.1-7.2 and Theorem 7.3",
+      "summary": "Positive tails and the full absolute-majorant lower bound for d=o(log M).",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No runtime asymptotic support/barrier certificate; the written proof retains squarefree support and uses interval mass as a lower bound for the full majorant.",
+        "A lower bound on the triangle majorant is not a lower bound on signed c_K; dropping the cube-dimension hypothesis is unsupported."
+      ]
+    },
+    {
+      "key": "riemann_highpass_reconstruction",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "8",
+      "summary": "Exact prime high pass followed by reconstruction preserves a power mode.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Historical HighpassReconstructionNoGo.lean is outside this Python module; a DSP high-pass filter is not the prime arithmetic operator.",
+        "Algebraic reciprocal cancellation does not estimate a prime sum or prove signed contraction."
+      ]
+    },
+    {
+      "key": "riemann_neutral_diagonal_modes",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "8",
+      "summary": "Neutral-vector preservation under diagonal filters and normalized scale changes.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named RH neutral-mode/no-go API; historical algebraic formalizations have separate declared hypotheses.",
+        "The obstruction concerns shared diagonal/neutral settings, not every arithmetic mixing mechanism."
+      ]
+    },
+    {
+      "key": "riemann_hardy_and_fourth_moment",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "8",
+      "summary": "Haar sign symmetry on prime tori and the raw fourth-moment boundary.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No generic Haar Lq/continuum moment theorem implementation; finite matrix or sequence norms do not establish these claims.",
+        "Global sign invariance does not imply local invariance; the fourth-moment bound does not make every signed collision term positive."
+      ]
+    },
+    {
+      "key": "riemann_signed_closure_estimate",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "9-9.1, Conjecture 9.1 and Proposition 9.2",
+      "summary": "Open signed rough-base estimate and equivalent universal heat-energy target.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Closing estimates remain open and quantify over all scales with uniform constants; finite profiles or sampled positivity cannot replace them.",
+        "No new direct Möbius-to-von-Mangoldt transfer is asserted; stable compression and proposed detail-energy bounds do not close RH."
+      ]
+    },
+    {
+      "key": "riemann_historical_sources",
+      "source_id": "conjecture_riemann_v1_1",
+      "section": "11; References 6-12",
+      "summary": "Historical Lean checkpoints, finite compression experiments and source-count boundaries.",
+      "status": "separate_reference",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "Original computation/formal archives are not reconstructed here; the reader edition retains failed/unverified checkpoints.",
+        "Source counts are not independent-theorem counts or cumulative certification; no fresh Lean compilation."
+      ]
+    }
+  ],
+  "audit": {
+    "reader_editions": "1.1 / 8 October 2026",
+    "source_review": "Full extracted reader texts, definitions, finite mechanisms, proof boundaries and appendices read.",
+    "implementation_review": [
+      "arithmetic/collatz.py and tests/test_collatz_words.py",
+      "coordinates/combinatorial.py and generic Mobius/poset regressions",
+      "Hermite polynomial constructors and finite Gaussian probability-sector boundaries"
+    ],
+    "not_claimed": [
+      "proof audit of every analytic theorem",
+      "independent external literature verification",
+      "fresh Lean compilation",
+      "all source mathematics implemented",
+      "universal conjecture proof from finite checks"
+    ]
+  }
+}

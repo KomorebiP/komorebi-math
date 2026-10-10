@@ -1,0 +1,699 @@
+{
+  "schema": "komorebi.paper-machinery-coverage.v1",
+  "scope": "Coverage-only inventory of the three current conjecture arithmetic reader PDFs against finite Komorebi runtime machinery. Source result extraction and API/test-link verification, not a proof audit, paper-program replay or conjecture closure.",
+  "checked_date": "2026-10-10",
+  "sources": [
+    {
+      "id": "conjecture_abc_v1_0",
+      "title": "The abc Conjecture: Radical Support, Prime Contact, and the Global Bridge",
+      "path": "Komorebi_ABC_Conjecture_Piece_v1.0.pdf",
+      "sha256": "48c3320567c4351774fbed1cf02daddbdee6acb1a43f2c90001106171085a3aa",
+      "author": "Komorebi P.",
+      "edition": "Reader edition 1.0 / 8 October 2026",
+      "pages": 71
+    },
+    {
+      "id": "conjecture_beal_v1_0",
+      "title": "Beal: Arithmetic Packets and the Affine Obstruction",
+      "path": "Komorebi_Beal_Conjecture_Piece_v1.0.pdf",
+      "sha256": "301b67ed8b6a05c767a537cb28c4387c5595453c7500e6d9d6424c34a9b5bde3",
+      "author": "Komorebi P.",
+      "edition": "Reader edition 1.0 / 8 October 2026",
+      "pages": 48
+    },
+    {
+      "id": "conjecture_lehmer_tau_v1_0",
+      "title": "Lehmer Conjecture: The Prime That Must Survive",
+      "path": "Komorebi_Lehmer_Conjecture_Piece_v1.0.pdf",
+      "sha256": "30f377a14324b596e09eab9402bc771ff29c84aef2f0181d97506386b986d14f",
+      "author": "Komorebi P.",
+      "edition": "Reader edition 1.0 / 9 October 2026",
+      "pages": 103
+    }
+  ],
+  "mechanisms": [
+    {
+      "key": "abc_correct_normalization",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "1-3; 16; 21",
+      "summary": "Primitive a+b=c, radical R=rad(abc), repeated-power part Q=abc/R and the corrected global contact normalization.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The relevant defect is Q/(ab)=c/R; a uniform bound Q=R^o(1) is not the source target and is false in general.",
+        "Polynomial abc and conditional arithmetic consequences are source results, not integer abc proof certificates emitted by the library."
+      ]
+    },
+    {
+      "key": "abc_prime_packet_differential",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "4.1-4.7",
+      "summary": "Prime-coordinate differential, additive row, arithmetic Wronskian, radical divisibility and the three-sector master height inequality.",
+      "status": "missing",
+      "api": [
+        "komorebi_math.arithmetic.valuation.padic_valuation"
+      ],
+      "tests": [
+        "tests/test_arithmetic_domains_valuation.py"
+      ],
+      "boundaries": [
+        "Exact rational valuations are available, but no constructor builds these abc prime-coordinate rows, Wronskians or height witnesses.",
+        "A valuation test does not certify the paper-specific divisibility or uniform height estimate."
+      ]
+    },
+    {
+      "key": "abc_valuation_polyphase_lift_trees",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "5.1-5.7",
+      "summary": "Valuation words, finite polyphase refinements, first- and second-order phase data, and local lift gauges.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.polyphase.ArithmeticPolyphase",
+        "komorebi_math.arithmetic.domains.TruncatedPadic",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
+        "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial"
+      ],
+      "tests": [
+        "tests/test_arithmetic_mahler_polyphase.py",
+        "tests/test_arithmetic_domains_valuation.py",
+        "tests/test_paper_late_machinery.py"
+      ],
+      "boundaries": [
+        "These APIs provide supplied finite sequences, capped residue arithmetic and exact one-digit polynomial lift fibers.",
+        "They do not construct the abc valuation-word tree, phase-energy invariant or the stated arithmetic gauge from a,b,c."
+      ]
+    },
+    {
+      "key": "abc_obstruction_complex_shell",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "6",
+      "summary": "Two-row obstruction complex, exact lattice extension, stable real-height shell geometry and integral boundary.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.deformation.complexes.FiniteCochainComplex",
+        "komorebi_math.refinement.lattices.LatticePacketData",
+        "komorebi_math.nonlinear.obstruction.LinearObstructionProblem"
+      ],
+      "tests": [
+        "tests/test_deformation_complex_support_companions.py",
+        "tests/test_lattice_smith.py",
+        "tests/test_nonlinear_obstruction.py"
+      ],
+      "boundaries": [
+        "Finite complexes and supplied lattice/cokernel computations exist; no abc arithmetic assignment or shell-deformation specialization is shipped.",
+        "Exact rational or symbolic linear algebra does not alone give the arithmetic integral boundary."
+      ]
+    },
+    {
+      "key": "abc_moving_coset_search",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "7",
+      "summary": "Obstruction cosets, aggregate affine line, CRT normal form and a finite moving-interval search with arbitrary-precision correction.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.refinement.crt.crt_many",
+        "komorebi_math.refinement.smith.SmithCongruenceProblem",
+        "komorebi_math.refinement.smith.smith_decomposition"
+      ],
+      "tests": [
+        "tests/test_residue_crt.py",
+        "tests/test_lattice_smith.py"
+      ],
+      "boundaries": [
+        "Exact CRT and Smith congruence solvers accept user-supplied finite data; the abc moving-interval search, stopping theorem and source-specific correction routine are not named APIs.",
+        "No uniform radical bound follows from a successful finite congruence search."
+      ]
+    },
+    {
+      "key": "abc_frey_nonlinear_signal",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "8",
+      "summary": "Prime-shell signal, three-spike p-adic coherence, nonlinear Frey transform, automorphic channel and Landen analysis/synthesis.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No runtime constructor supplies the Frey curve, associated automorphic representation or arithmetic channel from a primitive triple.",
+        "Generic signal transforms cannot supply those arithmetic identifications; the source itself separates unitary no-saving identities from an arithmetic estimate."
+      ]
+    },
+    {
+      "key": "abc_divisor_hecke_filter_bank",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "9",
+      "summary": "Exact order-divisor packets, quality imbalance, Tate depth, Atkin-Lehner Walsh packets and same-sign separation.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.combinatorial.divisor_zeta_transform",
+        "komorebi_math.core.packets.PacketSystem",
+        "komorebi_math.core.operators.PacketOperator"
+      ],
+      "tests": [
+        "tests/test_coordinates_general_combinatorial.py",
+        "tests/test_packets.py",
+        "tests/test_operators_transfer.py"
+      ],
+      "boundaries": [
+        "Finite divisor transforms and supplied packet operators are generic exact interfaces.",
+        "They do not construct Tate periods, Hecke eigenpackets or the Atkin-Lehner decomposition of the abc-associated arithmetic object."
+      ]
+    },
+    {
+      "key": "abc_integral_projector_wiles_defect",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "10",
+      "summary": "Congruence denominators of integral projectors, toy Hecke orders, cotangent multiplicity and Wiles defect.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper-specific integral Hecke order, deformation-ring comparison and Wiles-defect calculation are not installed constructors.",
+        "A rational projector or generic Smith decomposition does not identify an integral Hecke order or establish complete intersection."
+      ]
+    },
+    {
+      "key": "abc_witt_cusp_carry",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "11",
+      "summary": "Filtered cusp contact, exact cyclic transducer and Witt-carry realization.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No abc cyclic transducer, Witt-vector realization or filtered cusp-contact API is present.",
+        "The stated local carry structure does not by itself provide the local-to-global arithmetic bound."
+      ]
+    },
+    {
+      "key": "abc_kummer_fermat_globalization",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "12",
+      "summary": "Global Kummer class, contact modulus, Fermat character packet and line-bundle cost.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No global cohomology class or Fermat-character packet is constructed by these arithmetic finite interfaces.",
+        "Generating-function Kummer terminology is a different contract and does not implement this global construction."
+      ]
+    },
+    {
+      "key": "abc_polylog_three_point_path",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "13",
+      "summary": "Polylogarithmic distribution, functional closure, archimedean envelope, finite-place notch and a conditional motivic path packet.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No three-point motivic path packet or all-place comparison interface is shipped.",
+        "Formal identities and conditional motivic hypotheses in the source are not authenticated arithmetic witnesses in the runtime."
+      ]
+    },
+    {
+      "key": "abc_cross_prime_log_coherence",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "14",
+      "summary": "Odd-prime log rows, weighted dyadic row, sequential powerful part and coherence regulator.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "There is no named constructor for the paper-specific cross-prime logarithmic coherence regulator.",
+        "Local valuation primitives do not create a global uniform coherence estimate."
+      ]
+    },
+    {
+      "key": "abc_signed_cos_spectral_leaf",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "15",
+      "summary": "Signed arithmetic COS, sparse transverse energy, innovation rank and target polynomial filters.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.core.carrier_change.SignedMassPacket",
+        "komorebi_math.coordinates.exact.matrix_rank",
+        "komorebi_math.coordinates.exact.nullspace"
+      ],
+      "tests": [
+        "tests/test_r4_block15_carrier_change.py",
+        "tests/test_coordinates_exact.py"
+      ],
+      "boundaries": [
+        "Supplied signed mass and exact finite matrix rank are available; arithmetic COS assignment, Galois coordinates and sparse spectral filters are not.",
+        "Finite rank or support results do not establish a prime-uniform innovation or contact bound."
+      ]
+    },
+    {
+      "key": "abc_mixed_weight_polylog_jet",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "17.1-17.4",
+      "summary": "Universal mixed-weight polylog filter from X times the product of (jX-1), coefficient cancellation and depleted local series.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named builder returns the paper coefficients c_(m,s), mixed polylog combination or its exact formal cancellation certificate.",
+        "General nonlinear Taylor jets are not this mixed-weight polylogarithmic construction."
+      ]
+    },
+    {
+      "key": "abc_polylog_hankel_contact",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "18.1-18.3",
+      "summary": "Polylog Hankel determinant, formal Cauchy-Binet moment directions, real positivity and complex-branch boundary.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.exact.determinant",
+        "komorebi_math.generating.series.FormalSeries"
+      ],
+      "tests": [
+        "tests/test_coordinates_exact.py",
+        "tests/test_generating_foundation.py"
+      ],
+      "boundaries": [
+        "Exact rational determinants and finite formal series are primitives; no polylog Hankel determinant or Cauchy-Binet witness builder is installed.",
+        "Numerical signal Hankel matrices do not certify this determinant; evaluating a polylog at a rational argument does not automatically make it algebraic.",
+        "The real positivity/rank result has the source real-domain hypotheses and does not extend automatically to complex branches."
+      ]
+    },
+    {
+      "key": "abc_depleted_local_energy",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "19",
+      "summary": "p-depleted polylog determinants, balanced residue energy and exact determinant-valuation/denominator budgets.",
+      "status": "missing",
+      "api": [
+        "komorebi_math.arithmetic.valuation.padic_valuation",
+        "komorebi_math.arithmetic.valuation.factorial_valuation"
+      ],
+      "tests": [
+        "tests/test_arithmetic_domains_valuation.py"
+      ],
+      "boundaries": [
+        "These valuation primitives do not construct the p-unit order list, balanced residue energy E_(p,r), depleted determinant or its exact valuation certificate.",
+        "The source local valuation results do not supply the absent all-place arithmetic comparison."
+      ]
+    },
+    {
+      "key": "abc_truncation_negative_control",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "20",
+      "summary": "Integral rational truncation and the explicit failure of its output-contact requirement at primes greater than the cutoff dividing c.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper-specific integral truncation and failure checks are not installed or replayed here.",
+        "For the stated coprime inputs the proposed W is not divisible by such a prime; this negative control cannot be promoted to a global contact witness."
+      ]
+    },
+    {
+      "key": "abc_global_witness_bridge",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "21, Theorem 21.1",
+      "summary": "Conditional nonzero integral witness W_r with Q^s_r divisibility and corrected size bound involving (ab)^s_r.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source leaves the nonzero integral witness and its global realization/height comparison unproved.",
+        "The (ab)^s_r factor is necessary; the hypotheses imply abc only if actually established with E_r/s_r tending to zero.",
+        "No bounded determinant or local certificate closes this global bridge."
+      ]
+    },
+    {
+      "key": "abc_finite_reproduction_scope",
+      "source_id": "conjecture_abc_v1_0",
+      "section": "22-23",
+      "summary": "Finite evidence, formal layer and source-specific reproducibility contracts.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "This audit identifies the current source and runtime interfaces; it does not execute the paper-owned programs or build the source formal layer.",
+        "Reported finite ranges remain source evidence, not a fresh runtime stress suite or uniform proof."
+      ]
+    },
+    {
+      "key": "beal_signature_scaling",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "1-3",
+      "summary": "Primitive power equations, signature retention, rational parametrization, integral defect and conditional abc ceilings.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper retains a specific difficult signature; the library has no general Beal solver.",
+        "A conditional abc height ceiling or a parametrized family is not an unconditional nonexistence result across signatures."
+      ]
+    },
+    {
+      "key": "beal_complete_local_squareclasses",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "4",
+      "summary": "Complete local squareclass coefficient tests, odd-prime lifting and dyadic criteria with locally surviving families.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
+        "komorebi_math.arithmetic.domains.TruncatedPadic",
+        "komorebi_math.arithmetic.valuation.padic_valuation"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py",
+        "tests/test_arithmetic_domains_valuation.py"
+      ],
+      "boundaries": [
+        "Finite polynomial lift fibers are available for supplied systems with explicit caps.",
+        "No complete Beal squareclass-stratum classifier, dyadic criterion or saturation-family constructor is shipped.",
+        "Local survival is not an integer solution or global obstruction."
+      ]
+    },
+    {
+      "key": "beal_genus_two_arithmetic",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "5-6",
+      "summary": "Genus-two curve retaining exponent data, characteristic-seven cancellation, irreducibility, point counts and modular labels.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named engine constructs the source curve, point-count polynomial or labelled residual modular data from a primitive power equation.",
+        "Generic finite-image or spectral infrastructure does not supply this arithmetic curve-to-representation identification."
+      ]
+    },
+    {
+      "key": "beal_natural_lattice_depth",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "7-8",
+      "summary": "Natural lattice, opposite extension depth, stable segment, local cup endpoint and global coefficient/Frobenius precision.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.refinement.lattices.LatticePacketData",
+        "komorebi_math.refinement.smith.smith_decomposition"
+      ],
+      "tests": [
+        "tests/test_lattice_smith.py"
+      ],
+      "boundaries": [
+        "Supplied finite lattice splitting and exact Smith precision data are available.",
+        "No source natural Galois lattice, diagonal characters, extension class or Frobenius values are constructed."
+      ]
+    },
+    {
+      "key": "beal_marked_period_trace_program",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "9-14",
+      "summary": "Marked periods, local torsion criterion, twisted reciprocity, conductor-pattern sieve, coupled adjoint equations and mixed traces.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper-specific finite computations and arithmetic inputs are not installed as one Beal pipeline.",
+        "The eight pattern cover is confined to its declared conductor range; homogeneous saturation, local matching and synthetic trace products are not actual Frey representations."
+      ]
+    },
+    {
+      "key": "beal_semilinear_secondary_program",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "15-19",
+      "summary": "Integral semilinearity, cup vanishing, secondary obstruction, local matching, restricted stages and bare primitives.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No named constructor computes these source Galois cochains, bare primitive or secondary integral lift.",
+        "An unlabelled local image or fixed synthetic primitive does not authenticate the arithmetic origin."
+      ]
+    },
+    {
+      "key": "beal_f49_fifteen_row_evaluator",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "20-22.1; 22.4",
+      "summary": "F49-basis arithmetic, fifteen-row localization map, finite pattern matrices and target evaluator.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The source evaluator uses F49 encoding a+7b for a+bw and pattern-specific 15-by-10 matrices; it is not a packaged Komorebi API.",
+        "The generic exact rational/symbolic solver is not a substitute for F49 field operations or basis encoding.",
+        "No source evaluator replay or source formal build was performed by this coverage audit."
+      ]
+    },
+    {
+      "key": "beal_affine_cokernel_criterion",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "22.2-22.4",
+      "summary": "Canonical obstruction class of t(p0) with a full left-null matrix N; Stage P requires N t(p0)=0.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.nonlinear.obstruction.LinearObstructionProblem",
+        "komorebi_math.coordinates.exact.nullspace",
+        "komorebi_math.coordinates.exact.solve_linear_system"
+      ],
+      "tests": [
+        "tests/test_nonlinear_obstruction.py",
+        "tests/test_coordinates_exact.py"
+      ],
+      "boundaries": [
+        "The exact backend solves supplied finite cokernel problems over its own rational/symbolic domain.",
+        "It does not implement the paper-specific F49 15-by-10 map or construct t(p0).",
+        "Homogeneous rank, image and kernel do not determine the arithmetic affine target."
+      ]
+    },
+    {
+      "key": "beal_authenticated_arithmetic_target",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "22.3-22.5",
+      "summary": "Authenticated fifteen-coordinate localization target from an actual Galois bare primitive, rather than user-supplied or synthetic data.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The current source explicitly has no authenticated t(p0) or N t(p0) for any of the eight patterns.",
+        "The source finite evaluator reports arithmetic target authentication false; origin-change tests do not repair this missing input.",
+        "A finite correction for supplied coordinates is not proof that a primitive power equation realizes those coordinates."
+      ]
+    },
+    {
+      "key": "beal_upper_integral_global_boundary",
+      "source_id": "conjecture_beal_v1_0",
+      "section": "22.5; 23-24",
+      "summary": "Upper q-stage, integral lifts, unrestricted support/depth and other signatures after a genuinely arithmetic Stage P input.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "These downstream arithmetic and global obligations remain even if one fixed finite affine test passes.",
+        "The source reported finite field, rank-minor, residue-symbol and Frobenius identity ranges are bounded evidence, not Beal nonexistence across all signatures."
+      ]
+    },
+    {
+      "key": "lehmer_tau_euler_coefficients",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "1; 2.1",
+      "summary": "Exact finite coefficients of Delta/q by the Euler-product log-derivative recurrence with constant exponent minus 24.",
+      "status": "implemented",
+      "api": [
+        "komorebi_math.generating.functions.euler_product_function",
+        "komorebi_math.generating.functions.CustomFunctionSpec.series",
+        "komorebi_math.generating.series.FormalSeries"
+      ],
+      "tests": [
+        "tests/test_generating_foundation.py"
+      ],
+      "boundaries": [
+        "Call euler_product_function with c_m=-24 because its convention is product (1-z^m)^(-c_m).",
+        "Degree d returns tau(1) through tau(d+1); the leading q of Delta must be restored.",
+        "This is a generic finite coefficient construction, not a named tau API or a nonvanishing theorem; existing Euler-product tests are generic."
+      ]
+    },
+    {
+      "key": "lehmer_independent_coefficient_moments",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "2.2-2.5; 4-5",
+      "summary": "Independent Jacobi/Eisenstein engines, differential residuals, divisor convolution, Niebur ring and Hurwitz trace/Catalan moment inversion.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated tau Jacobi, Eisenstein, Niebur or Hurwitz-trace engine is installed.",
+        "The source cross-checks are not equivalent to the package generic Euler-product test and were not replayed here."
+      ]
+    },
+    {
+      "key": "lehmer_hecke_prime_power",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "3; 15-16",
+      "summary": "Hecke second-order prime-power recurrence, characteristic roots, local valuation behavior and odd primitive zero-equivalence.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.recurrence.LinearRecurrence",
+        "komorebi_math.arithmetic.recurrence.second_order_trace",
+        "komorebi_math.arithmetic.recurrence.matrix_power_exact"
+      ],
+      "tests": [
+        "tests/test_arithmetic_recurrence.py"
+      ],
+      "boundaries": [
+        "The recurrence machinery accepts supplied coefficients and seeds; it does not prove they arise from Delta or construct the attached global Galois representation.",
+        "Using supplied tau(p) and p^11 gives finite recurrence values, but the source prime reduction and primitive-content identifications are external mathematical inputs."
+      ]
+    },
+    {
+      "key": "lehmer_five_core_shell_packets",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "6.1-6.7",
+      "summary": "Complete V-coded five-core shell enumeration, Vandermonde/288 weights, integral signs and prime-index unit weights.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No constructor enumerates v_i congruent to i modulo 5 with zero sum and squared norm 10n, or returns the exact Vandermonde shell weights.",
+        "Generic packet containers do not ensure the shell is complete or arithmetic weights are correct.",
+        "The source prime-unit property is termwise; opposite signs can cancel."
+      ]
+    },
+    {
+      "key": "lehmer_auxiliary_shell_polynomial",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "7.1-7.6",
+      "summary": "Degree-at-most-ten shell polynomial P_n, 5-adic content normalization G_n and simple/double local branch counterexamples.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.arithmetic.polynomial_lifting.SparseIntegerPolynomial",
+        "komorebi_math.arithmetic.polynomial_lifting.IntegerPolynomialSystem",
+        "komorebi_math.arithmetic.valuation.padic_valuation"
+      ],
+      "tests": [
+        "tests/test_paper_late_machinery.py",
+        "tests/test_arithmetic_domains_valuation.py"
+      ],
+      "boundaries": [
+        "The generic polynomial and lift interfaces can analyze supplied integer coefficients; they do not enumerate the shell or build P_n and G_n.",
+        "The source simple root at shell 499 and nonlifting double root at 16249 are not package fixtures.",
+        "A fixed shell polynomial does not interpolate prime index; valuation formulas permit exact zero."
+      ]
+    },
+    {
+      "key": "lehmer_harmonic_theta_nulls",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "8-9; 17-18; Appendix B",
+      "summary": "Harmonic theta packets, power-sum Laplacian, universal symmetric null polynomials, valence and finite stored corrections.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No harmonic-theta or symmetric power-sum Laplacian constructor certifies the source universal null family.",
+        "Interpolating a finite coefficient range is not universal modular nullness.",
+        "The modularity/valence contract and content-conservation theorem remain source results rather than runtime proofs."
+      ]
+    },
+    {
+      "key": "lehmer_sign_and_localization",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "10-12",
+      "summary": "Finite sign certificates, dyadic mixed-sign threshold and strict localization boundaries.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.core.carrier_change.SignedMassPacket",
+        "komorebi_math.core.packets.PacketSystem"
+      ],
+      "tests": [
+        "tests/test_r4_block15_carrier_change.py",
+        "tests/test_packets.py"
+      ],
+      "boundaries": [
+        "These finite signed-packet interfaces operate on supplied mass and support; no arithmetic shell sign-certificate search is installed.",
+        "Finite support or mixed-sign checks do not prove eventual prime-index positivity; source automatic-valuation and nonintegral-interpolation failures must be retained."
+      ]
+    },
+    {
+      "key": "lehmer_primitive_content",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "13; 16-18",
+      "summary": "Primitive content, gcd and Mobius inversion, composite obstructions, odd-prime zero equivalence and conservation under all finite symmetric homogeneous nulls.",
+      "status": "missing",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "There is no source primitive-content R(n), complete shell Mobius decomposition or universal content-preservation certificate API.",
+        "Generic divisor transforms cannot provide the arithmetic shell decomposition or exclude a primitive exact zero."
+      ]
+    },
+    {
+      "key": "lehmer_exact_refinement_transfer",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "14.1-14.5",
+      "summary": "Exact shell transfers, cancellation localization, zero-total orbit space and degree-dependent rank data at n=31.",
+      "status": "partial",
+      "api": [
+        "komorebi_math.coordinates.exact.matrix_rank",
+        "komorebi_math.coordinates.exact.nullspace",
+        "komorebi_math.core.operators.PacketOperator"
+      ],
+      "tests": [
+        "tests/test_coordinates_exact.py",
+        "tests/test_operators_transfer.py"
+      ],
+      "boundaries": [
+        "Exact finite supplied-matrix rank and transfer infrastructure exists; the stored source shell null families and n=31 rank matrices are not shipped.",
+        "Ranks at degrees 14, 20 and 22 and the nonzero stored tau(31) survivor do not establish nonzero survivors for every prime."
+      ]
+    },
+    {
+      "key": "lehmer_fixed_modulus_prime_survival",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "19",
+      "summary": "Fixed congruence-modulus actual prime survivors, integral representations and the Chebotarev quantifier boundary.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No arithmetic Delta image or Chebotarev prime-survivor constructor is installed.",
+        "Even source actual survivors for each fixed modulus do not yield one adaptive residue/sign certificate for every prime."
+      ]
+    },
+    {
+      "key": "lehmer_local_trace_zero_countermodel",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "20-21",
+      "summary": "Locally compatible trace-zero weakly admissible/crystalline data and a retained-premise global arithmetic countermodel.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "The paper-specific models are not installed or replayed here.",
+        "A compatible local crystalline model is not an actual global Delta Frobenius, and the countermodel is not a zero of the actual tau sequence."
+      ]
+    },
+    {
+      "key": "lehmer_crt_ntt_finite_engine",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "Appendices C and E",
+      "summary": "Exact workbook and bounded CRT/NTT modular coefficient engine with explicit inner-convolution reconstruction bounds.",
+      "status": "external",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "No dedicated tau CRT/NTT engine or stored workbook is packaged.",
+        "The source modular engine is restricted to the stated modulus and reconstruction bounds; a generic numerical FFT does not provide those exact guarantees.",
+        "Source-reported coefficient, shell and local-model ranges were not replayed in this coverage pass."
+      ]
+    },
+    {
+      "key": "lehmer_remaining_prime_obligation",
+      "source_id": "conjecture_lehmer_tau_v1_0",
+      "section": "22, Theorem 22.1; Appendices D-E",
+      "summary": "Remaining actual-Delta nonvanishing at every prime p congruent to 4 modulo 5, with conditional adaptive residue/sign closure.",
+      "status": "theory_only",
+      "api": [],
+      "tests": [],
+      "boundaries": [
+        "This source concerns Ramanujan tau nonvanishing, not the different Mahler-measure Lehmer conjecture.",
+        "The current source leaves the remaining prime family open; no all-prime runtime certificate or recovered compiled Lehmer Lean proof is present.",
+        "No finite coefficient range, homogeneous rank result or local trace model proves the remaining nonvanishing assertion."
+      ]
+    }
+  ]
+}

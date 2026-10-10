@@ -10,7 +10,6 @@ import os
 import platform
 import re
 import shutil
-import stat
 import sys
 import tarfile
 import tempfile
@@ -55,9 +54,63 @@ def _clean(root: Path) -> None:
             shutil.rmtree(path)
 
 
+def _snapshot_source(root: Path, destination: Path, version: str) -> Path:
+    """Copy source bytes and modes away from synchronized build directories."""
+    root = root.resolve()
+    destination = destination.resolve()
+    if destination == root or root in destination.parents:
+        raise SystemExit("source snapshot must be outside the original checkout")
+    root_outputs = {
+        ".git",
+        "build",
+        "dist",
+        "site",
+        "env",
+        "venv",
+        ".pytest_cache",
+        ".ruff_cache",
+        ".mypy_cache",
+        ".tox",
+        ".nox",
+        f"komorebi_math-{version}",
+    }
+
+    def ignored(directory: str, names: list[str]) -> set[str]:
+        parent = Path(directory)
+        relative = parent.relative_to(root)
+        omitted: set[str] = set()
+        for name in names:
+            path = parent / name
+            if name == ".rsync-tmp":
+                omitted.add(name)
+            elif path.is_dir():
+                if (
+                    name == "__pycache__"
+                    or (relative == Path("src") and name.endswith(".egg-info"))
+                    or (
+                        relative == Path(".")
+                        and (
+                            name in root_outputs
+                            or name.startswith(".venv")
+                            or name.startswith("paper_sdist_staging")
+                        )
+                    )
+                    or (relative == Path("release") and name == "dist")
+                ):
+                    omitted.add(name)
+            elif path.suffix in {".pyc", ".pyo"}:
+                omitted.add(name)
+        return omitted
+
+    shutil.copytree(root, destination, ignore=ignored, copy_function=shutil.copy2)
+    return destination
+
+
 def _safe_name(name: str) -> None:
     path = PurePosixPath(name.rstrip("/"))
     text = path.as_posix()
+    if ".rsync-tmp" in path.parts:
+        raise SystemExit(f"transient synchronization member: {name!r}")
     if (
         not text
         or path.is_absolute()
@@ -171,8 +224,9 @@ def build(root: Path, destination: Path, report_path: Path) -> dict[str, Any]:
     try:
         with tempfile.TemporaryDirectory(prefix="komorebi-block21-build-") as temporary:
             workspace = Path(temporary)
-            first_wheel, first_sdist = _build_once(root, workspace / "first", version)
-            replay_wheel, replay_sdist = _build_once(root, workspace / "replay", version)
+            snapshot = _snapshot_source(root, workspace / "source", version)
+            first_wheel, first_sdist = _build_once(snapshot, workspace / "first", version)
+            replay_wheel, replay_sdist = _build_once(snapshot, workspace / "replay", version)
             if first_wheel.read_bytes() != replay_wheel.read_bytes():
                 raise SystemExit("wheel build is not byte reproducible")
             if first_sdist.read_bytes() != replay_sdist.read_bytes():
@@ -201,7 +255,6 @@ def build(root: Path, destination: Path, report_path: Path) -> dict[str, Any]:
             os.environ.pop("SOURCE_DATE_EPOCH", None)
         else:
             os.environ["SOURCE_DATE_EPOCH"] = previous_epoch
-        _clean(root)
 
     def artifact(path: Path, audit: dict[str, Any]) -> dict[str, Any]:
         return {
@@ -232,7 +285,9 @@ def build(root: Path, destination: Path, report_path: Path) -> dict[str, Any]:
         ],
     }
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    report_path.write_text(
+        json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
+    )
     return record
 
 

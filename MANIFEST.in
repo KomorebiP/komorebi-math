@@ -116,3 +116,5 @@ include verification/EPISODE017_DEFORMATION_SEPARATOR_PROBE.json
 include verification/installed_block20_probe.py
 include tests/test_r4_block20_deformation_separator_repair.py
 include docs/R4_BLOCK20_DEFORMATION_SEPARATOR_REPAIR.md
+
+global-exclude */.rsync-tmp/*
