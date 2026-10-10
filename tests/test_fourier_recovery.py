@@ -4,6 +4,7 @@ import numpy as np
 import pytest
 
 from komorebi_math.exceptions import AssumptionError, DimensionError, ValidationError
+from komorebi_math.certificates import Exactness
 from komorebi_math.signals.fourier_recovery import (
     FourierJumpRecovery, PeriodicJumpPacket, edge_moments_from_fourier,
     hankel_moment_matrix, recover_fourier_jumps,
@@ -32,7 +33,9 @@ def test_recovers_independently_integrated_three_jump_model(period, degree, boun
                                   known_order=known, period=period)
     assert isinstance(result, FourierJumpRecovery)
     assert result.order == 3
-    assert result.certificate.valid
+    assert result.fit_certificate.valid
+    assert result.certificate.valid is (known is not None)
+    assert result.resolution_status == ("conditional" if known is not None else "candidate_only")
     np.testing.assert_allclose(result.packet.locations, locations, atol=1e-11)
     np.testing.assert_allclose(result.packet.amplitudes, amplitudes, atol=1e-11)
     assert result.packet.fourier(0) == 0
@@ -45,7 +48,8 @@ def test_period_normalization_avoids_intermediate_overflow(period):
     measurements = {index: sum(amplitudes * np.exp(-2j * np.pi * index * ratios)) / (2j * np.pi * index)
                     for index in range(1, 9)}
     result = recover_fourier_jumps(measurements, background_degree=0, maximum_jumps=4, period=period)
-    assert result.certificate.valid
+    assert result.fit_certificate.valid
+    assert not result.certificate.valid
     np.testing.assert_allclose(result.packet.locations / period, ratios, atol=1e-11)
 
 
@@ -67,16 +71,17 @@ def test_zero_edge_branch_and_declared_zero_order():
     for known in (None, 0):
         result = recover_fourier_jumps(coefficients, background_degree=0, maximum_jumps=4, known_order=known)
         assert result.order == 0
-        assert result.certificate.valid
+        assert result.fit_certificate.valid
+        assert result.certificate.valid is (known is not None)
         np.testing.assert_array_equal(result.packet.evaluate([0, 1, 2]), [0, 0, 0])
     with pytest.raises(AssumptionError, match="rank"):
         recover_fourier_jumps(coefficients, background_degree=0, maximum_jumps=4, known_order=2)
 
 
-def test_declared_zero_order_does_not_certify_nonzero_moments():
+def test_declared_zero_order_rejects_nonzero_numerical_rank():
     coefficients = measured_coefficients([.2, 2.4], [1.0, -1.0], 2 * np.pi, 0, 3)
-    result = recover_fourier_jumps(coefficients, background_degree=0, maximum_jumps=3, known_order=0)
-    assert not result.certificate.valid
+    with pytest.raises(AssumptionError, match="below the numerical Hankel rank"):
+        recover_fourier_jumps(coefficients, background_degree=0, maximum_jumps=3, known_order=0)
 
 
 def test_aliased_measurement_subset_cannot_replace_consecutive_samples():
@@ -170,4 +175,69 @@ def test_boolean_values_are_not_silently_promoted_to_numeric_jump_amplitudes(amp
 def test_hankel_row_count_requires_integer_type():
     with pytest.raises(ValidationError, match="rows"):
         hankel_moment_matrix([1, 2, 3], 2.0, 2)
+
+
+def test_close_jumps_cannot_turn_a_good_merged_fit_into_recovery_approval():
+    locations = np.array([1.0, 1.0 + 5e-8, 3.84])
+    amplitudes = np.array([2.0, -0.7, -1.3])
+    data = measured_coefficients(locations, amplitudes, 5.0, 3, 5)
+    candidate = recover_fourier_jumps(data, background_degree=3, maximum_jumps=5, period=5.0)
+    assert candidate.order == 2
+    candidate.fit_certificate.require()
+    assert not candidate.certificate.valid
+    assert candidate.certificate.exactness is Exactness.CONDITIONAL
+    assert candidate.resolution_status == "candidate_only"
+    point = (locations[0] + locations[1]) / 2
+    true_level = 2.0 - float(np.sum(amplitudes * (1 - locations / 5.0)))
+    assert abs(candidate.packet.evaluate(point) - true_level) > 0.69
+    with pytest.raises(ValidationError, match="candidate only"):
+        candidate.certificate.require()
+    with pytest.raises(ValidationError, match="candidate only"):
+        candidate.require_recovery()
+    with pytest.raises(AssumptionError, match="exceeds the numerical Hankel rank"):
+        recover_fourier_jumps(data, background_degree=3, maximum_jumps=5,
+                              known_order=3, period=5.0)
+
+
+@pytest.mark.parametrize("known_order", [0, 2])
+def test_underdeclared_order_cannot_bypass_rank_agreement_with_loose_tolerance(known_order):
+    data = measured_coefficients([0.41, 1.92, 3.84], [2.0, -0.7, -1.3], 5.0, 3, 5)
+    with pytest.raises(AssumptionError, match="below the numerical Hankel rank"):
+        recover_fourier_jumps(data, background_degree=3, maximum_jumps=5,
+                              known_order=known_order, period=5.0, tolerance=2.0)
+
+
+def test_declared_order_approval_is_explicitly_conditional():
+    data = measured_coefficients([0.41, 1.92, 3.84], [2.0, -0.7, -1.3], 5.0, 3, 5)
+    result = recover_fourier_jumps(data, background_degree=3, maximum_jumps=5,
+                                  known_order=3, period=5.0)
+    assert result.fit_certificate.exactness is Exactness.NUMERICAL
+    assert result.certificate.exactness is Exactness.CONDITIONAL
+    assert result.declared_order == 3
+    assert result.resolution_status == "conditional"
+    assert result.require_recovery() is result.packet
+    assert any("true number" in assumption for assumption in result.certificate.assumptions_unchecked)
+
+
+def test_inferred_zero_order_is_a_candidate_and_declared_zero_order_is_conditional():
+    data = {n: 0j for n in range(1, 9)}
+    candidate = recover_fourier_jumps(data, background_degree=0, maximum_jumps=4)
+    candidate.fit_certificate.require()
+    assert candidate.resolution_status == "candidate_only"
+    with pytest.raises(ValidationError, match="candidate only"):
+        candidate.require_recovery()
+    declared = recover_fourier_jumps(data, background_degree=0, maximum_jumps=4, known_order=0)
+    assert declared.require_recovery().order == 0
+    assert declared.resolution_status == "conditional"
+
+
+def test_mutable_diagnostics_cannot_promote_an_inferred_candidate():
+    data = measured_coefficients([0.41, 1.92, 3.84], [2.0, -0.7, -1.3], 5.0, 3, 5)
+    candidate = recover_fourier_jumps(data, background_degree=3, maximum_jumps=5, period=5.0)
+    candidate.certificate.diagnostics["declared_order"] = 3
+    candidate.certificate.diagnostics["resolution_status"] = "conditional"
+    assert candidate.declared_order is None
+    assert candidate.resolution_status == "candidate_only"
+    with pytest.raises(ValidationError, match="candidate only"):
+        candidate.require_recovery()
 

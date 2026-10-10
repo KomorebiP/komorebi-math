@@ -447,7 +447,7 @@ the entry point for the five exports below.
 | Export | Return and purpose |
 | --- | --- |
 | `PeriodicJumpPacket` | Canonical mean-zero periodic jump object |
-| `FourierJumpRecovery` | Recovered packet, finite data arrays, and numerical certificate |
+| `FourierJumpRecovery` | Candidate packet, finite fit evidence, and conditional recovery approval |
 | `edge_moments_from_fourier` | NumPy vector of derivative moments |
 | `hankel_moment_matrix` | NumPy matrix with entries \(H_{ij}=m_{i+j}\) |
 | `recover_fourier_jumps` | `FourierJumpRecovery` from a consecutive high-mode block |
@@ -472,7 +472,8 @@ above the background degree. In this normalization, the multiplier is
 The recovery input must include `2 * maximum_jumps` consecutive positive modes
 starting at `background_degree + 1`. This example generates ten coefficients
 from three known jumps on period 3, then checks the recovered parameters against
-the original input. It also requires the returned numerical certificate.
+the original input. The independently known count is supplied so the example
+can require conditional recovery approval.
 
 ```python
 import numpy as np
@@ -488,8 +489,9 @@ measurements = {
     for n in range(4, 14)
 }
 result = recover_fourier_jumps(measurements, background_degree=3,
-                               maximum_jumps=5, period=period)
-result.certificate.require()
+                               maximum_jumps=5, known_order=3, period=period)
+result.require_recovery()
+assert result.resolution_status == "conditional"
 assert result.order == 3
 assert np.allclose(result.packet.locations, locations, rtol=0, atol=1e-10)
 assert np.allclose(result.packet.amplitudes, amplitudes, rtol=0, atol=1e-10)
@@ -508,21 +510,24 @@ import numpy as np
 from komorebi_math.signals.fourier_recovery import recover_fourier_jumps
 
 result = recover_fourier_jumps({n: 0j for n in range(1, 5)},
-                               background_degree=0, maximum_jumps=2)
-result.certificate.require()
+                               background_degree=0, maximum_jumps=2, known_order=0)
+result.require_recovery()
 assert result.order == 0
 assert np.array_equal(result.packet.evaluate([0, 0.5, 3]), np.zeros(3))
 assert result.packet.fourier(0) == 0
 ```
 
 The result contains `packet`, `annihilator_ascending`, `hankel_singular_values`,
-`moment_indices`, `measured_moments`, `predicted_moments`, and `certificate`.
+`moment_indices`, `measured_moments`, `predicted_moments`, `fit_certificate`,
+`certificate`, and `declared_order`. `resolution_status` distinguishes an
+inferred `candidate_only` fit from declared-order `conditional` approval and
+an `invalid` result. `require_recovery()` requires conditional approval.
 The packet wraps locations modulo its period, sorts them, copies its arrays,
 and exposes read-only snapshots. `evaluate` uses the right-continuous
 representative with its mean removed. `fourier(0)` is therefore zero.
 
 The rank gate compares singular values with
-`rank_tolerance * largest_singular_value`. A `known_order` hint must not exceed
+`rank_tolerance * largest_singular_value`. A supplied `known_order` must equal
 the observed numerical rank. The default tolerances are `rank_tolerance=1e-10`
 and `tolerance=1e-8`. Missing modes, invalid integer inputs, and out-of-range
 real scalar parameters raise `ValidationError`. Unsupported scalar types may
@@ -530,14 +535,19 @@ raise Python conversion exceptions. Inconsistent real conjugacy, singular
 recovery geometry, and invalid active-packet assumptions can raise
 `AssumptionError`. Requiring a failed certificate raises `ValidationError`.
 
-The certificate checks the represented model's finite moment fit,
+The `fit_certificate` checks the represented model's finite moment fit,
 annihilating recurrence, node-circle residual, real amplitudes, and zero sum.
 It records Hankel and Vandermonde condition numbers. It does not verify the
 unknown background's bandlimit, the truth of the finite jump model, the chosen
 rank threshold's identification of the target order, or suitability of noise
 and conditioning. Decimated samples cannot replace the required consecutive
-block. A passing certificate establishes finite numerical consistency within
-these assumptions. See [Fourier recovery of periodic jump packets](fourier_recovery.md)
+block. A passing fit establishes finite numerical consistency within these
+assumptions. The primary `certificate` withholds approval for every inferred
+order, including zero: a fitted low-order model cannot rule out unresolved
+nearby jumps. With an independently supplied count matching the numerical rank,
+it grants explicitly conditional approval. Copying an inferred count into
+`known_order` is not independent validation. See
+[Fourier recovery of periodic jump packets](fourier_recovery.md)
 for the algorithm and source boundaries.
 
 ## Form exact finite join quotients

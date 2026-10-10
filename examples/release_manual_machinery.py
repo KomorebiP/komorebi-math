@@ -170,8 +170,9 @@ def example_fourier_jumps() -> None:
         for n in range(4, 14)
     }
     result = recover_fourier_jumps(measurements, background_degree=3,
-                                   maximum_jumps=5, period=period)
-    result.certificate.require()
+                                   maximum_jumps=5, known_order=3, period=period)
+    result.require_recovery()
+    assert result.resolution_status == "conditional"
     assert result.order == 3
     assert np.allclose(result.packet.locations, locations, rtol=0, atol=1e-10)
     assert np.allclose(result.packet.amplitudes, amplitudes, rtol=0, atol=1e-10)
@@ -184,8 +185,8 @@ def example_no_jumps() -> None:
     from komorebi_math.signals.fourier_recovery import recover_fourier_jumps
 
     result = recover_fourier_jumps({n: 0j for n in range(1, 5)},
-                                   background_degree=0, maximum_jumps=2)
-    result.certificate.require()
+                                   background_degree=0, maximum_jumps=2, known_order=0)
+    result.require_recovery()
     assert result.order == 0
     assert np.array_equal(result.packet.evaluate([0, 0.5, 3]), np.zeros(3))
     assert result.packet.fourier(0) == 0
