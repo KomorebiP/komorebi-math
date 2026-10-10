@@ -8,7 +8,7 @@ finite numerical consistency, not an unrestricted noisy recovery theorem.
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import pi
 from numbers import Integral
 from typing import Any
@@ -187,7 +187,13 @@ def hankel_moment_matrix(moments: Any, rows: int, columns: int) -> np.ndarray:
 
 @dataclass(frozen=True, slots=True)
 class FourierJumpRecovery:
-    """Recovered periodic packet and finite numerical consistency evidence."""
+    """Candidate jump packet, finite fit evidence, and conditional approval.
+
+    ``fit_certificate`` checks the finite moment model. ``certificate`` and
+    ``require_recovery`` additionally require an independently supplied exact
+    order. An inferred order alone is always a candidate, including order zero.
+    Even declared-order approval retains the target and noise assumptions.
+    """
 
     packet: PeriodicJumpPacket
     annihilator_ascending: np.ndarray
@@ -196,10 +202,43 @@ class FourierJumpRecovery:
     measured_moments: np.ndarray
     predicted_moments: np.ndarray
     certificate: Certificate
+    _fit_certificate: Certificate | None = field(default=None, repr=False)
+    declared_order: int | None = None
 
     @property
     def order(self) -> int:
         return self.packet.order
+
+    @property
+    def fit_certificate(self) -> Certificate:
+        """Finite consistency evidence, without approval of the target order."""
+
+        return self.certificate if self._fit_certificate is None else self._fit_certificate
+
+    @property
+    def resolution_status(self) -> str:
+        """Return ``candidate_only``, ``conditional``, or ``invalid``."""
+
+        if not self.fit_certificate.current_valid:
+            return "invalid"
+        if self.declared_order is None:
+            return "candidate_only"
+        return "conditional" if self.certificate.current_valid else "invalid"
+
+    def require_recovery(self) -> PeriodicJumpPacket:
+        """Require declared-order approval, conditional on target assumptions.
+
+        This is not a uniform parameter-error bound. The declaration must come
+        from independent target knowledge, rather than copying ``self.order``.
+        """
+
+        if self.declared_order is None:
+            raise ValidationError(
+                "inferred jump order is candidate only; independently supply known_order "
+                "for conditional recovery approval"
+            )
+        self.certificate.require()
+        return self.packet
 
 
 @documented(ProvenanceRecord(
@@ -222,8 +261,11 @@ def recover_fourier_jumps(measurements: Mapping[int, complex], *, background_deg
     The requested modes start at ``background_degree + 1``. Their derivative
     moments feed a Hankel rank gate, a monic annihilator solve, polynomial root
     extraction, unit-circle projection, and an all-moment amplitude refit.
-    The returned certificate checks the represented real, mean-zero model's
-    numerical residual. The declared background and rank gap remain assumptions.
+    ``fit_certificate`` checks the represented real, mean-zero model's numerical
+    residual. The primary ``certificate`` withholds approval when ``known_order``
+    is absent. A supplied order must equal the numerical rank; conditional
+    approval still assumes that it is the true target order and that background,
+    noise, and conditioning assumptions hold.
     """
 
     degree = _integer(background_degree, "background_degree")
@@ -252,6 +294,8 @@ def recover_fourier_jumps(measurements: Mapping[int, complex], *, background_deg
     order = numerical_rank if order_hint is None else order_hint
     if order > numerical_rank:
         raise AssumptionError("known order exceeds the numerical Hankel rank at the supplied threshold")
+    if order_hint is not None and order < numerical_rank:
+        raise AssumptionError("known order is below the numerical Hankel rank at the supplied threshold")
     scale = max(1.0, float(np.max(np.abs(moments))))
     hankel_condition = 0.0
     vandermonde_condition = 0.0
@@ -296,7 +340,7 @@ def recover_fourier_jumps(measurements: Mapping[int, complex], *, background_deg
     valid = bool(finite and residual <= allowed * scale and recurrence <= allowed * scale
                  and imaginary_amplitudes <= allowed * amplitude_scale
                  and amplitude_sum <= allowed * max(1, order) * amplitude_scale and radial_error <= allowed)
-    certificate = Certificate(
+    fit_certificate = Certificate(
         valid=valid,
         exactness=Exactness.NUMERICAL,
         residuals={"moment_fit": residual, "annihilator_recurrence": recurrence,
@@ -315,8 +359,36 @@ def recover_fourier_jumps(measurements: Mapping[int, complex], *, background_deg
         theorem_id="KM-SIGNAL-PRONY-01",
         message="finite Fourier jump model consistency verified" if valid else "finite Fourier jump model consistency failed",
     )
+
+    # A good low-order fit cannot rule out unresolved higher-order targets.
+    # Candidate conditioning also describes only that fit, so it cannot supply
+    # the missing true-order assumption. Do not approve automatic order merely
+    # because the fitted moments pass their finite consistency checks.
+    approval_valid = bool(fit_certificate.current_valid and order_hint is not None)
+    status = "conditional" if approval_valid else "candidate_only" if valid else "invalid"
+    certificate = Certificate(
+        valid=approval_valid,
+        exactness=Exactness.CONDITIONAL,
+        residuals=dict(fit_certificate.residuals),
+        tolerance=allowed,
+        assumptions_checked=fit_certificate.assumptions_checked + (
+            "supplied declared order agrees with the numerical Hankel rank",
+        ) if order_hint is not None else fit_certificate.assumptions_checked,
+        assumptions_unchecked=fit_certificate.assumptions_unchecked + (
+            "the independently supplied known_order is the true number of active target jumps",
+        ) if order_hint is not None else fit_certificate.assumptions_unchecked + (
+            "the inferred candidate order has not been independently authenticated",
+        ),
+        diagnostics={**fit_certificate.diagnostics, "declared_order": order_hint,
+                     "resolution_status": status, "finite_fit_valid": fit_certificate.current_valid},
+        theorem_id="KM-SIGNAL-PRONY-01",
+        message=("conditional declared-order Fourier recovery approved" if approval_valid
+                 else "inferred jump order is candidate only; recovery approval withheld" if valid
+                 else "finite Fourier jump model consistency failed; recovery approval withheld"),
+    )
     return FourierJumpRecovery(packet, _frozen(annihilator), _frozen(singular), _frozen(indices),
-                               _frozen(moments), _frozen(predicted), certificate)
+                               _frozen(moments), _frozen(predicted), certificate,
+                               fit_certificate, order_hint)
 
 
 __all__ = ["PeriodicJumpPacket", "FourierJumpRecovery", "edge_moments_from_fourier",

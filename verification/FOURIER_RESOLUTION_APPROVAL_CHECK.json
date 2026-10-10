@@ -1,0 +1,304 @@
+{
+  "contract": "Finite numerical model fit versus explicit conditional recovery approval",
+  "non_claims": [
+    "No uniform noise theorem",
+    "No arbitrarily close edge resolution guarantee",
+    "No recovery approval authenticates its unchecked target assumptions"
+  ],
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "komorebi_version": "1.0.0b4",
+    "module": "/workspace/scratch/99279ee62f30/resolution_work/komorebi-math/src/komorebi_math/signals/fourier_recovery.py",
+    "source_sha256": "1289d50cff1bdf9da4d17f9106924780c877dac2d8dedff9e1b7b2e43379de2e"
+  },
+  "controls": [
+    {
+      "name": "close_pair_fit_does_not_approve_recovery",
+      "passed": true,
+      "detail": {
+        "order": 2,
+        "fit_valid": true,
+        "recovery_valid": false,
+        "resolution_status": "candidate_only",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 2.5313104439043e-13,
+          "annihilator_recurrence": 7.577742346562646e-14,
+          "node_circle": 1.687538997430238e-14,
+          "imaginary_amplitudes": 9.21872290871889e-15,
+          "amplitude_sum_before_projection": 1.5927731226456957e-13
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 2,
+          "recovered_order": 2,
+          "hankel_condition": 1.2320053437925815,
+          "vandermonde_condition": 1.0904742336494035,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        },
+        "pointwise_error": 0.6999999999999611,
+        "probe": 1.0000000249999998
+      }
+    },
+    {
+      "name": "close_pair_known_three_rejected",
+      "passed": true,
+      "detail": {
+        "exception": "AssumptionError",
+        "message": "known order exceeds the numerical Hankel rank at the supplied threshold"
+      }
+    },
+    {
+      "name": "underdeclared_zero_cannot_use_loose_fit_tolerance",
+      "passed": true,
+      "detail": {
+        "exception": "AssumptionError",
+        "message": "known order is below the numerical Hankel rank at the supplied threshold"
+      }
+    },
+    {
+      "name": "underdeclared_two_cannot_use_loose_fit_tolerance",
+      "passed": true,
+      "detail": {
+        "exception": "AssumptionError",
+        "message": "known order is below the numerical Hankel rank at the supplied threshold"
+      }
+    },
+    {
+      "name": "overdeclared_four_rejected",
+      "passed": true,
+      "detail": {
+        "exception": "AssumptionError",
+        "message": "known order exceeds the numerical Hankel rank at the supplied threshold"
+      }
+    },
+    {
+      "name": "separated_inferred_remains_candidate",
+      "passed": true,
+      "detail": {
+        "order": 3,
+        "fit_valid": true,
+        "recovery_valid": false,
+        "resolution_status": "candidate_only",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 2.4525628233156873e-14,
+          "annihilator_recurrence": 3.108624468950438e-14,
+          "node_circle": 6.661338147750939e-16,
+          "imaginary_amplitudes": 1.0436096431476471e-14,
+          "amplitude_sum_before_projection": 1.954392199760705e-14
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 3,
+          "recovered_order": 3,
+          "hankel_condition": 2.9988725219288503,
+          "vandermonde_condition": 1.075199970119628,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "separated_declared_three_conditionally_approved",
+      "passed": true,
+      "detail": {
+        "order": 3,
+        "fit_valid": true,
+        "recovery_valid": true,
+        "resolution_status": "conditional",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 2.4525628233156873e-14,
+          "annihilator_recurrence": 3.108624468950438e-14,
+          "node_circle": 6.661338147750939e-16,
+          "imaginary_amplitudes": 1.0436096431476471e-14,
+          "amplitude_sum_before_projection": 1.954392199760705e-14
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 3,
+          "recovered_order": 3,
+          "hankel_condition": 2.9988725219288503,
+          "vandermonde_condition": 1.075199970119628,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "exact_two_jump_conditionally_approved",
+      "passed": true,
+      "detail": {
+        "order": 2,
+        "fit_valid": true,
+        "recovery_valid": true,
+        "resolution_status": "conditional",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 3.2510393746868505e-14,
+          "annihilator_recurrence": 1.6153649628029508e-14,
+          "node_circle": 2.220446049250313e-16,
+          "imaginary_amplitudes": 9.853229343548264e-15,
+          "amplitude_sum_before_projection": 7.673415942202112e-15
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 2,
+          "recovered_order": 2,
+          "hankel_condition": 2.8084774448467,
+          "vandermonde_condition": 1.1359388412186957,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "declared_zero_conditionally_approved",
+      "passed": true,
+      "detail": {
+        "order": 0,
+        "fit_valid": true,
+        "recovery_valid": true,
+        "resolution_status": "conditional",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 0.0,
+          "annihilator_recurrence": 0.0,
+          "node_circle": 0.0,
+          "imaginary_amplitudes": 0.0,
+          "amplitude_sum_before_projection": 0.0
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 0,
+          "recovered_order": 0,
+          "hankel_condition": 0.0,
+          "vandermonde_condition": 0.0,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "inferred_zero_does_not_authenticate_absence_of_edges",
+      "passed": true,
+      "detail": {
+        "order": 0,
+        "fit_valid": true,
+        "recovery_valid": false,
+        "resolution_status": "candidate_only",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 0.0,
+          "annihilator_recurrence": 0.0,
+          "node_circle": 0.0,
+          "imaginary_amplitudes": 0.0,
+          "amplitude_sum_before_projection": 0.0
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 0,
+          "recovered_order": 0,
+          "hankel_condition": 0.0,
+          "vandermonde_condition": 0.0,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "moderate_noise_never_silently_approved",
+      "passed": true,
+      "detail": {
+        "exception": "AssumptionError",
+        "message": "known order is below the numerical Hankel rank at the supplied threshold"
+      }
+    },
+    {
+      "name": "subtolerance_noise_is_explicitly_conditional",
+      "passed": true,
+      "detail": {
+        "order": 3,
+        "fit_valid": true,
+        "recovery_valid": true,
+        "resolution_status": "conditional",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 1.7759866023703887e-12,
+          "annihilator_recurrence": 7.938547752023263e-13,
+          "node_circle": 1.0613732115416497e-13,
+          "imaginary_amplitudes": 8.8662410746565e-13,
+          "amplitude_sum_before_projection": 1.5158268137312183e-12
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 3,
+          "recovered_order": 3,
+          "hankel_condition": 2.9988725219280603,
+          "vandermonde_condition": 1.0751999701196275,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "ill_conditioned_distinct_nodes_fail_closed",
+      "passed": true,
+      "detail": {
+        "order": 3,
+        "fit_valid": false,
+        "recovery_valid": false,
+        "resolution_status": "invalid",
+        "fit_exactness": "numerical",
+        "recovery_exactness": "conditional",
+        "residuals": {
+          "moment_fit": 5.463791026411392e-13,
+          "annihilator_recurrence": 3.489453496203959e-14,
+          "node_circle": 5.87786925798639e-08,
+          "imaginary_amplitudes": 2.33554092732291e-10,
+          "amplitude_sum_before_projection": 4.3659022152036145e-13
+        },
+        "diagnostics": {
+          "numerical_hankel_rank": 3,
+          "recovered_order": 3,
+          "hankel_condition": 164745874.74697983,
+          "vandermonde_condition": 5574.208453250881,
+          "minimum_sample_count": 10,
+          "period": 5.0
+        }
+      }
+    },
+    {
+      "name": "measurement_mapping_mutation_does_not_change_evidence",
+      "passed": true,
+      "detail": {
+        "input_mutation_changed_evidence": false,
+        "resolution_status": "conditional"
+      }
+    },
+    {
+      "name": "mutable_diagnostics_cannot_promote_candidate",
+      "passed": true,
+      "detail": {
+        "diagnostic_mutation_changed_approval": false
+      }
+    },
+    {
+      "name": "packet_input_arrays_are_copied",
+      "passed": true,
+      "detail": {
+        "input_mutation_changed_packet": false
+      }
+    }
+  ],
+  "summary": {
+    "count": 16,
+    "passed": 16,
+    "source_unchanged": true,
+    "runtime_seconds": 0.04071240799748921
+  }
+}
