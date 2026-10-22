@@ -1,0 +1,39 @@
+{
+  "title": "Komorebi Math: Technical Manual and Reference",
+  "author": "Komorebi P.",
+  "original_pages": 2562,
+  "pdf": {
+    "name": "Komorebi_Math_Technical_Manual.pdf",
+    "pages": 2529,
+    "bytes": 11150857,
+    "sha256": "068933d890a49c30f6fdb100a2c6c4cbdd70bdfd3ee5642a2a1a6c298c2936a8",
+    "bookmarks": 5789
+  },
+  "structure": {
+    "parts": 14,
+    "chapters": 91,
+    "appendices": 15,
+    "original_numbered_subdivisions_retained": 3741
+  },
+  "preservation": {
+    "stable_api_cards": 131,
+    "beta_api_cards": 83,
+    "research_api_cards": 1312,
+    "fenced_listings": 4229,
+    "mathematical_spans": 6477,
+    "mathematical_typography_correction": "One missing backslash in \\qquad; no mathematical claim changed.",
+    "obsolete_editorial_records_archived": 74
+  },
+  "review_method": "Section review, unique-template language review and complete reference-record structural checks; exact reviewer coverage and limitations are retained in the individual reports.",
+  "validation": {
+    "source_preservation": "passed",
+    "api_manifest_record_parity": "1526 of 1526 exact matches",
+    "visual_review": "all-page overviews and representative full-size pages, with targeted review of revisions",
+    "pdf_integrity": "passed",
+    "current_source_static_crosswalk_files": 328,
+    "new_runtime_or_mathematical_correctness_audit": false
+  },
+  "source_commit": "5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222",
+  "software_implementation_changed": false,
+  "scope_note": "The full technical manual is distinct from the separate 207-page companion guide. Historical literal records retain their reference-baseline scope."
+}

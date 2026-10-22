@@ -1,10 +1,12 @@
-# Komorebi Math: The Python Library
+# Komorebi Math: Companion Guide
 
-A professional monograph manual of the Python library, by Komorebi P.
+A 207-page companion guide to the Python library, by Komorebi P.
 
-The manual brings 47 reader guides into 27 chapters and six appendices. It includes an introduction, contents, numbered cross-references, syntax-highlighted code, two vector illustrations, API references and a glossary. Installation, compatibility and qualification procedures are collected in the appendices.
+This companion brings 47 current reader guides into 27 chapters and six appendices. It includes an introduction, contents, numbered cross-references, syntax-highlighted code, two vector illustrations, API references and a glossary. Installation, compatibility and qualification procedures are collected in the appendices.
 
 `Komorebi_Math_Manual.pdf` is the finished reading copy. `source/` contains the proofread Markdown, typesetting template, figure generator and build scripts. `review/` records the example replay, token-preservation checks and layout review.
+
+The [full technical manual](../full-manual/) contains the separate long-form reference and its extended appendices.
 
 ## Build the PDF
 

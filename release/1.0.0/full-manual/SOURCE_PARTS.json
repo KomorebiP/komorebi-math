@@ -1,0 +1,38 @@
+{
+  "schema": "komorebi-math.source-archive-parts",
+  "schema_version": 1,
+  "archive": {
+    "name": "Komorebi_Math_Technical_Manual_Source.zip",
+    "bytes": 49931924,
+    "sha256": "54c2b1594c60b0efb6379c7d4341345f610aab56e214a6c5f15b588e2c698720"
+  },
+  "part_count": 5,
+  "parts": [
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part01",
+      "bytes": 9986385,
+      "sha256": "6751fbf9a8d17210d6fe6e3a3604b8b390abe707dcf7d4ba7afa50ac481ddcca"
+    },
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part02",
+      "bytes": 9986385,
+      "sha256": "a8fc52c4f149c3ea215454b6f5a67070cc02e7eb21f2139c8605e9ff510a8139"
+    },
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part03",
+      "bytes": 9986385,
+      "sha256": "69298c1a44b75abe60e6ddfc8eb3465d195b1e332c774c33c2c0cc066776fc46"
+    },
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part04",
+      "bytes": 9986385,
+      "sha256": "bb8184c26f514de4e00b274148e4f2fae9f93fe24fa1868882125fee09e7d257"
+    },
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part05",
+      "bytes": 9986384,
+      "sha256": "0d9b4f6cabacc8d7d7cba1acb2dc56aae6e3c31b82c73b03a991e9429d98689c"
+    }
+  ],
+  "ordering": "Concatenate parts in this listed order; join_source.py verifies each part and the complete archive."
+}
