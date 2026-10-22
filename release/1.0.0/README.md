@@ -8,6 +8,7 @@ This directory contains the final Python 1.0.0 build and its validation records.
 | `komorebi_math-1.0.0.tar.gz` | Standard source distribution |
 | `komorebi_math-1.0.0-source.zip` | Clean repository source, documentation, tests, current wheel and source distribution |
 | `komorebi_math-1.0.0-qualification.zip` | Validation reports and execution evidence, including superseded failed attempts |
+| `manual/` | Professional PDF manual, editable monograph sources and proofreading checks |
 | `SHA256SUMS.txt` | SHA-256 checksums for all four downloads |
 | `FINAL_RELEASE_STATUS.json` | Exact source identity, validation scope and remaining publication prerequisites |
 

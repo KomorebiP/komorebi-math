@@ -1,0 +1,2 @@
+68d1abc34bf2d71bb4412866423c6d652aa8c5309f9b380a1cef737b1927aaf1  Komorebi_Math_Manual.pdf
+65aa8f44c91fee8c045db3252391d2c91f648a5e34b6b1a730c25cadd48b855d  Komorebi_Math_Manual_Source.zip

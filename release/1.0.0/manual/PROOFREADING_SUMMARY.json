@@ -1,0 +1,49 @@
+{
+  "title": "Komorebi Math: The Python Library",
+  "author": "Komorebi P.",
+  "pdf": {
+    "name": "Komorebi_Math_Manual.pdf",
+    "sha256": "68d1abc34bf2d71bb4412866423c6d652aa8c5309f9b380a1cef737b1927aaf1",
+    "bytes": 724231,
+    "pages": 207,
+    "bookmarks": 432
+  },
+  "proofreading": {
+    "guides": 47,
+    "guides_with_prose_edits": 46,
+    "chapters": 27,
+    "appendices": 6,
+    "code_listings_preserved": 207,
+    "mathematical_spans_preserved": 390,
+    "executable_python_examples": 81,
+    "contextual_or_external_runtime_python_listings": 42,
+    "examples_passed": true,
+    "code_body_changes": 0,
+    "mathematical_token_changes": 0,
+    "corrections": [
+      "Replaced stale API contract guidance with the stable interface",
+      "Clarified numerical and exact certificate classes and sampled derivative checks",
+      "Corrected recurrence input requirements and polynomial-family distinctions",
+      "Corrected the count of deliberate expression failure cases",
+      "Clarified installation scope when a wheel is replaced with a source checkout",
+      "Improved prose, chapter flow, references and publication-ready terminology"
+    ]
+  },
+  "layout": {
+    "visual_review": "passed",
+    "automated_checks": "passed",
+    "all_pages_overview_reviewed": true,
+    "representative_full_pages_reviewed": true,
+    "copyability_spaces_and_straight_quotes": "passed",
+    "two_vector_figures": true,
+    "initial_render_failures_resolved": [
+      "Unavailable LuaTeX font loader; used XeLaTeX",
+      "Type1 font and legacy equation font-command incompatibilities; used OpenType fonts and compatibility declarations",
+      "Fragile inline-code formatting; used protected commands and explicit break opportunities",
+      "Inline-code spacing, quote conversion, caption/heading orphans and floating-figure interruptions corrected before delivery"
+    ]
+  },
+  "software_implementation_commit": "5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222",
+  "software_implementation_changed": false,
+  "optional_gpu_and_external_latex_runtime_executed": false
+}
