@@ -1,6 +1,6 @@
 # Fourier recovery of periodic jump packets
 
-`komorebi_math.signals.fourier_recovery` makes the finite unknown-edge reconstruction machinery available as a NumPy-only library API. It extracts the high-mode Fourier, Hankel, annihilator, and periodic integration steps from the Signal Reconstruction Final Edition of 6 October 2026.
+`komorebi_math.signals.fourier_recovery` provides finite jump reconstruction using NumPy. It combines high-mode Fourier moments, Hankel rank estimation, annihilating polynomials, and periodic integration.
 
 The target is a real periodic signal `f = s + j`. Its smooth component `s` must have Fourier degree at most the supplied `background_degree`. Its jump component `j` has finitely many distinct active locations, real amplitudes that sum to zero, and mean zero. These are model assumptions. The library does not infer them from arbitrary data.
 
@@ -59,9 +59,11 @@ The zero-order branch returns an empty `PeriodicJumpPacket`. Its evaluation is i
 
 The certificate verifies finite moment-fit, recurrence, node-circle, real-amplitude, and zero-sum consistency. It records the Hankel and Vandermonde condition numbers. The target's bandlimit, finite jump model, correctness of the rank threshold, and suitability of the noise and conditioning remain unchecked assumptions. A passing residual certifies consistency of the represented finite model. It does not certify the true number or locations of edges in an arbitrary noisy signal, a uniform stability theorem, or a model-free image method.
 
-This module does not include the original plotting and benchmarking dependencies, the largest-singular-ratio order heuristic, multi-offset phase lifting, greedy image dictionary selection, or the infinite packet image frontier. It makes no dedicated Lean claim. The source review explicitly separates those obligations and records the corrected mean-zero periodic perturbation bounds.
-
-Provenance: the recovered original is `sources/unknown_edge/universal_unknown_edge_recovery.py` in `Komorebi_Signal_Reconstruction_Final_Edition_2026-10-06`. Its SHA-256 is `966ef2f7a61e7b2a6c86c78b9a1d227dcdce4d43125ef65e135eba661b416c8a`. The recovered `reviews/SIGNAL_SCOPE_REVIEW.md` supplies the model and implementation boundaries. The integration adds explicit finite validation, copied evidence, general-period normalization, zero-order handling, and observed conjugacy checks.
+The module implements the finite Fourier model described here. Plotting and
+benchmarking frameworks, the largest-singular-ratio order heuristic, multi-offset
+phase lifting, greedy image dictionary selection, and infinite packet image
+reconstruction are outside its API. Its numerical certificates are not Lean
+proof certificates.
 
 Run the focused regressions with:
 

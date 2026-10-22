@@ -1,7 +1,7 @@
 """Metric distortion packets for finite-dimensional transport maps.
 
 This module is intentionally not re-exported from the aggregate nonlinear
-namespace yet.  Block 10 treats the API as an experimental research surface.
+namespace. The API is an experimental research surface.
 
 For an invertible map ``T : (V,Q_source) -> (W,Q_target)`` define the metric
 representative

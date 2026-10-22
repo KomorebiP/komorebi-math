@@ -1,4 +1,4 @@
-"""Digest-checked executed-platform evidence for the Komorebi Math 1.0 beta."""
+"""Digest-checked platform records and current-execution requirements."""
 
 from __future__ import annotations
 
@@ -314,9 +314,9 @@ def _check_validation_evidence(
         },
         theorem_id="KM-EVIDENCE-017",
         message=(
-            "1.0 beta validation evidence passed"
+            "validation evidence passed"
             if valid
-            else "1.0 beta validation evidence failed"
+            else "validation evidence failed"
         ),
     )
     return ValidationEvidenceReport(

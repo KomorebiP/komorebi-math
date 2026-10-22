@@ -999,7 +999,7 @@ def _write_result_certificate(
         identifier="PSC-III-D60",
         title="Chunked resumable packet-jet capture",
         status=ClaimStatus.FINITE_CERTIFICATE,
-        source="Block 11 runtime",
+        source="streaming nonlinear runtime",
         assumptions=("finite-dimensional multilinear packet jet",),
         limitations=(
             "integrity digests are not signatures",

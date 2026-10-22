@@ -14,8 +14,8 @@ import zipfile
 import pytest
 from verification.release_integrity import verify_release, package_files, check_source_modes
 
-VERSION = '1.0.0b4'
-WHEEL = f'komorebi_math-{VERSION}-1-py3-none-any.whl'
+VERSION = '1.0.0'
+WHEEL = f'komorebi_math-{VERSION}-py3-none-any.whl'
 SDIST = f'komorebi_math-{VERSION}.tar.gz'
 INFO = f'komorebi_math-{VERSION}.dist-info'
 
@@ -41,7 +41,7 @@ def write_wheel(root: Path, overrides: dict[str, bytes | None] | None = None, *,
     files[f'{INFO}/top_level.txt'] = b'komorebi_math\n'
     files[f'{INFO}/entry_points.txt'] = b'[console_scripts]\nkomorebi = komorebi_math.cli.main:main\n'
     files[f'{INFO}/licenses/LICENSE.md'] = (root/'LICENSE.md').read_bytes()
-    files[f'{INFO}/WHEEL'] = b'Wheel-Version: 1.0\nBuild: 1\nRoot-Is-Purelib: true\nTag: py3-none-any\n'
+    files[f'{INFO}/WHEEL'] = b'Wheel-Version: 1.0\nRoot-Is-Purelib: true\nTag: py3-none-any\n'
     for key, value in (overrides or {}).items():
         if value is None:
             files.pop(key, None)
@@ -56,7 +56,7 @@ def write_wheel(root: Path, overrides: dict[str, bytes | None] | None = None, *,
     files[f'{INFO}/RECORD'] = record.getvalue().encode()
     if bad_record:
         files['komorebi_math/__init__.py'] = b'corruption after RECORD construction\n'
-    with zipfile.ZipFile(root/'release/dist'/WHEEL, 'w') as z:
+    with zipfile.ZipFile(root/'dist'/WHEEL, 'w') as z:
         for key, value in files.items():
             z.writestr(key, value)
 
@@ -64,7 +64,7 @@ def write_wheel(root: Path, overrides: dict[str, bytes | None] | None = None, *,
 def write_sdist(root: Path, overrides: dict[str, bytes | None] | None = None, *, executable: bool = True,
                 symlink: bool = False) -> None:
     files = {p.relative_to(root).as_posix(): p.read_bytes() for p in root.rglob('*')
-             if p.is_file() and 'release/dist' not in p.relative_to(root).as_posix()}
+             if p.is_file() and p.relative_to(root).parts[0] != 'dist'}
     for key, value in (overrides or {}).items():
         if value is None:
             files.pop(key, None)
@@ -72,7 +72,7 @@ def write_sdist(root: Path, overrides: dict[str, bytes | None] | None = None, *,
             files[key] = value
     if 'PKG-INFO' not in files and 'PKG-INFO' not in (overrides or {}):
         files['PKG-INFO'] = metadata_bytes(root)
-    with tarfile.open(root/'release/dist'/SDIST, 'w:gz') as t:
+    with tarfile.open(root/'dist'/SDIST, 'w:gz') as t:
         for key, value in files.items():
             info = tarfile.TarInfo(f'komorebi_math-{VERSION}/{key}')
             info.size = len(value)
@@ -89,24 +89,24 @@ def write_sdist(root: Path, overrides: dict[str, bytes | None] | None = None, *,
 def release(tmp_path: Path) -> Path:
     root = tmp_path/'repo'; root.mkdir()
     files = {
-        'pyproject.toml': f'[build-system]\nrequires=["setuptools>=77.0.3","wheel"]\nbuild-backend="setuptools.build_meta"\n[project]\nname="komorebi-math"\nversion="{VERSION}"\nrequires-python=">=3.11"\nreadme="README.md"\nlicense="LicenseRef-Proprietary"\nlicense-files=["LICENSE.md"]\ndependencies=["numpy>=1.26"]\n[project.scripts]\nkomorebi="komorebi_math.cli.main:main"\n',
-        'RELEASE_ID.json': json.dumps({'package_version': VERSION, 'wheel_build_tag': '1', 'release_id': 'test-r1'}),
+        'pyproject.toml': f'[build-system]\nrequires=["setuptools>=77.0.3","wheel"]\nbuild-backend="setuptools.build_meta"\n[project]\nname="komorebi-math"\nversion="{VERSION}"\nrequires-python=">=3.11"\nreadme="README.md"\nlicense="MIT"\nlicense-files=["LICENSE.md"]\ndependencies=["numpy>=1.26"]\n[project.scripts]\nkomorebi="komorebi_math.cli.main:main"\n',
+        'RELEASE_ID.json': json.dumps({'package_version': VERSION, 'wheel_build_tag': '', 'release_id': VERSION, 'release_channel': 'stable'}),
         'src/komorebi_math/__init__.py': 'value = 42\n',
         'src/komorebi_math/py.typed': '',
         'src/komorebi_math/data/a.json': '{}\n',
         'verification/probe.py': 'print("probe")\n',
         'tests/test_a.py': 'def test_a():\n    assert 1 == 1\n',
         '.github/workflows/ci.yml': 'name: test\n',
-        'LICENSE.md': 'All rights reserved.\n', 'README.md': '# Fixture\n',
+        'LICENSE.md': 'MIT License\n', 'README.md': '# Fixture\n',
         'mkdocs.yml': 'site_name: Fixture\n', 'docs/index.md': '# Fixture docs\n',
         'examples/probe.py': 'print(42)\n',
-        'RELEASE_REPAIR_R1.md': '# Repair\n', 'MANIFEST.in': 'include README.md\n',
-        'VERIFY_REPAIR.ps1': 'Write-Output "test"\n', 'verify_repair.sh': '#!/bin/sh\necho test\n',
+        'MANIFEST.in': 'include README.md\n',
+        'check_release.sh': '#!/bin/sh\necho test\n',
     }
     for name, value in files.items():
         p = root/name; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(value,encoding='utf-8')
         p.chmod(0o755 if name.endswith('.sh') else 0o644)
-    (root/'release/dist').mkdir(parents=True)
+    (root/'dist').mkdir(parents=True)
     write_wheel(root); write_sdist(root)
     return root
 
@@ -152,12 +152,12 @@ def test_corrupt_record_rejected(release: Path) -> None:
 
 
 def test_missing_distribution_rejected(release: Path) -> None:
-    (release/'release/dist'/WHEEL).unlink()
+    (release/'dist'/WHEEL).unlink()
     assert not verify_release(release)['passed']
 
 
 def test_duplicate_current_wheels_rejected(release: Path) -> None:
-    p=release/'release/dist'/WHEEL
+    p=release/'dist'/WHEEL
     p.with_name('second.whl').write_bytes(p.read_bytes())
     assert not verify_release(release)['passed']
 
@@ -191,7 +191,7 @@ def test_sdist_modes_rejected_even_on_windows(release: Path) -> None:
 
 @pytest.mark.skipif(os.name == 'nt', reason='POSIX execute permissions only')
 def test_source_shell_mode_loss_rejected(release: Path) -> None:
-    (release/'verify_repair.sh').chmod(0o644)
+    (release/'check_release.sh').chmod(0o644)
     assert not check_source_modes(release)['passed']
     assert not verify_release(release)['passed']
 
@@ -221,21 +221,17 @@ def test_postbuild_source_change_rejected(release: Path) -> None:
     assert not report['sdist_package_parity']['passed']
 
 
-@pytest.mark.parametrize('filename,build_marker,gate_marker', [
-    ('build_block21_handoff.sh', '"$PYTHON" "$ROOT/verification/build_block21_distributions.py"', '"$PYTHON" "${GATE_ARGS[@]}"'),
-    ('Build_Block21_Handoff.ps1', '& $Python (Join-Path $Root "verification\\build_block21_distributions.py")', '& $Python @GateArguments'),
-])
-def test_handoff_launcher_builds_before_qualification(filename: str, build_marker: str, gate_marker: str) -> None:
-    root = Path(__file__).resolve().parents[1]
-    text = (root/filename).read_text()
-    assert text.index(build_marker) < text.index(gate_marker)
-    assert '--installed-artifacts' in text
-    assert 'REPAIR_R2_PUBLICATION_GATE' in text
+def test_source_handoff_compatibility_import_preserves_archive_safety_api() -> None:
+    from verification import build_source_release as current
+    from verification import build_block21_handoff as previous
+    assert previous.PayloadEntry is current.PayloadEntry
+    assert previous._write_zip is current._write_zip
+    assert previous._replay is current._replay
 
 
 @pytest.mark.skipif(os.name == 'nt', reason='POSIX execute permission replay')
 def test_handoff_replay_restores_verified_zip_modes(tmp_path: Path, monkeypatch) -> None:
-    from verification import build_block21_handoff as handoff
+    from verification import build_source_release as handoff
     script = tmp_path/'run.sh'; script.write_bytes(b'#!/bin/sh\nexit 0\n'); script.chmod(0o644)
     entry = handoff.PayloadEntry(path='run.sh', size=script.stat().st_size,
                                  sha256=hashlib.sha256(script.read_bytes()).hexdigest(), mode='0755')

@@ -25,9 +25,9 @@ from typing import Any
 
 
 try:
-    from .release_metadata import check_build_configuration, check_metadata, check_wheel_install_contract
+    from .release_metadata import check_build_configuration, check_metadata, check_wheel_install_contract, wheel_filename
 except ImportError:
-    from release_metadata import check_build_configuration, check_metadata, check_wheel_install_contract
+    from release_metadata import check_build_configuration, check_metadata, check_wheel_install_contract, wheel_filename
 
 
 def sha256(data: bytes) -> str:
@@ -193,23 +193,27 @@ def check_source_modes(root: Path) -> dict[str, Any]:
 
 
 def support_files(root: Path) -> set[str]:
-    required = {'pyproject.toml', 'LICENSE.md', 'README.md', 'RELEASE_ID.json', 'mkdocs.yml',
-                'MANIFEST.in', 'VERIFY_REPAIR.ps1', 'verify_repair.sh'}
-    required.update(p.relative_to(root).as_posix() for p in root.glob('RELEASE_REPAIR_*.md'))
-    required.update(p.relative_to(root).as_posix() for folder in ('docs', 'examples', 'constraints', 'environment')
-                    for p in (root / folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts
-                    and p.suffix not in ('.pyc', '.pyo'))
-    required.update(p.relative_to(root).as_posix() for folder in ('tests', 'verification')
-                    for p in (root / folder).rglob('*') if p.is_file() and p.suffix in ('.py', '.json'))
-    required.update(p.relative_to(root).as_posix() for p in root.glob('*.sh'))
-    required.update(p.relative_to(root).as_posix() for p in root.glob('*.ps1'))
-    required.update(p.relative_to(root).as_posix() for p in (root / '.github/workflows').glob('*.yml'))
-    return required
+    try:
+        from .source_layout import support_files as selected_support_files
+    except ImportError:
+        from source_layout import support_files as selected_support_files
+    return selected_support_files(root)
+
+
+def resolve_distribution_directory(root: Path) -> Path:
+    """Use the current output directory, accepting legacy fixtures when present."""
+    current = root / 'dist'
+    legacy = root / 'release/dist'
+    return current if current.is_dir() or not legacy.is_dir() else legacy
+
+
+# Short import name used by the qualification commands.
+distribution_directory = resolve_distribution_directory
 
 
 def verify_release(root: Path, distribution_directory: Path | None = None) -> dict[str, Any]:
     root = root.resolve()
-    directory = (distribution_directory or root / 'release/dist').resolve()
+    directory = (distribution_directory or resolve_distribution_directory(root)).resolve()
     report: dict[str, Any] = {'schema': 'komorebi-math.release-integrity', 'schema_version': 1,
                              'passed': False, 'failures': []}
     failures = report['failures']
@@ -224,16 +228,15 @@ def verify_release(root: Path, distribution_directory: Path | None = None) -> di
         if identity['package_version'] != version:
             raise ValueError('release identity version mismatch')
         build = identity['wheel_build_tag']
-        if not re.fullmatch(r'[0-9][A-Za-z0-9_]*', build):
-            raise ValueError('invalid wheel build tag')
+        expected_wheel_name = wheel_filename(version, build)
         report.update(release_id=identity['release_id'], package_version=version, wheel_build_tag=build)
         wheels = sorted(directory.glob('*.whl'))
         sdists = sorted(directory.glob('*.tar.gz'))
         if len(wheels) != 1 or len(sdists) != 1:
             raise ValueError(f'exactly one current wheel and sdist required, found {len(wheels)} and {len(sdists)}')
         wheel, sdist = wheels[0], sdists[0]
-        if wheel.name != f'komorebi_math-{version}-{build}-py3-none-any.whl':
-            raise ValueError('wheel filename does not identify the required repair build')
+        if wheel.name != expected_wheel_name:
+            raise ValueError('wheel filename does not identify the declared release')
         if sdist.name != f'komorebi_math-{version}.tar.gz':
             raise ValueError('sdist filename/version mismatch')
         source = package_files(root)
@@ -246,12 +249,18 @@ def verify_release(root: Path, distribution_directory: Path | None = None) -> di
             raise ValueError('ambiguous wheel metadata')
         if BytesParser().parsebytes(wheel_files[metadata[0]])['Version'] != version:
             raise ValueError('wheel METADATA version mismatch')
-        if BytesParser().parsebytes(wheel_files[wheel_metadata[0]])['Build'] != build:
+        if BytesParser().parsebytes(wheel_files[wheel_metadata[0]]).get_all('Build', []) != ([build] if build else []):
             raise ValueError('wheel WHEEL build identifier mismatch')
         wp = {k: v for k, v in wheel_files.items() if k.startswith('komorebi_math/')}
         report['wheel_package_parity'] = compare_files(source, wp)
         tar_files, modes = _tar_files(sdist)
         report['sdist_metadata'] = check_metadata(root, tar_files['PKG-INFO'], label='sdist PKG-INFO')
+        if identity.get('release_channel') in {'final', 'stable'} or re.fullmatch(r'\d+\.\d+\.\d+', version):
+            try:
+                from .source_layout import audit_sdist_layout
+            except ImportError:
+                from source_layout import audit_sdist_layout
+            report['sdist_source_layout'] = audit_sdist_layout(root, tar_files)
         sp = {k.removeprefix('src/'): v for k, v in tar_files.items() if k.startswith('src/komorebi_math/')}
         report['sdist_package_parity'] = compare_files(source, sp)
         # Also bind test and release-tool sources, not just importable package files.
@@ -287,7 +296,8 @@ def release_binding(root: Path) -> dict[str, Any]:
             raise ValueError(f'symlink in bound release source: {name}')
         source[name]=sha256(path.read_bytes())
     identity=json.loads((root/'RELEASE_ID.json').read_text(encoding='utf-8'))
-    artifacts=sorted([* (root/'release/dist').glob('*.whl'), * (root/'release/dist').glob('*.tar.gz')])
+    directory = resolve_distribution_directory(root)
+    artifacts=sorted([*directory.glob('*.whl'), *directory.glob('*.tar.gz')])
     return {'release_id':identity['release_id'],'source_files':len(source),
             'source_sha256':sha256(json.dumps(source,sort_keys=True,separators=(',',':')).encode()),
             'artifacts':[{'name':p.name,'sha256':sha256(p.read_bytes()),'bytes':p.stat().st_size} for p in artifacts]}

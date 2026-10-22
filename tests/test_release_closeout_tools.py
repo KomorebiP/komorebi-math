@@ -123,7 +123,7 @@ def test_manual_checker_executes_valid_python_fences(tmp_path, fence):
     docs.mkdir()
     (docs / "USER_GUIDE.md").write_text("```python\nassert True\n```\n", encoding="utf-8")
     closing = fence.lstrip()[0] * len(fence.lstrip().split("python")[0].split("py")[0])
-    (docs / "NEW_MACHINERY_GUIDE.md").write_text(f"{fence}\nassert False\n{closing}\n", encoding="utf-8")
+    (docs / "WORKED_EXAMPLES.md").write_text(f"{fence}\nassert False\n{closing}\n", encoding="utf-8")
     report = manual.check(tmp_path)
     assert report["example_count"] == 2
     assert report["passed"] is False
@@ -133,7 +133,7 @@ def test_manual_checker_rejects_guide_without_examples(tmp_path):
     docs = tmp_path / "docs"
     docs.mkdir()
     (docs / "USER_GUIDE.md").write_text("```python\nassert True\n```\n", encoding="utf-8")
-    (docs / "NEW_MACHINERY_GUIDE.md").write_text("No executable examples.\n", encoding="utf-8")
+    (docs / "WORKED_EXAMPLES.md").write_text("No executable examples.\n", encoding="utf-8")
     with pytest.raises(ValueError, match="no.*examples"):
         manual.check(tmp_path)
 
@@ -162,7 +162,7 @@ def test_manual_examples_inside_non_python_fence_are_ignored():
 def test_manual_children_keep_assertions_with_inherited_optimization(tmp_path, monkeypatch):
     docs = tmp_path / "docs"
     docs.mkdir()
-    for name in ("USER_GUIDE.md", "NEW_MACHINERY_GUIDE.md"):
+    for name in ("USER_GUIDE.md", "WORKED_EXAMPLES.md"):
         (docs / name).write_text("```python\nassert False, 'required control'\n```\n", encoding="utf-8")
     # A parent started with -E, or an embedding application, can have enabled
     # assertions while its child inherits this environment setting.

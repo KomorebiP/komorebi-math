@@ -81,7 +81,7 @@ def test_outer_hardware_success_cannot_hide_failed_or_stale_evidence(hardware, c
 
 def publication_record(identity):
     output = "20 passed in 1.00s\n"
-    result = {"schema": "komorebi-math.block21-publication-gate", "schema_version": 1,
+    result = {"schema": "komorebi-math.publication-gate", "schema_version": 1,
               "package_version": "1.0.0b4", "mode": "full", "passed": True,
               "environment": {"release_binding": deepcopy(identity["release_binding"])},
               "checks": [{"name": name, "passed": True} for name in (
@@ -234,7 +234,7 @@ def test_realistic_final_metadata_refresh_preserves_history_and_source(tmp_path,
         write(root / "RELEASE_ID.json", {"package_version": version, "release_id": version + "-repair-r4-block21",
                                          "release_channel": "stable" if stage == "final" else "release_candidate"})
         for name in ("public_api_1_0.json", "public_api_beta_1_0.json", "public_api_stable_1_0.json",
-                     "portable_codec_contract_1_0.json", "stable_documentation_1_0.json"):
+                     "portable_codec_contract_1_0.json", "stable_documentation_1_0.json", "support_matrix_1_0.json"):
             write(data / name, {"package_version": version, "protected_payload": ["unchanged"]})
         write(data / "upgrade_contract_1_0.json", {"target_version": version, "fixtures": ["unchanged"]})
         def pin(name):
@@ -322,3 +322,36 @@ def test_nested_failure_cli_also_replaces_stale_success(tmp_path, monkeypatch, f
                            "--output", str(output)]) == 1
     result = ce._load(output)
     assert result["passed"] is False and type(failure).__name__ in result["error"]
+
+
+def test_citation_promotion_normalizes_version_date_but_protects_credit(tmp_path, monkeypatch):
+    root = tmp_path
+    monkeypatch.setattr(promotion, "package_files", lambda _: {})
+    monkeypatch.setattr(promotion, "support_files", lambda _: {"CITATION.cff"})
+    path = root / "CITATION.cff"
+    path.write_text("version: 1.0.0rc1\ndate-released: 2026-10-22\nauthors: Komorebi P.\n")
+    rc = promotion._metadata_snapshot(root, "1.0.0rc1")
+    path.write_text("version: 1.0.0\ndate-released: 2026-10-23\nauthors: Komorebi P.\n")
+    assert promotion._metadata_snapshot(root, "1.0.0") == rc
+    path.write_text("version: 1.0.0\ndate-released: 2026-10-23\nauthors: Somebody Else\n")
+    assert promotion._metadata_snapshot(root, "1.0.0") != rc
+    path.write_text("version: 1.0.0\ndate-released: invalid\nauthors: Komorebi P.\n")
+    with pytest.raises(ValueError):
+        promotion._metadata_snapshot(root, "1.0.0")
+
+
+def test_metadata_promotion_keeps_third_party_assets_byte_exact(tmp_path, monkeypatch):
+    root = tmp_path
+    assets = root / "docs/assets"
+    assets.mkdir(parents=True)
+    vendor = assets / "vendor.js"
+    vendor.write_text('const dependencyVersion = "1.0.0";\n')
+    guide = root / "docs/USER_GUIDE.md"
+    guide.write_text("Install Komorebi Math 1.0.0rc1.\n")
+    monkeypatch.setattr(promotion, "package_files", lambda _: {})
+    monkeypatch.setattr(promotion, "support_files", lambda _: {"docs/assets/vendor.js", "docs/USER_GUIDE.md"})
+    rc = promotion._metadata_snapshot(root, "1.0.0rc1")
+    guide.write_text("Install Komorebi Math 1.0.0.\n")
+    assert promotion._metadata_snapshot(root, "1.0.0") == rc
+    vendor.write_text('const dependencyVersion = "changed";\n')
+    assert promotion._metadata_snapshot(root, "1.0.0") != rc

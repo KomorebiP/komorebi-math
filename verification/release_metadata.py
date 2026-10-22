@@ -92,6 +92,13 @@ def check_metadata(root: Path, payload: bytes, *, label: str) -> dict[str, Any]:
             'extras': len(extras), 'license_files': license_files, 'readme_bound': isinstance(readme, str)}
 
 
+def wheel_filename(version: str, build: str = "") -> str:
+    if not isinstance(build, str) or (build and not re.fullmatch(r"[0-9][A-Za-z0-9_]*", build)):
+        raise ValueError("invalid wheel build tag")
+    suffix = f"-{build}" if build else ""
+    return f"komorebi_math-{version}{suffix}-py3-none-any.whl"
+
+
 def check_wheel_install_contract(root: Path, files: dict[str, bytes], build: str) -> dict[str, Any]:
     project = read_project(root)['project']
     info = f"komorebi_math-{project['version']}.dist-info"
@@ -102,9 +109,11 @@ def check_wheel_install_contract(root: Path, files: dict[str, bytes], build: str
     if actual != required:
         raise ValueError(f'wheel non-package inventory mismatch: missing={sorted(required-actual)}, unexpected={sorted(actual-required)}')
     wheel = BytesParser().parsebytes(files[f'{info}/WHEEL'])
-    for key, expected in [('Wheel-Version', '1.0'), ('Build', build), ('Root-Is-Purelib', 'true'), ('Tag', 'py3-none-any')]:
+    for key, expected in [('Wheel-Version', '1.0'), ('Root-Is-Purelib', 'true'), ('Tag', 'py3-none-any')]:
         if wheel.get_all(key, []) != [expected]:
             raise ValueError(f'wheel {key} differs from the pure-Python release contract')
+    if wheel.get_all('Build', []) != ([build] if build else []):
+        raise ValueError('wheel Build differs from the declared optional build tag')
     if files[f'{info}/top_level.txt'].decode('utf-8').splitlines() != ['komorebi_math']:
         raise ValueError('wheel top_level.txt must expose only komorebi_math')
     parser = configparser.ConfigParser(interpolation=None, strict=True)

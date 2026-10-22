@@ -19,9 +19,9 @@ import time
 from typing import Any
 
 try:
-    from .release_integrity import _tar_files, compare_files, package_files, release_binding, sha256, verify_release, _zip_files
+    from .release_integrity import _tar_files, compare_files, package_files, release_binding, distribution_directory, sha256, verify_release, _zip_files
 except ImportError:
-    from release_integrity import _tar_files, compare_files, package_files, release_binding, sha256, verify_release, _zip_files
+    from release_integrity import _tar_files, compare_files, package_files, release_binding, distribution_directory, sha256, verify_release, _zip_files
 
 
 def require_identical_wheels(direct: Path, rebuilt: Path) -> dict[str, Any]:
@@ -89,7 +89,7 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
         identity=json.loads((root/'RELEASE_ID.json').read_text(encoding='utf-8'))
         report['release_id']=identity['release_id']
         run=lambda command,cwd,timeout=180: checked_run(command,cwd,environment,report,timeout)
-        with tempfile.TemporaryDirectory(prefix='komorebi-r2-install-') as temporary:
+        with tempfile.TemporaryDirectory(prefix='komorebi-install-') as temporary:
             work=Path(temporary)
             def make_venv(name: str, *, build_environment: bool=False) -> Path:
                 target=work/name
@@ -124,7 +124,7 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
                         '\n'.join(parent_sites)+'\n',encoding='utf-8')
                     report.setdefault('inherited_parent_site_paths',{})[name]=parent_sites
                 return python
-            dist=root/'release/dist'
+            dist=distribution_directory(root)
             direct=next(dist.glob('*.whl'));sdist=next(dist.glob('*.tar.gz'))
             extracted=work/'sdist';extracted.mkdir()
             files,modes=_tar_files(sdist)

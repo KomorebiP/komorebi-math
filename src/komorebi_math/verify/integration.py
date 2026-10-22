@@ -1,4 +1,4 @@
-"""Installed verification for Block 19 finite measure integration."""
+"""Installed verification for finite measure integration."""
 
 from __future__ import annotations
 

@@ -1,6 +1,6 @@
 # Finite measure integration
 
-Block 19 adds one generic research-tier operation:
+The integration API supplies a common operation for explicit finite measures:
 
 ```python
 result = integrate(integrand, measure, provider=optional_provider)
@@ -99,19 +99,22 @@ Provider dimensions must be positive integers, every value and derivative output
 must have shape `(target_dimension,)`, and exact object arithmetic is preserved.
 The frame commutation certificate incorporates the underlying
 analysis--synthesis-system certificate, including its validity, assumptions, and
-diagnostics; zero-valued samples cannot make an invalid system pass.
+diagnostics. Zero-valued samples cannot make an invalid system pass.
 
-## Verification closure
+## Verification
 
-The installed integration verifier contains 12 checks, and the Block 19
-aggregate contains 24 checks including the retained Block 18 and stable suites.
-The committed adversarial runner covers 47 cases.  The independent mathematical
-verifier covers 16 checks using separate direct calculations and boundary
-counterexamples.
+Run the installed integration checks with:
+
+```console
+python -m komorebi_math verify integration
+```
+
+The source tests include independent direct calculations, exact moment checks,
+boundary counterexamples, and controls for unsupported quadrature claims.
 
 ## Deliberate limits
 
-This finite beta does not claim general Lebesgue integration, automatic
+This finite integration API does not claim general Lebesgue integration, automatic
 measurability, countably additive infinite-space construction, improper or
 stochastic integration, generic nonlinear change of variables, manifold
 integration, Radon–Nikodym automation, or dominated-convergence proofs.

@@ -19,7 +19,7 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip "setuptools==82.0.1" wheel
       - run: python -m pip install -e ".[dev,exact,scientific,yaml]"
-      - name: Require tag to match repaired release identity
+      - name: Require tag to match package version
         run: |
           python - <<'PY'
           import os, re
@@ -34,48 +34,48 @@ jobs:
           identity = json.loads(Path("RELEASE_ID.json").read_text(encoding="utf-8"))
           expected_tag = f"v{identity['release_id']}"
           if tag != expected_tag:
-              raise SystemExit(f"tag {tag!r} does not match repaired release {expected_tag}")
+              raise SystemExit(f"tag {tag!r} does not match package release {expected_tag}")
           PY
       - name: Build byte-reproducible distributions
         run: |
-          python verification/build_block21_distributions.py \
+          python verification/build_distributions.py \
             --root . \
-            --output-directory release/dist \
-            --report release/TAG_BLOCK21_DISTRIBUTION_BUILD.json
-          mkdir -p dist
-          cp release/dist/*.whl release/dist/*.tar.gz dist/
-      - run: python verification/block21_publication_gate.py --full-tests --installed-artifacts --require-mkdocs --output release/TAG_BLOCK21_PUBLICATION_GATE.json --markdown release/TAG_BLOCK21_PUBLICATION_GATE.md
+            --output-directory dist \
+            --report qualification/TAG_DISTRIBUTION_BUILD.json
+      - run: python verification/check_release.py --full-tests --installed-artifacts --require-mkdocs --output qualification/TAG_PUBLICATION_GATE.json --markdown qualification/TAG_PUBLICATION_GATE.md
         env:
           PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
       - run: python -m mkdocs build --strict --site-dir dist/docs
-      - run: python verification/check_math_docs.py --site-dir dist/docs --output release/TAG_MATH_DOCS.json
-      - run: python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/TAG_MANUAL_EXAMPLES.json
+      - run: python verification/check_math_docs.py --site-dir dist/docs --output qualification/TAG_MATH_DOCS.json
+      - run: python verification/check_release_manual.py --profile verification/release_manual_profile.json --output qualification/TAG_MANUAL_EXAMPLES.json
       - name: Prepare dependencies for clean offline artifact qualification
         run: |
           python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
-      - run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/TAG_REPAIR_ARTIFACT_GATE.json
+      - run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output qualification/TAG_ARTIFACT_GATE.json
       - run: python -m venv .venv-release
-      - run: .venv-release/bin/python -m pip install dist/*.whl
+      - run: .venv-release/bin/python -m pip install dist/*.whl sympy scipy mpmath PyYAML
       - run: .venv-release/bin/python -m komorebi_math verify stable
-      - run: .venv-release/bin/python -m komorebi_math verify block20
-      - run: .venv-release/bin/python -m komorebi_math release qualify
+      - run: .venv-release/bin/python -m komorebi_math verify all
+      - run: .venv-release/bin/python -m komorebi_math release check
       - run: sha256sum dist/*.whl dist/*.tar.gz > dist/SHA256SUMS.txt
       - name: Build and replay-audit deterministic source handoff
         run: |
-          python verification/build_block21_handoff.py \
+          python verification/build_source_release.py \
             --root . \
             --output-directory dist/handoff \
-            --artifact-directory release/dist \
-            --gate release/TAG_BLOCK21_PUBLICATION_GATE.json
+            --artifact-directory dist \
+            --gate qualification/TAG_PUBLICATION_GATE.json
       - uses: actions/upload-artifact@v4
         with:
           name: komorebi-math-${{ github.ref_name }}
           path: |
             dist/*
-            release/TAG_BLOCK21_PUBLICATION_GATE.json
-            release/TAG_BLOCK21_PUBLICATION_GATE.md
-            release/TAG_BLOCK21_DISTRIBUTION_BUILD.json
-            release/TAG_REPAIR_ARTIFACT_GATE.json
-            release/TAG_MATH_DOCS.json
-            release/TAG_MANUAL_EXAMPLES.json
+            qualification/TAG_PUBLICATION_GATE.json
+            qualification/TAG_PUBLICATION_GATE.md
+            qualification/TAG_DISTRIBUTION_BUILD.json
+            qualification/TAG_ARTIFACT_GATE.json
+            qualification/TAG_MATH_DOCS.json
+            qualification/TAG_MANUAL_EXAMPLES.json
+            qualification/source_release.json
+            qualification/source_manifest.json
           if-no-files-found: error

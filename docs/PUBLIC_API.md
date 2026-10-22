@@ -1,8 +1,11 @@
 # Public API
 
-Version `1.0.0b4` contains twenty numbered finite execution and stabilization blocks. The broad top-level and domain namespaces remain research surfaces. The versioned 1.0 candidate is the smaller 131-symbol `komorebi_math.stable` namespace and its aliases `komorebi_math.v1` and `komorebi_math.api.v1`; Blocks 18 through 20 do not add names to that frozen surface.
+The library has a curated 131-symbol stable surface and broader domain
+namespaces. The stable aliases below refer to the same objects; other domain
+APIs retain their documented contracts without automatically joining the 1.x
+compatibility promise.
 
-## Frozen 1.0 candidate
+## Stable API
 
 ```python
 import komorebi_math.stable as stable
@@ -17,16 +20,16 @@ The committed stable manifest checks exported names, implementation kinds, quali
 ```powershell
 komorebi api check --stable
 komorebi verify stable
-komorebi release qualify
+komorebi release check
 ```
 
 The stable surface supports a complete finite workflow: construct operators and seeds, analyze coordinates, decompose into packets, refine polyphase addresses, certify results, render mathematical records, and persist portable objects. Research namespaces remain available but do not acquire the same 1.x compatibility promise merely by existing in `komorebi_math.__all__`.
 
-See `STABLE_API_1_0_CANDIDATE.md` for the exact policy.
+See the [stable API policy](STABLE_API.md) for the compatibility contract.
 
-## Research typed finite expression API
+## Typed finite expressions
 
-Block 20 is exposed through `komorebi_math.expression` and the broad research
+Typed finite expressions are exposed through `komorebi_math.expression` and the broad research
 namespace. It is not added to `komorebi_math.stable` or `komorebi_math.beta`.
 
 ```python
@@ -55,9 +58,9 @@ frozen 51-codec persistence contract. Matrix-chain optimality is limited to
 binary parenthesizations under the stated classical dense scalar-operation
 model. See `TYPED_FINITE_EXPRESSION_CALCULUS.md` for scope and nonclaims.
 
-## Research finite measure and integration API
+## Finite measures and integration
 
-Block 19 is exposed through `komorebi_math.integration` and the broad research
+Finite integration is exposed through `komorebi_math.integration` and the broad research
 namespace, not through `komorebi_math.stable` or `komorebi_math.beta`.
 
 ```python
@@ -107,21 +110,6 @@ assert np.allclose(sum(components), np.eye(2))
 For a square invertible atlas, the maps `S E_I A` are algebraic projectors. For a redundant frame, they are additive reconstruction components and need not be idempotent. The compatibility methods `projector()` and `projectors()` remain available, but new code should use `component()` and `components()` unless idempotence is independently established.
 
 
-## 1.0 freeze-candidate surface
-
-```python
-from komorebi_math.v1 import (
-    AnalysisSynthesisSystem,
-    OperatorGrammar,
-    PolyphaseRefinement,
-    check_stable_contract,
-)
-
-check_stable_contract().certificate.require()
-```
-
-Only the committed stable manifest receives the planned 1.x compatibility guarantee. Domain and research namespaces remain available without being silently frozen.
-
 ## Operator and packet foundation
 
 ```python
@@ -157,7 +145,7 @@ from komorebi_math import (
 )
 ```
 
-The nonlinear namespace now includes finite derivative providers, packet jets, higher composition, rooted trees, graded operations, correction and elimination, filtered spectral sequences, and shared smooth transport. Infinite analytic and projective-limit conclusions remain conditional on explicit hypotheses.
+The nonlinear namespace includes finite derivative providers, packet jets, higher composition, rooted trees, graded operations, correction and elimination, filtered spectral sequences, and shared smooth transport. Infinite analytic and projective-limit conclusions remain conditional on explicit hypotheses.
 
 ## Advanced nonlinear calculus
 
@@ -318,10 +306,11 @@ Execution classes are `exact`, `numerical`, `conditional`, `heuristic`, and `pla
 ```python
 from komorebi_math import configure, get_settings, settings_context
 
-configure(atol=1e-12, rtol=1e-10)
-with settings_context(atol=1e-14):
-    ...
+configure(tolerance=1e-12)
+with settings_context(tolerance=1e-14):
+    assert get_settings().tolerance == 1e-14
 current = get_settings()
+assert current.tolerance == 1e-12
 ```
 
 ## Provenance and feature status
@@ -346,23 +335,17 @@ komorebi verify nonlinear
 komorebi verify algorithms
 komorebi verify signals
 komorebi verify dynamics
-komorebi verify block4
-komorebi verify block9
 komorebi verify hardening
-komorebi verify block10
 komorebi verify dsp
-komorebi verify block12
 komorebi verify generating
-komorebi verify block13
 komorebi verify coordinates
-komorebi verify block14
 komorebi api check --strict-signatures
-komorebi verify block20
 ```
 
-The `all` route is retained as a Block 17 compatibility alias. Use `block20`
-for the current installed cumulative graph and the Block 21 publication
-launcher for the source release gate.
+With the `exact`, `scientific` and `yaml` extras installed, use
+`komorebi verify all` for the complete installed functional suite. Source
+qualification and reproducible distribution checks are described in the
+[release guide](RELEASE_PROCESS.md).
 
 ## Extension discovery
 
@@ -376,9 +359,9 @@ See `EXTENSION_API.md` for the extension contract.
 
 ## Domain namespaces
 
-All listed domain namespaces now contain production finite APIs. Some individual global or completion objects remain partial or conditional when they require external mathematical theorems. Feature status is available through `feature(...)`.
+Domain namespaces provide finite APIs with the scope stated in each guide. Individual global or completion objects remain partial or conditional when they require external mathematical theorems. Feature status is available through `feature(...)`.
 
-# Block 5 analytic and quantum API
+## Analytic and quantum models
 
 ## `komorebi_math.analytic`
 
@@ -503,13 +486,13 @@ BoundedHamiltonianTower
 
 The quantum API returns finite matrix certificates. It does not report continuum quantum field theory, anomaly freedom, Lorentzian reconstruction, or gravitational infrared conclusions.
 
-## Block 6 arithmetic API
+## Arithmetic
 
 The public arithmetic namespace includes `ModularRing`, `PrimeField`, `TruncatedPadic`, `HurwitzSeries`, `StandardWindow`, `EulerLocalCoordinates`, `MahlerSeries`, `UnitModeMahler`, `LinearRecurrence`, and `RecurrencePacket`.
 
 Exact local computations use Python integers and fractions. Modular recurrence execution avoids constructing the full integer term when only a residue is required.
 
-## Block 6 sequence API
+## Sequences
 
 The public sequence namespace includes `Sequence`, `CompiledSequence`, `AutomaticSequence`, and `HolonomicRecurrence`, together with the catalog and exact transforms. Compilation prefers a certified declared model, then a conditional declared model, then a finite detected recurrence, and finally the original evaluator.
 
@@ -632,7 +615,7 @@ compile_latex
 
 The base installation supports every format except YAML and PDF when their external backends are absent. YAML requires PyYAML. PDF requires a local supported LaTeX engine.
 
-## Block 10 scalable nonlinear and compatibility API
+## Scalable nonlinear execution and compatibility
 
 ### Sparse tensors and providers
 
@@ -704,9 +687,10 @@ The base installation supports every format except YAML and PDF when their exter
 * `warn_deprecated`
 * `KomorebiDeprecationWarning`
 
-The version 0.12 research manifest covers explicit exports of `komorebi_math`, `komorebi_math.nonlinear`, `komorebi_math.export`, and `komorebi_math.signals`. It certifies structural compatibility only. The separate 83-symbol `komorebi_math.beta` manifest retains strict reflected signatures.
+Structural API checks compare explicit exports and reflected signatures.
+Mathematical semantics and portable persistence are checked separately.
 
-## Block 11 streams, migrations, semantics, and beta API
+## Streams, migrations and behavioral checks
 
 ### Streamed packet jets
 
@@ -743,7 +727,7 @@ The version 0.12 research manifest covers explicit exports of `komorebi_math`, `
 
 ### Curated beta surface
 
-`komorebi_math.beta` re-exports 83 reviewed names from the finite certificate, packet, nonlinear execution, streaming, persistence, profiling, and compatibility layers. Existing beta signatures are checked strictly while additions remain permitted. The complete package is currently the `1.0.0b4` research beta. The separate 131-symbol stable namespace is the frozen 1.0 candidate described above.
+`komorebi_math.beta` re-exports 83 reviewed names from the finite certificate, packet, nonlinear execution, streaming, persistence, profiling, and compatibility layers. Existing beta signatures are checked strictly while additions remain permitted. The 131-symbol stable namespace has the separate compatibility promise described above.
 
 * `BETA_PUBLIC_NAMESPACES`
 * `BETA_API_STABILITY_LEVEL`
@@ -752,7 +736,7 @@ The version 0.12 research manifest covers explicit exports of `komorebi_math`, `
 * `load_beta_api_manifest`
 * `check_beta_api`
 
-See [API compatibility contract for 0.11](API_COMPATIBILITY_0.11.md), [Resumable packet-jet streams](STREAMING_PACKET_JETS.md), and [Behavioral fixtures and finite profiling](BEHAVIORAL_GOLDEN_AND_PROFILING.md).
+See [streamed packet jets](STREAMING_PACKET_JETS.md), [behavioral fixtures and profiling](BEHAVIORAL_GOLDEN_AND_PROFILING.md), and the [stable API contract](STABLE_API.md).
 
 ## General coordinate atlas
 
@@ -797,7 +781,6 @@ pell.coordinate_transform_to(tribonacci, 20).certificate().require()
 
 ```powershell
 komorebi verify coordinates
-komorebi verify block14
 komorebi coordinates catalog
 komorebi coordinates polynomial --source legendre --target chebyshev-t --degree 8
 komorebi coordinates model --source pell --target tribonacci --count 20

@@ -1,7 +1,6 @@
 """Experimental convex/Finsler packets for finite-dimensional linear dynamics.
 
-Block 11 widens the research-tier geometric packet surface beyond quadratic
-metrics.  The first implemented class is a centrally symmetric parallelotope
+These research-tier geometric packets extend beyond quadratic metrics.  The first implemented class is a centrally symmetric parallelotope
 norm
 
     ||x||_{F,inf} = ||F x||_inf,
@@ -15,8 +14,8 @@ so its quadratic metric is ``Q = F.T @ F`` and
     E_F subset K_F subset sqrt(n) E_F.
 
 The module is intentionally not re-exported from ``komorebi_math.nonlinear``.
-It is an experimental bridge between convex-body packets and the metric
-packets introduced in Blocks 9--10.
+It is an experimental bridge between convex-body packets and the finite-dimensional metric
+transport packets.
 """
 
 from __future__ import annotations

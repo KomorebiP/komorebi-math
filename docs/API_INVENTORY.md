@@ -477,15 +477,15 @@ The namespace includes structural support propagation, Krylov and conjugate grad
 
 ## Arithmetic and sequences
 
-Block 6 adds 78 arithmetic public names and 36 sequence public names. The inventory covers exact local domains, valuations, Hurwitz convolution, standard windows, Euler coordinates, Mahler transfer, recurrence packets, lazy sequences, automatic models, holonomic recurrences, transforms, and compilation.
+Arithmetic and sequence interfaces cover exact local domains, valuations, Hurwitz convolution, standard windows, Euler coordinates, Mahler transfer, recurrence packets, lazy sequences, automatic models, holonomic recurrences, transforms, and compilation.
 
 ## Deformation
 
-Block 7 adds 32 public deformation names covering lift forests, visibility, counting charts, finite cochain complexes, packet cohomology, Fitting fibers, nested occupancy, Frobenius spines, companion forests, and compatible carriers.
+The deformation namespace covers lift forests, visibility, counting charts, finite cochain complexes, packet cohomology, Fitting fibers, nested occupancy, Frobenius spines, companion forests, and compatible carriers.
 
 ## Local Langlands finite models
 
-Block 7 adds 24 public local names covering finite fields, tame Frobenius packets, monodromy chains, Gauss sums, Heisenberg models, alternating forms, quadratic refinements, projective envelopes, and finite bridges.
+Finite local models cover finite fields, tame Frobenius packets, monodromy chains, Gauss sums, Heisenberg models, alternating forms, quadratic refinements, projective envelopes, and finite bridges.
 
 ## Finite image, ramification, and completion
 
@@ -494,19 +494,22 @@ The finite image namespace exports explicit groups, subgroups, linear characters
 
 ## Portable exports and LaTeX
 
-Block 8 adds public document blocks, serialization adapters, JSON and tabular writers, text and web renderers, LaTeX renderers, LaTeX compiler discovery, PDF compilation, manifested export bundles with normalized ZIP metadata, and artifact certificates. See `EXPORT_AND_LATEX.md` for complete examples.
+The export namespace provides document blocks, serialization adapters, JSON and tabular writers, text and web renderers, LaTeX renderers, LaTeX compiler discovery, PDF compilation, manifested export bundles with normalized ZIP metadata, and artifact certificates. See `EXPORT_AND_LATEX.md` for complete examples.
 
-## Block 10 additions
+## Scalable nonlinear execution
 
-The Block 10 public inventory adds sparse derivative tensors and providers, lazy directional automatic-differentiation adapters, packet-jet execution plans, provider-independent snapshots, CuPy runtime diagnostics, versioned portable persistence, and structural API compatibility tools. The retained Block 10 manifest is `src/komorebi_math/data/public_api_0_10.json`. The retained Block 11 research manifest is `src/komorebi_math/data/public_api_0_11.json`.
+Scalable execution includes sparse derivative tensors and providers, lazy
+directional automatic-differentiation adapters, packet-jet plans,
+provider-independent snapshots, CuPy runtime diagnostics, versioned portable
+persistence and structural API compatibility tools.
 
 Preferred public CuPy names use `CuPy`. Existing implementation spellings beginning with `Cupy` remain aliases inside the nonlinear modules and are not the preferred documented surface.
 
-## Block 11 additions
+## Streams and persistence
 
-Block 11 adds directory-backed packet-jet streams, resumable live capture, bounded snapshot chunking, adjacent portable-codec migrations, a closed behavioral golden fixture, exact finite complexity counts, environment-scoped runtime profiles, and the curated `komorebi_math.beta` compatibility façade.
-
-The retained Block 11 research inventory is `src/komorebi_math/data/public_api_0_11.json`. The current broader inventory is `src/komorebi_math/data/public_api_0_14.json`. The strict beta inventory is `src/komorebi_math/data/public_api_beta_0_14.json`. Structural manifests are supplemented by the committed semantic fixture `src/komorebi_math/data/behavioral_golden_0_14.json`.
+Streams support directory-backed packet-jet snapshots, resumable live capture,
+bounded chunking, adjacent codec migrations, behavioral fixtures, finite
+complexity counts and runtime profiles.
 
 ## `komorebi_math.generating`
 
@@ -534,4 +537,4 @@ The retained Block 11 research inventory is `src/komorebi_math/data/public_api_0
 
 ## `komorebi_math.coordinates`
 
-Block 14 adds a general coordinate atlas with arbitrary finite bases and subspaces, path composition and commuting diagrams, normalized-series changes, combinatorial transforms, classical and custom polynomial families, recurrence and state-space coordinates, affine and formal charts, tensor and operator transport, prime-field maps, spectral and modal transforms, packet permutations, resource budgets, and trusted portable records. Euler-to-Fibonacci conversion remains one named bridge inside the general system.
+The coordinate namespace provides a general atlas with arbitrary finite bases and subspaces, path composition and commuting diagrams, normalized-series changes, combinatorial transforms, classical and custom polynomial families, recurrence and state-space coordinates, affine and formal charts, tensor and operator transport, prime-field maps, spectral and modal transforms, packet permutations, resource budgets, and trusted portable records. Euler-to-Fibonacci conversion remains one named bridge inside the general system.

@@ -171,7 +171,7 @@ def run_block18_verification() -> VerificationReport:
 
 
 def run_block19_verification() -> VerificationReport:
-    """Run finite integration plus the Block 18 and frozen stable contracts."""
+    """Run finite integration, redundant-frame algebra, and stable compatibility checks."""
 
     return _merge(
         run_integration_verification(),
@@ -181,7 +181,7 @@ def run_block19_verification() -> VerificationReport:
 
 
 def run_block20_verification() -> VerificationReport:
-    """Run typed expressions plus the Block 19 and frozen stable contracts."""
+    """Run typed expressions, finite integration, and stable compatibility checks."""
 
     return _merge(
         run_expression_verification(),

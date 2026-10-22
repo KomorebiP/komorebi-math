@@ -256,7 +256,7 @@
       "version": 1
     }
   ],
-  "package_version": "1.0.0b4",
+  "package_version": "1.0.0",
   "schema": "komorebi-math.portable-codec-contract",
   "schema_version": 1
 }

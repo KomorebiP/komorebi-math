@@ -1,7 +1,5 @@
 # Komorebi Math user guide
 
-Release documentation edition: **9 October 2026**, for **`1.0.0b4`**.
-
 Komorebi Math provides reusable finite mathematical objects: operators, packet
 decompositions, coordinate changes, exact sequences, signal models, integration
 rules, and quantum realizations. Results carry the assumptions and evidence of
@@ -9,26 +7,21 @@ the computation that produced them. This guide starts with a working environment
 and two small programs, then shows how to choose a domain and interpret its
 results.
 
-The package is a research beta. Its frozen stable namespace contains 131
-exports. The broader research API and the explicit modules added in October
-have their own contracts. Original software is distributed under the MIT
-License, with third-party notices retained. Use a checkout or a supplied local
-distribution; the installation instructions do not assume publication on PyPI.
+The stable namespace contains 131 reviewed exports with a 1.x compatibility
+contract. The broader domain APIs document their own mathematical scope.
+Original software is distributed under the MIT License, with third-party
+notices retained. These instructions use a checkout or a supplied wheel.
 
-Read this guide for first use, [the new machinery guide](NEW_MACHINERY_GUIDE.md)
-for the October additions, and [the public reference](PUBLIC_API.md) for the
-older domain APIs. The cumulative reference companion preserves the detailed
-chapters and historical API cards. Dated inventories, source hashes, and
-platform records in that companion refer to the revisions they name.
+Read this guide for first use, the [worked examples](WORKED_EXAMPLES.md) for
+complete calculations, and the [public reference](PUBLIC_API.md) for domain
+interfaces.
 
 ## Installation
 
-Python 3.11 is the declared minimum. The CPU source-test matrix covers Python
-3.11, 3.12, and 3.13 on Linux and Windows using editable installations. Clean
-artifact qualification is a separate check. See [readiness](GITHUB_READINESS.md)
-for results tied to specific revisions. The base dependency is NumPy 1.26 or
-newer. Start in the repository root and use the same interpreter for pip and
-the program.
+The supported CPU targets are Python 3.11, 3.12 and 3.13 on Linux and Windows.
+The base dependency is NumPy 1.26 or newer. Start in the repository root and use
+the same interpreter for pip and the program. The
+[platform policy](SUPPORTED_PLATFORMS.md) gives the dependency and support scope.
 
 On Linux or macOS with Python 3.12 available:
 
@@ -42,8 +35,8 @@ python -m komorebi_math info
 python -m komorebi_math verify stable
 ```
 
-The commands are portable POSIX shell commands. macOS has no new qualification
-claim in the recorded Linux and Windows matrix.
+The activation commands also apply to POSIX shells on macOS. macOS is outside
+the declared support matrix.
 
 On Windows PowerShell:
 
@@ -57,9 +50,9 @@ $py = (Resolve-Path .\.venv\Scripts\python.exe).Path
 & $py -m komorebi_math verify stable
 ```
 
-Use another qualified Python minor when appropriate. Activation is unnecessary
-when invoking the resolved Windows interpreter. The version reported by
-`komorebi info` must be `1.0.0b4`.
+Use any supported Python minor. Activation is unnecessary when invoking the
+resolved Windows interpreter. Check the package and interpreter reported by
+`komorebi info` when diagnosing an installation.
 
 ### Optional dependencies
 
@@ -75,7 +68,7 @@ declared by the current package metadata.
 | `jax` | JAX >= 0.4 | JAX directional differentiation |
 | `torch` | PyTorch >= 2.1 | PyTorch directional differentiation |
 | `autodiff` | JAX and PyTorch | Both differentiation adapters |
-| `test` | pytest >= 8 | Source tests |
+| `test` | pytest 8.4.2 | Source tests |
 | `dev` | pytest, build, mypy, Ruff, MkDocs, PyMdown Extensions | Development and mathematical documentation tools |
 | `all` | Exact, scientific, plot, and YAML dependencies | Broad mathematical dependencies |
 
@@ -85,8 +78,7 @@ python -m pip install ".[exact,scientific,yaml]"
 
 Standard-library integer, rational, modular, and many exact sequence operations
 work without SymPy. The `all` extra does not include autodiff, CUDA, or development
-tools. There are no `docs`, `build`, or `publication` extras in the current
-metadata. Install the named tools explicitly when following a release workflow.
+tools. Maintainer dependencies are described in the release guide.
 
 Directed quadratic-form enclosures require the qualified arithmetic backend
 **mpmath 1.3.0**, even though the general scientific extra has a lower-bound
@@ -106,26 +98,26 @@ python -m komorebi_math doctor
 
 ### Local wheel installation
 
-The current wheel has build tag `4b21`. A checkout does not promise that built
-artifacts already exist. A maintainer can create them with:
+A source checkout need not contain built distributions. Maintainers can create
+them with:
 
 ```bash
 python -m pip install "setuptools==82.0.1" wheel
-python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
+python verification/build_distributions.py
 ```
 
-Install the resulting wheel in a separate environment:
+Install the wheel in a separate environment:
 
 ```bash
-python -m pip install release/dist/komorebi_math-1.0.0b4-4b21-py3-none-any.whl
+python -m pip install dist/komorebi_math-1.0.0-py3-none-any.whl
 python -m pip check
 python -m komorebi_math verify stable
 ```
 
-The source distribution is `komorebi_math-1.0.0b4.tar.gz`. Installing it invokes
-a source build. A fully offline installation also needs a local wheelhouse for
-every dependency and build tool. Successful imports from an editable checkout
-do not qualify an independently installed wheel.
+The source distribution is `komorebi_math-1.0.0.tar.gz`. Installing it invokes
+a source build. A fully offline installation needs a local wheelhouse for all
+dependencies and build tools. See the [release guide](RELEASE_PROCESS.md) for
+reproducible builds and clean installed-package checks.
 
 ## First program: packet analysis and reconstruction
 
@@ -257,9 +249,9 @@ formats. See [persistence schemas](PERSISTENCE_SCHEMAS.md).
 
 Use `komorebi_math.stable`, `komorebi_math.v1`, or `komorebi_math.api.v1` for the
 frozen 131-export compatibility surface. They are aliases of the same curated
-objects. The 83-export beta manifest and the 1,312-export historical aggregate
-research manifest have separate roles. Newly introduced explicit research
-modules do not automatically join those frozen inventories.
+objects. Broader domain namespaces expose additional mathematical interfaces. An object
+does not acquire the stable compatibility promise merely by being importable
+from the top-level package.
 
 | Goal | Reading route |
 |---|---|
@@ -277,10 +269,9 @@ modules do not automatically join those frozen inventories.
 | Quantum memory, closure, and spectral dimension | [Quantum and memory contracts](QUANTUM_MEMORY_NUMERICAL_CONTRACTS.md) |
 | Finite four-spinor Dirac modes | [Dirac modes](dirac_modes.md) |
 
-The October guide provides worked examples for all six new module families.
+The worked-example guide develops six mathematical workflows with independent controls.
 Fourier recovery, finite semilattices, and Dirac modes use explicit submodule
-imports. This keeps their supported scope visible and preserves the historical
-aggregate API contract.
+imports. This makes the chosen mathematical interface explicit.
 
 ### Conventions that affect a computation
 
@@ -301,7 +292,7 @@ needs the specified consecutive modes above the declared background bandlimit.
 Its numerical consistency checks do not establish that the unknown background
 really is bandlimited or that measured data are noiseless.
 
-For the derivative Schrödinger equation `psi'=-i*H*psi`, the retained memory
+For the derivative Schrödinger equation `psi'=-i*H*psi`, the memory
 kernel is
 
 \[
@@ -334,8 +325,9 @@ when hidden modes cancel. These matrix calculations remain numerical.
 
 ## Command-line workflows and verification
 
-Invoke the module through the resolved interpreter. Start with a relevant
-installed suite, then broaden verification when changing the implementation.
+Invoke the module through the resolved interpreter. `verify stable` and
+`release check` work with the base package. The complete `verify all` suite
+requires the `exact`, `scientific` and `yaml` extras.
 
 ```bash
 python -m komorebi_math --help
@@ -343,8 +335,8 @@ python -m komorebi_math features
 python -m komorebi_math api check --stable
 python -m komorebi_math api check --strict-signatures
 python -m komorebi_math verify stable
-python -m komorebi_math verify block20
-python -m komorebi_math release qualify
+python -m komorebi_math verify all
+python -m komorebi_math release check
 ```
 
 The CLI registry describes declared capabilities. It is not a live hardware
@@ -353,48 +345,14 @@ The source-only examples and release tools require a checkout or unpacked
 source distribution. Two connected tours are available:
 
 ```bash
-python examples/block21_public_capability_tour.py --json
-python examples/release_manual_machinery.py
+python examples/library_tour.py --json
+python examples/worked_examples.py
 ```
 
-For source development and release checks, install the explicit tools:
-
-```bash
-python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
-python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
-python -m pytest -q --tb=short tests
-python -m mkdocs build --strict
-python verification/block21_publication_gate.py --full-tests --require-mkdocs --output release/LOCAL_PUBLICATION_GATE.json --markdown release/LOCAL_PUBLICATION_GATE.md
-python -m pip check
-```
-
-On PowerShell, after installing these tools, the existing wrapper is:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Run_Block21_Publication_Gate.ps1 -Python $py
-```
-
-It uses the interpreter supplied by the caller and binds imports to `src`. It
-does not create an isolated environment. `-Quick` omits the complete source
-suite, and `-SkipMkDocs` omits strict documentation. These switches describe a
-smaller diagnostic check and are not the full release command above.
-
-For the bounded stress replay and separate optional CPU campaign, see the
-[stress audit](STRESS_AUDIT_2026_10_08.md) and
-[optional backend isolation](OPTIONAL_BACKEND_ISOLATION.md). Requested stress
-campaigns must execute without skips. Their finite checks and resource budgets
-are recorded with the tested source hashes.
-
-Independent clean artifact checks also need a populated dependency wheelhouse:
-
-```bash
-python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse /absolute/path/to/wheelhouse --output release/LOCAL_ARTIFACT_GATE.json
-```
-
-The wheelhouse path is an explicit local input. See
-[release process](RELEASE_PROCESS.md) and [readiness](GITHUB_READINESS.md) for
-artifact provenance and qualification boundaries. Rebuild distributions after
-source or documentation changes before checking source parity.
+Source tests, documentation builds and distribution qualification are maintainer
+workflows. The [release guide](RELEASE_PROCESS.md) gives the complete sequence,
+including dependency isolation, optional backend replay and platform records.
+Use the same interpreter for installation and every check.
 
 ## Troubleshooting
 
@@ -407,7 +365,7 @@ source or documentation changes before checking source parity.
 | A loaded certificate requires revalidation | Rerun its producer; retain the loaded record as historical evidence |
 | Exact input is rejected | Use the API's declared integer or rational domain; avoid fractional truncation and Boolean indices |
 | Numerical recovery is unstable | Inspect singular values, thresholds, and residuals; the declared model and data conditioning still matter |
-| The full gate cannot build documentation | Install MkDocs and `pymdown-extensions==10.16.1`, then rerun without `-SkipMkDocs` |
+| The full gate cannot build documentation | Install MkDocs and `pymdown-extensions==10.16.1`, then rerun the strict documentation command |
 | Artifact parity fails after editing | Rebuild wheel and source distribution from the edited source |
 
 Include the package version, interpreter, dependency versions, minimal input,

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "komorebi-math"
-version = "1.0.0b4"
+version = "1.0.0"
 description = "Executable packet mathematics with typed finite expression calculus, exact integration, general coordinates, nonlinear calculus, and portable exports"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -24,7 +24,7 @@ keywords = [
   "p-adic arithmetic",
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Science/Research",
   "Operating System :: Microsoft :: Windows",
   "Operating System :: POSIX :: Linux",

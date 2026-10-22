@@ -1,187 +1,164 @@
 # Release process
 
-## Current beta checkpoint
+This guide is for maintainers preparing a source release. Use one unchanged
+checkout and one set of distribution files throughout qualification. Keep
+reports outside the installed package so that recording a wheel's hash does
+not alter the wheel being identified.
 
-`1.0.0b1` froze the 131-symbol stable namespace, stable semantic fixtures, and portable persistence contract. Blocks 18 through 20 were added only to the research tier in `1.0.0b2` through `1.0.0b4`; they do not silently expand the frozen stable or beta namespaces.
+## Prepare the environment
 
-Every beta correction must regenerate the current API manifests and release evidence while comparing against retained immutable predecessor contracts. Stable signature changes require explicit review and normally a deprecation path.
+From the checkout root, create an environment for a supported Python minor.
+Install the development dependencies and the pinned build tools:
 
-## Current Block 21 publication gate
+```bash
+python -m pip install -e ".[dev,exact,scientific,yaml]" "setuptools==82.0.1" wheel
+python -m pip check
+python verification/build_distributions.py --root . --output-directory dist --report qualification/distributions.json
+```
 
-The canonical `1.0.0b4` source handoff is `Run_Block21_Publication_Gate.ps1`
-on Windows or `run_block21_publication_gate.sh` on POSIX. A strict handoff runs
-the complete source tests and strict MkDocs in addition to repository identity,
-archive safety, API tiers, stable and Block 20 verifiers, release and upgrade
-contracts, beta evidence and readiness, the public capability tour, and local
-documentation links. `Build_Block21_Handoff.ps1` or
-`build_block21_handoff.sh` then performs reproducible distribution and
-repository-ZIP builds plus clean-extraction replay.
+The builder creates `komorebi_math-1.0.0-py3-none-any.whl` and
+`komorebi_math-1.0.0.tar.gz`. Generated files belong in `dist/` and
+`qualification/`; they are excluded from the published source payload.
+Rebuild after changing any bound source or documentation file.
 
-Install the source-test extras and release tools, then build the distributions
-before running the source gate. Its parity checks reject absent or stale
-artifacts. The complete preparation sequence is in the
-[user guide](USER_GUIDE.md#command-line-workflows-and-verification).
-The POSIX wrapper skips MkDocs when it is absent. For a strict POSIX handoff,
-install MkDocs and use the explicit `--full-tests --require-mkdocs` command in
-that guide; an automatic documentation skip is not a strict documentation pass.
+Qualification uses `pytest==8.4.2`. Its JUnit output records concrete parent
+cases consistently while executing their unittest subtest assertions. Failed
+subtests fail their parent. Do not run qualification with assertions disabled.
 
-Revision-specific GitHub CPU qualification covers Linux and Windows, as recorded in
-[GitHub readiness](GITHUB_READINESS.md). The embedded beta-evidence registry
-is separate: its `1.0.0b4` Linux record predates the October repairs, and its
-Windows record is inherited from `0.16.0a2` through the upgrade contract.
-`release readiness --final` checks version equality and record-JSON digests;
-it currently fails because Windows lacks a matching-version record. It does
-not verify the present Git revision, tag cleanliness, or CUDA execution.
-Both platforms need qualification tied to the intended source revision and
-artifacts before promotion. Passing CI does not rewrite the registry or add
-fresh CUDA evidence.
+## Source and documentation
 
-## Clean installed-artifact qualification
+```bash
+python verification/check_release.py --root . --full-tests --require-mkdocs --output qualification/source.json --markdown qualification/source.md
+python verification/check_release_manual.py --profile verification/release_manual_profile.json --output qualification/examples.json
+```
 
-After building the distributions, prepare a wheelhouse for the same operating
-system, architecture, and Python minor that will execute the check. This
-download step needs network access, but the artifact gate itself runs offline:
+The full source report retains the actual run's JUnit XML, digest, counts and
+failure diagnostics. Strict documentation requires a successful MkDocs build
+and valid mathematical rendering. A quick or skipped check is recorded with
+its smaller scope and cannot replace this command.
+
+The installed functional check is separate:
+
+```bash
+python -m komorebi_math api check --stable
+python -m komorebi_math verify all
+python -m komorebi_math release check
+```
+
+These commands inspect the installed implementation. They do not establish
+source cleanliness, a platform matrix or external hardware qualification.
+
+## Clean installed distributions
+
+Prepare a wheelhouse for the operating system, architecture and Python minor
+that will run the check. The download step can use the network; the subsequent
+qualification runs offline:
+
+```bash
+python -m pip download --only-binary=:all: --dest qualification/wheelhouse "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
+python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse qualification/wheelhouse --output qualification/installed.json
+```
+
+The build interpreter and wheelhouse must use the same setuptools version.
+The gate creates clean environments without inherited host packages, checks
+the original wheel, rebuilds a wheel from the source distribution, compares
+exact bytes and executes the installed profile against both wheels. Missing
+local dependencies cause failure rather than an online fallback. Installed
+runtime qualification rejects skipped cases.
+
+## One release, six CPU targets
+
+The hosted workflow builds one common wheel and source distribution for Linux
+and Windows on Python 3.11, 3.12 and 3.13. The same files are tested on all six
+targets, together with the source matrix, minimum dependencies, documentation,
+bounded stress and optional CPU backends.
+
+A candidate manifest records the clean Git commit and tree, release identity,
+source/tool binding and exact distribution hashes. Replace `COMMIT_SHA` with
+the actual checked-out commit:
+
+```bash
+python verification/candidate_evidence.py create --root . --revision COMMIT_SHA --output qualification/candidate.json
+python verification/candidate_evidence.py cpu --root . --candidate qualification/candidate.json --artifact-report qualification/installed.json --output qualification/cpu-local.json
+```
+
+The producer observes the actual host. A Linux record cannot fill a Windows
+cell by changing its filename. Aggregate six separate paths for the same
+candidate in place of `SIX_CPU_RECORDS`:
+
+```bash
+python verification/candidate_evidence.py aggregate --root . --candidate qualification/candidate.json --records SIX_CPU_RECORDS --output qualification/cpu.json
+```
+
+The reviewer rejects missing or duplicate cells, changed bytes, mismatched
+identities, incomplete installed profiles and inherited dependencies. Preserve
+the original records and hosted run provenance. Hashes bind content; they do
+not identify who executed a program.
+
+## Stress and hardware qualification
+
+All requested stress campaigns must execute. For a promotion review, include
+both base campaigns and the optional JAX/PyTorch CPU campaign:
+
+```bash
+python verification/stress_release_candidate.py --root . --include-optional-backends --revision COMMIT_SHA --output-directory qualification/stress
+```
+
+The output directory must be inside the checkout. Reports retain bounded
+resource controls, selected source hashes, raw outputs and concrete test cases.
+A missing optional backend fails this strict campaign.
+
+On the NVIDIA host, select the existing interpreter with compatible
+CUDA-enabled PyTorch and CuPy. The hardware producer installs the exact local
+wheel in a temporary environment, clears source-path overrides and verifies
+the installed bytes before executing both backend checks:
 
 ```powershell
-python -m pip download --only-binary=:all: --dest release/wheelhouse "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
-python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse release/wheelhouse --output release/LOCAL_ARTIFACT_GATE.json
+.\Run_Hardware_Qualification.ps1 -Python "C:\path\to\python.exe" -Candidate qualification\candidate.json -Output qualification\hardware.json
 ```
 
-The source-build interpreter must use the same setuptools version as the
-wheelhouse. A copied wheelhouse is suitable only when its wheels support the
-target interpreter and platform. This mode creates clean environments without
-inheriting host dependencies, installs the direct wheel, rebuilds a wheel from
-the source distribution, and runs the installed runtime profile on both. It
-fails if a required local dependency is missing and does not fall back to an
-online installation. Retain the report and the tested artifact hashes.
+Dependencies are inherited from that selected hardware environment and the
+report says so. This is a different isolation claim from the clean CPU gate.
+Retain successful and failed reports. The checked computations are described
+in [GPU validation](GPU_VALIDATION.md).
 
-The six-way Linux/Windows Python 3.11–3.13 source matrix uses editable installs.
-The expanded artifact matrix additionally consumes one common candidate wheel
-and source distribution across all six environments, retaining byte-identical
-rebuild and isolated installed-runtime checks. Its external aggregate requires
-all six passing records for the same candidate. See the
-[stable candidate guide](STABLE_RELEASE_CANDIDATE.md) for exact identity and
-hardware handoff requirements. Earlier Linux-only artifact runs retain their
-original scope.
+## Publication review
 
-## Historical Block 20 qualification gate
+Preparing `1.0.0` metadata does not establish final publication qualification.
+A final release still requires current six-target CPU records, full source and
+strict documentation, all stress campaigns, positive NVIDIA hardware results,
+a clean release tag and the successful qualified RC predecessor. This source
+preparation does not claim a new tagged RC or hardware run. Keep these
+obligations separate from the installed package's self-check.
 
-A Block 20 distribution is eligible for handoff only after all of the following
-pass from a source tree bound to a deterministic digest:
+`verification/release_promotion.py` revalidates the original nested records
+rather than trusting outer passed flags. Supply the six paths, exact tag and
+successful RC review in place of the uppercase fields:
 
-* the focused installed expression suite and Block 20 aggregate
-* 6/6 frozen stable checks and 174/174 cumulative Block 15 checks
-* the independent 15-check mathematical verifier and committed adversarial runner
-* worked results `5/4`, compiled `I4`, and the retained `106/5` regression
-* additive research API comparison with no stable, beta, semantic, or codec drift
-* strict expression-JSON, plan-tamper, type-spoof, resource, and archive checks
-* complete wheel `RECORD`, safe paths, clean sdist rebuild, and fresh-venv
-  installs that inherit the declared build host dependencies
-* byte-identical wheel and canonicalized-sdist replay under the recorded
-  `SOURCE_DATE_EPOCH`
-* a safe single-root source handoff archive and SHA-256 manifest
-
-The historical Block 20 source handoff had no authenticated release-tag
-metadata, so its beta gate bound a deterministic source digest without claiming
-a clean or signed tag. Windows, CUDA, and strict MkDocs results belong only to
-the runs that actually executed and recorded them.
-
-## Block 19 qualification gate
-
-A Block 19 distribution is eligible for handoff only after all of the following pass from the frozen source:
-
-* 12/12 installed integration checks
-* 24/24 aggregate Block 19 checks
-* 6/6 frozen stable checks
-* 174/174 cumulative Block 15 checks
-* 16/16 independent mathematical checks
-* the complete committed adversarial suite
-* the exact worked result `106/5`
-* additive research API comparison with no stable or beta drift
-* complete wheel `RECORD`, safe paths, and byte equality with the frozen package source
-* clean sdist extraction, wheel rebuild, normalized payload comparison, and isolated installation of both wheels
-* a clean single-root source handoff archive and SHA-256 manifest
-
-The rigorous composite-Simpson path is restricted to a provenance-matched `ExactPolynomial` on the same exact rational interval. A generic floating callable cannot receive a rigorous result unless a future interval or ball backend encloses evaluation, conversion, summation, and truncation errors.
-
-## Release candidate
-
-The executable external review is documented in
-[the candidate guide](STABLE_RELEASE_CANDIDATE.md#promotion-review). It consumes
-the complete original CPU records rather than trusting a saved aggregate
-flag, revalidates the nested hardware report and installed wheel inventory,
-and checks full source/strict documentation, bounded stress and exact tag
-identity. The full publication record now includes its actual source JUnit.
-The promotion stress invocation must include `--include-optional-backends`.
-
-The stage parser supports beta, RC and final metadata. The current package
-has not been promoted. Stage changes require synchronized release metadata
-and fresh qualification of the resulting artifacts. Historical embedded
-records retain their original target and scope. For promoted stages, the
-source/publication gate reports historical-record integrity separately from
-the external current-candidate CPU/GPU requirement.
-
-A release candidate must additionally be built from a clean tag and pass the declared CPU platform matrix, hardware-backed CUDA qualification on the recorded NVIDIA environment, a strict documentation build, and archive-integrity verification. Historical Windows or CUDA evidence is not recast as a current-version result.
-
-On the hardware qualification host, `release readiness --final --require-gpu`
-is a separate diagnostic of the embedded platform registry and current-host
-CUDA execution. It fails when the preserved historical registry lacks
-current-version records. It does not replace the external promotion review of
-the exact source, artifacts, CPU matrix, hardware evidence, documentation and tag.
-
-## Final release
-
-`1.0.0` should differ from the successful release candidate only in approved version and release metadata. Any code change after `rc1` produces `rc2` or later.
-
-Supply the successful RC review to `release_promotion.py --predecessor`.
-The final source inventory, including tracked Git modes, must match its
-metadata-normalized RC inventory. The review does not create a tag, merge,
-change repository visibility, or publish a GitHub/PyPI release.
-
-## Historical local Block 20 commands
-
-POSIX:
-
-```console
-./run_block20_source_validation.sh
-./build_block20_distributions.sh
-./install_and_verify_block20.sh
-python verification/build_block20_handoff.py --root . --output-directory ..
+```bash
+python verification/release_promotion.py --root . --candidate qualification/candidate.json --records SIX_CPU_RECORDS --hardware qualification/hardware.json --publication qualification/source.json --stress qualification/stress/manifest.json --tag RELEASE_TAG --predecessor QUALIFIED_RC_REVIEW --output qualification/promotion.json
 ```
 
-This POSIX sequence reproduces the complete Block 20 handoff path. The install venvs
-use `--system-site-packages` and `--no-deps`, so the evidence is fresh-install
-evidence with inherited dependencies, not dependency-isolation evidence.
+The final tracked inventory and Git modes must match the RC after the permitted
+version/stage metadata normalization. Other source changes require another
+qualified RC. The historical embedded registry remains a record of its own
+runs; version equality alone does not qualify a changed source tree.
 
-PowerShell smoke paths:
+`release readiness --final --require-gpu` is a separate diagnostic of that
+registry and the current hardware host. The external promotion review supplies
+the exact source/distribution binding.
 
-```powershell
-.\Run_Block20_Source_Validation.ps1
-.\Build_Block20_Distributions.ps1
-.\Install_And_Verify_Block20.ps1 -Recreate
+## Build the source handoff
+
+After the full same-source gate passes:
+
+```bash
+python verification/build_source_release.py --root . --output-directory dist --artifact-directory dist --gate qualification/source.json --report qualification/source_release.json
 ```
 
-The PowerShell scripts exercise source validation, distribution construction,
-and the primary wheel on a Windows host. They do not currently rebuild and
-install the sdist or produce the evidence chain required by the handoff
-builder. Accordingly, those historical smoke paths alone make no current
-Windows qualification claim; the POSIX builder rejects incomplete or stale
-PowerShell evidence. Current CPU CI has its own revision-specific scope.
-
-## Local Block 19 commands
-
-POSIX:
-
-```console
-./run_block19_source_validation.sh
-./build_block19_distributions.sh
-./install_and_verify_block19.sh
-```
-
-PowerShell:
-
-```powershell
-.\Run_Block19_Source_Validation.ps1
-.\Build_Block19_Distributions.ps1
-.\Install_And_Verify_Block19.ps1 -Recreate
-```
+The deterministic source ZIP contains clean source files, the distributions and
+a source manifest. It excludes local environments, cached bytecode, historical
+reports and generated qualification output. A clean extraction is replayed to
+check the handoff. Preserve its checksum with the reviewed records. Creating
+these files does not itself merge a pull request, create a release tag or
+publish to a package index.

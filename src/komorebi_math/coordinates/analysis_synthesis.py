@@ -299,7 +299,7 @@ class AnalysisSynthesisSystem:
         source-space identity when ``S A = I``.  In a square invertible atlas
         they are algebraic projectors.  In a redundant frame they need not be
         idempotent or mutually annihilating, so ``component`` is the canonical
-        term used by the 1.0-candidate API.
+        term used by the stable 1.0 API.
         """
 
         if isinstance(indices, (int, np.integer)):

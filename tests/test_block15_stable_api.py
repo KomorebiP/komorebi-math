@@ -20,7 +20,8 @@ from komorebi_math.refinement import PolyphaseRefinement
 
 
 def test_block15_version() -> None:
-    assert komorebi_math.__version__ == "1.0.0b4"
+    from komorebi_math.compatibility import load_stable_api_manifest
+    assert komorebi_math.__version__ == load_stable_api_manifest().package_version
 
 
 def test_stable_namespace_has_unique_explicit_exports() -> None:

@@ -1,4 +1,4 @@
-"""Closed semantic regression fixture for the 1.0-candidate API.
+"""Closed semantic regression fixture for the stable 1.0 API.
 
 Structural API manifests detect missing names and signature changes.  They do
 not detect an implementation that retains the same signature while changing a
@@ -388,7 +388,7 @@ _RUNNERS: dict[str, Callable[[Mapping[str, Any]], StableSemanticCaseResult]] = {
 def run_stable_semantics_fixture(
     path: str | Path | None = None,
 ) -> StableSemanticReport:
-    """Execute every committed 1.0-candidate semantic case."""
+    """Execute every committed stable 1.0 semantic case."""
 
     source, fixture, digest = load_stable_semantics_fixture(path)
     results: list[StableSemanticCaseResult] = []

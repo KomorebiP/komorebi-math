@@ -107,7 +107,7 @@ class FrameBatch:
         identifier="KM-DSP-D02",
         title="Finite uniform signal framing",
         status=ClaimStatus.DEFINITION,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite one dimensional signal", "positive frame and hop lengths"),
         verification_suite="signals.time_frequency",
     )
@@ -264,7 +264,7 @@ class STFTResult:
         identifier="KM-DSP-D03",
         title="Finite short-time Fourier transform",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("uniform finite framing", "declared window and Fourier length"),
         verification_suite="signals.time_frequency",
     )
@@ -346,7 +346,7 @@ def stft(
         identifier="KM-DSP-T03",
         title="Normalized finite STFT overlap-add reconstruction",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("no destructive detrending", "nonzero finite overlap denominator"),
         verification_suite="signals.time_frequency",
     )
@@ -466,7 +466,7 @@ def _double_onesided(values: np.ndarray, fft_length: int) -> np.ndarray:
         identifier="KM-DSP-D04",
         title="Finite spectrogram scaling",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite STFT", "declared spectral scaling"),
         verification_suite="signals.time_frequency",
     )

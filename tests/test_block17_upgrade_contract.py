@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 import json
 from hashlib import sha256
 from pathlib import Path
@@ -28,15 +30,16 @@ DATA = Path(__file__).resolve().parents[1] / "src" / "komorebi_math" / "data"
 def test_upgrade_contract_is_closed_and_deterministic() -> None:
     contract = load_upgrade_contract()
     assert contract == UpgradeContract.from_dict(contract.to_dict())
-    assert contract.target_version == "1.0.0b4"
+    assert contract.target_version == __version__
     assert contract.predecessor_versions == (
         "0.15.0a2",
         "0.16.0a2",
         "1.0.0b1",
         "1.0.0b2",
         "1.0.0b3",
+        "1.0.0b4",
     )
-    assert len(contract.stable_api) == 5
+    assert len(contract.stable_api) == 6
     assert len(contract.fixtures) == 7
     assert len(contract.digest) == 64
 
@@ -57,7 +60,7 @@ def test_complete_upgrade_contract_passes_and_loads_every_fixture() -> None:
     report = check_upgrade_contract()
     report.certificate.require()
     assert report.passed
-    assert len(report.checks) == 15
+    assert len(report.checks) == 16
     assert len(report.loaded_fixtures) == 7
     assert not [check for check in report.checks if not check.passed]
 

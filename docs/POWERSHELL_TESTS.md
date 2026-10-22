@@ -3,7 +3,7 @@
 ## Install the wheel
 
 ```powershell
-$Wheel = ".\komorebi_math-0.11.0a1-py3-none-any.whl"
+$Wheel = ".\dist\komorebi_math-1.0.0-py3-none-any.whl"
 python -m venv .venv
 $Py = ".\.venv\Scripts\python.exe"
 $Komorebi = ".\.venv\Scripts\komorebi.exe"
@@ -11,34 +11,31 @@ $Komorebi = ".\.venv\Scripts\komorebi.exe"
 ```
 
 
-For an offline test using packages already installed in the base Python environment:
+For a fully offline installation, supply a compatible wheelhouse containing
+NumPy and the other requested dependencies:
 
 ```powershell
-python -m venv --system-site-packages .venv
-$Py = ".\.venv\Scripts\python.exe"
-$Komorebi = ".\.venv\Scripts\komorebi.exe"
-& $Py -m pip install --no-deps $Wheel
+& $Py -m pip install --no-index --find-links .\wheelhouse $Wheel
 ```
-
-Use `--no-deps` only when NumPy is already available through the base environment or another local wheel source.
 
 ## Verify the package
 
 ```powershell
 & $Komorebi info
 & $Komorebi doctor
-& $Komorebi verify export
-& $Komorebi verify block8
-& $Komorebi verify block9
-& $Komorebi verify hardening
-& $Komorebi verify block10
-& $Komorebi verify streaming-beta
-& $Komorebi verify block11
-& $Komorebi golden
-& $Komorebi api check --strict-signatures
-& $Komorebi api check --beta
+& $Komorebi verify stable
+& $Komorebi release check
+& $Komorebi api check --stable
 & $Komorebi export formats
 & $Komorebi latex engines
+```
+
+The complete installed suite also needs the `exact`, `scientific` and `yaml`
+extras. Install them from the checkout before running it:
+
+```powershell
+& $Py -m pip install ".[exact,scientific,yaml]"
+& $Komorebi verify all
 ```
 
 ## Export a sequence
@@ -112,41 +109,11 @@ for suffix in ("json", "md", "html", "tex", "pdf"):
 '@ | & $Py -
 ```
 
-## Run the complete test script
+## Source qualification
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\examples\Test-KomorebiExport.ps1 -Wheel $Wheel -OutputDirectory .\export_smoke
-
-# Offline reuse of the base environment when NumPy is already installed
-.\examples\Test-KomorebiExport.ps1 -Wheel $Wheel -OutputDirectory .\export_smoke_offline -UseSystemSitePackages -NoDependencies
-
-# Run all non PDF exports on a machine without LaTeX
-.\examples\Test-KomorebiExport.ps1 -Wheel $Wheel -OutputDirectory .\export_smoke_no_pdf -SkipPdf
-```
-
-## Run the Block 9 nonlinear audit
-
-From the source distribution or repository root:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\examples\Test-KomorebiBlock9.ps1 -Python $Py
-```
-
-The script runs the three nonlinear examples, installed Block 9 verification, and the independent Block 9 deep audit.
-
-
-## Run the Block 10 hardening audit
-
-From the source distribution or repository root:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\examples\Test-KomorebiBlock10.ps1 -Python $Py
-```
-
-The script runs the scalable nonlinear examples, focused and aggregate installed verification, the committed API check, and the independent Block 10 deep audit. CuPy device checks remain conditional on an installed compatible runtime and CUDA device.
+The [release guide](RELEASE_PROCESS.md) describes full source tests, strict
+documentation, offline installed checks and the CPU matrix. Use its neutral
+Python entry points through `$Py` so that all commands share the environment.
 
 ## Run the bundled Python example
 

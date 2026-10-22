@@ -91,7 +91,7 @@ def _decode_lattice_refinement(data: Mapping[str, Any]) -> LatticePolyphaseRefin
 
 
 def register_refinement_codecs() -> None:
-    """Register all Block 15 finite polyphase codecs idempotently."""
+    """Register all finite polyphase codecs idempotently."""
 
     register_portable_codec(
         PolyphaseCoordinates,

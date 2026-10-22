@@ -198,7 +198,7 @@ class HaarDecomposition:
         identifier="KM-DSP-T06",
         title="Finite multilevel Haar reconstruction",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("signal length divisible by the requested dyadic depth",),
         verification_suite="signals.denoise",
     )
@@ -250,7 +250,7 @@ class WaveletDenoiseResult:
         identifier="KM-DSP-D10",
         title="Finite Haar coefficient shrinkage",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite dyadic Haar decomposition", "declared threshold rule"),
         limitations=("noise-model optimality is not inferred from one finite signal",),
         verification_suite="signals.denoise",

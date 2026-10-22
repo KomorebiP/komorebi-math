@@ -385,7 +385,7 @@ def create_stable_api_manifest(
     *,
     package_version: str | None = None,
 ) -> PublicApiManifest:
-    """Build the curated 1.0-candidate namespace manifest."""
+    """Build the stable 1.0 namespace manifest."""
 
     observed = create_public_api_manifest(
         STABLE_PUBLIC_NAMESPACES,
@@ -433,7 +433,7 @@ def load_beta_api_manifest(
 def load_stable_api_manifest(
     path: str | Path | None = None,
 ) -> PublicApiManifest:
-    """Load and validate the committed 1.0-candidate API manifest."""
+    """Load and validate the committed stable 1.0 API manifest."""
 
     source = DEFAULT_STABLE_API_MANIFEST if path is None else Path(path)
     manifest = load_public_api_manifest(source)
@@ -585,7 +585,7 @@ def check_beta_api(
 def check_stable_api(
     path: str | Path | None = None,
 ) -> ApiCompatibilityReport:
-    """Check the 1.0-candidate namespace under strict signature compatibility."""
+    """Check the stable 1.0 namespace under strict signature compatibility."""
 
     reference = load_stable_api_manifest(path)
     current = create_stable_api_manifest()

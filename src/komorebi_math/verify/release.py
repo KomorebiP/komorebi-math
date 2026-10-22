@@ -9,9 +9,10 @@ from pathlib import Path
 from .. import __version__
 from ..compatibility import create_beta_api_manifest, create_public_api_manifest, create_stable_api_manifest
 from ..persistence_contract import load_portable_codec_contract
-from ..release import check_release_contract, check_upgrade_contract, check_validation_evidence, check_stable_documentation
+from ..release import check_release_contract, check_upgrade_contract, check_stable_documentation
 from ..stable_semantics import load_stable_semantics_fixture
 from ..support import load_support_matrix, runtime_environment
+from ..release.evidence import _check_historical_validation_evidence
 from .core import VerificationCheck, VerificationReport, _capture
 
 _VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+(?:(?:a|b|rc)\d+)?$")
@@ -84,9 +85,9 @@ def run_release_qualification_verification() -> VerificationReport:
     def release_contract() -> None:
         check_release_contract().certificate.require()
 
-    checks.append(_capture("current beta release contract", release_contract))
+    checks.append(_capture("installed release contract", release_contract))
     checks.append(_capture("predecessor upgrade contract", lambda: check_upgrade_contract().certificate.require()))
-    checks.append(_capture("platform evidence contract", lambda: check_validation_evidence().certificate.require()))
+    checks.append(_capture("historical validation-record integrity", lambda: _check_historical_validation_evidence().certificate.require()))
     checks.append(_capture("stable documentation contract", lambda: check_stable_documentation().certificate.require()))
 
     return VerificationReport(tuple(checks))

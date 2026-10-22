@@ -1,4 +1,4 @@
-"""Fixed-mode four-spinor Dirac evolution from the Physics Block 44 source.
+"""Fixed-mode four-spinor Dirac evolution from Komorebi Physics.
 
 Units are c = hbar = 1. Fourier labels belong to the normalized unit three-torus,
 so physical momentum is 2*pi*n. These numerical helpers do not construct an

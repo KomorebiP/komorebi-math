@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 import json
 import inspect
 from pathlib import Path
@@ -20,7 +22,7 @@ from komorebi_math.release import documentation as documentation_module
 
 def test_stable_documentation_covers_every_stable_symbol_exactly_once() -> None:
     contract = load_stable_documentation()
-    assert contract.package_version == "1.0.0b4"
+    assert contract.package_version == __version__
     assert len(contract.symbols) == 131
     assert len({entry.name for entry in contract.symbols}) == 131
     assert all(entry.summary for entry in contract.symbols)

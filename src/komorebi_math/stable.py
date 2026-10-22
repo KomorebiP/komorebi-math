@@ -1,4 +1,4 @@
-"""Curated 1.0 freeze-candidate API for Komorebi Math.
+"""Stable 1.0 API for Komorebi Math.
 
 The research package remains intentionally broad.  This namespace is the
 smaller contract intended to remain source and behavior compatible throughout

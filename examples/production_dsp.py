@@ -1,4 +1,4 @@
-"""End-to-end finite DSP example for Block 12."""
+"""End-to-end finite signal-processing example."""
 
 from __future__ import annotations
 

@@ -65,7 +65,7 @@ def cupy_runtime_status() -> CuPyRuntimeStatus:
         identifier="PSC-III-N59",
         title="Sparse CuPy packet-jet execution",
         status=ClaimStatus.FINITE_CERTIFICATE,
-        source="Block 10 runtime",
+        source="scalable nonlinear runtime",
         assumptions=("captured finite packet jet", "working CuPy CUDA runtime"),
         limitations=("no performance claim without matched hardware benchmarking",),
         verification_suite="nonlinear.gpu",

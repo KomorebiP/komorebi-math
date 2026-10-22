@@ -1,9 +1,7 @@
 # Special-function machinery
 
-`komorebi_math.special_functions` integrates selected machinery from the
-Special Functions I–VIII releases and their corrected October 2026
-consolidation. The namespace adds numerical Gamma shape transforms and exact
-rational residue/scalar functions. It imports without loading mpmath, SciPy,
+`komorebi_math.special_functions` provides numerical Gamma shape transforms
+and exact rational residue and scalar functions. It imports without loading mpmath, SciPy,
 or SymPy. Numerical evaluation needs the existing `scientific` extra;
 the exact rational functions need no additional dependency.
 
@@ -49,7 +47,7 @@ cancellation. No value is assigned to a singular retained term.
 
 These functions evaluate scalar formulas. They do not assert positive
 orthogonality or identify those formulas with the finite matrix recoupling
-construction. Correction C11 supplies an exact negative control: for
+construction. An exact counterexample illustrates the distinction: for
 `q=1/2`, `alpha=beta=1/2`, `gamma=4`, `delta=1`, and `n,y` in `{0,1}`,
 both lattice sites equal 3 and every table entry equals 1. The termination
 condition `gamma*q=q**(-1)` therefore does not establish a positive
@@ -93,30 +91,16 @@ addition, and refinement-tree composition in a stated finite range. They do
 not certify arithmetic depth asymptotics, unresolved signed estimates, or
 all proofs in the source manuscripts.
 
-## Source provenance and integration scope
+## Scope and related APIs
 
-The authoritative mathematical restrictions are the consolidation's
-`manuscript/arithmetic_core.tex`, `shape_core.tex`, `recoupling_core.tex`,
-and correction register C01–C12. The older standalone scripts combine
-mathematics with plotting, mutable global precision, and fixed numerical
-cutoffs; these scripts are not imported into the package.
+The `coordinates`, `analytic`, `generating`, and `sequences` namespaces provide
+residue packets, finite analysis and synthesis, normalized generating functions,
+and classical polynomials. This namespace supplies the Gamma/Meixner shape
+family, Bernoulli–Hurwitz order interpolation, and a finite scalar q-Racah bridge.
+Infinite arithmetic transfer estimates, a full representation-theoretic matrix
+recoupling engine, and a continuous-series spectral transform are outside its
+implemented contract.
 
-| Source archive | SHA-256 |
-| --- | --- |
-| `Komorebi_Special_Functions_Consolidation_v0.1.zip` | `060b5559c14b3d9c02f2f028d3efea78663b6763ff0b23dacef6da6f58942a42` |
-| `Komorebi_Special_Functions_Expanded_Visual_Guide_v0.4_Source.zip` | `df775d10c1940bf333848025379c3303fc136d51e417b4a5768cebdce73a965a` |
-
-The expanded visual guide was compared with the consolidation, including its
-shape and recoupling conventions. Existing `coordinates`, `analytic`,
-`generating`, and `sequences` machinery already provides residue packets,
-finite analysis/synthesis, normalized generating functions, and classical
-polynomials. Those APIs remain the entry points for that existing work.
-This addition provides the absent Gamma/Meixner shape family,
-Bernoulli–Hurwitz order interpolation, and finite scalar q-Racah bridge.
-Infinite arithmetic transfer estimates, the full representation-theoretic
-matrix recoupling engine, and a continuous-series spectral transform are
-outside this namespace's implemented contract.
-
-The seven exact correction witnesses are reproducible separately from the
-implementation regression suite. Their evidence distinguishes corrected
-conventions; it does not turn bounded numerical tests into theorem proofs.
+Exact counterexamples and independent numerical comparisons support the stated
+conventions. Bounded numerical tests do not establish universal identities or
+replace mathematical proofs.

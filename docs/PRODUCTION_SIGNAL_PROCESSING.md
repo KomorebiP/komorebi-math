@@ -1,6 +1,6 @@
 # Production finite signal processing
 
-Block 12 extends the existing polyphase, filter-bank, wavelet-packet, singular-packet, and jump-recovery code into a general finite digital signal-processing layer. The implementation is available from `komorebi_math.signals` and depends only on NumPy.
+The signal-processing namespace combines polyphase decomposition, filter banks, wavelet packets, singular packets, and jump recovery with a general finite digital signal-processing layer. The implementation is available from `komorebi_math.signals` and depends only on NumPy.
 
 The word **finite** is controlling. Every routine operates on an explicitly supplied finite array or a finite ordered stream of chunks. Certificates verify algebraic identities, reconstruction residuals, declared parameter ranges, and batch-versus-streaming equivalence. They do not infer stochastic stationarity, asymptotic consistency, real-time deadlines, or application-specific model validity from one data record.
 
@@ -133,6 +133,10 @@ For a deterministic relation `y = g x`, `cross_spectrum` reports input and outpu
 \]
 
 ```python
+import numpy as np
+
+time = np.arange(1024) / 1000.0
+signal = np.sin(2 * np.pi * 60.0 * time)
 from komorebi_math.signals import cross_spectrum
 
 report = cross_spectrum(
@@ -182,7 +186,13 @@ The finite modes are:
 FIR arithmetic promotes fixed-width integer data to a floating or complex computation type before products and sums. A complex history remains complex when a subsequent chunk contains only real samples.
 
 ```python
-from komorebi_math.signals import stream_fir_filter
+import numpy as np
+
+time = np.arange(1024) / 1000.0
+signal = np.sin(2 * np.pi * 60.0 * time)
+from komorebi_math.signals import design_lowpass, stream_fir_filter
+
+lowpass = design_lowpass(100.0, num_taps=101, sample_rate=1000.0)
 
 result = stream_fir_filter(
     signal,
@@ -200,6 +210,10 @@ The stream certificate compares the chunked output with the direct causal finite
 The computation type includes the supplied initial state. Real input chunks and real filter coefficients therefore preserve any imaginary continuation state from preceding complex samples.
 
 ```python
+import numpy as np
+
+time = np.arange(1024) / 1000.0
+signal = np.sin(2 * np.pi * 60.0 * time)
 from komorebi_math.signals import design_biquad, stream_lfilter
 
 biquad = design_biquad("lowpass", 120.0, q=0.8, sample_rate=1000.0)
@@ -215,7 +229,13 @@ The stability certificate checks that every numerically computed pole lies stric
 `fft_convolve` computes finite convolution through zero-padded FFT multiplication. `OverlapAddConvolver` processes bounded blocks, carries the exact overlap tail, and emits the remaining tail once at flush.
 
 ```python
-from komorebi_math.signals import certified_overlap_add_convolve
+import numpy as np
+
+time = np.arange(1024) / 1000.0
+signal = np.sin(2 * np.pi * 60.0 * time)
+from komorebi_math.signals import design_lowpass, certified_overlap_add_convolve
+
+lowpass = design_lowpass(100.0, num_taps=101, sample_rate=1000.0)
 
 result = certified_overlap_add_convolve(
     signal,
@@ -334,20 +354,18 @@ The certificate compares coefficients and time coordinates against a batch STFT 
 
 ## Verification
 
-Run only the Block 12 DSP suite:
+Run the installed digital signal-processing checks:
 
 ```powershell
 komorebi verify dsp
 ```
 
-Run all implemented blocks through Block 12:
-
-```powershell
-komorebi verify block12
-```
-
-The source distribution also contains focused unit tests, `verification/block12_deep_audit.py`, and the optional convention-matched `verification/block12_scipy_reference_audit.py`.
+The source tests cover numerical conventions, chunk invariance, finite
+reconstruction, and comparison with convention-matched reference calculations.
 
 ## Explicit boundaries
 
-Block 12 does not yet implement a general high-order IIR design family beyond the included biquads, arbitrary multirate filter-bank compiler, continuous wavelet transform, audio-file codec layer, real-time acquisition interface, adaptive-filter convergence theorem, or hardware-validated GPU DSP path. Those are extensions, not implied capabilities.
+The implemented scope includes the biquad families described above. General
+high-order IIR design, arbitrary multirate filter-bank compilation, continuous
+wavelet transforms, audio-file codecs, real-time acquisition, adaptive-filter
+convergence theorems, and a hardware-validated GPU DSP path are outside this API.

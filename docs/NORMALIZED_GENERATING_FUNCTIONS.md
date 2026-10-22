@@ -1,6 +1,6 @@
 # Normalized generating functions
 
-Block 13 implements the finite computational content of normalized generating functions, local masks, carry compilers, Cartier operators, and prime power arithmetic.
+The generating-function namespace implements finite normalized generating functions, local masks, carry compilers, Cartier operators, and prime power arithmetic.
 
 ## Normalized bases
 

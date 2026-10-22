@@ -55,6 +55,13 @@ where \(E_I\) is the diagonal coordinate selector. A complete coordinate partiti
 In the square invertible case, \(AS=I_m\), so the components are mutually annihilating projectors. In a redundant frame, generally \(AS\neq I_m\). The component law still reconstructs, but individual terms need not satisfy \(C_I^2=C_I\).
 
 ```python
+import numpy as np
+from komorebi_math.stable import AnalysisSynthesisSystem
+
+redundant = AnalysisSynthesisSystem.canonical_dual(
+    np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 1.0]])
+)
+
 components = redundant.components()
 assert np.allclose(sum(components), np.eye(redundant.source_dimension))
 ```
@@ -70,6 +77,13 @@ T=\sum_{\beta,\alpha}C_{\beta}TC_{\alpha}.
 \]
 
 ```python
+import numpy as np
+from komorebi_math.stable import AnalysisSynthesisSystem
+
+redundant = AnalysisSynthesisSystem.canonical_dual(
+    np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 1.0]])
+)
+
 operator = np.array([[2.0, -1.0], [3.0, 4.0]])
 blocks = redundant.operator_blocks(operator, groups=((0, 2), (1,)))
 blocks.certificate().require()
@@ -79,6 +93,13 @@ assert np.allclose(blocks.reconstruct(), operator)
 ## Persistence
 
 ```python
+import numpy as np
+from komorebi_math.stable import AnalysisSynthesisSystem
+
+redundant = AnalysisSynthesisSystem.canonical_dual(
+    np.array([[1.0, 0.0], [0.0, 1.0], [1.0, 1.0]])
+)
+
 from komorebi_math.stable import dumps_portable, loads_portable
 
 restored = loads_portable(dumps_portable(redundant))

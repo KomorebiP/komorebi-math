@@ -96,7 +96,7 @@ class FrequencyResponse:
         identifier="KM-DSP-D05",
         title="Finite FIR frequency response",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite impulse response", "positive sample rate"),
         verification_suite="signals.filtering",
     )
@@ -208,7 +208,7 @@ def _window_name(window: WindowSpec) -> str:
         identifier="KM-DSP-D06",
         title="Windowed-sinc finite FIR design",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("cutoffs strictly inside Nyquist", "finite tap count"),
         verification_suite="signals.filtering",
     )
@@ -394,7 +394,7 @@ class StreamingFIR:
         identifier="KM-DSP-T05",
         title="Chunk-invariant finite FIR execution",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("ordered nonoverlapping chunks", "common FIR taps"),
         verification_suite="signals.filtering",
     )

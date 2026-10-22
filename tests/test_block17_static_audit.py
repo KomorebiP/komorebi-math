@@ -1,17 +1,8 @@
-"""Static source audit for the 1.0 public beta."""
-
-from __future__ import annotations
-
-from pathlib import Path
-
-from verification.block17_static_audit import run_audit
-
-ROOT = Path(__file__).resolve().parents[1]
+"""Compatibility imports resolve to the current static source audit."""
+from verification import block16_static_audit, block17_static_audit, source_audit
 
 
-def test_block17_static_audit_passes() -> None:
-    report = run_audit(ROOT)
-    assert report.passed, report.to_dict()
-    assert report.package_version == "1.0.0b4"
-    assert len(report.checks) == 4
-    assert report.diagnostics["block17_contract_files"] == 10
+def test_previous_static_audit_imports_use_current_checks() -> None:
+    assert block16_static_audit.run_audit is source_audit.run_audit
+    assert block17_static_audit.run_audit is source_audit.run_audit
+    assert block16_static_audit._shell_mode_diagnostics is source_audit._shell_mode_diagnostics

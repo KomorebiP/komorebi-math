@@ -154,7 +154,7 @@ class FiniteFactorizationAudit:
 
     A successful finite audit is only evidence on the supplied sample.  The
     universal factorization theorem is the elementary kernel-inclusion
-    statement documented in the Block 15 contract.
+    statement documented in the finite carrier-factorization contract.
     """
 
     exact_on_sample: bool

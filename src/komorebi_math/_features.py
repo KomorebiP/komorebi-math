@@ -352,7 +352,7 @@ _FEATURES = (
         "Exact finite join congruences",
         FeatureStatus.EXPERIMENTAL,
         "Validated finite join tables, least generated congruences with replayable merge derivations, and exact quotient homomorphism checks.",
-        ("Stratified Universality Block 26",),
+        ("Stratified Universality finite congruences",),
         ("core",),
         ("FiniteJoinSemilattice", "SemilatticeQuotient"),
     ),
@@ -386,7 +386,7 @@ _FEATURES = (
     FeatureSpec(
         "release.stable",
         "komorebi_math.stable",
-        "Version 1 freeze-candidate contract",
+        "Version 1 stable contract",
         FeatureStatus.IMPLEMENTED,
         "Versioned stable aliases, strict API manifests, closed semantic fixtures, portable-codec migration checks, support records, and crash-isolated release qualification.",
         (),

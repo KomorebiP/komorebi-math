@@ -10,7 +10,7 @@ N_{\mathrm{basis}} = d_{\mathrm{source}}^r,
 
 where `r` is the derivative order. A high-order snapshot can therefore be too large to capture, serialize, or reload as one object.
 
-Block 11 adds a directory-backed stream format. It writes coefficients in independently digested chunks, commits progress after each chunk, and supports resuming an interrupted capture. A reader verifies and decodes at most one chunk at a time during iteration or evaluation.
+The directory-backed stream format stores packet jets incrementally. It writes coefficients in independently digested chunks, commits progress after each chunk, and supports resuming an interrupted capture. A reader verifies and decodes at most one chunk at a time during iteration or evaluation.
 
 This changes the peak storage pattern. It does not remove the exponential basis count.
 

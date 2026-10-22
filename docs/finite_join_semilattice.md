@@ -1,8 +1,8 @@
 # Finite join congruence and quotient
 
-The explicit research API lives in `komorebi_math.core.semilattice`. It is adapted
-from the generic congruence routine in the Stratified Universality Block 26
-`matroid_circuit_repair_probe.py` source. It does not alter the frozen root API.
+The API lives in `komorebi_math.core.semilattice`. It constructs finite join
+semilattices, computes generated congruences, and supplies independently
+replayable quotient certificates.
 
 ```python
 from komorebi_math.core.semilattice import FiniteJoinSemilattice

@@ -1,4 +1,4 @@
-"""Finite coefficient-space closure for analysis--synthesis systems (Block 18).
+"""Finite coefficient-space closure for analysis--synthesis systems.
 
 For presentations X=(A_X,S_X) and Y=(A_Y,S_Y), a physical map T has
 canonical coefficient lift L=A_Y T S_X.  This module implements the resulting

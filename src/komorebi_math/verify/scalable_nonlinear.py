@@ -1,4 +1,4 @@
-"""Installed verification for the Block 10 scalable nonlinear runtime."""
+"""Installed verification for scalable nonlinear computation."""
 
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ def _coordinate_family() -> tuple[PacketJetFamily, tuple[np.ndarray, np.ndarray]
 
 
 def run_scalable_nonlinear_verification() -> VerificationReport:
-    """Run the installed Block 10 hardening and scalability checks."""
+    """Run installed nonlinear hardening and scalability checks."""
 
     checks: list[VerificationCheck] = []
 

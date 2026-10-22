@@ -1,4 +1,4 @@
-"""Installed-package verification for the Block 12 DSP expansion."""
+"""Installed-package verification for finite digital signal processing."""
 
 from __future__ import annotations
 

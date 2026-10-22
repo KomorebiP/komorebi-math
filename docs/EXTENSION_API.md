@@ -34,6 +34,6 @@ The command:
 komorebi doctor
 ```
 
-loads each extension in isolation and reports failures without preventing the core package from importing.
+reports extension-loading failures without preventing the core package from importing.
 
 Extensions must not silently change the meaning of a core object. New backends and feature records must be registered under distinct names. Conditional mathematical constructions must return conditional certificates with their unmet assumptions.

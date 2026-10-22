@@ -191,7 +191,7 @@ def _replay_node_invariants(node: Expression) -> None:
         )
     else:
         raise TypeError(
-            "expression nodes must use an exact built-in Block 20 node class; "
+            "expression nodes must use an exact built-in expression node class; "
             f"received {node_class.__module__}.{node_class.__qualname__}"
         )
     observed_type = _validate_expression_type(
@@ -226,7 +226,7 @@ def _exact_node_children(node: Expression) -> tuple[Expression, ...]:
         application = cast(Apply, node)
         return (application.operator, application.argument)
     raise TypeError(
-        "expression nodes must use an exact built-in Block 20 node class; "
+        "expression nodes must use an exact built-in expression node class; "
         f"received {node_class.__module__}.{node_class.__qualname__}"
     )
 

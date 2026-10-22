@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 from komorebi_math.cli.main import main
 from komorebi_math.compatibility import (
     BETA_PUBLIC_NAMESPACES,
@@ -46,5 +48,5 @@ def test_block12_cli_verification(capsys) -> None:
 def test_info_reports_block12_version(capsys) -> None:
     assert main(["info"]) == 0
     output = capsys.readouterr().out
-    assert "komorebi-math 1.0.0b4" in output
-    assert "production finite DSP" in output
+    assert f"komorebi-math {__version__}" in output
+    assert "signal processing" in output

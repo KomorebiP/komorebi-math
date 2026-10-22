@@ -1,116 +1,86 @@
 {
   "schema_version": 1,
-  "description": "Standalone development-environment Python snippets. Counts include import smoke blocks. Contextual/signature fragments and the separately checked LaTeX example are explicitly excluded.",
+  "description": "All Python fences in the active README and public guides are inventoried. Complete programs, constructor examples and import smoke checks execute independently. Every contextual/signature fragment and optional external LaTeX example is excluded explicitly with its reason. Backend and installation commands are qualified separately.",
   "sources": {
     "README.md": {
-      "python_fences": 21,
-      "exclude": [
-        {
-          "example": 4,
-          "reason": "Contextual stream lifecycle fragment requiring previously constructed jet and directions."
-        },
-        {
-          "example": 19,
-          "reason": "Complete PDF example requires external LaTeX; validate separately when LaTeX is available."
-        }
-      ]
+      "python_fences": 3,
+      "exclude": []
     },
-    "docs/PUBLIC_API.md": {
-      "python_fences": 30,
-      "exclude": [
-        {
-          "example": 14,
-          "reason": "Certificate attribute reference requiring a previously constructed certificate object."
-        },
-        {
-          "example": 15,
-          "reason": "Configuration template with an intentional ellipsis placeholder."
-        },
-        {
-          "example": 17,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 18,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 19,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 20,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 21,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 22,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 23,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 24,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 25,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 26,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 27,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 28,
-          "reason": "API name/signature reference, not an executable program."
-        },
-        {
-          "example": 29,
-          "reason": "API name/signature reference, not an executable program."
-        }
-      ]
-    },
-    "docs/USER_GUIDE.md": {
+    "docs/ANALYSIS_SYNTHESIS_SYSTEMS.md": {
       "python_fences": 4,
       "exclude": []
     },
-    "docs/NEW_MACHINERY_GUIDE.md": {
-      "python_fences": 12,
+    "docs/BEHAVIORAL_GOLDEN_AND_PROFILING.md": {
+      "python_fences": 3,
+      "exclude": [
+        {
+          "example": 2,
+          "reason": "Contextual complexity-count fragment requiring a previously constructed packet-jet family and imported helpers."
+        },
+        {
+          "example": 3,
+          "reason": "Contextual profiling fragment requiring the caller's packet-jet family, directions and profiling helper."
+        }
+      ]
+    },
+    "docs/DEPRECATION_POLICY.md": {
+      "python_fences": 1,
       "exclude": []
     },
-    "docs/sequences_oeis.md": {
+    "docs/EXPORT_AND_LATEX.md": {
+      "python_fences": 5,
+      "exclude": [
+        {
+          "example": 3,
+          "reason": "Optional compilation example requires a caller-provided paper.tex file and an external LaTeX engine; TeX source rendering is executed in example2."
+        }
+      ]
+    },
+    "docs/EXTENSION_API.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/FINITE_CARRIER_COMPLETION.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/FINITE_MEASURE_INTEGRATION.md": {
+      "python_fences": 1,
+      "exclude": [
+        {
+          "example": 1,
+          "reason": "Interface prototype; integrand, measure and optional_provider are supplied by the caller."
+        }
+      ]
+    },
+    "docs/GENERAL_COORDINATE_ATLAS.md": {
+      "python_fences": 4,
+      "exclude": []
+    },
+    "docs/MIGRATION_TO_1_0.md": {
       "python_fences": 2,
       "exclude": []
     },
-    "docs/fourier_recovery.md": {
-      "python_fences": 1,
-      "exclude": []
-    },
-    "docs/finite_join_semilattice.md": {
-      "python_fences": 1,
-      "exclude": []
-    },
-    "docs/quadratic_forms.md": {
-      "python_fences": 2,
-      "exclude": []
-    },
-    "docs/special_functions.md": {
-      "python_fences": 1,
-      "exclude": []
-    },
-    "docs/dirac_modes.md": {
-      "python_fences": 1,
-      "exclude": []
+    "docs/NONLINEAR_CALCULUS.md": {
+      "python_fences": 5,
+      "exclude": [
+        {
+          "example": 2,
+          "reason": "Contextual packet-jet fragment; provider, point, packet systems, directions and class imports come from the caller."
+        },
+        {
+          "example": 3,
+          "reason": "Contextual composition fragment requiring outer/inner maps, a base point and directions."
+        },
+        {
+          "example": 4,
+          "reason": "Contextual fixed-point expansion fragment requiring the caller's seed and multilinear maps."
+        },
+        {
+          "example": 5,
+          "reason": "Contextual spectral-sequence fragment requiring a constructed finite filtered complex."
+        }
+      ]
     },
     "docs/NORMALIZED_GENERATING_FUNCTIONS.md": {
       "python_fences": 4,
@@ -118,6 +88,202 @@
     },
     "docs/PERSISTENCE_SCHEMAS.md": {
       "python_fences": 2,
+      "exclude": []
+    },
+    "docs/PRODUCTION_SIGNAL_PROCESSING.md": {
+      "python_fences": 12,
+      "exclude": []
+    },
+    "docs/PUBLIC_API.md": {
+      "python_fences": 29,
+      "exclude": [
+        {
+          "example": 13,
+          "reason": "Certificate attribute reference requiring an already constructed certificate object."
+        },
+        {
+          "example": 16,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 17,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 18,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 19,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 20,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 21,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 22,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 23,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 24,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 25,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 26,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 27,
+          "reason": "API name/signature inventory, not an executable program."
+        },
+        {
+          "example": 28,
+          "reason": "API name/signature inventory, not an executable program."
+        }
+      ]
+    },
+    "docs/SCALABLE_NONLINEAR_EXECUTION.md": {
+      "python_fences": 6,
+      "exclude": [
+        {
+          "example": 1,
+          "reason": "Directional-provider protocol notation; provider and directions are caller-supplied."
+        },
+        {
+          "example": 3,
+          "reason": "JVP protocol stub; primal_value and directional_tangent describe the implementer's return values."
+        },
+        {
+          "example": 6,
+          "reason": "Contextual execution-plan fragment requiring a constructed family, directions and helper imports."
+        }
+      ]
+    },
+    "docs/STABLE_API.md": {
+      "python_fences": 2,
+      "exclude": []
+    },
+    "docs/STREAMING_PACKET_JETS.md": {
+      "python_fences": 4,
+      "exclude": [
+        {
+          "example": 1,
+          "reason": "Contextual stream capture fragment requiring the caller's family, base data and checkpoint directory."
+        },
+        {
+          "example": 2,
+          "reason": "Contextual snapshot-stream fragment requiring an existing snapshot and output directory."
+        },
+        {
+          "example": 3,
+          "reason": "Contextual reader fragment requiring the stream files produced by the preceding examples."
+        },
+        {
+          "example": 4,
+          "reason": "Contextual partial-evaluation fragment requiring the previously opened reader and directions."
+        }
+      ]
+    },
+    "docs/UNIFIED_LANGUAGE.md": {
+      "python_fences": 13,
+      "exclude": [
+        {
+          "example": 1,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 2,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 3,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 4,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 5,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 6,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 7,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 8,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 9,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 10,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 11,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 12,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        },
+        {
+          "example": 13,
+          "reason": "Interface/workflow reference with caller-supplied mathematical objects; complete programs are provided in the user and worked-example guides."
+        }
+      ]
+    },
+    "docs/USER_GUIDE.md": {
+      "python_fences": 4,
+      "exclude": []
+    },
+    "docs/WORKED_EXAMPLES.md": {
+      "python_fences": 12,
+      "exclude": []
+    },
+    "docs/dirac_modes.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/finite_join_semilattice.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/fourier_recovery.md": {
+      "python_fences": 1,
+      "exclude": []
+    },
+    "docs/quadratic_forms.md": {
+      "python_fences": 2,
+      "exclude": []
+    },
+    "docs/sequences_oeis.md": {
+      "python_fences": 2,
+      "exclude": []
+    },
+    "docs/special_functions.md": {
+      "python_fences": 1,
       "exclude": []
     }
   }

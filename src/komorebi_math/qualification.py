@@ -25,7 +25,8 @@ from ._version import __version__
 from .certificates import Certificate, Exactness
 from .compatibility import check_stable_api
 from .nonlinear.autodiff import ad_framework_diagnostics
-from .release import check_release_contract, check_upgrade_contract, check_validation_evidence, qualify_gpu
+from .release import check_release_contract, check_upgrade_contract, qualify_gpu
+from .release.evidence import _check_historical_validation_evidence
 from .stable_contract import check_stable_contract
 from .support import load_support_matrix
 
@@ -33,7 +34,7 @@ RELEASE_QUALIFICATION_SCHEMA = "komorebi-math.release-qualification"
 RELEASE_QUALIFICATION_SCHEMA_VERSION = 1
 SUPPORTED_PYTHON_MIN = (3, 11)
 SUPPORTED_PYTHON_MAX = (3, 13)
-RELEASE_CANDIDATE_VERSION = "1.0.0b4"
+RELEASE_CANDIDATE_VERSION = __version__
 
 
 @dataclass(frozen=True, slots=True)
@@ -109,7 +110,7 @@ def _capture(name: str, function: Any) -> QualificationCheck:
 
 
 def run_stable_semantic_verification() -> QualificationVerificationReport:
-    """Execute the closed semantic fixture for the 1.0 freeze candidate."""
+    """Execute the closed semantic fixture for the stable namespace."""
 
     checks: list[QualificationCheck] = []
 
@@ -305,15 +306,17 @@ class ReleaseQualificationReport:
         return self.verification.passed and gpu_ok
 
     def certificate(self) -> Certificate:
+        if self.gpu is None:
+            unchecked = ("hardware-backed CUDA qualification not requested",)
+        elif not self.gpu.get("available"):
+            unchecked = ("hardware-backed CUDA qualification did not pass",)
+        else:
+            unchecked = ()
         return Certificate(
             valid=self.passed,
             exactness=Exactness.NUMERICAL,
             assumptions_checked=tuple(check.name for check in self.verification.checks if check.passed),
-            assumptions_unchecked=(
-                ()
-                if self.gpu is not None
-                else ("hardware-backed CUDA qualification not requested",)
-            ),
+            assumptions_unchecked=unchecked,
             diagnostics={
                 "version": self.version,
                 "passed": self.verification.passed_count,
@@ -322,7 +325,7 @@ class ReleaseQualificationReport:
                 "gpu_available": None if self.gpu is None else bool(self.gpu.get("available")),
             },
             theorem_id="KM-REL-16",
-            message="release qualification passed" if self.passed else "release qualification failed",
+            message="installed package self-check passed" if self.passed else "installed package self-check failed",
         )
 
     def to_dict(self) -> dict[str, Any]:
@@ -355,7 +358,7 @@ def run_release_qualification(
     include_gpu: bool = False,
     require_gpu: bool = False,
 ) -> ReleaseQualificationReport:
-    """Run the installed 1.0 public-beta qualification gate."""
+    """Check installed functionality; publication review is performed separately."""
 
     if require_gpu:
         include_gpu = True
@@ -369,10 +372,10 @@ def run_release_qualification(
     def release_contract() -> None:
         check_release_contract().certificate.require()
 
-    checks.append(_capture("machine-readable current beta release contract", release_contract))
+    checks.append(_capture("installed release contract", release_contract))
 
     checks.append(_capture("predecessor upgrade contract", lambda: check_upgrade_contract().certificate.require()))
-    checks.append(_capture("executed platform evidence", lambda: check_validation_evidence().certificate.require()))
+    checks.append(_capture("historical validation-record integrity", lambda: _check_historical_validation_evidence().certificate.require()))
 
     def support_policy() -> None:
         matrix = load_support_matrix()
@@ -402,7 +405,7 @@ def run_release_qualification(
     if include_gpu:
         checks.append(
             QualificationCheck(
-                "CUDA hardware qualification",
+                "CUDA hardware qualification" if require_gpu else "optional CUDA diagnostics recorded",
                 bool(gpu and gpu.get("available")) if require_gpu else True,
                 json.dumps(gpu, sort_keys=True),
             )

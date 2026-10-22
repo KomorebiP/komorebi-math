@@ -49,7 +49,7 @@ def _canonical_name(name: str) -> str:
         identifier="KM-DSP-D01",
         title="Finite deterministic analysis window",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("positive finite window length",),
         verification_suite="signals.windows",
     )
@@ -161,7 +161,7 @@ class WindowMetrics:
         identifier="KM-DSP-T01",
         title="Finite window gain and equivalent noise bandwidth",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite nonzero coherent gain", "positive sample rate"),
         verification_suite="signals.windows",
     )
@@ -223,7 +223,7 @@ def overlap_profile(window: Any, hop_length: int, *, squared: bool = True) -> np
         identifier="KM-DSP-C01",
         title="Finite lattice overlap-add certificate",
         status=ClaimStatus.FINITE_CERTIFICATE,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("uniform integer hop", "infinite shift lattice away from finite boundaries"),
         verification_suite="signals.windows",
     )
@@ -272,7 +272,7 @@ def overlap_add_certificate(
         identifier="KM-DSP-T02",
         title="Canonical finite lattice dual window",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("nonzero squared overlap profile", "uniform integer hop"),
         verification_suite="signals.windows",
     )

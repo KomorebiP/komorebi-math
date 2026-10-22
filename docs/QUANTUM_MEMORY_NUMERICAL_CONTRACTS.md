@@ -56,15 +56,15 @@ floating point enclosure implied.
 ## Constraint span closure
 
 `constraint_closure` preserves its coefficients, residual matrix and maximum
-residual in the declared generator coordinates. Its validity decision now uses
+residual in the declared generator coordinates. Its validity decision uses
 the spectral norm of the quotient commutator map in a Hilbert Schmidt
 orthonormal basis of the resolved span. A unitary change of orthonormal basis
 acts unitarily on the input tensor coordinates, so this norm is invariant.
 
 Multiplying the two Pauli generators `X,Z` by `1e-6` does not close their span.
-The previous coordinate threshold accepted that span because its commutators
-scaled quadratically. The current span obstruction rejects it at every tested
-uniform scale from `1e-100` through `1e100`.
+Its raw commutators shrink quadratically with the generator scale, while the
+resolved span is unchanged. The span obstruction rejects this example over the
+tested uniform scales from `1e-100` through `1e100`.
 
 The SVD rank threshold and singular spectrum are certificate diagnostics.
 Extremely ill conditioned generating families remain a finite precision rank

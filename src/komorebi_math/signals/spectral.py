@@ -160,7 +160,7 @@ def _power_certificate(power: np.ndarray, *, theorem_id: str, message: str) -> C
         identifier="KM-DSP-D05",
         title="Finite modified periodogram",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite signal", "declared window and scaling"),
         verification_suite="signals.spectral",
     )
@@ -240,7 +240,7 @@ def _welch_frames(
         identifier="KM-DSP-D06",
         title="Finite Welch power spectral estimate",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("complete uniform finite segments", "declared averaging rule"),
         verification_suite="signals.spectral",
     )
@@ -300,7 +300,7 @@ def welch_psd(
         identifier="KM-DSP-D07",
         title="Finite Welch cross spectrum and magnitude-squared coherence",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("paired finite segments", "nonzero auto spectra for interpreted transfer bins"),
         verification_suite="signals.spectral",
     )
@@ -404,7 +404,7 @@ def cross_spectrum(
         identifier="KM-DSP-T04",
         title="Finite discrete Parseval identity",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("NumPy DFT normalization convention", "finite one dimensional signal"),
         verification_suite="signals.spectral",
     )

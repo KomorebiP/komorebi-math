@@ -123,36 +123,28 @@ Concurrent calls through this namespace are serialized. Arbitrary concurrent
 manipulation of mpmath global contexts by external code is outside this
 guarantee. Private implementation modules are not the supported entry points.
 
-## Numerical trust and recovered source
+## Arithmetic trust and scope
 
 The enclosure claim assumes correctness of mpmath 1.3.0 interval arithmetic
 and transcendental evaluations, its exact binary endpoint tuples, Python
 integer arithmetic, and directed Decimal serialization. Finite-transform
 rounding is enclosed, and analytic support/alias and COS remainder bounds are
 added explicitly. This numerical claim is distinct from a Lean proof of the
-Python engine. The source formal project covers finite algebra and arithmetic
+Python engine. The companion formalization covers finite algebra and arithmetic
 consequences of supplied bounds. It does not establish Gaussian laws, COS
 inversion, or correctness of the numerical libraries.
 
-Source repository: `KomorebiP/Operation-KOMOREBI`, immutable commit
-`5c2a0084db5c5441c88a15d31dc3711fbb967619`, selected final K-COS v1.9 engine.
-The recovered source paths are:
+Public entry points validate inputs and serialize access to backend precision
+contexts. Spectrum iterables are consumed once, and adaptive support-scale
+refinements respect the supplied cap. A display-only ratio may be infinite when
+it overflows, without changing the enclosed tail bound. Private backend modules
+are implementation details.
 
-- `papers/quadratic-form-kcos/engine/directed_accuracy.py`
-- `papers/quadratic-form-kcos/engine/interval_kcos.py`
-- `papers/quadratic-form-kcos/engine/accuracy_driven.py`
-- `papers/quadratic-form-kcos/engine/verified_spectrum.py`
+Signed and noncentral quadratic-form engines, scalable streaming engines, and
+unconstrained root-finding helpers are outside this public surface. The project
+license covers its original software. Dependencies retain their own terms.
 
-These become private relative-import modules. The integration adds the public
-validation/context boundary, fixes repeated consumption of spectra, prevents
-support-scale refinements from exceeding their cap, and makes overflow in a
-display-only ratio return infinity. Historical floating signed/noncentral
-engines, scalable streaming engines, and unconstrained root-finding helpers
-are outside this integrated surface. No additional license grant is inferred
-from the recovered source. Komorebi P. attribution and existing project terms
-are preserved.
-
-Validation includes the ten recovered directed-contract regressions, exact
+Validation includes directed-contract regressions, exact
 finite-gamma controls for five equal-coefficient spectra, ordinary-tail SciPy
 comparisons, two known/higher-precision stored-factor controls, a complete
 matrix-tail control, malformed-input checks, and success/failure/concurrency

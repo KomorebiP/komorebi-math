@@ -195,7 +195,8 @@ def qualify(root: Path, candidate: Path, *, timeout: float = 660.0) -> dict[str,
         if sys.flags.optimize:
             raise RuntimeError("hardware qualification requires enabled Python assertions")
         report["candidate"] = _candidate_identity(root, candidate)
-        wheels = sorted((root / "release/dist").glob("*.whl"))
+        from verification.release_integrity import distribution_directory
+        wheels = sorted(distribution_directory(root).glob("*.whl"))
         if len(wheels) != 1:
             raise RuntimeError("candidate must have exactly one wheel")
         wheel = wheels[0]

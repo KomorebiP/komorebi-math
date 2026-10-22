@@ -1,4 +1,4 @@
-"""Exact finite join congruences adapted from Stratified Universality Block 26.
+"""Exact finite join congruences adapted from Stratified Universality.
 
 This module computes finite tables and finite derivation witnesses. It does not
 certify the manuscript's universal matroid, colimit or doctrine statements.
@@ -241,7 +241,7 @@ class SemilatticeQuotient:
                 "quotient_size": len(set(self.partition)) if partition_valid else None,
                 "input_relations": len(self.relations),
                 "merge_witnesses": len(self.derivations) if self.derivations is not None else None,
-                "source": "Stratified Universality Block 26 matroid_circuit_repair_probe.py generic congruence algorithm",
+                "source": "Stratified Universality finite join-congruence algorithm",
                 "scope": "finite table quotient; no universal matroid or doctrine theorem",
             },
             theorem_id="STRATIFIED.B26.FINITE.JOIN.CONGRUENCE",

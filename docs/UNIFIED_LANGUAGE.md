@@ -73,14 +73,12 @@ Transfer blocks reconstruct operators, compose by packet matrix multiplication, 
 
 ## Computational choice
 
-Blocks 1 through 3 implement packet intermediate representations, structured operators, low rank recompression, support propagation, Krylov methods, precision allocation, exact finite tree compilation, scheduling, and optional CuPy execution.
+The computational namespace implements packet intermediate representations, structured operators, low rank recompression, support propagation, Krylov methods, precision allocation, exact finite tree compilation, scheduling, and optional CuPy execution.
 
 The compiler is exact for the supplied finite additive tree. A precision assignment is exact for the supplied integer budget. Threshold structure discovery remains heuristic. Cost and roofline results are declared models rather than hardware guarantees.
 
 
 ## Signal realization
-
-Status: implemented.
 
 Signals realize the address, project, transfer, refine, and reconstruct stages through finite polyphase coordinates and packet trees.
 
@@ -96,8 +94,6 @@ The signal implementation includes exact finite coordinate identities, filter ba
 A recovery certificate does not infer unknown smoothness or noise assumptions from the data. It records which finite threshold conditions were checked and which model hypotheses remain external.
 
 ## Dynamics realization
-
-Status: implemented.
 
 Dynamics realizes operate, transfer, refine, constrain, complete, and reconstruct through finite matrix evolutions and finite coarse models.
 
@@ -117,8 +113,6 @@ Finite matrix theorems do not claim an unbounded continuum construction. Complet
 
 ## Analytic realization
 
-Status: implemented.
-
 The analytic realization uses residue projection to turn one entire function into a finite cyclic differential system. Reciprocal, logarithmic, Appell, and theta families then operate on the resulting coefficient coordinates.
 
 ```python
@@ -131,8 +125,6 @@ zeros = positive_zero_string(order, count)
 Exact coefficient operations and numerical zero operations remain distinct. A zero certificate checks only the returned residuals, ordering, and requested finite computation.
 
 ## Quantum realization
-
-Status: implemented in finite dimension.
 
 Quantum systems realize seed, project, transfer, constrain, and reconstruct through observable algebras, symmetry sectors, circuit paths, moving packets, channels, error correction, and effective dynamics.
 
@@ -173,13 +165,13 @@ BayesianPartition
 
 The finite constraint layer contains cokernel obstructions, prime power correction spaces, lift trees, finite holonomy, signal recovery under declared threshold hypotheses, exact Markov lumping, and fixed Bayesian sufficiency.
 
-Block 9 implements packet jets, Faà di Bruno composition, rooted nonlinear operator trees, graded operations, nonlinear Schur and Lyapunov-Schmidt elimination, finite filtered lifting, and obstruction spectral sequences. Smooth Kato transport is shared by the nonlinear and quantum namespaces through one implementation.
+The nonlinear namespace implements packet jets, Faà di Bruno composition, rooted nonlinear operator trees, graded operations, nonlinear Schur and Lyapunov-Schmidt elimination, finite filtered lifting, and obstruction spectral sequences. Smooth Kato transport is shared by the nonlinear and quantum namespaces through one implementation.
 
 ## 8. Complete
 
 There is no single universal completion object. A Banach inverse limit, a finite lift forest, a compatible semigroup tower, and a global arithmetic system require different runtime representations.
 
-Blocks 4 and 5 implement finite semigroup towers, finite hidden state realizations, finite survival systems, finite Kato transport, Euclidean transfer, and bounded Hamiltonian tower diagnostics. It does not claim a general continuum semigroup constructor.
+The library implements finite semigroup towers, finite hidden state realizations, finite survival systems, finite Kato transport, Euclidean transfer, and bounded Hamiltonian tower diagnostics. These finite representations do not construct a general continuum semigroup.
 
 ## 9. Reconstruct
 
@@ -219,11 +211,11 @@ Examples:
 
 ## Arithmetic and sequence realization
 
-In Block 6 a seed is an initial coefficient family, address means a residue or Mahler coordinate, operate means convolution or recurrence evolution, project means local or residue selection, transfer means triangular or affine coordinate transport, refine means prime power or polyphase refinement, constrain means a congruence or recurrence relation, complete means a certified finite model, and reconstruct means exact coefficient or term recovery.
+For arithmetic and sequence realizations, a seed is an initial coefficient family, address means a residue or Mahler coordinate, operate means convolution or recurrence evolution, project means local or residue selection, transfer means triangular or affine coordinate transport, refine means prime power or polyphase refinement, constrain means a congruence or recurrence relation, complete means a certified finite model, and reconstruct means exact coefficient or term recovery.
 
 ## Deformation and Langlands realization
 
-In Block 7 the unified stages acquire several new finite meanings. A residual class is a seed, a lift level is an address, reduction and transport are operators, packet cohomology and finite Hecke idempotents are projections, stable cores and support impose constraints, and a completion report records whether every required gate has been supplied.
+In deformation and arithmetic models, the unified stages acquire additional finite meanings. A residual class is a seed, a lift level is an address, reduction and transport are operators, packet cohomology and finite Hecke idempotents are projections, stable cores and support impose constraints, and a completion report records whether every required gate has been supplied.
 
 ```python
 forest = residue_forest(levels, prime=p)
@@ -243,7 +235,7 @@ Finite field, tame, Heisenberg, orbit, Mackey, and Clifford computations may be 
 
 ## Portable output realization
 
-Block 8 adds an output stage after reconstruction. A mathematical value may be normalized, rendered, written, and compiled without changing its execution classification.
+Portable output supplies the stage after reconstruction. A mathematical value may be normalized, rendered, written, and compiled without changing its execution classification.
 
 ```text
 reconstruct
@@ -251,17 +243,17 @@ reconstruct
   -> render
   -> write
   -> optionally compile LaTeX
-  -> certify the artifact
+  -> validate the written output
 ```
 
 `MathDocument` is renderer independent. Ordinary prose is escaped. Equations contain trusted mathematical LaTeX. `RawLatex` is an explicit trusted escape hatch. `export_data` supports data formats and report formats. `compile_latex` is a local tool with shell escape disabled by default.
 
-Export success certifies that the requested artifact was written and, for PDF, that the local compiler returned success and produced a nonempty PDF. It does not add a mathematical proof to the underlying value.
+Export success certifies that the requested file was written and, for PDF, that the local compiler returned success and produced a nonempty PDF. It does not add a mathematical proof to the underlying value.
 
 
 ## Advanced nonlinear realization
 
-Block 9 makes the constrain and complete stages higher order. A derivative provider supplies the local multilinear data. Packet jets project each derivative slot. Faà di Bruno composes those jets. Rooted trees encode finite nonlinear iteration. Schur and Lyapunov-Schmidt reductions eliminate hidden or range variables. Filtered correction spaces organize successive obstructions. Finite spectral-sequence pages record which classes survive each filtration depth.
+Nonlinear realization gives the constrain and complete stages a higher-order meaning. A derivative provider supplies the local multilinear data. Packet jets project each derivative slot. Faà di Bruno composes those jets. Rooted trees encode finite nonlinear iteration. Schur and Lyapunov-Schmidt reductions eliminate hidden or range variables. Filtered correction spaces organize successive obstructions. Finite spectral-sequence pages record which classes survive each filtration depth.
 
 ```text
 derivative data

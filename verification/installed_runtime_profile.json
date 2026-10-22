@@ -1,6 +1,6 @@
 {
   "schema": "komorebi-math.installed-runtime-profile",
-  "name": "github-readiness-stress-qualified-runtime",
+  "name": "installed-cpu-runtime",
   "scope": "Named finite mathematics, numerical and serialization tests. Repository-layout, packaging, GPU, optional autodiff and document-rendering tests are not in this installed profile.",
   "test_files": [
     "test_algebra_quotients.py",

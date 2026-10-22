@@ -1,10 +1,10 @@
 # Companion C Integration Map
 
-The Companion C maximal visual atlas is useful to Komorebi Math, but it should not be copied wholesale into the production API immediately before the 1.0 freeze.
+The Companion C visual atlas supplies finite decompositions and independent numerical controls for the Python library. Each adopted construction needs a package-native convention, typed interface and explicit certificate scope.
 
-## Material adopted in Block 16
+## Shared mathematical structure
 
-Block 16 adopts its strongest architectural framing:
+The shared operator framing is
 
 \[
 P_\alpha=U^{-1}E_\alpha U,
@@ -41,11 +41,11 @@ The Companion C numerical ledger includes finite checks for:
 - overlap-add synthesis
 - quantum and modal synthesis
 
-These are useful independent targets. Block 16 uses the overlapping polyphase, mixed-radix, lattice, persistence, and reconstruction identities in package-native golden fixtures.
+The overlapping polyphase, mixed-radix, lattice, persistence and reconstruction identities are represented in package-native behavioral fixtures.
 
 ## Material retained as research or documentation
 
-The following Companion C areas should remain outside the frozen API until separately reviewed:
+The following Companion C areas should remain outside the stable API until separately reviewed:
 
 - standalone plotting and page-layout helpers
 - duplicate Fourier, wavelet, DCT, DST, Walsh, Gabor, and sampling implementations
@@ -65,4 +65,4 @@ A Companion C construction may enter the stable package only after it has:
 6. API tier classification
 7. documentation that states its finite scope
 
-This policy extracts value from the atlas without reopening uncontrolled feature expansion before 1.0.
+The stable API admits a construction only after its mathematical and software contracts have been reviewed.

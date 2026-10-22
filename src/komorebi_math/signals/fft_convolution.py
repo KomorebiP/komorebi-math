@@ -49,7 +49,7 @@ def _crop(full: np.ndarray, signal_length: int, kernel_length: int, mode: FIRMod
         identifier="KM-DSP-D28",
         title="Zero-padded finite FFT convolution",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite one-dimensional inputs", "zero padding to linear-convolution length"),
         verification_suite="signals.fft_convolution",
     )
@@ -193,7 +193,7 @@ class OverlapAddConvolver:
         identifier="KM-DSP-T10",
         title="Finite overlap-add convolution identity",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("ordered contiguous chunks", "zero-padded FFT blocks"),
         verification_suite="signals.fft_convolution",
     )

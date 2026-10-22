@@ -72,7 +72,7 @@ SDIST_REQUIRED_FILES = frozenset(
         "docs/TYPED_FINITE_EXPRESSION_CALCULUS.md",
         "docs/BLOCK_20_WORKED_EXAMPLE.md",
         "docs/BLOCK_20_RELEASE.md",
-        "examples/block20_typed_expression_worked_example.py",
+        "examples/typed_expression.py",
         "tests/test_block20_expression_calculus.py",
         "verification/block20_math_verifier.py",
         "verification/block20_adversarial_runner.py",

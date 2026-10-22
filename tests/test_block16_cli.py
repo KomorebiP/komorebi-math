@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 import json
 from pathlib import Path
 
@@ -40,4 +42,4 @@ def test_release_qualify_cli_writes_record(tmp_path: Path, capsys) -> None:
     printed = json.loads(capsys.readouterr().out)
     persisted = json.loads(output.read_text(encoding="utf-8"))
     assert printed["certificate"]["valid"] is True
-    assert persisted["version"] == "1.0.0b4"
+    assert persisted["version"] == __version__

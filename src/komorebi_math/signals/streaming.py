@@ -264,7 +264,7 @@ def _combine_batches(batches: Iterable[StreamingSTFTBatch], analyzer: StreamingS
         identifier="KM-DSP-T07",
         title="Chunk-invariant finite STFT framing",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("contiguous complete chunk partition", "zero-padded terminal framing"),
         verification_suite="signals.streaming",
     )

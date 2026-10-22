@@ -94,11 +94,11 @@ A `PolynomialFamily` is a graded basis of the polynomial ring through a declared
 * custom Appell families
 
 ```python
-from komorebi_math.coordinates import get_polynomial_family
+from komorebi_math.coordinates import get_polynomial_family, connection_transform
 
 legendre = get_polynomial_family("legendre")
 chebyshev = get_polynomial_family("chebyshev-t")
-connection = legendre.connection_to(chebyshev, 8)
+connection = connection_transform(legendre, chebyshev, 8)
 connection.certificate().require()
 ```
 

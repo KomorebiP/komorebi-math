@@ -309,7 +309,7 @@ def profile_operation(
         identifier="PSC-III-A61",
         title="Finite packet-jet execution profile",
         status=ClaimStatus.HEURISTIC,
-        source="Block 11 runtime",
+        source="streaming nonlinear runtime",
         assumptions=("fixed local process and supplied finite workload",),
         limitations=(
             "timings are environment dependent",

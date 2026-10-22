@@ -36,6 +36,12 @@
         "filename": "public_api_stable_1_0_0b3.json",
         "sha256": "766a22dd30c70e5c986aebe1338b424b31906c70a59b5e576f061a43140ad1ad",
         "version": "1.0.0b3"
+      },
+      {
+        "count": 131,
+        "filename": "public_api_stable_1_0_0b4.json",
+        "sha256": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67",
+        "version": "1.0.0b4"
       }
     ],
     "stable_semantics": {
@@ -108,9 +114,10 @@
     "0.16.0a2",
     "1.0.0b1",
     "1.0.0b2",
-    "1.0.0b3"
+    "1.0.0b3",
+    "1.0.0b4"
   ],
   "schema": "komorebi-math.upgrade-contract",
   "schema_version": 1,
-  "target_version": "1.0.0b4"
+  "target_version": "1.0.0"
 }

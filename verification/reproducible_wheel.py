@@ -30,7 +30,7 @@ def reproducible_metadata():
         metadata.NamedTemporaryFile = original
 
 
-def build_canonical_wheel(destination: str, build_tag: str) -> str:
+def build_canonical_wheel(destination: str, build_tag: str = "") -> str:
     from setuptools.build_meta import build_wheel
     try:
         from .release_integrity import canonicalize_wheel
@@ -38,6 +38,7 @@ def build_canonical_wheel(destination: str, build_tag: str) -> str:
         from release_integrity import canonicalize_wheel
 
     with reproducible_metadata():
-        name = build_wheel(destination, config_settings={'--build-option': ['--build-number=' + build_tag]})
+        settings = {'--build-option': ['--build-number=' + build_tag]} if build_tag else None
+        name = build_wheel(destination, config_settings=settings)
     canonicalize_wheel(Path(destination) / name)
     return name

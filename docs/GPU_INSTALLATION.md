@@ -1,43 +1,30 @@
-# Windows CUDA Installation
+# CUDA installation
 
-The base wheel requires only NumPy. CUDA PyTorch and CuPy are optional. Their
-CUDA builds must be compatible with the installed NVIDIA driver.
+The base Komorebi Math wheel needs no GPU runtime. CUDA execution uses optional
+PyTorch and CuPy installations that must be compatible with the NVIDIA driver
+and the selected Python interpreter.
 
-The historical Windows `0.16.0a2` qualification environment used Python 3.13,
-CUDA 12.6, PyTorch `2.12.1+cu126`, CuPy `14.1.1`, and an RTX 3070 Ti Laptop GPU.
-The commands below reuse that dependency line for a new local check. They do
-not supply current-version hardware evidence until the GPU gate actually
-passes. This is a historical environment reproduction, including packages such
-as JAX and Numba that the CUDA gate does not require. Build or obtain the current
-`4b21` wheel before installing it, following
-the [user guide](USER_GUIDE.md#local-wheel-installation).
+Use the [official PyTorch installer](https://pytorch.org/get-started/locally/)
+to choose a CUDA-enabled build for the host. Install one CuPy distribution for
+the matching CUDA line using the
+[official CuPy instructions](https://docs.cupy.dev/en/stable/install.html).
+For a configured CUDA 12.x environment, the CuPy package is `cupy-cuda12x`.
+Do not install it alongside `cupy` or a second CUDA-specific CuPy package.
+
+After those runtimes are available, install the local Komorebi wheel through
+the same interpreter:
 
 ```powershell
-conda create --name komorebi-full python=3.13 -y
-conda activate komorebi-full
-python -m pip install --upgrade pip
-python -m pip install numpy==2.5.2 jax==0.11.1 cupy-cuda12x==14.1.1 numba==0.67.0 "llvmlite>=0.49,<0.50"
-python -m pip install torch==2.12.1 torchvision==0.27.1 --index-url https://download.pytorch.org/whl/cu126
-python -m pip install .\release\dist\komorebi_math-1.0.0b4-4b21-py3-none-any.whl
+python -m pip install .\dist\komorebi_math-1.0.0-py3-none-any.whl
 python -m pip check
+python -m komorebi_math doctor
+python -m komorebi_math verify gpu
 ```
 
-Only one CuPy distribution should be installed. Remove `cupy` before installing `cupy-cuda12x` when both appear in `pip freeze`.
+If using an existing environment, invoke its full `python.exe` path rather
+than relying on an unrelated `python` on `PATH`. Package detection alone does
+not prove that a driver, device or native runtime works.
 
-```powershell
-python -m pip uninstall -y cupy cupy-cuda12x
-python -m pip install cupy-cuda12x==14.1.1
-```
-
-Then run:
-
-```powershell
-.\Run_GPU_Validation.ps1 -Python "$env:CONDA_PREFIX\python.exe" -Output release\CURRENT_GPU_QUALIFICATION.json
-```
-
-JAX remains CPU-backed on native Windows in this support policy. PyTorch and CuPy provide the recorded native Windows CUDA paths.
-
-Run the wrapper from an authorized checkout. It tests the package installed for
-the chosen interpreter, so retain the wheel hash and source revision with the
-new report. The historical dependency list and a matching package version do
-not establish that a repaired revision has passed on the GPU.
+The [GPU validation guide](GPU_VALIDATION.md) describes the actual computations.
+Maintainers binding a result to exact release files should follow the
+[release workflow](RELEASE_PROCESS.md#stress-and-hardware-qualification).

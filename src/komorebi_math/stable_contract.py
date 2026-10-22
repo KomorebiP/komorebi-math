@@ -17,7 +17,7 @@ from .stable_semantics import StableSemanticReport, run_stable_semantics_fixture
 
 @dataclass(frozen=True, slots=True)
 class StableContractReport:
-    """Complete 1.0-candidate compatibility report."""
+    """Stable 1.0 compatibility report."""
 
     api: ApiCompatibilityReport
     semantics: StableSemanticReport
@@ -76,9 +76,9 @@ def check_stable_contract(
         },
         theorem_id="KM-STABLE-CONTRACT-016",
         message=(
-            "the complete 1.0-candidate compatibility contract passed"
+            "the stable 1.0 compatibility contract passed"
             if valid
-            else "the 1.0-candidate compatibility contract failed"
+            else "the stable 1.0 compatibility contract failed"
         ),
     )
     return StableContractReport(api, semantics, persistence, certificate)

@@ -11,7 +11,8 @@ from komorebi_math.export.persistence import dumps_portable, loads_portable, por
 
 
 def test_block16_version() -> None:
-    assert komorebi_math.__version__ == "1.0.0b4"
+    from komorebi_math.compatibility import load_stable_api_manifest
+    assert komorebi_math.__version__ == load_stable_api_manifest().package_version
 
 
 def test_square_analysis_synthesis_roundtrip_and_projectors() -> None:

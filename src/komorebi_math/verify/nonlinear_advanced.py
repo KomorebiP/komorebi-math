@@ -34,7 +34,7 @@ from .core import VerificationCheck, VerificationReport, _capture
 
 
 def run_advanced_nonlinear_verification() -> VerificationReport:
-    """Run the installed Block 9 nonlinear verification suite."""
+    """Run installed advanced nonlinear verification."""
 
     checks: list[VerificationCheck] = []
 

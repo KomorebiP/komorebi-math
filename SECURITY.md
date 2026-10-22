@@ -1,17 +1,19 @@
-# Security Policy
+# Security policy
 
-## Supported release
+Security reports are accepted for the current 1.0 release line.
 
-Security reports are accepted for the current `1.0.0b4` beta. Historical alpha and beta artifacts under `release/predecessors` are retained only for compatibility testing.
+For a suspected vulnerability that could execute unintended code, expose
+credentials, corrupt portable records or bypass validation, use GitHub private
+vulnerability reporting when available. Otherwise contact the repository owner
+through a private channel listed on their profile. Do not publish sensitive
+input or credentials in an issue.
 
-## Reporting
+Include the affected version, operating system, Python version, a minimal
+reproducer and the observed impact. Identify whether untrusted input is needed.
 
-Do not open a public issue for a suspected vulnerability that could expose credentials, execute unintended code, corrupt portable records, or bypass validation. Use GitHub's private vulnerability reporting feature when it is enabled for the repository. Otherwise contact the repository owner through a private channel listed on the owner's GitHub profile.
+Relevant boundaries include portable JSON decoding, archive creation and
+extraction, extension discovery, LaTeX invocation and optional native backends.
+A mathematical disagreement without an implementation or validation defect
+should be reported as a normal issue.
 
-Include the affected version, operating system, Python version, a minimal reproducer, the observed impact, and whether untrusted input is required.
-
-## Scope
-
-The most relevant security boundaries are portable JSON decoding, archive creation and extraction, extension discovery, LaTeX invocation, optional native backends, and release scripts. Mathematical disagreement without an implementation or validation defect is handled as a research issue rather than a security report.
-
-No response-time or disclosure-time guarantee is asserted for this research beta.
+No response-time or disclosure-time guarantee is offered.

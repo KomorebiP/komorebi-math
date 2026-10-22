@@ -131,7 +131,7 @@ def check_upgrade_contract(path=None):
             loaded.append(f.name)
         checks.append(_capture(f"portable fixture {f.name}",check))
     failed=[x.name for x in checks if not x.passed]
-    cert=Certificate(valid=not failed,exactness=Exactness.EXACT,residuals={"failed_checks":float(len(failed))},assumptions_checked=("stable API predecessor manifests","closed stable semantics","portable codec continuity","digest-checked predecessor records"),assumptions_unchecked=("undocumented implementation objects","pickle payloads","third-party codecs"),diagnostics={"target":c.target_version,"predecessors":list(c.predecessor_versions),"loaded":len(loaded),"failures":failed},theorem_id="KM-UPGRADE-017",message="1.0 beta upgrade contract passed" if not failed else "1.0 beta upgrade contract failed")
+    cert=Certificate(valid=not failed,exactness=Exactness.EXACT,residuals={"failed_checks":float(len(failed))},assumptions_checked=("stable API predecessor manifests","closed stable semantics","portable codec continuity","digest-checked predecessor records"),assumptions_unchecked=("undocumented implementation objects","pickle payloads","third-party codecs"),diagnostics={"target":c.target_version,"predecessors":list(c.predecessor_versions),"loaded":len(loaded),"failures":failed},theorem_id="KM-UPGRADE-017",message="1.0 upgrade contract passed" if not failed else "1.0 upgrade contract failed")
     return UpgradeContractReport(c,tuple(checks),tuple(loaded),cert)
 
 __all__=["DEFAULT_UPGRADE_CONTRACT","UpgradeArtifact","UpgradeFixture","UpgradeContract","UpgradeCheck","UpgradeContractReport","load_upgrade_contract","check_upgrade_contract"]

@@ -3,17 +3,17 @@
     "beta": {
       "count": 83,
       "filename": "public_api_beta_1_0.json",
-      "sha256": "c0f4cf27d4a47b86d1ea5b79c6c2fe883368e6ab7f8a640e527f916b271ba000"
+      "sha256": "e0b862bf4d9341ed5f38960dd293d1de12939f29edb8b8882119e7d19e7a0c29"
     },
     "research": {
       "count": 1312,
       "filename": "public_api_1_0.json",
-      "sha256": "04a6c1218bb016b2bbd09f551a7866d1aab47efd5efb753710dde322f32f6357"
+      "sha256": "b01a8a76b33876cb067e7c814b81454805fbbcd05093480bb4b0904d194a9c84"
     },
     "stable": {
       "count": 131,
       "filename": "public_api_stable_1_0.json",
-      "sha256": "74e94269f875943861cb815f9acdb5eb0289d9a0fab8e8b55ff59e7e15483e67"
+      "sha256": "a9ad271da6ece640532550cea045dc5565f9298d8d4e4003d43b535dad97a74f"
     },
     "stable_aliases": [
       "komorebi_math.stable",
@@ -23,40 +23,52 @@
   },
   "cli": {
     "required_verification_suites": [
-      "block15",
+      "core",
+      "refinement",
+      "nonlinear",
+      "algorithms",
+      "signals",
+      "dynamics",
+      "analytic",
+      "quantum",
+      "arithmetic",
+      "sequences",
+      "deformation",
+      "langlands",
+      "export",
+      "hardening",
+      "streaming",
+      "dsp",
+      "generating",
+      "coordinates",
       "stable",
       "release",
-      "gpu",
-      "block16",
       "upgrade",
-      "evidence",
       "documentation",
-      "beta",
-      "block17",
-      "block18",
-      "block19",
-      "block20",
+      "frame-algebra",
+      "integration",
+      "expression",
       "all"
     ]
   },
   "documentation": {
     "count": 131,
     "filename": "stable_documentation_1_0.json",
-    "sha256": "9ffb806d95c979b77f59334265cc5e045dae949cd25c46a5bd37d2b7e0ca8299"
+    "sha256": "856f5c8a26485b02d0587fe8a7f456e26f076e97ecddc607ee17e63352521d08"
   },
   "evidence": {
     "count": 2,
     "filename": "validation_evidence_1_0.json",
     "sha256": "7aea0d877dbd1e896567199b9f6a857aa53a0bf40189c6aa17a05827115deaf2"
   },
-  "package_version": "1.0.0b4",
+  "package_version": "1.0.0",
   "persistence": {
     "count": 51,
     "filename": "portable_codec_contract_1_0.json",
-    "sha256": "5f8522edf0dd56c6d3a23be4625e72a33fe0ee7182c13060a9b09f93035a7c05"
+    "sha256": "d67a46a619dfb1c1468afae2c2c822105f2ea9ef08983b3ef2f78552f7213113"
   },
-  "predecessor_version": "1.0.0b3",
-  "release_line": "1.0.0b1 to 1.0.0rc1",
+  "predecessor_version": "1.0.0rc1",
+  "release_line": "1.0",
   "runtime": {
     "declared_python": [
       "3.11",
@@ -76,10 +88,10 @@
     "filename": "stable_semantics_1_0.json",
     "sha256": "445668c79fce5eccf4fd3d5f8aebf66a340afff7d58983ec7c48c06201f7aa6e"
   },
-  "stage": "beta",
+  "stage": "final",
   "upgrade": {
     "count": 7,
     "filename": "upgrade_contract_1_0.json",
-    "sha256": "d80de9c2b6913df3386a776519fefffb47b2820a57678b53ed19afae87f3e84d"
+    "sha256": "99fb497be79656b26a49fe3bcaf71cfbf7fb349eba37a2941293de1c03d9bbcb"
   }
 }

@@ -83,7 +83,7 @@ class PacketJetCoefficient:
         identifier="PSC-III-D58",
         title="Finite packet-jet snapshot",
         status=ClaimStatus.FINITE_CERTIFICATE,
-        source="Block 10 runtime",
+        source="scalable nonlinear runtime",
         assumptions=("finite dimensional multilinear packet jet",),
         limitations=("snapshot represents one fixed order, address, and base point",),
         verification_suite="nonlinear.snapshots",

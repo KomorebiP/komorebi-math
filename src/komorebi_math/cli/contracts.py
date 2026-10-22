@@ -1,4 +1,4 @@
-"""Frozen command-line names covered by the Block 17 release contract."""
+"""Public verification routes and accepted compatibility aliases."""
 
 VERIFICATION_SUITE_NAMES = (
     "core",
@@ -52,6 +52,13 @@ VERIFICATION_SUITE_NAMES = (
     "expression",
     "block20",
     "all",
+    "streaming",
+)
+
+PUBLIC_VERIFICATION_SUITE_NAMES = tuple(
+    name
+    for name in VERIFICATION_SUITE_NAMES
+    if not name.startswith("block") and name not in {"beta", "evidence", "streaming-beta"}
 )
 
 API_CONTRACT_MODES = ("research", "beta", "stable")

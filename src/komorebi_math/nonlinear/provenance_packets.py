@@ -1,6 +1,6 @@
 """Research-tier provenance quotients for labeled support packets.
 
-Block 13 separates three notions that are easy to conflate:
+This module separates three notions that are easy to conflate:
 
 * geometric value semantics, carried by a support packet;
 * continuation-stable provenance semantics, carried by a finite Moore observer;

@@ -1,45 +1,37 @@
 # Deprecation policy
 
-## Alpha policy
+A stable removal or incompatible change requires a documented transition.
+Ordinary removals follow a deprecation interval and normally take effect in
+the next major release. A correctness or security defect that cannot safely
+remain requires an explicit compatibility decision and explanation.
 
-Beginning with `0.10.0a1`, public removals should use an explicit deprecation period unless the name creates a correctness, security, or packaging defect that cannot safely remain.
-
-A deprecated callable should:
-
-* remain callable during the announced period
-* preserve its documented behavior or delegate transparently
-* emit `KomorebiDeprecationWarning`
-* identify the first deprecated version
-* name the replacement when one exists
-* state the planned removal version when known
-* expose a `__komorebi_deprecation__` record for tooling
+A deprecated callable remains usable during the announced period, preserves
+its behavior or delegates transparently, and emits
+`KomorebiDeprecationWarning`. Its record identifies the first warning version,
+a replacement when available, the planned removal release and the reason.
 
 ```python
 from komorebi_math import deprecated
 
-@deprecated(since="0.10", replacement="new_function", remove_in="1.0")
-def old_function(value: int) -> int:
-    return new_function(value)
+
+def replacement(value: int) -> int:
+    return value + 1
+
+
+@deprecated(since="1.1", replacement="replacement", remove_in="2.0")
+def legacy(value: int) -> int:
+    return replacement(value)
 ```
 
-## Alias policy
+The decorator exposes `__komorebi_deprecation__` for tooling. Spelling aliases
+may remain without warnings when they have unambiguous identical behavior.
+Preferred device names use `CuPy`; existing `Cupy` implementation spellings
+remain compatibility aliases.
 
-Spelling and capitalization aliases may be retained without a warning when they correct an internal naming inconsistency and have no behavioral ambiguity. Block 10 retains `Cupy*` implementation names while exporting preferred `CuPy*` aliases. A future removal requires a separately documented deprecation decision.
+Persistence versions have a separate obligation: supported older records must
+remain decodable or have an explicit migration. An API alias does not permit
+silent reinterpretation of stored data.
 
-## Schema policy
-
-Persistence codec versions are not governed solely by Python callable deprecation. A persisted version must remain decodable or receive an explicit migration tool. A Python API alias does not authorize silent reinterpretation of stored data.
-
-## Removal review
-
-Before a removal, the release audit must record:
-
-1. the deprecated symbol
-2. the replacement or reason for removal
-3. the first warning version
-4. the announced removal version
-5. affected persistence or CLI surfaces
-6. test coverage for the migration
-7. public API manifest differences
-
-No Block 10 public symbol is currently scheduled for removal.
+Before a removal, review the affected symbols, replacement, warning/removal
+versions, persistence and CLI surfaces, migration tests and API manifest
+differences. No existing stable symbol is scheduled for removal in 1.x.

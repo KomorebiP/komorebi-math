@@ -1,81 +1,63 @@
 site_name: Komorebi Math
-site_description: Executable packet mathematics with exactness-aware certificates
+site_description: Finite mathematical constructions with exactness-aware certificates
 repo_url: https://github.com/KomorebiP/komorebi-math
 docs_dir: docs
 nav:
-  - Home: index.md
-  - User Guide: USER_GUIDE.md
-  - New Machinery Guide: NEW_MACHINERY_GUIDE.md
-  - Manual Revision Notes: MANUAL_RELEASE_NOTES.md
-  - GitHub Readiness: GITHUB_READINESS.md
-  - Stable Release Candidate: STABLE_RELEASE_CANDIDATE.md
-  - Library Release Closeout: LIBRARY_CLOSEOUT.md
-  - Release Closeout: RELEASE_CLOSEOUT_2026_10_09.md
-  - Release Stress Audit: STRESS_AUDIT_2026_10_08.md
-  - Deep Audit and New Machinery: DEEP_AUDIT_2026_10_08.md
-  - Quadratic Form Tails: quadratic_forms.md
-  - Sequence and OEIS Tools: sequences_oeis.md
-  - Special Functions: special_functions.md
-  - Fourier Jump Recovery: fourier_recovery.md
-  - Finite Join Quotients: finite_join_semilattice.md
-  - Fixed Dirac Modes: dirac_modes.md
-  - Quantum and Memory Contracts: QUANTUM_MEMORY_NUMERICAL_CONTRACTS.md
-  - Public API: PUBLIC_API.md
-  - Block 21 Public Reproducibility: BLOCK_21_PUBLIC_REPRODUCIBILITY.md
-  - Block 20 Typed Expressions: BLOCK_20_RELEASE.md
-  - Typed Finite Expression Calculus: TYPED_FINITE_EXPRESSION_CALCULUS.md
-  - Block 20 Worked Example: BLOCK_20_WORKED_EXAMPLE.md
-  - Block 19 Finite Integration: BLOCK_19_RELEASE.md
-  - Finite Measure Integration: FINITE_MEASURE_INTEGRATION.md
-  - Block 19 Worked Example: BLOCK_19_WORKED_EXAMPLE.md
-  - Block 18 Redundant Frames: BLOCK_18_RELEASE.md
-  - Redundant Frame Algebra: REDUNDANT_FRAME_ALGEBRA.md
-  - Block 17 Public Beta: BLOCK_17_RELEASE.md
-  - Upgrade Contract: UPGRADE_CONTRACT.md
-  - Beta to Release Candidate: BETA_TO_RC.md
-  - Block 16 Release: BLOCK_16_RELEASE.md
-  - Stable API 1.0 Candidate: STABLE_API_1_0_CANDIDATE.md
-  - Analysis--Synthesis Systems: ANALYSIS_SYNTHESIS_SYSTEMS.md
-  - Release Qualification: RELEASE_QUALIFICATION.md
-  - Supported Platforms: SUPPORTED_PLATFORMS.md
-  - Windows CUDA Installation: GPU_INSTALLATION.md
-  - GPU Validation: GPU_VALIDATION.md
-  - Migration to 1.0: MIGRATION_TO_1_0.md
-  - Companion C Integration: COMPANION_C_INTEGRATION.md
-  - Release Process: RELEASE_PROCESS.md
-  - Block 15 Release: BLOCK_15_RELEASE.md
-  - API Compatibility 0.15: API_COMPATIBILITY_0.15.md
-  - Normalized Generating Functions: NORMALIZED_GENERATING_FUNCTIONS.md
-  - Block 14 Release: BLOCK_14_RELEASE.md
-  - Fourteenth Major Block Report: FOURTEENTH_MAJOR_BLOCK_REPORT.md
-  - API Compatibility 0.14: API_COMPATIBILITY_0.14.md
-  - General Coordinate Atlas: GENERAL_COORDINATE_ATLAS.md
-  - Companion Coordinate Examples: COMPANION_COORDINATE_CALCULUS.md
-  - Local Validation: LOCAL_VALIDATION.md
-  - Block 13 Release: BLOCK_13_RELEASE.md
-  - Thirteenth Major Block Report: THIRTEENTH_MAJOR_BLOCK_REPORT.md
-  - API Compatibility 0.13: API_COMPATIBILITY_0.13.md
-  - Production Signal Processing: PRODUCTION_SIGNAL_PROCESSING.md
-  - Block 12 Release: BLOCK_12_RELEASE.md
-  - Twelfth Major Block Report: TWELFTH_MAJOR_BLOCK_REPORT.md
-  - API Compatibility 0.12: API_COMPATIBILITY_0.12.md
-  - Unified Language: UNIFIED_LANGUAGE.md
-  - Nonlinear Calculus: NONLINEAR_CALCULUS.md
-  - Scalable Nonlinear Execution: SCALABLE_NONLINEAR_EXECUTION.md
-  - Resumable Packet-Jet Streams: STREAMING_PACKET_JETS.md
-  - Behavioral Fixtures and Profiling: BEHAVIORAL_GOLDEN_AND_PROFILING.md
-  - Portable Persistence: PERSISTENCE_SCHEMAS.md
-  - Block 11 Release: BLOCK_11_RELEASE.md
-  - Eleventh Major Block Report: ELEVENTH_MAJOR_BLOCK_REPORT.md
-  - API Compatibility 0.11: API_COMPATIBILITY_0.11.md
-  - Block 10 Release: BLOCK_10_RELEASE.md
-  - Tenth Major Block Report: TENTH_MAJOR_BLOCK_REPORT.md
-  - API Compatibility 0.10: API_COMPATIBILITY_0.10.md
-  - Deprecation Policy: DEPRECATION_POLICY.md
-  - Block 9 Release: BLOCK_9_RELEASE.md
-  - API Stability Review: API_STABILITY_REVIEW.md
-  - Roadmap: IMPLEMENTATION_ROADMAP.md
-  - Export and LaTeX: EXPORT_AND_LATEX.md
+  - Start:
+      - Home: index.md
+      - User Guide: USER_GUIDE.md
+      - Worked Examples: WORKED_EXAMPLES.md
+      - Public API: PUBLIC_API.md
+      - Stable API: STABLE_API.md
+      - Upgrading Applications: MIGRATION_TO_1_0.md
+  - Operators and Coordinates:
+      - Unified Language: UNIFIED_LANGUAGE.md
+      - Coordinate Atlas: GENERAL_COORDINATE_ATLAS.md
+      - Coordinate Examples: COMPANION_COORDINATE_CALCULUS.md
+      - Analysis and Synthesis: ANALYSIS_SYNTHESIS_SYSTEMS.md
+      - Redundant Frames: REDUNDANT_FRAME_ALGEBRA.md
+      - Metric Packets: METRIC_PACKETS.md
+      - Distortion Cocycles: DISTORTION_COCYCLES.md
+      - Convex Packets: CONVEX_PACKETS.md
+  - Arithmetic and Functions:
+      - Sequences and OEIS: sequences_oeis.md
+      - Generating Functions: NORMALIZED_GENERATING_FUNCTIONS.md
+      - Special Functions: special_functions.md
+      - Quadratic-Form Tails: quadratic_forms.md
+      - Finite Join Quotients: finite_join_semilattice.md
+  - Signals:
+      - Signal Processing: PRODUCTION_SIGNAL_PROCESSING.md
+      - Fourier Recovery: fourier_recovery.md
+      - Polyphase Route Packets: POLYPHASE_ROUTE_PACKETS.md
+      - Carrier-Change Obstructions: CARRIER_CHANGE_OBSTRUCTIONS.md
+      - Hankel-Rank Falsification: HANKEL_FALSIFICATION.md
+  - Nonlinear Calculus and Integration:
+      - Nonlinear Calculus: NONLINEAR_CALCULUS.md
+      - Scalable Execution: SCALABLE_NONLINEAR_EXECUTION.md
+      - Streamed Packet Jets: STREAMING_PACKET_JETS.md
+      - Finite Integration: FINITE_MEASURE_INTEGRATION.md
+      - Integration Example: EXACT_INTEGRATION_EXAMPLE.md
+      - Typed Expressions: TYPED_FINITE_EXPRESSION_CALCULUS.md
+      - Expression Example: TYPED_EXPRESSION_EXAMPLE.md
+      - Finite Carrier Completion: FINITE_CARRIER_COMPLETION.md
+  - Quantum Models:
+      - Quantum and Memory Contracts: QUANTUM_MEMORY_NUMERICAL_CONTRACTS.md
+      - Fixed Dirac Modes: dirac_modes.md
+  - Data and Extensions:
+      - Portable Persistence: PERSISTENCE_SCHEMAS.md
+      - Export and LaTeX: EXPORT_AND_LATEX.md
+      - Behavioral Fixtures and Profiling: BEHAVIORAL_GOLDEN_AND_PROFILING.md
+      - Companion C Integration: COMPANION_C_INTEGRATION.md
+      - Extension API: EXTENSION_API.md
+  - Development:
+      - Platforms and Dependencies: SUPPORTED_PLATFORMS.md
+      - Optional Derivative Backends: OPTIONAL_BACKEND_ISOLATION.md
+      - CUDA Installation: GPU_INSTALLATION.md
+      - GPU Validation: GPU_VALIDATION.md
+      - PowerShell Workflows: POWERSHELL_TESTS.md
+      - Deprecation Policy: DEPRECATION_POLICY.md
+      - API Inventory: API_INVENTORY.md
+      - Release Process: RELEASE_PROCESS.md
 theme:
   name: mkdocs
   highlightjs: false

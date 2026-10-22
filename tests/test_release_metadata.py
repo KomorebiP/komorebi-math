@@ -10,7 +10,7 @@ from verification.release_metadata import check_build_configuration
     (b'Name: komorebi-math', b'Name: unrelated-package'),
     (b'Requires-Python: >=3.11', b'Requires-Python: >=3.14'),
     (b'Requires-Dist: numpy>=1.26', b'Requires-Dist: numpy<1'),
-    (b'License-Expression: LicenseRef-Proprietary', b'License-Expression: MIT'),
+    (b'License-Expression: MIT', b'License-Expression: LicenseRef-Proprietary'),
     (b'License-File: LICENSE.md', b'License-File: WRONG.md'),
     (b'# Fixture', b'# Stale description'),
 ])

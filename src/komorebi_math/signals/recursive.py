@@ -174,7 +174,7 @@ class LinearFilter:
         identifier="KM-DSP-D26",
         title="Direct-form II transposed finite recursion",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("finite normalized transfer coefficients",),
         verification_suite="signals.recursive",
     )
@@ -196,7 +196,7 @@ def lfilter(
         identifier="KM-DSP-D27",
         title="Normalized audio-EQ biquad construction",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("frequency strictly inside Nyquist", "positive Q"),
         verification_suite="signals.recursive",
     )

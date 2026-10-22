@@ -55,7 +55,7 @@ def check(root: Path, *, profile: Path | None = None) -> dict:
     sources = {}
     excluded = []
     selections = {name: {"python_fences": None, "exclude": []} for name in
-                  ("docs/USER_GUIDE.md", "docs/NEW_MACHINERY_GUIDE.md")}
+                  ("docs/USER_GUIDE.md", "docs/WORKED_EXAMPLES.md")}
     profile_digest = None
     if profile is not None:
         data = (root / profile).read_bytes()

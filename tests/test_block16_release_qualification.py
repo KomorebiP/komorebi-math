@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 import json
 import os
 import subprocess
@@ -63,13 +65,13 @@ def test_release_qualification_without_hardware_requirement(tmp_path: Path) -> N
     path = report.write(tmp_path / "qualification.json")
     payload = json.loads(path.read_text(encoding="utf-8"))
     assert payload["schema"] == RELEASE_QUALIFICATION_SCHEMA
-    assert payload["version"] == "1.0.0b4"
+    assert payload["version"] == __version__
     assert payload["certificate"]["valid"] is True
 
 
 def test_runtime_inventory_is_data_only() -> None:
     inventory = runtime_inventory()
-    assert inventory["package_version"] == "1.0.0b4"
+    assert inventory["package_version"] == __version__
     assert inventory["numpy"]
     assert inventory["python_executable"]
     assert set(inventory["distributions"]) >= {"torch", "cupy-cuda12x", "numba"}

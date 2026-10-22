@@ -9,6 +9,8 @@ a version, merges a PR, changes visibility, or publishes a release.
 """
 from __future__ import annotations
 
+from datetime import date
+
 import argparse
 import hashlib
 import json
@@ -24,12 +26,12 @@ import zipfile
 try:
     from . import candidate_evidence as ce
     from .hardware_qualification import _require_hardware_success
-    from .release_integrity import package_files, support_files
+    from .release_integrity import package_files, support_files, distribution_directory
     from .stress_release_candidate import CAMPAIGNS, _pytest_counts, _resource_result_valid
 except ImportError:
     import candidate_evidence as ce
     from hardware_qualification import _require_hardware_success
-    from release_integrity import package_files, support_files
+    from release_integrity import package_files, support_files, distribution_directory
     from stress_release_candidate import CAMPAIGNS, _pytest_counts, _resource_result_valid
 
 SCHEMA = "komorebi-math.release-promotion-review"
@@ -42,6 +44,7 @@ METADATA_JSON = {
     "src/komorebi_math/data/release_contract_1_0.json",
     "src/komorebi_math/data/upgrade_contract_1_0.json",
     "src/komorebi_math/data/stable_documentation_1_0.json",
+    "src/komorebi_math/data/support_matrix_1_0.json",
 }
 
 
@@ -119,7 +122,7 @@ def verify_hardware(root: Path, identity: dict[str, Any], path: Path,
                  "hardware command failed or timed out")
     wheel = next(row for row in identity["release_binding"]["artifacts"] if row["name"].endswith(".whl"))
     _require(report.get("wheel") == wheel, "hardware wheel identity differs")
-    with zipfile.ZipFile(root / "release/dist" / wheel["name"]) as archive:
+    with zipfile.ZipFile(distribution_directory(root) / wheel["name"]) as archive:
         inventory = {i.filename: _sha(archive.read(i)) for i in archive.infolist()
                      if i.filename.startswith("komorebi_math/") and not i.is_dir()}
     _require(bool(inventory), "hardware wheel has no package inventory")
@@ -176,7 +179,7 @@ def _source_skip(case: ET.Element) -> bool:
 def verify_publication(identity: dict[str, Any], path: Path, version: str,
                        source_junit: Path | None = None) -> dict[str, Any]:
     report = _signed_record(path, "report_sha256")
-    _require(report.get("schema") == "komorebi-math.block21-publication-gate"
+    _require(report.get("schema") in {"komorebi-math.publication-gate", "komorebi-math.block21-publication-gate"}
              and type(report.get("schema_version")) is int and report["schema_version"] == 1
              and report.get("passed") is True and report.get("mode") == "full"
              and report.get("package_version") == version, "full publication qualification absent")
@@ -342,7 +345,18 @@ def _metadata_snapshot(root: Path, version: str) -> dict[str, str]:
                          "release channel differs from package stage")
                 value["release_channel"] = "<CHANNEL>"
             raw = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
-        elif name == "src/komorebi_math/_version.py" or name.startswith("docs/") or name in {"README.md", "CITATION.cff"}:
+        elif name == "CITATION.cff":
+            text = raw.decode("utf-8")
+            versions = re.findall(r"^version:\s*(.*?)\s*$", text, flags=re.MULTILINE)
+            _require(versions == [version], "citation version differs from candidate")
+            dates = re.findall(r"^date-released:\s*(.*?)\s*$", text, flags=re.MULTILINE)
+            _require(len(dates) <= 1, "citation has duplicate release dates")
+            if dates:
+                date.fromisoformat(dates[0].strip("\"'"))
+            text = re.sub(r"^version:[^\n]*$", "version: <VERSION>", text, flags=re.MULTILINE)
+            text = re.sub(r"^date-released:[^\n]*$", "date-released: <RELEASE-DATE>", text, flags=re.MULTILINE)
+            raw = text.encode("utf-8")
+        elif name == "src/komorebi_math/_version.py" or (name.startswith("docs/") and name.endswith(".md")) or name == "README.md":
             raw = raw.replace(version.encode(), b"<VERSION>")
         result[name] = _sha(modes.get(name, "").encode() + b"\0" + raw)
     return result

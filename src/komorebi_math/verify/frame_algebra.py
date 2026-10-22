@@ -1,4 +1,4 @@
-"""Installed verification for Block 18 redundant-frame algebra."""
+"""Installed verification for redundant-frame algebra."""
 
 from __future__ import annotations
 

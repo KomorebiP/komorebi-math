@@ -1,5 +1,5 @@
 {
-  "package_version": "1.0.0b4",
+  "package_version": "1.0.0",
   "schema": "komorebi-math.stable-documentation",
   "schema_version": 1,
   "symbols": [
@@ -577,7 +577,7 @@
       "qualname": "StableContractReport",
       "reference": "docs/STABLE_API.md",
       "signature": "(api: 'ApiCompatibilityReport', semantics: 'StableSemanticReport', persistence: 'PortableCodecCompatibilityReport', certificate: 'Certificate') -> None",
-      "summary": "Complete 1.0-candidate compatibility report."
+      "summary": "Stable 1.0 compatibility report."
     },
     {
       "implementation_module": "komorebi_math.stable_semantics",
@@ -703,7 +703,7 @@
       "qualname": "check_stable_api",
       "reference": "docs/STABLE_API.md",
       "signature": "(path: 'str | Path | None' = None) -> 'ApiCompatibilityReport'",
-      "summary": "Check the 1.0-candidate namespace under strict signature compatibility."
+      "summary": "Check the stable 1.0 namespace under strict signature compatibility."
     },
     {
       "implementation_module": "komorebi_math.stable_contract",
@@ -784,7 +784,7 @@
       "qualname": "create_stable_api_manifest",
       "reference": "docs/STABLE_API.md",
       "signature": "(*, package_version: 'str | None' = None) -> 'PublicApiManifest'",
-      "summary": "Build the curated 1.0-candidate namespace manifest."
+      "summary": "Build the stable 1.0 namespace manifest."
     },
     {
       "implementation_module": "komorebi_math.export.persistence",
@@ -910,7 +910,7 @@
       "qualname": "load_stable_api_manifest",
       "reference": "docs/STABLE_API.md",
       "signature": "(path: 'str | Path | None' = None) -> 'PublicApiManifest'",
-      "summary": "Load and validate the committed 1.0-candidate API manifest."
+      "summary": "Load and validate the committed stable 1.0 API manifest."
     },
     {
       "implementation_module": "komorebi_math.stable_semantics",
@@ -1117,7 +1117,7 @@
       "qualname": "run_stable_semantics_fixture",
       "reference": "docs/STABLE_API.md",
       "signature": "(path: 'str | Path | None' = None) -> 'StableSemanticReport'",
-      "summary": "Execute every committed 1.0-candidate semantic case."
+      "summary": "Execute every committed stable 1.0 semantic case."
     },
     {
       "implementation_module": "komorebi_math.export.persistence",

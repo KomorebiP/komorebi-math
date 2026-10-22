@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Block 8 export normalization is designed for reports and broad data export. Block 10 introduced narrower executable persistence under an explicit schema and codec registry. Block 11 adds deterministic adjacent migrations and a separate chunked stream format for large finite packet-jet snapshots.
+Presentation export converts data into readable reports. Portable persistence reconstructs supported objects through an explicit schema and codec registry. Adjacent migrations preserve supported older records, while chunked streams handle large finite packet-jet snapshots.
 
 Use `to_serializable` for presentation-oriented export. Use `dumps_portable` when a supported object must be reconstructed as the same declared mathematical record.
 
@@ -159,4 +159,4 @@ Codec decoders are trusted application code. Register a codec only for a type wh
 
 ## Safe marker decoding
 
-`from_serializable` reverses only the built-in Block 8 markers for fractions, complex numbers, and NumPy arrays. Unknown `__type__` dictionaries remain ordinary dictionaries. This prevents the broad export decoder from becoming a class-instantiation mechanism.
+`from_serializable` reverses only the built-in presentation markers for fractions, complex numbers, and NumPy arrays. Unknown `__type__` dictionaries remain ordinary dictionaries. This prevents the broad export decoder from becoming a class-instantiation mechanism.

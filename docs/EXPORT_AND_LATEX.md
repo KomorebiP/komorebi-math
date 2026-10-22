@@ -1,6 +1,6 @@
 # Portable export and LaTeX compilation
 
-Version `0.8.0a1` adds a general output layer. It is separate from the research manuscripts. The export package accepts ordinary Python values, NumPy arrays, dataclasses, exact fractions, certificates, computation results, and renderer independent mathematical documents.
+The export package turns Python values, NumPy arrays, dataclasses, exact fractions, certificates and computation results into portable data or renderer-independent mathematical documents.
 
 ## Supported formats
 
@@ -58,10 +58,10 @@ document.equation(r"E_n = \sum_{r=0}^{n/2} c_r A_{n-2r}", numbered=True)
 document.table(("n", "value"), ((0, 1), (2, -1), (4, 5)))
 
 export_data(document, "report.tex", options=ExportOptions(overwrite=True)).certificate.require()
-export_data(document, "report.pdf", options=ExportOptions(overwrite=True)).certificate.require()
 ```
 
-PDF export writes the generated `.tex` file beside the PDF by default. Set `keep_tex=False` to remove it after successful compilation.
+To compile the document, pass `"report.pdf"` to `export_data` with a local LaTeX
+engine installed. PDF export writes its generated `.tex` file beside the PDF by default. Set `keep_tex=False` to remove it after successful compilation.
 
 ## Compile an existing LaTeX source
 
@@ -90,13 +90,13 @@ from komorebi_math.export import ExportOptions, export_bundle
 bundle = export_bundle(
     {"values": [1, 1, 2, 3, 5, 8]},
     "fibonacci_bundle.zip",
-    formats=("json", "markdown", "latex", "pdf"),
+    formats=("json", "markdown", "latex"),
     options=ExportOptions(overwrite=True),
 )
 bundle.certificate.require()
 ```
 
-The ZIP includes a SHA256 manifest. PDF can be omitted on systems without a LaTeX installation.
+The ZIP includes a SHA256 manifest. Add `"pdf"` to the formats when a local LaTeX engine is available.
 
 ## Custom document class
 
@@ -118,20 +118,16 @@ A custom class such as `aomart` can be supplied when it is installed in the loca
 
 Ordinary text is escaped. `Equation` stores trusted mathematical LaTeX. `RawLatex` is an explicit escape hatch for trusted source only. Shell escape remains disabled unless a Python caller deliberately enables it for a direct engine.
 
-## PowerShell smoke test
+## PowerShell workflows
 
-The source distribution includes `examples\Test-KomorebiExport.ps1`. It creates a test environment, installs the wheel, exercises the command line interface, exports several formats, compiles LaTeX when an engine is available, and prints SHA256 hashes.
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\examples\Test-KomorebiExport.ps1 -Wheel .\komorebi_math-0.11.0a1-py3-none-any.whl -OutputDirectory .\export_smoke
-```
-
-For an offline environment that already exposes NumPy through the base Python installation:
+Invoke the installed package through the selected Python interpreter:
 
 ```powershell
-.\examples\Test-KomorebiExport.ps1 -Wheel .\komorebi_math-0.11.0a1-py3-none-any.whl -OutputDirectory .\export_smoke -UseSystemSitePackages -NoDependencies
+python -m komorebi_math export sequence fibonacci --terms 30 --compile --output .\out\fibonacci.json --force
 ```
+
+The [PowerShell guide](POWERSHELL_TESTS.md) covers clean installation, exported
+reports and local LaTeX compilation.
 
 ## Reproducibility boundary
 

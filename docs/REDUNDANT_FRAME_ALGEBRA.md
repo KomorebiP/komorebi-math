@@ -1,6 +1,6 @@
 # Redundant frame algebra
 
-Block 18 closes the finite algebra of a general analysis--synthesis system.
+The redundant-frame algebra describes finite analysis and synthesis systems, including their coefficient-space representations.
 It does not assume that analysis coordinates form an orthonormal basis.
 
 Let a finite presentation be a pair
@@ -96,7 +96,7 @@ E_\beta\widehat T E_\alpha
 \]
 
 assemble to \(\widehat T\) and obey ordinary block-matrix multiplication when
-the middle partition is aligned.  These are the Block 18 compositional blocks.
+the middle partition is aligned.  These are the compositional blocks in coefficient space.
 
 The older physical components
 

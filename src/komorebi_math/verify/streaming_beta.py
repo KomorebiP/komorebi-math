@@ -1,4 +1,4 @@
-"""Installed verification for Block 11 persistence and compatibility boundaries."""
+"""Installed verification for streaming persistence and compatibility."""
 
 from __future__ import annotations
 
@@ -47,7 +47,7 @@ def _coordinate_family() -> tuple[PacketJetFamily, tuple[np.ndarray, np.ndarray]
         {2: tensor},
         source_dimension=2,
         target_dimension=2,
-        name="block11 coordinate quadratic",
+        name="streaming coordinate quadratic",
     )
     packets = PacketSystem(
         (np.diag([1.0, 0.0]), np.diag([0.0, 1.0])),
@@ -60,7 +60,7 @@ def _coordinate_family() -> tuple[PacketJetFamily, tuple[np.ndarray, np.ndarray]
 
 
 def run_streaming_beta_verification() -> VerificationReport:
-    """Run the installed Block 11 streaming, migration, and beta checks."""
+    """Run streaming, migration, and namespace compatibility checks."""
 
     checks: list[VerificationCheck] = []
 

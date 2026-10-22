@@ -1,13 +1,12 @@
 # Exact families and local OEIS comparisons
 
-The `komorebi_math.sequences` domain now includes reusable parts of the
-Komorebi OEIS 1.0.0 release recovered on 2026-10-08. These additions work offline
-and require no new dependency. They integrate exact family generation and local
-sequence comparison without importing the standalone atlas, CLI, or publications.
+The `komorebi_math.sequences` domain provides exact family generation and
+comparison with explicit local sequence corpora. These operations work offline
+and need no additional dependency.
 
-## Existing machinery retained
+## Related APIs
 
-| Recovered operation | Existing package implementation |
+| Operation | Package implementation |
 | --- | --- |
 | Bernoulli numbers and signed Euler coefficients | `arithmetic.euler`, `sequences.catalog` |
 | Fibonacci and Lucas recurrences and companion jumps | `arithmetic.recurrence` |
@@ -16,12 +15,11 @@ sequence comparison without importing the standalone atlas, CLI, or publications
 | Catalan, Bell, partitions, Apéry, and automatic sequences | `sequences.catalog`, `generating.sequences` |
 | Residue channels, refinement, and polyphase reconstruction | `refinement.residue`, `refinement.polyphase` |
 
-The archive's companion convention orders states from newest to oldest. The
-existing `LinearRecurrence` orders them from oldest to newest and uses
-`x[n+d] = sum(c[i] * x[n+i])`. Recovered convenience functions use the existing
-convention. The archive's matrix routines were not duplicated.
+`LinearRecurrence` orders companion states from oldest to newest and uses
+`x[n+d] = sum(c[i] * x[n+i])`. The convenience functions in this namespace use
+the same convention.
 
-## New exact families
+## Exact families
 
 ```python
 from komorebi_math.sequences import (
@@ -99,20 +97,11 @@ an earlier prefix met the minimum. Every result concerns a finite window.
 Neither a match nor a failed local search establishes infinite identity,
 originality, priority, or absence from the full OEIS.
 
-## Source and scope
+## Local data and licensing
 
-The software source is `Komorebi_OEIS_v1.0.0`, released 2026-10-07. Its
-`SOURCE_PROVENANCE.json` identifies the recovered
-`Transfer_Calculus_OEIS_Polished_Release.zip` baseline with SHA-256
-`43a6b736d53944459d9b50c7c2b43052a8d043f7b14c36a4b1d973803ae0429a`.
-The recovered archive recorded proprietary research-draft software status.
-The current project's original software is now licensed under MIT. This
-software grant does not change the terms of separately supplied OEIS data.
-
-The archive's reference corpus records 44 anchors and a historical OEIS export
-commit `29a947c1ea590c34717d08bc4fc8083093d433ae`, retrieved 2026-07-10. Those are
-source metadata, not a claim that this commit is current. No OEIS corpus or
-atlas is bundled in this integration. Users can load a local snapshot explicitly.
-Loaded JSON provenance is retained on `LocalOEISCorpus.provenance`. The archive
-attributes OEIS data to the OEIS Foundation under CC BY-SA 4.0, separate from
-software licensing.
+No OEIS corpus or atlas is bundled with the library. Users load a local
+snapshot explicitly, and JSON provenance is retained on
+`LocalOEISCorpus.provenance`. The original software is licensed under MIT.
+OEIS data are attributed to the OEIS Foundation under CC BY-SA 4.0, separate
+from the software license. A software grant does not change the terms of
+separately supplied data.

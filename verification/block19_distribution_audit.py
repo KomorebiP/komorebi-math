@@ -200,7 +200,7 @@ def audit(project: Path, dist: Path, rebuilt_wheel: Path | None = None) -> dict[
                 "docs/BLOCK_19_RELEASE.md",
                 "docs/BLOCK_19_WORKED_EXAMPLE.md",
                 "docs/FINITE_MEASURE_INTEGRATION.md",
-                "examples/block19_measure_integration_worked_example.py",
+                "examples/measure_integration.py",
                 "tests/test_block19_integration.py",
                 "verification/block19_math_verifier.py",
                 "verification/block19_adversarial_runner.py",

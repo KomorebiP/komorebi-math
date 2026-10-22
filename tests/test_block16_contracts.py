@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from komorebi_math import __version__
+
 import json
 from importlib.resources import files
 from pathlib import Path
@@ -50,7 +52,7 @@ def test_api_factory_versions_follow_runtime() -> None:
         create_beta_api_manifest().package_version,
         create_stable_api_manifest().package_version,
     }
-    assert versions == {"1.0.0b4"}
+    assert versions == {__version__}
 
 
 def test_semantic_fixture_detects_changed_expected_value(tmp_path: Path) -> None:

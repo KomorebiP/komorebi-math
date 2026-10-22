@@ -1,6 +1,6 @@
 """Research-tier additive route packets for finite polyphase filters.
 
-Block 14 tests the continuation-state packet idea outside max/convex semantics.
+These route packets express continuation state outside max/convex semantics.
 For linear time-invariant signal routing, alternative histories contribute by
 *addition* rather than by an idempotent maximum.  A causal FIR filter therefore
 induces an ``order x order`` matrix of coarse-lag kernels.  Cascading filters is

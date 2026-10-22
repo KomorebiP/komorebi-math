@@ -393,7 +393,8 @@ def test_expansion_and_tensor_resource_guards() -> None:
 
 
 def test_block19_is_research_only_and_frozen_contracts_remain_unchanged() -> None:
-    assert komorebi_math.__version__ == "1.0.0b4"
+    from komorebi_math.compatibility import load_stable_api_manifest
+    assert komorebi_math.__version__ == load_stable_api_manifest().package_version
     assert len(komorebi_math.__all__) == 516
     assert len(stable.__all__) == 131
     assert len(beta.__all__) == 83

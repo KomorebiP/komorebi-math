@@ -1,4 +1,4 @@
-"""Machine-readable contract for the current Komorebi Math 1.0 beta."""
+"""Machine-readable compatibility contract for Komorebi Math."""
 from __future__ import annotations
 import json,platform,re,sys
 from collections.abc import Mapping,Sequence

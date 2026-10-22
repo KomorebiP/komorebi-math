@@ -1,34 +1,24 @@
 # Contributing
 
-Komorebi Math is research software that authorized repository collaborators can review under the license in `LICENSE.md`. The license is restrictive and is not an OSI open-source license. Do not assume that public visibility grants permission to redistribute or incorporate the code elsewhere.
+Komorebi Math is open-source software under the MIT license. See [LICENSE.md](LICENSE.md) for the grant and third-party notices.
 
-Before preparing a substantial change, open an issue describing the mathematical claim, implementation boundary, expected API tier, verification strategy, and compatibility impact. Small corrections may be submitted directly when repository permissions allow.
+For a substantial contribution, describe the mathematical statement, accepted
+inputs, expected API tier and compatibility impact in an issue or pull request.
+A bug report should include a small reproducer and the observed result.
 
-A contribution should include:
+Contributions should provide meaningful regression tests and document the scope
+of any certificate, numerical tolerance or conditional result. Keep the versioned
+API in `komorebi_math.v1` compatible. New experimental interfaces belong in the
+subject modules until their contracts are ready for the stable namespace.
 
-1. a finite statement of what is implemented and what is not claimed
-2. tests that fail before the change and pass afterward
-3. a certificate, residual, or explicit conditional boundary where applicable
-4. documentation for every new public object
-5. no silent expansion of `komorebi_math.stable`, `komorebi_math.v1`, or `komorebi_math.api.v1`
-6. successful execution of the Block 21 publication gate
+Use one Python interpreter for installation and validation:
 
-Prepare the dependencies and current distributions using
-[local validation](docs/LOCAL_VALIDATION.md). Then run the complete gate on Windows
-with the same interpreter used for preparation:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Run_Block21_Publication_Gate.ps1 -Python "python"
+```console
+python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
+python verification/build_distributions.py --root .
+python verification/check_release.py --full-tests --require-mkdocs
 ```
 
-For an explicit interpreter path, replace `python` in `-Python` with that path.
-Run the strict source and documentation gate on Linux with:
-
-```bash
-python verification/block21_publication_gate.py --full-tests --require-mkdocs
-```
-
-The POSIX wrapper automatically skips MkDocs when unavailable. That reduced
-diagnostic run does not establish strict documentation qualification. Installed
-artifacts, platform evidence, and GPU qualification are separate checks described
-in the [release process](docs/RELEASE_PROCESS.md).
+[Reproducibility](REPRODUCIBILITY.md) describes the checks and their limits.
+The [release process](docs/RELEASE_PROCESS.md) covers installed distributions,
+platform qualification and publication.

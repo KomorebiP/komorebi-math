@@ -1,115 +1,66 @@
 # Reproducibility
 
-Komorebi Math separates mathematical verification, package qualification, and platform evidence.
+Komorebi Math separates functional checks from release qualification. A
+mathematical certificate reports the obligations of its operation. A passing
+CPU check does not establish CUDA execution or a result on another platform.
 
-## Prepare an authorized checkout
+## Prepare an environment
 
-Run from the repository root with one chosen Python 3.11–3.13 interpreter:
+Use one supported Python 3.11–3.13 interpreter for every command:
 
-```powershell
+```console
 python -m pip install -e ".[test,exact,scientific,yaml]" "setuptools==82.0.1" wheel mkdocs "pymdown-extensions==10.16.1"
-python verification/build_block21_distributions.py --root . --output-directory release/dist --report release/LOCAL_DISTRIBUTION_BUILD.json
+python verification/build_distributions.py --root .
 ```
 
-The gate compares source with the built distributions. Rebuild after changing
-source or documentation so the artifact-parity checks use the current bytes.
-The `dev` extra alone does not include the exact, scientific, and YAML test
-dependencies. For an explicit Windows interpreter path, follow
-[local validation](docs/LOCAL_VALIDATION.md).
+The builder writes the wheel and source distribution to `dist/`. Rebuild them
+after a source or documentation change. Generated builds, qualification reports
+and development history are excluded from the source payload.
 
-## Fast review
+## Functional and source checks
 
-```powershell
-$env:PYTHONPATH="$PWD\src"
-python .\examples\block21_public_capability_tour.py --json
-python .\verification\block21_publication_gate.py --skip-mkdocs
+```console
+python -m komorebi_math verify all
+python -m komorebi_math release check
+python examples/library_tour.py --json
+python verification/check_release.py --full-tests --require-mkdocs
+python verification/check_release_manual.py --profile verification/release_manual_profile.json --output qualification/examples.json
 ```
 
-The capability tour is deterministic. It covers exact polyphase refinement, redundant analysis and synthesis, Euler–Fibonacci coordinates, exact finite integration, typed expressions, portable persistence, and the frozen stable API.
+The source check runs the complete test suite, API and release contracts,
+a deterministic library tour, local documentation links and a strict MkDocs
+build. Its JSON record retains the exact test output and JUnit report, including
+failed or malformed results. Optional backend exclusions are recorded explicitly.
+The manual checker executes each selected example in a fresh interpreter and
+temporary directory. Reference fragments and optional tools have explicit
+exclusion reasons.
 
-## Complete source gate
+## Installed distributions
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Run_Block21_Publication_Gate.ps1 -Python "$env:CONDA_PREFIX\python.exe"
-```
+Installed tests use clean virtual environments for the original wheel and a
+wheel rebuilt from the source distribution. A local wheelhouse permits
+dependency-isolated offline checks. See the complete commands in the
+[release process](docs/RELEASE_PROCESS.md).
 
-The PowerShell wrapper requires a strict MkDocs build by default and runs the
-full pytest suite, strict research, beta, and stable API checks, stable and
-Block 20 verification, release and upgrade contracts, the capability tour,
-and local documentation-link checks. Use the prepared environment's
-interpreter in the `-Python` argument.
+## Documentation and source archive
 
-For a strict POSIX gate that fails if MkDocs is missing:
-
-```bash
-python verification/block21_publication_gate.py --full-tests --require-mkdocs --output release/BLOCK21_PUBLICATION_GATE.json --markdown release/BLOCK21_PUBLICATION_GATE.md
-python examples/block21_public_capability_tour.py --output release/BLOCK21_PUBLIC_CAPABILITY_TOUR.json
-```
-
-`run_block21_publication_gate.sh` is also available, but automatically skips
-MkDocs when it is absent. That skipped build is a reduced diagnostic result.
-
-## Mathematical documentation
-
-The documentation build preserves LaTeX math with PyMdown Extensions 10.16.1.
-Built pages use the bundled MathJax 3.2.2 SVG renderer and font data, so equation
-rendering needs no CDN, network font, or npm installation. The upstream license
-and source hashes accompany the bundle under `docs/assets/mathjax-3.2.2`.
-Code blocks remain literal code.
-
-```bash
+```console
 python -m mkdocs build --strict
-python verification/check_math_docs.py --site-dir site --output release/MATH_DOCS_CHECK.json
-python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/MANUAL_EXAMPLES.json
+python verification/check_math_docs.py --site-dir site --output qualification/math_docs.json
+python verification/build_source_release.py --help
 ```
 
-This check verifies math preservation, code exclusion, local asset references,
-and the copied asset hashes. It does not replace browser rendering checks or
-validate the mathematical assertions themselves.
+Documentation includes a local MathJax renderer and its upstream license. Math
+rendering requires no CDN or network font. The source-archive builder validates
+paths, file modes, hashes and reproducible archive bytes. Its command-line help
+describes the required source-check report and replay options.
 
-The example profile selects 64 standalone Python blocks across the README and
-current reference guides, including four API import smoke blocks. It records
-16 contextual/signature fragments and one LaTeX-dependent PDF example as explicit
-exclusions. Changing a guide's Python-fence count requires reviewing the profile.
-Without `--profile`, the checker retains the 16-example reader-guide selection.
+## Interpreting records
 
-## Evidence outputs
+Exact algebraic outputs and canonical JSON hashes should be reproducible.
+Backend versions, executable paths, operating-system strings and optional native
+libraries describe an environment. Checksums establish byte identity rather
+than authorship or independent mathematical review.
 
-The gate writes:
-
-```text
-release/BLOCK21_PUBLICATION_GATE.json
-release/BLOCK21_PUBLICATION_GATE.md
-release/BLOCK21_PUBLIC_CAPABILITY_TOUR.json
-```
-
-The JSON report contains a SHA-256 digest over its canonical content. Runtime details are recorded explicitly. A passing Linux run is not represented as a Windows or CUDA qualification.
-
-## Determinism boundaries
-
-Exact algebraic outputs and canonical JSON digests are expected to match across supported platforms. Floating-point backend versions, executable paths, operating-system strings, build timestamps, and optional native-backend availability are environment evidence rather than cross-platform deterministic values.
-
-## Deterministic handoff build
-
-After the preparation above, one command rebuilds the distributions, performs
-the full gate, creates the repository handoff, verifies a byte-identical
-rebuild, and replays the publication gate from a clean extraction:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Build_Block21_Handoff.ps1 -Python "$env:CONDA_PREFIX\python.exe"
-```
-
-Linux:
-
-```bash
-PYTHON=python ./build_block21_handoff.sh
-```
-
-Keep MkDocs installed for the strict POSIX handoff. The shell wrapper otherwise
-requests a documentation skip, which cannot establish strict documentation
-qualification. The default handoff's installed-artifact checks may inherit
-build-host dependencies. A separate dependency-isolated replay uses
-`release_artifact_gate.py --runtime-tests --dependency-mode isolated` with a
-populated local wheelhouse, as shown in the [user guide](docs/USER_GUIDE.md).
-
-The resulting manifest binds every payload file by relative path, normalized mode, size, and SHA-256. Absolute paths, parent traversal, symlinks, special files, non-NFC names, and case-fold collisions are rejected.
+Final publication requires the current candidate's platform, hardware and tagged
+predecessor review described in the [release process](docs/RELEASE_PROCESS.md).

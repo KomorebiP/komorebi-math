@@ -72,7 +72,7 @@ def downsample(signal: Any, factor: int, *, phase: int = 0) -> np.ndarray:
         identifier="KM-DSP-D11",
         title="Windowed finite rational-resampling anti-alias filter",
         status=ClaimStatus.CLASSICAL,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("positive reduced rational rate", "odd finite tap count"),
         limitations=("zero-extension boundary convention", "finite-window approximation"),
         verification_suite="signals.resampling",
@@ -216,7 +216,7 @@ class ResamplingResult:
         identifier="KM-DSP-T06",
         title="Finite centered polyphase rational-resampling identity",
         status=ClaimStatus.PROVED,
-        source="Block 12",
+        source="finite signal processing",
         assumptions=("zero-extension boundary convention", "odd centered FIR kernel"),
         verification_suite="signals.resampling",
     )

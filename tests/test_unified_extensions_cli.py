@@ -56,7 +56,7 @@ def test_cli_info(capsys) -> None:
     assert main(["info"]) == 0
     output = capsys.readouterr().out
     assert "komorebi-math" in output
-    assert "finite dimensional core" in output
+    assert "operator calculus" in output
 
 
 def test_cli_features(capsys) -> None:

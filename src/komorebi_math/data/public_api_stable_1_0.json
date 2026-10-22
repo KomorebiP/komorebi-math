@@ -2,7 +2,7 @@
   "namespaces": [
     "komorebi_math.stable"
   ],
-  "package_version": "1.0.0b4",
+  "package_version": "1.0.0",
   "schema": "komorebi-math.public-api",
   "schema_version": 1,
   "stability_level": "1.0-frozen-strict-signatures-semantics-and-persistence",

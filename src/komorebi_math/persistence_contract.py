@@ -1,7 +1,7 @@
 """Frozen portable-codec inventory and migration-path compatibility checks.
 
 The ordinary portable persistence registry is dynamic so extensions can add
-codecs.  The 1.0 candidate contract records the codecs shipped by Komorebi Math
+codecs.  The stable 1.0 contract records the codecs shipped by Komorebi Math
 itself and verifies that a release has not silently removed a tag, changed the
 Python record represented by a tag, reduced a codec version, or advanced a
 codec version without every adjacent migration step.
@@ -293,9 +293,9 @@ def compare_portable_codec_contract(
         },
         theorem_id="KM-PERSIST-016",
         message=(
-            "portable codec registry is compatible with the committed 1.0 candidate contract"
+            "portable codec registry is compatible with the committed stable 1.0 contract"
             if valid
-            else "portable codec registry is incompatible with the committed 1.0 candidate contract"
+            else "portable codec registry is incompatible with the committed stable 1.0 contract"
         ),
     )
     return PortableCodecCompatibilityReport(

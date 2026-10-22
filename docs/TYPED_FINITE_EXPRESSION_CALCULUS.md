@@ -1,9 +1,9 @@
 # Typed finite expression calculus
 
-Block 20 adds a small exact language for composing the finite polynomial and
-coordinate operators already present in Komorebi Math. Its purpose is not to
-imitate a computer algebra system. Its purpose is to make a useful fragment of
-the calculus typed, replayable, canonical, and decidable.
+The typed expression calculus composes finite polynomial and coordinate
+operators using exact rational values. It supplies explicit types, replayable
+transformations, canonical normal forms, and decidable equality within its
+finite semantic domain.
 
 The implemented semantic domain is finite and rational:
 
@@ -48,7 +48,7 @@ is triangular with a nonzero diagonal and is exactly invertible over
 and dimension but different coefficient witnesses are different types.
 
 This distinction prevents a common error. A statement such as "both vectors
-use the Fibonacci basis" is not a type proof. Block 20 compares the complete
+use the Fibonacci basis" is not a type proof. The type checker compares the complete
 variable, degree, and basis witness. Its structural fingerprint is a
 deterministic digest of that canonical exact data. Exact type equality still
 comes from the underlying witness, not from assuming that a cryptographic hash
@@ -221,7 +221,7 @@ Consequently, equality is decidable for this closed exact language:
 
 There is no numerical threshold and no dependence on a printed family name.
 For expressions with unresolved free symbols, canonical structural equality is
-decidable, but Block 20 does not claim to decide every universally quantified
+decidable, but the expression calculus does not decide every universally quantified
 identity that a user might intend those symbols to satisfy.
 
 ## Canonical data and digests
@@ -258,7 +258,7 @@ replayed exact inverse. A square shape or a certificate whose message says
 
 ## Matrix-chain planning
 
-Once an expression has become a compatible chain of dense matrices, Block 20
+Once an expression has become a compatible chain of dense matrices, the planner
 may choose a multiplication parenthesization. For matrices with dimension chain
 
 \[
@@ -306,7 +306,7 @@ mutated frozen objects from spoofing a certified denotation.
 
 ## Deliberate nonclaims
 
-Block 20 does not claim:
+The expression calculus does not claim:
 
 * arbitrary symbolic algebra or arbitrary user-defined rewrite theories
 * nonlinear, infinite-dimensional, or function-space theorem proving

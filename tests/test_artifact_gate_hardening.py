@@ -48,7 +48,7 @@ def test_publication_gate_conflicting_doc_options() -> None:
 def test_handoff_rejects_tampered_self_digest(tmp_path: Path) -> None:
     import json
     from verification.build_block21_handoff import _load_passing_gate, _canonical_sha256
-    payload={'schema':'komorebi-math.block21-publication-gate','passed':True,'mode':'full',
+    payload={'schema':'komorebi-math.publication-gate','passed':True,'mode':'full',
              'checks':[{'name':'fixture','passed':True}], 'full_test_record':{'returncode':0}}
     payload['report_sha256']=_canonical_sha256(payload)
     file=tmp_path/'gate.json';file.write_text(json.dumps(payload))
@@ -62,7 +62,7 @@ def test_handoff_rejects_tampered_self_digest(tmp_path: Path) -> None:
 def test_handoff_rejects_failing_checks_even_with_valid_digest(tmp_path: Path) -> None:
     import json
     from verification.build_block21_handoff import _load_passing_gate, _canonical_sha256
-    payload={'schema':'komorebi-math.block21-publication-gate','passed':True,'mode':'full',
+    payload={'schema':'komorebi-math.publication-gate','passed':True,'mode':'full',
              'checks':[{'name':'fixture','passed':False}], 'full_test_record':{'returncode':0}}
     payload['report_sha256']=_canonical_sha256(payload)
     file=tmp_path/'gate.json';file.write_text(json.dumps(payload))
@@ -75,7 +75,7 @@ def test_handoff_rejects_stale_source_binding(tmp_path: Path,monkeypatch) -> Non
     from verification import release_integrity
     from verification.build_block21_handoff import _load_passing_gate, _canonical_sha256
     monkeypatch.setattr(release_integrity,'release_binding',lambda root:{'source_sha256':'current'})
-    payload={'schema':'komorebi-math.block21-publication-gate','passed':True,'mode':'full',
+    payload={'schema':'komorebi-math.publication-gate','passed':True,'mode':'full',
              'checks':[{'name':'fixture','passed':True}], 'full_test_record':{'returncode':0},
              'environment':{'release_binding':{'source_sha256':'old'}}}
     payload['report_sha256']=_canonical_sha256(payload)

@@ -1,4 +1,4 @@
-"""Compatibility import for the Block 10 scalable nonlinear verification suite."""
+"""Compatibility import for scalable nonlinear verification."""
 
 from .scalable_nonlinear import run_scalable_nonlinear_verification
 

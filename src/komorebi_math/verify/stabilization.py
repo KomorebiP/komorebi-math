@@ -1,4 +1,4 @@
-"""Installed verification for Block 15 polyphase stabilization and 1.0 contracts."""
+"""Installed verification for polyphase stabilization and stable compatibility."""
 
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ def _singleton_packet_system(size: int) -> PacketSystem:
 
 
 def run_polyphase_stabilization_verification() -> VerificationReport:
-    """Verify the canonical finite polyphase layer introduced in Block 15."""
+    """Verify canonical finite polyphase stabilization."""
 
     checks: list[VerificationCheck] = []
 
@@ -152,7 +152,7 @@ def run_stable_contract_verification() -> VerificationReport:
     def aggregate_contract() -> None:
         check_stable_contract().certificate.require()
 
-    checks.append(_capture("aggregate 1.0-candidate contract", aggregate_contract))
+    checks.append(_capture("aggregate stable 1.0 contract", aggregate_contract))
 
     def versioned_aliases() -> None:
         from .. import stable

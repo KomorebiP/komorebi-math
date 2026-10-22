@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CROSSWALK = ROOT / "verification" / "COMPANION_C_BLOCK16_CROSSWALK.json"
+CROSSWALK = ROOT / "verification" / "companion_c_crosswalk.json"
 
 
 def _resolve(qualified_name: str):

@@ -1,6 +1,8 @@
-"""Machine-readable 1.0 public-beta release contract."""
+"""Machine-readable 1.0 release compatibility contract."""
 
 from __future__ import annotations
+
+from komorebi_math import __version__
 
 import json
 
@@ -22,7 +24,7 @@ from komorebi_math.release import (
 
 
 def test_release_tier_names() -> None:
-    assert komorebi_math.__version__ == "1.0.0b4"
+    assert load_release_contract().package_version == komorebi_math.__version__
     assert tuple(tier.value for tier in ApiTier) == (
         "stable",
         "beta",
@@ -37,9 +39,13 @@ def test_release_contract_is_deterministic_and_complete() -> None:
     assert left == right
     assert left.digest == right.digest
     assert left.package_version == komorebi_math.__version__
-    assert left.predecessor_version == "1.0.0b3"
-    assert left.release_line == "1.0.0b1 to 1.0.0rc1"
-    assert left.stage == "beta"
+    if left.stage == "final":
+        assert left.predecessor_version.startswith("1.0.0rc")
+    else:
+        from komorebi_math.release import load_upgrade_contract
+        assert left.predecessor_version in load_upgrade_contract().predecessor_versions
+    assert left.release_line == "1.0"
+    assert left.stage == ("final" if __version__ == "1.0.0" else "release-candidate")
     assert left.declared_python == ("3.11", "3.12", "3.13")
     assert left.stable_api.count == 131
     assert left.beta_api.count == 83
@@ -84,24 +90,14 @@ def test_cli_contract_names_are_frozen() -> None:
     assert API_CONTRACT_MODES == ("research", "beta", "stable")
     required = set(load_release_contract().required_cli_suites)
     assert required <= set(VERIFICATION_SUITE_NAMES)
-    assert {
-        "block15",
-        "stable",
-        "release",
-        "gpu",
-        "block16",
-        "upgrade",
-        "evidence",
-        "documentation",
-        "beta",
-        "block17",
-        "all",
-    } <= required
+    assert {"stable", "release", "upgrade", "documentation", "expression", "integration", "streaming", "all"} <= required
+    assert not any(name.startswith("block") for name in required)
+    assert {"block15", "block16", "block17"} <= set(VERIFICATION_SUITE_NAMES)
 
 
 def test_runtime_record_is_json_serializable() -> None:
     record = current_runtime_record()
-    assert record["package_version"] == "1.0.0b4"
+    assert record["package_version"] == __version__
     assert record["python"]
     assert record["platform"]
     json.dumps(record, sort_keys=True)

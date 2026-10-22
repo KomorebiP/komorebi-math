@@ -2,7 +2,7 @@
 
 ## 1. Directional derivative contract
 
-Every Block 10 provider implements the same finite directional interface. At a point `x` and directions `v_1, ..., v_r`, the call
+Every derivative provider implements the same finite directional interface. At a point `x` and directions `v_1, ..., v_r`, the call
 
 ```python
 provider.derivative(r, x, (v_1, ..., v_r))
@@ -34,7 +34,7 @@ tensor = SparseSymmetricTensor.from_mapping(
     order=3,
     source_dimension=3,
     target_dimension=1,
-    values={(0, 0, 1, 2): Fraction(7, 11)},
+    entries={(0, 0, 1, 2): Fraction(7, 11)},
 )
 tensor.certificate().require()
 ```

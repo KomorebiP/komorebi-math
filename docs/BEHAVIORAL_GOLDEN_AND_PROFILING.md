@@ -65,6 +65,7 @@ The timing is valid only for the recorded process and workload. It does not esta
 
 ## Device validation boundary
 
-`verification/block11_device_validation.py` performs matched CPU and CuPy snapshot evaluations when a usable CUDA runtime exists. Without such a runtime it exits with a not-executed result unless `--allow-unavailable` is explicit.
-
-A workflow definition is not execution evidence. Device claims require the generated validation record from an actual CUDA runner.
+Run `python -m komorebi_math verify gpu` to check the optional installed CUDA
+paths on a compatible host. The [release guide](RELEASE_PROCESS.md) describes
+how to bind hardware results to exact distribution files. A local timing
+profile does not substitute for device qualification.

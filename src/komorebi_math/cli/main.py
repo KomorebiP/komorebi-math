@@ -12,7 +12,7 @@ from pathlib import Path
 from .. import __version__
 from ..backends import available_backends
 from ..exceptions import ValidationError
-from .contracts import VERIFICATION_SUITE_NAMES
+from .contracts import PUBLIC_VERIFICATION_SUITE_NAMES, VERIFICATION_SUITE_NAMES
 from ..extensions import discover_extensions
 from ..provenance import describe
 from ..registry import features
@@ -80,7 +80,7 @@ def _print_feature_table() -> None:
 def command_info(_: argparse.Namespace) -> int:
     print(f"komorebi-math {__version__}")
     print("language: seed -> address -> operate -> project -> transfer -> refine -> constrain -> complete -> reconstruct")
-    print("implemented blocks: finite dimensional core through Block 17, production finite DSP, plus research-tier Blocks 18-20 for frame algebra, finite integration, and typed exact expressions")
+    print("domains: operator calculus, exact arithmetic, signal processing, finite quantum models, and portable mathematical records")
     return 0
 
 
@@ -109,6 +109,29 @@ def command_doctor(_: argparse.Namespace) -> int:
 def command_features(_: argparse.Namespace) -> int:
     _print_feature_table()
     return 0
+
+
+def _run_all_verification():
+    """Run installed functionality without requiring publication-host evidence."""
+    from ..verify import VerificationReport
+
+    reports = (
+        run_block16_verification(),
+        run_upgrade_verification(),
+        run_documentation_verification(),
+        run_frame_algebra_verification(),
+        run_integration_verification(),
+        run_expression_verification(),
+    )
+    return VerificationReport(tuple(check for report in reports for check in report.checks))
+
+
+def _verification_suite_name(value: str) -> str:
+    if value not in VERIFICATION_SUITE_NAMES:
+        raise argparse.ArgumentTypeError(
+            "unknown verification suite; choose from " + ", ".join(PUBLIC_VERIFICATION_SUITE_NAMES)
+        )
+    return value
 
 
 def command_verify(args: argparse.Namespace) -> int:
@@ -140,6 +163,7 @@ def command_verify(args: argparse.Namespace) -> int:
         "hardening": run_scalable_nonlinear_verification,
         "block10": run_block10_verification,
         "streaming-beta": run_streaming_beta_verification,
+        "streaming": run_streaming_beta_verification,
         "block11": run_block11_verification,
         "dsp": run_dsp_verification,
         "block12": run_block12_verification,
@@ -163,7 +187,7 @@ def command_verify(args: argparse.Namespace) -> int:
         "block19": run_block19_verification,
         "expression": run_expression_verification,
         "block20": run_block20_verification,
-        "all": run_block17_verification,
+        "all": _run_all_verification,
     }
     try:
         report = suites[args.suite]()
@@ -240,7 +264,7 @@ def command_golden(_: argparse.Namespace) -> int:
 
 
 def command_release_contract(_: argparse.Namespace) -> int:
-    """Print and validate the committed current-beta release contract."""
+    """Print and validate the committed installed release contract."""
 
     from ..release import check_release_contract
 
@@ -259,7 +283,7 @@ def command_release_environment(_: argparse.Namespace) -> int:
 
 
 def command_release_qualify(args: argparse.Namespace) -> int:
-    """Run the installed freeze-candidate qualification gate."""
+    """Run installed functionality checks independently of publication readiness."""
 
     from ..qualification import run_release_qualification
 
@@ -300,7 +324,7 @@ def command_release_upgrade(_: argparse.Namespace) -> int:
 
 
 def command_release_evidence(args: argparse.Namespace) -> int:
-    """Validate digest-checked platform evidence for beta or RC readiness."""
+    """Validate recorded platform evidence and current-execution requirements."""
 
     from ..release import check_validation_evidence
 
@@ -328,7 +352,7 @@ def command_release_documentation(_: argparse.Namespace) -> int:
 
 
 def command_release_readiness(args: argparse.Namespace) -> int:
-    """Run the public-beta or stricter release-candidate readiness gate."""
+    """Check publication readiness against current platform and hardware requirements."""
 
     from ..release import check_beta_readiness
 
@@ -1286,7 +1310,10 @@ def build_parser() -> argparse.ArgumentParser:
     feature_parser.set_defaults(function=command_features)
 
     verify = subcommands.add_parser("verify", help="run an installed verification suite")
-    verify.add_argument("suite", choices=VERIFICATION_SUITE_NAMES)
+    verify.add_argument(
+        "suite", type=_verification_suite_name, metavar="SUITE",
+        help="one of: " + ", ".join(PUBLIC_VERIFICATION_SUITE_NAMES),
+    )
     verify.set_defaults(function=command_verify)
 
     api_parser = subcommands.add_parser("api", help="inspect or snapshot the public API contract")
@@ -1296,26 +1323,26 @@ def build_parser() -> argparse.ArgumentParser:
     api_check.add_argument("--strict-signatures", action="store_true")
     api_check_tier = api_check.add_mutually_exclusive_group()
     api_check_tier.add_argument("--beta", action="store_true", help="check the curated strict beta namespace")
-    api_check_tier.add_argument("--stable", action="store_true", help="check the frozen 1.0 candidate namespace")
+    api_check_tier.add_argument("--stable", action="store_true", help="check the stable 1.0 namespace")
     api_check.set_defaults(function=command_api_check)
     api_snapshot = api_commands.add_parser("snapshot", help="write the current API manifest")
     api_snapshot.add_argument("--output", required=True)
     api_snapshot.add_argument("--force", action="store_true")
     api_snapshot_tier = api_snapshot.add_mutually_exclusive_group()
     api_snapshot_tier.add_argument("--beta", action="store_true", help="snapshot the curated beta namespace")
-    api_snapshot_tier.add_argument("--stable", action="store_true", help="snapshot the frozen 1.0 candidate namespace")
+    api_snapshot_tier.add_argument("--stable", action="store_true", help="snapshot the stable 1.0 namespace")
     api_snapshot.set_defaults(function=command_api_snapshot)
 
     golden_parser = subcommands.add_parser("golden", help="run committed behavioral semantics")
     golden_parser.set_defaults(function=command_golden)
 
-    release_parser = subcommands.add_parser("release", help="run release qualification gates")
+    release_parser = subcommands.add_parser("release", help="inspect installed compatibility and publication readiness")
     release_commands = release_parser.add_subparsers(dest="release_command", required=True)
     release_contract = release_commands.add_parser("contract", help="validate and print the frozen release contract")
     release_contract.set_defaults(function=command_release_contract)
     release_environment = release_commands.add_parser("environment", help="print the current runtime qualification record")
     release_environment.set_defaults(function=command_release_environment)
-    release_qualify = release_commands.add_parser("qualify", help="qualify the installed 1.0 freeze candidate")
+    release_qualify = release_commands.add_parser("check", aliases=["qualify"], help="check installed package functionality")
     release_qualify.add_argument("--gpu", action="store_true", help="probe CUDA hardware when available")
     release_qualify.add_argument("--require-gpu", action="store_true", help="fail unless the CUDA hardware gate passes")
     release_qualify.add_argument("--output", help="write the machine-readable qualification record")
@@ -1341,7 +1368,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     release_documentation.set_defaults(function=command_release_documentation)
     release_readiness = release_commands.add_parser(
-        "readiness", help="run public-beta or release-candidate readiness"
+        "readiness", help="check publication platform and hardware requirements"
     )
     release_readiness.add_argument(
         "--final",

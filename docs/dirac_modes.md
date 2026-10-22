@@ -1,8 +1,8 @@
 # Fixed-mode Dirac evolution
 
-The explicit research API is `komorebi_math.quantum.dirac`. It implements the
-four-spinor Clifford coordinate actions and finite free Dirac evolution used in
-the Physics publication set of 6 October 2026.
+The API is `komorebi_math.quantum.dirac`. It implements the
+four-spinor Clifford coordinate actions and finite free Dirac evolution in an
+explicit finite-mode model.
 
 ```python
 from komorebi_math.quantum.dirac import (
@@ -19,13 +19,9 @@ The units are `c = hbar = 1`. The torus is `(R/Z)^3` with Fourier phase
 coordinates have the source order `e0,e1,e2,e3`.
 
 `dirac_matrices()` returns independent read-only snapshots of
-`alpha_x,alpha_y,alpha_z,beta`. Their coordinate actions match the original
-`Relativistic3DCliffordTransportU1.lean`, read directly from the supplied source
-ZIP. Its SHA256 is
-`52288e2f60a23a3315ceaa2e1c13ef52d15a25bb64ca07c29dbedb73a415d403`.
-The related Block 44 Hilbert stability source SHA256 is
-`62e4115ce90bb381a66237201754b75fc36d79684e8bdaea9e5a6cdb580f41b9`.
-No new Lean compilation or Python-to-Lean certification is claimed.
+`alpha_x,alpha_y,alpha_z,beta` in the declared spinor coordinates. These are
+numerical Python matrices. Their evaluation does not provide a Lean proof
+certificate.
 
 `central_mode_momentum(mode,mesh)` accepts a strict integer triple. It computes
 `p*sinc(mesh*p/pi)` for `p=2*pi*mode`, with the continuum value at zero mesh.
@@ -51,9 +47,8 @@ values are validated. Unrepresentable energy or phase is rejected.
 
 These are numerical finite-matrix results. They do not certify infinite Fourier
 support, an unbounded Dirac domain, growing cutoffs, sampled-grid norms, noisy
-parameters or a uniform continuum-limit theorem. The source publication makes
-those same distinctions between finite mode stability, ordinary manuscript
-proofs and its named checked Lean coverage.
+parameters or a uniform continuum-limit theorem. Those require separate
+mathematical hypotheses and proofs.
 
 The dedicated tests verify all four Clifford involutions and their
 anticommutators, coordinate actions, Hermiticity, scalar-square identities and

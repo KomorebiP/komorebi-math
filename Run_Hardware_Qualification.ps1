@@ -1,7 +1,7 @@
 param(
     [string]$Python = "python",
-    [string]$Candidate = "release\CANDIDATE.json",
-    [string]$Output = "release\CURRENT_HARDWARE_QUALIFICATION.json",
+    [string]$Candidate = "qualification\candidate.json",
+    [string]$Output = "qualification\hardware.json",
     [int]$Timeout = 660
 )
 

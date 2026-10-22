@@ -1,4 +1,4 @@
-"""Block 21 external reproducibility and publication-gate tests."""
+"""Release verification and deterministic library-tour tests."""
 
 from __future__ import annotations
 
@@ -7,14 +7,14 @@ import sys
 from pathlib import Path
 
 from komorebi_math.compatibility import check_public_api
-from verification.block21_publication_gate import main, run_gate
+from verification.check_release import main, run_gate
 
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLES = ROOT / "examples"
 if str(EXAMPLES) not in sys.path:
     sys.path.insert(0, str(EXAMPLES))
 
-from block21_public_capability_tour import build_record  # noqa: E402
+from library_tour import build_record  # noqa: E402
 
 
 def test_generic_alias_signatures_are_portable_across_supported_python_versions() -> None:
@@ -64,7 +64,7 @@ def test_publication_gate_cli_writes_self_digesting_records(tmp_path: Path) -> N
     payload = json.loads(output.read_text(encoding="utf-8"))
     assert payload["passed"] is True
     assert len(payload["report_sha256"]) == 64
-    assert "Block 21 Publication Gate" in markdown.read_text(encoding="utf-8")
+    assert "Release Verification" in markdown.read_text(encoding="utf-8")
 
 
 def test_publication_launchers_and_policies_are_present() -> None:
@@ -73,8 +73,8 @@ def test_publication_launchers_and_policies_are_present() -> None:
         "SECURITY.md",
         "CONTRIBUTING.md",
         "REPRODUCIBILITY.md",
-        "Run_Block21_Publication_Gate.ps1",
-        "run_block21_publication_gate.sh",
+        "verification/check_release.py",
+        "verification/build_source_release.py",
         ".github/workflows/release.yml",
     )
     assert all((ROOT / name).is_file() for name in required)

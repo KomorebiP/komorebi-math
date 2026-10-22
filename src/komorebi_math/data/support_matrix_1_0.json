@@ -28,7 +28,7 @@
     "maximum": "3.13",
     "minimum": "3.11"
   },
-  "release_line": "1.0.0b1 to 1.0.0rc1",
+  "release_line": "1.0",
   "schema": "komorebi-math.support-matrix",
   "schema_version": 1,
   "unqualified_platforms": [
@@ -80,8 +80,8 @@
       },
       "platform": "Linux x86_64",
       "python": "3.13.5",
-      "result": "1138 passed; strict API, stable, Block 20, and release gates passed",
-      "suite": "current source, API, release-contract, Block 20, and publication qualification"
+      "result": "1138 passed; strict API, stable, typed-expression, and installed release checks passed",
+      "suite": "historical 1.0.0b4 source, API, release-contract, typed-expression, and publication qualification"
     }
   ]
 }

@@ -113,7 +113,7 @@ def run_audit(root: Path | None = None) -> PackageAuditReport:
     persistence = _load(data / "portable_codec_contract_0_16.json")
     support = _load(data / "support_matrix_0_16.json")
     release_contract = _load(data / "release_contract_0_16.json")
-    crosswalk = _load(project / "verification" / "COMPANION_C_BLOCK16_CROSSWALK.json")
+    crosswalk = _load(project / "verification" / "companion_c_crosswalk.json")
 
     required_paths = (
         ".github/workflows/ci.yml",
@@ -132,7 +132,7 @@ def run_audit(root: Path | None = None) -> PackageAuditReport:
         "docs/RELEASE_QUALIFICATION.md",
         "docs/STABLE_API_1_0_CANDIDATE.md",
         "docs/SUPPORTED_PLATFORMS.md",
-        "examples/block16_analysis_synthesis.py",
+        "examples/analysis_synthesis.py",
         "verification/run_isolated_test_batches.py",
         "verification/block16_distribution_audit.py",
         "verification/block16_static_audit.py",

@@ -14,10 +14,11 @@ from komorebi_math.release import (
     check_validation_evidence,
     load_validation_evidence,
 )
+from komorebi_math.release.evidence import _check_historical_validation_evidence
 
 
-def test_beta_platform_evidence_passes_with_authorized_inheritance() -> None:
-    report = check_validation_evidence()
+def test_historical_platform_evidence_retains_authorized_inheritance() -> None:
+    report = _check_historical_validation_evidence()
     report.certificate.require()
     assert report.covered_platforms == ("linux-x86_64", "windows-x86_64")
     assert report.current_platforms == ("linux-x86_64",)
@@ -27,10 +28,10 @@ def test_beta_platform_evidence_passes_with_authorized_inheritance() -> None:
     assert not report.release_candidate_ready
 
 
-def test_release_candidate_evidence_gate_remains_closed_until_exact_windows_beta_run() -> None:
+def test_final_evidence_requires_fresh_execution_on_both_platforms() -> None:
     report = check_validation_evidence(require_current_all_platforms=True)
     assert not report.passed
-    assert report.missing_current_platforms == ("windows-x86_64",)
+    assert report.missing_current_platforms == ("linux-x86_64", "windows-x86_64")
     readiness = check_beta_readiness(require_current_platforms=True)
     assert not readiness.passed
     assert any(check.name == "executed platform evidence" and not check.passed for check in readiness.checks)
