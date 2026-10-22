@@ -1,0 +1,67 @@
+{
+  "schema": "komorebi-math.final-release-status",
+  "package_version": "1.0.0",
+  "stage": "final",
+  "status": "prepared",
+  "published": false,
+  "source_commit": "5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222",
+  "source_tree": "7c9b4caee01fdc0bb64149e27ce46926241e21f2",
+  "source_files": 835,
+  "assets": [
+    {
+      "name": "komorebi_math-1.0.0-source.zip",
+      "bytes": 6962777,
+      "sha256": "10779d2282db7eeacc8b592f6ec87ad0061e863eeeef2a80ddc446cd3fd49550"
+    },
+    {
+      "name": "komorebi_math-1.0.0-py3-none-any.whl",
+      "bytes": 9008052,
+      "sha256": "2bfa6e963804ba85e9f93193f7a14b563322e7c74c32b1bc620c811c08ede56f"
+    },
+    {
+      "name": "komorebi_math-1.0.0.tar.gz",
+      "bytes": 2572067,
+      "sha256": "2eed6dae348f6858d9a63bb45a5a444ecbc1691f8f370515b096040ae11fa10d"
+    }
+  ],
+  "validation": {
+    "source_suite": "2752 passed, 7 skipped, 6 warnings in 121.02s (0:02:01)",
+    "optional_cpu_exact_skipped_cases": 7,
+    "installed_direct_wheel": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 1556
+    },
+    "installed_sdist_rebuilt_wheel": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 1556
+    },
+    "manual_examples_passed": 84,
+    "strict_documentation": true,
+    "base_stress_checks": 351,
+    "resource_controls": 11,
+    "source_archive_replay": {
+      "capability_record_sha256": "de5bd3d1d04ae359baf83105807acaeb9581887cde5806823d9aae17c882c246",
+      "member_count": 838,
+      "passed": true,
+      "quick_gate_sha256": "39f223b13348269318e9a60fe49db934ea9491759687e3b860b6431722b1203a"
+    },
+    "byte_reproducible_wheel_sdist_archive": true,
+    "clean_installed_cli": true
+  },
+  "hosted_ci": {
+    "run_id": 39811924921,
+    "tests_executed": false,
+    "artifacts": 0,
+    "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased."
+  },
+  "publication_prerequisites_remaining": [
+    "Successful fresh Linux/Windows Python3.11-3.13 hosted qualification after the GitHub account startup blocker is resolved",
+    "Real NVIDIA hardware qualification for the exact final distributions",
+    "Qualified tagged RC predecessor required by the publication review"
+  ],
+  "polyphase_c": "deferred"
+}
