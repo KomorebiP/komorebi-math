@@ -105,7 +105,7 @@ def qualify(root: Path, *, runtime_tests: bool=False, dependency_mode: str='inhe
                     packages=([f"setuptools=={importlib.metadata.version('setuptools')}",'wheel']
                               if build_environment else ['numpy'])
                     if runtime_tests and not build_environment:
-                        packages += ['pytest','sympy','scipy','mpmath','PyYAML']
+                        packages += ['pytest==8.4.2','sympy','scipy','mpmath','PyYAML']
                     run([str(python),'-I','-B','-m','pip','--isolated','install','--no-index',
                          '--find-links',str(wheelhouse),'--disable-pip-version-check',*packages],work)
                     run([str(python),'-I','-B','-m','pip','--isolated','check'],work)

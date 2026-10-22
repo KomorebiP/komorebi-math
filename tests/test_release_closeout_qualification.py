@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 from pathlib import Path
 import subprocess
@@ -28,7 +29,48 @@ def test_full_publication_tests_ignore_external_selection(tmp_path, monkeypatch)
     report = publication._run_full_tests(tmp_path)
     assert report["returncode"] == 1
     assert "1 failed, 1 passed" in report["summary"]
+    assert report["junit"]["counts"] == {"tests": 2, "errors": 0, "failures": 1, "skipped": 0}
+    assert report["passed"] is False
     assert os.environ["PYTEST_ADDOPTS"] == "-k keep"
+
+
+def test_missing_source_junit_cannot_pass_publication(tmp_path, monkeypatch):
+    monkeypatch.setattr(publication.subprocess, "run", lambda *args, **kwargs:
+                        subprocess.CompletedProcess(args[0], 0, "20 passed\n", ""))
+    report = publication._run_full_tests(tmp_path)
+    assert report["passed"] is False
+    assert report["junit"]["passed"] is False
+    assert "FileNotFoundError" in report["junit"]["error"]
+
+
+def test_rejected_source_junit_preserves_exact_producer_bytes(tmp_path, monkeypatch):
+    raw = b'<testsuite tests="4" errors="0" failures="0" skipped="0"><testcase name="parent"/></testsuite>\r\n'
+    def mismatched_report(command, **kwargs):
+        path = Path(next(arg.split("=", 1)[1] for arg in command if arg.startswith("--junitxml=")))
+        path.write_bytes(raw)
+        return subprocess.CompletedProcess(command, 0, "1 passed, 3 subtests passed\n", "")
+    monkeypatch.setattr(publication.subprocess, "run", mismatched_report)
+    report = publication._run_full_tests(tmp_path)
+    assert report["passed"] is False
+    assert report["junit"]["xml"].encode("utf-8") == raw
+    assert report["junit"]["sha256"] == hashlib.sha256(raw).hexdigest()
+    assert "counts disagree" in report["junit"]["error"]
+
+
+@pytest.mark.parametrize("fails", [False, True])
+def test_qualified_unittest_subtests_produce_concrete_parent_evidence(tmp_path, fails):
+    """All passing assertions execute; a failed subTest fails its parent."""
+    tests = tmp_path / "tests"
+    tests.mkdir()
+    assertion = "self.assertNotEqual(value, 1)" if fails else "self.assertGreaterEqual(value, 0)"
+    (tests / "test_subtests.py").write_text(
+        "import unittest\nclass TestCases(unittest.TestCase):\n"
+        " def test_parent(self):\n  for value in range(3):\n"
+        "   with self.subTest(value=value): " + assertion + "\n", encoding="utf-8")
+    report = publication._run_full_tests(tmp_path)
+    assert report["returncode"] == (1 if fails else 0)
+    assert report["passed"] is (not fails)
+    assert report["junit"]["counts"] == {"tests": 1, "errors": 0, "failures": int(fails), "skipped": 0}
 
 
 @pytest.mark.parametrize("mode", ["inherited", "isolated"])

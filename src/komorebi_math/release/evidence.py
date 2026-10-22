@@ -224,10 +224,11 @@ def load_validation_evidence(path: str | Path | None = None) -> ValidationEviden
     return ValidationEvidence.from_dict(raw)
 
 
-def check_validation_evidence(
+def _check_validation_evidence(
     path: str | Path | None = None,
     *,
     require_current_all_platforms: bool = False,
+    reference_version: str | None = None,
 ) -> ValidationEvidenceReport:
     """Validate evidence and optionally require current-version execution everywhere.
 
@@ -236,6 +237,7 @@ def check_validation_evidence(
     the committed upgrade contract. Release-candidate qualification does not.
     """
 
+    expected_version = __version__ if reference_version is None else reference_version
     evidence = load_validation_evidence(path)
     predecessor_versions = set(load_upgrade_contract().predecessor_versions)
     covered = tuple(sorted({record.platform_key for record in evidence.records}))
@@ -244,7 +246,7 @@ def check_validation_evidence(
             {
                 record.platform_key
                 for record in evidence.records
-                if record.package_version == __version__
+                if record.package_version == expected_version
             }
         )
     )
@@ -263,7 +265,7 @@ def check_validation_evidence(
     for record in evidence.records:
         if record.results.get("passed") is not True:
             invalid_records.append(record.identifier)
-        current_record = record.package_version == __version__
+        current_record = record.package_version == expected_version
         if current_record and record.inherited_via_upgrade_contract:
             invalid_records.append(record.identifier)
         if not current_record and (
@@ -276,7 +278,7 @@ def check_validation_evidence(
             invalid_sources.append(record.identifier)
 
     valid = (
-        evidence.target_version == __version__
+        evidence.target_version == expected_version
         and not missing
         and bool(current)
         and not invalid_records
@@ -327,6 +329,33 @@ def check_validation_evidence(
         require_current_all_platforms=bool(require_current_all_platforms),
         certificate=certificate,
     )
+
+
+def check_validation_evidence(
+    path: str | Path | None = None,
+    *,
+    require_current_all_platforms: bool = False,
+) -> ValidationEvidenceReport:
+    """Validate the current runtime's embedded platform evidence.
+
+    This compatibility API retains its historical contract. Current exact
+    candidate promotion is checked separately by the repository promotion gate.
+    """
+    return _check_validation_evidence(path, require_current_all_platforms=require_current_all_platforms)
+
+
+def _check_historical_validation_evidence() -> ValidationEvidenceReport:
+    """Validate preserved history against its original target, not this runtime."""
+    from dataclasses import replace
+    evidence = load_validation_evidence()
+    report = _check_validation_evidence(reference_version=evidence.target_version)
+    certificate = replace(report.certificate,
+        assumptions_checked=("preserved historical target and platform coverage", "digest-checked historical source records"),
+        assumptions_unchecked=("current candidate CPU/GPU execution requires the external promotion gate",),
+        diagnostics={**report.certificate.diagnostics, "historical_target": evidence.target_version,
+                     "current_runtime": __version__, "current_candidate_qualification": False},
+        message="historical platform record integrity passed" if report.passed else "historical platform record integrity failed")
+    return replace(report, certificate=certificate)
 
 
 __all__ = [

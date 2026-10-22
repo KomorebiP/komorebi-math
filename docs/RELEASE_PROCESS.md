@@ -43,7 +43,7 @@ system, architecture, and Python minor that will execute the check. This
 download step needs network access, but the artifact gate itself runs offline:
 
 ```powershell
-python -m pip download --only-binary=:all: --dest release/wheelhouse "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
+python -m pip download --only-binary=:all: --dest release/wheelhouse "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
 python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse release/wheelhouse --output release/LOCAL_ARTIFACT_GATE.json
 ```
 
@@ -106,16 +106,37 @@ The rigorous composite-Simpson path is restricted to a provenance-matched `Exact
 
 ## Release candidate
 
+The executable external review is documented in
+[the candidate guide](STABLE_RELEASE_CANDIDATE.md#promotion-review). It consumes
+the complete original CPU records rather than trusting a saved aggregate
+flag, revalidates the nested hardware report and installed wheel inventory,
+and checks full source/strict documentation, bounded stress and exact tag
+identity. The full publication record now includes its actual source JUnit.
+The promotion stress invocation must include `--include-optional-backends`.
+
+The stage parser supports beta, RC and final metadata. The current package
+has not been promoted. Stage changes require synchronized release metadata
+and fresh qualification of the resulting artifacts. Historical embedded
+records retain their original target and scope. For promoted stages, the
+source/publication gate reports historical-record integrity separately from
+the external current-candidate CPU/GPU requirement.
+
 A release candidate must additionally be built from a clean tag and pass the declared CPU platform matrix, hardware-backed CUDA qualification on the recorded NVIDIA environment, a strict documentation build, and archive-integrity verification. Historical Windows or CUDA evidence is not recast as a current-version result.
 
 On the hardware qualification host, `release readiness --final --require-gpu`
-requires both the embedded platform-evidence checks and CUDA execution. It is
-one part of this policy, not an aggregate check of the tag, artifacts, complete
-CPU matrix, and documentation build.
+is a separate diagnostic of the embedded platform registry and current-host
+CUDA execution. It fails when the preserved historical registry lacks
+current-version records. It does not replace the external promotion review of
+the exact source, artifacts, CPU matrix, hardware evidence, documentation and tag.
 
 ## Final release
 
 `1.0.0` should differ from the successful release candidate only in approved version and release metadata. Any code change after `rc1` produces `rc2` or later.
+
+Supply the successful RC review to `release_promotion.py --predecessor`.
+The final source inventory, including tracked Git modes, must match its
+metadata-normalized RC inventory. The review does not create a tag, merge,
+change repository visibility, or publish a GitHub/PyPI release.
 
 ## Historical local Block 20 commands
 

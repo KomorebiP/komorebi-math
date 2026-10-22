@@ -11,8 +11,8 @@ results.
 
 The package is a research beta. Its frozen stable namespace contains 131
 exports. The broader research API and the explicit modules added in October
-have their own contracts. The repository and distribution retain the existing
-private evaluation license. Use an authorized checkout or a supplied local
+have their own contracts. Original software is distributed under the MIT
+License, with third-party notices retained. Use a checkout or a supplied local
 distribution; the installation instructions do not assume publication on PyPI.
 
 Read this guide for first use, [the new machinery guide](NEW_MACHINERY_GUIDE.md)

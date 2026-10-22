@@ -7,7 +7,7 @@ from .._version import __version__
 from ..certificates import Certificate,Exactness
 from ..stable_contract import check_stable_contract
 from ..support import load_support_matrix,runtime_environment
-from .contract import QualificationCheck,check_release_contract
+from .contract import QualificationCheck,check_release_contract,_version_stage
 from .upgrade import check_upgrade_contract
 from .evidence import check_validation_evidence
 from .documentation import check_stable_documentation
@@ -23,8 +23,14 @@ def _capture(name,fn):
     try:fn();return QualificationCheck(name,True)
     except Exception as e:return QualificationCheck(name,False,f"{type(e).__name__}: {e}")
 def check_beta_readiness(*,include_gpu=False,require_gpu=False,require_current_platforms=False):
+    stage=_version_stage(__version__)
+    # The historical name and call signature remain compatible. A promoted
+    # package cannot opt back into beta's inherited-platform/optional-GPU policy.
+    if stage in ("release-candidate","final"):
+        require_current_platforms=True
+        require_gpu=True
     if require_gpu:include_gpu=True
-    mode="release-candidate" if require_current_platforms else "beta";checks=[QualificationCheck("PEP 440 1.0 beta version",bool(BETA.fullmatch(__version__)),f"observed {__version__}"),_capture("frozen stable compatibility contract",lambda:check_stable_contract().certificate.require()),_capture("beta release contract",lambda:check_release_contract().certificate.require()),_capture("cross-version upgrade contract",lambda:check_upgrade_contract().certificate.require()),_capture("stable documentation contract",lambda:check_stable_documentation().certificate.require()),_capture("executed platform evidence",lambda:check_validation_evidence(require_current_all_platforms=require_current_platforms).certificate.require())]
+    mode="final" if stage=="final" else "release-candidate" if require_current_platforms else "beta";checks=[QualificationCheck("PEP 440 1.0 release version",stage is not None,f"observed {__version__}"),_capture("frozen stable compatibility contract",lambda:check_stable_contract().certificate.require()),_capture("beta release contract",lambda:check_release_contract().certificate.require()),_capture("cross-version upgrade contract",lambda:check_upgrade_contract().certificate.require()),_capture("stable documentation contract",lambda:check_stable_documentation().certificate.require()),_capture("executed platform evidence",lambda:check_validation_evidence(require_current_all_platforms=require_current_platforms).certificate.require())]
     def aliases():
         from .. import stable,v1
         from ..api import v1 as av1
@@ -39,6 +45,7 @@ def check_beta_readiness(*,include_gpu=False,require_gpu=False,require_current_p
     failed=[x.name for x in checks if not x.passed];unchecked=[]
     if not include_gpu:unchecked.append("current-host CUDA hardware was not requested")
     if not require_current_platforms:unchecked.append("release candidate requires current-version evidence on every platform family")
+    unchecked.append("exact candidate promotion additionally requires the external release_promotion.py gate")
     cert=Certificate(valid=not failed,exactness=Exactness.EXACT,residuals={"failed_checks":float(len(failed))},assumptions_checked=tuple(x.name for x in checks if x.passed),assumptions_unchecked=tuple(unchecked),diagnostics={"version":__version__,"mode":mode,"failures":failed},theorem_id="KM-READINESS-017",message=f"1.0 {mode} readiness gate passed" if not failed else f"1.0 {mode} readiness gate failed")
     return BetaReadinessReport(__version__,mode,tuple(checks),runtime_environment(probe_ad=False),gpu,cert)
 __all__=["BetaReadinessReport","check_beta_readiness"]

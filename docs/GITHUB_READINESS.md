@@ -144,8 +144,13 @@ The optional `exact`, `scientific`, `yaml`, `jax`, and `torch` extras can be sel
 
 ## Release decisions still open
 
-The existing license permits private evaluation and reproducibility testing only. `pyproject.toml` records `LicenseRef-Proprietary`, and `RELEASE_ID.json` preserves those terms. Publishing the repository would not by itself grant open-source reuse rights. An open-source release needs an explicitly selected replacement license applied consistently to the license file, metadata, and release identity.
+Original software is now licensed under MIT. `LICENSE.md`, `pyproject.toml`,
+and `RELEASE_ID.json` carry the current grant. Historical qualification records
+retain their original license descriptions. Third-party components and data
+retain their own notices and terms.
 
 No GitHub Release was listed at this review. The tag workflow builds and uploads Actions artifacts when the tag matches `v1.0.0b4-repair-r4-block21`; it does not create a GitHub Release or publish to PyPI. The current installation instructions therefore use an authorized source checkout or a local wheel.
 
-Public visibility, license replacement, a tagged GitHub Release, PyPI publication, and promotion from beta to final 1.0 are distinct release decisions. Optional hardware qualification also remains distinct from the passing CPU suite.
+Repository visibility, a tagged GitHub Release, PyPI publication, and promotion
+from beta to final 1.0 remain distinct release actions. Hardware qualification
+also remains distinct from the passing CPU suite.

@@ -12,9 +12,9 @@ with independent standard Gaussian variables and strictly positive
 coefficients. The current COS remainder bound requires `r > 2`. Automatic
 planning requires the threshold to exceed the exact sum of the supplied
 coefficients. This is a research API with explicit numerical and mathematical
-assumptions. The existing private-evaluation project license is unchanged.
+assumptions. Original project software is licensed under MIT.
 
-From an authorized checkout, install the scientific extra and qualified backend:
+From a source checkout, install the scientific extra and qualified backend:
 
 ```bash
 python -m pip install ".[scientific]" "mpmath==1.3.0"

@@ -1,5 +1,13 @@
 # Repository preparation status
 
+## Current library closeout
+
+Original software is now licensed under MIT. The release-stage and polyphase
+certificate changes are described in [the closeout guide](docs/LIBRARY_CLOSEOUT.md).
+The installed package remains a beta until new-candidate CPU and actual CUDA
+evidence satisfy the final release policy. The dated records below describe
+earlier revisions, including their earlier licensing and execution status.
+
 ## Current GitHub qualification
 
 Reviewed on 2026-10-08 against `KomorebiP/komorebi-math` main commit `50447a253c2d00d4a7a4108440e090844b7148b2`, Git tree `faf5d17d4ab43090ab02bb4b2b53d2d5b87f2081`. The source identity remains `1.0.0b4-repair-r4-block21` under the existing private evaluation license.

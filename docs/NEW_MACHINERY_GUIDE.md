@@ -4,7 +4,8 @@ This guide covers the six additions included in the `1.0.0b4` beta readiness
 work. Each section explains what to import, which inputs are supported, how to
 read the result, and what the computation establishes. The examples are small
 controls that readers can reproduce before using the machinery on their own
-inputs. The release remains a beta with the existing private-evaluation license.
+inputs. The release remains a beta. Original software is licensed under MIT,
+with third-party notices retained.
 
 The root API and historical aggregate manifests retain their existing
 contracts. Import the new research modules by their explicit paths. In

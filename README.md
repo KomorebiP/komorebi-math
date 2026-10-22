@@ -2,7 +2,15 @@
 
 > **Current checkpoint:** `1.0.0b4-repair-r4-block21` (`4b21`) is the R4 Block 21 certificate-consistency research beta. The 131-symbol stable namespace remains frozen. See [GitHub readiness](docs/GITHUB_READINESS.md) for the qualified commit, installation steps, and release boundaries.
 
-The stress-tested candidate at `46267f52513c17eba0f599edbdbed896a8adcfd3` passed [all ten qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37873314805), including Linux and Windows Python 3.11–3.13, minimum CPU dependencies, strict documentation, isolated distributions, and a separate Linux CPU JAX/PyTorch campaign. Qualification records apply to the revisions they name. This checkpoint remains a beta under the existing [private evaluation license](LICENSE.md).
+The original software is available under the [MIT License](LICENSE.md).
+The package remains a research beta while its final release requirements are
+completed. The 131-symbol stable namespace retains its compatibility contract.
+
+The preceding candidate at `8f6c096e044416e7ecdd9f599a754f7d6028a343` passed
+[all 18 hosted qualification jobs](https://github.com/KomorebiP/komorebi-math/actions/runs/37959067834),
+including Linux and Windows Python 3.11–3.13, clean installed artifacts,
+minimum CPU dependencies, strict documentation, and optional CPU backends.
+Those records certify that revision. Later changes require their own evidence.
 
 The subsequent [release closeout](docs/RELEASE_CLOSEOUT_2026_10_09.md) records
 local contract repairs, stricter checks, and offline equation rendering. Its
@@ -11,6 +19,9 @@ local results do not extend the older CI qualification to later commits.
 The [stable candidate workflow](docs/STABLE_RELEASE_CANDIDATE.md) qualifies one
 set of package artifacts across the declared CPU matrix and provides an
 offline Windows CUDA handoff with source and artifact identity checks.
+
+The [library closeout](docs/LIBRARY_CLOSEOUT.md) records the reconstruction
+certificate repairs, open-source grant and explicit release-stage review.
 
 The [October 2026 deeper audit](docs/DEEP_AUDIT_2026_10_08.md) adds directed K-COS tails, exact sequence families and offline OEIS matching, corrected special-function companions, Fourier jump recovery, exact finite join quotients, and fixed-mode Dirac propagation. It also repairs independently reproduced certificate, integer-arithmetic, quantum-memory and signal-processing defects. New APIs document their supported domains and numerical assumptions; the stable namespace remains frozen.
 
@@ -49,7 +60,7 @@ Block 4 uses a signal first finite convolution convention. The `same` mode alway
 
 The [current user guide](docs/USER_GUIDE.md) gives checked installation paths, first programs, certificate lifecycle rules, and a route through the library. The [new machinery guide](docs/NEW_MACHINERY_GUIDE.md) covers all six October additions with twelve executable examples. [Manual revision notes](docs/MANUAL_RELEASE_NOTES.md) record corrections and example qualification. [Release stress audit](docs/STRESS_AUDIT_2026_10_08.md) records the additional adversarial checks, repairs, optional CPU backend qualification, and bounded replay.
 
-Use Python 3.11, 3.12, or 3.13. From the root of an authorized checkout, install the base package:
+Use Python 3.11, 3.12, or 3.13. From the repository root, install the base package:
 
 ```bash
 python -m pip install .

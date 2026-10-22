@@ -9,6 +9,7 @@ nav:
   - Manual Revision Notes: MANUAL_RELEASE_NOTES.md
   - GitHub Readiness: GITHUB_READINESS.md
   - Stable Release Candidate: STABLE_RELEASE_CANDIDATE.md
+  - Library Release Closeout: LIBRARY_CLOSEOUT.md
   - Release Closeout: RELEASE_CLOSEOUT_2026_10_09.md
   - Release Stress Audit: STRESS_AUDIT_2026_10_08.md
   - Deep Audit and New Machinery: DEEP_AUDIT_2026_10_08.md

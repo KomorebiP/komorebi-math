@@ -3,14 +3,68 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 from itertools import product
+from numbers import Complex
 from typing import Any, Iterable
 
 import numpy as np
 
 from ..certificates import Certificate, ComputationResult, Exactness
+from .._residuals import python_integer_entries
 from ..exceptions import DimensionError, ValidationError
 from ..provenance import ClaimStatus, ProvenanceRecord, documented
+
+
+def _finite_norm(value: Any) -> float:
+    """Compute a diagnostic norm without squaring the original scale."""
+    raw = np.asarray(value, dtype=object).reshape(-1)
+    try:
+        numeric = np.asarray(raw, dtype=complex)
+        if not bool(np.all(np.isfinite(numeric))):
+            return float("inf")
+        # An exact object entry below floating range must not become a zero
+        # reconstruction discrepancy merely through diagnostic conversion.
+        if any(entry != 0 and converted == 0 for entry, converted in zip(raw, numeric, strict=True)):
+            return float("inf")
+        magnitude = np.abs(numeric)
+        largest = float(np.max(magnitude, initial=0.0))
+        if largest == 0.0:
+            return 0.0
+        with np.errstate(over="ignore", invalid="ignore"):
+            return largest * float(np.linalg.norm(magnitude / largest))
+    except (TypeError, ValueError, OverflowError):
+        return float("inf")
+
+
+def _reconstruction_residual(reconstructed: np.ndarray, expected: np.ndarray) -> float:
+    """Subtract integer entries before fixed-width wrapping or float coercion."""
+    if reconstructed.dtype.kind in "biuO" or expected.dtype.kind in "biuO":
+        left = python_integer_entries(reconstructed)
+        right = python_integer_entries(expected)
+        difference = []
+        try:
+            for index in np.ndindex(left.shape):
+                a, b = left[index], right[index]
+                if isinstance(a, Complex) and isinstance(b, Complex) and (
+                    isinstance(a, int) or isinstance(b, int)
+                ):
+                    # Subtract real and imaginary components independently.
+                    # Converting the integer to float or complex first could
+                    # erase a discrepancy near the floating precision limit.
+                    for component in ("real", "imag"):
+                        part_a, part_b = getattr(a, component), getattr(b, component)
+                        exact_a = Fraction(part_a) if isinstance(part_a, int) else Fraction(*part_a.as_integer_ratio())
+                        exact_b = Fraction(part_b) if isinstance(part_b, int) else Fraction(*part_b.as_integer_ratio())
+                        difference.append(exact_a - exact_b)
+                else:
+                    difference.append(a - b)
+        except (TypeError, ValueError, OverflowError):
+            return float("inf")
+    else:
+        with np.errstate(over="ignore", invalid="ignore"):
+            difference = reconstructed - expected
+    return _finite_norm(difference)
 
 
 def _strict_positive_int(value: Any, name: str) -> int:
@@ -115,9 +169,9 @@ class PolyphaseCoordinates:
         if expected.shape != self.original_shape:
             raise DimensionError("original shape does not match the polyphase coordinate record")
         reconstructed = self.reconstruct()
-        residual = float(np.linalg.norm((reconstructed - expected).reshape(-1)))
-        scale = max(1.0, float(np.linalg.norm(expected.reshape(-1))))
-        valid = residual <= float(tolerance) * scale
+        residual = _reconstruction_residual(reconstructed, expected)
+        scale = max(1.0, _finite_norm(expected))
+        valid = bool(np.isfinite(scale) and residual <= float(tolerance) * scale)
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,
@@ -363,9 +417,9 @@ class LatticePolyphaseCoordinates:
         expected = np.asarray(original)
         if expected.shape != self.original_shape:
             raise DimensionError("original shape does not match lattice coordinates")
-        residual = float(np.linalg.norm((self.reconstruct() - expected).reshape(-1)))
-        scale = max(1.0, float(np.linalg.norm(expected.reshape(-1))))
-        valid = residual <= tolerance * scale
+        residual = _reconstruction_residual(self.reconstruct(), expected)
+        scale = max(1.0, _finite_norm(expected))
+        valid = bool(np.isfinite(scale) and residual <= tolerance * scale)
         return Certificate(
             valid=valid,
             exactness=Exactness.NUMERICAL,

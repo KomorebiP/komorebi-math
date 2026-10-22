@@ -184,7 +184,7 @@ jobs:
           path: release
       - name: Prepare dependencies for clean offline artifact qualification
         run: |
-          python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
+          python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
       - name: Source parity and installed common wheel plus sdist regressions
         run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/CI_REPAIR_ARTIFACT_GATE.json
         env:

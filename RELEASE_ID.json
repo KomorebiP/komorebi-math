@@ -1,7 +1,7 @@
 {
   "author": "Komorebi P.",
   "baseline_archive_sha256": "24cbd13e88dd5ab9aa4cf13e4530ece2a6643a09ce79c160b99b6f2d4562436a",
-  "license_note": "Existing proprietary/private-evaluation terms are preserved. No new public redistribution or reuse permissions are granted.",
+  "license_note": "Original software is licensed under MIT. Third-party components and separately supplied data retain their own terms.",
   "package_version": "1.0.0b4",
   "predecessor_archive_sha256": "6a6d644cba6adc154952229b7f11e346860be266584a46ea53964fc2f1b0d8f8",
   "release_channel": "development_checkpoint",

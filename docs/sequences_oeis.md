@@ -105,9 +105,9 @@ The software source is `Komorebi_OEIS_v1.0.0`, released 2026-10-07. Its
 `SOURCE_PROVENANCE.json` identifies the recovered
 `Transfer_Calculus_OEIS_Polished_Release.zip` baseline with SHA-256
 `43a6b736d53944459d9b50c7c2b43052a8d043f7b14c36a4b1d973803ae0429a`.
-The recovered archive records proprietary research-draft software status. This
-integration leaves the package license unchanged and introduces no software
-license grant.
+The recovered archive recorded proprietary research-draft software status.
+The current project's original software is now licensed under MIT. This
+software grant does not change the terms of separately supplied OEIS data.
 
 The archive's reference corpus records 44 anchors and a historical OEIS export
 commit `29a947c1ea590c34717d08bc4fc8083093d433ae`, retrieved 2026-07-10. Those are

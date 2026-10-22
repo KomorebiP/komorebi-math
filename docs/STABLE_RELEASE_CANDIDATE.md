@@ -109,21 +109,58 @@ report and nonzero exit status. Retain the complete JSON report, including
 failed runs. The small hardware checks establish their stated equivalence
 controls, not unrestricted GPU stress or performance guarantees.
 
-## Remaining promotion work
+## Promotion review
 
-After candidate CPU and hardware evidence pass, promotion still requires:
+The release contract now recognizes matching `beta`, `release-candidate` and
+`final` stage/version pairs. The package remains `1.0.0b4`. This machinery does
+not change a version or supply missing execution evidence.
 
-1. A deliberate release-stage transition. The existing readiness engine and
-   embedded contract are beta-specific. Changing only the version string to
-   `1.0.0rc1` would not satisfy them.
-2. Review of current platform evidence and its integration into the promotion
-   contract, retaining historical records and frozen API, semantic, and codec
-   contracts.
-3. A clean tagged release candidate with freshly verified artifacts,
-   documentation, archive integrity, and the declared platform checks.
-4. A final `1.0.0` transition containing only approved version and release
-   metadata changes from the successful candidate. Code changes require a
-   later candidate and renewed qualification.
+`verification/release_promotion.py` is the authoritative repository promotion
+review. It revalidates all six original CPU records, the exact installed-wheel
+CUDA report, a full publication record with strict documentation, and all
+bounded stress campaigns and resource controls. An outer `passed` flag alone
+is insufficient. The full source record embeds the actual run's JUnit XML,
+digest and concrete case counts. Existing optional LaTeX/backend and Windows
+POSIX exclusions retain their stated scope. The installed runtime profiles
+and the separately requested optional backend campaign must have zero skips.
+
+After building the current candidate distributions, produce the source and
+stress evidence from the same unchanged checkout:
+
+```console
+python verification/block21_publication_gate.py --root . --full-tests --require-mkdocs --output release/FULL_PUBLICATION.json --markdown release/FULL_PUBLICATION.md
+python verification/stress_release_candidate.py --root . --include-optional-backends --output-directory release/PROMOTION_STRESS --revision <candidate-revision>
+python verification/release_promotion.py --root . --candidate release/CANDIDATE.json --records <six-record-paths> --hardware release/CURRENT_HARDWARE_QUALIFICATION.json --publication release/FULL_PUBLICATION.json --stress release/PROMOTION_STRESS/manifest.json --output release/PROMOTION_REVIEW.json
+```
+
+The angle-bracket values are placeholders. Supply the exact candidate commit
+and six separate CPU record paths. The stress output directory must be inside
+the checkout. The ordinary stress command omits the optional backend campaign
+by default, so it cannot substitute for the command above at promotion.
+
+For an RC or final candidate, also supply `--tag v<package-version>`. The tag
+must already point at the candidate's actual clean Git commit. For final
+promotion, add `--predecessor <successful-RC-review.json>`. The reviewer compares
+the tracked source and Git file modes with that RC, permitting the checked
+version/stage metadata changes only. Other source changes require another RC.
+The final release contract must name that successful RC as its predecessor.
+
+The preserved embedded platform registry remains historical. RC/final source
+publication checks validate that history's integrity and explicitly defer
+current execution qualification to the external promotion review. The legacy
+installed `release readiness` interface remains fail closed when current
+embedded platform evidence or current-host CUDA execution is absent. Its
+version-only registry checks are not a substitute for exact candidate review.
+
+A deliberate stage transition must synchronize the project/runtime version,
+release identity and channel, current API/documentation/codec version labels,
+upgrade target and release-contract pins, citation and version-specific test
+expectations. Preserve the historical evidence and predecessor artifacts.
+Build and qualify new exact artifacts after these edits. The old beta's CPU
+or hardware records do not qualify changed RC/final artifacts.
+
+Positive CUDA execution, a newly qualified candidate and a clean release tag
+remain execution obligations. This source change does not claim those runs.
 
 The existing license and repository visibility are separate publication
 decisions. This workflow does not alter either or publish to GitHub Releases

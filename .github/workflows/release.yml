@@ -52,7 +52,7 @@ jobs:
       - run: python verification/check_release_manual.py --profile verification/release_manual_profile.json --output release/TAG_MANUAL_EXAMPLES.json
       - name: Prepare dependencies for clean offline artifact qualification
         run: |
-          python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy pytest sympy scipy mpmath PyYAML
+          python -m pip download --only-binary=:all: --dest "${{ runner.temp }}/komorebi-wheelhouse" "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
       - run: python verification/release_artifact_gate.py --root . --runtime-tests --dependency-mode isolated --wheelhouse "${{ runner.temp }}/komorebi-wheelhouse" --output release/TAG_REPAIR_ARTIFACT_GATE.json
       - run: python -m venv .venv-release
       - run: .venv-release/bin/python -m pip install dist/*.whl

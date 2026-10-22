@@ -216,23 +216,40 @@ def _run_full_tests(root: Path) -> dict[str, Any]:
     environment.pop("PYTEST_ADDOPTS", None)
     environment["PYTHONPATH"] = str(root / "src")
     environment["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
-    completed = subprocess.run(
-        [sys.executable, "-m", "pytest", "-q", "--tb=short", "tests"],
-        cwd=root,
-        env=environment,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-        timeout=900,
-    )
+    from verification.stress_release_candidate import _pytest_counts
+    with tempfile.TemporaryDirectory(prefix="komorebi-full-source-") as directory:
+        junit_path = Path(directory) / "source.xml"
+        completed = subprocess.run(
+            [sys.executable, "-m", "pytest", "-q", "--tb=short", f"--junitxml={junit_path}", "tests"],
+            cwd=root,
+            env=environment,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=900,
+        )
+        junit: dict[str, Any] = {"passed": False}
+        try:
+            raw_xml = junit_path.read_bytes()
+            xml = raw_xml.decode("utf-8")
+            # Preserve the exact producer bytes even if concrete-case parsing
+            # rejects their format. A failed receipt must remain inspectable.
+            junit.update(xml=xml, sha256=hashlib.sha256(raw_xml).hexdigest())
+            counts = _pytest_counts(junit_path)
+            junit.update(passed=counts["tests"] > 0 and counts["errors"] == counts["failures"] == 0,
+                         counts=counts)
+        except Exception as exc:
+            junit.update(passed=False, error=f"{type(exc).__name__}: {exc}")
     lines = [line.strip() for line in completed.stdout.splitlines() if line.strip()]
     summary = lines[-1] if lines else "no pytest output"
     return {
+        "passed": completed.returncode == 0 and junit["passed"],
         "returncode": completed.returncode,
         "summary": summary,
         "output": completed.stdout,
         "output_sha256": hashlib.sha256(completed.stdout.encode("utf-8")).hexdigest(),
+        "junit": junit,
     }
 
 
@@ -284,12 +301,17 @@ def run_gate(
         check_validation_evidence,
     )
     from komorebi_math.verify import run_block20_verification, run_stable_verification
+    from komorebi_math.release.contract import _version_stage
+    from komorebi_math.release.evidence import _check_historical_validation_evidence
 
     from verification.release_integrity import release_binding
     binding = release_binding(project)
     checks: list[GateCheck] = []
     warnings: list[str] = []
     version = _project_version(project)
+    promoted_stage = _version_stage(version) in {"release-candidate", "final"}
+    if promoted_stage:
+        warnings.append("This source/publication gate checks historical platform-record integrity only. Current candidate CPU/GPU qualification requires release_promotion.py.")
 
     def metadata_identity() -> str:
         runtime_text = (source / "komorebi_math" / "_version.py").read_text(encoding="utf-8")
@@ -380,7 +402,7 @@ def run_gate(
     )
     checks.append(
         _capture(
-            "current beta release contract",
+            "current release contract" if promoted_stage else "current beta release contract",
             lambda: (check_release_contract().certificate.require(), "release contract passed")[1],
         )
     )
@@ -392,14 +414,16 @@ def run_gate(
     )
     checks.append(
         _capture(
-            "executed platform evidence",
-            lambda: (check_validation_evidence().certificate.require(), "beta evidence passed")[1],
+            "historical platform record integrity (not current qualification)" if promoted_stage else "executed platform evidence",
+            lambda: ((_check_historical_validation_evidence() if promoted_stage else check_validation_evidence()).certificate.require(),
+                     "historical record integrity passed; external promotion required" if promoted_stage else "beta evidence passed")[1],
         )
     )
     checks.append(
         _capture(
-            "public beta readiness",
-            lambda: (check_beta_readiness().certificate.require(), "beta readiness passed")[1],
+            "source-stage contract readiness (external promotion required)" if promoted_stage else "public beta readiness",
+            lambda: ((check_release_contract() if promoted_stage else check_beta_readiness()).certificate.require(),
+                     "source contract passed; external promotion required" if promoted_stage else "beta readiness passed")[1],
         )
     )
 
@@ -459,7 +483,7 @@ def run_gate(
         checks.append(
             GateCheck(
                 "complete source test suite",
-                full_test_record["returncode"] == 0,
+                full_test_record.get("passed") is True,
                 full_test_record["summary"],
             )
         )
