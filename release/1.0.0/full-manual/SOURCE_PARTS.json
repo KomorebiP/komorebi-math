@@ -3,35 +3,40 @@
   "schema_version": 1,
   "archive": {
     "name": "Komorebi_Math_Technical_Manual_Source.zip",
-    "bytes": 49931924,
-    "sha256": "54c2b1594c60b0efb6379c7d4341345f610aab56e214a6c5f15b588e2c698720"
+    "bytes": 59573900,
+    "sha256": "29a9b5d2dad58068c1373d919e7f7dfeb296980a55019a18e0803e853aecd741"
   },
-  "part_count": 5,
+  "part_count": 6,
   "parts": [
     {
       "name": "Komorebi_Math_Technical_Manual_Source.zip.part01",
-      "bytes": 9986385,
-      "sha256": "6751fbf9a8d17210d6fe6e3a3604b8b390abe707dcf7d4ba7afa50ac481ddcca"
+      "bytes": 10000000,
+      "sha256": "e2eb5f48c2710ab57c5a355ca93edaa0d259627473c08f7b79942ec36dce3142"
     },
     {
       "name": "Komorebi_Math_Technical_Manual_Source.zip.part02",
-      "bytes": 9986385,
-      "sha256": "a8fc52c4f149c3ea215454b6f5a67070cc02e7eb21f2139c8605e9ff510a8139"
+      "bytes": 10000000,
+      "sha256": "b79c05382214ffcd148a9e9d48fe32d7291b26780b5eff3e1e9a219c44d3bb17"
     },
     {
       "name": "Komorebi_Math_Technical_Manual_Source.zip.part03",
-      "bytes": 9986385,
-      "sha256": "69298c1a44b75abe60e6ddfc8eb3465d195b1e332c774c33c2c0cc066776fc46"
+      "bytes": 10000000,
+      "sha256": "95c3fdca7bdaa39f9cb6ea457ff01ebca394ab239f682d506b95f675af20160e"
     },
     {
       "name": "Komorebi_Math_Technical_Manual_Source.zip.part04",
-      "bytes": 9986385,
-      "sha256": "bb8184c26f514de4e00b274148e4f2fae9f93fe24fa1868882125fee09e7d257"
+      "bytes": 10000000,
+      "sha256": "5f68a364ec16c81053e10837a24b77f86f1bc153935e7285b205e97313b31340"
     },
     {
       "name": "Komorebi_Math_Technical_Manual_Source.zip.part05",
-      "bytes": 9986384,
-      "sha256": "0d9b4f6cabacc8d7d7cba1acb2dc56aae6e3c31b82c73b03a991e9429d98689c"
+      "bytes": 10000000,
+      "sha256": "f32ed839be9ad1acce6303eec51e9fa0c9978adc821bb30285b1c9426a6bb988"
+    },
+    {
+      "name": "Komorebi_Math_Technical_Manual_Source.zip.part06",
+      "bytes": 9573900,
+      "sha256": "fe386f81122cec4ff73726fcfde009d08164929070e8d987c22e402b66dfdfbf"
     }
   ],
   "ordering": "Concatenate parts in this listed order; join_source.py verifies each part and the complete archive."

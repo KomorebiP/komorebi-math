@@ -13,7 +13,7 @@ This directory contains the final Python 1.0.0 build and its validation records.
 | `SHA256SUMS.txt` | SHA-256 checksums for all four downloads |
 | `FINAL_RELEASE_STATUS.json` | Exact source identity, validation scope and remaining publication prerequisites |
 
-The 2,529-page full technical manual preserves the long-form reference and its extended appendices. The separate 207-page companion guide follows the 47 current reader guides and provides a shorter route through the library.
+The 2,569-page full technical manual preserves the long-form reference and its extended appendices. The separate 207-page companion guide follows the 47 current reader guides and provides a shorter route through the library.
 
 Install the downloaded wheel with:
 

@@ -1,39 +1,223 @@
 {
   "title": "Komorebi Math: Technical Manual and Reference",
   "author": "Komorebi P.",
-  "original_pages": 2562,
   "pdf": {
     "name": "Komorebi_Math_Technical_Manual.pdf",
+    "pages": 2569,
+    "bytes": 11284232,
+    "sha256": "1e8c4388651cf027159d2e6b078ea1c234ce572a5f6aaadaec0ee95d6a256454",
+    "bookmarks": 5798
+  },
+  "previous_edition": {
     "pages": 2529,
-    "bytes": 11150857,
-    "sha256": "068933d890a49c30f6fdb100a2c6c4cbdd70bdfd3ee5642a2a1a6c298c2936a8",
-    "bookmarks": 5789
-  },
-  "structure": {
-    "parts": 14,
-    "chapters": 91,
-    "appendices": 15,
-    "original_numbered_subdivisions_retained": 3741
-  },
-  "preservation": {
-    "stable_api_cards": 131,
-    "beta_api_cards": 83,
-    "research_api_cards": 1312,
-    "fenced_listings": 4229,
-    "mathematical_spans": 6477,
-    "mathematical_typography_correction": "One missing backslash in \\qquad; no mathematical claim changed.",
-    "obsolete_editorial_records_archived": 74
-  },
-  "review_method": "Section review, unique-template language review and complete reference-record structural checks; exact reviewer coverage and limitations are retained in the individual reports.",
-  "validation": {
-    "source_preservation": "passed",
-    "api_manifest_record_parity": "1526 of 1526 exact matches",
-    "visual_review": "all-page overviews and representative full-size pages, with targeted review of revisions",
-    "pdf_integrity": "passed",
-    "current_source_static_crosswalk_files": 328,
-    "new_runtime_or_mathematical_correctness_audit": false
+    "pdf_sha256": "068933d890a49c30f6fdb100a2c6c4cbdd70bdfd3ee5642a2a1a6c298c2936a8"
   },
   "source_commit": "5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222",
+  "preservation": {
+    "status": "passed",
+    "failures": [],
+    "baseline_sha256": "9c0a1b2aba94e71c501d4603ee1dfba83dde8a239f86535b3b6d6ac731552e20",
+    "manuscript_sha256": "7fa17d6e5cc9ba29211b47df66579b2240979dc452aecf2a2cd0b9cb893627ee",
+    "assembler_sha256": "723a95f4d7503c80cb64b9ebb20745c595d7d2862c8cb7bd61b69c4bb4869a5c",
+    "typeset_sha256": "df9aecf542057a776b26ef5e6ea76fefad6f28ee8c0ecf74df632c2dc0c1eb7f",
+    "reader_parts": [
+      {
+        "path": "readers_guide.md",
+        "sha256": "32e870427d3cc3c242015febbfeeeba5903ba5e8993c4bdd16e9441439681755"
+      },
+      {
+        "path": "preface_evidence.md",
+        "sha256": "e8c6643dc4a2004bbe4bd68d0ad52dc6daf3106f7e4adf0b242839e821273902"
+      },
+      {
+        "path": "part_01.md",
+        "sha256": "2f7ac2c062e9f025bde16f59bedd93c4ed3542b367536c33a1b4894ab66b5742"
+      },
+      {
+        "path": "part_02.md",
+        "sha256": "1f492031fbcbb8663e5d0bfdf15e1bd156e2bb18590e590ecb45a86aa50c7065"
+      },
+      {
+        "path": "part_03.md",
+        "sha256": "a4f1b166e18bdde19c111b01e40024171a94f06fc9ef7125e7802d4d9fab04c0"
+      },
+      {
+        "path": "part_04.md",
+        "sha256": "0c1ff1fca5d6b560a1494aa81a0dff98920c29f8603e2771a1c3fb5604efee4f"
+      },
+      {
+        "path": "part_05.md",
+        "sha256": "7239dc776f8aa1e04babaa6baf1c1f6c967a08ac8979a0d2da17b1a321b6ac86"
+      },
+      {
+        "path": "part_06.md",
+        "sha256": "b8d249373c8ada86352fb3b2b123dde3535e6c722f378dab4bd9a4ac05e05a5d"
+      },
+      {
+        "path": "part_07.md",
+        "sha256": "f65c77d2d2b459bc113eb6c1568329cb7c16fb9eb1d7702b8a897c96a69f5c27"
+      },
+      {
+        "path": "part_08.md",
+        "sha256": "850d0643eb7b911738595191f7f690327b76f159781879a97196d07a52d71683"
+      },
+      {
+        "path": "part_09.md",
+        "sha256": "f1f5984e42b488e165038ec05dcecc1f78c125a7c5e541436c47b3006b8589c0"
+      },
+      {
+        "path": "part_10.md",
+        "sha256": "e87a4775cb49ef6df5da967cc9a03a675f39cea10e3e1a649e440540560cf2dc"
+      },
+      {
+        "path": "part_11.md",
+        "sha256": "ec3da96e75afbfb68c15ac280de7356ab5581075201dc45b8bd6f1630c9d182c"
+      },
+      {
+        "path": "part_12.md",
+        "sha256": "1e10e629a660c800654773202ab61ab8cf1227cfd39a478e514d1e7a584f7aff"
+      },
+      {
+        "path": "part_13_heading.md",
+        "sha256": "ef17468d1d3f2a6db4bdbb49a478c3ab314ae9dcf9b1adb8ed8fa4706f8e9fb1"
+      },
+      {
+        "path": "appendix_A.md",
+        "sha256": "9e38e5ea7c40787717936a8af799d4f45e016008fd8068e46e950e535263164f"
+      },
+      {
+        "path": "appendix_B.md",
+        "sha256": "f42f04c09e214ff6ce97ce7cec855a3736bce57cc30a626ab9fa1cf8f8099a44"
+      },
+      {
+        "path": "appendix_C.md",
+        "sha256": "bf4f14ab953dfb75311c5922c03a22cce1e4729c12d6771fd0f41bc2d8b7261c"
+      },
+      {
+        "path": "appendix_D.md",
+        "sha256": "b090d2a999422cae976d57a9bf8c24e3d9f0c5972918ef7fbcfe9cb87b704e87"
+      },
+      {
+        "path": "appendix_E.md",
+        "sha256": "d438ae49b7704d33c6397c0df2db11e515644848d9c565e102b230c0c63d3f37"
+      },
+      {
+        "path": "appendix_F.md",
+        "sha256": "3995ee58daca2a76418fa09a98ee011c1bd1e935e383c8c2626da1ad9d7307d2"
+      },
+      {
+        "path": "appendix_G.md",
+        "sha256": "7e74a3673254add5426578e042edbcf97da400136a49b844e4bbb1d42a7a47dc"
+      },
+      {
+        "path": "appendix_H.md",
+        "sha256": "571e384725449cc9214181b3ff45e716454467addcbdba5f2292e2351c2b3351"
+      },
+      {
+        "path": "appendix_I.md",
+        "sha256": "3219b9f298f6090d8ca87b4c7b702c4ac75a82865d1eb916d182c72d87afae4a"
+      },
+      {
+        "path": "appendix_J.md",
+        "sha256": "ce12c3ab18c78c529d838beb096f0a480202c264f3adbf97209f29bc793d5a42"
+      },
+      {
+        "path": "appendix_K.md",
+        "sha256": "b2e328f276d8646d01533be9463dd6eb81281ded9bdc5ce5b1d4f455b301fa24"
+      },
+      {
+        "path": "appendix_L.md",
+        "sha256": "eb1e3e5ef69f223fbf8f117017297d20b47f8c6ec90f8c15101a66aa9311226b"
+      },
+      {
+        "path": "appendix_M.md",
+        "sha256": "b97d202208d6e75dd67f537c7feaa51a1b5b0792b16d2c56263d9dd19dc4a377"
+      },
+      {
+        "path": "appendix_N.md",
+        "sha256": "f8cd1758900cd9732e3c9c8cc1c0c06b9adac0f44114b74a7d5595dd9ee1ab41"
+      },
+      {
+        "path": "appendix_O.md",
+        "sha256": "006bcaf3084acc9d0b10e5afc1c30011dd7457ade81deae87c23c76c265de567"
+      },
+      {
+        "path": "part_14.md",
+        "sha256": "0c459a42d89ac4cee7656c7303fed829a3d82934f3b964e0fb3c77f1c4019aeb"
+      }
+    ],
+    "structure": {
+      "parts": 14,
+      "chapters": 91,
+      "appendices": 15,
+      "api_cards_by_tier": {
+        "stable": 131,
+        "beta": 83,
+        "research": 1312
+      }
+    },
+    "original_code_listings_preserved": 4229,
+    "original_mathematical_spans_preserved": 6477,
+    "api_records_preserved": 1526,
+    "heading_corrections": [
+      {
+        "operation": "delete",
+        "before": [
+          "C.5B Packet jets, execution, streaming, and rooted trees: 69 entries"
+        ],
+        "after": []
+      },
+      {
+        "operation": "replace",
+        "before": [
+          "D.2.3 Beta: 1 modules"
+        ],
+        "after": [
+          "D.2.3 Beta: 1 module"
+        ]
+      }
+    ],
+    "new_reader_guide_links": 28,
+    "new_reader_guide_missing_targets": [],
+    "preexisting_unresolved_internal_targets": [],
+    "remaining_unresolved_internal_targets": [],
+    "introduced_unresolved_internal_targets": [],
+    "previous_words": 901853,
+    "current_words": 916010,
+    "added_words_net": 14157,
+    "scope": "All original listings, delimited mathematics, API records and explicit anchors compared; editorial prose reviewed as described in per-section reports. This is not a new theorem audit or replay of all examples."
+  },
+  "validation": {
+    "source_preservation": "passed",
+    "pdf_integrity": "passed",
+    "layout": "passed",
+    "visual_review": "four current PDF reports passed"
+  },
+  "review_scope": "Reader guidance, prose clarity, navigation, completeness and preservation of the existing technical reference, plus one focused correction to the spectral-dimension hypothesis in Section 53.3. Detailed reviewer coverage and example execution are recorded in the review reports.",
   "software_implementation_changed": false,
-  "scope_note": "The full technical manual is distinct from the separate 207-page companion guide. Historical literal records retain their reference-baseline scope."
+  "mathematical_review": {
+    "whole_book_theorem_audit": false,
+    "displayed_mathematics_and_code_preserved": true,
+    "focused_prose_correction": {
+      "file": "part_09.md",
+      "section": "53.3",
+      "before": "In finite dimension, \\(d_s(t)\\) tends\nto zero at both time endpoints.",
+      "after": "In finite dimension, \\(d_s(t)\\) tends\nto zero as time decreases to zero. Its large-time limit is zero when the\noperator has a zero eigenvalue. For a positive-definite operator, it instead\ngrows asymptotically linearly with time.",
+      "type": "Corrected a hypothesis in prose, not a typographical correction. All original displayed and inline math spans unchanged.",
+      "source_commit": "5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222",
+      "source_path": "src/komorebi_math/quantum/spectral.py",
+      "reason": "The positive-definite scalar identity gives d_s(t)=2t. Zero limit at large time requires a zero eigenvalue in a nonnegative finite spectrum.",
+      "validation_report": "SPECTRAL_ENDPOINT_AUDIT.json",
+      "current_file_sha256": "f1f5984e42b488e165038ec05dcecc1f78c125a7c5e541436c47b3006b8589c0",
+      "downstream_note": {
+        "file": "appendix_H.md",
+        "record": "H-T420 / PSC-VII-D59",
+        "added": "**Current-source correction.** The large-time statement in the historical declaration above is too broad. The limit is zero when the nonnegative operator has a zero eigenvalue. For a positive-definite operator, the diagnostic instead grows asymptotically linearly with time. The zero-time limit remains zero. Section 53.3 gives the corrected interpretation, consistent with the current source at commit `5f2b7ddc879c12d2bb00cbe5c487aa0bc7709222`.",
+        "reason": "Preserve the literal historical declaration while making its corrected current-source interpretation explicit at point of use.",
+        "current_file_sha256": "571e384725449cc9214181b3ff45e716454467addcbdba5f2292e2351c2b3351"
+      }
+    }
+  },
+  "new_hardware_qualification": false,
+  "all_existing_listings_replayed": false
 }
