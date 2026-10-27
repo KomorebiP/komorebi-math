@@ -1,5 +1,7 @@
 # Komorebi Math
 
+> **Beta · Work in progress.** These public releases are for evaluation, research and feedback. APIs, numerical behavior and documentation may change. The current package version is 1.0.0, but this publication is a beta release and does not signify production readiness. Validate results for your intended use.
+
 Komorebi Math is a Python library for finite operator, coordinate, signal and
 arithmetic calculations. It turns the constructions of Realization Calculus
 into reusable objects, explicit algorithms and inspectable certificates.
