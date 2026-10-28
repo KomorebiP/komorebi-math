@@ -1,5 +1,7 @@
 # Komorebi Math
 
+[Read the documentation website](https://KomorebiP.github.io/Operation-KOMOREBI/math/index.html) · [First runs and expected output](https://KomorebiP.github.io/Operation-KOMOREBI/collection/FIRST_RUN.html) · [All Komorebi works](https://KomorebiP.github.io/Operation-KOMOREBI/)
+
 > **Beta · Work in progress.** This library is available for research, evaluation and feedback. Its APIs, numerical behavior and documentation may change. Version 1.0.0 is still a beta release and is not ready for production. Check results for your intended use.
 
 Komorebi Math is a Python library for finite operator, coordinate, signal and

@@ -37,6 +37,8 @@ jobs:
       - run: python -m komorebi_math api check --strict-signatures
       - run: python -m komorebi_math api check --stable
       - run: python -m komorebi_math verify stable
+      - name: Run the documented first examples
+        run: python examples/first_run.py
       - run: python -m komorebi_math verify all
       - run: python -m komorebi_math release check
       - run: python verification/check_release.py --skip-mkdocs --output qualification/CI_SOURCE.json --markdown qualification/CI_SOURCE.md
