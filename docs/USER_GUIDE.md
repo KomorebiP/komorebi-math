@@ -1,5 +1,9 @@
 # Komorebi Math user guide
 
+**Beta and work in progress.** The 1.x API compatibility rules apply to the
+named stable interfaces. Production readiness still requires the checks in the
+[release guide](RELEASE_PROCESS.md).
+
 Komorebi Math provides reusable finite mathematical objects: operators, packet
 decompositions, coordinate changes, exact sequences, signal models, integration
 rules, and quantum realizations. Results carry the assumptions and evidence of
@@ -7,8 +11,8 @@ the computation that produced them. This guide starts with a working environment
 and two small programs, then shows how to choose a domain and interpret its
 results.
 
-The stable namespace contains 131 reviewed exports with a 1.x compatibility
-contract. The broader domain APIs document their own mathematical scope.
+The stable namespace contains 131 reviewed exports with 1.x compatibility
+guarantees. Other domain APIs describe their own mathematical scope.
 Original software is distributed under the MIT License, with third-party
 notices retained. These instructions use a checkout or a supplied wheel.
 
@@ -209,10 +213,10 @@ universal norm on all residuals.
 
 Residuals are copied into a read-only mapping. Use `dict(certificate.residuals)`
 for an ordinary dictionary display. Residual values must be supported immutable
-scalars; a mutable NumPy array, including a zero-dimensional array, cannot serve
+scalars. A mutable NumPy array, including a zero-dimensional array, cannot serve
 as live certificate evidence. Diagnostics are copied only at the outer
 dictionary level and are not deeply immutable. `.require()` accepts a live
-true certificate; it does not discharge unchecked assumptions.
+true certificate. It does not discharge unchecked assumptions.
 
 Portable loading returns historical evidence. A stored true flag appears as
 `recorded_valid=True`, while `current_valid=False` and
@@ -276,8 +280,8 @@ imports. This makes the chosen mathematical interface explicit.
 ### Conventions that affect a computation
 
 Exact finite arithmetic and floating linear algebra have different acceptance
-rules. A result for a stored binary64 factor concerns that exact stored factor;
-it does not include an unprovided measurement or rounding model. A finite
+rules. A result for a stored binary64 factor concerns that exact stored factor.
+It does not include an unprovided measurement or rounding model. A finite
 prefix matching a local OEIS record does not prove an infinite sequence
 identity. Scalar Racah evaluation does not establish positive orthogonality.
 
@@ -358,13 +362,13 @@ Use the same interpreter for installation and every check.
 
 | Observation | Next action |
 |---|---|
-| Wrong version or unexpected imports | Print `sys.executable` and `komorebi_math.__file__`; install through that interpreter |
+| Wrong version or unexpected imports | Print `sys.executable` and `komorebi_math.__file__`, then install through that interpreter |
 | Missing optional dependency | Install the extra required by the named operation |
 | Directed quadratic forms reject the backend version | Install the qualified `mpmath==1.3.0` backend |
 | A certificate fails `.require()` | Inspect its message, residual rule, checked hypotheses, and retained assumptions |
-| A loaded certificate requires revalidation | Rerun its producer; retain the loaded record as historical evidence |
-| Exact input is rejected | Use the API's declared integer or rational domain; avoid fractional truncation and Boolean indices |
-| Numerical recovery is unstable | Inspect singular values, thresholds, and residuals; the declared model and data conditioning still matter |
+| A loaded certificate requires revalidation | Rerun its producer and keep the loaded record as historical evidence |
+| Exact input is rejected | Use the API's declared integer or rational domain. Avoid fractional truncation and Boolean indices |
+| Numerical recovery is unstable | Inspect singular values, thresholds, and residuals. The declared model and data conditioning still matter |
 | The full gate cannot build documentation | Install MkDocs and `pymdown-extensions==10.16.1`, then rerun the strict documentation command |
 | Artifact parity fails after editing | Rebuild wheel and source distribution from the edited source |
 

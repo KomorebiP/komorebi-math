@@ -1,7 +1,11 @@
 # Stable API contract
 
+The public project remains **beta and work in progress**. Here, “stable” names
+the API compatibility promises described below. Production readiness depends
+on the separate checks in the [release guide](RELEASE_PROCESS.md).
+
 `komorebi_math.stable`, `komorebi_math.v1` and `komorebi_math.api.v1` expose
-131 object-identical symbols for the 1.x line. They support a complete finite
+131 object-identical symbols for the 1.x line. They support a finite
 workflow: construct operators and seeds, analyze coordinates, decompose data
 into packets, refine representations, certify results, save portable records
 and render mathematical documents.

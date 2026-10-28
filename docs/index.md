@@ -1,5 +1,9 @@
 # Komorebi Math
 
+**Beta and work in progress.** Use the library for research, evaluation and
+feedback. Check results for your intended use. The
+[release guide](RELEASE_PROCESS.md) explains the checks needed for publication.
+
 Komorebi Math provides finite mathematical constructions as Python objects,
 algorithms and certificates. Its common language connects operator realizations,
 coordinates, packet decompositions, refinement, arithmetic and numerical models.
@@ -30,8 +34,8 @@ complete calculations with independent controls. The
 ## Interpret and preserve results
 
 A certificate records validity, arithmetic class, residuals and assumptions.
-Exact, numerical and conditional results remain distinct. Persisted records
-retain their original evidence, while fresh validity requires revalidation.
+It distinguishes exact, numerical and conditional results. A saved record
+describes a past calculation. Rerun the calculation to check it again.
 Read the [persistence guide](PERSISTENCE_SCHEMAS.md),
 [export guide](EXPORT_AND_LATEX.md) and [stable API contract](STABLE_API.md)
 when connecting calculations or exchanging results.

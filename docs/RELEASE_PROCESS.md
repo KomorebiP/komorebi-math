@@ -5,6 +5,13 @@ checkout and one set of distribution files throughout qualification. Keep
 reports outside the installed package so that recording a wheel's hash does
 not alter the wheel being identified.
 
+The public project remains **beta and work in progress**, as declared by the
+development-status classifier in `pyproject.toml`. Version `1.0.0`, the
+`stable` channel in `RELEASE_ID.json`, and the release contract's `final` stage
+identify the prepared artifacts and version format. Production readiness still
+requires the evidence listed under [Publication review](#publication-review).
+Keep the public beta status until that review supports a change.
+
 ## Prepare the environment
 
 From the checkout root, create an environment for a supported Python minor.
@@ -18,7 +25,7 @@ python verification/build_distributions.py --root . --output-directory dist --re
 
 The builder creates `komorebi_math-1.0.0-py3-none-any.whl` and
 `komorebi_math-1.0.0.tar.gz`. Generated files belong in `dist/` and
-`qualification/`; they are excluded from the published source payload.
+`qualification/`. Both directories are excluded from the published sources.
 Rebuild after changing any bound source or documentation file.
 
 Qualification uses `pytest==8.4.2`. Its JUnit output records concrete parent
@@ -51,8 +58,8 @@ source cleanliness, a platform matrix or external hardware qualification.
 ## Clean installed distributions
 
 Prepare a wheelhouse for the operating system, architecture and Python minor
-that will run the check. The download step can use the network; the subsequent
-qualification runs offline:
+that will run the check. The download step can use the network. The subsequent
+checks run offline:
 
 ```bash
 python -m pip download --only-binary=:all: --dest qualification/wheelhouse "setuptools==82.0.1" wheel numpy "pytest==8.4.2" sympy scipy mpmath PyYAML
@@ -92,7 +99,7 @@ python verification/candidate_evidence.py aggregate --root . --candidate qualifi
 
 The reviewer rejects missing or duplicate cells, changed bytes, mismatched
 identities, incomplete installed profiles and inherited dependencies. Preserve
-the original records and hosted run provenance. Hashes bind content; they do
+the original records and hosted run details. Hashes identify content. They do
 not identify who executed a program.
 
 ## Stress and hardware qualification
@@ -142,7 +149,7 @@ python verification/release_promotion.py --root . --candidate qualification/cand
 The final tracked inventory and Git modes must match the RC after the permitted
 version/stage metadata normalization. Other source changes require another
 qualified RC. The historical embedded registry remains a record of its own
-runs; version equality alone does not qualify a changed source tree.
+runs. A matching version number does not qualify a changed source tree.
 
 `release readiness --final --require-gpu` is a separate diagnostic of that
 registry and the current hardware host. The external promotion review supplies

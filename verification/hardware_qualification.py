@@ -30,9 +30,12 @@ def _candidate_identity(root: Path, candidate: Path) -> dict[str, Any]:
     if __package__:
         from .candidate_evidence import candidate_identity
     else:
-        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        # Use the package name so delayed imports inside the release helpers
+        # still resolve after the temporary checkout path is removed.
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         try:
-            from candidate_evidence import candidate_identity
+            from verification.candidate_evidence import candidate_identity
+            return candidate_identity(root, candidate)
         finally:
             sys.path.pop(0)
     return candidate_identity(root, candidate)

@@ -52,5 +52,5 @@ checked computations.
 macOS, Windows ARM64, Linux ARM64, native Windows JAX GPU and other unrecorded
 platforms are outside the declared release matrix. They require their own
 execution records before a support claim is made. A constraints file records
-one reproduced environment; it does not make every listed dependency mandatory
+one reproduced environment. It does not make every listed dependency mandatory
 for the base package.

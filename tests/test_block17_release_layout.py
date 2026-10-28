@@ -38,6 +38,12 @@ def test_runtime_build_and_contract_versions_are_consistent() -> None:
     assert contract["stage"] == stage
     if stage in {"release-candidate", "final"}:
         assert identity["wheel_build_tag"] == ""
-    expected_classifier = ("Development Status :: 5 - Production/Stable" if stage == "final"
-                           else "Development Status :: 4 - Beta")
-    assert {value for value in project["classifiers"] if value.startswith("Development Status ::")} == {expected_classifier}
+
+
+def test_public_development_status_remains_beta() -> None:
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+    # The version and contract stage identify the prepared artifacts. They do
+    # not promote the current public project beyond its declared beta status.
+    assert {value for value in project["classifiers"] if value.startswith("Development Status ::")} == {
+        "Development Status :: 4 - Beta"
+    }

@@ -12,6 +12,55 @@ import zipfile
 import pytest
 
 from verification import hardware_qualification as gate
+from verification import candidate_evidence as ce
+from tests.test_release_repair import release
+
+
+@pytest.mark.parametrize("stale_source", [False, True])
+def test_isolated_script_checks_real_candidate_and_restores_import_path(
+    release: Path, tmp_path: Path, stale_source: bool
+) -> None:
+    # An offline source bundle needs real artifact validation, but no Git
+    # checkout or CUDA installation. Reuse the small, valid release fixture.
+    manifest = {
+        "schema": ce.MANIFEST_SCHEMA, "schema_version": 1,
+        "revision": "1" * 40, "git_tree": "2" * 40,
+        "release_binding": ce.release_binding(release),
+    }
+    manifest["content_sha256"] = ce._digest(manifest)
+    candidate = tmp_path / "candidate.json"
+    candidate.write_text(json.dumps(manifest), encoding="utf-8")
+    if stale_source:
+        (release / "src/komorebi_math/__init__.py").write_text("value = 0\n", encoding="utf-8")
+    probe = """
+import json, runpy, sys
+from pathlib import Path
+namespace = runpy.run_path(sys.argv[1])
+before = sys.path[:]
+try:
+    identity = namespace['_candidate_identity'](Path(sys.argv[2]), Path(sys.argv[3]))
+    from verification.release_integrity import distribution_directory
+    result = {'passed': True, 'identity': identity,
+              'distribution': str(distribution_directory(Path(sys.argv[2])))}
+except Exception as exc:
+    result = {'passed': False, 'error': f'{type(exc).__name__}: {exc}'}
+assert sys.path == before
+assert not any(n == 'komorebi_math' or n.startswith('komorebi_math.') for n in sys.modules)
+print(json.dumps(result))
+"""
+    process = subprocess.run(
+        [sys.executable, "-I", "-B", "-c", probe, str(Path(gate.__file__).resolve()),
+         str(release), str(candidate)],
+        cwd=tmp_path, capture_output=True, text=True, timeout=30,
+    )
+    assert process.returncode == 0, process.stderr
+    result = json.loads(process.stdout)
+    assert result["passed"] is (not stale_source), result
+    if stale_source:
+        assert "source/artifact parity failed" in result["error"]
+    else:
+        assert result["identity"] == ce.candidate_identity(release, candidate)
+        assert Path(result["distribution"]) == release / "dist"
 
 
 def _hardware_result() -> dict:
